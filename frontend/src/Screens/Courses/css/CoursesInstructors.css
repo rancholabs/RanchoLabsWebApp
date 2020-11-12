@@ -1,0 +1,96 @@
+.courses-instructors{
+    background-color: #020122;
+    padding: calc(126.98*var(--vp)) 0 calc(107*var(--vp));
+}
+
+.courses-instructors .row{
+    justify-content: space-between;
+}
+
+.courses-instructors-title{
+    font-size: calc(48*var(--vp));
+    color: #3CFAFF;
+    letter-spacing: calc(2.4*var(--vp));
+    text-align: center;
+}
+
+.courses-instructors-subtitle{
+    font-size: calc(48*var(--vp));
+    color: #F74B42;
+    letter-spacing: calc(2.4*var(--vp));
+    text-align: center;
+    margin-bottom: calc(86*var(--vp));
+}
+
+.courses-instructors .instructor{
+    width: calc(381*var(--vp));
+    height: calc(716*var(--vp));
+    background-color: #171636;
+}
+
+.courses-instructors .instructor:hover{
+    transform: scale(1.1);
+    transition: all .3s ease-in-out;
+}
+
+.courses-instructors .instructor .instructor-pic{
+    width: calc(381*var(--vp));
+    height: calc(337*var(--vp));
+    background-color: #39393b;
+}
+
+.courses-instructors .instructor .instructor-pic img{
+    width: calc(381*var(--vp));
+    height: 100%;
+}
+
+.courses-instructors .instructor .instructor-name{
+    font-size: calc(33*var(--vp));
+    color: #3CFAFF;
+    letter-spacing: calc(1.65*var(--vp));
+}
+
+.courses-instructors .instructor-info{
+    padding: calc(30*var(--vp)) calc(32*var(--vp));
+    height: calc(379*var(--vp));
+}
+
+.courses-instructors .instructor hr{
+    width: calc(106*var(--vp));
+    margin: calc(15.5*var(--vp)) auto calc(38.5*var(--vp)) calc(0*var(--vp));
+    border-bottom: calc(3*var(--vp)) solid #F74B42;
+}
+
+.courses-instructors .instructor-details{
+    color: #AFAFAF;
+    font-size: calc(22*var(--vp));
+    letter-spacing: calc(1.1*var(--vp));
+    height: calc(157*var(--vp));
+}
+
+.courses-instructors .logos{
+    margin-top: auto;
+}
+
+.courses-instructors .logos img{
+    max-width: calc(100*var(--vp));
+    height: calc(42*var(--vp));
+}
+
+.courses-instructors button{
+    background-color: #F74B42;
+    font-size: calc(33*var(--vp));
+    letter-spacing: calc(1.1*var(--vp));
+    height: calc(80*var(--vp));
+    width: calc(613*var(--vp));
+    color: #FFFFFF;
+    text-transform: capitalize;   
+    border: calc(2*var(--vp)) solid #F74B42; 
+    border-radius: calc(9*var(--vp));
+    margin: calc(111*var(--vp)) 0 calc(108*var(--vp));
+}
+
+.courses-instructors button img{
+    margin-right: calc(30*var(--vp));
+    width: calc(36*var(--vp));
+}

@@ -1,0 +1,274 @@
+.aboutus-contactus-outer{
+    background-color: #030224;
+}
+
+.aboutus-contactus{
+    padding: 3.447vw 7.86vw;
+    padding-right: 0;
+}
+
+.aboutus-contactus .contactus-title{
+    font-size: 2.5vw;
+    color: #3CFAFF;
+}
+
+.aboutus-contactus .send-message{
+    width: 31.875vw;
+}
+
+.aboutus-contactus .send-message input{
+    height: 4.635vw;
+    font-size: 1.458vw;
+    font-weight: 200;
+    background-color: #171636;
+    color: #FFFFFF;
+    border: none;
+    width: 100%;
+    padding: 0 2.08vw;
+    margin-bottom: 1.77vw;
+}
+
+.aboutus-contactus .send-message input::placeholder{
+    color: #FFFFFF !important;
+    font-weight: 300;
+    opacity: 0.7;
+}
+
+.aboutus-contactus .send-message textarea{
+    background-color: #171636;
+    color: #FFFFFF;
+    font-weight: 300;
+    font-size: 1.458vw;
+    width: 100%;
+    padding: 1.302vw 2.08vw;
+    height: 11.3vw;
+    resize: none;
+    border: none;
+    margin-bottom: 3.177vw;
+}
+
+.aboutus-contactus .send-message textarea::placeholder{
+    color: #FFFFFF;
+    opacity: 0.7;
+}
+
+.aboutus-contactus hr{
+    border-bottom: 3px solid #F74B42;
+    width: 50%;
+    margin: 2.2vw auto 3.2vw 0;
+}
+
+.send-button button{
+    width: 100%;
+    border: none;
+    background-color: #3CFAFF;
+    box-shadow: 0px 6px 6px #0000003D;
+    font-size: 1.718vw;
+    height: 4.16vw;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.aboutus-contactus .illustration{
+    width: 57.39vw;
+    align-self: flex-end;
+}
+
+.contact-row{
+    justify-content: space-between;
+    padding: 0 8vw;
+    margin: 3vw 0 0;
+    height: 5.453vw;
+    background-color: #0a0e2a;
+    box-shadow: 0px 3px 6px #0000002E;
+    align-items: center;
+    font-size: 1.45vw;
+}
+
+.contact-row button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    height: max-content;
+}
+
+.contact-row button::selection{
+    border: none;
+}
+
+.contact-row .call-us{
+    color: #FFFFFF;
+}
+
+.contact-row .request-call button{
+    color: #F74B42;
+}
+
+.contact-row .mail-us a{
+    color: #FFFFFF;
+}
+
+.contact-row .mail-us a:hover{
+    color: #FFFFFF;
+}
+
+.contact-row span{
+    font-size: 2.5vw;
+    margin-top: -1px;
+    padding-right: 1.2vw;
+}
+
+.contact-row .contact-or{
+    display: none;
+}
+
+@media(max-width:600px){
+    .aboutus-contactus{
+        padding: calc(20* var(--vm)) calc(40* var(--vm));
+    }
+    
+    .aboutus-contactus .row{
+        flex-direction: column-reverse;
+    }
+
+    .aboutus-contactus .contactus-title{
+        font-size: calc(22* var(--vm));
+        color: #3CFAFF;
+        text-align: center;
+    }
+    
+    .aboutus-contactus .send-message{
+        width: 100%;
+    }
+    
+    .aboutus-contactus .send-message input{
+        height: calc(50* var(--vm));
+        font-size: calc(13* var(--vm));
+        font-weight: 200;
+        background-color: #171636;
+        color: #FFFFFF;
+        border: none;
+        width: 100%;
+        padding: 0 calc(16* var(--vm));
+        margin-bottom: calc(19* var(--vm));
+    }
+    
+    .aboutus-contactus .send-message input::placeholder{
+        color: #FFFFFF !important;
+        font-weight: 300;
+        opacity: 0.7;
+    }
+    
+    .aboutus-contactus .send-message textarea{
+        background-color: #171636;
+        color: #FFFFFF;
+        font-weight: 300;
+        font-size: calc(13* var(--vm));
+        width: 100%;
+        padding: calc(11* var(--vm)) calc(16* var(--vm));
+        height: calc(169* var(--vm));
+        resize: none;
+        border: none;
+        margin-bottom: calc(22* var(--vm));
+    }
+    
+    .aboutus-contactus .send-message textarea::placeholder{
+        color: #FFFFFF;
+        opacity: 0.7;
+    }
+    
+    .aboutus-contactus hr{
+        border-bottom: 2px solid #F74B42;
+        width: calc(101* var(--vm));
+        margin: 5.2vw auto 8.7vw;
+    }
+    
+    .send-button button{
+        width: 100%;
+        border: none;
+        background-color: #3CFAFF;
+        box-shadow: 0px 6px 6px #0000003D;
+        font-size: calc(18* var(--vm));
+        height: calc(43* var(--vm));
+        font-weight: 400;
+        cursor: pointer;
+    }
+    
+    .aboutus-contactus .illustration{
+        width: 100%;
+        align-self: flex-end;
+    }
+    
+    .contact-row{
+        justify-content: space-around;
+        padding: calc(28* var(--vm)) calc(67* var(--vm));
+        margin-bottom: 0;
+        height: unset;
+        background-color: transparent;
+        box-shadow: unset;
+        align-items: center;
+        font-size: calc(13* var(--vm));
+        font-weight: 300;
+        line-height: 2.5;
+    }
+    
+    .contact-row button{
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+    }
+    
+    .contact-row .call-us{
+        color: #FFFFFF;
+        height: max-content;
+    }
+    
+    .contact-row .request-call button{
+        height: max-content;
+        color: #F74B42;
+    }
+
+    .contact-row .mail-us{
+        display: none;
+    }
+    
+    .contact-row .mail-us a{
+        color: #FFFFFF;
+    }
+    
+    .contact-row .mail-us a:hover{
+        color: #FFFFFF;
+    }
+    
+    .contact-row span{
+        font-size: calc(20* var(--vm));
+        margin-top: -1px;
+        padding-right: 2vw;
+    }
+    .contact-row .contact-or{
+        display: block;
+        text-align: center;
+        line-height: 1;
+    }
+}
+
+.aboutus-contactus input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus{
+  -webkit-text-fill-color: #FFFFFF !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.aboutus-contactus input:-webkit-autofill:hover,
+select:-webkit-autofill:focus{
+  -webkit-text-fill-color: #FFFFFF !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+}

@@ -1,0 +1,60 @@
+.course-signup {
+    background: #020122 0% 0% no-repeat padding-box;
+    opacity: 1;
+    padding-top: calc(102 * var(--vp));
+    padding-bottom: calc(118 * var(--vp));
+}
+
+.course-signup > .title {
+    text-align: center;
+    font: normal normal normal calc(40 * var(--vp))/calc(53 * var(--vp)) Roboto;
+    letter-spacing: calc(0.6 * var(--vp));
+    color: #F74B42;
+    opacity: 1;
+    padding-bottom: calc(69 * var(--vp));
+}
+
+.course-signup > .signup-free-btn {
+    width: calc(865 * var(--vp));
+    height: calc(105 * var(--vp));
+    font: normal normal normal calc(42 * var(--vp))/calc(58 * var(--vp)) Roboto;
+    padding-left: calc(137 * var(--vp));
+    padding-right: calc(137 * var(--vp));
+}
+
+.course-signup .icon {
+    font-size: calc(46 * var(--vp));
+}
+
+@media all and (max-width: 600px) {
+    .course-signup {
+        padding-top: calc(19 * var(--vm));
+        padding-bottom: calc(26 * var(--vm));
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .course-signup > .title {
+        text-align: center;
+        width: calc(197 * var(--vm));
+        height: calc(32 * var(--vm));
+        font-size: calc(18 * var(--vm));
+        letter-spacing: calc(0.27 * var(--vm));
+        padding-bottom: calc(2 * var(--vm));
+    }
+
+    .course-signup > .signup-free-btn {
+        width: calc(212 * var(--vm));
+        height: calc(23 * var(--vm));
+        font-size: calc(12 * var(--vm));
+        border-width: calc(1.5 * var(--vm));
+        border-radius: calc(18 * var(--vm));
+        padding-left: calc(26 * var(--vm));
+        padding-right: calc(25 * var(--vm));
+    }
+
+    .course-signup .icon {
+        font-size: calc(12 * var(--vm));
+    }
+}

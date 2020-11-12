@@ -1,0 +1,306 @@
+.course-ground-innovation {
+    padding-top: calc(100 * var(--vp));
+    padding-bottom: calc(125 * var(--vp));
+    background: #F74B42 0% 0% no-repeat padding-box;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.course-ground-innovation > .topic {
+    margin-bottom: calc(38 * var(--vp));
+    width: calc(648 * var(--vp));
+    height: calc(132 * var(--vp));
+    text-align: center;
+    font: normal normal bold calc(49 * var(--vp))/calc(66 * var(--vp)) Roboto;
+    letter-spacing: calc(0.75 * var(--vp));
+    color: #F0F0F2;
+    opacity: 0.94;
+    font-weight: 450;
+}
+
+.course-ground-innovation > .desc {
+    text-align: center;
+    font: normal normal normal calc(30 * var(--vp))/calc(39 * var(--vp)) Roboto;
+    letter-spacing: calc(0.45 * var(--vp));
+    color: #FFFFFF;
+    opacity: 0.84;
+    width: calc(486 * var(--vp));
+    height: calc(117 * var(--vp));
+    margin-bottom: calc(130 * var(--vp));
+}
+
+.course-ground-innovation > .card {
+    width: calc(784 * var(--vp));
+    height: calc(452 * var(--vp));
+    background: #171636 0% 0% no-repeat padding-box;
+    border: var(--vp) solid #00000000;
+    border-radius: calc(55 * var(--vp));
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.course-ground-innovation > .carousel-size {
+    width: calc(684 * var(--vp));
+    height: calc(694 * var(--vp));
+}
+
+.course-ground-innovation > .card > .title {
+    margin-top: calc(55 * var(--vp));
+    width: calc(203 * var(--vp));
+    height: calc(63 * var(--vp));
+    text-align: left;
+    font: normal normal normal calc(47 * var(--vp))/calc(63 * var(--vp)) Roboto;
+    letter-spacing: calc(0 * var(--vp));
+    color: #F0F0F2;
+    opacity: 1;
+}
+
+.course-ground-innovation > .card > .sub-title {
+    width: calc(166 * var(--vp));
+    height: calc(37 * var(--vp));
+    text-align: center;
+    font: normal normal normal calc(28 * var(--vp))/calc(37 * var(--vp)) Roboto;
+    letter-spacing: calc(0 * var(--vp));
+    color: #F0F0F2;
+    opacity: 1;
+    margin-top: calc(13 * var(--vp));
+    margin-bottom: calc(147 * var(--vp));
+}
+
+.course-ground-innovation > .card > .details-btn {
+    width: calc(258 * var(--vp));
+    height: calc(59 * var(--vp));
+    border: calc(3 * var(--vp)) solid #3CFAFF;
+    border-radius: calc(55 * var(--vp));
+    font: normal normal normal calc(25 * var(--vp))/calc(50 * var(--vp)) Roboto;
+    letter-spacing: calc(0.38 * var(--vp));
+    color: #FFFFFF;
+    text-align: center;
+    opacity: 1;
+}
+
+.course-ground-innovation > * {
+    margin-right: calc(924 * var(--vp));
+    margin-left: calc(212 * var(--vp));
+}
+
+.course-ground-innovation .center {
+    display: flex;
+    justify-content: center;
+}
+
+.course-ground-innovation .center .card{
+    background-color: #171636;
+    border: unset;
+    min-height: calc(694 * var(--vp));
+    width: calc(484 * var(--vp));
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.course-ground-innovation .center .card:hover .card-img img{
+    opacity: 0.7;
+    -webkit-transform:scale(1.15);
+    -moz-transform:scale(1.15);
+    -ms-transform:scale(1.15);
+    -o-transform:scale(1.15);
+    transform:scale(1.15);
+}
+
+.course-ground-innovation .center .card:hover{
+    box-shadow: 0px calc(15 * var(--vp)) calc(26 * var(--vp)) rgba(0, 0, 0, 0.50);
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -ms-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+    margin-top: calc(15 * var(--vp));
+}
+
+.course-ground-innovation .center .card-img{
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+.course-ground-innovation .center .card-body{
+    padding: calc(29 * var(--vp)) calc(35 * var(--vp));
+}
+
+.course-ground-innovation .center .project-cat{
+    color: #ffffff;
+    font-size: calc(23 * var(--vp));
+    margin-top: calc(-39 * var(--vp));
+    margin-bottom: calc(19 * var(--vp));
+    font-weight: lighter;
+}
+
+.course-ground-innovation .center .project-title{
+    color: #F74B42;
+    font-size: calc(31 * var(--vp));
+    padding-top: unset;
+    font-weight: 500;
+    margin: calc(-19 * var(--vp)) 0 calc(19 * var(--vp));
+}
+
+.course-ground-innovation .center .project-subtitle{
+    color: #ffffff;
+    font-size: calc(25 * var(--vp));
+    font-weight: lighter;
+    margin-bottom: calc(29 * var(--vp));
+}
+
+.course-ground-innovation .center .project-student img{
+    width: calc(115 * var(--vp));
+    height: calc(115 * var(--vp));
+    right: calc(29 * var(--vp));
+    margin-top: calc(-58 * var(--vp));
+    display: flex;
+    margin-left: auto;
+    margin-right: calc(23 * var(--vp));
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    border: calc(6 * var(--vp)) solid white;
+    border-radius: calc(390 * var(--vp));
+}
+
+.course-ground-innovation .center .student-info{
+    color: #3CFAFF;
+    font-size: calc(21 * var(--vp));
+    text-align: left;
+    font-weight: 300;
+    padding-top: calc(39 * var(--vp));
+    position: absolute;
+    bottom: calc(29 * var(--vp));
+}
+
+@media all and (max-width: 600px) {
+    .course-ground-innovation {
+        padding-top: calc(44 * var(--vm));
+        padding-bottom: calc(38 * var(--vm));
+    }
+
+    .course-ground-innovation > .topic {
+        margin-bottom: calc(19 * var(--vm));
+        width: calc(232 * var(--vm));
+        height: calc(48 * var(--vm));
+        text-align: center;
+        font-size: calc(18 * var(--vm));
+        line-height: initial;
+        letter-spacing: calc(0.27 * var(--vm));
+    }
+
+    .course-ground-innovation > .desc {
+        font-size: calc(14 * var(--vm));
+        line-height: initial;
+        letter-spacing: calc(0.21 * var(--vm));
+        width: calc(226 * var(--vm));
+        height: calc(57 * var(--vm));
+        margin-bottom: calc(36 * var(--vm));
+    }
+
+    .course-ground-innovation > .card {
+        width: calc(344 * var(--vm));
+        height: calc(234 * var(--vm));
+        background: #171636 0% 0% no-repeat padding-box;
+        border: var(--vp) solid #00000000;
+        border-radius: calc(2 * var(--vm));
+        margin-right: calc(-60.5 * var(--vm));
+        margin-left: calc(-60.5 * var(--vm));
+    }
+
+    .course-ground-innovation > .card > .title {
+        margin-top: calc(27 * var(--vm));
+        width: calc(88 * var(--vm));
+        height: calc(26 * var(--vm));
+        font-size: calc(20 * var(--vm));
+        letter-spacing: calc(0.3 * var(--vm));
+    }
+
+    .course-ground-innovation > .card > .sub-title {
+        width: calc(78 * var(--vm));
+        height: calc(19 * var(--vm));
+        font-size: calc(14 * var(--vm));
+        margin-top: calc(9 * var(--vm));
+        margin-bottom: calc(94 * var(--vm));
+        margin-left: calc(5 * var(--vm));
+    }
+
+    .course-ground-innovation > .card > .details-btn {
+        width: calc(133 * var(--vm));
+        height: calc(32 * var(--vm));
+        border-radius: calc(18 * var(--vm));
+        border-width: calc(2 * var(--vm));
+    }
+
+    .course-ground-innovation > .card > .details-btn > .text {
+        font-size: calc(14 * var(--vm));
+        letter-spacing: calc(0 * var(--vm));
+        padding-top: calc(10 * var(--vm));
+        padding-bottom: calc(8 * var(--vm));
+    }
+
+    .course-ground-innovation > * {
+        margin-right: calc(68.5 * var(--vm));
+        margin-left: calc(68.5 * var(--vm));
+    }
+
+    .course-ground-innovation > .carousel-size {
+        width: calc(296 * var(--vm));
+        height: calc(299 * var(--vm));
+    }
+
+    .course-ground-innovation .center .card{
+        min-height: calc(299 * var(--vm));
+        width: calc(221 * var(--vm));
+    }
+    
+    .course-ground-innovation .center .card:hover{
+        box-shadow: calc(0 * var(--vm)) calc(6 * var(--vm)) calc(11 * var(--vm)) rgba(0, 0, 0, 0.50);
+        margin-top: calc(6 * var(--vm));
+    }
+    
+    .course-ground-innovation .center .card-img{
+        background-color: #ffffff;
+        overflow: hidden;
+    }
+    
+    .course-ground-innovation .center .card-body{
+        padding: calc(11 * var(--vm)) calc(13 * var(--vm));
+    }
+    
+    .course-ground-innovation .center .project-cat{
+        font-size: calc(10 * var(--vm));
+        margin-top: calc(-18 * var(--vm));
+        margin-bottom: calc(8 * var(--vm));
+    }
+    
+    .course-ground-innovation .center .project-title{
+        font-size: calc(13 * var(--vm));
+        margin: calc(-8 * var(--vm)) 0 calc(8 * var(--vm));
+    }
+    
+    .course-ground-innovation .center .project-subtitle{
+        font-size: calc(10 * var(--vm));
+        margin-bottom: calc(12 * var(--vm));
+    }
+    
+    .course-ground-innovation .center .project-student img{
+        width: calc(45 * var(--vm));
+        height: calc(45 * var(--vm));
+        right: calc(14 * var(--vm));
+        margin-top: calc(-118 * var(--vp));
+        margin-right: calc(9 * var(--vm));
+        border: calc(1 * var(--vm)) solid white;
+        border-radius: calc(110 * var(--vm));
+    }
+    
+    .course-ground-innovation .center .student-info{
+        font-size: calc(11 * var(--vm));
+        padding-top: calc(19 * var(--vm));
+        bottom: calc(14 * var(--vm));
+    }
+}

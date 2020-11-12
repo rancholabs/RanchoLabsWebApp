@@ -1,0 +1,78 @@
+.course-main {
+    background: #0A0E2A 0% 0% no-repeat padding-box;
+    opacity: 1;
+    color: #3CFAFF;
+    padding-bottom: calc(197 * var(--vp));
+}
+
+.course-topic {
+    color: #3CFAFF;
+    font: normal normal normal calc(75 * var(--vp))/calc(99 * var(--vp)) Roboto;
+    padding-top: calc(104 * var(--vp));
+}
+
+.course-sub-topic {
+    color: #3CFAFF;
+    font: normal normal normal calc(60 * var(--vp))/calc(79 * var(--vp)) Roboto;
+}
+
+.course-margin > * {
+    margin-right: calc(855 * var(--vp));
+    margin-left: calc(156 * var(--vp));
+}
+
+.course-learn, .course-build {
+    padding-top: calc(95 * var(--vp));
+    padding-bottom: calc(75 * var(--vp));
+}
+
+@media all and (max-width: 600px) {
+    .course-header {
+        background: #0A0E2A 0% 0% no-repeat padding-box;
+        opacity: 1;
+        width: 140%;
+        color: #3CFAFF;
+        padding-bottom: calc(145 * var(--vm));
+        margin-left: -20%;
+        margin-right: -20%;
+        border-bottom-left-radius:50%;
+        border-bottom-right-radius:50%;
+    }
+    
+    .course-header-main {
+        overflow: hidden;
+        margin-bottom: calc(-180 * var(--vm));
+        background: #F0F0F2 0% 0% no-repeat padding-box;
+    }
+    
+    .course-topic {
+        color: #3CFAFF;
+        font-size: calc(24 * var(--vm));
+        padding-top: calc(71 * var(--vm));
+        text-align: center;
+    }
+    
+    .course-sub-topic {
+        font: normal normal normal calc(60 * var(--vp))/calc(79 * var(--vp)) Roboto;
+        font-size: calc(24 * var(--vm));
+        line-height: initial;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .course-sub-topic > div {
+        width: calc(158 * var(--vm));
+        height: calc(73 * var(--vm));
+    }
+    
+    .course-margin > * {
+        margin-right: calc(28 * var(--vm));
+        margin-left: calc(29 * var(--vm));
+    }
+
+    .course-learn, .course-build {
+        padding-top: calc(38 * var(--vm));
+        padding-bottom: calc(7 * var(--vm));
+    }
+}

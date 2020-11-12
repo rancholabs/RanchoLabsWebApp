@@ -1,0 +1,5 @@
+.dashboard-share-exop{
+    height: calc(673*var(--vp));
+    width: calc(921*var(--vp));
+    background-color: #FFFFFF;
+}

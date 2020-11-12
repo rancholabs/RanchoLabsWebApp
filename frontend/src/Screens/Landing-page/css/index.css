@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+*{
+    font-family: 'Roboto', sans-serif;
+    /* border: 1px solid red; */
+}
+.landing-page {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    overflow-x: hidden;
+    background-color: #020122;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+}
+  
+.container{
+    width: 85vw;
+    max-width: unset;
+}
+
+@media (max-width:768px){
+    .container{
+        width: 80vw;
+    }
+}
+
+@media (max-width:768px) and (min-height:855px){
+    .container{
+        width: 88vw;
+    }
+}
+
+
+
+
+
+

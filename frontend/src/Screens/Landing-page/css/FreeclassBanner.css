@@ -1,0 +1,41 @@
+.freeclass-banner{
+    background-image: url('../img/banner.png');
+    background-size: cover;
+    height: calc(740*var(--vp));
+    text-align: center;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.freeclass-banner .banner-title{
+    font-size: calc(48*var(--vp));
+    font-weight: 500;
+    letter-spacing: calc(0.3*var(--vp));
+}
+
+.freeclass-banner .banner-content{
+    font-size: calc(28*var(--vp));
+    padding-top: calc(27*var(--vp));
+    font-weight: 400;
+    margin: 0 auto;
+    width: calc(680*var(--vp));
+    line-height: normal;
+}
+
+.freeclass-banner .freeclass-button button{
+    width: calc(493*var(--vp));
+    height: calc(92*var(--vp));
+    font-size: calc(28*var(--vp));
+    border: calc(3*var(--vp)) solid #FFFFFF;
+    border-radius: calc(90*var(--vp));
+    background: transparent;
+    color: #FFFFFF;
+    margin-top: calc(63*var(--vp));
+}
+
+.freeclass-banner .freeclass-button button:hover{
+    color: rgb(5, 5, 77);
+    background-color: #FFFFFF;
+}

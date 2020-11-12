@@ -1,0 +1,16 @@
+.signup-free-btn {
+    border: calc(3 * var(--vp)) solid #3CFAFF;
+    border-radius: calc(18 * var(--vp));
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    text-align: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.signup-free-btn > .icon {
+    margin-left: calc(47 * var(--vp));
+}

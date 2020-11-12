@@ -1,0 +1,143 @@
+.experience-card .card{
+    background-color: #151B49;
+    padding: 2.4vw 2.5vw;
+    text-align: left;
+    width: 50vw;
+    margin: 1vw 4.5vw;
+    height: 100%;
+}
+
+.DesktopExp{
+    display: flex; 
+    overflow: auto;
+    padding: 2vw 5.5vw;
+}
+
+.DesktopExp::-webkit-scrollbar {
+    display: none;
+}
+
+.exp-desc{
+    color: #F7F7F7;
+    font-size: 1.4vw;
+    letter-spacing: 0.39px;
+    margin-bottom: 2vw;
+}
+
+.experience-card .student-details{
+    color: #32C1CD;
+    font-size: 1.35vw;
+    letter-spacing: 0.39px;
+}
+
+.review-title{
+    font-size: 2.7vw;
+    color: #3CFAFF;
+    margin: 5.5vw 9.5vw 2vw;
+    text-align: left;
+}
+
+.MobileExp{
+    display: none;
+}
+
+.student-details img{
+    border-radius: 20vh;
+    /* border: 3px solid white; */
+}
+
+.MobileExp img{
+    border-radius: 20vh;
+    /* border: 3px solid white !important; */
+}
+
+@media (max-width:768px) and (max-height:900px){
+    .DesktopExp{
+        display: none;
+    }
+    .review-title{
+        display: none;
+    }
+    .MobileExp{
+        display: block;
+        text-align: left !important;
+    }
+    .WorkshopExperience{
+        background-color: #151B49;
+        padding: 4.5vh 6vh;
+    }
+    
+    .MobileExp .student-details{
+        color:#32C1CD;
+        font-size: 3.61vw;
+    }
+    
+    .MobileExp .experience-desc{
+        color: #F7F7F7;
+        font-size: 3.61vw;
+        padding: 3.2vh 0;
+    }
+    
+    .MobileExp .col-8{
+        padding-right: 0;
+    }
+
+}
+
+.MobileExp .carousel .slide img{
+    border: inherit;
+}
+
+.MobileExp .carousel.carousel-slider{
+    overflow: visible;
+}
+
+.MobileExp .carousel .slide{
+    text-align: left;
+}
+
+.carousel.carousel-slider .control-arrow:hover{
+    background: unset !important;
+}
+
+.MobileExp .carousel .slide{
+    background: transparent !important;
+}
+
+.MobileExp .carousel  .carousel-status{
+    display: none;
+}
+
+.MobileExp .carousel .carousel-slider .control-arrow{
+    padding: 1.4rem !important;
+}
+
+.MobileExp .carousel .control-dots .dot{
+    box-shadow: unset !important;
+    background: #FFFFFF;
+    width: 1.5vw;
+    height: 1.5vw;
+}
+
+.MobileExp .carousel .slider .animated{
+    transition-duration: 1000ms !important;
+    transition: all 12.35s ease-in-out !important;
+}
+
+.MobileExp .carousel .control-prev.control-arrow:before{
+    border-right: 8px solid #FFFFFF;
+    margin: 0 4vw 0 0;
+}
+
+.MobileExp .carousel .control-next.control-arrow:before{
+    border-left: 8px solid #FFFFFF;
+    margin: 0 0 0 4vw;
+}
+
+.MobileExp .carousel.carousel-slider .control-arrow{
+    margin: 0 -8vw;
+}
+
+.MobileExp .carousel .thumbs-wrapper{
+    display: none;
+}

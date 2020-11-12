@@ -1,0 +1,75 @@
+
+.workshop-learning{
+    text-align: center;
+    padding: 2.5vw 2vw 4vw;
+    background-color: #030224;
+    margin: 2.5vw 9.5vw;
+}
+
+@media (max-width:768px){
+    .workshop-learning{
+        /* padding: 0; */
+    }
+}
+
+.workshop-learning .title{
+    color: #3CFAFF;
+    font-size: 2.2vw;
+    /* margin-bottom: 5vh; */
+}
+
+.workshop-learning p{
+    color: #3CFAFF;
+    font-size: 1.5vw;
+    padding: 0 1vw;
+}
+
+@media (max-width:768px){
+    .workshop-learning p{
+        font-size: 1.7vw;
+    }
+}
+
+.workshop-learning img{
+    padding: 3.5rem 0 2.5rem;
+    width: 45%;
+    margin: auto;
+    height: auto;
+}
+
+@media (max-width:768px){
+    .workshop-learning img{
+        padding: 5vw 0;
+    }
+}
+
+.workshop-mobilelearning{
+    display: none; 
+    margin-bottom: 5vh;
+    padding: 0 13vw;
+}
+
+.workshop-mobilelearning .title{
+    color: #3CFAFF;
+    font-size: 1.3rem;
+    margin: 2vh 0 2vh;
+}
+
+.workshop-mobilelearning img{
+    padding: 2rem 0.5rem 1.7rem;
+    width: 65%;
+}
+.workshop-mobilelearning p{
+    font-size: 0.9rem;
+    color: #3CFAFF;
+}
+
+@media (max-width:768px) and (max-height:855px){
+    .workshop-mobilelearning{
+        display: block;
+        text-align: center;
+    }
+    .workshop-learning{
+        display: none;
+    }
+} 

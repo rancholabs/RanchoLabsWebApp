@@ -1,0 +1,53 @@
+.dashboardbanner {
+    background-color: #F0F0F2;
+    border-color: #F0F0F2;
+    padding: calc(75*var(--vp)) 0 calc(85*var(--vp));
+}
+
+.dashboardbanner .bannerimage{
+    width: calc(1702*var(--vp));
+    height: calc(330*var(--vp));
+    margin: auto;
+    background-image: url('../img/bannerbg.png');
+    box-shadow: 0px 3px 6px #00000029;
+    background-size: cover;
+    border-radius: 1vw;
+}
+
+.dashboardbanner .coding-img{
+    width: calc(577.44*var(--vp));
+    height: calc(331*var(--vp));
+    margin-left: auto;
+}
+
+.dashboardbanner .banner-quote{
+    font-size: calc(40*var(--vp));
+    color: #F9F21E;
+    margin-left: calc(83*var(--vp));
+    margin-top: calc(55*var(--vp));
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.dashboardbanner .banner-content{
+    color: #FFFFFF;
+    font-size: calc(28*var(--vp));
+    width: calc(1041*var(--vp));
+    text-align: center;
+    margin-left: calc(83*var(--vp));
+    margin-top: calc(11*var(--vp));
+}
+
+.dashboardbanner .redeem-button button{
+    background-color: #F74B42;
+    border: 2px solid #F74B42;
+    border-radius: calc(25*var(--vp));
+    color: #FFFFFF;
+    font-size: calc(20*var(--vp));
+    width: calc(223*var(--vp));
+    height: calc(54*var(--vp));
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: calc(18*var(--vp));
+    cursor: pointer;
+}

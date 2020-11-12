@@ -1,0 +1,263 @@
+
+.ResetPass{
+    background-color: #F0F0F2;
+    padding: 6vw 6vw 0 8vw;
+}
+
+.ResetPass .heading{
+    color: #32C1CD;
+    font-size: 2.34vw;
+    font-weight: bold;
+    letter-spacing: 0.68px;
+}
+.ResetPass .content{
+    padding: 0.4vw 0 8.17vw;
+    font-size: 1.823vw;
+    color: #0A0E2A;
+    letter-spacing: 0.53px;
+    font-family: 'Roboto';
+    width: unset;
+}
+
+.ResetPass .card{
+    background-color: #171636;
+    height: 37vw;
+    width: 35vw;
+    margin-bottom: -7.5vw;
+    margin-left: 3.5vw;
+    padding: 3.5vw 3.5vw;
+    border-radius: 0;
+}
+
+.ResetPass .try{
+    font-size: 1.4vw;
+    letter-spacing: 0.43px;
+    color: #F0F0F2;
+    margin-top: 4vw;
+}
+
+.ResetPass .set{
+    font-size: 1.9vw;
+    color: #F74B42;
+    letter-spacing: 0.49px;;
+}
+
+.ResetPass form{
+    padding: 0 0 1.5vw;
+    text-align: center;
+}
+
+.ResetPass .signupforfree{
+    font-size: 1.7vw;
+    font-weight: 400;
+    letter-spacing: 0.43px;
+    color: #F0F0F2;
+    margin: 1.1vw 0 1.3vw;
+}
+
+.ResetPass form input{
+    width: 100%;
+    margin: 0.5vw 0;
+    padding: 0.6vw 1vw;
+    border-radius: 0.35rem;
+    font-size: 1.3vw;
+    background: rgb(240, 240, 242,0.1);
+    border: unset;
+    font-weight: lighter;
+    color: #FFFFFF;
+}
+
+input[type=text]{
+    color: #FFFFFF;
+}
+
+.ResetPass form input::placeholder{
+    color: #FFFFFF;
+    opacity: unset;
+}
+
+.ResetPass form button{
+    background-color: #F74B42;
+    color: #FFFFFF;
+    font-size: 1.9vw;
+    padding: 0.8vw 4.5vw;
+    border-radius: 3rem;
+    border: unset;
+    box-shadow: unset;
+    margin: 6.5vw 0 1vw;
+    cursor: pointer;
+}
+
+.slowerrow{
+    padding: 6vw 12vw 0;
+    display: block;
+    justify-content: left;
+    background-color:  #0A0E2A;
+    background-image: linear-gradient(to bottom, #0A0E2A  80%, rgb(40 39 78 / 7%)  80%, rgba(143, 23, 223, 0.548));
+}
+
+.slowerrow img{
+    height: 17.5vw;
+    width: auto;
+}
+
+
+@media (min-width:768px) and (min-height:1000px){
+    .ResetPass .heading{
+        font-size: 5.5vw;
+    }
+    .ResetPass .content{
+        font-size: 4vw !important;
+        margin-bottom: 4vw;
+    }
+    .ResetPass .card{
+        width: 70vw;
+        margin: auto;
+        margin-bottom: -50vw;
+        height: 65vw;
+        padding: 10vw 7vw 5vw;
+    }
+    .slowerrow{
+        padding: 60vw 0 0;
+        margin: auto;
+        text-align: center;
+    }
+    .slowerrow img{
+        height: 27vw;
+    }
+    .ResetPass .try{
+        font-size: 2.4vw;
+    }
+    .ResetPass .signupforfree{
+        font-size: 3.4vw;
+        margin: 1.5vw 0;
+    }
+    .ResetPass .set{
+        font-size: 3.7vw;
+        margin: 1.5vw 0 0;
+    }
+    .ResetPass form input{
+        font-size: 2.5vw;
+        padding: 1.5vw 2vw;
+    }
+    .ResetPass form button{
+        font-size: 3.5vw;
+        margin-top: 10vw;
+    }
+    .ResetPass{
+        padding: 5vw;
+    }
+}
+
+@media (max-width:768px) and (max-height:860px){
+.ResetPass{
+    padding: 5vw 5vw 0;
+}
+
+.ResetPass .heading{
+    color: #32C1CD;
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-top: 1.3rem;
+}
+.ResetPass .content{
+    padding: 0.4rem 2rem 1rem;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color:#707070;
+    line-height: 1.4;
+    letter-spacing: 0.53px;
+}
+
+.ResetPass .card{
+    background-color: #171636;
+    height: unset;
+    width: 100%;
+    margin-bottom: -12.5rem;
+    margin-left: unset;
+    padding: 10vw 7vw 6vw;
+    border-radius: 0;
+}
+
+.ResetPass .try{
+    font-size: 3vw;
+    margin-bottom: 2vw;
+}
+
+.ResetPass form{
+    padding: 2vw 0;
+    text-align: center;
+}
+
+.ResetPass form input{
+    width: 100%;
+    margin: 0.45rem 0;
+    padding: 0.5rem 1rem;
+    border-radius: 0.35rem;
+    font-size: 0.9rem;
+    background: rgb(240, 240, 242,0.1);
+    border: unset;
+    font-weight: lighter;
+}
+
+.ResetPass form input::placeholder{
+    color: #FFFFFF;
+    opacity: unset;
+}
+
+.ResetPass form button{
+    background-color: #F74B42;
+    color: #FFFFFF;
+    font-size: 1rem;
+    padding: 0.5rem 1.8rem;
+    border-radius: 3rem;
+    border: unset;
+    box-shadow: unset;
+    margin: 1.6rem 0 0.5rem;
+    cursor: pointer;
+}
+
+.ResetPass .signupforfree{
+    font-size: 4.4vw;
+    margin: 0 0 3vw 0;
+}
+
+.slowerrow{
+    padding: 17rem 0 0;
+    background-color:  #0A0E2A;
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(to bottom, #0A0E2A  80%, rgb(40 39 78 / 7%)  80%, rgba(143, 23, 223, 0.548));
+}
+
+.slowerrow img{
+    height: 34vw;
+    width: auto;
+    margin-bottom: 0;
+    left: 0;
+    position: relative;
+}
+
+.ResetPass .set{
+    font-size: 5vw;
+}
+
+.ResetPass form button{
+    margin-top: 9vw;
+}
+
+}
+
+.ResetPass input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus{
+  -webkit-text-fill-color: #FFFFFF;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+}

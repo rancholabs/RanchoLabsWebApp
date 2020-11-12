@@ -1,0 +1,40 @@
+.course-view {
+    letter-spacing: calc(0.68 * var(--vp));
+    opacity: 1;
+    padding-top: calc(114 * var(--vp));
+    padding-bottom: calc(90 * var(--vp));
+    background: #F0F0F2 0% 0% no-repeat padding-box;
+}
+
+.course-view > p {
+    padding-top: calc(15 * var(--vp));
+    font: normal normal normal calc(33 * var(--vp))/calc(44 * var(--vp)) Roboto;
+    color: #3A3C4A;
+    padding-bottom: calc(25 * var(--vp));
+}
+
+.course-view > div {
+    color: #190A4D;
+    font: normal normal normal calc(45 * var(--vp))/calc(33 * var(--vp)) Roboto;
+}
+
+@media all and (max-width: 600px) {
+    .course-view {
+        padding-top: calc(56 * var(--vm));
+        padding-bottom: calc(9 * var(--vm));
+    }
+    
+    .course-view > p {
+        padding-top: calc(8 * var(--vm));
+        font-size: calc(13 * var(--vm));
+        line-height: initial;
+        color: #5A5A5A;
+        padding-bottom: calc(30 * var(--vm));
+    }
+    
+    .course-view > div {
+        color: #2F204B;
+        font-size: calc(20 * var(--vm));
+        height: calc(20 * var(--vm));
+    }
+}

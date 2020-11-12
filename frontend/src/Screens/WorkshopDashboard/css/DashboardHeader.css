@@ -1,0 +1,257 @@
+.header-upper{
+    padding: 0vw 6vw 0;
+    background-color: #020122;
+}
+
+.dashboard-header .date{
+    font-size: 1.04vw;
+    color: #FFFFFF;
+    letter-spacing: 0.3px;
+    font-weight: lighter;
+}
+
+.dashboard-header .student-name{
+    font-size: 2.6vw;
+    color: #3CFAFF;
+    margin: 0.5vw 0 0.625vw;
+}
+
+.dashboard-header .greeting{
+    font-size: 1.3vw;
+    color: #FFFFFF;
+    letter-spacing: 0.38px;
+}
+
+.dashboard-header .quote-text{
+    color: #F74B42;
+    font-size: 1.5625vw;
+    margin-top: 1vw;
+    letter-spacing: 0.45px;
+    font-weight: 400;
+}
+
+.dashboard-header-lower{
+    /* margin-top: 3vw; */
+    height: 3.69vw;
+    background-color: #020122;
+}
+
+.dashboard-header-lower .course-list{
+    background-color: #F0F0F2;
+    border-top-left-radius: 0.65rem;
+    border-top-right-radius: 0.65rem;
+    border-radius: 0.65rem;
+    padding: 0.8vw 2.3vw 0.5vw;
+    margin-left: 0;
+    font-size: 1.7vw;
+    color: #F74B42;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+}
+
+.dashboard-header-lower .course-list #plus{
+    font-size: 1.2vw;
+    color: #3A3C4A;
+    font-weight: 500;
+    text-shadow: 0px 3px 6px #0000005C;
+    background-color: #9999995E;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    width: 3.5vw;
+    text-align: center;
+}
+
+.dashboard-header-lower .dchoice .course-list button{
+    border: none;
+    background-color: transparent;
+    color: #F74B42;
+    font-weight: inherit;
+    width: 100%;
+}
+
+.dashboard-header-lower .dchoice{
+    border-radius: 0.78vw 0.78vw 0 0;
+    height: 3.69vw;
+}
+
+#list span::after{
+    color: #3A3C4A;
+    font-weight: 500;
+    cursor: pointer;
+    /* content: '\25BC'; */
+    font-size: 2vw;
+}
+
+#list button{
+    border: none;
+    background-color: transparent;
+    color: #000000;
+}
+
+.dashboard-header-lower .profile-title{
+    color: #F74B42;
+    font-size: 1.45vw;
+    font-weight: 600;
+    margin-left: 3.23vw;
+    letter-spacing: 1.4px;
+    padding: 1vw 0 0 0;
+    margin-bottom: 0.8vw;
+}
+
+.list ul li a{
+    color: #F74B42;
+}
+
+.dashboard-header-lower .list ul{
+    list-style-type: none;
+    font-size: 1.7vw;
+    background-color: #F0F0F2;
+    font-weight: 600;
+    width:100%;
+    text-align: left;
+    line-height: 2;
+    letter-spacing: 1.4px;
+    border-bottom-left-radius: 0.65rem;
+    border-bottom-right-radius: 0.65rem;
+    padding-left: 40px;
+    margin-left: 1.4vw;
+}
+
+.dashboard-header{
+    border-bottom: none;
+}
+
+.dashboard-header-lower-mob{
+    display: none;
+    border-bottom: none;
+    height: 10vw;
+    padding: 2vw 0 0 0;
+}
+
+@media(max-width:1200px){
+    .dashboard-header .date{
+        font-size: 2.9vw;
+        color: #FFFFFF;
+        letter-spacing: 0.3px;
+        margin-top: 1rem;
+        font-weight: lighter;
+    }
+    .dashboard-header .student-name{
+        font-size: 6vw;
+        color: #3CFAFF;
+        margin: 0.5vw 0;
+    }
+    .dashboard-header .greeting{
+        font-size: 3.5vw;
+        color: #FFFFFF;
+        font-weight: lighter;
+        letter-spacing: 0.38px;
+    }
+    .dashboard-header .quote-text{
+        display: none;
+    }
+    .quote2{
+        display: none !important;
+        position: relative;
+    }
+    .dashboard-header-lower{
+        display: none;
+    }
+    .q1{
+        display: none;
+    }
+    .dashboard-header-lower-mob{
+        display: flex;
+        background-color: #020122;
+    }
+
+    .dashboard-header-lower-mob .profile-title{
+        margin: unset;
+        color: #F74B42;
+        font-weight: 500;
+        font-size: 2.77vw;
+    }
+    .dchoice{
+        height: 10vw !important;
+        width: 63.88vw !important;
+        border-radius: 2vw 2vw 0 0 !important;
+    }
+    
+    .dashboard-header-lower-mob .course-list #plus{
+        font-size: 5.55vw;
+        color: #3A3C4A;
+        font-weight: 500;
+        text-shadow: 0px 3px 6px #0000005C;
+        background-color: #9999995E;
+        border-radius: 1.5vw;
+        cursor: pointer;
+        width: 5.55vw;
+        height: 5.55vw;
+        text-align: center;
+    }
+
+    .dashboard-header-lower-mob .course-list #plus a{
+        font-size: 5vw;
+    }
+
+    .dashboard-header-lower-mob .course-list{
+        background-color: #F0F0F2;
+        border-top-left-radius: 0.65rem;
+        border-top-right-radius: 0.65rem;
+        padding: 1vw 2vw 0;
+        margin-left: 0;
+        font-size: 2.7vw;
+        color: #F74B42;
+        font-weight: 600;
+        letter-spacing: 1.4px;
+    }
+
+    .dashboard-header-lower-mob .profile-title{
+        color: #F74B42;
+        font-size: 2.77vw;
+        font-weight: 600;
+        margin-left: 9vw;
+        letter-spacing: 1.4px;
+        padding: 2vw 0 0 0;
+    }
+}
+/* 
+@media(min-width:768px)  and (min-height:1000px){
+    .dashboard-header .date{
+        font-size: 3vw;
+    }
+    .dashboard-header .student-name{
+        font-size: 6vw;
+    }
+    .header-upper{
+        padding: 4.5vw 7vw 5vw !important;
+    }
+    .dashboard-header .greeting{
+        font-size: 3.6vw;
+    }
+    .dashboard-header-lower-mob{
+        display: flex;
+        background-color: #020122;
+    }
+    .quote2{
+        display: none !important;
+        position: relative;
+    }
+    .q1{
+        display: none;
+    }
+    .dashboard-header .quote-text{
+        display: none;
+    }
+    .dashboard-header-lower{
+        display: none;
+    }
+    .dashboard-header-lower-mob .profile-title{
+        color: #F74B42;
+        font-size: 3.5vw;
+        font-weight: 600;
+        margin-left: 9vw;
+        letter-spacing: 1.4px;
+        padding: 2vw 0 0 0;
+    }
+} */

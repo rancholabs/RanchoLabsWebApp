@@ -1,0 +1,135 @@
+.course-faq {
+    background: #171636 0% 0% no-repeat padding-box;
+    opacity: 1;
+    padding-bottom: calc(114 * var(--vp));
+    position: relative;
+    z-index: 3;
+}
+
+.course-faq > .title {
+    text-align: center;
+    font: normal normal normal calc(60 * var(--vp))/calc(79 * var(--vp)) Roboto;
+    letter-spacing: calc(0.9 * var(--vp));
+    color: #3CFAFF;
+    opacity: 1;
+    padding-top: calc(100 * var(--vp));
+    padding-bottom: calc(100 * var(--vp));
+}
+
+.course-faq-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.course-faq-item.open {
+    align-items: flex-start;
+}
+
+.course-faq-item:not(:last-child) {
+    margin-bottom: calc(17 * var(--vp));
+}
+
+.course-faq-item .box {
+    width: calc(844 * var(--vp));
+    height: calc(138 * var(--vp));
+    border: calc(2 * var(--vp)) solid #F7F7F7;
+    border-radius: calc(5 * var(--vp));
+    opacity: 1;
+    letter-spacing: calc(0 * var(--vp));
+    font: normal normal normal calc(33 * var(--vp))/calc(44 * var(--vp)) Segoe UI;
+    color: #F0F0F2;
+    display: flex;
+    align-items: center;
+}
+
+.course-faq-item .ans-box {
+    max-height: calc(448 * var(--vp));
+    height: 100%;
+    flex-direction: column;
+}
+
+.course-faq-item .ans-box > .text:last-child {
+    margin: calc(35 * var(--vp)) 0;
+    text-indent: calc(145 * var(--vp));
+}
+
+.course-faq-item .box > .text {
+    padding-left: calc(15 * var(--vp));
+    text-indent: calc(6 * var(--vp));
+}
+
+.course-faq-item > .icon {
+    font-size: calc(39 * var(--vp));
+    text-align: left;
+    opacity: 1;
+    color: #F0F0F2;
+}
+
+.course-faq-item.open > .icon {
+    margin-top: 5%;
+}
+
+.course-faq > .img {
+    position: absolute;
+    top: 12%;
+    right: -45%;
+    width: calc(739 * var(--vp));
+    height: calc(739 * var(--vp));
+    transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+@media all and (max-width: 600px) {
+    .course-faq > .img {
+        display: none;
+    }
+
+    .course-faq {
+        padding-top: calc(38 * var(--vm));
+        padding-bottom: calc(36 * var(--vm));
+    }
+
+    .course-faq > .title {
+        font-size: calc(12 * var(--vm));
+        letter-spacing: calc(0.18 * var(--vm));
+        padding-top: calc(0 * var(--vm));
+        padding-bottom: calc(38 * var(--vm));
+        line-height: initial;
+    }
+
+    .course-faq-item:not(:last-child) {
+        margin-bottom: calc(6 * var(--vm));
+    }
+
+    .course-faq-item .box {
+        width: calc(284 * var(--vm));
+        height: calc(50 * var(--vm));
+        border-radius: calc(5 * var(--vm));
+        letter-spacing: calc(0 * var(--vm));
+        font-size: calc(14 * var(--vm));
+        font-family: Roboto;
+        line-height: initial;
+    }
+
+    .course-faq-item .ans-box {
+        max-height: calc(193 * var(--vm));
+        height: 100%;
+        font-size: calc(14 * var(--vm));
+        font-family: Roboto;
+    }
+
+    .course-faq-item .ans-box > .text:last-child {
+        margin: calc(5 * var(--vm)) 0;
+        text-indent: calc(63 * var(--vm));
+    }
+
+    .course-faq-item .box > .text {
+        padding: 0 calc(7 * var(--vm));
+        text-indent: calc(4 * var(--vm));
+    }
+
+    .course-faq-item > .icon {
+        font-size: calc(20 * var(--vm));
+    }
+}

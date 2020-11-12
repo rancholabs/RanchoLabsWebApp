@@ -1,0 +1,87 @@
+.email-exists-alert-box {
+    width: calc(1138 * var(--vp));
+    height: calc(690 * var(--vp));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-left: calc(415 * var(--vp));
+    margin-right: calc(367 * var(--vp));
+    margin-top: calc(-500 * var(--vp));
+    margin-bottom: calc(-190 * var(--vp));
+    background: #171636 0% 0% no-repeat padding-box;
+    border: 1px solid #00000000;
+}
+
+.email-exists-alert-box .exclamation {
+    color: #f74b42;
+    font-size: calc(70 * var(--vp));
+    position: absolute;
+    top: calc(175 * var(--vp));
+}
+
+.email-exists-alert-box .alert-close {
+    font-size: calc(36 * var(--vp));
+    color: #32C1CD;
+    position: absolute;
+    top: calc(51 * var(--vp));
+    right: calc(71 * var(--vp));
+    cursor: pointer;
+}
+
+.email-exists-alert-box .alert-content {
+    width: calc(598 * var(--vp));
+    height: calc(138 * var(--vp));
+    text-align: center;
+    letter-spacing: calc(0.53 * var(--vp));
+    font: normal normal normal calc(35 * var(--vp))/calc(46 * var(--vp)) Roboto;
+    letter-spacing: calc(0.53 * var(--vp));
+    color: #FFFFFF;
+}
+
+.email-exists-alert-box > .alert-content > .login {
+    color: #3CFAFF;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.email-exists-alert-box > .alert-content > .instead {
+    font-weight: bold;
+}
+
+.email-exists-background {
+    background: #F0F0F2 0% 0% no-repeat padding-box;
+    height: calc(574 * var(--vp));
+}
+
+@media all and (max-width: 600px) {
+    .email-exists-alert-box {
+        width: calc(300 * var(--vm));
+        height: calc(250 * var(--vm));
+        margin-left: calc(30 * var(--vm));
+        margin-right: calc(30 * var(--vm));
+        margin-top: calc(-100 * var(--vm));
+        margin-bottom: calc(-150 * var(--vm));
+    }
+    
+    .email-exists-alert-box .exclamation {
+        font-size: calc(30 * var(--vm));
+        top: calc(30 * var(--vm));
+    }
+    
+    .email-exists-alert-box .alert-close {
+        font-size: calc(18 * var(--vm));
+        top: calc(25 * var(--vm));
+        right: calc(35 * var(--vm));
+    }
+    
+    .email-exists-alert-box .alert-content {
+        width: calc(200 * var(--vm));
+        height: calc(50 * var(--vm));
+        font: normal normal normal calc(20 * var(--vm))/calc(33 * var(--vm)) Roboto;
+    }
+    
+    .email-exists-background {
+        height: calc(150 * var(--vm));
+    }
+}

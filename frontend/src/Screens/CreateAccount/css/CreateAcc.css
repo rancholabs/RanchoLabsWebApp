@@ -1,0 +1,311 @@
+
+.CreateAcc{
+    background-color: #F0F0F2;
+    padding: 5vw 14.89vw 0;
+}
+
+.CreateAcc .heading{
+    color: #32C1CD;
+    font-size: 2.34vw;
+    font-weight: bold;
+    letter-spacing: 0.68px;
+}
+.CreateAcc .content{
+    padding: 0.4vw 0 5vw;
+    font-size: 1.823vw;
+    /* font-weight: 500; */
+    color: #0A0E2A;
+    letter-spacing: 0.53px;
+    font-family: 'Roboto';
+    width: unset;
+}
+
+.CreateAcc .card{
+    background-color: #171636;
+    min-height: 41.35vw;
+    width: 31.25vw;
+    margin-bottom: -13vw;
+    margin-left: 3.5vw;
+    padding: 4vw 3vw;
+    border-radius: 0;
+}
+
+.CreateAcc form{
+    padding: 2.8vw 0;
+    text-align: center;
+}
+
+.CreateAcc form input{
+    width: 100%;
+    margin: 0.5vw 0;
+    padding: 0.6vw 1vw;
+    border-radius: 0.35rem;
+    font-size: 1.3vw;
+    background: rgb(240, 240, 242,0.1);
+    border: unset;
+    font-weight: lighter;
+    color: #FFFFFF;
+}
+
+.CreateAcc form input::placeholder{
+    color: #FFFFFF;
+    opacity: unset;
+}
+
+.CreateAcc form button{
+    background-color: #F74B42;
+    color: #FFFFFF;
+    font-size: 1.6vw;
+    padding: 0.8vw 4.5vw;
+    border-radius: 3rem;
+    border: unset;
+    box-shadow: unset;
+    margin: 3.5vw 0 1vw;
+    cursor: pointer;
+}
+
+.CreateAcc form .login{
+    font-size: 1.25vw;
+    color: #FFFFFF;
+    letter-spacing: 0.34px;
+}
+
+.CreateAcc form .login a{
+    color:#3CFAFF;
+}
+
+.CreateAcc form .login a:hover{
+    color:#3CFAFF;
+    cursor: pointer;
+}
+
+.clowerrow{
+    padding: 11vw 10vw;
+    background-color:  #0A0E2A;
+    background-image: linear-gradient(to bottom, #0A0E2A  80%, rgb(40 39 78 / 7%)  80%, rgba(143, 23, 223, 0.548));
+    margin: 0;
+}
+
+.clogo{
+    text-align: center;
+    cursor: pointer;
+}
+
+.clogo img{
+    width: 35%;
+}
+
+.signupw{
+    color: #FFFFFF;
+    padding: 1vw 0;
+    font-size: 1.2vw;
+    font-weight: 300;
+}
+
+
+@media (min-width:768px) and (min-height:1000px){
+    .CreateAcc .card{
+        background-color: #171636;
+        height: max-content;
+        width: 70vw !important;
+        margin: auto;
+        margin-bottom: -47vw;
+        padding: 7vw 5vw;
+        border-radius: 0;
+        align-self: center;
+    }
+    .CreateAcc{
+        padding: 1rem 1.4rem 0;
+    }
+    
+    .CreateAcc .heading{
+        color: #32C1CD;
+        font-size: 5vw;
+        font-weight: 500;
+        margin-top: 1.3rem;
+    }
+    .CreateAcc .content{
+        padding: 2vw 27vw 5vw;
+        font-size: 3vw !important;
+        font-weight: 400;
+        color:#707070;
+        line-height: 1.4;
+        letter-spacing: 0.53px;
+    }
+
+    .clogo{
+        width: 30%;
+    }
+
+    .signupw{
+        font-size: 2.5vw !important;
+    }
+    .CreateAcc form{
+        padding: 3vw 1vw;
+    }
+
+    .CreateAcc form input{
+        padding: 1.5vw 2vw;
+        font-size: 2.5vw;
+    }
+    .CreateAcc .or .col-1{
+        font-size: 3vw !important;
+    }
+
+    .CreateAcc form button{
+        font-size: 3vw;
+        padding: 1vw 4vw;
+        border-radius: 3rem;
+        margin-top: 5vw;
+    }
+
+    .CreateAcc form .login{
+        font-size: 3vw;
+        margin-top: 1vw;
+    }
+
+    .clowerrow{
+        padding: 34vw 10vw;
+    }
+
+    .clogo img{
+        width: 9.33vw;
+    }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active,
+input:-webkit-autofill:active{
+    background: #171636 !important;
+    background-color: #171636 !important;
+}
+
+@media (max-width:768px) and (max-height:860px){
+.CreateAcc{
+    padding: 1rem 1.4rem 0;
+}
+
+.CreateAcc .heading{
+    color: #32C1CD;
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-top: 1.3rem;
+}
+.CreateAcc .content{
+    padding: 0.4rem 3rem 1rem;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color:#707070;
+    line-height: 1.4;
+    letter-spacing: 0.53px;
+}
+
+.CreateAcc .card{
+    background-color: #171636;
+    height: unset;
+    width: 100%;
+    margin-bottom: -25.5rem;
+    margin-left: unset;
+    padding: 1.8rem 1.2rem;
+    border-radius: 0;
+}
+
+.CreateAcc form{
+    padding: 2rem 0 1.4rem;
+    text-align: center;
+}
+
+.CreateAcc form input{
+    width: 100%;
+    margin: 0.45rem 0;
+    padding: 0.5rem 1rem;
+    border-radius: 0.35rem;
+    font-size: 3.4vw;
+    background: rgb(240, 240, 242,0.1);
+    border: unset;
+    font-weight: lighter;
+}
+
+.CreateAcc form input::placeholder{
+    color: #FFFFFF;
+    opacity: unset;
+}
+
+.CreateAcc form button{
+    background-color: #F74B42;
+    color: #FFFFFF;
+    font-size: 1rem;
+    padding: 0.5rem 1.8rem;
+    border-radius: 3rem;
+    border: unset;
+    box-shadow: unset;
+    margin: 2rem 0 1rem;
+    cursor: pointer;
+}
+
+.CreateAcc form .login{
+    font-size: 0.9rem;
+    color: #FFFFFF;
+    letter-spacing: 0.34px;
+}
+
+.CreateAcc form .login a{
+    color:#3CFAFF;
+}
+
+.CreateAcc form .login a:hover{
+    color:#3CFAFF;
+    cursor: pointer;
+}
+
+.clowerrow{
+    padding: 15rem 0;
+    background-color:  #0A0E2A;
+    background-image: linear-gradient(to bottom, #0A0E2A  80%, rgb(40 39 78 / 7%)  80%, rgba(143, 23, 223, 0.548));
+}
+
+.CreateAcc .or .col-1{
+    font-size: 1rem !important;
+}
+
+.clogo{
+    text-align: center;
+}
+
+.clogo img{
+    width: 13.33vw;
+}
+
+.signupw{
+    color: #FFFFFF;
+    padding: 0.8rem 0;
+    font-size: 3.88vw;
+}
+
+}
+
+
+.show { opacity: 1; }
+
+.CreateAcc input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus{
+  -webkit-text-fill-color: #FFFFFF !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.CreateAcc input:-webkit-autofill:hover,
+select:-webkit-autofill:focus{
+  -webkit-text-fill-color: #FFFFFF !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+}

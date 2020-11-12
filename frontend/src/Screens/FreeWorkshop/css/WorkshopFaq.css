@@ -1,0 +1,143 @@
+.workshop-faq {
+    opacity: 1;
+    padding: 0 9.5vw;
+    padding-bottom: 5.5vw;
+    position: relative;
+    z-index: 3;
+}
+
+.workshop-faq > .title {
+    text-align: left;
+    font: normal normal normal calc(60 * var(--vp))/calc(79 * var(--vp)) Roboto;
+    color: #3CFAFF;
+    opacity: 1;
+    padding-top: calc(100 * var(--vp));
+    padding-bottom: 2vw;
+    font-weight: 500;
+    letter-spacing: 0.9px;
+}
+
+.workshop-faq-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.workshop-faq-item.open {
+    align-items: flex-start;
+}
+
+.workshop-faq-item:not(:last-child) {
+    margin-bottom: calc(17 * var(--vp));
+}
+
+.workshop-faq-item .box {
+    width: calc(var(--vp)*844);
+    height: calc(var(--vp)*138);
+    border: calc(var(--vp)*2) solid #f7f7f7;
+    border-radius: calc(var(--vp)*5);
+    opacity: 1;
+    letter-spacing: calc(var(--vp)*0);
+    font: normal normal normal calc(var(--vp)*33)/calc(var(--vp)*44) Segoe UI;
+    color: #f0f0f2;
+    display: flex;
+    align-items: center;
+}
+
+.workshop-faq-item .ans-box {
+    height: max-content;
+    flex-direction: column;
+    border-top:unset;
+}
+
+.workshop-faq-item .ans-box > .text:last-child {
+    margin-top: calc(35 * var(--vp));
+    margin-bottom: calc(35 * var(--vp));
+    text-indent: calc(145 * var(--vp));
+}
+
+.workshop-faq-item .box > .text {
+    padding-left: calc(15 * var(--vp));
+    text-indent: calc(6 * var(--vp));
+}
+
+.workshop-faq-item > .icon {
+    font-size: calc(39 * var(--vp));
+    text-align: left;
+    opacity: 1;
+    color: #F0F0F2;
+}
+
+.workshop-faq-item.open > .icon {
+    margin-top: 5%;
+}
+
+.workshop-faq img {
+    width: auto;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+@media all and (max-width: 600px) {
+
+    .workshop-faq img {
+        display: none;
+    }
+
+    .workshop-faq {
+        padding-top: calc(38 * var(--vm));
+        padding-bottom: calc(36 * var(--vm));
+        padding-left: unset;
+        padding-right: unset;
+        margin-right: calc(var(--vm)*28);
+        margin-left: calc(var(--vm)*29);
+    }
+
+    .workshop-faq > .title {
+        font-size: 1.5rem;
+        letter-spacing: calc(0.18 * var(--vm));
+        padding-top: calc(0 * var(--vm));
+        padding-bottom: calc(38 * var(--vm));
+        line-height: initial;
+        text-align: center;
+    }
+
+    .workshop-faq-item:not(:last-child) {
+        margin-bottom: calc(6 * var(--vm));
+    }
+
+    .workshop-faq-item .box {
+        width: calc(284 * var(--vm));
+        height: calc(50 * var(--vm));
+        border-radius: calc(5 * var(--vm));
+        letter-spacing: calc(0 * var(--vm));
+        font-size: calc(14 * var(--vm));
+        font-family: Roboto;
+        line-height: initial;
+    }
+
+    .workshop-faq-item .ans-box {
+        height: max-content;
+        font-size: calc(14 * var(--vm));
+        font-family: Roboto;
+    }
+
+    .workshop-faq-item .ans-box > .text:first-child {
+        /* display: none; */
+    }
+
+    .workshop-faq-item .ans-box > .text:last-child {
+        /* margin-top: calc(0 * var(--vm)); */
+        text-indent: calc(63 * var(--vm));
+        color: #ffffff;
+    }
+
+    .workshop-faq-item .box > .text {
+        padding: 0 calc(7 * var(--vm));
+        text-indent: calc(4 * var(--vm));
+    }
+
+    .workshop-faq-item > .icon {
+        font-size: calc(20 * var(--vm));
+    }
+}

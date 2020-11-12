@@ -1,0 +1,185 @@
+
+.projects{
+    background-color: #F74B42;
+    text-align: center;
+}
+.project-title{
+    font-size: 2.5rem;
+    color: #F0F0F2;
+    padding-top: 12vh;
+    font-weight: 400;
+}
+.project-description{
+    font-size: 1.5rem;
+    color: #F0F0F2;
+    margin-top: 2.5rem;
+    font-weight: 300;
+}
+
+.project-cards{
+    background-color: #171636;
+    margin: 5vh auto;
+    border-radius: 2.3rem;
+    height: 24vw;
+    padding: 3vw;
+    align-items: center;
+}
+.projects .row{
+    padding: 3vw;
+    margin: unset;
+}
+.projects .col-md-6{
+    margin: unset;
+    padding: 3vw;
+}
+.projects .btn{
+    border: 3px solid #3CFAFF;
+    border-radius: 3vw;
+    margin-top: auto;
+    width: 40%;
+    margin-right: unset;
+    padding: 0.5vw;
+    font-size: 1.15rem;
+}
+
+@media (min-width:769px) and (max-width:1024px){
+    .projects .btn{
+        font-size: 1.5vw;
+    }
+
+}
+
+@media (min-width:1025px) and (max-width:1260px){
+    .projects .btn{
+        font-size: 1.5vw;
+    }
+    
+}
+
+.projects .title{
+    font-size: 1.8rem;
+    margin-top: 0;
+    color: #F0F0F2;
+    font-weight: normal;
+}
+
+.projects .subtitle{
+    font-size: 1.2rem;
+    color: #F0F0F2;
+    margin-top: 1vh;
+    font-weight: lighter;
+}
+
+
+.mobileprojects{
+    display: none;
+    background-color: #F74B42;
+    padding: 7vh 0 5vh 0;
+    text-align: center;
+}
+
+.mobile-project-cards{
+    border-radius: unset;
+    margin: 1rem 0.8rem;
+    height: 40vh;
+    background-color: #171636;
+    padding: 1.5rem;
+}
+
+@media (min-height:1000px){
+    .mobile-project-cards{
+        margin: 2rem 3rem;
+        border-radius: 1rem;
+        padding: 2rem 2rem 3rem 2rem;
+    }
+}
+
+.mobile-project-title{
+    font-size: 1.4rem;
+    padding: 0 1rem 0.7rem;
+    color: #F0F0F2;
+}
+
+@media (min-height:1000px){
+    .mobile-project-title{
+        font-size: 3.8vw;
+    }
+}
+
+.mobile-project-subtitle{
+    color: #F0F0F2;
+}
+
+@media (min-height:1000px){
+    .mobile-project-subtitle{
+        font-size: 2.5vw;
+    }
+}
+
+.mobile-project-description{
+    font-size: 1rem;
+    padding: 0 2rem 2rem 2rem;
+    margin-top: unset;
+    color: #FFFFFF;
+    font-weight: lighter;
+}
+
+.mobileprojects .learnmore{
+    font-size: 1rem;
+    margin: auto auto 0 auto;
+    border: 2px solid #3CFAFF;
+    width: 55%;
+    padding: 1vh;
+}
+
+@media (min-height:1000px){
+    .mobileprojects .learnmore{
+        font-size: 2.5vw;
+    }
+}
+
+@media (min-width:768px) and (min-height:854px){
+    .mobileprojects .learnmore{
+        font-size: 2.5vw;
+        width: max-content;
+        padding: 1vh 5vh;
+    }
+    .mobile-project-title{
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width:768px) {
+    .mobileprojects{
+        display: block;
+    }
+    .projects{
+        display: none;
+    }
+}
+
+.mobileprojects .carousel .slide{
+    background: #F74B42 !important;
+}
+
+.mobileprojects .carousel  .carousel-status{
+    display: none;
+}
+
+.mobileprojects .carousel .carousel-slider .control-arrow{
+    padding: 1.4rem !important;
+}
+
+.mobileprojects .carousel .control-dots{
+    margin: -1vh !important;
+}
+
+.mobileprojects .carousel .control-dots .dot{
+    box-shadow: unset !important;
+    background: #ffffff52;
+}
+
+.mobileprojects .carousel .slider .animated{
+    transition-duration: 1000ms !important;
+    transition: all 12.35s ease-in-out !important;
+}

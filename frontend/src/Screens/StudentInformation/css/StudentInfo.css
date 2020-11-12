@@ -1,0 +1,271 @@
+.StudentInfo{
+    padding: 5vw 9.1vw 9vw;
+    background-color: #0A0E2A;
+}
+
+.StudentInfo .card{
+    padding: 3.38vw 4vw;
+    border-radius: 0.7rem;
+    width: 62vw;
+    min-height: 37.8vw;
+    background-color: #F0F0F2;
+}
+
+.StudentInfo .card form label{
+    color: #3A3C4A;
+    font-size: 1.2vw;
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.34px;;
+    opacity: 0.5;
+}
+
+.StudentInfo form input{
+    width: 100%;
+    background-color: #E3E8EB;
+    border: #E3E8EB;
+    border-radius:0  0.25rem 0.25rem 0;
+    font-size: 1.2vw;
+    margin-bottom: 1rem;
+    line-height: initial;
+    padding: 0.67rem 1.5rem;
+}
+
+.StudentInfo form select{
+    width: 100%;
+    background-color: #E3E8EB;
+    border: #E3E8EB;
+    border-radius: 0.25rem 0 0 0.25rem;
+    font-size: 1.2vw;
+    margin-bottom: 1rem;
+    padding: 0.61rem 1.5rem;
+    padding-right: 0;
+    line-height: inherit;
+    text-align: center;
+    color: #3A3C4A;
+}
+
+.StudentInfo form input::placeholder{
+    font-size: 1.2vw;
+    color: #3A3C4A;;
+}
+
+.StudentInfo form select::placeholder{
+    color: #3A3C4A;
+}
+
+.StudentInfo form input:focus{
+    border: none;
+}
+
+.StudentInfo form .submit{
+    background-color: #F74B42;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 1.66vw;
+    box-shadow: none;
+    border: none;
+    border-radius: 3rem;
+    padding: 0.8vw 3.1vw;
+    margin-top: 3vw;
+    cursor: pointer;
+}
+
+.StudentInfo .welcome{
+    font-size: 1.2vw;
+    color: #FFFFFF;
+    text-align: center;
+    margin-left: auto;
+    width: max-content;
+    padding-top: 10.3vw;
+}
+
+.StudentInfo .welcome #step{
+    color: #3CFAFF;
+}
+
+
+.StudentInfo input[type="text"]
+{
+    color: #3A3C4A;
+}
+
+.StudentInfo #p-contact{
+    width: 86%;
+}
+
+.StudentInfo #p-dialcode{
+    width: 14%;
+}
+
+@media (max-width:768px) and (max-height:860px){
+    .StudentInfo{
+        padding: 2rem 0.8rem;
+        background-color: #0A0E2A;
+        min-height: unset;
+        height: max-content;
+    }
+
+    .StudentInfo .row{
+        display: flex;
+        flex-direction: column-reverse;    
+    }
+    
+    .StudentInfo .card{
+        padding: 1.7rem;
+        border-radius: 0.7rem;
+        width: 95%;
+        margin: auto;
+    }
+
+    .StudentInfo form .row{
+        flex-direction: unset;
+    }
+    
+    .StudentInfo .card form label{
+        color: #3A3C4A;
+        font-size: 0.85rem;
+        margin-bottom: 0.15rem;
+        letter-spacing: 0.34px;;
+    }
+    
+    .StudentInfo form input{
+        width: 100%;
+        background-color: #E3E8EB;
+        border: #E3E8EB;
+        border-radius: 0 0.25rem 0.25rem 0;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+        padding: 0.67rem 1.5rem;
+    }
+    
+    .StudentInfo form select{
+        width: 100%;
+        background-color: #E3E8EB;
+        border: #E3E8EB;
+        border-radius: 0.25rem 0 0 0.25rem;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+        /* padding: 0.5rem 0; */
+        color: #3A3C4A;
+    }
+
+    .StudentInfo form #p-dialcode select{
+        /* padding: 0.67rem 0; */
+    }
+
+    .StudentInfo form input::placeholder{
+        font-size: 0.85rem;
+    }
+    
+    .StudentInfo form input:focus{
+        border: none;
+    }
+    
+    .StudentInfo form .submit{
+        background-color: #F74B42;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 1rem;
+        box-shadow: none;
+        border: none;
+        border-radius: 3rem;
+        padding: 0.67rem 3rem;
+        margin-top: 1.2rem;
+        cursor: pointer;
+    }
+    
+    .StudentInfo .welcome{
+        font-size: 0.9rem;
+        color: #FFFFFF;
+        text-align: center;
+        margin-left: auto;
+        width: unset;
+        margin-bottom: 1.7rem;
+    }
+    
+    .StudentInfo .welcome #step{
+        color: #3CFAFF;
+    }
+
+    .StudentInfo #p-contact{
+        width: 75%;
+    }
+    
+    .StudentInfo #p-dialcode{
+        width: 25%;
+    }
+}
+
+@media (min-width:768px) and (min-height:1000px){
+    .StudentInfo .card{
+        width: 100%;
+    }
+
+    .StudentInfo .welcome{
+        font-size: 2vw;
+        color: #FFFFFF;
+        text-align: center;
+        margin: auto;
+        width: unset;
+        margin-bottom: 1.7rem;
+        padding-top: 5vw;
+        width: 100%;
+    }
+
+    .StudentInfo .row{
+        display: flex;
+        flex-direction: column-reverse; 
+    }
+
+    .StudentInfo form .row{
+        flex-direction: unset;
+    }
+
+    .StudentInfo .card form label{
+        font-size: 1.7vw;
+    }
+
+    .StudentInfo form input{
+        font-size: 1.7vw;
+    }
+
+    .StudentInfo form select{
+        font-size: 1.7vw;
+    }
+    
+    .StudentInfo form input::placeholder{
+        font-size: 1.7vw;
+    }
+    .StudentInfo form .submit{
+        font-size: 2vw;
+    }
+    .StudentInfo #p-contact{
+        width: 85%;
+    }
+    
+    .StudentInfo #p-dialcode{
+        width: 15%;
+    }
+
+}
+
+.StudentInfo input:-webkit-autofill,	
+	input:-webkit-autofill:hover, 	
+	input:-webkit-autofill:focus,	
+	textarea:-webkit-autofill,	
+	textarea:-webkit-autofill:hover,	
+	textarea:-webkit-autofill:focus,	
+	select:-webkit-autofill,	
+	select:-webkit-autofill:hover,	
+	select:-webkit-autofill:focus{	
+	  -webkit-text-fill-color: #3A3C4A !important;	
+	  -webkit-box-shadow: 0 0 0px 1000px transparent inset;	
+	  transition: background-color 5000s ease-in-out 0s;	
+	}	
+		
+	.StudentInfo input:-webkit-autofill:hover,	
+	select:-webkit-autofill:focus{	
+	  -webkit-text-fill-color: #3A3C4A !important;	
+	  -webkit-box-shadow: 0 0 0px 1000px transparent inset;	
+	  transition: background-color 5000s ease-in-out 0s;	
+	}

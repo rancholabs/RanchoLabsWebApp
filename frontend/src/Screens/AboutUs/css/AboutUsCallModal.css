@@ -1,0 +1,282 @@
+.requestcallmodal {
+    width: calc(1406*var(--vp));
+    background-color: #030224;
+    margin: auto;
+    position: fixed; 
+    z-index: 4; 
+    top: 50%;
+    left: 50%;
+    box-shadow: 0px 0px 20px 100vh rgba(0, 0, 0, 0.507);
+    transform:  translateY(-50%) translateX(-50%);
+}
+
+.requestcallmodal .send-message{
+    padding: calc(116*var(--vp)) calc(149 *var(--vp));
+    width: 45vw;
+}
+.requestcallmodal + .modal-dialog{
+    width: 80vw;
+    background-color: #030224;
+}
+
+.requestcallmodal .modal-content{
+    width: 80vw;
+    padding: unset !important;
+    background-color: #030224;
+}
+
+.requestcallmodal .modal-header{
+    border-bottom: unset !important;
+} 
+
+.requestcallmodal .callus-title{
+    font-size: 2.5vw;
+    color: #3CFAFF;
+}
+
+.requestcallmodal .send-message input{
+    height: 4.635vw;
+    font-size: 1.458vw;
+    font-weight: 200;
+    background-color: #171636;
+    color: #FFFFFF;
+    border: none;
+    width: 100%;
+    padding: 0 2.08vw;
+    margin-bottom: 1.77vw;
+}
+
+.requestcallmodal .send-message input::placeholder{
+    color: #FFFFFF !important;
+    font-weight: 300;
+    opacity: 0.7;
+}
+
+.requestcallmodal .send-message textarea{
+    background-color: #171636;
+    color: #FFFFFF;
+    font-weight: 300;
+    font-size: 1.458vw;
+    width: 100%;
+    padding: 1.302vw 2.08vw;
+    height: 11.3vw;
+    resize: none;
+    border: none;
+    margin-bottom: 3.177vw;
+}
+
+.requestcallmodal .send-message textarea::placeholder{
+    color: #FFFFFF;
+    opacity: 0.7;
+}
+
+.requestcallmodal hr{
+    border-bottom: 3px solid #F74B42;
+    width: 50%;
+    margin: 2vw auto 4vw 0;
+}
+
+.send-button button{
+    width: 100%;
+    border: none;
+    background-color: #3CFAFF;
+    box-shadow: 0px 6px 6px #0000003D;
+    font-size: 1.718vw;
+    height: 4.16vw;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.requestcallmodal .close {
+    color: #3CFAFF;
+    float: right;
+    margin-right: 2vw;
+    margin-top: 2vw;
+    font-size: 3vw;
+    font-weight: bold;
+}
+
+.requested{
+    text-align: center;
+    padding: calc(318* var(--vp)) 0;
+}
+
+.requested .callus-title{
+    color: #F74B42;
+    font-size: calc(48* var(--vp));
+}
+
+.requested .callus-sub{
+    color: #3CFAFF;
+    font-size: calc(33* var(--vp));
+}
+  
+  .requestcallmodal .close:hover,
+  .close:focus {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+.messagemodal {
+    width: calc(1406*var(--vp));
+    background-color: #030224;
+    margin: auto;
+    position: fixed; 
+    z-index: 4; 
+    padding: 8vw 0 10vw;
+    top: 50%;
+    left: 50%;
+    box-shadow: 0px 0px 20px 100vh rgba(0, 0, 0, 0.507);
+    transform:  translateY(-50%) translateX(-50%);
+}
+
+.response-success{
+    color: #93f542;
+    padding: 2vw;
+    font-size: 6vw;
+    width: 13vw;
+    height: auto;
+    margin: auto;
+    margin-bottom: 3vw;    
+    background-color: #171636;
+    border-radius: 10vw;
+} 
+
+.messagemodal .success-title{
+    color: #3CFAFF;
+    font-size: calc(50* var(--vp));
+    margin-top: 2vw;
+}
+
+.messagemodal .close {
+    color: #3CFAFF;
+    float: right;
+    right: 2vw;
+    top: 2vw;
+    font-size: 3vw;
+    font-weight: bold;
+    position: absolute;
+}
+
+  @media(max-width:600px){
+    .requestcallmodal{
+        width: 90vw;
+        padding: calc(20* var(--vm)) calc(10* var(--vm));
+    }
+    .requestcallmodal .callus-title{
+        font-size: calc(22* var(--vm));
+        text-align: center;
+    }
+
+    .requestcallmodal .send-message{
+        width: 100%;
+    }
+
+    .requestcallmodal .send-message input{
+        height: calc(50* var(--vm));
+        font-size: calc(13* var(--vm));
+        font-weight: 200;
+        background-color: #171636;
+        color: #FFFFFF;
+        border: none;
+        width: 100%;
+        padding: 0 calc(16* var(--vm));
+        margin-bottom: calc(19* var(--vm));
+    }
+    .send-button button{
+        width: 100%;
+        border: none;
+        background-color: #3CFAFF;
+        box-shadow: 0px 6px 6px #0000003D;
+        font-size: calc(18* var(--vm));
+        height: calc(43* var(--vm));
+        font-weight: 400;
+        cursor: pointer;
+    }
+
+    .requestcallmodal .close{
+        font-size: 5vw;
+    }
+
+    .requestcallmodal hr{
+        border-bottom: 2px solid #F74B42;
+        width: calc(101* var(--vm));
+        margin: 5.2vw auto 8.7vw;
+    }
+    .requested{
+        text-align: center;
+        padding: calc(31* var(--vm)) 0;
+    }
+    
+    .requested .callus-title{
+        color: #F74B42;
+        font-size: calc(20* var(--vm));
+    }
+    
+    .requested .callus-sub{
+        color: #3CFAFF;
+        font-size: calc(15* var(--vm));
+        margin-top: 2vw;
+    }
+    .messagemodal {
+        width: 90vw;
+        background-color: #030224;
+        margin: auto;
+        position: fixed; 
+        z-index: 4; 
+        padding: 15vw 0 20vw;
+        top: 50%;
+        left: 50%;
+        box-shadow: 0px 0px 20px 100vh rgba(0, 0, 0, 0.507);
+        transform:  translateY(-50%) translateX(-50%);
+    }
+    
+    .response-success{
+        color: #93f542;
+        padding: 2vw;
+        font-size: 11vw;
+        width: 20vw;
+        height: auto;
+        margin: auto;
+        margin-bottom: 5vw;    
+        background-color: #171636;
+        border-radius: 10vw;
+    } 
+    
+    .messagemodal .success-title{
+        color: #3CFAFF;
+        font-size: calc(18* var(--vm));
+        margin-top: 2vw;
+    }
+    
+    .messagemodal .close {
+        color: #3CFAFF;
+        float: right;
+        right: 2vw;
+        top: 2vw;
+        font-size: 5vw;
+        font-weight: bold;
+        position: absolute;
+    }
+  }
+
+  .requestcallmodal input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus{
+  -webkit-text-fill-color: #FFFFFF !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.requestcallmodal input:-webkit-autofill:hover,
+select:-webkit-autofill:focus{
+  -webkit-text-fill-color: #FFFFFF !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+}

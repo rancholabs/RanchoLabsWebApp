@@ -1,0 +1,106 @@
+.aboutus-stand{
+    text-align: center;
+}
+
+.aboutus-stand .wherewestand-title{
+    font-size: 2.5vw;
+    color: #3CFAFF;
+    padding-top: 7vw;
+    margin-bottom: 2vw;
+}
+
+.aboutus-stand .wherewestand-desc{
+    width: 86.45vw;
+    color: #FFFFFF;
+    font-size: 1.458vw;
+    margin: auto;
+    margin-bottom: 3vw;
+}
+
+.aboutus-stand .wws-cards{
+    padding: 7vw 10.675vw;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.aboutus-stand .wws-card{
+    width: 22.395vw;
+    background-color: #171636;
+    color: #FFFFFF;
+    height: 16.51vw;
+}
+
+.aboutus-stand .wws-card-image{
+    width: 60%;
+    height: 9.27vw;
+    margin: auto;
+    margin-top: -20%;
+    margin-bottom: 1.4vw;
+}
+
+.aboutus-stand .wws-card-title{
+    font-size: 2.5vw;
+}
+
+.aboutus-stand .wws-card-content{
+    font-size: 1.718vw;
+    padding-bottom: 2.5vw;
+}
+
+@media(max-width:600px){
+    .aboutus-stand{
+        text-align: center;
+    }
+    
+    .aboutus-stand .wherewestand-title{
+        font-size: calc(20 * var(--vm));
+        color: #3CFAFF;
+        padding-top: calc(75 * var(--vm));
+        margin-bottom: calc(15.28 * var(--vm));
+    }
+    
+    .aboutus-stand .wherewestand-desc{
+        width: calc(284 * var(--vm));
+        color: #FFFFFF;
+        font-size: calc(13 * var(--vm));
+        margin: auto;
+        margin-bottom: 3vw;
+        font-weight: 300;
+    }
+    
+    .aboutus-stand .wws-cards{
+        padding: 0 calc(40.28 * var(--vm));
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .aboutus-stand .wws-card{
+        width: unset;
+        background-color: transparent;
+        color: #FFFFFF;
+        height: unset;
+        margin-top: calc(39 * var(--vm));
+    }
+
+    .aboutus-stand .wws-card:last-child{
+        margin: auto;
+        margin-top: calc(39 * var(--vm));
+    }
+
+    .aboutus-stand .wws-card-image{
+        width: calc(95 * var(--vm));
+        height: unset;
+        margin: auto;
+    }
+    
+    .aboutus-stand .wws-card-title{
+        font-size: calc(22 * var(--vm));
+        margin-top: calc(14.7 * var(--vm));
+    }
+    
+    .aboutus-stand .wws-card-content{
+        font-size: calc(13 * var(--vm));
+        padding-bottom: 2.5vw;
+        font-weight: 300;
+    }
+}

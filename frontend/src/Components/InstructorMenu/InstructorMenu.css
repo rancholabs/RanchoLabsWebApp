@@ -1,0 +1,73 @@
+.instructor-menu{
+    background-color: #030224;
+    width: calc(291*var(--vp));
+    height: 100vh;
+    max-height: calc(1080*var(--vp));
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.instructor-menu .instructor-pic{
+    padding: calc(63*var(--vp)) calc(82*var(--vp)) calc(36*var(--vp));
+}
+
+.instructor-menu .instructor-greeting{
+    text-align: center;
+    font-size: calc(28*var(--vp));
+    color: #3CFAFF;
+    letter-spacing: calc(0.84*var(--vp));
+    line-height: normal;
+}
+
+.instructor-menu .instructor-greeting-desc{
+    font-size: calc(22*var(--vp));
+    color: #FFFFFF;
+    letter-spacing: calc(0.66*var(--vp));
+    text-align: center;
+    width: calc(240*var(--vp));
+    margin: auto;
+    line-height: calc(33*var(--vp));
+}
+
+.instructor-menu .links{
+    text-align: center;
+    height: calc(757*var(--vp));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-bottom: calc(139*var(--vp));
+    /* padding-top: calc(106.5*var(--vp)); */
+}
+
+.instructor-menu .links img{
+    margin: auto;
+    width: calc(27*var(--vp));
+    height: calc(27*var(--vp));
+}
+
+.instructor-menu .links .section-name{
+    color: #FFFFFF;
+    font-size: calc(22*var(--vp));
+    letter-spacing: calc(0.66*var(--vp));
+    font-weight: 300;
+    line-height: 2.1;
+}
+
+.instructor-menu .links .active-section .section-name{
+    color: #F74B42;
+}
+
+.instructor-menu .links .active-section span{
+    color: #F74B42;
+}
+
+.instructor-menu .links span{
+    font-size: calc(28*var(--vp));
+    color: #FFFFFF;
+}
+
+.instructor-menu .links a:hover{
+    text-decoration: none;
+}
+

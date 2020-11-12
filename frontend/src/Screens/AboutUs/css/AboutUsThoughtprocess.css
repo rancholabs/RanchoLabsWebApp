@@ -1,0 +1,202 @@
+.aboutus-thoughtprocess{
+    background-color: #171636;
+}
+
+.aboutus-thoughtprocess .tp-title{
+    color: #3CFAFF;
+    font-size: 2.5vw;
+    padding-top: 6.718vw;
+    text-align: center;
+}
+
+.aboutus-thoughtprocess .tp-desc{
+    color: #FFFFFF;
+    font-size: 1.458vw;
+    margin: 2vw 8.95vw;
+    text-align: center;
+}
+
+.aboutus-thoughtprocess .tp-items{
+    margin: 7vw 8.95vw 0;
+}
+
+.aboutus-thoughtprocess .tp-item{
+    justify-content: center;
+}
+
+.tp-items .tp-item-info{
+    width: 25vw;
+    padding-bottom: 9vw;
+}
+
+.tp-item .tp-item-image{
+    padding-bottom: 9vw;
+    align-self: center;
+}
+
+.tp-item-info .tp-item-title{
+    font-size: calc(40*var(--vp));
+    color: #3CFAFF;
+    line-height: 1;
+    margin-bottom: 1.5vw;
+}
+
+.tp-item-info .tp-item-desc{
+    font-size: calc(28*var(--vp));
+    color: #FFFFFF;
+    width: 25vw;
+    font-weight: 400;
+}
+
+.tp-item:nth-child(even){
+    flex-direction: row-reverse;
+    text-align: right !important;
+}
+
+.tp-item:nth-child(even) .tp-item-info{
+    padding-right: 4.84vw;
+    margin-left: auto;
+}
+
+.tp-item:nth-child(even) .tp-item-desc {
+    margin-left: auto;
+}
+
+.tp-item:nth-child(even) .tp-item-image{
+    padding-left: 4.84vw;
+    text-align: start;
+    margin-right: auto;
+}
+
+.tp-item:nth-child(odd){
+    text-align: left !important;
+}
+
+.tp-item:nth-child(odd) .tp-item-info{
+    padding-left: 4.84vw;
+}
+
+.tp-item:nth-child(odd) .tp-item-image{
+    padding-right: 4.84vw;
+    text-align: end;
+}
+
+.tp-item:nth-child(odd) .col-md-6:nth-child(even){
+    height: 100%;
+}
+
+.tp-item:last-child .tp-item-image{
+    padding-bottom: 15vw;
+}
+
+.aboutus-thoughtprocess .c-line{
+    width: 0; 
+    border-right: 2px solid #F74B42;
+}
+
+.aboutus-thoughtprocess .c-circle{
+    width: 2vw; 
+    height: 2vw;
+    background-color: #171636;
+    transform: translateX(-44%) translateY(0);
+}
+
+.aboutus-thoughtprocess .c-circle img{
+    align-items: flex-start;
+    vertical-align: top;
+}
+
+.aboutus-thoughtprocess .mtp-items{
+    display: none;
+}
+
+.tp-backgrounds img{
+    position: absolute;
+}
+
+@media(max-width:767px){
+    .aboutus-thoughtprocess{
+        background-color: #171636;
+    }
+    
+    .aboutus-thoughtprocess .tp-title{
+        color: #3CFAFF;
+        font-size: 5.55vw;
+        padding-top: 15.11vw;
+        text-align: center;
+    }
+    
+    .aboutus-thoughtprocess .tp-desc{
+        color: #FFFFFF;
+        font-size: 3.61vw;
+        margin: 3vw 10.2vw;
+        text-align: center;
+        font-weight: 300;
+    }
+    
+    .aboutus-thoughtprocess .tp-items{
+        display: none;
+    }
+    
+    .aboutus-thoughtprocess .mtp-items{
+        justify-content: center;
+        padding: 5vw 10.7vw 0;
+        display: block;
+    }
+    
+    .mtp-items .mtp-item-info{
+        width: unset;
+        padding-bottom: calc(50 * var(--vm));
+        padding-left: calc(23* var(--vm));
+    }
+    
+    .mtp-item .mtp-item-image{
+        padding-bottom: calc(22 * var(--vm));;
+    }
+    
+    .mtp-item-info .mtp-item-title{
+        font-size: calc(15 * var(--vm));;
+        color: #3CFAFF;
+        margin-left: auto;
+        width: calc(209 * var(--vm));
+        margin-bottom: 1.5vw;
+    }
+    
+    .mtp-item-info .mtp-item-desc{
+        font-size: calc(13 * var(--vm));;
+        color: #FFFFFF;
+        width: calc(209 * var(--vm));
+        justify-content: flex-end;
+        font-weight: 300;
+        margin-left: auto;
+    }
+
+    .aboutus-thoughtprocess .c-line{
+        width: 0; 
+        height: calc(245 * var(--vm));
+        border-right: 2px solid #F74B42;
+        align-self: flex-end;
+        transform: translateX(calc(12.5 * var(--vm)));
+    }
+
+    .aboutus-thoughtprocess .mtp-item:last-child .c-line{
+        height: calc(354 * var(--vm));
+    }
+
+    .aboutus-thoughtprocess .mtp-item:nth-child(1) .c-line{
+        height: calc(245 * var(--vm));
+    }
+
+    .aboutus-thoughtprocess .mtp-item:nth-child(2) .c-line{
+        height: calc(363 * var(--vm));
+    }
+    
+    .aboutus-thoughtprocess .c-circle{
+        width: calc(25 * var(--vm));
+        height: calc(25 * var(--vm));
+        background-color: #171636;
+        transform: translateX(-3%);
+        margin-top: 20%;
+    }
+    
+}

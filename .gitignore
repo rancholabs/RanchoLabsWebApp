@@ -1,0 +1,17 @@
+# dependencies
+node_modules
+/node_modules
+
+uploads
+/uploads
+
+nodemon.json
+/nodemon.json
+
+# testing
+/coverage
+
+# production
+/build
+
+package-lock.json

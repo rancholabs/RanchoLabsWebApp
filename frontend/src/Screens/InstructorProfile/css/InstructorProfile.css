@@ -1,0 +1,257 @@
+.instructor-profile{
+    background-color: #F2F2F2;
+    padding: calc(63*var(--vp));
+    min-height: 100vh;
+    max-height: calc(1080*var(--vp));
+    padding-left: calc(354*var(--vp));
+}
+
+.instructor-profile .profile-logout{
+    width: calc(570*var(--vp));
+    height: calc(380*var(--vp));
+    background-color: #FFFFFF;
+    box-shadow: 0 calc(3*var(--vp)) calc(6*var(--vp)) #00000029;
+    border-radius: calc(10*var(--vp));
+    position: relative
+}
+
+.instructor-profile .profile-logout .profile-pic{
+    padding-top: calc(29*var(--vp));
+}
+
+.instructor-profile .profile-logout .profile-pic img{
+    border: 3px solid rgb(192, 192, 192);
+    border-radius: 25vw;
+    width: calc(177*var(--vp));
+    height: calc(177*var(--vp));
+}
+
+.instructor-profile .profile-logout .profile-pic .instructor-name{
+    color: #4320BF;
+    font-size: calc(28*var(--vp));
+    letter-spacing: calc(0.84*var(--vp));
+    margin-top: calc(17*var(--vp));
+}
+
+.instructor-profile .logout-button{
+    position: absolute;
+    bottom: 0;
+    top: calc(307*var(--vp));
+    width: 100%;
+}
+
+.instructor-profile .profile-logout button{
+    width: 100%;
+    height: calc(73*var(--vp));
+    background-color: #4320BF;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: calc(28*var(--vp));
+    border: calc(1*var(--vp)) solid #4320BF;
+    letter-spacing: calc(0.84*var(--vp));
+    border-bottom-right-radius: calc(10*var(--vp));
+    border-bottom-left-radius: calc(10*var(--vp));
+}
+
+.instructor-profile .profile-help{
+    width: calc(570*var(--vp));
+    height: calc(527*var(--vp));
+    background-color: #FFFFFF;
+    box-shadow: 0 calc(3*var(--vp)) calc(6*var(--vp)) #00000029;
+    border-radius: calc(10*var(--vp));
+    margin-top: calc(59*var(--vp));
+    position: relative;
+}
+
+.instructor-profile .profile-help .profile-help-top{
+    height: calc(110*var(--vp));
+    border-bottom: 1px solid #4320BF;
+    color: #4320BF;
+    font-size: calc(28*var(--vp));
+    letter-spacing: calc(0.84*var(--vp));
+    padding-top: calc(38*var(--vp));
+}
+
+.instructor-profile .profile-help textarea{
+    width: 100%;
+    height: calc(330*var(--vp));
+    outline: none;
+    resize: none;
+    border: none;
+    padding: calc(27*var(--vp));
+    font-size: calc(22*var(--vp));
+    letter-spacing: calc(0.66*var(--vp));
+}
+
+.instructor-profile .send-button{
+    position: absolute;
+    bottom: 0;
+    top: calc(454*var(--vp));
+    width: 100%;
+    box-shadow: none;
+}
+
+.instructor-profile .profile-help button{
+    width: 100%;
+    height: calc(73*var(--vp));
+    background-color: #4320BF;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: calc(28*var(--vp));
+    border: calc(1*var(--vp)) solid #4320BF;
+    letter-spacing: calc(0.84*var(--vp));
+    border-bottom-right-radius: calc(10*var(--vp));
+    border-bottom-left-radius: calc(10*var(--vp));
+    font-weight: 400;
+}
+
+.instructor-profile .personal-info{
+    background-color: #FFFFFF;
+    height: calc(966*var(--vp));
+    width: calc(830*var(--vp));
+    margin-left: calc(71*var(--vp));
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: calc(10*var(--vp));
+    padding: calc(29*var(--vp)) calc(0*var(--vp)) calc(0*var(--vp)) calc(0*var(--vp));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.instructor-profile .personal-info .personal-info-title{
+    font-size: calc(33*var(--vp));
+    color: #4320BF;
+    letter-spacing: 0.99px;
+    font-weight: 500;
+    padding-left: calc(38*var(--vp));
+}
+
+.instructor-profile .personal-info .personal-info-title button{
+    float: right;
+    padding-right: calc(59*var(--vp));
+    align-self: center;
+    align-content: center;
+    background-color: transparent;
+    outline: none;
+    color: #4320BF;
+    border: none;
+    line-height: normal;
+}
+
+.instructor-profile .personal-info form{
+    padding-right: calc(86*var(--vp));
+    padding-top: calc(71*var(--vp));
+    padding-left: calc(38*var(--vp));
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.instructor-profile .personal-info form label{
+    font-size: calc(28*var(--vp));
+    color: #4320BF;
+    letter-spacing:  calc(0.84*var(--vp));
+    font-weight: 400;
+}
+
+.instructor-profile .personal-info .name{
+    width: calc(329*var(--vp));
+}
+
+.instructor-profile .personal-info input, datalist{
+    width: 100%;
+    background-color: #F2F2F2;
+    height: calc(69*var(--vp));
+    padding: calc(18*var(--vp)) calc(24*var(--vp));
+    border: none;
+    outline: none;
+    font-size: calc(28*var(--vp));
+    color: #1f1f1f;
+    letter-spacing:  calc(0.84*var(--vp));
+    font-weight: 400;
+}
+
+.instructor-profile .personal-info .dial-code input{
+    padding-right: 0;
+}
+
+.instructor-profile .personal-info form .password input{
+    width: calc(402*var(--vp));
+}
+
+.instructor-profile .personal-info form input[type='checkbox'] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.instructor-profile .personal-info form .visibility{
+    width: calc(50*var(--vp));
+    margin: 0;
+    height: calc(69*var(--vp));
+    padding: 0;
+    background-color: #F2F2F2;
+    border-radius: 0;
+    border: none;
+    line-height: normal;
+    color: #707070;
+    text-align: center;
+}
+
+.instructor-profile .personal-info input::placeholder{
+    color: #707070;
+}
+
+.instructor-profile .personal-info .contact-no{
+    width: calc(561*var(--vp));
+}
+
+.instructor-profile .personal-info .dial-code{
+    width: calc(129*var(--vp));
+}
+
+input::-webkit-calendar-picker-indicator {
+    opacity: 0.7;
+}
+
+.instructor-profile form button{
+    width: calc(830*var(--vp));
+    height: calc(73*var(--vp));
+    font-size: calc(28*var(--vp));
+    letter-spacing: calc(0.84*var(--vp));
+    background-color: #4320BF;
+    outline: none;
+    border: none;
+    color: #FFFFFF;
+    border-bottom-left-radius:  calc(10*var(--vp));
+    border-bottom-right-radius: calc(10*var(--vp));
+    margin: 0 calc(-86*var(--vp)) 0 calc(-38*var(--vp));
+}
+
+.instructor-profile form button:disabled{
+    background-color: #707070;
+}
+
+.instructor-profile .profile-pic #profile-pic{
+    background-color: #4320BF;
+    position: absolute;
+    color: #FFFFFF;
+    top: 8vw;
+    left: calc(313*var(--vp));
+    border-radius: 8vw;
+    width: calc(49*var(--vp));
+    height: calc(49*var(--vp));
+    font-size: calc(28*var(--vp));
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.instructor-profile .profile-pic input[type="file"]{
+    position: absolute;
+    top: calc(150*var(--vp));
+    left: calc(325*var(--vp));
+    content: "\f030";
+    display: none;
+}

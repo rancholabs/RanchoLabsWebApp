@@ -1,0 +1,356 @@
+
+.signup{
+    background-color: #020122;
+    padding: 10.5vw 11.9vw;
+}
+.signup .card{
+    background-color: #FFFFFF;
+    padding: 6.5vw 3vw 5.26vw;
+    margin: unset;
+    height: 44vw;
+    width: 29vw;
+}
+.signup img{
+    width: 49vw;
+    height: auto;
+    padding-top: 20%;
+}
+.signup input{
+    width: 100%;
+    background-color: #E3E8EB;
+    border-radius: 5px;
+    padding: 0vw 1.3vw;
+    font-size: 1vw;
+    border: none;
+    height: 2.4vw;
+    margin-bottom: 0.88vw;
+}
+
+.signup input:-internal-autofill-selected{
+    background-color: unset !important;
+}
+
+.signup center{
+    position: absolute;
+    bottom: 4vw;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;   
+    width: 75%;
+}
+
+.signup select{
+    width: 100%;
+    background-color: #E3E8EB;
+    border-radius: 5px;
+    padding: 0vw 1.3vw;
+    font-size: 1rem;
+    height: 2.5vw;
+    border: none;
+    color: #70707A;
+}
+
+@media (min-width:769px) and (max-width:1024px){
+    .signup input{
+        font-size: 0.7rem;
+        padding: 0.5vh 1vh;
+    }
+
+    .signup select{
+        font-size: 0.7rem;
+        padding: 0.5vh 1vh;
+    }
+}
+
+
+@media (min-width:1025px) and (max-width:1260px){
+    .signup input{
+        font-size: 1.3vw;
+        padding: 0.5vh 1vh;
+    }
+
+    .signup select{
+        font-size: 1.3vw;
+        padding: 0.5vh 1vh;
+    }
+}
+
+.signup form{
+    color: #E3E8EB;
+    margin-top: 2.76vw;
+}
+
+
+
+label{
+    margin-bottom: 0.25vw;
+    font-size: 1vw;
+    letter-spacing: 0.28px;
+    font-weight: 400;
+    color: #03071E;
+}
+
+@media (min-width:769px) and (max-width:1024px){
+    label{
+        font-size: 0.7rem;
+    }
+}
+
+@media (min-width:1025px) and (max-width:1260px){
+    label{
+        font-size: 0.8rem;
+    }
+}
+
+
+.signup .submit{
+    width: 70%;
+    background-color: #F74B42;
+    font-size: 1.4vw;
+    padding: 0.8vw;
+    border-radius: 10vw;
+}
+
+@media (max-width:768px){
+    .signup .submit{
+        font-size: 1rem;
+        padding: 0.5vw;
+    }  
+}
+
+@media (min-width:769px) and (max-width:1024px){
+    .signup .submit{
+        font-size: 0.7rem;
+    }
+}
+
+
+@media (min-width:1025px) and (max-width:1260px){
+    .signup .submit{
+        font-size: 1.5vw;
+    }
+}
+
+
+.signup .btn{
+    margin-right: unset;
+    margin-top: auto;
+}
+
+.form-tag{
+    font-size: 1vw;
+    color:#225A72 ;
+    margin-bottom: 0.4vw;
+    letter-spacing: -0.1px;
+}
+
+@media (min-width:769px) and (max-width:1024px){
+    .form-tag{
+        font-size: 0.7rem;
+    }
+}
+
+
+@media (min-width:1025px) and (max-width:1260px){
+    .form-tag{
+        font-size: 0.8rem;
+    }
+}
+
+
+.form-title{
+    color: #F74B42;
+    font-size: 1.5vw;
+    font-weight: 400;
+} 
+
+@media (min-width:769px) and (max-width:1024px){
+    .form-title{
+        color: #F74B42;
+        font-size: 1rem;
+    } 
+}
+
+
+@media (min-width:1025px) and (max-width:1260px){
+    .form-title{
+        color: #F74B42;
+        font-size: 1.2rem;
+    } 
+}
+.mobilesignup{
+    display : none;
+}
+
+@media (max-width:768px) and (min-height:854px){
+    .signup form{
+        margin-top: 1vh;    
+    }
+    .signup input{
+        padding: 0.3vh 0.5vh;
+        font-size: 1vh;
+    }
+
+    .signup select{
+        padding: 0.3vh 0.5vh;
+        font-size: 1vw;
+    }
+
+    .signup .submit{
+        font-size: 1.2vw;
+        padding: 0.8vw;
+    }
+    .signup select{
+        padding: 0.3vh 0.5vh;
+        font-size: 1vw;
+    }
+
+}
+
+@media (max-width:768px) and (max-height:854px){
+    .signup{
+        display : none;
+    }
+    .mobilesignup{
+        margin: 1.8rem 1rem;
+        background-color: #ffffff;
+        display: block;
+    }
+    .mobilesignup .card{
+        padding: 1.2rem;
+    }
+    .mobilesignup img{
+        width: -webkit-fill-available;
+        height: auto;
+        margin: 1rem;
+        max-height: 90vw;
+    }
+    .mobilesignup form{
+        margin: 1rem;
+    }
+    .mobilesignup .form-title{
+        font-size: 1.3rem;
+        color: #F74B42;   
+        margin: 0 1rem;
+        font-weight: 500;
+    }
+    .mobilesignup .form-tag{
+        font-size: 0.9rem;
+        color: #225A72;
+        margin: 0 1rem;
+    }
+    .mobilesignup label{
+        color: #03071E;
+        font-size: 1.7vh;
+        font-weight: 500;
+    }
+    .mobilesignup input{
+        width: 100%;
+        background-color: #E3E8EB;
+        font-size: 1.8vh;
+        padding: 1.5vh 1.4vh;
+        border: unset;
+        border-radius: 0.3rem;
+        margin-bottom: 0.3rem;
+    }
+    .mobilesignup .submit{
+        font-size: 1.1rem;
+        background-color: #F74B42;
+        padding: 0.5rem;
+        width: 50%;
+        margin: 7vh 0 3vh 0;
+    }
+
+    .mobilesignup select{
+        width: 100%;
+        background-color: #E3E8EB;
+        font-size: 1.8vh;
+        padding: 1.5vh 1.4vh;
+        border: unset;
+        border-radius: 0.3rem;
+        margin-bottom: 0.3rem;
+    }
+}
+
+@media (max-width:768px){
+    .mobilesignup{
+        padding: 3.5vw;
+        margin: 7vw 9vw;
+    }
+    .mobilesignup input{
+        padding: 2vw 3vw;
+        font-size: 3vw;
+    }
+
+    .mobilesignup select{
+        padding: 2vw 3vw;
+        font-size: 3vw;
+    }
+
+    .mobilesignup .submit{
+        padding: 2vw 3vw;
+        font-size: 3vw;
+    }
+
+
+    .mobilesignup .card{
+        height: 50vw;
+    }
+    .mobilesignup .form-title{
+        font-size: 5vw;
+    }
+    .mobilesignup .form-tag{
+        font-size: 3vw;
+    }
+
+    .mobilesignup label{
+        font-size: 2.8vw;
+    }
+    .mobilesignup .submit{
+        font-size: 4vw;
+        border-radius: 10vw;
+    }
+}
+
+.mobilesignup input[type=text]{
+    color: #70707A !important;
+
+}
+
+.signup input[type=text]{
+    color: #70707A !important;
+
+}
+
+select{
+   color:  #2b2b2b;
+}
+
+.signup input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #70707A !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.mobilesignup input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus{
+  -webkit-text-fill-color: #70707A !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+}

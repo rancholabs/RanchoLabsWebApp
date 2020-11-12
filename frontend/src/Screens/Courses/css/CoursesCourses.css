@@ -1,0 +1,18 @@
+.courses-courses{
+    padding: 0 calc(120*var(--vp));
+}
+
+.courses-course-card button{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    padding: 3.5vw;
+    border-bottom: 1px solid #FFFFFF;
+}
+
+.courses-course-card .course-name{
+    font-size: calc(28*var(--vp));
+    color: #FFFFFF;
+    padding-top: calc(40*var(--vp));
+    font-weight: lighter;
+}

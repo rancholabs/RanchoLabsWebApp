@@ -1,0 +1,333 @@
+.aboutus-invest{
+    background-image: url('../img/bgdesk.png');
+    text-align: center;
+    overflow-x: hidden;
+    background-size: 100% 100%;
+    height: calc(790*var(--vp));
+    width: 100%;
+}
+
+.aboutus-invest .invest-title{
+    font-size: 2.86vw;
+    color: #FFFFFF;
+    padding-top: 11vw;
+    text-align: center;
+}
+
+.aboutus-invest .invest-desc{
+    font-size: 1.458vw;
+    color: #FFFFFF;
+    text-align: center;
+    padding-top: 1vw;
+    padding-bottom: 3vw;
+}
+
+.aboutus-invest .invest-enroll button{
+    font-size: 2.5vw;
+    height: 4.79vw;
+    width: 25.67vw;
+    color: #FFFFFF;
+    border: 3px solid #FFFFFF;
+    background-color: transparent;
+    border-radius: 3.33vw;
+    margin: auto;
+    margin-top: 3vw;
+    /* margin-bottom: 12.34vw; */
+}
+
+.aboutus-invest .circle{
+    width: 5vw;
+    height: 5vw;
+    background-color: #FFFF3C;
+    position: relative;
+    border-radius: 5vw;
+}
+
+.aboutus-invest .quarter{
+    position: relative;
+    background-color: #190A4D;
+    height: 7.18vw;
+    width: 7.18vw;
+    border-radius: 0 0 0 7.18vw;
+    -moz-border-radius: 0 0 0 7.18vw;
+    -webkit-border-radius: 0 0 0 7.18vw;
+}
+
+.aboutus-invest img{
+    position: relative;
+}
+
+#c1{
+    position: relative;
+    top: calc(-31* var(--vp));
+    left: calc(217* var(--vp));
+    margin-bottom: calc(-96* var(--vp));
+}
+
+#c2{
+    position: relative;
+    top: calc(574* var(--vp));
+    left: calc(1447* var(--vp));
+    margin-bottom: calc(-96* var(--vp));;
+}
+
+#corner{
+    position: relative;
+    top: calc(0* var(--vp));
+    left: calc(694.5* var(--vp));
+    margin-bottom: calc(-49.5* var(--vp));
+    width: calc(123* var(--vp));
+    height: calc(123* var(--vp));
+}
+
+#bars{
+    position: relative;
+    bottom: calc(623* var(--vp));
+    left: calc(831* var(--vp));
+    margin-top: calc(-173.5* var(--vp));
+    width: calc(96* var(--vp));
+    height: calc(168* var(--vp));
+}
+
+#bars2{
+    position: relative;
+    bottom: calc(0* var(--vp));
+    left: calc(-533.5 * var(--vp));
+    margin-top: calc(-125.5* var(--vp));
+    /* width: calc(96* var(--vp)); */
+    height: calc(233.03* var(--vp));
+}
+
+#icon2{
+    position: relative;
+    top: calc(131* var(--vp));
+    right: calc(530* var(--vp));
+    margin-top: calc(-73.5* var(--vp));
+    width: calc(115* var(--vp));
+    height: calc(140* var(--vp));
+}
+
+#icon7{
+    position: relative;
+    bottom: calc(368* var(--vp));
+    left: calc(912* var(--vp));
+    margin-bottom: calc(-73.5* var(--vp));
+    width: calc(112* var(--vp));
+    height: calc(112* var(--vp));
+}
+
+#icon8{
+    position: relative;
+    bottom: calc(200* var(--vp));
+    right: calc(1091 * var(--vp));
+    margin-bottom: calc(-100* var(--vp));
+    width: calc(122* var(--vp));
+    height: calc(122* var(--vp));
+}
+
+#icon9{
+    position: relative;
+    /* bottom: calc(200* var(--vp));
+    right: calc(1091 * var(--vp));
+    margin-bottom: calc(-100* var(--vp));
+    width: calc(122* var(--vp));
+    height: calc(122* var(--vp)); */
+}
+
+#icon5{
+    position: relative;
+    /* bottom: calc(200* var(--vp)); */
+    left: calc(481 * var(--vp));
+    margin-top: calc(-165* var(--vp));
+    width: calc(270* var(--vp));
+    height: calc(270* var(--vp));
+}
+
+#icon4{
+    position: relative;
+    bottom: calc(100* var(--vp));
+    right: calc(588* var(--vp));
+    width: calc(62* var(--vp));
+    height: calc(62* var(--vp));
+}
+
+#icon1{
+    position: relative;
+    /* bottom: calc(200* var(--vp)); */
+    left: calc(-694* var(--vp));
+    margin-bottom: calc(-197* var(--vp));
+    width: calc(270* var(--vp));
+    height: calc(270* var(--vp));
+}
+
+@media(max-width:600px){
+    .aboutus-invest{
+        background-image: url('../img/bgmob.png');
+        text-align: center;
+        overflow-x: hidden;
+        background-size: 100% 100%;
+        height: calc(352*var(--vm));
+        width: 100%;
+    }
+    
+    .aboutus-invest .invest-title{
+        font-size: calc(24 * var(--vm));
+        width: calc(261 * var(--vm));;
+        color: #FFFFFF;
+        padding-top: 21.13vw;
+        text-align: center;
+        margin: auto;
+        font-weight: 500;
+    }
+    
+    .aboutus-invest .invest-desc{
+        font-size: calc(13 * var(--vm));
+        width: calc(285 * var(--vm));
+        margin: auto;
+        color: #FFFFFF;
+        text-align: center;
+        padding-top: calc(22 * var(--vm));
+        padding-bottom: calc(22 * var(--vm));
+        font-weight: 300;
+    }
+    
+    .aboutus-invest .invest-enroll button{
+        font-size: calc(18 * var(--vm));
+        height: unset;
+        padding: calc(2 * var(--vm));;
+        width: calc(130 * var(--vm));
+        color: #FFFFFF;
+        border: 2px solid #FFFFFF;
+        background-color: transparent;
+        border-radius: calc(20 * var(--vm));
+        margin: auto;
+        margin-top: 3vw;
+        /* margin-bottom: 12.34vw; */
+        align-items: center;
+    }
+    
+    .aboutus-invest .circle{
+        width: 5vw;
+        height: 5vw;
+        background-color: #FFFF3C;
+        position: relative;
+        border-radius: 5vw;
+    }
+    
+    .aboutus-invest .quarter{
+        position: relative;
+        background-color: #190A4D;
+        height: 7.18vw;
+        width: 7.18vw;
+        border-radius: 0 0 0 7.18vw;
+        -moz-border-radius: 0 0 0 7.18vw;
+        -webkit-border-radius: 0 0 0 7.18vw;
+    }
+    
+    .aboutus-invest img{
+        position: relative;
+    }
+
+    #c1{
+        position: relative;
+    top: calc(-67* var(--vp));
+    left: calc(259* var(--vp));
+    margin-bottom: calc(-96* var(--vp));
+    }
+    
+    #c2{
+        position: relative;
+    top: calc(1400* var(--vp));
+    left: calc(1484* var(--vp));
+    margin-bottom: calc(-96* var(--vp));
+    }
+    
+    #corner{
+        position: relative;
+    top: calc(-38* var(--vp));
+    left: calc(694.5* var(--vp));
+    /* margin-bottom: calc(-3.5* var(--vp)); */
+    width: calc(123* var(--vp));
+    height: calc(123* var(--vp));
+    }
+    
+    #bars{
+        position: relative;
+    bottom: calc(1573* var(--vp));
+    left: calc(831* var(--vp));
+    margin-top: calc(-173.5* var(--vp));
+    width: calc(96* var(--vp));
+    height: calc(168* var(--vp));
+    }
+    
+    #bars2{
+        position: relative;
+        bottom: calc(0* var(--vp));
+        left: calc(-533.5 * var(--vp));
+        margin-top: calc(-125.5* var(--vp));
+        /* width: calc(96* var(--vp)); */
+        height: calc(233.03* var(--vp));
+    }
+    
+    #icon2{
+        position: relative;
+    top: calc(242* var(--vp));
+    right: calc(441* var(--vp));
+    margin-top: calc(-68.5* var(--vp));
+    width: calc(115* var(--vp));
+    height: calc(140* var(--vp));
+    }
+    
+    #icon7{
+        position: relative;
+    bottom: calc(668* var(--vp));
+    left: calc(912* var(--vp));
+    margin-bottom: calc(-73.5* var(--vp));
+    width: calc(112* var(--vp));
+    height: calc(112* var(--vp));
+    }
+    
+    #icon8{
+        position: relative;
+        bottom: calc(200* var(--vp));
+        right: calc(1091 * var(--vp));
+        margin-bottom: calc(-100* var(--vp));
+        width: calc(122* var(--vp));
+        height: calc(122* var(--vp));
+    }
+    
+    #icon9{
+        position: relative;
+        /* bottom: calc(200* var(--vp));
+        right: calc(1091 * var(--vp));
+        margin-bottom: calc(-100* var(--vp));
+        width: calc(122* var(--vp));
+        height: calc(122* var(--vp)); */
+    }
+    
+    #icon5{
+        position: relative;
+        /* bottom: calc(200* var(--vp)); */
+        left: calc(481 * var(--vp));
+        margin-top: calc(-165* var(--vp));
+        width: calc(270* var(--vp));
+        height: calc(270* var(--vp));
+    }
+    
+    #icon4{
+        position: relative;
+        bottom: calc(100* var(--vp));
+        right: calc(588* var(--vp));
+        width: calc(62* var(--vp));
+        height: calc(62* var(--vp));
+    }
+    
+    #icon1{
+        position: relative;
+        /* bottom: calc(200* var(--vp)); */
+        left: calc(-700* var(--vp));
+        margin-bottom: calc(-147* var(--vp));
+        width: calc(270* var(--vp));
+        height: calc(270* var(--vp));
+    }
+}

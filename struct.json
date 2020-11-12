@@ -1,0 +1,270 @@
+{
+    "quote": {
+        "_id": "5f7ea82360d7714e54d30010",
+        "quote": "bye",
+        "by": "b"
+    },
+    "courses": [
+        {
+            "_id": "5f7e0e8dab41ef1104bdff9e",
+            "courseId": "5f7980a089a19e45e09a0964",
+            "batchId": "5f7e0cde9c71044d645e1b35",
+            "courseDetails": {
+                "_id": "5f7980a089a19e45e09a0964",
+                "isWorkshop": false,
+                "groupId": "5f797f247a188f4a5c1046bf",
+                "name": "Robo-1"
+            },
+            "classes": [
+                {
+                    "classId": "5f7e040a4fa8aa38dcda52c3",
+                    "classLink": "cl-r",
+                    "classNo": 1,
+                    "topic": "t1",
+                    "materials": {
+                        "lesson": {
+                            "_id": "5f7b1ce3d291624a70d09ad7",
+                            "originalName": "robotics.png",
+                            "filePath": "GOB-IN:5000\\uploads\\images\\robotics-1601903843540.png"
+                        },
+                        "video": {
+                            "_id": "5f7b1ce3d291624a70d09ad7",
+                            "originalName": "robotics.png",
+                            "filePath": "GOB-IN:5000\\uploads\\images\\robotics-1601903843540.png"
+                        },
+                        "quizLink": "ql-r",
+                        "references": [
+                            {
+                                "_id": "5f7e040a4fa8aa38dcda52c4",
+                                "refType": "file",
+                                "file": {
+                                    "_id": "5f7b1ce3d291624a70d09ad7",
+                                    "originalName": "robotics.png",
+                                    "filePath": "GOB-IN:5000\\uploads\\images\\robotics-1601903843540.png"
+                                }
+                            },
+                            {
+                                "_id": "5f7e040a4fa8aa38dcda52c5",
+                                "refType": "text",
+                                "text": "checking"
+                            }
+                        ]
+                    },
+                    "quizDeadline": "2020-12-06T15:52:07.905Z",
+                    "quizProgress": null
+                },
+                {
+                    "classId": "5f7e040a4fa8aa38dcda52c6",
+                    "classLink": "cl-r",
+                    "classNo": 2,
+                    "topic": "t1",
+                    "materials": {
+                        "lesson": {
+                            "_id": "5f7b1ce3d291624a70d09ad7",
+                            "originalName": "robotics.png",
+                            "filePath": "GOB-IN:5000\\uploads\\images\\robotics-1601903843540.png"
+                        },
+                        "video": {
+                            "_id": "5f7b1ce3d291624a70d09ad7",
+                            "originalName": "robotics.png",
+                            "filePath": "GOB-IN:5000\\uploads\\images\\robotics-1601903843540.png"
+                        },
+                        "quizLink": "ql-r",
+                        "references": [
+                            {
+                                "_id": "5f7e040a4fa8aa38dcda52c7",
+                                "refType": "link",
+                                "link": "link-1"
+                            },
+                            {
+                                "_id": "5f7e040a4fa8aa38dcda52c8",
+                                "refType": "text",
+                                "text": "checking"
+                            }
+                        ]
+                    },
+                    "quizProgress": null
+                },
+                {
+                    "classId": "5f7e0839091451241ccf9e8d",
+                    "classLink": "cl-r",
+                    "classNo": 3,
+                    "topic": "t1",
+                    "materials": {
+                        "lesson": {
+                            "_id": "5f7b1ce3d291624a70d09ad7",
+                            "originalName": "robotics.png",
+                            "filePath": "GOB-IN:5000\\uploads\\images\\robotics-1601903843540.png"
+                        },
+                        "video": {
+                            "_id": "5f7b1ce3d291624a70d09ad7",
+                            "originalName": "robotics.png",
+                            "filePath": "GOB-IN:5000\\uploads\\images\\robotics-1601903843540.png"
+                        },
+                        "quizLink": "ql-r",
+                        "references": [
+                            {
+                                "_id": "5f7e040a4fa8aa38dcda52c7",
+                                "refType": "link",
+                                "link": "link-1"
+                            },
+                            {
+                                "_id": "5f7e040a4fa8aa38dcda52c8",
+                                "refType": "text",
+                                "text": "checking"
+                            }
+                        ]
+                    },
+                    "quizProgress": null
+                }
+            ],
+            "projects": [
+                {
+                    "projectId": "5f7e056f46d42f373c9f190e",
+                    "projectNo": 1,
+                    "topic": "p1",
+                    "image": {
+                        "_id": "5f7b1ce3d291624a70d09ad7",
+                        "originalName": "robotics.png",
+                        "filePath": "GOB-IN:5000\\uploads\\images\\robotics-1601903843540.png"
+                    },
+                    "isActive": true,
+                    "deadline": "2020-12-08T15:52:07.905Z",
+                    "assignmentProgress": null
+                }
+            ]
+        },
+        {
+            "_id": "5f7e0f6fab41ef1104bdff9f",
+            "courseId": "5f7b3de005daaf3a1079fc2a",
+            "batchId": "5f7e0ce99c71044d645e1b43",
+            "courseDetails": {
+                "_id": "5f7b3de005daaf3a1079fc2a",
+                "isWorkshop": false,
+                "groupId": "5f79f717fdd87f4fb4c3fc24",
+                "name": "AI-1"
+            },
+            "classes": [
+                {
+                    "classId": "5f7e040a4fa8aa38dcda52c9",
+                    "classLink": "cl-a",
+                    "classNo": 1,
+                    "topic": "t1",
+                    "materials": {
+                        "lesson": {
+                            "_id": "5f7b1ce3d291624a70d09ad5",
+                            "originalName": "ai.png",
+                            "filePath": "GOB-IN:5000\\uploads\\images\\ai-1601903843539.png"
+                        },
+                        "video": {
+                            "_id": "5f7b1ce3d291624a70d09ad5",
+                            "originalName": "ai.png",
+                            "filePath": "GOB-IN:5000\\uploads\\images\\ai-1601903843539.png"
+                        },
+                        "quizLink": "ql-a",
+                        "references": [
+                            {
+                                "_id": "5f7e040a4fa8aa38dcda52ca",
+                                "refType": "file",
+                                "file": {
+                                    "_id": "5f7b1ce3d291624a70d09ad5",
+                                    "originalName": "ai.png",
+                                    "filePath": "GOB-IN:5000\\uploads\\images\\ai-1601903843539.png"
+                                }
+                            },
+                            {
+                                "_id": "5f7e040a4fa8aa38dcda52cb",
+                                "refType": "text",
+                                "text": "checking"
+                            }
+                        ]
+                    },
+                    "quizProgress": {
+                        "isCompleted": true,
+                        "score": 0,
+                        "completedOn": "2020-11-05T15:52:07.905Z"
+                    }
+                },
+                {
+                    "classId": "5f7e040a4fa8aa38dcda52cc",
+                    "classLink": "cl-a",
+                    "classNo": 2,
+                    "topic": "t1",
+                    "materials": {
+                        "lesson": {
+                            "_id": "5f7b1ce3d291624a70d09ad5",
+                            "originalName": "ai.png",
+                            "filePath": "GOB-IN:5000\\uploads\\images\\ai-1601903843539.png"
+                        },
+                        "video": {
+                            "_id": "5f7b1ce3d291624a70d09ad5",
+                            "originalName": "ai.png",
+                            "filePath": "GOB-IN:5000\\uploads\\images\\ai-1601903843539.png"
+                        },
+                        "quizLink": "ql-a",
+                        "references": [
+                            {
+                                "_id": "5f7e040a4fa8aa38dcda52cd",
+                                "refType": "link",
+                                "link": "link-1"
+                            },
+                            {
+                                "_id": "5f7e040a4fa8aa38dcda52ce",
+                                "refType": "text",
+                                "text": "checking"
+                            }
+                        ]
+                    },
+                    "quizProgress": {
+                        "isCompleted": true,
+                        "score": 0,
+                        "completedOn": "2020-11-05T15:52:07.905Z"
+                    }
+                },
+                {
+                    "classId": "5f7e084c091451241ccf9e8e",
+                    "classLink": "cl-a",
+                    "classNo": 3,
+                    "topic": "t1",
+                    "materials": {
+                        "lesson": {
+                            "_id": "5f7b1ce3d291624a70d09ad5",
+                            "originalName": "ai.png",
+                            "filePath": "GOB-IN:5000\\uploads\\images\\ai-1601903843539.png"
+                        },
+                        "video": {
+                            "_id": "5f7b1ce3d291624a70d09ad5",
+                            "originalName": "ai.png",
+                            "filePath": "GOB-IN:5000\\uploads\\images\\ai-1601903843539.png"
+                        },
+                        "quizLink": "ql-a",
+                        "references": [
+                            {
+                                "_id": "5f7e040a4fa8aa38dcda52cd",
+                                "refType": "link",
+                                "link": "link-1"
+                            },
+                            {
+                                "_id": "5f7e040a4fa8aa38dcda52ce",
+                                "refType": "text",
+                                "text": "checking"
+                            }
+                        ]
+                    },
+                    "quizProgress": {
+                        "isCompleted": true,
+                        "score": 0,
+                        "completedOn": "2020-11-05T15:52:07.905Z"
+                    }
+                }
+            ],
+            "projects": []
+        }
+    ],
+    "freeClass" : {
+        "time" : {
+            "start" : "",
+            "end" : ""
+        }
+    }
+}

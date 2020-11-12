@@ -1,0 +1,213 @@
+.side-nav {
+    position: fixed;
+    top:0;
+    right:0;
+    width: calc(603 * var(--vp));
+    height: calc(916 * var(--vp));
+    background: #0A0E2A 0% 0% no-repeat padding-box;
+    box-shadow: calc(0 * var(--vp)) calc(6 * var(--vp)) calc(5 * var(--vp)) #0000003D;
+    opacity: 1;
+    z-index: 15;
+}
+
+.side-nav > *:not(.head-line) {
+    margin: 0 calc(73 * var(--vp));
+}
+
+.side-nav > .head-line {
+    display: flex;
+    margin-top: calc(61 * var(--vp));
+    align-items: center;
+    justify-content: space-between;
+}
+
+.side-nav-logo {
+    width: calc(358 * var(--vp));
+    height: calc(98 * var(--vp));
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.side-nav-logo > .icon {
+    width: calc(118 * var(--vp));
+    height: calc(98 * var(--vp));
+}
+
+.side-nav-logo > .name {
+    font: normal normal normal calc(32 * var(--vp))/calc(43 * var(--vp)) Roboto;
+    letter-spacing: calc(0 * var(--vp));
+    color: #FFFFFF;
+    opacity: 1;
+}
+
+.side-nav-close {
+    margin-right: calc(127 * var(--vp));
+    font-size: calc(36 * var(--vp));
+    cursor: pointer;
+}
+
+.side-nav-links {
+    padding-top: calc(72 * var(--vp));
+}
+
+.side-nav-links > .signup-free-btn {
+    width: calc(457 *var(--vp));
+    height: calc(58 *var(--vp));
+    border-width: calc(3 * var(--vp));
+    font: normal normal normal calc(26 * var(--vp))/calc(34 * var(--vp)) Roboto;
+    margin-bottom: calc(48 * var(--vp));
+}
+
+.side-nav-links > .sub-links {
+    padding-bottom: calc(6 * var(--vp));
+}
+
+.side-nav-links > .sub-links > div {
+    font: normal normal normal calc(26 * var(--vp))/calc(34 * var(--vp)) Roboto;
+    letter-spacing: calc(0.39 * var(--vp));
+    opacity: 1;
+    margin-top: calc(36 * var(--vp)); /* old css size: 16 */
+    margin-bottom: calc(36 * var(--vp)); /* old css size: 16 */
+    text-align: center;
+}
+
+.side-nav-links > .sub-links a {
+    color: #FFFFFF;
+}
+
+.side-nav-links  a:hover {
+    text-decoration: initial;
+    color: #FFFFFF !important;
+}
+
+.side-nav-links .email {
+    font: normal normal normal calc(15 * var(--vp))/calc(20 * var(--vp)) Roboto;
+    letter-spacing: calc(0 * var(--vp));
+    color: #FFFFFF;
+    opacity: 1;
+    margin-left: calc(17.5 * var(--vp));
+    text-decoration: none;
+}
+
+.side-nav-links > .email-icon > .icon {
+    font-size: calc(29 * var(--vp));
+}
+
+.side-nav-links > .email-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.side-nav-links > .signup-login-btns, .side-nav-links > .logout-btn {
+    margin-top: calc(74 * var(--vp));
+    margin-bottom: calc(87 * var(--vp));
+    display: flex;
+}
+
+.side-nav-links > .signup-login-btns > *, .side-nav-links > .logout-btn > div {
+    width: calc(187 * var(--vp));
+    height: calc(71 * var(--vp));
+    background: #F74B42 0% 0% no-repeat padding-box;
+    letter-spacing: calc(0 * var(--vp));
+    color: #FFFFFF;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 36px;
+    cursor: pointer;
+}
+.side-nav-links > .signup-login-btns {
+    justify-content: center;
+}
+
+.side-nav-links > .logout-btn {
+    justify-content: center;
+}
+
+.side-nav-links > .signup-login-btns > * > div, .side-nav-links > .logout-btn > div {
+    font: normal normal normal calc(25 * var(--vp))/calc(36 * var(--vp)) Roboto;
+}
+
+/* Mobile View similar to @media all and (max-width: 600px) {
+    
+}*/
+
+.side-nav.mobile {
+    width: 100%;
+    height: 100%;
+}
+
+.side-nav.mobile > *:not(.head-line) {
+    margin: 0 calc(55 * var(--vm));
+}
+
+.side-nav-links.mobile > .signup-login-btns > *, .side-nav-links.mobile > .logout-btn > div {
+    width: calc(96 * var(--vm));
+    height: calc(36 * var(--vm));
+}
+
+.side-nav-links.mobile > .signup-login-btns > * > div, .side-nav-links.mobile > .logout-btn > div {
+    font-size: calc(14 * var(--vm));
+}
+
+.side-nav-links.mobile {
+    padding-top: calc(40 * var(--vm));
+}
+
+.side-nav-links.mobile > .sub-links {
+    padding-bottom: calc(7 * var(--vm));
+}
+
+.side-nav-links.mobile > .sub-links > div {
+    padding-top: calc(17 * var(--vm)); /* old css size: 8.5 */
+    padding-bottom: calc(17 * var(--vm)); /* old css size: 8.5 */
+    font-size: calc(18 * var(--vm));
+}
+
+.side-nav-links.mobile .email {
+    font-size: calc(12 * var(--vm));
+}
+
+.side-nav-links.mobile > .email-icon > .icon {
+    font-size: calc(20 * var(--vm));
+}
+
+.side-nav-links.mobile > .email-icon {
+    align-items: center;
+}
+
+.side-nav-links.mobile > .signup-free-btn {
+    width: calc(250 *var(--vm));
+    height: calc(32 *var(--vm));
+    font-size: calc(14 * var(--vm));
+    border-radius: calc(18 * var(--vm));
+    border-width: calc(2 * var(--vm));
+    margin-bottom: calc(16.5 * var(--vm));
+}
+
+.side-nav.mobile > .head-line {
+    margin-top: calc(25 * var(--vm));
+}
+
+.side-nav-logo.mobile {
+    margin-left: calc(16 * var(--vm));
+    width: calc(196 * var(--vm));
+    height: calc(44 * var(--vm));
+}
+
+.side-nav-logo.mobile > .icon {
+    width: calc(53 * var(--vm));
+    height: calc(44 * var(--vm));
+}
+
+.side-nav-logo.mobile > .name {
+    font-size: calc(20 * var(--vm));
+}
+
+.side-nav-close.mobile {
+    margin-right: calc(21 * var(--vm));
+    font-size: calc(14 * var(--vm));
+}

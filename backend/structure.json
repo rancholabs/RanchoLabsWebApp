@@ -1,0 +1,96 @@
+{
+    "quote": {
+        "quote": "Imagination is more important than knowledge. For knowledge is limited, whereas imagination embraces the entire world, stimulating progress, giving birth to evolution.",
+        "by": "Albert Einstein"
+    },
+    "name": "Robotics - WORKSHOP",
+    "isWorkshop": true,
+    "learn": [
+        {
+            "day": 1,
+            "topic": "Introduction to Robotics",
+            "subTopics": [
+                "Introduction to Robotics and AI",
+                "Arduino and its programming"
+            ],
+            "classLink": "...",
+            "classTime": "2020-10-04T15:52:07.905+00:00",
+            "materials": [
+                {
+                    "_id": "5f79f6bbfdd87f4fb4c3fc23",
+                    "originalName": "check1.zip",
+                    "filePath": "host:5000\\uploads\\applications\\check1-1601828539470.zip"
+                },
+                {
+                    "_id": "5f79f6bbfdd87f4fb4c3fc24",
+                    "originalName": "check2.zip",
+                    "filePath": "host:5000\\uploads\\applications\\check2-1601828539470.zip"
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "topic": "Robotics and Programming",
+            "subTopics": [
+                "Introduction to Robotics and AI",
+                "Arduino and its programming"
+            ],
+            "classLink": "...",
+            "classTime": "2020-10-04T15:52:07.905+00:00",
+            "materials": [
+                {
+                    "_id": "5f79f6bbfdd87f4fb4c3fc23",
+                    "originalName": "check1.zip",
+                    "filePath": "host:5000\\uploads\\applications\\check1-1601828539470.zip"
+                },
+                {
+                    "_id": "5f79f6bbfdd87f4fb4c3fc24",
+                    "originalName": "check2.zip",
+                    "filePath": "host:5000\\uploads\\applications\\check2-1601828539470.zip"
+                }
+            ]
+        }
+    ],
+    "build": [
+        {
+            "project": 1,
+            "title": "Trafic Light Controller",
+            "deadline": "2020-10-04T15:52:07.905+00:00",
+            "submission": {
+                "_id": "5f79f6bbfdd87f4fb4c3fc24",
+                "originalName": "check2.zip",
+                "filePath": "host:5000\\uploads\\applications\\check2-1601828539470.zip"
+            }
+        },
+        {
+            "project": 2,
+            "title": "Trafic Light Controller",
+            "deadline": "2020-10-04T15:52:07.905+00:00",
+            "submission": {
+                "_id": "5f79f6bbfdd87f4fb4c3fc24",
+                "originalName": "check2.zip",
+                "filePath": "host:5000\\uploads\\applications\\check2-1601828539470.zip"
+            }
+        }
+    ],
+    "innovate": [
+        {
+            "project": 1,
+            "title": "Trafic Light Controller",
+            "submission": {
+                "_id": "5f79f6bbfdd87f4fb4c3fc24",
+                "originalName": "check2.zip",
+                "filePath": "host:5000\\uploads\\applications\\check2-1601828539470.zip"
+            }
+        },
+        {
+            "project": 2,
+            "title": "Trafic Light Controller",
+            "submission": {
+                "_id": "5f79f6bbfdd87f4fb4c3fc24",
+                "originalName": "check2.zip",
+                "filePath": "host:5000\\uploads\\applications\\check2-1601828539470.zip"
+            }
+        }
+    ]
+}

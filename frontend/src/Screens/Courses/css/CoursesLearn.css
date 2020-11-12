@@ -1,0 +1,44 @@
+.courses-learn{
+    padding: calc(159*var(--vp)) calc(168*var(--vp)) calc(79*var(--vp));
+    margin: 0 !important;
+    background-color: #0E0234;
+}
+
+.courses-learn .courses-learn-title{
+    font-size: calc(48*var(--vp));
+    color: #3CFAFF;
+    letter-spacing: calc(1.58*var(--vp));
+    text-align: center;
+    margin-bottom: calc(47*var(--vp));
+}
+
+.courses-learn .row{
+    justify-content: space-between;
+}
+
+.courses-learn .learn-title{
+    font-size: calc(33*var(--vp));
+    color: #3CFAFF;
+    letter-spacing: calc(1.09*var(--vp));
+    width: calc(338*var(--vp));
+    text-transform: capitalize;
+    margin-bottom: calc(12*var(--vp));
+}
+
+.courses-learn .learn-desc{
+    font-size: calc(22*var(--vp));
+    color: #FFFFFF;
+    letter-spacing: calc(0.73*var(--vp));
+    width: calc(332*var(--vp));
+}
+
+.courses-learn .learn-image{
+    width: calc(338*var(--vp));
+    margin-right: calc(12*var(--vp));
+}
+
+.courses-learn .learn-item.row{
+    width: 50%;
+    justify-content: flex-start;
+    align-items: center;
+}

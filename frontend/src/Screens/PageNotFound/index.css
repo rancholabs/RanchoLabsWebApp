@@ -1,0 +1,53 @@
+.page-not-found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(500 * var(--vp));
+    background-color: #F0F0F2;
+}
+
+.page-not-found .pnf-card {
+    color: #ffffff;
+    background-color: #171636;
+    width: calc(700 * var(--vp));
+    padding: calc(20 * var(--vp));
+    border-radius: calc(5 * var(--vp));
+}
+
+.page-not-found h2 {
+    font-size: calc(44 * var(--vp));
+}
+
+.page-not-found p {
+    font-size: calc(25 * var(--vp));
+}
+
+.page-not-found .pnf-footer > div {
+    font-size: calc(33 * var(--vp));
+    cursor: pointer;
+}
+
+@media all and (max-width: 600px) {
+    .page-not-found {
+        height: calc(200 * var(--vm));
+    }
+    
+    .page-not-found .pnf-card {
+        width: calc(300 * var(--vm));
+        padding: calc(5 * var(--vm));
+        border-radius: calc(2 * var(--vm));
+    }
+
+    .page-not-found h2 {
+        font-size: calc(20 * var(--vm));
+    }
+    
+    .page-not-found p {
+        font-size: calc(15 * var(--vm));
+    }
+    
+    .page-not-found .pnf-footer > div {
+        font-size: calc(15 * var(--vm));
+        cursor: pointer;
+    }
+}

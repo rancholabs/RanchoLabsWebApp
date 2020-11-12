@@ -1,0 +1,58 @@
+.course-build-items {
+    padding-top: calc(100 * var(--vp));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course-build > p {
+    display: none;
+}
+
+.course-build-item {
+    padding: calc(10 * var(--vp));
+}
+
+.course-build-item > img {
+    width: calc(333 * var(--vp));
+    height: calc(196 * var(--vp));
+}
+
+.course-build-item > p {
+    letter-spacing: calc(0.27 * var(--vp));
+    color: #F74B42;
+    font: normal normal normal calc(18 * var(--vp))/calc(24 * var(--vp)) Roboto;
+    background: #171636 0% 0% no-repeat padding-box;
+    padding: calc(11 * var(--vp)) calc(0 * var(--vp)) calc(11 * var(--vp)) calc(11 * var(--vp));
+}
+
+@media all and (max-width: 600px) {
+    .course-build > p {
+        display: block;
+        text-align: center;
+        color: #F0F0F2;
+        font-size: calc(16 * var(--vm));
+        padding-top: calc(7 * var(--vm));
+        padding-bottom: calc(29 * var(--vm));
+    }
+
+    .course-build-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .course-build-item > img {
+        width: calc(293 * var(--vm));
+        height: calc(178 * var(--vm));
+    }
+
+    .course-build-item > p {
+        font-size: calc(16 * var(--vm));
+        line-height: initial;
+        padding: calc(11 * var(--vm)) calc(0 * var(--vm)) calc(11 * var(--vm)) calc(11 * var(--vm));
+    }
+}

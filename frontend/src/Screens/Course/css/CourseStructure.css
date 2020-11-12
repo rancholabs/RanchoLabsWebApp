@@ -1,0 +1,64 @@
+.course-structure {
+    padding: calc(85 * var(--vp)) calc(115 * var(--vp));
+    background: #3CFAFF 0% 0% no-repeat padding-box;
+}
+
+.course-structure > .box {
+    border: calc(2.5 * var(--vp)) solid #225A72;
+    border-radius: calc(18 * var(--vp));
+    opacity: 1;
+    padding-top: calc(24 * var(--vp));
+    padding-bottom: calc(23 * var(--vp));
+    padding-left: calc(91 * var(--vp));
+    padding-right: calc(68 * var(--vp));
+    width: calc(730 * var(--vp));
+    height: calc(105 * var(--vp));
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+}
+
+.course-structure > .box > .name {
+    font: normal normal normal calc(41 * var(--vp))/calc(58 * var(--vp)) Roboto;
+    letter-spacing: calc(0 * var(--vp));
+    color: #2F204B;
+    opacity: 1;
+}
+
+.course-structure > .box > .icon {
+    margin-left: calc(75 * var(--vp));
+    font-size: calc(46 * var(--vp));
+}
+
+@media all and (max-width: 600px) {
+    .course-structure {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(105 * var(--vm));
+    }
+
+    .course-structure > .box {
+        border: calc(2 * var(--vm)) solid #225A72;
+        border-radius: calc(18 * var(--vm));
+        padding-top: calc(7 * var(--vm));
+        padding-bottom: calc(6 * var(--vm));
+        padding-left: calc(28 * var(--vm));
+        padding-right: calc(21 * var(--vm));
+        width: calc(208 * var(--vm));
+        height: calc(32 * var(--vm));
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .course-structure > .box > .name {
+        font-size: calc(14 * var(--vm));
+    }
+    
+    .course-structure > .box > .icon {
+        font-size: calc(14 * var(--vm));
+    }
+}

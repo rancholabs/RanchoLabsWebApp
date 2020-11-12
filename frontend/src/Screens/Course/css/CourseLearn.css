@@ -1,0 +1,40 @@
+.course-learn-item {
+    text-align: left;
+    letter-spacing: calc(0.49 * var(--vp));
+    color: #F0F0F2;
+    opacity: 1;
+}
+
+.course-learn-item > p {
+    font: normal normal normal calc(33 * var(--vp))/calc(44 * var(--vp)) Roboto;
+    padding-bottom: calc(25 * var(--vp));
+    padding-top: calc(15 * var(--vp));
+}
+
+.course-learn-item > h2 {
+    letter-spacing: calc(0.61 * var(--vp));
+    color: #F74B42;
+    font: normal normal normal calc(45 * var(--vp))/calc(33 * var(--vp)) Roboto;
+}
+
+.course-learn > .course-sub-topic {
+    padding-bottom: calc(60 * var(--vp));
+}
+
+@media all and (max-width: 600px) {
+    .course-learn-item > p {
+        font-size: calc(13 * var(--vm));
+        padding-bottom: calc(20 * var(--vm));
+        padding-top: calc(9 * var(--vm));
+        line-height: initial;
+    }
+
+    .course-learn > .course-sub-topic {
+        padding-bottom: calc(27 * var(--vm));
+    }
+
+    .course-learn-item > h2 {
+        font-size: calc(20 * var(--vm));
+        line-height: initial;
+    }
+}

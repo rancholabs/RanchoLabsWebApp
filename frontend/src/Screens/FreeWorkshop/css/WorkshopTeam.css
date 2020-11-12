@@ -1,0 +1,84 @@
+/* .WorkshopTeam{
+    /* display: none; 
+} */
+
+    .WorkshopTeam{
+        padding: 2vw 9.5vw 6vw;
+        background-color: #0A0E2A;
+        display: block;
+    }
+    
+    .team-title{
+        color: #3CFAFF;
+        font-size: 2.4vw;
+        font-weight: 500;
+        margin: 2vw 0 3vw;
+    }    
+    
+    .team-member{
+        padding: 4vh 0;
+        font-size: 2.5vh;
+    }
+    
+    .team-member .row{
+        margin: unset;
+    }
+    
+    .team-member .col-8{
+        padding-left: 2vw;
+    }
+    
+    .member-circle{
+        background-color: #27AAE1;
+        border-radius: 200vw;
+        width: 97%;
+        /* height: 100%; */
+        /* align-self: center; */
+    }
+    
+    .member-name{
+        color: #F74B42;
+        font-weight: 500;
+        margin-bottom: 0.6vw;
+        font-size: 1.9vw;
+    }
+    
+    .member-desc{
+        font-size: 1.9vw;
+        color: #FFFFFF;
+        margin-top: auto;
+    }
+
+    @media(max-width:768px) and (max-height:900px){
+        .WorkshopTeam{
+            padding: 6vh 4vh;
+        }
+        .team-title{
+            color: #3CFAFF;
+            font-size: 2.5vh;
+            font-weight: 500;
+        }
+        .team-member{
+            padding: 2vh 0;
+            font-size: 2.5vh;
+        }
+        .member-circle{
+            background-color: #27AAE1;
+            border-radius: 200vw;
+            width: 100%;
+            height: 100%;
+        }
+        .member-name{
+            color: #F74B42;
+            font-weight: 500;
+            margin-bottom: 1vh;
+            font-size: 2.2vh;
+        }
+        .member-desc{
+            font-size: 2.2vh;
+            color: #FFFFFF;
+            margin-top: auto;
+            font-weight: lighter;
+        }
+    }
+    

@@ -1,0 +1,25 @@
+.courses-faq{
+    padding: calc(156*var(--vp)) 0 calc(183*var(--vp));
+    margin: 0 calc(139*var(--vp)) !important;
+}
+
+.courses-faq-title{
+    color: #3CFAFF;
+    font-size: calc(48*var(--vp));
+    letter-spacing: calc(2.4*var(--vp));
+    text-align: center;
+}
+
+.courses-faq .faq-question{
+    color: #FFFFFF;
+    font-size: calc(33*var(--vp));
+    letter-spacing: calc(1.65*var(--vp));
+    margin-top: calc(54*var(--vp));
+    margin-bottom: calc(10*var(--vp));
+}
+
+.courses-faq .faq-ans{
+    color: #CBCBCB;
+    font-size: calc(28*var(--vp));
+    letter-spacing: calc(1.4*var(--vp));
+}

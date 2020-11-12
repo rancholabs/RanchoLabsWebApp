@@ -1,0 +1,181 @@
+
+.aboutus-family .line .col-md-6{
+    border-right: 3px solid #3CFAFF;
+    height: 7vw;
+    margin: 0 0 4vw;
+}
+
+.aboutus-family .family-title{
+    color: #3CFAFF;
+    font-size: 2.5vw;
+    margin: 0 auto 2vw;
+    text-align: center;
+}
+
+.aboutus-family .family-content{
+    color: #FFFFFF;
+    font-size: 1.458vw;
+    text-align: center;
+    width: 82.65vw;
+    margin: auto;
+}
+
+.aboutus-family .family-grid{
+    margin: 7vw 7.864vw;
+    color: #FFFFFF;
+    background-color: #171636;
+}
+
+.fmember:nth-child(4n)
+{
+    flex-direction: row-reverse;
+}
+
+.fmember:nth-child(4n+3)
+{
+    flex-direction: row-reverse;
+}
+
+.aboutus-family .fmember{
+    min-height: 16.04vw;
+}
+
+.aboutus-family .fmember .fmember-name{
+    font-size: 1.458vw;
+    letter-spacing: 0.39px;
+}
+
+.aboutus-family .fmember .fmember-name a , a:hover{
+    color: inherit;
+}
+
+.aboutus-family .fmember .fmember-designation{
+    font-size: 1.1458vw;
+    letter-spacing: 0.31px;
+    font-weight: 300;
+}
+
+.aboutus-family .fmember .details{
+    align-self: flex-end;
+    padding: 2.5vw 2.76vw;
+}
+
+.aboutus-family .fmember .fimage img{
+    width: 100%;
+    height: 100%;
+}
+
+.aboutus-family .f-triangle{
+    position: absolute;
+    display: inline-table;
+    width: 0;
+	height: 0;
+	border-top: 1.5vw solid transparent;
+	border-right: 1.5vw solid #171636;
+    border-bottom: 1.5vw solid transparent;
+    border-left: -1px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -1px;
+}
+
+.fmember:nth-child(4n) .f-triangle{
+    left: -1px;
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.fmember:nth-child(4n+3) .f-triangle{
+    left: -1px;
+    transform: translateY(-50%) rotate(180deg);
+}
+
+@media(max-width:600px){    
+    .aboutus-family .line .col-6{
+        border-right: 2px solid #3CFAFF;
+        height: calc(49 * var(--vm));
+        margin: 8vw 0;
+    }
+
+    .aboutus-family .family-title{
+        color: #3CFAFF;
+        font-size: calc(20 * var(--vm));
+        margin: 0 auto 2vw;
+        text-align: center;
+    }
+
+    .aboutus-family .family-content{
+        color: #FFFFFF;
+        font-size: calc(13 * var(--vm));
+        text-align: center;
+        width: calc(280 * var(--vm));
+        margin: auto;
+        font-weight: 300;
+    }
+
+    .aboutus-family .family-grid{
+        margin: calc(74 * var(--vm)) calc(38 * var(--vm));
+        color: #FFFFFF;
+        background-color: #171636;
+    }
+
+    .fmember:nth-child(even)
+    {
+        flex-direction: row-reverse;
+    }
+
+    .fmember:nth-child(odd)
+    {
+        flex-direction: row;
+    }
+
+    .aboutus-family .fmember{
+        min-height: calc(107 * var(--vm));
+    }
+
+    .aboutus-family .fmember .fmember-name{
+        font-size: calc(13 * var(--vm));
+        letter-spacing: 0.39px;
+    }
+
+    .aboutus-family .fmember .fmember-designation{
+        font-size: calc(9 * var(--vm));
+        letter-spacing: 0.31px;
+        font-weight: 300;
+    }
+
+    .aboutus-family .fmember .details{
+        align-self: flex-end;
+        padding: calc(14.11 * var(--vm)) calc(11.11 * var(--vm));
+    }
+
+    .aboutus-family .fmember .fimage img{
+        width: 100%;
+        height: 100%;
+    }
+
+    .aboutus-family .f-triangle{
+        position: absolute;
+        display: inline-table;
+        width: 0;
+        height: 0;
+        border-top: calc(9.2 * var(--vm)) solid transparent;
+        border-right: calc(9.2 * var(--vm)) solid #171636;
+        border-bottom: calc(9.2 * var(--vm)) solid transparent;
+        border-left: -1px;
+        top: 50%;
+        transform: translateY(-50%);
+        right: -1px;
+    }
+
+    .fmember:nth-child(even) .f-triangle{
+        left: -1px;
+        right: unset;
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+    .fmember:nth-child(odd) .f-triangle{
+        right: -1px;
+        left: unset;
+        transform: translateY(-50%) rotate(0deg);
+    }
+}

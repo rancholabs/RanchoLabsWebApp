@@ -1,0 +1,307 @@
+
+.LogIn{
+    background-color: #F0F0F2;
+    padding: 5vw 14.89vw 0;
+}
+
+.LogIn .heading{
+    color: #32C1CD;
+    font-size: 2.34vw;
+    font-weight: bold;
+    letter-spacing: 0.68px;
+}
+.LogIn .content{
+    padding: 0.4vw 0 5vw;
+    font-size: 1.823vw;
+    /* font-weight: 500; */
+    color: #0A0E2A;
+    letter-spacing: 0.53px;
+    font-family: 'Roboto';
+    width: unset;
+}
+
+.LogIn .card{
+    background-color: #171636;
+    /* min-height: 41.35vw; */
+    width: 31.25vw;
+    margin-bottom: -3vw;
+    margin-left: 3.5vw;
+    padding: 4vw 3vw;
+}
+
+.LogIn form{
+    padding: 0;
+    text-align: center;
+}
+
+.LogIn form input{
+    width: 100%;
+    margin: 0.5vw 0;
+    padding: 0.6vw 1vw;
+    border-radius: 0.35rem;
+    font-size: 1.3vw;
+    background: rgb(240, 240, 242,0.1);
+    border: unset;
+    font-weight: lighter;
+    color: #FFFFFF;
+}
+
+.LogIn form input::placeholder{
+    color: #FFFFFF;
+    opacity: unset;
+}
+
+.LogIn form button{
+    background-color: #F74B42;
+    color: #FFFFFF;
+    font-size: 1.6vw;
+    padding: 0.8vw 4.5vw;
+    border-radius: 3rem;
+    border: unset;
+    box-shadow: unset;
+    margin: 2.5vw 0 1vw;
+    cursor: pointer;
+}
+
+.LogIn form .login{
+    font-size: 1.25vw;
+    color: #FFFFFF;
+    letter-spacing: 0.34px;
+}
+
+.LogIn form .login a{
+    color:#3CFAFF;
+}
+
+.LogIn form .login a:hover{
+    color:#3CFAFF;
+    cursor: pointer;
+}
+
+.llowerrow{
+    padding: 11vw 10vw;
+    background-color:  #0A0E2A;
+    background-image: linear-gradient(to bottom, #0A0E2A  80%, rgb(40 39 78 / 7%)  80%, rgba(143, 23, 223, 0.548));
+}
+
+.llogo{
+    text-align: center;
+    cursor: pointer;
+}
+
+.llogo img{
+    width: 35%;
+}
+
+.signupw{
+    color: #FFFFFF;
+    padding: 1vw 0;
+    font-size: 1.2vw;
+    font-weight: 300;
+}
+
+
+.forgotpass{
+    color: rgba(240, 240, 242, 0.623);
+    text-align: right;
+    font-size: 1.1vw;
+}
+
+.forgotpass a, a:hover {
+    color: unset;
+    cursor: pointer;
+}
+
+
+@media (min-width:768px) and (min-height:1000px){
+
+    .LogIn{
+        padding: 7vw 5vw;
+    }
+
+    .LogIn .heading{
+        font-size: 4.5vw;
+    }
+
+    .LogIn .content{
+        font-size: 3.5vw !important;
+    }
+
+    .LogIn .card{
+        margin: auto;
+        padding: 7vw 6vw;
+        width: 70vw;
+        height: auto;
+        margin-bottom: -75vw;
+    }
+
+    .LogIn .or .col-1{
+        font-size: 3vw !important;
+    }
+    .LogIn form{
+        padding: 3vw 0;
+    }
+    .LogIn form input{
+        padding: 1.5vw 2vw;
+        font-size: 2.5vw;
+        margin: 1vw 0;
+    }
+
+    .LogIn form button{
+        font-size: 3vw;
+        padding: 1vw 4.5vw;
+        margin-top: 7vw;
+    }
+
+    .forgotpass a{
+        font-size: 2.5vw;
+        margin-top: 1.5vw;
+    }
+
+    .LogIn form .login{
+        font-size: 2.8vw;
+        margin-top: 1vw;
+    }
+
+    .llowerrow{
+        padding: 88vw 0 0 0;
+    }
+    .llogo img{
+        width: 9.33vw;
+    }
+}
+
+
+@media (max-width:768px) and (max-height:860px){
+    
+.LogIn{
+    padding: 1rem 1.4rem 0;
+}
+
+.LogIn .heading{
+    color: #32C1CD;
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-top: 1.3rem;
+}
+.LogIn .content{
+    padding: 0.4rem 3rem 1rem;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color:#707070;
+    line-height: 1.4;
+    letter-spacing: 0.53px;
+}
+
+.LogIn .card{
+    background-color: #171636;
+    height: unset;
+    width: 100%;
+    margin-bottom: -24.5rem;
+    margin-left: unset;
+    padding: 1.8rem 1.2rem;
+    border-radius: 0;
+    border-radius: 0;
+}
+
+.LogIn form{
+    padding: 2rem 0 1.4rem;
+    text-align: center;
+}
+
+.LogIn form input{
+    width: 100%;
+    margin: 0.45rem 0;
+    padding: 0.5rem 1rem;
+    border-radius: 0.35rem;
+    font-size: 0.9rem;
+    background: rgb(240, 240, 242,0.1);
+    border: unset;
+    font-weight: lighter;
+}
+
+.LogIn form input::placeholder{
+    color: #FFFFFF;
+    opacity: unset;
+}
+
+ .LogIn .or .col-1{
+    font-size: 1rem !important;
+}
+
+.LogIn form button{
+    background-color: #F74B42;
+    color: #FFFFFF;
+    font-size: 1rem;
+    padding: 0.5rem 1.8rem;
+    border-radius: 3rem;
+    border: unset;
+    box-shadow: unset;
+    margin: 2rem 0 1rem;
+    cursor: pointer;
+}
+
+.LogIn form .login{
+    font-size: 0.9rem;
+    color: #FFFFFF;
+    letter-spacing: 0.34px;
+}
+
+.LogIn form .login a{
+    color:#3CFAFF;
+}
+
+.LogIn form .login a:hover{
+    color:#3CFAFF;
+    cursor: pointer;
+}
+
+.llowerrow{
+    padding: 15rem 0;
+    background-color:  #0A0E2A;
+    background-image: linear-gradient(to bottom, #0A0E2A  80%, rgb(40 39 78 / 7%)  80%, rgba(143, 23, 223, 0.548));
+    margin: 0;
+}
+
+.llogo{
+    text-align: center;
+}
+
+.llogo img{
+    width: 13.33vw;
+}
+
+.signupw{
+    color: #FFFFFF;
+    padding: 0.8rem 0;
+    font-size: 3.88vw;
+}
+
+.forgotpass{
+    color: rgba(240, 240, 242, 0.623);
+    text-align: right;
+    font-size: 0.9rem;
+}
+
+}
+
+.LogIn input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus{	
+    -webkit-text-fill-color: #FFFFFF !important;	
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;	
+    transition: background-color 5000s ease-in-out 0s;	
+  }	
+      
+.LogIn input:-webkit-autofill:hover,	
+select:-webkit-autofill:focus{	
+    -webkit-text-fill-color: #FFFFFF !important;	
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;	
+    transition: background-color 5000s ease-in-out 0s;	
+}

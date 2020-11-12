@@ -1,0 +1,46 @@
+.coursepage-main{
+    margin: auto;
+    align-items: center;
+    justify-content: space-between;
+    padding: calc(31*var(--vp)) calc(102*var(--vp)) calc(247*var(--vp)) calc(152*var(--vp));
+}
+
+.course-main-text .course-main-title{
+    font-size: calc(60*var(--vp));
+    color: #3CFAFF;
+    font-weight: normal;
+    width: calc(808*var(--vp));
+}
+
+.course-main-text .course-main-desc{
+    font-size: calc(28*var(--vp));
+    color: #FFFFFF;
+    font-weight: normal;
+    width: calc(750*var(--vp));
+}
+
+.course-main-text hr{
+    border-color: #F74B42;
+    width: calc(111*var(--vp));
+    margin: calc(80.5*var(--vp)) auto calc(72.50*var(--vp)) 0;
+    border-width: calc(3*var(--vp));
+}
+
+
+.course-main-illustrations .row{
+    justify-content: space-around;
+    font-size: calc(28*var(--vp));
+    color: #3CFAFF;
+    font-weight: normal;
+    width: calc(800*var(--vp));
+}
+
+.course-main-illustrations img{
+    width: calc(270*var(--vp));
+}
+
+.course-main-image{
+    padding-top: calc(50*var(--vp));
+    padding-bottom: calc(70*var(--vp));
+    text-align: center;
+}

@@ -1,0 +1,16 @@
+.courses-main {
+    background: #020122 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.courses-main > * {
+    margin-left: calc(109 * var(--vp));
+    margin-right: calc(108 * var(--vp));
+}
+
+@media all and (max-width: 600px) {
+    .courses-main > * {
+        margin-left: calc(16 * var(--vm));
+        margin-right: calc(16 * var(--vm));
+    }
+}

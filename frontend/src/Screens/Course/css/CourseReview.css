@@ -1,0 +1,90 @@
+.course-review {
+    padding-top: calc(100 * var(--vp));
+    padding-bottom: calc(101 * var(--vp));
+    background: #0A0E2A 0% 0% no-repeat padding-box;
+}
+
+.course-review .profile {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.course-review .img {
+    min-width: calc(189 * var(--vp));
+    max-width: calc(189 * var(--vp));
+    min-height: calc(189 * var(--vp));
+    max-height: calc(189 * var(--vp));
+    background: #F7F7F7 0% 0% no-repeat padding-box;
+    opacity: 1;
+    border-radius: 50%;
+}
+
+.course-review .details {
+    width: calc(464 * var(--vp));
+    height: calc(204 * var(--vp));
+    font: normal normal normal calc(33 * var(--vp))/calc(44 * var(--vp)) Roboto;
+    letter-spacing: calc(0 * var(--vp));
+    color: #32C1CD;
+    opacity: 1;
+    margin-left: calc(67 * var(--vp));
+    margin-top: calc(15 * var(--vp));
+    margin-right: calc(-90 * var(--vp));
+    text-align: left;
+}
+
+.course-review .details > p {
+    margin-bottom: 0 !important;
+}
+
+.course-review .review {
+    margin-top: calc(51 * var(--vp));
+    width: calc(686 * var(--vp));
+    font: normal normal normal calc(33 * var(--vp))/calc(44 * var(--vp)) Roboto;
+    letter-spacing: calc(0.49 * var(--vp));
+    color: #F7F7F7;
+    opacity: 1;
+    text-align: center;
+}
+
+.course-review .center {
+    display: flex;
+    justify-content: center;
+}
+
+.carousel .slide {
+    background: transparent !important;
+}
+
+@media all and (max-width: 600px) {
+    .course-review {
+        padding-top: calc(26 * var(--vm));
+        padding-bottom: calc(47 * var(--vm));
+        padding-right: initial;
+        padding-left: calc(18 * var(--vm));
+    }
+
+    .course-review .img {
+        width: calc(82 * var(--vm));
+        height: calc(82 * var(--vm));
+    }
+
+    .course-review .details {
+        width: calc(166 * var(--vm));
+        height: calc(73 * var(--vm));
+        font-size: calc(13 * var(--vm));
+        line-height: initial;
+        margin-left: calc(24 * var(--vm));
+        margin-top: calc(5 * var(--vm));
+        margin-right: calc(5 * var(--vm));
+    }
+
+    .course-review .review {
+        margin-top: calc(22 * var(--vm));
+        width: calc(270 * var(--vm));
+        font-size: calc(13 * var(--vm));
+        line-height: initial;
+        letter-spacing: calc(0.2 * var(--vm));
+        text-align: center;
+    }
+}
