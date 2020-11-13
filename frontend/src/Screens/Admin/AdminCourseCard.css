@@ -1,0 +1,121 @@
+.adminCourseCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #4320bf;
+  border-radius: 8px;
+  box-shadow: 0 6px 6px;
+  height: 320px;
+  overflow: auto;
+}
+
+.adminCourseCard::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+.adminCourseCard::-webkit-scrollbar-track {
+  background: #d8d8d8;
+}
+
+/* Handle */
+.adminCourseCard::-webkit-scrollbar-thumb {
+  background: #8f8f8f;
+}
+
+/* Handle on hover */
+.adminCourseCard::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.adminCourseCard__header {
+  width: 100%;
+  padding: 20px;
+  border-bottom: 1px solid #4320bf;
+}
+
+.adminCourseCard__headerRow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.adminCourseCard__headerRowContent {
+  display: flex;
+  align-items: center;
+}
+
+.adminCourseCard__headerRowContent h3 {
+  margin-left: 8px !important;
+  color: #4320bf;
+}
+
+.adminCourseCard__headerRow h3 {
+  font-size: 18px;
+  margin: 0;
+  color: #4320bf;
+}
+
+.adminCourseCard__headerRow p {
+  margin: 0;
+}
+
+.adminCourseCard__body {
+  margin-top: 20px;
+}
+
+.adminCourseCard__body h3 {
+  font-size: 14px;
+  color: #4320bf;
+}
+
+.adminCourseCard__bodyChecks {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.adminCourseCard__bodyChecks img {
+  object-fit: contain;
+}
+
+.adminCourseCard__bodyChecks p {
+  margin: 0 0 0 8px;
+}
+
+.adminCourseCard__bodyPrice {
+  display: flex;
+  justify-content: space-between;
+}
+
+.adminCourseCard__bodyInnovate {
+  margin-top: 18px;
+}
+
+.adminCourseCard__newCourse {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.adminCourseCard__newCourse p {
+  font-size: 140px;
+  font-weight: lighter;
+  color: #8671d2;
+  margin: 0;
+}
+
+.adminCourseCard__newCourse h3 {
+  color: #4320bf;
+  font-size: 20px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.adminCourseCard__newCourseContainer {
+  border-style: dashed;
+  box-shadow: none;
+  border-width: 2px;
+}
