@@ -106,6 +106,61 @@ const courseGroups = [
     }
 ]
 
+const Mstepcard = (props) => {
+    return(
+        <div className="step-card">
+            <div className="step-card-img"><img src={props.image} className="img-fluid" /></div>
+            <div className="align-self-center">
+            <div className="step-card-title">{props.title}</div>
+            <div className="mno-of-classes text-center">{props.classes} Classes</div>
+            </div>
+        </div>
+    )
+}
+
+const MStepCards = (props) => {
+    return(
+        <>
+        <div className="mstepcards">
+        <div className="row mx-0">
+                    <div className="col mlines">
+                    <div className="mline">
+                        <div className="circle">
+                            <img src={orangecircle} alt=""/>
+                        </div>
+                    </div>
+                    <div className="mline">
+                        <div className="circle">
+                            <img src={orangecircle} alt=""/>
+                        </div>
+                    </div>
+                    <div className="mline">
+                        <div className="circle">
+                            <img src={orangecircle} alt=""/>
+                        </div>
+                    </div>
+                    <div className="mline">
+                        <div className="circle">
+                            <img src={orangecircle} alt=""/>
+                        </div>
+                    </div>
+                    <div className="mline">
+                        <div className="circle">
+                            <img src={orangecircle} alt=""/>
+                        </div>
+                    </div>
+                    </div>
+                    <div className="step-cards col mx-0">
+                    {
+                        courseGroups[0].journey.map(Mstepcard)
+                    }
+                    </div>
+                </div>
+        </div>
+        </>
+    )
+}
+
 const Stepcard = (props) => {
     return(
         <div className="step-card">
@@ -170,7 +225,12 @@ const CoursesDetails = () => {
         <>
         <div className="course-details">
             <div className="course-details-title">Artificial intelligence journey path for grade 6-8</div>
-            <Stepcards course="ROBOTICS"/>
+                <div className="m-journey">
+                    <MStepCards course="ROBOTICS"/>
+                </div>
+                <div className="d-journey">
+                    <Stepcards course="ROBOTICS"/>
+                </div>
         </div>
         </>
     )

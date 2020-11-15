@@ -64,7 +64,7 @@
 .dashboard-header-lower .dchoice .course-list button{
     border: none;
     background-color: transparent;
-    color: #F74B42;
+    color: #F74B42 !important;
     font-weight: inherit;
     width: 100%;
 }

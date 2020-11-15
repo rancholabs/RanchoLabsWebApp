@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
               sendMail([user.email], {type: 'ACCOUNT_REGISTERED', args: {}})
             const token = jwt.sign({ id: user._id, role: user.role, email: user.email }, JWT_SECRET, { expiresIn: 86400 })
         
-            res.status(200).send({ auth: true, token: token, userName: user.name })
+            res.status(200).send({ auth: true, token: token, userName: user.name, role: user.role })
           }
         })
       }

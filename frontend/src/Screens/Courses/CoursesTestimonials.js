@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './css/CoursesTestimonials.css'
 import ai from './img/ai.png'
-
+import { Carousel } from 'react-responsive-carousel'
 
 const Testimonial = () => {
     return (
@@ -34,9 +34,25 @@ const CoursesTestimonials = () => {
                 <div className="testimonials-title">Parents and Students Love Us</div>
                 <div className="testimonials-subtitle">More than 8000 parents have trusted us. It's your turn now. Hear from our happy students and parents. Learn about their experience with us.</div>
 
-                <div className="row mx-0" style={{ justifyContent: "space-evenly" }}>
-                    <Testimonial />
-                    <Testimonial />
+                <div className="testimonial-row">
+                    <Carousel infiniteLoop useKeyboardArrows>
+                    <div>
+                        <Testimonial />
+                        <Testimonial />
+                    </div>
+                    <div>
+                        <Testimonial />
+                        <Testimonial />
+                    </div>
+                    <div>
+                        <Testimonial />
+                        <Testimonial />
+                    </div>
+                    <div>
+                        <Testimonial />
+                        <Testimonial />
+                    </div>
+                    </Carousel>
                 </div>
             </div>
         </>

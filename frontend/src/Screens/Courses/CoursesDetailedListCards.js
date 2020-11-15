@@ -2,6 +2,7 @@ import React from 'react'
 import './css/CoursesDetailedListCards.css'
 import { Carousel } from 'react-responsive-carousel';
 import { Link } from 'react-router-dom';
+import Fontawesome from 'react-fontawesome'
 
 const CoursesDetailedListCardItem = ({index, courseDetails}) => {
     const {_id: id, name, gradeRange, durationInHours: duration,  price, courseStructure} = courseDetails
@@ -100,9 +101,10 @@ const CoursesDetailedListCards = ({coursesDetails}) => {
     
 
     return (
+        <>
         <div className="courses-detailed-list-cards">
             {(window.screen.width <= 600) ? (
-                <Carousel showThumbs={false} infiniteLoop useKeyboardArrows autoPlay>
+                <Carousel showThumbs={false} infiniteLoop useKeyboardArrows>
                     {
                         coursesDetails.map((courseDetails, ci) => {
                             return (<CoursesDetailedListCardItem key={courseDetails._id} index={ci} courseDetails={courseDetails} />)
@@ -115,6 +117,8 @@ const CoursesDetailedListCards = ({coursesDetails}) => {
                 return (<CoursesDetailedListCardItem key={courseDetails._id} index={ci} courseDetails={courseDetails} />)
             })}
         </div>
+        <div className="course-note"><span className="dollar"><Fontawesome name="dollar" /></span>&nbsp; 100% Refund for unused classes, if you are not satisfied, no lock-ins</div>
+</>
     )
 }
 

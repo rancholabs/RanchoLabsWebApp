@@ -13,6 +13,23 @@
 .courses-course-card .course-name{
     font-size: calc(28*var(--vp));
     color: #FFFFFF;
-    padding-top: calc(40*var(--vp));
+    padding-top: calc(45*var(--vp));
     font-weight: lighter;
+}
+
+.courses-course-card.active button{
+    border-bottom: calc(18*var(--vp)) solid #F74B42;
+    border-radius: calc(18*var(--vp));
+    margin-bottom: calc(-18*var(--vp));
+}
+
+.courses-course-card.active .course-name{
+    color: #F74B42;
+}
+
+.courses-course-card.active .active-line{
+    background-color: #F74B42;
+    height: calc(118*var(--vp));
+    margin: calc(29.5*var(--vp)) auto;
+    width: calc(2.5*var(--vp));
 }

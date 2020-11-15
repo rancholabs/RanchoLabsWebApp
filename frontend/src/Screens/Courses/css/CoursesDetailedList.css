@@ -1,6 +1,9 @@
 .courses-detailed-lists {
-    padding-top: calc(44 * var(--vp));
-    padding-bottom: calc(259 * var(--vp));
+    /* padding-top: calc(44 * var(--vp)); */
+    padding-bottom: calc(68 * var(--vp));
+    background-color: #0E0234;
+    margin: 0 auto !important;
+    width: calc(1788 * var(--vp));
 }
 
 .courses-detailed-list {
@@ -107,7 +110,7 @@
 @media all and (max-width: 600px) {
     .courses-detailed-lists {
         padding-top: calc(24 * var(--vm));
-        padding-bottom: calc(78 * var(--vm));
+        /* padding-bottom: calc(78 * var(--vm)); */
     }
 
     .courses-detailed-list {

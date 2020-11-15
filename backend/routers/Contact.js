@@ -13,7 +13,7 @@ router.post('/message', async(req, res) =>{
     })
     try {
         await message.save()
-        await sendMail(["ruchadeshpande1251@gmail.com"], {type: 'SEND_MESSAGE', args: {senderName:req.body.senderName, message:req.body.message}})
+        await sendMail(["labs.rancho@gmail.com"], {type: 'SEND_MESSAGE', args: {senderName:req.body.senderName, message:req.body.message}})
         await sendMail([req.body.senderMail], {type: 'MESSAGE_ACKNOWLEDGEMENT', args: {senderName:req.body.senderName}})
         res.status(201).send('Message sent!')
 

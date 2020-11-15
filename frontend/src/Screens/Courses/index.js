@@ -570,6 +570,7 @@ const Courses = () => {
             <CoursesGrade grades={grades} activeGrade={activeGrade} setActiveGrade={setActiveGrade} />
             <CoursesCourses />
             <CoursesDetails />
+            <CoursesDetailedList courseGroups={activeCourseGroups} />
             <CoursesBanner />
             <CoursesLearn />
             <CoursesInstructors />
@@ -579,7 +580,6 @@ const Courses = () => {
             <CoursesFaq />
             {/* <CoursesDrivingFuture /> */}
             {/* <CoursesList courses={courses.courses} /> */}
-            {/* <CoursesDetailedList courseGroups={activeCourseGroups} /> */}
         </div>
     )
 }

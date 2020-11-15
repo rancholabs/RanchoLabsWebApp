@@ -1,0 +1,32 @@
+.courses-list {
+    display: flex;
+    justify-content: space-between;
+    padding-top: calc(144 * var(--vp));
+    padding-bottom: calc(162 * var(--vp));
+    padding-left: calc(109 * var(--vp));
+    padding-right: calc(137 * var(--vp));
+}
+
+.courses-list-item > .name {
+    font: normal normal 500 calc(33 * var(--vp))/calc(21 * var(--vp)) Roboto;
+    letter-spacing: calc(0.49 * var(--vp));
+    color: #F0F0F2;
+    opacity: 1;
+    text-align: center;
+}
+
+.courses-list-item > img {
+    width: calc(205 * var(--vp));
+    height: calc(205 * var(--vp));
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: calc(37 * var(--vp));
+    cursor: pointer;
+}
+
+.courses-list-item:hover {
+    border: calc(5 * var(--vp)) solid #3CFAFF;
+    padding: calc(5 * var(--vp));
+    transform: scale(1.2);
+}

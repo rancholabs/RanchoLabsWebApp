@@ -81,7 +81,7 @@ const CoursesDetailedList = ({courseGroups}) => {
             courseGroupsList.map((subCourseGroupsList, sci) => {
                 return (
                     <div key={sci}>
-                        <div className="courses-detailed-list">
+                        {/* <div className="courses-detailed-list">
                             <div className="courses-items">
                                 {
                                     subCourseGroupsList.map((courseGroup, ci) => {
@@ -92,7 +92,7 @@ const CoursesDetailedList = ({courseGroups}) => {
                             {(activeCourseGroup && activeCourseGroup.index === sci) && (
                                 <div className="active-line"></div>
                             )}
-                        </div>
+                        </div> */}
                         {(activeCourseGroup && activeCourseGroup.index === sci) && (
                             <CoursesDetailedListCards coursesDetails={activeCourseGroup.courseGroup.courses} />
                         )}

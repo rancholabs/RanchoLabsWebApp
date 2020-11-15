@@ -2,11 +2,12 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import './css/index.css'
 import './css/Main.css'
-import { setDefaultHeader, updateHeader } from '../../Actions/Header'
+import { updateHeader } from '../../Actions/Header'
 import mobileimage from './img/mainmobile.png'
 import { useHistory } from 'react-router-dom'
 import { update, updateUserInfo } from '../../Actions/userAction'
 import { getStudent, updateStudent, updateStudentFreeEnroll } from '../../Actions/Student'
+import mainbg from './img/main.png'
 
 const mainContent = {
     "MainHeading": "Live coding classes for grades 6th to 12th",
@@ -68,6 +69,7 @@ function Content() {
 
     return (
         <div className="home main-content">
+            <img className="main-bg" src={mainbg} alt="bg"/>
             <div className="container">
                 <div className="row">
                     <div className="col-md-5">

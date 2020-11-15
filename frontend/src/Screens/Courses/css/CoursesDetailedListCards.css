@@ -1,9 +1,10 @@
 .courses-detailed-list-cards {
-    padding-top: calc(120 * var(--vp));
+    /* padding-top: calc(120 * var(--vp)); */
     padding-left: calc(0 * var(--vp));
     padding-right: calc(0 * var(--vp));
     display: flex;
     justify-content: center;
+    margin: 0 !important;
 }
 
 .courses-detailed-list-card-item {
@@ -229,19 +230,40 @@
     opacity: 1;
 }
 
+.course-note{
+    text-align: center;
+    color: #CBCBCB;
+    font-size: calc(33 * var(--vp));
+    margin-top: calc(92 * var(--vp));
+    line-height: normal;
+}
+
+.course-note .dollar{
+    background-color: #CBCBCB;
+    color: #190A4D;
+    padding: calc(2.5* var(--vp)) calc(9* var(--vp));
+    border-radius: calc(26 * var(--vp));
+    font-size: calc(23* var(--vp));
+    align-self: center;
+    height: calc(33* var(--vp));
+}
+
 @media all and (max-width: 600px) {
     .courses-detailed-list-cards {
         padding-top: calc(75 * var(--vm));
         padding-left: calc(0 * var(--vm));
         padding-right: calc(0 * var(--vm));
+        width: calc(326 * var(--vm));
+        margin: auto !important;
         display: block;
     }
 
     .courses-detailed-list-card-item {
-        width: 100%;
+        width: 90%;
         box-shadow: calc(0 * var(--vm)) calc(4 * var(--vm)) calc(2 * var(--vm)) #000000C4;
         padding-top: calc(26 * var(--vm));
         padding-bottom: calc(30 * var(--vm));
+        margin: auto;
     }
     
     .courses-detailed-list-card-item > .top-boxes > .box1, .courses-detailed-list-card-item > .top-boxes > .box2 {
@@ -412,5 +434,16 @@
 
     .courses-detailed-list-cards .carousel .thumbs-wrapper {
         margin: 0 !important;
+    }
+
+    .course-note .dollar{
+        display: none;
+    }
+
+    .course-note{
+        font-size: calc(12 * var(--vm));
+        letter-spacing: calc(0.12 * var(--vm));
+        width: calc(277 * var(--vm));
+        margin: calc(25 * var(--vm)) auto;
     }
 }

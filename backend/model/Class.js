@@ -36,7 +36,7 @@ const AttendanceSchema = new mongoose.Schema({
     },
     present: {
         type: Boolean,
-        required: true
+        default : false
     }
 })
 

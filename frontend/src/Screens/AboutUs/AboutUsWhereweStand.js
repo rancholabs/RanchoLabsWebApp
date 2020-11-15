@@ -49,7 +49,11 @@ const WhereweStand = () => {
                 With each day, our passion for teaching and problem solving only grows stronger.</div>
                 <div className="wws-cards row mx-0 align-items-center">
                     {
-                        wwscrads.map(Wherewestandcard)
+                        wwscrads.map((w) => {
+                            return(
+                            <Wherewestandcard key={w.img} img={w.img} title={w.title} content={w.content} />
+                            )
+                        })
                     }
                 </div>
             </div>

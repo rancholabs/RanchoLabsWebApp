@@ -21,8 +21,8 @@ module.exports =  {
     MAIL: {
       host: 'smtp.gmail.com',
       auth: {
-        user: 'rancho.webD@gmail.com',
-        pass: 'Rancho@webD'
+        user: 'rancho.webd@gmail.com',
+        pass: 'rancho@@9137'
       }
     }
   }

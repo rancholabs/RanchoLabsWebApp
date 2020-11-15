@@ -59,8 +59,18 @@ body{
     margin-bottom: 6vw;
 }
 
-.WorkshopMain .enroll .btn, .btn:hover{
+.enroll.btn{
     color: #FFFFFF;
+}
+
+.enroll.btn:hover{
+    color: #FFFFFF;
+    text-decoration: none !important;
+}
+
+.WorkshopMain a:hover{
+    color: #FFFFFF;
+    text-decoration: none !important;
 }
 
 .WorkshopMain iframe{
