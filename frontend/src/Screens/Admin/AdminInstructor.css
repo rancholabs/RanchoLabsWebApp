@@ -1,0 +1,94 @@
+.adminInstructor {
+  transition: width 0.3s ease-in-out;
+  padding: 20px;
+  width: 100%;
+}
+
+.adminInstructor.collapseScreen {
+  width: 70%;
+}
+
+.adminInstructor__table {
+  height: 60vh;
+  width: 100%;
+}
+
+.adminInstructor__newForm {
+  position: fixed;
+  width: 25%;
+  top: 0;
+  right: -200%;
+  z-index: 100;
+  transition: right 0.3s ease-in-out;
+}
+
+.adminInstructor__newForm.show {
+  right: 0;
+}
+
+.adminInstructor__header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  align-items: center;
+}
+
+.adminInstructor__header h3 {
+  color: #4320bf;
+  font-size: 24px;
+  margin: 0;
+}
+
+.adminInstructor__header button {
+  border: none;
+  background-color: #4320bf;
+  color: white;
+  padding: 10px 20px;
+  text-transform: uppercase;
+}
+
+.adminInstructor__headerFilterSection {
+  display: flex;
+  justify-content: space-between;
+}
+
+.adminInstructor__headerSearch,
+.adminInstructor__headerAddNew {
+  display: flex;
+  align-items: center;
+}
+
+.adminInstructor__headerSearch {
+  background-color: #f9f9f9;
+  padding: 6px 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 40px;
+}
+
+.adminInstructor__headerSearch input {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  flex: 1;
+}
+
+.adminInstructor__headerFilterSection .adminInstructor__headerIcon {
+  color: #8f8f8f;
+  cursor: pointer;
+}
+
+.adminInstructor__headerAddNew {
+  cursor: pointer;
+}
+
+.adminInstructor__headerAddNew h3 {
+  color: #4320bf;
+  font-weight: normal;
+  font-size: 20px;
+  margin: 0 0 0 10px;
+}
+
+.adminInstructor__headerAddNew .adminInstructor__headerIcon {
+  color: #4320bf;
+}

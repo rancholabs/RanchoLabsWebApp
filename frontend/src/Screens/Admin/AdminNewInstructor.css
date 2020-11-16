@@ -1,0 +1,149 @@
+.adminNewInstructor {
+  height: 100vh;
+  overflow-y: auto;
+  background-color: white;
+  color: #4320bf;
+}
+
+.adminNewInstructor__header {
+  background-color: #4320bf;
+  padding: 20px 20px 0 0;
+  position: relative;
+}
+
+.adminNewInstructor__header h3 {
+  background-color: white;
+  padding: 12px 50px;
+  width: fit-content;
+  margin: 20px 0 0 0;
+  font-size: 18px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.adminNewInstructor__body {
+  padding: 20px;
+}
+
+.adminNewInstructor__closeBtn {
+  display: flex;
+  float: right;
+  cursor: pointer;
+  color: white;
+}
+
+.adminNewInstructor__section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.adminNewInstructor__inputSection {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  margin-bottom: 20px;
+}
+
+.adminNewInstructor__inputSection label {
+  color: #4320bf;
+  font-size: 14px;
+}
+
+.adminNewInstructor__inputSection input {
+  background-color: #f2f2f2;
+  border: none;
+  outline: none;
+  padding: 4px 6px;
+  color: #333333;
+  width: 90%;
+  font-size: 14px;
+}
+
+.adminNewInstructor__inputSectionImage {
+  border: 2px dashed #c6c6c6;
+  background-color: #f9f9f9;
+  width: 100px;
+  height: 100px;
+  /* display: grid;
+  place-items: center; */
+  /* padding: 20px; */
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.adminNewInstructor__inputSectionImage p {
+  margin: 0;
+  font-size: 30px;
+  font-weight: lighter;
+  color: #4320bf;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.adminNewInstructor__inputSectionImage h3 {
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+  width: 100%;
+}
+
+.adminNewInstructor__inputSectionBank {
+  display: flex;
+  flex-direction: column;
+}
+
+.adminNewInstructor__inputSectionBank div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.adminNewInstructor__inputSectionBank div input {
+  width: 48%;
+}
+
+.adminNewInstructor__buttons {
+  /* display: flex;
+  justify-content: center;
+  margin: 20px 0 40px 0; */
+  width: 100%;
+}
+
+.adminNewInstructor__saveButton {
+  /* display: flex;
+  margin: 0 20px; */
+  border: none;
+  background-color: #4320bf;
+  color: white;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.adminNewInstructor__inputSection__noMargin {
+  margin: 0;
+}
+
+.adminNewInstructor__inputSection__fullwidth {
+  width: 100%;
+}
+
+.adminNewInstructor__inputSection__fullwidth input,
+.adminNewInstructor__inputSection__halfwidth input {
+  width: 100%;
+}
+
+.adminNewInstructor__inputSection__halfwidth {
+  width: 48%;
+}
+
+.adminNewInstructor__input__fullwidth {
+  width: 95% !important;
+}
+
+.adminNewInstructor__inputSectionImage__fullwidth {
+  width: 100%;
+}

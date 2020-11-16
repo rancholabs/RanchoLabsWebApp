@@ -7,7 +7,9 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Rancho Labs: Live Coding Classes for Kids - Robotics, AI & Programming
+      Rancho Labs is an initiative by IIT Delhi Alumni and Professors to create the next tech leaders. Our expert teachers nurture students for a strong foundation in technology for bright careers ahead.
+      "
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo_small.png" />
     <!--
@@ -39,6 +41,19 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script src='../src/index.js'></script>
+    <script src="../src/index.js"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-163855001-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-163855001-1");
+    </script>
   </body>
 </html>

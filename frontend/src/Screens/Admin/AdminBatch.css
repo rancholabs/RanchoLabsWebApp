@@ -1,0 +1,118 @@
+.adminBatch__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  align-items: center;
+  width: 90%;
+  margin: 20px auto 0 auto;
+}
+
+.adminBatch__filter {
+  display: flex;
+}
+
+.adminBatch__filter select {
+  background-color: #4320bf;
+  padding: 10px 20px;
+  color: white;
+  outline: none;
+  border: none;
+  margin-right: 20px;
+  border-radius: 12px;
+}
+
+.adminBatch__filterRight {
+  display: flex;
+  border: 2px solid #4320bf;
+  border-radius: 8px;
+}
+
+.adminBatch__filterRight button {
+  background-color: transparent;
+  padding: 4px 24px;
+  color: #4320bf;
+  outline: none;
+  /* margin-left: 20px; */
+  /* border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px; */
+  border-left: none;
+  border-right: 2px solid #4320bf;
+  border-top: none;
+  border-bottom: none;
+}
+
+.adminBatch__filterRight button:last-child {
+  border: none;
+}
+
+.adminBatch__filterRight button.selected {
+  background-color: #4320bf;
+  color: #fff;
+}
+
+.addNewBatch_dummy {
+  cursor: pointer;
+}
+
+.adminBatch__cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1rem;
+  width: 90%;
+  margin: 40px auto;
+}
+
+.adminBatch__card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #4320bf;
+  border-left: 6px solid #030224;
+  border-radius: 8px;
+  box-shadow: 0 6px 6px;
+  padding: 20px;
+}
+
+.adminBatch__cardSection {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.adminBatch__cardSection:last-child {
+  margin: 0;
+}
+
+.adminBatch__cardSection h2 {
+  font-size: 18px;
+  color: #555555;
+  font-weight: bold;
+  /* font-weight: normal; */
+}
+
+.adminBatch__cardSection h3 {
+  font-size: 16px;
+  color: #333333;
+  font-weight: normal;
+}
+
+.adminBatch__cardNewBatch {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.adminBatch__cardNewBatch p {
+  font-size: 140px;
+  font-weight: lighter;
+  color: #8671d2;
+  margin: 0;
+}
+
+.adminBatch__cardNewBatch h3 {
+  color: #4320bf;
+  font-size: 20px;
+  text-transform: uppercase;
+  text-align: center;
+}

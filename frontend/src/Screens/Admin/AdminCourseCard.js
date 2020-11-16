@@ -6,7 +6,7 @@ import TickIcon from "../../Asssets/Group 30.png";
 import Switch from "@material-ui/core/Switch";
 import { withStyles } from "@material-ui/core/styles";
 
-function AdminCourseCard({ newCourse }) {
+function AdminCourseCard({ newCourse, openNewCourseForm, course, editCourse }) {
   const [courseChecked, setCourseChecked] = useState(false);
 
   const PurpleSwitch = withStyles({
@@ -26,7 +26,10 @@ function AdminCourseCard({ newCourse }) {
   return (
     <>
       {newCourse ? (
-        <div className="adminCourseCard adminCourseCard__newCourseContainer">
+        <div
+          className="adminCourseCard adminCourseCard__newCourseContainer"
+          onClick={openNewCourseForm}
+        >
           <div className="adminCourseCard__newCourse">
             <p>+</p>
             <h3>Add a new course</h3>
@@ -36,13 +39,13 @@ function AdminCourseCard({ newCourse }) {
         <div className="adminCourseCard">
           <div className="adminCourseCard__header">
             <div className="adminCourseCard__headerRow">
-              <h3>Robotics for beginners</h3>
-              <img src={EditIcon}></img>
+              <h3>{course.name}</h3>
+              <img src={EditIcon} onClick={() => editCourse(course)}></img>
             </div>
             <div className="adminCourseCard__headerRow">
               <div className="adminCourseCard__headerRowContent">
                 <img src={Labelicon}></img>
-                <h3>12 classes</h3>
+                <h3>{course.totalClasses + " classes"}</h3>
               </div>
               <PurpleSwitch
                 checked={courseChecked}
@@ -50,37 +53,61 @@ function AdminCourseCard({ newCourse }) {
                 name="courseChecked"
               />
             </div>
+            <div className="adminCourseCard__headerRow">
+              <h3>Classes</h3>
+              <h3>
+                {course.gradeRange.minG + " to " + course.gradeRange.maxG}
+              </h3>
+            </div>
           </div>
           <div className="adminCourseCard__body">
             <h3>LEARN</h3>
-            <p>Electrical | Programming | Electrical</p>
+            {/* <div className="adminCourseCard__learnText"> */}
+            <p>
+              {course.outcomesByTopics.learns.topics.map((learn, index) => {
+                return (
+                  <>
+                    {learn +
+                      (index !==
+                      course.outcomesByTopics.learns.topics.length - 1
+                        ? " | "
+                        : "")}{" "}
+                  </>
+                );
+              })}
+            </p>
+            {/* </div> */}
             <h3>BUILD</h3>
-            <span className="adminCourseCard__bodyChecks">
-              <img src={TickIcon}></img>
-              <p>Electrical </p>
-            </span>
-            <span className="adminCourseCard__bodyChecks">
-              <img src={TickIcon}></img>
-              <p>Electrical </p>
-            </span>
-            <span className="adminCourseCard__bodyChecks">
-              <img src={TickIcon}></img>
-              <p>Traffic light controller </p>
-            </span>
+            {course.outcomesByTopics.builds.topics.map((build) => {
+              return (
+                <span className="adminCourseCard__bodyChecks">
+                  <img src={TickIcon}></img>
+                  <p>{build} </p>
+                </span>
+              );
+            })}
             <h3 className="adminCourseCard__bodyInnovate">INNOVATE</h3>
-            <p>Nothing</p>
+            {course.outcomesByTopics.innovates.topics.map((innovate) => {
+              return <p>{innovate} </p>;
+            })}
             <div className="adminCourseCard__bodyPrice">
               <div>
                 <h3>Original price</h3>
-                <p>8999</p>
+                <p>{course.price.amount}</p>
               </div>
               <div>
                 <h3>New price</h3>
-                <p>4999</p>
+                <p>{course.price.amountAfterDiscount}</p>
               </div>
             </div>
             <h3>Total Discount</h3>
-            <p>50%</p>
+            <p>
+              {(
+                ((course.price.amount - course.price.amountAfterDiscount) /
+                  course.price.amount) *
+                100
+              ).toFixed(2) + "%"}
+            </p>
           </div>
         </div>
       )}

@@ -1,0 +1,399 @@
+.adminNewCourse {
+  width: 90%;
+  margin: 40px auto;
+}
+
+.adminNewCourse__section {
+  border-radius: 12px;
+  background-color: white;
+  padding: 20px;
+}
+
+.adminNewCourse__sectionClasses {
+  width: 60%;
+}
+
+.adminNewCourse__sectionProjects {
+  width: 38%;
+}
+
+.adminNewCourse__content {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.adminNewCourse__content label {
+  color: #4320bf;
+  font-size: 20px;
+}
+
+.adminNewCourse__detailsleft,
+.adminNewCourse__detailsmiddle,
+.adminNewCourse__detailsright {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  align-items: flex-start;
+  flex: 0.3;
+}
+
+.adminNewCourse__inputSection {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.adminNewCourse__inputSectionGrade {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.adminNewCourse__inputSectionGrade .adminNewCourse__inputSection {
+  width: 48%;
+}
+
+.adminNewCourse__inputSection input {
+  background-color: #f9f9f9;
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  color: #333333;
+  width: 100%;
+}
+
+.adminNewCourse__inputSection__learn,
+.adminNewCourse__inputSection__build {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+.adminNewCourse__inputSection__learn input,
+.adminNewCourse__inputSection__build input {
+  width: 46%;
+}
+
+.adminNewCourse__inputSection__price {
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.adminNewCourse__inputSection__priceSection {
+  width: 46%;
+}
+
+.adminNewCourse__buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.adminNewCourse__saveButton {
+  display: flex;
+  margin: 0 20px;
+  border: none;
+  background-color: #4320bf;
+  color: white;
+  padding: 10px 20px;
+  text-transform: uppercase;
+}
+
+.adminNewCourse__classesProjects {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.adminNewCourse__classes {
+  /* border-right: 1px solid #a190e0; */
+}
+
+.adminNewCourse__classes {
+  flex: 0.6;
+  display: flex;
+  flex-direction: column;
+}
+
+.adminNewCourse__projects {
+  flex: 0.38;
+  display: flex;
+  flex-direction: column;
+}
+
+.adminNewCourse__classesHeader,
+.adminNewCourse__projectsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 20px; */
+  margin-bottom: 20px;
+}
+
+.adminNewCourse__classesHeader h3,
+.adminNewCourse__projectsHeader h3,
+.adminNewCourse__newClassSpan h3,
+.adminNewCourse__newProjectSpan h3 {
+  color: #4320bf;
+  font-size: 20px;
+  margin: 0;
+}
+
+.adminNewCourse__newClassSpan h3,
+.adminNewCourse__newProjectSpan h3 {
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.adminNewCourse__newClassSpan p,
+.adminNewCourse__newProjectSpan p {
+  text-transform: uppercase;
+  font-weight: lighter;
+  color: #4320bf;
+  font-size: 80px;
+  margin: 0 10px 0 0;
+}
+
+.adminNewCourse__newClassSpan,
+.adminNewCourse__newProjectSpan {
+  border: 2px dashed #a190e0;
+  /* padding: 20px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.adminNewCourse__newClassSpan.close,
+.adminNewCourse__newProjectSpan.close {
+  display: none;
+}
+
+.adminNewCourse__newClassForm,
+.adminNewCourse__newProjectForm {
+  border: 1px solid #a190e0;
+  /* padding: 20px; */
+  height: 0;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  /* display: none; */
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.adminNewCourse__newProjectForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.adminNewCourse__existingClassForm {
+  /* height: 370px; */
+  height: fit-content;
+  opacity: 1;
+  pointer-events: unset;
+  width: 100%;
+  border: none;
+  position: relative;
+}
+
+.MuiAccordionDetails-root {
+  padding: 0 !important;
+}
+
+.adminNewCourse__existingProjectForm {
+  /* height: 1002px; */
+
+  height: fit-content;
+  opacity: 1;
+  pointer-events: unset;
+  width: 100%;
+  border: none;
+}
+
+.adminNewCourse__classes .MuiAccordion-root,
+.adminNewCourse__projects .MuiAccordion-root {
+  box-shadow: none;
+  border: 1px solid #a190e0;
+  margin-bottom: 20px;
+}
+
+.adminNewCourse__newClassForm.show {
+  /* height: 370px; */
+
+  height: fit-content;
+  opacity: 1;
+  pointer-events: unset;
+  /* display: unset; */
+  margin-bottom: 20px;
+}
+
+.adminNewCourse__newProjectForm.show {
+  /* height: 1002px; */
+  height: fit-content;
+  opacity: 1;
+  pointer-events: unset;
+  margin-bottom: 20px;
+}
+
+.adminNewCourse__newClassFormHalfContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.adminNewCourse__newProjectForm__Content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.adminNewCourse__newClassFormHalf {
+  flex: 0.48;
+}
+
+.adminNewCourse__newClassInputSection,
+.adminNewCourse__newProjectInputSection {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.adminNewCourse__newClassInputSection input,
+.adminNewCourse__newProjectInputSection input,
+.adminNewCourse__newProjectInputSection textarea,
+.adminNewCourse__newProjectInputSection select {
+  background-color: #f9f9f9;
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  color: #333333;
+}
+
+.adminNewCourse__newClassInputSection label,
+.adminNewCourse__newProjectInputSection label {
+  color: #4320bf;
+  font-size: 16px;
+}
+
+.adminNewCourse__newClassFormButtons {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.adminNewCourse__newClassFormButtons button {
+  display: flex;
+  /* margin: 0 10px; */
+  padding: 20px 0;
+
+  border: none;
+  background-color: #4320bf;
+  color: white;
+  text-transform: uppercase;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.adminNewCourse__newClassFormButtons__cancel {
+  background-color: transparent !important;
+  color: #4320bf !important;
+  border-top: 1px solid #a190e0 !important;
+  border-right: 1px solid #a190e0 !important;
+}
+
+.adminNewCourse__newProjectInputSectionImage {
+  display: grid;
+  place-items: center;
+  border: 1px solid #4320bf;
+  padding-bottom: 20px;
+  cursor: pointer;
+}
+
+.adminNewCourse__newProjectInputSectionImage p {
+  margin: 0;
+  color: #4320bf;
+  font-weight: lighter;
+}
+
+.adminNewCourse__newProjectInputSection h3 {
+  margin: 0;
+  font-size: 80px;
+  font-weight: lighter;
+  color: #4320bf;
+}
+
+.adminNewCourse__newProjectInputSectionDays {
+  margin-top: 20px;
+}
+
+.adminNewCourse__newProjectInputSectionDayAndTime {
+  display: flex;
+  justify-content: space-between;
+}
+
+.adminNewCourse__newProjectInputSectionFormat {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.adminNewCourse__newProjectInputSectionFormat button {
+  border: none;
+  background-color: #f9f9f9;
+  color: #333333;
+  padding: 6px 12px;
+  text-transform: uppercase;
+}
+
+.adminNewCourse__newProjectSelectedFormat {
+  background-color: #4320bf !important;
+  color: white !important;
+}
+
+.adminNewCourse__existingClassSpanHeaderContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.adminNewCourse__existingClassSpanHeader {
+  color: #4320bf;
+  font-size: 20px;
+  margin: 0;
+}
+
+.adminNewCourse__existingClassSpanHeaderContent {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  width: 90%;
+}
+
+.adminNewCourse__existingClassSpanHeaderContent p {
+  margin: 0;
+}
+
+.adminNewCourse__contentEdit {
+  position: absolute;
+  object-fit: contain;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.adminNewCourse__existingClassFormEdit {
+  /* position: absolute; */
+  /* top: 0; */
+  /* left: 0; */
+  cursor: pointer;
+  object-fit: contain;
+  width: fit-content;
+  margin-left: 20px;
+}

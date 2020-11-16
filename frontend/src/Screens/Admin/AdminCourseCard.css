@@ -40,6 +40,10 @@
   width: 100%;
 }
 
+.adminCourseCard__headerRow:last-child {
+  margin-top: 6px;
+}
+
 .adminCourseCard__headerRowContent {
   display: flex;
   align-items: center;
@@ -60,8 +64,14 @@
   margin: 0;
 }
 
+.adminCourseCard__headerRow img {
+  cursor: pointer;
+}
+
 .adminCourseCard__body {
   margin-top: 20px;
+  width: 100%;
+  padding: 0 10px;
 }
 
 .adminCourseCard__body h3 {
@@ -118,4 +128,8 @@
   border-style: dashed;
   box-shadow: none;
   border-width: 2px;
+}
+
+.adminCourseCard__learnText {
+  display: flex;
 }

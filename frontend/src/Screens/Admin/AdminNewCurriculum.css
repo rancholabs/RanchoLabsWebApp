@@ -1,0 +1,149 @@
+.adminNewCurriculum {
+  border: 1px solid #bdbdbd;
+  padding: 20px;
+  width: 90%;
+  margin: 40px auto;
+}
+
+.adminNewCurriculum__body {
+  display: flex;
+  width: 100%;
+}
+
+.adminNewCurriculum__details {
+  flex: 0.3;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  margin-top: 54px;
+}
+
+.adminNewCurriculum__detailsSingle {
+  margin-bottom: 20px;
+}
+
+.adminNewCurriculum__details label,
+.adminNewCurriculum__journey label {
+  color: #4320bf;
+  /* font-weight: bold; */
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.adminNewCurriculum__details input,
+.adminNewCurriculum__journeyCard input {
+  width: 80%;
+  border: none;
+  outline: none;
+  background-color: #f9f9f9;
+  color: #333333;
+  /* margin-bottom: 20px; */
+  padding: 8px 12px;
+}
+
+.adminNewCurriculum__journey {
+  flex: 0.7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.adminNewCurriculum__illustration {
+  border: 1px solid #c6c6c6;
+  width: 268px;
+  height: 268px;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.adminNewCurriculum__illustration input,
+.adminNewCurriculum__journeyIllustrationCard input {
+  display: none;
+}
+
+.adminNewCurriculum__illustration h3 {
+  margin: 0;
+  font-size: 100px;
+  font-weight: lighter;
+  color: #4320bf;
+}
+
+.adminNewCurriculum__illustration p {
+  margin: 0;
+  text-align: center;
+}
+
+.adminNewCurriculum__journeyHeader {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #4320bf;
+}
+
+.adminNewCurriculum__journeyIllustrationCard label {
+  color: #4320bf;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.adminNewCurriculum__journeyCard {
+  display: flex;
+}
+
+.adminNewCurriculum__journeyContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.adminNewCurriculum__journeyCard h3 {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.adminNewCurriculum__journeyIllustrationCard {
+  border: 1px solid #c6c6c6;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  height: 125px;
+  width: 125px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.adminNewCurriculum__journeyIllustrationCard h3 {
+  margin: 0;
+  font-size: 40px;
+  font-weight: lighter;
+  color: #4320bf;
+}
+
+.adminNewCurriculum__journeyIllustrationCard p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.adminNewCurriculum__journeyCardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  width: 100%;
+  gap: 1rem;
+  margin: 20px 0;
+}
+
+.adminNewCurriculum__saveButton {
+  display: flex;
+  margin: 0 auto;
+  border: none;
+  background-color: #4320bf;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
