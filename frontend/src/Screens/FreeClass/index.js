@@ -210,7 +210,7 @@ const FreeClass = ({location}) => {
                         onChange={(e) => setContact(e.target.value)}
                         />
                     </div>
-                        <select value={grade} onChange={(e) => setGrade(e.value)}>
+                        <select value={grade} onChange={(e) => setGrade(e.value)} placeholder="select grade">
                             <option value="6" selected>6</option>
                             <option value="7">7</option>
                             <option value="8">8</option>

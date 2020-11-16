@@ -44,24 +44,24 @@ const TodoList = () => {
     const { instructorInfo: instructor } = useSelector((state) => state.instructorInfo)
     const { userInfo } = useSelector((state) => state.userLogin)
 
-    useEffect(()=>{
-        if(userInfo){
+    useEffect(() => {
+        if (userInfo) {
             dispatch(instructorInfo())
         }
-    },[instructorInfo, userInfo])
+    }, [instructorInfo, userInfo])
 
     return (
         <>
             {
-                instructor && 
+                instructor &&
                 <div className="to-do-list">
-                <div className="to-do-title"><Fontawesome name="calendar" />&nbsp; &nbsp;My To Do List</div>
-                <div class="list">
-                    <textarea placeholder="Type here.." onBlur={(e) =>{dispatch(instructorUpdate({todolist :e.target.value})) }}>
-                        {instructor.todolist}
-                    </textarea>
+                    <div className="to-do-title"><Fontawesome name="calendar" />&nbsp; &nbsp;My To Do List</div>
+                    <div class="list">
+                        <textarea placeholder="Type here.." onBlur={(e) => { dispatch(instructorUpdate({ todolist: e.target.value })) }}>
+                            {instructor.todolist}
+                        </textarea>
+                    </div>
                 </div>
-            </div>
             }
         </>
     )
@@ -80,6 +80,7 @@ const Event = () => {
 
 
 const Student = (props) => {
+
     return (
         <>
             <div className="attendance-list-item">
@@ -87,13 +88,19 @@ const Student = (props) => {
                     <div className="student-pic">
                         <img className="img-fluid" src={deepak} alt="" />
                     </div>
-                    <div className="student-info">
-                        <div className="student-name">Shreya Diwakar</div>
-                        <div className="student-age">18 yrs</div>
-                    </div>
-                    <div className="mark-attendance align-self-center ml-auto">
-                        <input type="checkbox" className="check" disabled={props.disabled} />
-                    </div>
+                    {
+                        props.details &&
+                        <>
+                            <div className="student-info">
+                                <div className="student-name">{props.details.name && props.details.name.first} {props.details.name.last}</div>
+                                <div className="student-age">18 yrs</div>
+                            </div>
+
+                            <div className="mark-attendance align-self-center ml-auto">
+                                <input type="checkbox" className="check" disabled={props.disabled} />
+                            </div>
+                        </>
+                    }
                 </div>
             </div>
         </>
@@ -102,7 +109,7 @@ const Student = (props) => {
 
 const Attendance = (props) => {
 
-    const disable = (props.status === 'active') ? false : true
+    const disable = (props.status === 'upcoming') ? true : false
     const saveLink = (props.status === 'completed') ? true : false
 
     return (
@@ -110,10 +117,11 @@ const Attendance = (props) => {
             <div className="attendance">
                 <div className="attendance-title border-bottom">Attendance</div>
                 <div className="attendance-list">
-                    <Student disabled={disable} />
-                    <Student disabled={disable} />
-                    <Student disabled={disable} />
-                    <Student disabled={disable} />
+                    {
+                        props.students.map((s) => {
+                            return <Student details={s.details[0]} disabled={disable} />
+                        })
+                    }
                 </div>
                 <div className="save-attendance"><button disabled>Save</button></div>
             </div>
@@ -125,17 +133,17 @@ const Materials = (props) => {
 
     const dispatch = useDispatch()
 
-    console.log(props.materials)
+    console.log(props.classDetails)
 
-    const [slide, shareSlides] = useState(props.materials != null? props.materials.slides : false)
-    const [assignment, shareAssignment] = useState(props.materials!= null? props.materials.assignments : false)
-    const [quiz, shareQuiz] = useState(props.materials!= null? props.materials.quiz : false)
-    const [link, shareLink] = useState(props.materials!= null? props.materials.link : false)
+    const [slide, shareSlides] = useState(props.materials != null ? props.materials.slides : false)
+    const [assignment, shareAssignment] = useState(props.materials != null ? props.materials.assignments : false)
+    const [quiz, shareQuiz] = useState(props.materials != null ? props.materials.quiz : false)
+    const [link, shareLink] = useState(props.materials != null ? props.materials.link : false)
 
-    const allState = (props.materials != null) && (props.materials.slides && props.materials.assignments && props.materials.quiz &&  props.materials.link) ? true : false
+    const allState = (props.materials != null) && (props.materials.slides && props.materials.assignments && props.materials.quiz && props.materials.link) ? true : false
 
     const [all, shareAll] = useState(allState)
-    const [classLink, setClassLink] = useState('')
+    const [classLink, setClassLink] = useState(props.classDetails.classLink != null ? props.classDetails.classLink : '')
 
     const disable = !(props.status === 'upcoming') ? false : true
     const saveLink = (props.status === 'completed') ? true : false
@@ -151,18 +159,18 @@ const Materials = (props) => {
 
     const saveClassLink = (e) => {
         e.preventDefault()
-        dispatch(updateClassLink(classLink,props.classId))
+        dispatch(updateClassLink(classLink, props.classId))
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         const materials = {
             "link": link,
             "slides": slide,
             "assignments": assignment,
             "quiz": quiz
         }
-        dispatch(instructorUpdateBatchClass({materials}, props.batchId, props.classId))
-    },[link, slide, quiz, assignment])
+        dispatch(instructorUpdateBatchClass({ materials }, props.batchId, props.classId))
+    }, [link, slide, quiz, assignment])
 
     return (
         <>
@@ -235,8 +243,8 @@ const Note = (props) => {
     const [note, setNote] = useState('')
     const disable = (props.status === 'active') ? false : true
 
-    function sendNote(){
-        dispatch(instructorUpdateBatchClass({instructorNote:note}, props.batchId, props.classId))
+    function sendNote() {
+        dispatch(instructorUpdateBatchClass({ instructorNote: note }, props.batchId, props.classId))
         alert('Note sent!')
         setNote('')
     }
@@ -298,14 +306,14 @@ const ClassListCard = (props) => {
                                 <div className="class-details" id="class-details" style={{ alignItems: "center" }}>
                                     <div className="row mx-0" style={{ justifyContent: "space-between" }}>
                                         <div>
-                                            <Materials status={status} batchId={props.batchId} classId={props.classId} materials={props.materials}/>
+                                            <Materials status={status} batchId={props.batchId} classId={props.classId} materials={props.materials} classDetails={props.classDetails} />
                                             <div>
                                                 <Results status={status} />
                                             </div>
                                         </div>
                                         <div>
-                                            <Note status={status} batchId={props.batchId} classId={props.classId}/>
-                                            <Attendance status={status} />
+                                            <Note status={status} batchId={props.batchId} classId={props.classId} />
+                                            <Attendance students={props.students} status={status} />
                                         </div>
                                     </div>
                                 </div>
@@ -379,7 +387,7 @@ const Schedule = () => {
                         <div className="class-list">
                             {
                                 (classList) &&
-                                classList.map((C) => <ClassListCard key={C._id} batch={C.batch} startTime={C.startTime} endTime={C.endTime} classId={C.classId} batchId={C._id} materials={C.materials}/>)
+                                classList.map((C) => <ClassListCard key={C._id} batch={C.batch} startTime={C.startTime} endTime={C.endTime} classId={C.classDetails._id} batchId={C._id} materials={C.materials} students={C.students} classDetails={C.classDetails} />)
                             }
                         </div>
                     </div>

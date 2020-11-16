@@ -44,7 +44,7 @@
 .header {
     padding-top: calc(53 * var(--vp));
     padding-left: calc(73 * var(--vp));
-    background: #0A0E2A 0% 0% no-repeat padding-box;
+    background: #020122 0% 0% no-repeat padding-box;
     border: calc(0 * var(--vp)) solid #707070;
     opacity: 1;
 }
@@ -83,8 +83,9 @@
 .header.mobile {
     padding-top: calc(30 * var(--vm));
     padding-left: calc(16 * var(--vm));
+    background: #020122 0% 0% no-repeat padding-box;
 }
 
-@media all and (max-width: 600px) {
+/* @media all and (max-width: 600px) {
     
-}
+} */

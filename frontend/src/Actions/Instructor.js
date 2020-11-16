@@ -159,9 +159,12 @@ export const updateClassLink = (updates, classId) => async(dispatch, getState) =
     type: INSTRUCTOR_CLASSLINK_UPDATE_REQUEST,
   })
 
+  const { userLogin : { userInfo } }  = getState()
+
   const config = {
     headers: {
       'Content-Type': 'application/json',
+      'authorization' : userInfo.token
     },
   }
 
