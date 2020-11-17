@@ -11,7 +11,5 @@ nodemon.json
 # testing
 /coverage
 
-# production
-/build
 
 package-lock.json
