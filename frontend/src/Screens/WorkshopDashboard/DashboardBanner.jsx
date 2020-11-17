@@ -35,19 +35,19 @@ const Banner = () =>{
                 <div>
                     <div className="banner-quote">
                         {
-                            (student && student.freeEnrollment.freeWorkshop.completed) &&
+                            (student && student.freeEnrollment && student.freeEnrollment.freeWorkshop.completed) &&
                             <> “ The moment you quit is when you should push harder”</>
                         }
                         </div>
                     <div className="banner-content">
                         {
-                            (student && student.freeEnrollment.freeWorkshop.completed) &&
+                            (student && student.freeEnrollment && student.freeEnrollment.freeWorkshop.completed) &&
                             <>Don’t stop at the workshop. Carve your career in Programming, Robotics and AI today. 
                             Kickstart your career with a Rs. 500 gift card.</>
                         }
                         <div style={{fontSize:"2vw"}}>
                         {
-                            (student && student.freeEnrollment.freeClass.enrolled) ?
+                            (student && student.freeEnrollment && student.freeEnrollment.freeClass.enrolled) ?
                             <>We received your request successfully for the FREE Class. Our team will soon get in touch with you 
                             to schedule the timings.</> : 
                             <>Book a free class
@@ -56,7 +56,7 @@ const Banner = () =>{
                         </div>
                     </div>
                     
-                    {(student && student.freeEnrollment.freeWorkshop.completed) &&
+                    {(student && student.freeEnrollment && student.freeEnrollment.freeWorkshop.completed) &&
                     <div className="redeem-button text-center">
                         <a><button>Redeem now</button></a>
                     </div> }

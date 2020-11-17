@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./AdminNewInstructor.css";
 import axios from "axios";
 
-function AdminNewInstructor({ closeNewInstructorForm, getUpdatedInstructors }) {
+function AdminNewInstructor({
+  closeNewInstructorForm,
+  getUpdatedInstructors,
+  selectedInstructor,
+}) {
   const [fname, setfname] = useState("");
   const [lname, setlname] = useState("");
   const [mname, setmname] = useState("");
@@ -18,10 +22,48 @@ function AdminNewInstructor({ closeNewInstructorForm, getUpdatedInstructors }) {
   const [instructorEmail, setinstructorEmail] = useState("");
   const [instructorPassword, setinstructorPassword] = useState("");
 
+  useEffect(() => {
+    console.log(selectedInstructor);
+    if (selectedInstructor.id) {
+      setfname(selectedInstructor.fname);
+      setlname(selectedInstructor.lname);
+      setmname(selectedInstructor.mname);
+      setemail(selectedInstructor.email);
+      setphoneNumber(selectedInstructor.phoneNumber);
+      setaadharNumber(selectedInstructor.aadharNumber);
+      setpanNumber(selectedInstructor.panNumber);
+      setjoiningDate(selectedInstructor.joiningDate);
+      setaccountNumber(selectedInstructor.accountNumber);
+      setaccountName(selectedInstructor.accountName);
+      setbankName(selectedInstructor.bankName);
+      setifscCode(selectedInstructor.ifscCode);
+    } else {
+      setfname("");
+      setlname("");
+      setmname("");
+      setemail("");
+      setphoneNumber("");
+      setaadharNumber("");
+      setpanNumber("");
+      setjoiningDate("");
+      setaccountNumber("");
+      setaccountName("");
+      setbankName("");
+      setifscCode("");
+    }
+  }, [selectedInstructor]);
+
   const addNewInstructor = () => {
     // API TO CREATE USER
     const body = {
-      name: fname + " " + mname + " " + lname,
+      name: {
+        first: fname,
+        last: lname,
+      },
+      mobileNo: {
+        code: "+91",
+        number: phoneNumber,
+      },
       email: instructorEmail,
       password: instructorPassword,
     };
@@ -82,7 +124,7 @@ function AdminNewInstructor({ closeNewInstructorForm, getUpdatedInstructors }) {
         >
           X
         </p>
-        <h3>Add</h3>
+        <h3>{selectedInstructor.id ? "Edit" : "Add"}</h3>
       </div>
       <div className="adminNewInstructor__body">
         <div className="adminNewInstructor__section">

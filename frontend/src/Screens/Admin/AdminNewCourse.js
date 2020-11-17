@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import EditIcon from "../../Asssets/Icon feather-edit.png";
 
-function AdminNewCourse({ currentCurriculumID, tobeEditedCourse }) {
+function AdminNewCourse({ currentCurriculum, tobeEditedCourse }) {
   const [allowEdits, setAllowEdits] = useState(false);
   const [labelColor, setlabelColor] = useState(
     tobeEditedCourse._id ? (allowEdits ? "#4320BF" : "#9D9D9D") : "#4320BF"
@@ -160,11 +160,11 @@ function AdminNewCourse({ currentCurriculumID, tobeEditedCourse }) {
   };
 
   const addNewCourse = () => {
-    if (tobeEditedCourse) {
+    if (tobeEditedCourse._id) {
       alert("curriculum updation not supported yet.");
     } else {
       const body = {
-        groupId: currentCurriculumID,
+        groupId: currentCurriculum,
         name: name,
         //   courseImage: "",
         builds: [],

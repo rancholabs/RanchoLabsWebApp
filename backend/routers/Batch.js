@@ -60,7 +60,7 @@ router.put('/:bid/:cid', async (req, res) => {
     try{
         const batch = await Batch.findOne({_id:req.params.bid})
         const clas = batch.classes.filter((c) => {
-            if(c._id == req.params.cid)
+            if(c.classId == req.params.cid)
             return c
         })
         const updates =  Object.keys(req.body)

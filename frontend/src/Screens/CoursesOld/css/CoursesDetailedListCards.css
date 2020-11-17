@@ -1,0 +1,416 @@
+.courses-detailed-list-cards {
+    padding-top: calc(120 * var(--vp));
+    padding-left: calc(0 * var(--vp));
+    padding-right: calc(0 * var(--vp));
+    display: flex;
+    justify-content: center;
+}
+
+.courses-detailed-list-card-item {
+    position: relative;
+    width: calc(542 * var(--vp));
+    background: #190A4D 0% 0% no-repeat padding-box;
+    box-shadow: calc(0 * var(--vp)) calc(10 * var(--vp)) calc(6 * var(--vp)) #000000C4;
+    opacity: 1;
+    padding-top: calc(32 * var(--vp));
+    padding-bottom: calc(44 * var(--vp));
+}
+
+.courses-detailed-list-card-item > .top-boxes > .box1, .courses-detailed-list-card-item > .top-boxes > .box2 {
+    position: absolute;
+    width: calc(153 * var(--vp));
+    height: calc(173 * var(--vp));
+    background: #020122 0% 0% no-repeat padding-box;
+    opacity: 0.42;
+}
+
+.courses-detailed-list-card-item > .top-boxes > .box1 {
+    top: 0;
+    right: 0;
+}
+
+.courses-detailed-list-card-item > .top-boxes > .box2 {
+    top: calc(46 * var(--vp));
+    right: calc(53 * var(--vp));
+}
+
+.courses-detailed-list-card-item > .top-boxes > .box3 {
+    position: absolute;
+    top: calc(73 * var(--vp));
+    right: calc(49 * var(--vp));
+    width: calc(165 * var(--vp));
+    height: calc(185 * var(--vp));
+    border-style: solid;
+    border-width: calc(5 * var(--vp)) calc(5 * var(--vp)) calc(0 * var(--vp)) calc(0 * var(--vp));
+    border-color: #3CFAFF #3CFAFF transparent transparent;
+    opacity: 0.05;
+    z-index: 2;
+}
+
+.courses-detailed-list-card-item > .top-boxes > .box3 > .border-left {
+    border-left: calc(5 * var(--vp)) solid #3CFAFF !important;
+    position: absolute;
+    top: 0;
+    bottom: 60%;
+}
+
+.courses-detailed-list-card-item > .top-boxes > .box4 {
+    position: absolute;
+    top: calc(36 * var(--vp));
+    right: calc(-5 * var(--vp));
+    width: calc(175 * var(--vp));
+    height: calc(195 * var(--vp));
+    transform: rotate(-55deg);
+    opacity: 0.05;
+    border-style: solid;
+    border-width: calc(0 * var(--vp)) calc(0 * var(--vp)) calc(0 * var(--vp)) calc(5 * var(--vp));
+    border-color: transparent transparent transparent #3CFAFF;
+    z-index: 2;
+}
+
+.courses-detailed-list-card-item > .top-boxes > .marketing-box {
+    font: normal normal normal calc(25 * var(--vp))/calc(1 * var(--vp)) Roboto;
+    color: #F74B42;
+    position: absolute;
+    top: calc(0 * var(--vp));
+    right: calc(-5 * var(--vp));
+    border: calc(3 * var(--vp)) solid #3CFAFF;
+    padding: calc(20 * var(--vp));
+}
+
+.courses-detailed-list-card-item:not(:first-child) {
+    margin-left: calc(38 * var(--vp));
+}
+
+.courses-detailed-list-card-item > * {
+    margin-left: calc(45 * var(--vp));
+    
+}
+
+.courses-detailed-list-card-item > .title {
+    width: calc(288 * var(--vp));
+    height: calc(131 * var(--vp));
+    text-align: left;
+    font: normal normal bold calc(35 * var(--vp))/calc(50 * var(--vp)) Roboto;
+    letter-spacing: calc(0.7 * var(--vp));
+    color: #3CFAFF;
+    opacity: 1;
+}
+
+.courses-detailed-list-card-item > .grade-duration {
+    
+    height: calc(64 * var(--vp));
+    font: normal normal normal calc(21 * var(--vp))/calc(30 * var(--vp)) Roboto;
+    letter-spacing: calc(0.46 * var(--vp));
+    color: #F0F0F2;
+    opacity: 1;
+}
+
+.courses-detailed-list-card-item > .grade-duration > .splitter {
+    font: normal normal normal calc(48 * var(--vp))/calc(63 * var(--vp)) Roboto;
+    letter-spacing: calc(0.72 * var(--vp));
+    color: #C9C5C5;
+    vertical-align: sub;
+}
+
+.courses-detailed-list-card-item > .outcomes {
+    width: calc(465 * var(--vp));
+    height: calc(312 * var(--vp));
+    padding-top: calc(4 * var(--vp));
+    padding-bottom: calc(53 * var(--vp));
+}
+
+.courses-detailed-list-card-item > .outcomes .topic {
+    text-align: left;
+    font: normal normal normal calc(25 * var(--vp))/calc(1 * var(--vp)) Roboto;
+    letter-spacing: calc(-0.13 * var(--vp));
+    color: #F74B42;
+    opacity: 1;
+    padding: calc(22 * var(--vp)) 0;
+}
+
+.courses-detailed-list-card-item > .outcomes .sub-topics {
+    text-align: left;
+    font: normal normal normal calc(25 * var(--vp))/calc(33 * var(--vp)) Roboto;
+    letter-spacing: calc(0.38 * var(--vp));
+    color: #ABABB6;
+    opacity: 1;
+    display: flex;
+    justify-content: stretch;
+    flex-wrap: wrap;
+    column-gap: calc(21 * var(--vp));
+    row-gap: calc(8 * var(--vp));
+}
+
+.courses-detailed-list-card-item > .outcomes .sub-topics {
+    content: " ";
+}
+
+.courses-detailed-list-card-item > .syllabus-padding {
+    margin-bottom: calc(33 * var(--vp));
+    
+    height: calc(58 * var(--vp));
+}
+
+.courses-detailed-list-card-item > .syllabus {
+    background: transparent 0% 0% no-repeat padding-box;
+    font: normal normal normal calc(25 * var(--vp))/calc(1 * var(--vp)) Roboto;
+    letter-spacing: calc(0.38 * var(--vp));
+    color: #F74B42;
+    opacity: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer !important;
+    text-decoration: underline;
+    outline: none;
+}
+
+.courses-detailed-list-card-item > .syllabus > .text {
+    font: normal normal normal calc(25 * var(--vp))/calc(1 * var(--vp)) Roboto;
+    letter-spacing: calc(0.38 * var(--vp));
+    color: #FFFFFF;
+    opacity: 1;
+}
+
+.courses-detailed-list-card-item > .learn-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.courses-detailed-list-card-item > .learn-price > .learn-more-btn {
+    width: calc(239 * var(--vp));
+    height: calc(58 * var(--vp));
+    background: #F74B42 0% 0% no-repeat padding-box;
+    border-radius: calc(55 * var(--vp));
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer !important;
+    outline: none;
+}
+
+.courses-detailed-list-card-item .learn-more-btn > .text {
+    font: normal normal normal calc(25 * var(--vp))/calc(1 * var(--vp)) Roboto;
+    letter-spacing: calc(0.38 * var(--vp));
+    color: #FFFFFF;
+    opacity: 1;
+}
+
+.courses-detailed-list-card-item > .learn-price > .price {
+    position: relative;
+    width: calc(189 * var(--vp));
+    height: calc(51 * var(--vp));
+    border: calc(3 * var(--vp)) solid #3CFAFF;
+    opacity: 0.89;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.courses-detailed-list-card-item > .learn-price > .price:before {
+    position: absolute;
+    content: "";
+    left: calc(-18.5 * var(--vp));
+    width: calc(36 * var(--vp));
+    height: calc(37 * var(--vp));
+    transform: rotate(-45deg);
+    background-color: #190A4D;
+    border-right: calc(3 * var(--vp)) solid #3CFAFF;
+    border-bottom: calc(3 * var(--vp)) solid #3CFAFF;
+}
+
+.courses-detailed-list-card-item .price > .text {
+    font: normal normal normal calc(25 * var(--vp))/calc(33 * var(--vp)) Roboto;
+    letter-spacing: calc(0.38 * var(--vp));
+    color: #C9C5C5;
+    opacity: 1;
+}
+
+@media all and (max-width: 600px) {
+    .courses-detailed-list-cards {
+        padding-top: calc(75 * var(--vm));
+        padding-left: calc(0 * var(--vm));
+        padding-right: calc(0 * var(--vm));
+        display: block;
+    }
+
+    .courses-detailed-list-card-item {
+        width: 100%;
+        box-shadow: calc(0 * var(--vm)) calc(4 * var(--vm)) calc(2 * var(--vm)) #000000C4;
+        padding-top: calc(26 * var(--vm));
+        padding-bottom: calc(30 * var(--vm));
+    }
+    
+    .courses-detailed-list-card-item > .top-boxes > .box1, .courses-detailed-list-card-item > .top-boxes > .box2 {
+        position: absolute;
+        width: calc(86 * var(--vm));
+        height: calc(93 * var(--vm));
+    }
+    
+    .courses-detailed-list-card-item > .top-boxes > .box2 {
+        top: calc(26 * var(--vm));
+        right: calc(28 * var(--vm));
+    }
+    
+    .courses-detailed-list-card-item > .top-boxes > .box3 {
+        position: absolute;
+        top: calc(41 * var(--vm));
+        right: calc(28 * var(--vm));
+        width: calc(93 * var(--vm));
+        height: calc(94 * var(--vm));
+        border-width: calc(2 * var(--vm)) calc(2 * var(--vm)) calc(0 * var(--vm)) calc(0 * var(--vm));
+        opacity: 0.33;
+    }
+    
+    .courses-detailed-list-card-item > .top-boxes > .box3 > .border-left {
+        border-left: calc(2 * var(--vm)) solid #3CFAFF !important;
+    }
+    
+    .courses-detailed-list-card-item > .top-boxes > .box4 {
+        top: calc(15 * var(--vm));
+        right: calc(4.5 * var(--vm));
+        width: calc(93 * var(--vm));
+        height: calc(108 * var(--vm));
+        transform: rotate(-58.5deg);
+        border-width: calc(0 * var(--vm)) calc(0 * var(--vm)) calc(0 * var(--vm)) calc(2 * var(--vm));
+        opacity: 0.33;
+    }
+
+    .courses-detailed-list-card-item > .top-boxes > .marketing-box {
+        font-size: calc(14 * var(--vm));
+        top: calc(0 * var(--vm));
+        right: 35%;
+        border-width: calc(2 * var(--vp));
+        padding: calc(10 * var(--vm));
+    }
+
+    .courses-detailed-list-card-item:not(:first-child) {
+        margin-left: initial;
+    }
+    
+    .courses-detailed-list-card-item > * {
+        margin-left: calc(21 * var(--vm));
+    }
+
+    .courses-detailed-list-card-item > .title {
+        width: calc(107 * var(--vm));
+        height: calc(92 * var(--vm));
+        font-size: calc(20 * var(--vm));
+        line-height: initial;
+        letter-spacing: calc(0.3 * var(--vm));
+    }
+    
+    .courses-detailed-list-card-item > .grade-duration {
+        padding-top: calc(11 * var(--vm));
+        height: calc(33 * var(--vm));
+        font-size: calc(13 * var(--vm));
+        line-height: initial;
+        letter-spacing: calc(0.2 * var(--vm));
+        text-align: left;
+    }
+    
+    .courses-detailed-list-card-item > .grade-duration > .splitter {
+        font-size: calc(25 * var(--vm));
+        letter-spacing: calc(0.38 * var(--vp));
+        color: #C9C5C5;
+        vertical-align: sub;
+    }
+
+    .courses-detailed-list-card-item > .outcomes {
+        width: calc(283 * var(--vm));
+        height: initial;
+        padding-top: calc(0 * var(--vm));
+        padding-bottom: calc(19 * var(--vm));
+    }
+    
+    .courses-detailed-list-card-item > .outcomes .topic {
+        font-size: calc(16 * var(--vm));
+        line-height: initial;
+        letter-spacing: calc(-0.08 * var(--vm));
+        padding-top: calc(11 * var(--vm));
+        padding-bottom: calc(6 * var(--vm));
+    }
+    
+    .courses-detailed-list-card-item > .outcomes .sub-topics {
+        font-size: calc(16 * var(--vm));
+        line-height: initial;
+        letter-spacing: calc(0.24 * var(--vm));
+        column-gap: calc(5 * var(--vm));
+        row-gap: calc(5 * var(--vm));
+    }
+
+    .courses-detailed-list-card-item > .syllabus-padding {
+        margin-bottom: calc(16 * var(--vm));
+        height: calc(32 * var(--vm));
+    }
+    
+    .courses-detailed-list-card-item > .syllabus {
+        font-size: calc(14 * var(--vm));
+        line-height: initial;
+        letter-spacing: calc(0 * var(--vm));
+    }
+    
+    .courses-detailed-list-card-item > .learn-price > .learn-more-btn {
+        width: calc(133 * var(--vm));
+        height: calc(32 * var(--vm));
+        border-radius: calc(18 * var(--vm));
+    }
+    
+    .courses-detailed-list-card-item .learn-more-btn > .text {
+        font-size: calc(14 * var(--vm));
+        line-height: initial;
+        letter-spacing: calc(0 * var(--vm));
+    }
+    
+    .courses-detailed-list-card-item > .learn-price > .price {
+        position: relative;
+        width: calc(113 * var(--vm));
+        height: calc(33 * var(--vm));
+        border: calc(2 * var(--vm)) solid #3CFAFF;
+        opacity: 0.81;
+    }
+    
+    .courses-detailed-list-card-item > .learn-price > .price:before {
+        position: absolute;
+        content: "";
+        left: calc(-12.5 * var(--vm));
+        width: calc(23 * var(--vm));
+        height: calc(24 * var(--vm));
+        transform: rotate(-45deg);
+        border-right: calc(2 * var(--vm)) solid #3CFAFF;
+        border-bottom: calc(2 * var(--vm)) solid #3CFAFF;
+    }
+    
+    .courses-detailed-list-card-item .price > .text {
+        font-size: calc(16 * var(--vm));
+        line-height: initial;
+        letter-spacing: calc(0.24 * var(--vm));
+    }
+
+    .courses-detailed-list-cards .carousel .control-dots .dot {
+        width: calc(8 * var(--vm)) !important;
+        height: calc(8 * var(--vm)) !important;
+    }
+
+    .courses-detailed-list-cards .carousel .control-dots {
+        top: calc(-5 * var(--vm)) !important;
+        right: calc(15 * var(--vm)) !important;
+        text-align: right !important;
+        bottom: initial !important;
+    }
+    
+    .courses-detailed-list-cards .carousel .carousel-status {
+        display: none !important;
+    }
+
+    .courses-detailed-list-cards .carousel.carousel-slider .control-arrow:hover {
+        background-color: transparent !important;
+    }
+
+    .courses-detailed-list-cards .carousel .thumbs-wrapper {
+        margin: 0 !important;
+    }
+}

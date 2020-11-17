@@ -23,3 +23,31 @@
     font-size: calc(28*var(--vp));
     letter-spacing: calc(1.4*var(--vp));
 }
+
+@media(max-width:600px){
+    .courses-faq{
+        padding: calc(48*var(--vm)) 0 calc(183*var(--vp));
+        margin: 0 calc(139*var(--vp)) !important;
+    }
+    
+    .courses-faq-title{
+        color: #3CFAFF;
+        font-size: calc(20*var(--vm));
+        letter-spacing: calc(2.4*var(--vp));
+        text-align: center;
+    }
+    
+    .courses-faq .faq-question{
+        color: #F74B42;
+        font-size: calc(18*var(--vm));
+        letter-spacing: calc(1.65*var(--vp));
+        margin-top: calc(11*var(--vm));
+        margin-bottom: calc(5*var(--vm));
+    }
+    
+    .courses-faq .faq-ans{
+        color: #CBCBCB;
+        font-size: calc(13*var(--vm));
+        letter-spacing: calc(0.2*var(--vm));
+    }
+}

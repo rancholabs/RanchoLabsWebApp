@@ -1,78 +1,104 @@
 .courses-grade {
-    padding-top: calc(139 * var(--vp));
-    padding-bottom: calc(144 * var(--vp));
-    margin-left: calc(43 * var(--vp));
+  padding-top: calc(100 * var(--vp));
+  padding-bottom: calc(100 * var(--vp));
+  margin-left: calc(43 * var(--vp));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .courses-grade > .title {
-    text-align: left;
-    font: normal normal 500 calc(33 * var(--vp))/calc(33 * var(--vp)) Roboto;
-    letter-spacing: calc(1.65 * var(--vp));
-    color: #F74B42;
-    opacity: 1;
-    padding-bottom: calc(56 * var(--vp));
+  text-align: left;
+  font: normal normal 500 calc(33 * var(--vp)) / calc(33 * var(--vp)) Roboto;
+  letter-spacing: calc(1.65 * var(--vp));
+  color: #f74b42;
+  opacity: 1;
+  text-transform: capitalize;
+  font-weight: lighter;
 }
 
 .courses-grade > .grades {
-    display: flex;
+  display: flex;
 }
 
 .courses-grade-item {
-    background: #0A0E2A 0% 0% no-repeat padding-box;
-    border: calc(2 * var(--vp)) solid #3CFAFF;
-    opacity: 1;
-    width: calc(350 * var(--vp));
-    height: calc(74 * var(--vp));
+  background: transparent;
+  border: calc(2 * var(--vp)) solid #f74b42;
+  opacity: 1;
+  width: calc(350 * var(--vp));
+  height: calc(74 * var(--vp));
+  color: #f74b42;
+}
+
+.courses-grade-item:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.courses-grade-item:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 
 .courses-grade-item:not(.active) {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .courses-grade-item.active {
-    box-shadow: calc(0 * var(--vp)) calc(3 * var(--vp)) calc(6 * var(--vp)) #3CFAFF;
-    border: calc(5 * var(--vp)) solid #3CFAFF;
-    opacity: 1;
+  /* box-shadow: calc(0 * var(--vp)) calc(3 * var(--vp)) calc(6 * var(--vp))
+  #F74B42; */
+  border: calc(2 * var(--vp)) solid #f74b42;
+  background-color: #f74b42;
+  opacity: 1;
+  color: white;
 }
 
 .courses-grade-item > .text {
-    text-align: center;
-    font: normal normal normal calc(29 * var(--vp))/calc(38 * var(--vp)) Roboto;
-    letter-spacing: calc(0.87 * var(--vp));
-    color: #FFFFFF;
-    opacity: 1;
-    margin: calc(18 * var(--vp)) calc(0 * var(--vp));
+  text-align: center;
+  font: normal normal normal calc(29 * var(--vp)) / calc(38 * var(--vp)) Roboto;
+  letter-spacing: calc(0.87 * var(--vp));
+  opacity: 1;
+  margin: calc(18 * var(--vp)) calc(0 * var(--vp));
 }
 
 @media all and (max-width: 600px) {
-    .courses-grade {
-        padding-top: calc(70 * var(--vm));
-        padding-bottom: calc(24 * var(--vm));
-        padding-left: calc(24 * var(--vm));
-    }
+  .courses-grade {
+    padding-top: calc(70 * var(--vm));
+    padding-bottom: calc(24 * var(--vm));
+    padding-left: calc(24 * var(--vm));
+    flex-direction: column;
+  }
 
-    .courses-grade > .title {
-        font-size: calc(14 * var(--vm));
-        line-height: initial;
-        letter-spacing: calc(0.7 * var(--vm));
-        padding-bottom: calc(19 * var(--vm));
-    }
+  .courses-grade > .title {
+    font-size: calc(20 * var(--vm));
+    line-height: initial;
+    letter-spacing: calc(0.7 * var(--vm));
+    /* padding-bottom: calc(19 * var(--vm)); */
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: lighter;
+    margin-bottom: 20px;
+  }
 
-    .courses-grade-item {
-        border: calc(1 * var(--vm)) solid #3CFAFF;
-        width: calc(127 * var(--vm));
-        height: calc(27 * var(--vm));
-    }
+  .courses-grade-item {
+    border: calc(1 * var(--vm)) solid #f74b42;
+    width: calc(127 * var(--vm));
+    height: calc(27 * var(--vm));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .courses-grade-item.active {
-        box-shadow: calc(0 * var(--vm)) calc(1 * var(--vm)) calc(2 * var(--vm)) #3CFAFF;
-        border: calc(2 * var(--vm)) solid #3CFAFF;
-        opacity: 1;
-    }
-    
-    .courses-grade-item > .text {
-        font-size: calc(12 * var(--vm));
-        letter-spacing: calc(0.36 * var(--vm));
-        margin: calc(8 * var(--vm)) calc(0 * var(--vm));
-    }
+  .courses-grade-item.active {
+    /* box-shadow: calc(0 * var(--vm)) calc(1 * var(--vm)) calc(2 * var(--vm))
+      #3cfaff; */
+    border: calc(2 * var(--vm)) solid #f74b42;
+    opacity: 1;
+  }
+
+  .courses-grade-item > .text {
+    font-size: calc(12 * var(--vm));
+    letter-spacing: calc(0.36 * var(--vm));
+    /* margin: calc(8 * var(--vm)) calc(0 * var(--vm)); */
+  }
 }

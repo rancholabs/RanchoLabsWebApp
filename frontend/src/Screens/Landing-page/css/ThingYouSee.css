@@ -21,48 +21,6 @@
     margin: 1rem 0 calc(135*var(--vp));
     letter-spacing: calc(0.6*var(--vp));
 }
-
-/* @media (max-width:768px){
-    .things h2{
-        font-size: 4vh;
-    }
-    .things p{
-        font-size: 5.5vw;
-    }
-    .things{
-        padding: 10vh 5vw;
-    }
-    #heart {
-        color: red;
-        font-size: 8vw !important;
-    }
-    
-} */
-
-/* @media (min-width:768px) and (min-height:1000px) {
-    .things h2{
-        font-size: 3.3vw !important; 
-    }
-    .things p{
-        font-size: 2.2vh !important;
-    }
-    .things{
-        padding: 6vh 0 !important;
-        min-height: unset;
-    }
-    .things .content{
-        font-size: 2.2vw !important;
-    }
-    .studentdetails{
-        font-size: 2.2vw !important;
-    }
-    #heart {
-        color: red;
-        font-size: 3vw !important;
-    }
-
-} */
-
 .dots{
     margin: auto;
     display: none;
@@ -112,29 +70,6 @@
     font-size: 3vw;
 }
 
-/* @media (max-width:768px) and (max-height:854px){
-    .things p{
-        margin-bottom: 5vw;
-    }
-    .studentdetails{
-        font-size: 2.2vh ;
-        padding: 4vw 1rem 0;
-}
-    .things .content{
-        padding: unset;
-        font-size: 2.2vh;
-        width: 70vw;
-    }
-    .things .carousel.carousel-slider .control-arrow{
-        margin: 0 !important;
-    }
-    .studentimg{
-        width: 23vw;
-        height: 23vw;
-    }
-    
-} */
-
 .carousel.carousel-slider .control-arrow:hover{
     background: unset !important;
 }
@@ -166,13 +101,20 @@
     transition: all 12.35s ease-in-out !important;
 }
 
+.things .carousel .control-arrow:before, .carousel.carousel-slider .control-arrow:before{
+    border-top: calc(12*var(--vp)) solid transparent !important;
+    border-bottom: calc(12*var(--vp)) solid transparent !important;
+    content: '\f105';
+}
+
+
 .things .carousel .control-prev.control-arrow:before{
-    border-right: 10px solid #241f1f;
+    border-right: 10px solid #241f1f !important;
     margin: 0 4vw 0 0;
 }
 
 .things .carousel .control-next.control-arrow:before{
-    border-left: 8px solid #241f1f;
+    border-left: 10px solid #241f1f !important;
     margin: 0 0 0 4vw;
 }
 
@@ -301,11 +243,20 @@
     }
     
     .things .carousel.carousel-slider .control-arrow{
-        margin: 0 2vw;
+        margin: 0;
     }
     
     .things .carousel .thumbs-wrapper{
         display: none;
     }
     
+    /* .things .carousel .control-arrow:before, .carousel.carousel-slider .control-arrow:before{
+        border-top: calc(12*var(--vm)) !important;
+        border-bottom: calc(12*var(--vm)) !important;
+    } */
+
+    .things .carousel .control-arrow:before, .carousel.carousel-slider .control-arrow:before {
+        border-top: calc(35*var(--vp)) solid transparent !important;
+        border-bottom: calc(35*var(--vp)) solid transparent !important;
+    }
 }

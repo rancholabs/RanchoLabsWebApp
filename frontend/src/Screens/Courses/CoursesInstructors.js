@@ -4,6 +4,7 @@ import iitd from './img/iitd.png'
 import google from './img/google.png'
 import programming from './img/instructor.png'
 import calendar from './img/calendar.png'
+import { Carousel } from 'react-responsive-carousel'
 
 const instructors=[
     {
@@ -71,6 +72,15 @@ const CourseInstructors = () => {
                             return(<InstructorCard key={i.id} name={i.name} logo1={i.logo1} logo2={i.logo2} details={i.details} image={i.image}/>)
                         })
                     }
+                </div>
+                <div className="mobile-instructors">
+                    <Carousel infiniteLoop useKeyboardArrows>
+                    {
+                        instructors.map((i) => {
+                            return(<InstructorCard key={i.id} name={i.name} logo1={i.logo1} logo2={i.logo2} details={i.details} image={i.image}/>)
+                        })
+                    }
+                    </Carousel>
                 </div>
                 <div className="text-center"><button><img src={calendar} alt="freeclass" />Book a free class now</button></div>
             </div>

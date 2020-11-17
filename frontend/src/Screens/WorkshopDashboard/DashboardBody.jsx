@@ -127,9 +127,9 @@ function DashboardBody(props) {
                         <div style={{backgroundColor:"#F0F0F2"}}>
                             <DashboardBanner />
                             <DashboardCards coursedata={coursedata} activeCourse={activeCourse}/>
-                            <DashboardCertificate />
-                            <DashboardCertificateComplete />
-                            <DashboardCongratsCard />
+                            {/* <DashboardCertificate /> */}
+                            {/* <DashboardCertificateComplete /> */}
+                            {/* <DashboardCongratsCard /> */}
                             <DashboardJourney />
                             <DashboardTestimonials />
                         </div>

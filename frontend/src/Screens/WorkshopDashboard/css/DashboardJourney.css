@@ -40,7 +40,7 @@
     width: 100%;
     border-radius: unset;
     border: none;
-    color: #F74B42;
+    color: #F74B42 !important;
     font-size: calc(28*var(--vp));
     text-transform: uppercase;
     height: 100%;

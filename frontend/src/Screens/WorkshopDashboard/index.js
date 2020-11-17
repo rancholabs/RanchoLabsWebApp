@@ -12,22 +12,19 @@ const signinmessage = {
     "blue" : "Signed in Successfully!",
     "white" : "KEEP LEARNING\nBUILDING\nand\nINNOVATING",
     "symbol" : null,
-    "linkto" : "/WorkshopDashboard"
+    "linkto" : "/dashboard"
 }
 
 var loginmessage = {
     "blue" : "Logged in Successfully!",
     "white" : "KEEP LEARNING\nBUILDING\nand\nINNOVATING",
     "symbol" : null,
-    "linkto" : "/WorkshopDashboard"
+    "linkto" : "/dashboard"
 }
 
-function WorkshopDashboard({ history }) {
+function WorkshopDashboard({ history, location }) {
 
     const dispatch = useDispatch()
-    const {mode} = useParams();
-    console.log(mode)
-
 
     const dashboardData = useSelector((state) => state.dashboard)
     const { loading, error, dashboard : data } = dashboardData
@@ -35,9 +32,15 @@ function WorkshopDashboard({ history }) {
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
 
+    const mode = location && location.search ? location.search.split('mode=')[1] : null
+
     useEffect(()=>{
         dispatch(updateHeader({backgroundColor: '#020122', color: '#FFFFFF', iconColor: '#3CFAFF', iconDisplay: 'block', headerDisplay: 'block'}))
     })
+
+    if(mode){
+        console.log(mode)
+    }
 
     useEffect(() => {
         if(!userInfo || userInfo.role !== 'student')

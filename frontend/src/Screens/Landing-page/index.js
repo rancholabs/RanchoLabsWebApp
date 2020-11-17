@@ -19,16 +19,15 @@ function LandingPage({history})
 {
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(updateHeader({backgroundColor: '#020122'}))
+        dispatch(updateHeader({backgroundColor: 'transparent'}))
         dispatch(updateFooter({footerDisplay:'block'}))
-        dispatch(setIsIpadMiniMobileView(true))
         return () => {
             dispatch(setDefaultHeader())
-            dispatch(setIsIpadMiniMobileView(false))
+        dispatch(setIsIpadMiniMobileView(false))
         }
     }, [])
     return(
-        <div className="landing-page">
+        <>
         <Main />
         <Courses />
         <Learning />
@@ -37,7 +36,7 @@ function LandingPage({history})
         <StudentProjects />
         <Banner />
         {/* <Signup history = {history}/> */}
-        </div>
+        </>
 
     )
 }

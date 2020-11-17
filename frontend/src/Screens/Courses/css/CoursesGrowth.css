@@ -1,45 +1,46 @@
-.courses-growth{
-    padding-top: calc(640*var(--vp));
-    background-image: url('../img/growthbanner.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin: 0 !important;
-    background-color: #0E0234;
+.courses-growth {
+  /* padding-top: calc(640 * var(--vp)); */
+  padding-top: 450px;
+  background-image: url("../img/growthbanner.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 !important;
+  background-color: #0e0234;
 }
 
-.courses-growth .courses-growth-title{
-    font-size: calc(60*var(--vp));
-    color: #FFFFFF;
-    letter-spacing: calc(3*var(--vp));
-    text-align: center;
+.courses-growth .courses-growth-title {
+  font-size: calc(60 * var(--vp));
+  color: #ffffff;
+  letter-spacing: calc(3 * var(--vp));
+  text-align: center;
 }
 
-.courses-growth .courses-growth-subtitle{
-    font-size: calc(33*var(--vp));
-    color: #FFFFFF;
-    letter-spacing: calc(1.65*var(--vp));
-    text-align: center;
-    margin: auto;
-    width: calc(808*var(--vp));
+.courses-growth .courses-growth-subtitle {
+  font-size: calc(33 * var(--vp));
+  color: #ffffff;
+  letter-spacing: calc(1.65 * var(--vp));
+  text-align: center;
+  margin: auto;
+  width: calc(808 * var(--vp));
 }
 
-.courses-growth .freeclass-button{
-    padding: calc(42*var(--vp)) 0 calc(84*var(--vp));
+.courses-growth .freeclass-button {
+  padding: calc(42 * var(--vp)) 0 calc(84 * var(--vp));
 }
 
-.courses-growth button{
-    background-color: #F74B42;
-    font-size: calc(33*var(--vp));
-    letter-spacing: calc(1.1*var(--vp));
-    height: calc(80*var(--vp));
-    width: calc(613*var(--vp));
-    color: #FFFFFF;
-    text-transform: capitalize;   
-    border: calc(2*var(--vp)) solid #F74B42; 
-    border-radius: calc(9*var(--vp));
+.courses-growth button {
+  background-color: #f74b42;
+  font-size: calc(33 * var(--vp));
+  letter-spacing: calc(1.1 * var(--vp));
+  height: calc(80 * var(--vp));
+  width: calc(613 * var(--vp));
+  color: #ffffff;
+  text-transform: capitalize;
+  border: calc(2 * var(--vp)) solid #f74b42;
+  border-radius: calc(9 * var(--vp));
 }
 
-.courses-growth button img{
-    margin-right: calc(30*var(--vp));
-    width: calc(36*var(--vp));
+.courses-growth button img {
+  margin-right: calc(30 * var(--vp));
+  width: calc(36 * var(--vp));
 }

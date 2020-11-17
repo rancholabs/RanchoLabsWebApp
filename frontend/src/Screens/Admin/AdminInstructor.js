@@ -8,6 +8,7 @@ import axios from "axios";
 
 function AdminInstructor() {
   const [instructors, setInstructors] = useState([]);
+  const [selectedInstructor, setSelectedInstructor] = useState({});
 
   useEffect(() => {
     const userInfo = localStorage.getItem("userInfo");
@@ -24,15 +25,15 @@ function AdminInstructor() {
         ...singleInstructor,
         id: singleInstructor._id,
         joiningDate:
-          (new Date(singleInstructor.joiningDate).getDate() < 10
-            ? "0" + new Date(singleInstructor.joiningDate).getDate()
-            : new Date(singleInstructor.joiningDate).getDate()) +
-          "/" +
+          new Date(singleInstructor.joiningDate).getFullYear() +
+          "-" +
           (new Date(singleInstructor.joiningDate).getMonth() + 1 < 10
             ? "0" + (new Date(singleInstructor.joiningDate).getMonth() + 1)
             : new Date(singleInstructor.joiningDate).getMonth() + 1) +
-          "/" +
-          new Date(singleInstructor.joiningDate).getFullYear(),
+          "-" +
+          (new Date(singleInstructor.joiningDate).getDate() < 10
+            ? "0" + new Date(singleInstructor.joiningDate).getDate()
+            : new Date(singleInstructor.joiningDate).getDate()),
       }));
       setInstructors(allInstructors);
     });
@@ -55,15 +56,15 @@ function AdminInstructor() {
         ...singleInstructor,
         id: singleInstructor._id,
         joiningDate:
-          (new Date(singleInstructor.joiningDate).getDate() < 10
-            ? "0" + new Date(singleInstructor.joiningDate).getDate()
-            : new Date(singleInstructor.joiningDate).getDate()) +
-          "/" +
+          new Date(singleInstructor.joiningDate).getFullYear() +
+          "-" +
           (new Date(singleInstructor.joiningDate).getMonth() + 1 < 10
             ? "0" + (new Date(singleInstructor.joiningDate).getMonth() + 1)
             : new Date(singleInstructor.joiningDate).getMonth() + 1) +
-          "/" +
-          new Date(singleInstructor.joiningDate).getFullYear(),
+          "-" +
+          (new Date(singleInstructor.joiningDate).getDate() < 10
+            ? "0" + new Date(singleInstructor.joiningDate).getDate()
+            : new Date(singleInstructor.joiningDate).getDate()),
       }));
       setInstructors(allInstructors);
     });
@@ -81,7 +82,7 @@ function AdminInstructor() {
     },
     {
       field: "joiningDate",
-      headerName: "Date of joining",
+      headerName: "Joining Date",
       width: 200,
     },
     { field: "batches", headerName: "Batches", width: 200 },
@@ -118,9 +119,15 @@ function AdminInstructor() {
       .classList.remove("collapseScreen");
   };
 
-  const openNewInstructorForm = () => {
+  const openNewInstructorForm = (setEmpty) => {
+    if (setEmpty) setSelectedInstructor({});
     document.querySelector(".adminInstructor__newForm").classList.add("show");
     document.querySelector(".adminInstructor").classList.add("collapseScreen");
+  };
+
+  const handleRowClick = (row) => {
+    setSelectedInstructor(row.data);
+    openNewInstructorForm();
   };
 
   return (
@@ -135,7 +142,7 @@ function AdminInstructor() {
             </span>
             <span
               className="adminInstructor__headerAddNew"
-              onClick={openNewInstructorForm}
+              onClick={() => openNewInstructorForm(true)}
             >
               <PersonAddIcon className="adminInstructor__headerIcon" />
               <h3>Add Instructor</h3>
@@ -143,13 +150,19 @@ function AdminInstructor() {
           </div>
         </div>
         <div className="adminInstructor__table">
-          <DataGrid rows={instructors} columns={columns} pageSize={10} />
+          <DataGrid
+            rows={instructors}
+            columns={columns}
+            pageSize={10}
+            onRowClick={handleRowClick}
+          />
         </div>
       </div>
       <div className="adminInstructor__newForm">
         <AdminNewInstructor
           closeNewInstructorForm={closeNewInstructorForm}
           getUpdatedInstructors={getUpdatedInstructors}
+          selectedInstructor={selectedInstructor}
         />
       </div>
     </>

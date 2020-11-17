@@ -41,7 +41,7 @@
 }
 
 .dchoice #dropdown-split-basic{
-    color:  #F74B42;
+    color:  #F74B42 !important;
     justify-content: space-evenly !important;
     font-size: 1.45vw;
     font-weight: 600 !important;

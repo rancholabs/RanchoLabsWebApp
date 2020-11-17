@@ -71,12 +71,20 @@ const ThoughtProcess = () => {
             The students at RanchoLabs Learn, Build and Innovate every single day.</div>
             <div className="tp-items">
             {
-                thoughts.map(Tpitem)
+                thoughts.map((t) => {
+                    return(
+                        <Tpitem key={t.title} img={t.img} title={t.title} quote={t.quote} desc={t.desc} />
+                    )
+                })
             }
             </div>
             <div className="mtp-items">
             {
-                thoughts.map(MTpitem)
+                thoughts.map((m) =>{
+                    return(
+                        <MTpitem key={m.title} img={m.img} title={m.title} quote={m.quote} mdesc={m.mdesc} />
+                    )
+                })
             }
             </div>
             {/* <div className="tp-backgrounds">

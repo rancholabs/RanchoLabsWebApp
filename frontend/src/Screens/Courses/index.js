@@ -33,10 +33,11 @@ const Courses = () => {
   //const [activeCourseGroups, setActiveCourseGroups] = useState([])
   const [state, setState] = useState({
     grades: [],
-    activeGrade: undefined,
+    activeGrade: { minG: 6, maxG: 8 },
+    activeCourseG: undefined,
     activeCourseGroups: [],
   });
-  const { grades, activeGrade, activeCourseGroups } = state;
+  const { grades, activeGrade, activeCourseGroups, activeCourseG } = state;
   const { courseGroupsList: courseGroups } = useSelector(
     (state) => state.courseGroupsList
   );
@@ -45,6 +46,14 @@ const Courses = () => {
       return {
         ...prevState,
         activeGrade: activeGrade,
+      };
+    });
+  };
+  const setActiveCourseG = (activeCourseG) => {
+    setState((prevState) => {
+      return {
+        ...prevState,
+        activeCourseG: activeCourseG,
       };
     });
   };
@@ -66,7 +75,8 @@ const Courses = () => {
         activeCourseGroups: courseGroups.sort((a, b) =>
           a._id > b._id ? 1 : b._id > a._id ? -1 : 0
         ),
-        activeGrade: rGrades.length ? rGrades[0] : undefined,
+        activeCourseG: courseGroups.length ? courseGroups[0] : undefined,
+        // activeGrade: rGrades.length ? rGrades[0] : undefined,
       };
     });
   }, [courseGroups]);
@@ -536,12 +546,26 @@ const Courses = () => {
       </Helmet>
       <CoursesMain />
       <CoursesGrade
-        grades={grades}
+        // grades={grades}
         activeGrade={activeGrade}
+        grades={[
+          { minG: 6, maxG: 8 },
+          { minG: 9, maxG: 12 },
+        ]}
+        // activeGrade={{ minG: 6, maxG: 8 }}
         setActiveGrade={setActiveGrade}
       />
-      <CoursesCourses />
-      <CoursesDetails />
+      <CoursesCourses
+        courseGroups={courseGroups}
+        setActiveCourseG={setActiveCourseG}
+        activeCourseG={activeCourseG}
+      />
+      <CoursesDetails activeCourseG={activeCourseG} activeGrade={activeGrade} />
+      <CoursesDetailedList
+        courseGroups={activeCourseGroups}
+        activeCourseG={activeCourseG}
+        activeGrade={activeGrade}
+      />
       <CoursesBanner />
       <CoursesLearn />
       <CoursesInstructors />
@@ -551,7 +575,6 @@ const Courses = () => {
       <CoursesFaq />
       {/* <CoursesDrivingFuture /> */}
       {/* <CoursesList courses={courses.courses} /> */}
-      {/* <CoursesDetailedList courseGroups={activeCourseGroups} /> */}
     </div>
   );
 };

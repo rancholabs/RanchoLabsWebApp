@@ -2,11 +2,14 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import './css/index.css'
 import './css/Main.css'
-import { setDefaultHeader, updateHeader } from '../../Actions/Header'
+import { updateHeader } from '../../Actions/Header'
 import mobileimage from './img/mainmobile.png'
 import { useHistory } from 'react-router-dom'
 import { update, updateUserInfo } from '../../Actions/userAction'
 import { getStudent, updateStudent, updateStudentFreeEnroll } from '../../Actions/Student'
+import mainbg from './img/main.png'
+import mainbgmob from './img/mainbgmob.png'
+
 
 const mainContent = {
     "MainHeading": "Live coding classes for grades 6th to 12th",
@@ -68,6 +71,8 @@ function Content() {
 
     return (
         <div className="home main-content">
+            <img className="main-bg" src={mainbg} alt="bg"/>
+            <img className="main-bg-mob" src={mainbgmob} alt="mbg" />
             <div className="container">
                 <div className="row">
                     <div className="col-md-5">
@@ -76,7 +81,7 @@ function Content() {
 
                     </div>
                     <div className="col-md-7">
-                        <div className="mobile-img"><img src={mobileimage} className="img-fluid" /></div>
+                        {/* <div className="mobile-img"><img src={mobileimage} className="img-fluid" /></div> */}
                     </div>
                 </div>
                 <div className="buttons row mx-0">

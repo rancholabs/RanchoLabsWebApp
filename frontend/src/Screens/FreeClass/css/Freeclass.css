@@ -30,10 +30,10 @@
 .freeclass .freeclass-signup-form {
     margin-left: auto;
     margin-bottom: calc(52*0.9*var(--vp));
-    margin-top: -8vw;
+    margin-top: 0vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .freeclass .freeclass-signup-form form{
@@ -163,6 +163,7 @@ select:-webkit-autofill:focus{
 .freeclass p{
     color: #F0F0F2;
     margin-top: 1vw;
+    font-size: calc(22*var(--vp));
 }
 
 .freeclass a{
@@ -171,4 +172,185 @@ select:-webkit-autofill:focus{
 
 .freeclass a:hover{
     color: #3CFAFF !important;
+}
+
+@media(max-width:600px){
+    .freeclass{
+        background-color: #171636;
+        min-height: calc(100vh - 190*var(--vp));
+    }
+    
+    .freeclass .freeclass-content{
+        width: unset;
+        margin: auto;
+        margin-top: 3vw;
+    }
+    
+    .freeclass .freeclass-content .freeclass-title{
+        font-size: calc(22*var(--vm));
+        color: #F74B42;
+        text-align: center;
+        text-transform: capitalize;
+    }
+    
+    .freeclass .freeclass-content .freeclass-title .text-title{
+        background: linear-gradient(to top, #030224 50%, transparent 30%);
+    }
+    
+    .freeclass .freeclass-content .freeclass-desc{
+        width: calc(255*var(--vm));
+        color: #FFFFFF;
+        font-size: calc(15*var(--vm));
+        margin-top: calc(60*0.9*var(--vp));
+        text-align: center;
+    }
+    
+    .freeclass .freeclass-signup-form {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .freeclass .freeclass-signup-form form{
+        width: 90vw;
+        min-height: calc(980*0.9*var(--vp));
+        background-color: #030224;
+        margin-right: 0;
+        box-shadow:  calc(6*var(--vm)) calc(6*var(--vm)) 0 #3CFAFF;
+        text-align: center;
+        padding: 7vw 8vw;
+        margin-top: 10vw;
+        margin-bottom: 5vw;
+    }
+    
+    .freeclass .freeclass-signup-form form input{
+        width: unset;
+        height: unset;
+        padding: calc(10*var(--vm)) calc(10*var(--vm));
+        background-color: #171636;
+        font-weight: 300;
+        font-size: calc(15*var(--vm));
+        border: none;
+        outline: none;
+    }
+    
+    .freeclass .freeclass-signup-form form .input-icon{
+        align-self: center;
+        color: #FFFFFF;
+        opacity: 0.7;
+        width: calc(25*var(--vm));
+        font-size : calc(17*var(--vm));
+    }
+    
+    .freeclass .freeclass-signup-form form .p-name{
+        width: unset;
+        text-align: center;
+        margin: auto;
+        margin-bottom: calc(15*var(--vm));
+        background-color: #171636;
+        font-weight: 300;
+        font-size: calc(18*var(--vm));
+        padding-left: calc(5*var(--vm));
+    }
+    
+    .freeclass .freeclass-signup-form form select{
+        width: 100%;
+        height: auto;
+        padding: calc(10*var(--vm));
+        background-color: #171636;
+        font-weight: 300;
+        font-size: calc(15*var(--vm));
+        border: none;
+        color: rgba(255, 255, 255, 0.7);
+        outline: none;
+    }
+    
+    .freeclass .freeclass-signup-form form .p-split{
+        background-color: #030224;
+        justify-content: space-between;
+        width: auto;
+        margin: auto;
+        margin-bottom: calc(15*var(--vm));
+    }
+    
+    .freeclass .freeclass-signup-form form .p-split input:first-child{
+        width: calc(60*0.9*var(--vm));
+        margin-right: calc(7*var(--vm));
+        color: rgba(255, 255, 255, 0.699);
+        padding-right: 0.7vw;
+    }
+    
+    .freeclass .freeclass-signup-form form .p-split input{
+        width: calc(228*0.9*var(--vm));
+    }
+    
+    .freeclass .freeclass-signup-form form .freeclass-form-title{
+        color: #3CFAFF;
+        text-transform: capitalize;
+        font-size:calc(22*var(--vm));
+        line-height: inherit;
+        text-align: center;
+        padding-top: calc(62*0.9*var(--vp));
+        padding-bottom: calc(15*var(--vm));
+    }
+    
+    .freeclass .freeclass-signup-form form .hr{
+        border-bottom: calc(2*var(--vm)) solid #F74B42;
+        width: calc(80*var(--vm));
+        margin: auto;
+        margin-bottom: calc(25*var(--vm));
+    }
+    
+    .freeclass .freeclass-signup-form form button{
+        width: calc(140*var(--vm));
+        height: calc(33*var(--vm));
+        color: #FFFFFF;
+        border: calc(2*0.9*var(--vp)) solid #3CFAFF;
+        box-shadow: 0 calc(6*0.9*var(--vp)) calc(6*0.9*var(--vp)) #0000003D;
+        border-radius: calc(5*var(--vm));
+        background-color: transparent;
+        margin-top: calc(30*0.9*var(--vm));
+        font-size: calc(15*var(--vm));
+    }
+    
+    .freeclass .freeclass-signup-form form button:hover{
+        color: #030224;
+        background-color: #3CFAFF;
+    }
+    
+    .freeclass input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus{
+      -webkit-text-fill-color: #FFFFFF;
+      transition: background-color 5000s ease-in-out 0s;
+      outline: none !important;
+    }
+    
+    .freeclass input::placeholder{
+        color: #FFFFFF;
+        font-size: calc(15*var(--vm));
+        opacity: 0.7;
+        font-weight: 300;
+    }
+    
+    .freeclass p{
+        color: #F0F0F2;
+        margin-top: 5vw;
+        font-size: calc(15*var(--vm));
+    }
+    
+    .freeclass a{
+        color: #3CFAFF;
+    }
+    
+    .freeclass a:hover{
+        color: #3CFAFF !important;
+    }
 }

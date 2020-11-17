@@ -1,169 +1,114 @@
-/* .mySlides {display: none}
-img {vertical-align: middle;}
-
-Slideshow container
-.slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
-}
-
-Next & previous buttons
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-}
-
-Position the "next button" to the right
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-On hover, add a black background color with a little bit see-through
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
-}
-
-Caption text
-.text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-}
-
-Number text (1/3 etc)
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-The dots/bullets/indicators
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
-  background-color: #717171;
-}
-
-Fading animation
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@-webkit-keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-
-On smaller screens, decrease text size
-@media only screen and (max-width: 300px) {
-  .prev, .next,.text {font-size: 11px}
-} */
-
-
-.courses-testimonials{
-  background-color: #0E0234;
+.courses-testimonials {
+  background-color: #0e0234;
   margin: 0 !important;
-  padding: calc(106*var(--vp)) 0;
+  padding: calc(106 * var(--vp)) 0 1px 0;
 }
 
-.courses-testimonial{
-    height: calc(721*var(--vp));
-    width: calc(721*var(--vp));
-    background-color: #190A4D;
-    border-radius: calc(15*var(--vp));
-    padding: calc(53*var(--vp)) calc(48*var(--vp));
-    box-shadow: 0 calc(6*var(--vp)) calc(6*var(--vp)) #00000070;
-    text-align: center;
-}
-
-.courses-testimonial .testimonial-image{
-    border-bottom: calc(2.2*var(--vp)) solid #F74B42;
-    padding-bottom: calc(28.5*var(--vp));
-}
-
-.courses-testimonial .testimonial-image img{
-    width: calc(238*var(--vp));
-    height: calc(238*var(--vp));
-    border-radius: calc(238*var(--vp));
-    border: calc(12*var(--vp)) solid #F74B42;
-    padding: 1vw;
-}
-
-.testimonial-body .testimonial-desc{
-    font-size: calc(28*var(--vp));
-    color: #FFFFFF;
-    letter-spacing: calc(0.56*var(--vp));
-    text-align: left;
-    font-weight: 300;
-    line-height: normal;
-}
-
-.testimonial-body .testimonial-desc .desc-content{
-    padding-top: calc(80.5*var(--vp));
-}
-
-.courses-testimonial .testimonial-desc .quote{
-    font-size: calc(130*var(--vp));
-    color: #FFFFFF;
-    font-weight: 500;
-    height: calc(80*var(--vp));
-}
-
-.courses-testimonial .testimonial-name{
-    font-size: calc(22*var(--vp));
-    color: #F74B42;
-    margin-top: calc(39*var(--vp));
-    text-align: end;
-}
-
-.testimonials-title{
-  font-size: calc(48*var(--vp));
-  color: #3CFAFF;
-  letter-spacing: calc(2.4*var(--vp));
+.courses-testimonial {
+  /* height: calc(721 * var(--vp)); */
+  /* width: calc(721 * var(--vp)); */
+  height: 550px;
+  width: 550px;
+  background-color: #190a4d;
+  border-radius: calc(15 * var(--vp));
+  padding: calc(53 * var(--vp)) calc(48 * var(--vp));
+  box-shadow: 0 calc(6 * var(--vp)) calc(6 * var(--vp)) #00000070;
   text-align: center;
-  margin-bottom: calc(24*var(--vp));
+  display: inline-block;
+  margin: 0 calc(60 * var(--vp)) calc(100 * var(--vp));
 }
 
-.testimonials-subtitle{
-  font-size: calc(28*var(--vp));
-  color: #FFFFFF;
-  letter-spacing: calc(1.4*var(--vp));
-  width: calc(1277*var(--vp));
+.courses-testimonial .testimonial-image {
+  border-bottom: calc(2.2 * var(--vp)) solid #f74b42;
+  padding-bottom: calc(28.5 * var(--vp));
+}
+
+.courses-testimonial .testimonial-image img {
+  width: calc(238 * var(--vp)) !important;
+  height: calc(238 * var(--vp));
+  border-radius: calc(238 * var(--vp));
+  border: calc(12 * var(--vp)) solid #f74b42 !important;
+  padding: 1vw;
+}
+
+.testimonial-body .testimonial-desc {
+  font-size: calc(28 * var(--vp));
+  color: #ffffff;
+  letter-spacing: calc(0.56 * var(--vp));
+  text-align: left;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.testimonial-body .testimonial-desc .desc-content {
+  padding-top: calc(80.5 * var(--vp));
+}
+
+.courses-testimonial .testimonial-desc .quote {
+  font-size: calc(130 * var(--vp));
+  color: #ffffff;
+  font-weight: 500;
+  height: calc(80 * var(--vp));
+}
+
+.courses-testimonial .testimonial-name {
+  font-size: calc(22 * var(--vp));
+  color: #f74b42;
+  margin-top: calc(39 * var(--vp));
+  text-align: end;
+}
+
+.testimonials-title {
+  font-size: calc(48 * var(--vp));
+  color: #3cfaff;
+  letter-spacing: calc(2.4 * var(--vp));
   text-align: center;
-  margin: auto auto calc(90*var(--vp)) auto!important;
+  margin-bottom: calc(24 * var(--vp));
+}
+
+.testimonials-subtitle {
+  font-size: calc(28 * var(--vp));
+  color: #ffffff;
+  letter-spacing: calc(1.4 * var(--vp));
+  width: calc(1277 * var(--vp));
+  text-align: center;
+  margin: auto auto calc(90 * var(--vp)) auto !important;
+}
+
+.testimonial-row .carousel .control-dots .dot {
+  background: #ababab;
+  border-radius: 50%;
+  width: calc(19 * var(--vp));
+  height: calc(19 * var(--vp));
+  margin: 0 calc(12 * var(--vp));
+  opacity: 1;
+}
+
+.testimonial-row .carousel .control-dots .dot.selected {
+  background: #f74b42;
+  width: calc(19 * var(--vp));
+  height: calc(19 * var(--vp));
+  margin: 0 calc(12 * var(--vp));
+  outline: none;
+}
+
+.testimonial-row .carousel-status {
+  display: none;
+}
+
+.testimonial-row .carousel .control-arrow:before,
+.carousel.carousel-slider .control-arrow:before {
+  margin: 0 calc(83 * var(--vp)) !important;
+  display: inline-block !important;
+  border-top: calc(32 * var(--vp)) solid transparent !important;
+  border-bottom: calc(32 * var(--vp)) solid transparent !important;
+  content: "\f105";
+}
+
+.testimonial-row .carousel .control-next.control-arrow:before {
+  border-left: calc(32 * var(--vp)) solid #ffffff;
+}
+
+.testimonial-row .carousel .control-prev.control-arrow:before {
+  border-right: calc(32 * var(--vp)) solid #ffffff;
 }

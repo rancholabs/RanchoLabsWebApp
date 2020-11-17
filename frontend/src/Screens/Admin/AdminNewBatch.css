@@ -25,7 +25,7 @@
   flex-direction: column;
   /* justify-content: space-between; */
   align-items: flex-start;
-  flex: 0.3;
+  flex: 0.28;
 }
 
 .adminNewBatch__inputSection {
@@ -84,4 +84,61 @@
 
 .adminNewBatch__backBtn:hover {
   text-decoration: underline;
+}
+
+.adminNewBatch__searchBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f9f9f9;
+  border: none;
+  outline: none;
+  /* padding: 8px 12px; */
+  color: #333333;
+  width: 100%;
+}
+
+.adminNewBatch__searchBox .MuiAutocomplete-root {
+  width: 100%;
+}
+
+.adminNewBatch__searchBox .MuiTextField-root {
+  margin-top: 0;
+}
+
+.adminNewBatch__searchBox .MuiInput-underline::before,
+.adminNewBatch__searchBox .MuiInput-underline::after {
+  border: none !important;
+  outline: none !important;
+}
+
+.adminNewBatch__searchBox input {
+  padding: 4px 12px !important;
+}
+
+.adminNewBatch__searchBox input {
+  background-color: transparent;
+  border: none;
+  flex: 1;
+}
+
+.adminNewBatch__assignedInstructors__Tags {
+  margin-top: 20px;
+}
+
+.adminNewBatch__assignedInstructor {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.adminNewBatch__assignedInstructor h3 {
+  font-size: 14px;
+  font-weight: normal;
+  color: #707070;
+}
+
+.adminNewBatch__assignedInstructor__removeBtn {
+  cursor: pointer;
+  color: #8f8f8f;
 }

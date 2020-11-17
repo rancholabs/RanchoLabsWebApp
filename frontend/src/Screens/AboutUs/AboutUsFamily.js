@@ -91,7 +91,11 @@ const Family = () => {
             <div className="family-grid">
                 <div className="row mx-0">
                     {
-                        FamilyMembers.map(FamilyMeber)
+                        FamilyMembers.map((f) => {
+                            return(
+                                <FamilyMeber key={f.name} name={f.name} designation={f.designation} img={f.img} />
+                            )
+                        })
                     }
                 </div>
             </div>

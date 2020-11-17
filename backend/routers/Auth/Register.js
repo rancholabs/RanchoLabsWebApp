@@ -181,12 +181,10 @@ router.post("/facebook", async (req, res) => {
               .exec()
               .then(async (userM) => {
                 if (userM) {
-                  return res
-                    .status(500)
-                    .send({
-                      message: "Email already exists",
-                      emailExists: true,
-                    });
+                  return res.status(500).send({
+                    message: "Email already exists",
+                    emailExists: true,
+                  });
                 } else {
                   const userId = new mongoose.Types.ObjectId();
                   profilePic = await setProfilePic(userId, profilePic);
@@ -217,14 +215,12 @@ router.post("/facebook", async (req, res) => {
                           { expiresIn: 86400 }
                         );
 
-                        res
-                          .status(200)
-                          .send({
-                            auth: true,
-                            token: token,
-                            userName: user.name,
-                            role: user.role,
-                          });
+                        res.status(200).send({
+                          auth: true,
+                          token: token,
+                          userName: user.name,
+                          role: user.role,
+                        });
                       }
                     }
                   );

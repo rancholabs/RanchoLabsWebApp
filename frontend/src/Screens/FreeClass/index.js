@@ -216,60 +216,34 @@ const FreeClass = ({ location }) => {
                     <div className="input-icon">
                       <Fontawesome name="envelope" />
                     </div>
-                    <input
-                      type="text"
-                      name="email"
-                      placeholder="Student e-mail address"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
+                    <select
+                      value={grade}
+                      onChange={(e) => setGrade(e.value)}
+                      placeholder="select grade"
+                    >
+                      <option value="6" selected>
+                        6
+                      </option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                    </select>
+                    {message ? (
+                      <p style={{ color: "#70707A", marginBottom: "0" }}>
+                        {message}
+                      </p>
+                    ) : (
+                      setMessage
+                    )}
+                    <button onClick={submitHandler}>Sign Up</button>
+                    <p>
+                      Already Have an accout?<a href="/login"> Login </a> here
+                    </p>
                   </div>
                 </div>
-
-                <div className="p-split">
-                  <input
-                    list="pdialcodes"
-                    name="country-code"
-                    placeholder="+91"
-                    value={pdialcode}
-                    onChange={(e) => setPdialcode(e.target.value)}
-                    style={{ paddingLeft: "1vw" }}
-                  />
-                  <datalist id="pdialcodes">
-                    {codes.map((code) => (
-                      <option value={code.dial_code}> {code.name}</option>
-                    ))}
-                  </datalist>
-                  <input
-                    type="text"
-                    name="contact"
-                    placeholder="Phone number"
-                    value={contact}
-                    onChange={(e) => setContact(e.target.value)}
-                  />
-                </div>
-                <select value={grade} onChange={(e) => setGrade(e.value)}>
-                  <option value="6" selected>
-                    6
-                  </option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
-                </select>
-                {message ? (
-                  <p style={{ color: "#70707A", marginBottom: "0" }}>
-                    {message}
-                  </p>
-                ) : (
-                  setMessage
-                )}
-                <button onClick={submitHandler}>Sign Up</button>
-                <p>
-                  Already Have an accout?<a href="/login"> Login </a> here
-                </p>
               </form>
             </div>
           </div>

@@ -140,9 +140,22 @@ router.post(
         },
         {
           $lookup: {
-            from: "$StudentCourse",
-            localField: "_id",
-            foreignField: "batchId",
+            from: "studentcourses",
+            let: { batchId: "$_id" },
+            pipeline: [
+              {
+                $match: {
+                  $expr: {
+                    $eq: ["$batchId", "$$batchId"],
+                  },
+                },
+              },
+              {
+                $project: {
+                  userId: 1,
+                },
+              },
+            ],
             as: "students",
           },
         },
@@ -151,10 +164,43 @@ router.post(
             batch: "$name",
             startTime: "$classes.startTime",
             endTime: "$classes.endTime",
-            classId: "$classes._id",
+            classId: "$classes.classId",
             _id: 1,
             students: "$students",
             materials: "$classes.materials",
+          },
+        },
+        {
+          $match: {
+            batch: { $in: req.body.batch },
+          },
+        },
+        {
+          $lookup: {
+            from: "classes",
+            let: { classId: "$classId" },
+            pipeline: [
+              {
+                $match: {
+                  $expr: {
+                    $eq: ["$_id", "$$classId"],
+                  },
+                },
+              },
+              {
+                $project: {
+                  attendance: 1,
+                  classLink: 1,
+                },
+              },
+            ],
+            as: "classDetails",
+          },
+        },
+        {
+          $unwind: {
+            path: "$classDetails",
+            preserveNullAndEmptyArrays: true,
           },
         },
         {
@@ -165,9 +211,22 @@ router.post(
         },
         {
           $lookup: {
-            from: "User",
-            localField: "userId",
-            foreignField: "_id",
+            from: "users",
+            let: { userId: "$students.userId" },
+            pipeline: [
+              {
+                $match: {
+                  $expr: {
+                    $eq: ["$_id", "$$userId"],
+                  },
+                },
+              },
+              {
+                $project: {
+                  name: 1,
+                },
+              },
+            ],
             as: "students.details",
           },
         },
@@ -178,13 +237,8 @@ router.post(
             startTime: { $first: "$startTime" },
             endTime: { $first: "$endTime" },
             students: { $push: "$students" },
-            classId: { $first: "$classId" },
+            classDetails: { $first: "$classDetails" },
             materials: { $first: "$materials" },
-          },
-        },
-        {
-          $match: {
-            batch: { $in: req.body.batch },
           },
         },
         {
@@ -194,7 +248,45 @@ router.post(
         },
       ]);
 
+      let classes = classlist;
+
+      let getMergedDataClasses = (arr1, arr2) => {
+        let map = new Map();
+        arr2.forEach((item) => map.set(item.userId.toString(), item));
+        arr1.forEach((item) =>
+          map.set(item.userId.toString(), {
+            ...map.get(item.userId.toString()),
+            ...item,
+          })
+        );
+        return Array.from(map.values());
+      };
+      classes = classes.map((clas) => {
+        if (
+          clas.classDetails &&
+          clas.classDetails.attendance &&
+          clas.classDetails.attendance.length &&
+          clas.students &&
+          clas.students.every((s) => {
+            if (s.userId) return true;
+          })
+        ) {
+          clas.students = clas.students.map((s) => {
+            s.present = false;
+            return s;
+          });
+          clas.students = getMergedDataClasses(
+            clas.classDetails.attendance,
+            clas.students
+          );
+          delete clas.classDetails.attendance;
+        }
+        return clas;
+      });
+
       res.status(201).send({ classes: classlist });
+
+      // res.status(201).send({ classes: classlist });
     } catch (e) {
       console.log(e);
       res.status(400).send({ Error: e });

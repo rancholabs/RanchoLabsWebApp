@@ -74,7 +74,7 @@ const LogIn = () => {
 
             if(userInfo.role === "student")
             {
-                history.push('/dashboard')
+                history.push('/dashboard?mode=login')
             }
             else if(userInfo.role === "instructor"){
                 history.push('/instructor/schedule') 
