@@ -114,7 +114,7 @@
     position: absolute;
 }
 
-@media(max-width:767px){
+@media(max-width:600px){
     .aboutus-thoughtprocess{
         background-color: #171636;
     }
@@ -184,11 +184,11 @@
     }
 
     .aboutus-thoughtprocess .mtp-item:nth-child(1) .c-line{
-        height: calc(245 * var(--vm));
+        height: calc(214 * var(--vm));
     }
 
     .aboutus-thoughtprocess .mtp-item:nth-child(2) .c-line{
-        height: calc(363 * var(--vm));
+        height: calc(298 * var(--vm));
     }
     
     .aboutus-thoughtprocess .c-circle{

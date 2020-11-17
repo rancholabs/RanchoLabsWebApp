@@ -60,7 +60,7 @@ const Banner = () =>{
                     <div className="redeem-button text-center">
                         <a><button>Redeem now</button></a>
                     </div> }
-                    {(student && !student.freeEnrollment.freeClass.enrolled) &&
+                    {(student && student.freeEnrollment && !student.freeEnrollment.freeClass.enrolled) &&
                     <div className="redeem-button text-center">
                         <a><button onClick={freeClassHandler}>FREE CLASS</button></a>
                     </div> }

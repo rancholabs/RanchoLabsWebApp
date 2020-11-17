@@ -187,7 +187,7 @@
     height: calc(18*var(--vm));
     border-radius: calc(18*var(--vm));
     float: right;
-    transform: translateX(50%);
+    transform: translateX(47%);
     align-items: center;
     background-color: #FFFFFF;
 }

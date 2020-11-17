@@ -145,7 +145,10 @@ const SideNav = ({navCloseHandler}) => {
                 </div>
             </div>
             <div className="side-nav-links" ref= {sideNavLinks}>
-                {!userInfo && (<SignupFreeWorkshop onclickHandler={()=> {history.push('/freeclass?loginfor=freeclass')}} />)}
+                {!userInfo && (<SignupFreeWorkshop onclickHandler={()=> {
+                    history.push('/freeclass?loginfor=freeclass')
+                    navCloseHandler()
+                    }} />)}
                 <div className="sub-links">
                     {
                         subLinks.map(({display, link}, si) => {

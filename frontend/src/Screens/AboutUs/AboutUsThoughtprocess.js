@@ -57,7 +57,7 @@ const MTpitem = (props) =>{
             <div className="col mtp-item-info pr-0">
                 <div className="mtp-item-image"><img src={props.img} alt={props.title} className="img-fluid"></img></div>
                 <div className="mtp-item-title">{props.title}</div>
-                <div className="mtp-item-desc"><span style={{fontStyle:"italic"}}>{props.quote}</span> <br/>{props.desc}</div>
+                <div className="mtp-item-desc"><span style={{fontStyle:"italic"}}>{props.quote}</span> <br/>{props.mdesc}</div>
             </div>
         </div>
     )
