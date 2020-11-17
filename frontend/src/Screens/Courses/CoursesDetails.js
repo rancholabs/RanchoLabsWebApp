@@ -155,7 +155,7 @@ const MStepCards = ({ activeCourseG }) => {
             </div>
           </div>
           <div className="step-cards col mx-0">
-            {activeCourseG?.journey.map(Mstepcard)}
+            {activeCourseG?.journey?.map(Mstepcard)}
           </div>
         </div>
       </div>
