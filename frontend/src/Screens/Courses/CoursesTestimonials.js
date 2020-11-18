@@ -37,28 +37,28 @@ const CoursesTestimonials = () => {
   return (
     <>
       <div className="courses-testimonials">
-        <div className="testimonials-title">Parents and Students Love Us</div>
+        <div className="testimonials-title">What Parents and Students say</div>
         <div className="testimonials-subtitle">
-          More than 8000 parents have trusted us. It's your turn now. Hear from
-          our happy students and parents. Learn about their experience with us.
+          We have earned the trust of more than 8000 parents who believed in us
+          for their children’s education.
         </div>
 
         <div className="testimonial-row">
           <Carousel infiniteLoop useKeyboardArrows>
             <div>
-              <Testimonial />
-              <Testimonial />
-            </div>
-            <div>
-              <Testimonial />
+              {window.innerWidth > 600 && <Testimonial />}
               <Testimonial />
             </div>
             <div>
-              <Testimonial />
+              {window.innerWidth > 600 && <Testimonial />}
               <Testimonial />
             </div>
             <div>
+              {window.innerWidth > 600 && <Testimonial />}
               <Testimonial />
+            </div>
+            <div>
+              {window.innerWidth > 600 && <Testimonial />}
               <Testimonial />
             </div>
           </Carousel>

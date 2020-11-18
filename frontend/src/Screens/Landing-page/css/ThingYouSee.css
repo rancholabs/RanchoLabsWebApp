@@ -104,7 +104,6 @@
 .things .carousel .control-arrow:before, .carousel.carousel-slider .control-arrow:before{
     border-top: calc(12*var(--vp)) solid transparent !important;
     border-bottom: calc(12*var(--vp)) solid transparent !important;
-    content: '\f105';
 }
 
 

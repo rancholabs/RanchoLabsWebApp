@@ -1,10 +1,12 @@
 .courses-instructors {
   background-color: #020122;
-  padding-top: calc(126.98 * var(--vp));
+  padding-top: calc(80 * var(--vp));
 }
 
 .courses-instructors .row {
   justify-content: space-between;
+  width: 90%;
+  margin: 20px auto 0 auto !important;
 }
 
 .courses-instructors-title {
@@ -12,6 +14,8 @@
   color: #3cfaff;
   letter-spacing: calc(2.4 * var(--vp));
   text-align: center;
+  margin-top: 20px;
+  padding-bottom: calc(80 * var(--vp));
 }
 
 .courses-instructors-subtitle {
@@ -40,8 +44,9 @@
 }
 
 .courses-instructors .instructor .instructor-pic img {
-  width: calc(381 * var(--vp));
-  height: 100%;
+  /* width: calc(381 * var(--vp)); */
+  /* height: 100%; */
+  width: 100%;
 }
 
 .courses-instructors .instructor .instructor-name {
@@ -199,5 +204,58 @@
 
   .mobile-instructors {
     display: block;
+    margin-top: 40px;
+  }
+
+  .mobile-instructors .instructor {
+    width: 70%;
+    height: unset;
+    margin: 0 auto;
+  }
+
+  .mobile-instructors .instructor .instructor-pic {
+    width: 100%;
+    height: unset;
+  }
+
+  .mobile-instructors .instructor .instructor-pic img {
+    width: 90%;
+  }
+
+  .mobile-instructors .instructor .instructor-name {
+    font-size: calc(138 * var(--vp));
+    text-align: left;
+    height: unset;
+  }
+  .mobile-instructors .instructor-details {
+    font-size: calc(80 * var(--vp));
+    text-align: left;
+    height: unset;
+  }
+  .mobile-instructors .instructor-info {
+    height: unset;
+  }
+  .mobile-instructors .instructor hr {
+    border-width: 3px;
+    width: calc(200 * var(--vp));
+  }
+  .mobile-instructors .carousel .slider-wrapper {
+    margin-bottom: 50px;
+  }
+  .mobile-instructors .carousel .control-dots .selected {
+    background-color: #f74b42;
+  }
+  .mobile-instructors .carousel .control-arrow {
+    top: unset !important;
+    bottom: -18px !important;
+  }
+  .mobile-instructors .carousel .control-next {
+    right: 0 !important;
+  }
+  .mobile-instructors .carousel .control-prev {
+    left: 0 !important;
+  }
+  .mobile-instructors .carousel .carousel-status {
+    display: none;
   }
 }

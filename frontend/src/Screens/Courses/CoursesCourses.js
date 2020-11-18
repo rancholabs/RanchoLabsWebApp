@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./css/CoursesCourses.css";
 import robotics from "./img/robotics2.png";
 import ai from "./img/ai2.png";
@@ -6,6 +6,8 @@ import programming from "./img/programming2.png";
 import recommended from "./img/recommended.png";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
 const Courses = [
   {
@@ -22,6 +24,31 @@ const Courses = [
     name: "Artificial Intelligence",
     class: "active",
     image: ai,
+  },
+  {
+    name: "Programming",
+    class: "",
+    image: programming,
+  },
+  {
+    name: "Programming",
+    class: "",
+    image: programming,
+  },
+  {
+    name: "Programming",
+    class: "",
+    image: programming,
+  },
+  {
+    name: "Programming",
+    class: "",
+    image: programming,
+  },
+  {
+    name: "Programming",
+    class: "",
+    image: programming,
   },
   {
     name: "Programming",
@@ -53,6 +80,24 @@ const CourseCard = (props, index) => {
 };
 
 const CoursesCourses = ({ courseGroups, activeCourseG, setActiveCourseG }) => {
+  const [showCenteredMode, setShowCenteredMode] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth < 500) setShowCenteredMode(true);
+    else setShowCenteredMode(false);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth < 500) setShowCenteredMode(true);
+      else setShowCenteredMode(false);
+    });
+
+    return () => {
+      window.removeEventListener("resize", () => {});
+    };
+  }, [showCenteredMode]);
+
   const handleActiveCourses = (course) => {
     setActiveCourseG(course);
   };
@@ -64,17 +109,37 @@ const CoursesCourses = ({ courseGroups, activeCourseG, setActiveCourseG }) => {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3,
+      items: 4,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2,
+      items: 3,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
       items: 1,
     },
   };
+
+  console.log(showCenteredMode);
+
+  const CustomLeft = ({ onClick }) => (
+    <button
+      className="course-carousel-icon-button course-carousel-icon-left"
+      onClick={onClick}
+    >
+      <ArrowBackIcon className="course-carousel-icon" />
+    </button>
+  );
+
+  const CustomRight = ({ onClick }) => (
+    <button
+      className="course-carousel-icon-button course-carousel-icon-right"
+      onClick={onClick}
+    >
+      <ArrowForwardIcon className="course-carousel-icon" />
+    </button>
+  );
 
   return (
     <>
@@ -83,13 +148,16 @@ const CoursesCourses = ({ courseGroups, activeCourseG, setActiveCourseG }) => {
       <Carousel
         swipeable={false}
         draggable={false}
-        showDots={true}
+        // showDots={true}
         responsive={responsive}
-        // infinite={true}
+        infinite={true}
         // autoPlay={true}
         // autoPlaySpeed={2500}
-        centerMode
+        centerMode={showCenteredMode}
+        customLeftArrow={showCenteredMode && <CustomLeft />}
+        customRightArrow={showCenteredMode && <CustomRight />}
         // keyBoardControl={true}
+        className="courses-courses-carousel"
       >
         {courseGroups.map((course, index) => {
           return (

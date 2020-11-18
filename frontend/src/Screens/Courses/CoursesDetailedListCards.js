@@ -148,7 +148,13 @@ const CoursesDetailedListCards = ({ coursesDetails }) => {
     <>
       <div className="courses-detailed-list-cards">
         {window.screen.width <= 600 ? (
-          <Carousel showThumbs={false} infiniteLoop useKeyboardArrows>
+          <Carousel
+            showThumbs={false}
+            infiniteLoop
+            useKeyboardArrows
+            showArrows
+            showIndicators
+          >
             {coursesDetails.map((courseDetails, ci) => {
               return (
                 <CoursesDetailedListCardItem
@@ -175,8 +181,7 @@ const CoursesDetailedListCards = ({ coursesDetails }) => {
         <span className="dollar">
           <Fontawesome name="dollar" />
         </span>
-        &nbsp; 100% Refund for unused classes, if you are not satisfied, no
-        lock-ins
+        &nbsp; 100% refund for unused classes, no questions asked.
       </div>
     </>
   );

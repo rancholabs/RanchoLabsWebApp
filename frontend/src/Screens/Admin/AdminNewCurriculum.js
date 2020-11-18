@@ -51,34 +51,36 @@ function AdminNewCurriculum() {
       },
     };
 
-    axios
-      .post("/api/course/group", body, config)
-      .then((res) => console.log(res.data));
+    // axios
+    //   .post("/api/course/group", body, config)
+    //   .then((res) => console.log(res.data));
 
-    // let bodyFormData = new FormData();
+    let bodyFormData = new FormData();
 
-    // bodyFormData.append("categoryImage", categoryImage);
+    bodyFormData.append("files[]", categoryImage);
 
-    // journey.forEach((jour, index) => {
-    //   bodyFormData.append("journeyImage" + index, jour.image);
-    // });
+    journey.forEach((jour, index) => {
+      bodyFormData.append("files[]", jour.image);
+    });
 
-    // axios({
-    //   method: "post",
-    //   url: "/api/file",
-    //   data: bodyFormData,
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //     authorization: token,
-    //   },
-    // })
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   })
-    //   .catch((err) => {
-    //     //handle error
-    //     console.log(err);
-    //   });
+    console.log(bodyFormData.getAll("files[]"));
+
+    axios({
+      method: "post",
+      url: "/api/file/multiple",
+      data: bodyFormData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        authorization: token,
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        //handle error
+        console.log(err);
+      });
   };
 
   const handleCategoryimageUpload = (e) => {

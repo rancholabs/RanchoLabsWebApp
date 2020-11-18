@@ -109,17 +109,17 @@
 
 @media all and (max-width: 600px) {
   .courses-detailed-lists {
-    padding-top: calc(24 * var(--vm));
+    /* padding: calc(20 * var(--vm)) calc(30 * var(--vm)); */
     /* padding-bottom: calc(78 * var(--vm)); */
   }
 
   .courses-detailed-list {
-    padding-left: calc(15.5 * var(--vm));
-    padding-right: calc(15.5 * var(--vm));
+    /* padding-left: calc(15.5 * var(--vm));
+    padding-right: calc(15.5 * var(--vm)); */
   }
 
   .courses-detailed-lists > div:not(:first-child) {
-    padding-top: calc(60 * var(--vm));
+    /* padding-top: calc(60 * var(--vm)); */
   }
 
   .courses-detailed-list > .courses-items {

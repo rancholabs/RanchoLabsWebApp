@@ -1,10 +1,12 @@
 .courses-grade {
   padding-top: calc(100 * var(--vp));
   padding-bottom: calc(100 * var(--vp));
-  margin-left: calc(43 * var(--vp));
+  /* margin-left: calc(43 * var(--vp)); */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .courses-grade > .title {
@@ -63,9 +65,9 @@
 
 @media all and (max-width: 600px) {
   .courses-grade {
-    padding-top: calc(70 * var(--vm));
-    padding-bottom: calc(24 * var(--vm));
-    padding-left: calc(24 * var(--vm));
+    /* padding-top: calc(70 * var(--vm)); */
+    /* padding-bottom: calc(24 * var(--vm)); */
+    /* padding-left: calc(24 * var(--vm)); */
     flex-direction: column;
   }
 

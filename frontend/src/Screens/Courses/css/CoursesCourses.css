@@ -10,8 +10,18 @@
   /* margin-bottom: 40px; */
 }
 
+.courses-courses-carousel {
+  width: 90%;
+  margin: 0 auto 40px auto;
+}
+
 .courses-course-card {
-  max-width: 300px;
+  /* max-width: 400px; */
+  filter: brightness(0.5);
+}
+
+.courses-course-card.active {
+  filter: brightness(1);
 }
 
 .courses-course-card button {
@@ -49,6 +59,28 @@
 .course-name-line {
   display: flex;
   flex-direction: column;
+}
+
+.course-carousel-icon-button {
+  background: transparent;
+  border: 0;
+  color: white;
+  /* font-size: 100px; */
+  position: absolute;
+}
+
+.course-carousel-icon {
+  font-size: 50px !important;
+}
+
+.course-carousel-icon-left {
+  left: 0;
+  top: 25%;
+}
+
+.course-carousel-icon-right {
+  right: 0;
+  top: 25%;
 }
 
 @media all and (max-width: 600px) {

@@ -126,10 +126,10 @@ function StudentProjects() {
 
   return (
     <div className="courses-projects">
-      <div className="projects-title">CHECK OUT OUR STUDENT PROJECTS</div>
+      <div className="projects-title">Check out our Students’ Projects</div>
       <div className="projects-description">
-        Students with determination and enthusiasm with a pinch of learning and
-        guidance come up with some great innovations at Rancho Labs.
+        Eager and enthusiastic students with a pinch of right guidance innovate
+        great projects at Rancho Labs
       </div>
       {/* <div className="project-row" id="p-row">
                 {

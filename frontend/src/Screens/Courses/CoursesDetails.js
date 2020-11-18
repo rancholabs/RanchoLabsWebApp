@@ -167,7 +167,7 @@ const Stepcard = (props) => {
   return (
     <div className="step-card">
       <div className="step-card-img">
-        <img src={props.image} className="img-fluid" />
+        <img src={Workshop} className="img-fluid" />
       </div>
       <div className="step-card-title">{props.topic}</div>
     </div>

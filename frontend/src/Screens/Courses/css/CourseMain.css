@@ -1,22 +1,34 @@
 .coursepage-main {
-  margin: auto;
+  display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 calc(102 * var(--vp)) 0 calc(152 * var(--vp));
+  /* padding: 0 calc(102 * var(--vp)) 0 calc(152 * var(--vp)); */
+  width: 90%;
+  margin: 0 auto !important;
+}
+
+.course-main-text {
+  width: 50%;
+}
+
+.course-main-illustrations {
+  width: 50%;
 }
 
 .course-main-text .course-main-title {
   font-size: calc(60 * var(--vp));
   color: #3cfaff;
-  font-weight: normal;
-  width: calc(808 * var(--vp));
+  font-weight: lighter;
+  width: 80%;
+  /* width: calc(808 * var(--vp)); */
 }
 
 .course-main-text .course-main-desc {
-  font-size: calc(28 * var(--vp));
+  font-size: calc(24 * var(--vp));
   color: #ffffff;
   font-weight: normal;
-  width: calc(750 * var(--vp));
+  width: 80%;
+  /* width: calc(750 * var(--vp)); */
 }
 
 .course-main-text hr {
@@ -27,74 +39,111 @@
 }
 
 .course-main-illustrations .row {
-  justify-content: space-around;
-  font-size: calc(28 * var(--vp));
+  display: flex;
+  justify-content: space-between;
+  /* font-size: calc(28 * var(--vp)); */
   color: #3cfaff;
-  font-weight: normal;
-  width: calc(800 * var(--vp));
+  /* width: calc(800 * var(--vp)); */
+  width: 90%;
 }
 
-.course-main-illustrations img {
+.course-illustration-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* background-color: green; */
+  width: 48%;
+  margin-bottom: 20px;
+}
+
+.course-illustration-section h3 {
+  font-weight: lighter;
+  font-size: calc(24 * var(--vp));
+  text-align: center;
+  width: 100%;
+}
+
+.course-illustration-section img {
+  width: 80%;
+  object-fit: contain;
+}
+
+/* .course-main-illustrations img {
   width: calc(270 * var(--vp));
-}
+} */
 
-.course-main-image {
+/* .course-main-image {
   padding-top: calc(50 * var(--vp));
   padding-bottom: calc(70 * var(--vp));
   text-align: center;
-}
+} */
 
 @media (max-width: 600px) {
   .coursepage-main {
-    margin: auto;
+    /* margin: auto;
     align-items: center;
     justify-content: space-between;
     padding: calc(34 * var(--vm)) calc(102 * var(--vp)) calc(37 * var(--vm))
-      calc(152 * var(--vp));
+      calc(152 * var(--vp)); */
+    flex-direction: column;
+    /* background-color: red; */
+  }
+
+  .course-main-text {
+    width: 90%;
+    margin-top: 20px;
+  }
+
+  .course-main-illustrations {
+    width: 90%;
   }
 
   .course-main-text .course-main-title {
     font-size: calc(24 * var(--vm));
-    color: #3cfaff;
-    font-weight: normal;
     width: unset;
   }
 
   .course-main-text .course-main-desc {
     font-size: calc(13 * var(--vm));
-    letter-spacing: calc(0.2 * var(--vm));
-    color: #ffffff;
-    font-weight: normal;
     width: unset;
-    padding-bottom: (20 * var(--vm));
+    /* padding-bottom: (20 * var(--vm)); */
   }
 
   .course-main-text hr {
-    border-color: #f74b42;
     width: calc(60 * var(--vm));
     margin: calc(24.5 * var(--vm)) auto calc(24.5 * var(--vm)) 0;
     border-width: calc(2 * var(--vm));
   }
 
+  .course-illustration-section h3 {
+    font-size: calc(13 * var(--vm));
+  }
+
+  .course-illustration-section img {
+    width: 100%;
+  }
+
   .course-main-illustrations .row {
-    justify-content: space-around;
+    /* justify-content: space-around;
     font-size: calc(15 * var(--vm));
     letter-spacing: calc(0.75 * var(--vm));
     color: #3cfaff;
     font-weight: normal;
-    width: calc(286 * var(--vm));
+    width: calc(286 * var(--vm)); */
+    width: 100%;
   }
 
   .course-main-illustrations img {
-    width: calc(106 * var(--vm));
-    padding-top: calc(20 * var(--vm));
+    /* width: calc(106 * var(--vm));
+    padding-top: calc(20 * var(--vm)); */
   }
 
   .course-main-image {
-    padding-top: calc(20 * var(--vm));
+    /* padding-top: calc(20 * var(--vm));
     padding-bottom: calc(70 * var(--vp));
     text-align: center;
     width: calc(80 * var(--vm));
-    margin: auto;
+    margin: auto; */
   }
 }
