@@ -4,7 +4,11 @@ import iitd from "./img/iitd.png";
 import google from "./img/google.png";
 import programming from "./img/instructor.png";
 import calendar from "./img/calendar.png";
-import { Carousel } from "react-responsive-carousel";
+// import { Carousel } from "react-responsive-carousel";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
 const instructors = [
   {
@@ -64,6 +68,43 @@ const InstructorCard = (props) => {
 };
 
 const CourseInstructors = () => {
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 3,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
+
+  const CustomLeft = ({ onClick }) => (
+    <button
+      className="course-carousel-icon-button course-carousel-icon-left"
+      onClick={onClick}
+    >
+      <ArrowBackIcon className="course-carousel-icon" />
+    </button>
+  );
+
+  const CustomRight = ({ onClick }) => (
+    <button
+      className="course-carousel-icon-button course-carousel-icon-right"
+      onClick={onClick}
+    >
+      <ArrowForwardIcon className="course-carousel-icon" />
+    </button>
+  );
+
   return (
     <>
       <div className="courses-instructors">
@@ -87,11 +128,18 @@ const CourseInstructors = () => {
         </div>
         <div className="mobile-instructors">
           <Carousel
-            showThumbs={false}
-            infiniteLoop
-            useKeyboardArrows
-            showArrows
-            showIndicators
+            swipeable={false}
+            draggable={false}
+            showDots={true}
+            responsive={responsive}
+            infinite={true}
+            // autoPlay={true}
+            // autoPlaySpeed={2500}
+            // centerMode={showCenteredMode}
+            customLeftArrow={<CustomLeft />}
+            customRightArrow={<CustomRight />}
+            // keyBoardControl={true}
+            className="courses-instructor-carousel"
           >
             {instructors.map((i) => {
               return (
@@ -108,7 +156,7 @@ const CourseInstructors = () => {
           </Carousel>
         </div>
         <div className="text-center">
-          <button>
+          <button className="course-instructor-bookfreeclass-btn">
             <img src={calendar} alt="freeclass" />
             Book a free class now
           </button>

@@ -88,7 +88,7 @@
   height: calc(42 * var(--vp));
 }
 
-.courses-instructors button {
+.course-instructor-bookfreeclass-btn {
   background-color: #f74b42;
   font-size: calc(33 * var(--vp));
   letter-spacing: calc(1.1 * var(--vp));
@@ -101,7 +101,7 @@
   margin: 60px 0;
 }
 
-.courses-instructors button img {
+.course-instructor-bookfreeclass-btn img {
   margin-right: calc(30 * var(--vp));
   width: calc(36 * var(--vp));
 }
@@ -193,7 +193,7 @@
     text-align: center;
     margin-bottom: calc(86 * var(--vp));
   }
-  .courses-instructors button {
+  .course-instructor-bookfreeclass-btn {
     background-color: #f74b42;
     font-size: calc(15 * var(--vm));
     letter-spacing: 0;
@@ -206,18 +206,18 @@
     margin: calc(111 * var(--vp)) 0 calc(108 * var(--vp));
   }
 
-  .courses-instructors button img {
+  .course-instructor-bookfreeclass-btn img {
     margin-right: calc(10 * var(--vm));
     width: calc(18 * var(--vm));
   }
 
   .mobile-instructors {
     display: block;
-    margin-top: 40px;
+    margin-top: 20px;
   }
 
   .mobile-instructors .instructor {
-    width: 70%;
+    width: 90%;
     height: unset;
     margin: 0 auto;
   }
@@ -248,23 +248,41 @@
     border-width: 3px;
     width: calc(200 * var(--vp));
   }
-  .mobile-instructors .carousel .slider-wrapper {
-    margin-bottom: 50px;
+  .mobile-instructors .react-multi-carousel-track {
+    margin-bottom: 60px;
   }
-  .mobile-instructors .carousel .control-dots .selected {
+  .mobile-instructors .courses-instructor-carousel {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .mobile-instructors .react-multi-carousel-dot-list {
+    bottom: 16px;
+  }
+  .mobile-instructors .react-multi-carousel-dot-list li button {
+    width: 10px !important;
+    height: 10px !important;
+    background-color: #ffffff;
+    border-color: #ffffff;
+  }
+  .mobile-instructors
+    .react-multi-carousel-dot-list
+    .react-multi-carousel-dot--active
+    button {
     background-color: #f74b42;
+    border-color: #f74b42;
   }
-  .mobile-instructors .carousel .control-arrow {
+  .mobile-instructors .course-carousel-icon-left {
     top: unset !important;
-    bottom: -18px !important;
+    bottom: 10px !important;
+    z-index: 2;
   }
-  .mobile-instructors .carousel .control-next {
-    right: 0 !important;
+  .mobile-instructors .course-carousel-icon-right {
+    top: unset !important;
+    bottom: 10px !important;
+    z-index: 2;
+    /* right: ; */
   }
-  .mobile-instructors .carousel .control-prev {
-    left: 0 !important;
-  }
-  .mobile-instructors .carousel .carousel-status {
-    display: none;
+  .mobile-instructors .react-multi-carousel-list {
+    /* overflow: unset; */
   }
 }

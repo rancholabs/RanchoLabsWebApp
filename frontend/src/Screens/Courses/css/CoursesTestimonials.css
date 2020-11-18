@@ -63,7 +63,8 @@
   color: #3cfaff;
   letter-spacing: calc(2.4 * var(--vp));
   text-align: center;
-  margin-bottom: calc(24 * var(--vp));
+  margin-bottom: 20px;
+  margin-top: 40px;
 }
 
 .testimonials-subtitle {
@@ -118,17 +119,22 @@
     height: unset;
     width: 70%;
     margin: 0 auto;
+    display: block;
   }
   .testimonials-title {
     font-size: calc(108 * var(--vp));
   }
 
   .testimonials-subtitle {
-    font-size: calc(88 * var(--vp));
+    font-size: calc(70 * var(--vp));
     width: 80%;
+    margin-bottom: 40px;
+  }
+  .testimonial-row {
+    margin-top: 35px;
   }
   .courses-testimonial .testimonial-image img {
-    width: 40%;
+    width: 40% !important;
     height: unset;
     object-fit: contain;
     margin: 10px 0;
@@ -143,20 +149,45 @@
     text-align: center;
     margin: 10px 0;
   }
-  .courses-testimonials .carousel .slider-wrapper {
+  .courses-testimonials .react-multi-carousel-track {
     margin-bottom: 60px;
   }
-  .courses-testimonials .carousel .control-dots .selected {
+  .courses-testimonials .courses-testimonials-carousel {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .courses-testimonials .react-multi-carousel-dot-list {
+    bottom: 16px;
+  }
+  .courses-testimonials .react-multi-carousel-dot-list li button {
+    width: 10px !important;
+    height: 10px !important;
+    background-color: #fff;
+    border-color: #fff;
+  }
+  .courses-testimonials
+    .react-multi-carousel-dot-list
+    .react-multi-carousel-dot--active
+    button {
     background-color: #f74b42;
+    border-color: #f74b42;
   }
-  .courses-testimonials .carousel .control-arrow {
+  .courses-testimonials .course-carousel-icon-left {
     top: unset !important;
-    bottom: 0 !important;
+    bottom: 50% !important;
+    z-index: 2;
   }
-  .courses-testimonials .carousel .control-next {
-    right: 100px !important;
+  /* .courses-testimonials .course-carousel-icon-left svg,
+  .courses-testimonials .course-carousel-icon-right svg {
+    font-size: 36px !important;
+  } */
+  .courses-testimonials .course-carousel-icon-right {
+    top: unset !important;
+    bottom: 50% !important;
+    z-index: 2;
+    /* right: ; */
   }
-  .courses-testimonials .carousel .control-prev {
-    left: 100px !important;
+  .testimonial-body .testimonial-desc .desc-content {
+    text-align: center;
   }
 }

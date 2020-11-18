@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./css/CoursesTestimonials.css";
 import ai from "./img/ai.png";
-import { Carousel } from "react-responsive-carousel";
+// import { Carousel } from "react-responsive-carousel";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
 const Testimonial = () => {
   return (
@@ -34,6 +38,42 @@ const Testimonial = () => {
 };
 
 const CoursesTestimonials = () => {
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 3,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
+
+  const CustomLeft = ({ onClick }) => (
+    <button
+      className="course-carousel-icon-button course-carousel-icon-left"
+      onClick={onClick}
+    >
+      <ArrowBackIcon className="course-carousel-icon" />
+    </button>
+  );
+
+  const CustomRight = ({ onClick }) => (
+    <button
+      className="course-carousel-icon-button course-carousel-icon-right"
+      onClick={onClick}
+    >
+      <ArrowForwardIcon className="course-carousel-icon" />
+    </button>
+  );
   return (
     <>
       <div className="courses-testimonials">
@@ -44,23 +84,25 @@ const CoursesTestimonials = () => {
         </div>
 
         <div className="testimonial-row">
-          <Carousel infiniteLoop useKeyboardArrows>
-            <div>
-              {window.innerWidth > 600 && <Testimonial />}
-              <Testimonial />
-            </div>
-            <div>
-              {window.innerWidth > 600 && <Testimonial />}
-              <Testimonial />
-            </div>
-            <div>
-              {window.innerWidth > 600 && <Testimonial />}
-              <Testimonial />
-            </div>
-            <div>
-              {window.innerWidth > 600 && <Testimonial />}
-              <Testimonial />
-            </div>
+          <Carousel
+            swipeable={false}
+            draggable={false}
+            showDots={true}
+            responsive={responsive}
+            infinite={true}
+            // autoPlay={true}
+            // autoPlaySpeed={2500}
+            // centerMode={showCenteredMode}
+            customLeftArrow={<CustomLeft />}
+            customRightArrow={<CustomRight />}
+            // keyBoardControl={true}
+            className="courses-testimonials-carousel"
+          >
+            <Testimonial />
+            <Testimonial />
+            <Testimonial />
+            <Testimonial />
+            <Testimonial />
           </Carousel>
         </div>
       </div>

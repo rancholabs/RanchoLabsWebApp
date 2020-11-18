@@ -17,6 +17,8 @@ import $ from "jquery";
 // import { Carousel } from "react-responsive-carousel";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
 const projects = [
   {
@@ -70,22 +72,20 @@ const projects = [
 
 function ProjectCard(project) {
   return (
-    <div>
-      <div className="card">
-        <div className="card-img">
-          <img src={project.image} className="img-fluid"></img>
-        </div>
-        <div className="project-student">
-          <img src={project.studentimg} className="img-fluid"></img>
-        </div>
-        <div className="card-body">
-          <div className="project-cat">{project.category}</div>
-          <div className="project-title">{project.title}</div>
-          <div className="reveal">
-            <div className="project-subtitle">{project.subtitle}</div>
-            <div className="student-info" style={{ verticalAlign: "baseline" }}>
-              {project.studentname}
-            </div>
+    <div className="card">
+      <div className="card-img">
+        <img src={project.image} className="img-fluid"></img>
+      </div>
+      <div className="project-student">
+        <img src={project.studentimg} className="img-fluid"></img>
+      </div>
+      <div className="card-body">
+        <div className="project-cat">{project.category}</div>
+        <div className="project-title">{project.title}</div>
+        <div className="reveal">
+          <div className="project-subtitle">{project.subtitle}</div>
+          <div className="student-info" style={{ verticalAlign: "baseline" }}>
+            {project.studentname}
           </div>
         </div>
       </div>
@@ -104,7 +104,6 @@ function StudentProjects() {
     var e = document.getElementById("p-row");
     // e.scrollBy(10,0)
   }
-
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -112,17 +111,35 @@ function StudentProjects() {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3,
+      items: 4,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2,
+      items: 3,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
       items: 1,
     },
   };
+
+  const CustomLeft = ({ onClick }) => (
+    <button
+      className="course-carousel-icon-button course-carousel-icon-left"
+      onClick={onClick}
+    >
+      <ArrowBackIcon className="course-carousel-icon" />
+    </button>
+  );
+
+  const CustomRight = ({ onClick }) => (
+    <button
+      className="course-carousel-icon-button course-carousel-icon-right"
+      onClick={onClick}
+    >
+      <ArrowForwardIcon className="course-carousel-icon" />
+    </button>
+  );
 
   return (
     <div className="courses-projects">
@@ -143,10 +160,13 @@ function StudentProjects() {
           showDots={true}
           responsive={responsive}
           infinite={true}
-          autoPlay={true}
-          autoPlaySpeed={2500}
-          //   centerMode
-          keyBoardControl={true}
+          // autoPlay={true}
+          // autoPlaySpeed={2500}
+          // centerMode={showCenteredMode}
+          customLeftArrow={<CustomLeft />}
+          customRightArrow={<CustomRight />}
+          // keyBoardControl={true}
+          className="courses-instructor-carousel"
         >
           {projects.map(ProjectCard)}
         </Carousel>
