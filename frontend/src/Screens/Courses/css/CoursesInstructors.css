@@ -15,7 +15,7 @@
   letter-spacing: calc(2.4 * var(--vp));
   text-align: center;
   margin-top: 20px;
-  padding-bottom: calc(80 * var(--vp));
+  padding-bottom: calc(50 * var(--vp));
 }
 
 .courses-instructors-subtitle {
@@ -28,8 +28,10 @@
 
 .courses-instructors .instructor {
   width: calc(381 * var(--vp));
-  height: calc(716 * var(--vp));
+  /* height: calc(716 * var(--vp)); */
   background-color: #171636;
+  display: flex;
+  flex-direction: column;
 }
 
 .courses-instructors .instructor:hover {
@@ -57,7 +59,10 @@
 
 .courses-instructors .instructor-info {
   padding: calc(30 * var(--vp)) calc(32 * var(--vp));
-  height: calc(379 * var(--vp));
+  /* height: calc(379 * var(--vp)); */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .courses-instructors .instructor hr {
@@ -70,7 +75,8 @@
   color: #afafaf;
   font-size: calc(22 * var(--vp));
   letter-spacing: calc(1.1 * var(--vp));
-  height: calc(157 * var(--vp));
+  /* height: calc(157 * var(--vp)); */
+  flex: 1;
 }
 
 .courses-instructors .logos {
@@ -135,6 +141,9 @@
 .mobile-instructors .courses-instructors .instructor-info {
   padding: calc(30 * var(--vp)) calc(32 * var(--vp));
   height: calc(379 * var(--vp));
+  /* flex: 1;
+    display: flex;
+    flex-direction: column; */
 }
 
 .mobile-instructors .courses-instructors .instructor hr {
@@ -147,7 +156,7 @@
   color: #afafaf;
   font-size: calc(22 * var(--vp));
   letter-spacing: calc(1.1 * var(--vp));
-  height: calc(157 * var(--vp));
+  /* height: calc(157 * var(--vp)); */
 }
 
 .mobile-instructors .courses-instructors .logos {

@@ -7,7 +7,7 @@
   /* margin: 0 !important; */
   width: 90%;
   margin: 0 auto;
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 .courses-detailed-list-cards::-webkit-scrollbar {
@@ -18,8 +18,7 @@
   position: relative;
   width: calc(542 * var(--vp));
   background: #190a4d 0% 0% no-repeat padding-box;
-  box-shadow: calc(0 * var(--vp)) calc(10 * var(--vp)) calc(6 * var(--vp))
-    #000000c4;
+  box-shadow: 0 10px 6px #000000c4;
   opacity: 1;
   padding-top: calc(32 * var(--vp));
   padding-bottom: calc(44 * var(--vp));

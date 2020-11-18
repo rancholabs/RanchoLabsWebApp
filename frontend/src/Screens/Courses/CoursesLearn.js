@@ -8,23 +8,23 @@ import b4 from "./img/b4.png";
 const courseLearns = [
   {
     image: b1,
-    title: "Live & Interactive Classes",
+    title: "Interactive and \n Live Classes",
     desc:
       "One on one live classes from teachers who provide you a near classroom experience.",
   },
   {
     image: b4,
-    title: "Real-life problem solving",
+    title: "Real-life \n problem solving",
     desc: "Students apply the acquired skills to solve a real-life problem.",
   },
   {
     image: b2,
-    title: "Customized & convenient Education",
+    title: "Customized & \n convenient Education",
     desc: "Learn at your own pace, from the comfort of your home.",
   },
   {
     image: b3,
-    title: "Project-based active Learning",
+    title: "Project-based \n active Learning",
     desc:
       "The course is integrated with live projects that the students build.",
   },

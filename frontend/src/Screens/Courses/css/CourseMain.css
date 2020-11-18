@@ -18,7 +18,7 @@
 .course-main-text .course-main-title {
   font-size: calc(60 * var(--vp));
   color: #3cfaff;
-  font-weight: lighter;
+  font-weight: normal;
   width: 80%;
   /* width: calc(808 * var(--vp)); */
 }
@@ -58,7 +58,7 @@
 }
 
 .course-illustration-section h3 {
-  font-weight: lighter;
+  font-weight: normal;
   font-size: calc(24 * var(--vp));
   text-align: center;
   width: 100%;

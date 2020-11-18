@@ -36,7 +36,7 @@
   font-size: calc(28 * var(--vp));
   color: #ffffff;
   padding-top: calc(45 * var(--vp));
-  font-weight: lighter;
+  font-weight: normal;
 }
 
 .courses-course-card.active button {

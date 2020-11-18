@@ -23,6 +23,7 @@
   width: calc(338 * var(--vp));
   text-transform: capitalize;
   margin-bottom: calc(12 * var(--vp));
+  white-space: pre-line;
 }
 
 .courses-learn .learn-desc {

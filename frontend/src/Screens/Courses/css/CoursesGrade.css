@@ -16,7 +16,7 @@
   color: #f74b42;
   opacity: 1;
   text-transform: capitalize;
-  font-weight: lighter;
+  font-weight: normal;
 }
 
 .courses-grade > .grades {
@@ -33,13 +33,13 @@
 }
 
 .courses-grade-item:first-child {
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .courses-grade-item:last-child {
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .courses-grade-item:not(.active) {
