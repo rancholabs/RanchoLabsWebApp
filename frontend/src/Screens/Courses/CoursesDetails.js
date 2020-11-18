@@ -155,7 +155,7 @@ const MStepCards = ({ activeCourseG }) => {
             </div>
           </div>
           <div className="step-cards col mx-0">
-            {activeCourseG?.journey.map(Mstepcard)}
+            {activeCourseG?.journey?.map(Mstepcard)}
           </div>
         </div>
       </div>
@@ -178,7 +178,7 @@ const Stepcards = ({ activeCourseG }) => {
   return (
     <>
       <div className="step-cards row mx-0">
-        {activeCourseG?.journey.map(Stepcard)}
+        {activeCourseG?.journey?.map(Stepcard)}
       </div>
       <div
         className="row mx-0 line-circle"
@@ -215,7 +215,7 @@ const Stepcards = ({ activeCourseG }) => {
         className="row mx-0 no-of-classes"
         style={{ justifyContent: "space-around", width: "100%" }}
       >
-        {activeCourseG?.journey.map((c) => {
+        {activeCourseG?.journey?.map((c) => {
           return (
             <>
               <div>{c.no_of_classes} Classes</div>
