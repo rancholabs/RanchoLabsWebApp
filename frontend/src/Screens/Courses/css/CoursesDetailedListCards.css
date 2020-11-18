@@ -173,6 +173,10 @@
   outline: none;
 }
 
+.courses-detailed-list-card-item > .syllabus:hover {
+  color: #f74b42 !important;
+}
+
 .courses-detailed-list-card-item > .syllabus > .text {
   font: normal normal normal calc(25 * var(--vp)) / calc(1 * var(--vp)) Roboto;
   letter-spacing: calc(0.38 * var(--vp));
@@ -267,6 +271,7 @@
   letter-spacing: calc(0.3 * var(--vm));
   color: white;
   font-weight: lighter;
+  z-index: 1;
 }
 
 @media all and (max-width: 600px) {

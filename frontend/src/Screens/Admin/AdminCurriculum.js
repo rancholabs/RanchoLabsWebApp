@@ -4,7 +4,7 @@ import AdminCourseCard from "./AdminCourseCard";
 import AdminNewCurriculum from "./AdminNewCurriculum";
 import AdminNewCourse from "./AdminNewCourse";
 
-function AdminCurriculum({ courseGroups }) {
+function AdminCurriculum({ courseGroups, updateCourseGroups }) {
   const [showNewForm, setShowNewForm] = useState(false);
   const [showNewCourseForm, setShowNewCourseForm] = useState(false);
   const [currentCurriculum, setCurrentCurriculum] = useState(courseGroups[0]);
@@ -37,6 +37,22 @@ function AdminCurriculum({ courseGroups }) {
     setCurrentCurriculum(cg);
   };
 
+  useEffect(() => {
+    if (currentCurriculum?._id) {
+      closeAddNewForm();
+    }
+  }, [courseGroups, currentCurriculum]);
+
+  const closeAddNewForm = () => {
+    setShowNewCourseForm(false);
+    setShowNewForm(false);
+    setTobeEditedCourse({});
+    const selectedCurriculum = courseGroups.filter(
+      (cg) => cg._id === currentCurriculum._id
+    );
+    setCurrentCurriculum(selectedCurriculum[0]);
+  };
+
   return (
     <>
       <div className="adminCurriculum">
@@ -53,6 +69,8 @@ function AdminCurriculum({ courseGroups }) {
           <AdminNewCourse
             currentCurriculum={currentCurriculum._id}
             tobeEditedCourse={tobeEditedCourse}
+            updateCourseGroups={updateCourseGroups}
+            closeAddNewForm={closeAddNewForm}
           />
         ) : showNewForm ? (
           <AdminNewCurriculum />

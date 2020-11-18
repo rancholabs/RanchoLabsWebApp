@@ -8,7 +8,12 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import EditIcon from "../../Asssets/Icon feather-edit.png";
 
-function AdminNewCourse({ currentCurriculum, tobeEditedCourse }) {
+function AdminNewCourse({
+  currentCurriculum,
+  tobeEditedCourse,
+  updateCourseGroups,
+  closeAddNewForm,
+}) {
   const [allowEdits, setAllowEdits] = useState(false);
   const [labelColor, setlabelColor] = useState(
     tobeEditedCourse._id ? (allowEdits ? "#4320BF" : "#9D9D9D") : "#4320BF"
@@ -161,7 +166,60 @@ function AdminNewCourse({ currentCurriculum, tobeEditedCourse }) {
 
   const addNewCourse = () => {
     if (tobeEditedCourse._id) {
-      alert("curriculum updation not supported yet.");
+      const body = {
+        name: name,
+        //   courseImage: "",
+        builds: [],
+        innovates: [],
+        description: "description",
+        durationInHours: durationInHours,
+        NoOfWeeks: NoOfWeeks,
+        hoursPerWeek: hoursPerWeek,
+        overview: "overview",
+        detailedView: "detailedView",
+        gradeRange: {
+          minG: minimumGrade,
+          maxG: maximumGrade,
+        },
+        price: {
+          amount: amount,
+          amountAfterDiscount: amountAfterDiscount,
+        },
+        outcomesByTopics: {
+          learns: {
+            topics: [learn[0], learn[1], learn[2]],
+          },
+          builds: {
+            topics: [build[0], build[1], build[2]],
+          },
+          innovates: {
+            topics: [innovate],
+          },
+        },
+        courseStructure: null,
+        totalClasses: totalClasses,
+        instructors: [],
+      };
+
+      const userInfo = localStorage.getItem("userInfo");
+      const token = userInfo ? JSON.parse(userInfo).token : "";
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: token,
+        },
+      };
+
+      axios
+        .put(`/api/course/${tobeEditedCourse._id}`, body, config)
+        .then(async (res) => {
+          await updateCourseGroups();
+          closeAddNewForm();
+          console.log(res.data);
+        })
+        .catch((err) => {
+          alert("Error updating data.");
+        });
     } else {
       const body = {
         groupId: currentCurriculum,
@@ -210,7 +268,12 @@ function AdminNewCourse({ currentCurriculum, tobeEditedCourse }) {
 
       axios
         .post("/api/course", body, config)
-        .then((res) => console.log(res.data));
+        .then((res) => {
+          updateCourseGroups();
+          closeAddNewForm();
+          console.log(res.data);
+        })
+        .catch((err) => console.log(err));
     }
   };
 

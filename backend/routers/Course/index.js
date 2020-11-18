@@ -768,6 +768,16 @@ router.post('/', isAuthenticated, isAuthorized(['admin']), async (req, res) => {
     })
 })
 
-/* Updating course data needs to be done */
+router.put('/:id', isAuthenticated, isAuthorized(['admin']), async (req, res) => {
+   const {id} = req.params
+
+    Course.findByIdAndUpdate(id, req.body).then(data => {
+        res.status(201).send({message: 'Course updated Succesfully'})
+    })
+    .catch(err => {
+        console.log('Error:', err)
+        res.status(400).send(error)
+    })
+})
 
 module.exports = router

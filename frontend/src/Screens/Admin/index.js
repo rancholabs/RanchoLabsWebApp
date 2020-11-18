@@ -19,6 +19,16 @@ function Index() {
       .catch((err) => console.log(err));
   }, []);
 
+  const updateCourseGroups = () => {
+    axios
+      .get("/api/course/group/courseList")
+      .then((res) => {
+        console.log(res.data);
+        setCourseGroups(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <div className="admin">
@@ -38,7 +48,10 @@ function Index() {
         </div>
         <div className="admin__body">
           {currentSection === "curriculum" && (
-            <AdminCurriculum courseGroups={courseGroups} />
+            <AdminCurriculum
+              courseGroups={courseGroups}
+              updateCourseGroups={updateCourseGroups}
+            />
           )}
           {currentSection === "batch" && (
             <AdminBatch courseGroups={courseGroups} />

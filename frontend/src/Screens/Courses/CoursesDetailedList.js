@@ -105,8 +105,10 @@ const CoursesDetailedList = ({ courseGroups, activeCourseG, activeGrade }) => {
     if (activeCourseG) {
       activeCourseG.courses.forEach((singleCourse) => {
         if (
-          activeGrade?.minG >= singleCourse?.gradeRange?.minG &&
-          activeGrade?.maxG <= singleCourse?.gradeRange?.maxG
+          (singleCourse?.gradeRange?.minG >= activeGrade?.minG &&
+            singleCourse?.gradeRange?.minG <= activeGrade?.maxG) ||
+          (singleCourse?.gradeRange?.maxG >= activeGrade?.minG &&
+            singleCourse?.gradeRange?.maxG <= activeGrade?.maxG)
         ) {
           toBeDisplayedCourses.push(singleCourse);
         }
