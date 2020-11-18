@@ -32,12 +32,12 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
           <div className="border-left"></div>
         </div>
         <div className="box4"></div>
-        {index > 0 && index < 3 && (
+        {/* {index > 0 && index < 3 && (
           <div className="marketing-box">
             {index === 1 && <>Most Popular</>}
             {index === 2 && <>Best Value</>}
           </div>
-        )}
+        )} */}
       </div>
       <div className="title">
         <h3>{name}</h3>

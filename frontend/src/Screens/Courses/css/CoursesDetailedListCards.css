@@ -3,8 +3,15 @@
   padding-left: calc(0 * var(--vp));
   padding-right: calc(0 * var(--vp));
   display: flex;
-  justify-content: center;
-  margin: 0 !important;
+  /* justify-content: center; */
+  /* margin: 0 !important; */
+  width: 90%;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+.courses-detailed-list-cards::-webkit-scrollbar {
+  display: none;
 }
 
 .courses-detailed-list-card-item {
@@ -18,6 +25,9 @@
   padding-bottom: calc(44 * var(--vp));
   padding-left: calc(32 * var(--vp));
   padding-right: calc(32 * var(--vp));
+  min-width: 386px;
+  display: flex;
+  flex-direction: column;
 }
 
 .courses-detailed-list-card-item > .top-boxes > .box1,
@@ -188,6 +198,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  flex: 1;
 }
 
 .courses-detailed-list-card-item > .learn-price > .learn-more-btn {
@@ -291,6 +302,8 @@
     padding-top: calc(26 * var(--vm));
     padding-bottom: calc(30 * var(--vm));
     margin: auto;
+    display: flex;
+    flex-direction: column;
   }
 
   .courses-detailed-list-card-item > .top-boxes > .box1,
