@@ -6,8 +6,9 @@ import programming from "./img/programming2.png";
 import recommended from "./img/recommended.png";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import ArrowBack from "../../Asssets/Icon feather-arrow-left.png";
+
+const imageArray = [recommended, robotics, ai, programming];
 
 const Courses = [
   {
@@ -128,7 +129,7 @@ const CoursesCourses = ({ courseGroups, activeCourseG, setActiveCourseG }) => {
       className="course-carousel-icon-button course-carousel-icon-left"
       onClick={onClick}
     >
-      <ArrowBackIcon className="course-carousel-icon" />
+      <img src={ArrowBack} className="course-carousel-icon" />
     </button>
   );
 
@@ -137,7 +138,7 @@ const CoursesCourses = ({ courseGroups, activeCourseG, setActiveCourseG }) => {
       className="course-carousel-icon-button course-carousel-icon-right"
       onClick={onClick}
     >
-      <ArrowForwardIcon className="course-carousel-icon" />
+      <img src={ArrowBack} className="course-carousel-icon" />
     </button>
   );
 
@@ -172,7 +173,11 @@ const CoursesCourses = ({ courseGroups, activeCourseG, setActiveCourseG }) => {
             >
               <button>
                 <div className="course-image">
-                  <img src={robotics} className="img-fluid" alt={course.name} />
+                  <img
+                    src={imageArray[index] ? imageArray[index] : imageArray[0]}
+                    className="img-fluid"
+                    alt={course.name}
+                  />
                 </div>
               </button>
               <div className="course-name-line">

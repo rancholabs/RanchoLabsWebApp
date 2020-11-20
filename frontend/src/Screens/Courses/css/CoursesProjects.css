@@ -1,7 +1,24 @@
 .courses-projects {
   background-color: #0e0234;
-  padding: 0 10vw 10vw 10vw;
+  padding-top: 40px;
+  /* padding: 0 10vw 10vw 10vw; */
   margin: 0 !important;
+  position: relative;
+}
+
+.courses-projects .course-purple-bg-bottom-right {
+  bottom: -100px;
+  right: 0;
+  z-index: 0;
+  width: 100%;
+  height: -webkit-fill-available;
+  display: none;
+}
+
+.courses-projects .testimonial-row {
+  position: relative;
+  width: 95%;
+  margin: 0 auto;
 }
 
 .project-row {
@@ -21,14 +38,18 @@
   color: #3cfaff;
   font-weight: 400;
   text-align: center;
+  width: 90%;
+  margin: 0 auto;
 }
 .projects-description {
+  margin: 0 auto;
   font-size: 1.5rem;
   color: #f0f0f2;
   margin-top: 2.5rem;
   font-weight: 300;
   text-align: center;
   margin-bottom: 5vw;
+  width: 90%;
 }
 
 .courses-projects .card {
@@ -135,6 +156,40 @@ section.is-visible-viewport > * {
   animation: d 40s linear infinite;
 }
 
+.courses-projects .courses-projects-carousel {
+  width: 90%;
+  margin: 0 auto;
+  position: unset;
+}
+.courses-projects .react-multi-carousel-dot-list {
+  bottom: 16px;
+}
+.courses-projects .react-multi-carousel-dot-list li button {
+  width: 10px !important;
+  height: 10px !important;
+  background-color: #fff;
+  border-color: #fff;
+}
+.courses-projects
+  .react-multi-carousel-dot-list
+  .react-multi-carousel-dot--active
+  button {
+  background-color: #f74b42;
+  border-color: #f74b42;
+}
+.courses-projects .course-carousel-icon-left {
+  top: unset !important;
+  bottom: 50% !important;
+  z-index: 2;
+  left: 15px;
+}
+.courses-projects .course-carousel-icon-right {
+  top: unset !important;
+  bottom: 50% !important;
+  z-index: 2;
+  right: 15px;
+}
+
 @media (max-width: 768px) and (max-height: 854px) {
   .courses-projects {
     padding: 40px 20px;
@@ -145,15 +200,16 @@ section.is-visible-viewport > * {
   }
 
   .courses-projects .card {
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
     /* height: 100%; */
     /* margin-top: calc(31 * var(--vp)); */
   }
 
   .courses-projects .projects-title {
-    font-size: calc(20 * var(--vm));
+    font-size: calc(108 * var(--vp));
     text-transform: capitalize;
+    width: 100%;
   }
 
   .courses-projects .project-row {
@@ -193,8 +249,10 @@ section.is-visible-viewport > * {
   }
 
   .courses-projects .projects-description {
-    font-size: calc(13 * var(--vm));
+    font-size: calc(70 * var(--vp));
     margin-top: calc(13 * var(--vm));
+    margin-bottom: 50px;
+    font-weight: normal;
   }
 
   .courses-projects .card:hover {
@@ -202,7 +260,7 @@ section.is-visible-viewport > * {
     transition: all 0.3s ease-in-out;
   }
   .courses-projects .react-multi-carousel-track {
-    margin-bottom: 60px;
+    /* margin-bottom: 60px; */
   }
   .courses-projects .courses-projects-carousel {
     width: 90%;
@@ -226,13 +284,16 @@ section.is-visible-viewport > * {
   }
   .courses-projects .course-carousel-icon-left {
     top: unset !important;
-    bottom: 50% !important;
+    bottom: -15px !important;
     z-index: 2;
   }
   .courses-projects .course-carousel-icon-right {
     top: unset !important;
-    bottom: 50% !important;
+    bottom: -15px !important;
     z-index: 2;
     /* right: ; */
+  }
+  .courses-projects .course-purple-bg-bottom-right {
+    display: block;
   }
 }

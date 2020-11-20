@@ -1,47 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AdminNewCurriculum.css";
 import axios from "axios";
 
-function AdminNewCurriculum() {
-  const [categoryName, setCategoryName] = useState("");
+function AdminNewCurriculum({ currentCurriculum }) {
+  const [categoryName, setCategoryName] = useState(
+    currentCurriculum._id ? currentCurriculum.name : ""
+  );
   const [categoryImage, setCategoryImage] = useState(null);
   const [categoryImageURL, setCategoryImageURL] = useState("");
-  const [journey, setJourney] = useState([
-    {
-      topic: "",
-      no_of_classes: 0,
-      image: null,
-    },
-    {
-      topic: "",
-      no_of_classes: 0,
-      image: null,
-    },
-    {
-      topic: "",
-      no_of_classes: 0,
-      image: null,
-    },
-    {
-      topic: "",
-      no_of_classes: 0,
-      image: null,
-    },
-    {
-      topic: "",
-      no_of_classes: 0,
-      image: null,
-    },
-  ]);
+  const [journey, setJourney] = useState(
+    currentCurriculum._id
+      ? currentCurriculum.journey
+      : [
+          {
+            topic: "",
+            no_of_classes: 0,
+            image: null,
+          },
+          {
+            topic: "",
+            no_of_classes: 0,
+            image: null,
+          },
+          {
+            topic: "",
+            no_of_classes: 0,
+            image: null,
+          },
+          {
+            topic: "",
+            no_of_classes: 0,
+            image: null,
+          },
+          {
+            topic: "",
+            no_of_classes: 0,
+            image: null,
+          },
+        ]
+  );
   const [journeyImageURL, setJourneyImageURL] = useState(["", "", "", "", ""]);
 
-  const saveCurriculum = () => {
-    const body = {
-      name: categoryName,
-      image: categoryImage,
-      journey: journey,
-    };
-
+  useEffect(() => {
     const userInfo = localStorage.getItem("userInfo");
     const token = userInfo ? JSON.parse(userInfo).token : "";
     const config = {
@@ -50,42 +50,157 @@ function AdminNewCurriculum() {
         authorization: token,
       },
     };
+    if (currentCurriculum._id) {
+      currentCurriculum.journey.forEach((jour) => {
+        if (jour.image !== undefined) {
+          axios.get(`/api/file/${jour.image}`, config).then((res) => {
+            console.log(res.data);
+          });
+        }
+      });
+    }
+    // return () => {
+    //   cleanup
+    // }
+  }, [currentCurriculum]);
 
-    // axios
-    //   .post("/api/course/group", body, config)
-    //   .then((res) => console.log(res.data));
+  const saveCurriculum = async () => {
+    if (currentCurriculum._id) {
+      // update
+      // const body = {
+      //   name: categoryName,
+      //   image: categoryImage,
+      //   journey: journey,
+      // };
 
-    let bodyFormData = new FormData();
+      // const userInfo = localStorage.getItem("userInfo");
+      // const token = userInfo ? JSON.parse(userInfo).token : "";
+      // const config = {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     authorization: token,
+      //   },
+      // };
 
-    bodyFormData.append("files[]", categoryImage);
+      // axios
+      //   .post(`/api/course/group/${currentCurriculum._id}`, body, config)
+      //   .then((res) => {
+      //     console.log(res.data);
+      //   });
 
-    journey.forEach((jour, index) => {
-      bodyFormData.append("files[]", jour.image);
-    });
+      // let bodyFormData = new FormData();
 
-    console.log(bodyFormData.getAll("files[]"));
+      // bodyFormData.append("files[]", categoryImage);
 
-    axios({
-      method: "post",
-      url: "/api/file/multiple",
-      data: bodyFormData,
+      // journey.forEach((jour, index) => {
+      //   bodyFormData.append("files[]", jour.image);
+      // });
+
+      // console.log(bodyFormData.getAll("files[]"));
+
+      // axios({
+      //   method: "post",
+      //   url: "/api/file/multiple",
+      //   data: bodyFormData,
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //     authorization: token,
+      //   },
+      // })
+      //   .then((res) => {
+      //     console.log(res.data);
+      //   })
+      //   .catch((err) => {
+      //     //handle error
+      //     console.log(err);
+      //   });
+      alert("no updates");
+    } else {
+      // create new
+
+      const userInfo = localStorage.getItem("userInfo");
+      const token = userInfo ? JSON.parse(userInfo).token : "";
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: token,
+        },
+      };
+
+      var allJourneyImages = [...journey];
+
+      if (Array.isArray(allJourneyImages)) {
+        allJourneyImages = await Promise.all(
+          allJourneyImages.map(async (i) => {
+            if (i.image) {
+              const res = await uploadFile(i.image, token);
+              i.image = !res.message ? res : undefined;
+              // imageID.push(res)
+            }
+            return i;
+          })
+        );
+        console.log(allJourneyImages);
+      }
+
+      const body = {
+        name: categoryName,
+        image: categoryImage,
+        journey: allJourneyImages,
+      };
+
+      axios
+        .post("/api/course/group", body, config)
+        .then((res) => console.log(res.data));
+
+      // let bodyFormData = new FormData();
+
+      // bodyFormData.append("files[]", categoryImage);
+
+      // journey.forEach((jour, index) => {
+      //   bodyFormData.append("files[]", jour.image);
+      // });
+
+      // console.log(bodyFormData.getAll("files[]"));
+
+      // axios({
+      //   method: "post",
+      //   url: "/api/file/multiple",
+      //   data: bodyFormData,
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //     authorization: token,
+      //   },
+      // })
+      //   .then((res) => {
+      //     console.log(res.data);
+      //   })
+      //   .catch((err) => {
+      //     //handle error
+      //     console.log(err);
+      //   });
+    }
+  };
+
+  const uploadFile = async (file, token) => {
+    const config = {
       headers: {
         "Content-Type": "multipart/form-data",
         authorization: token,
       },
-    })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        //handle error
-        console.log(err);
-      });
+    };
+    const formData = new FormData();
+    formData.append("files", file);
+    return await axios
+      .post("/api/file", formData, config)
+      .then((res) => res.data.fileId)
+      .catch((error) => ({ message: "Error" }));
   };
 
   const handleCategoryimageUpload = (e) => {
     if (e.target.files[0]) {
       setCategoryImage(e.target.files[0]);
+      console.log(e.target.files[0]);
       setCategoryImageURL(URL.createObjectURL(e.target.files[0]));
     }
   };

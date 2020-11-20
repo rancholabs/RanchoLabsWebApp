@@ -1,11 +1,21 @@
 .course-details {
-  box-shadow: 0px calc(6 * var(--vp)) calc(6 * var(--vp)) #00000045;
+  /* box-shadow: 0px calc(6 * var(--vp)) calc(6 * var(--vp)) #00000045; */
   border-radius: calc(10 * var(--vp));
   width: calc(1788 * var(--vp));
   padding-bottom: calc(145 * var(--vp));
   background-color: #0e0234;
   /* margin: auto !important; */
   margin: 0 auto !important;
+  position: relative;
+  /* background-image: url("../../../Asssets/purpleBlurBG.svg"); */
+}
+
+.course-details-illustration-top-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 65px;
+  display: none;
 }
 
 .course-details-title {
@@ -38,6 +48,9 @@
   box-shadow: 0 6px 6px #0000008f;
   background-color: #190a4d;
   padding-top: calc(3 * var(--vp));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .course-details .step-card:hover {
@@ -54,9 +67,11 @@
   font-size: calc(22 * var(--vp));
   color: #ffffff;
   font-weight: 400;
-  width: calc(145 * var(--vp));
+  /* width: calc(145 * var(--vp)); */
   margin: auto;
   text-align: center;
+  width: 100%;
+  margin-top: 4px;
 }
 
 .course-details .step-card:nth-child(4) .step-card-title {
@@ -103,6 +118,14 @@
 
 .course-details .mstepcards {
   display: none;
+}
+.mstepcards .row {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.mstepcards .row .mlines {
+  flex: 0;
 }
 
 .course-details .mlines {
@@ -274,8 +297,14 @@
   .course-details .step-cards {
     padding: 0 0 0 calc(28 * var(--vm));
     padding: 0;
-    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     width: 100%;
+  }
+
+  .course-details .mlines {
+    flex-grow: unset !important;
   }
 
   .course-details .step-card {
@@ -368,5 +397,9 @@
 
   .d-journey {
     display: none;
+  }
+
+  .course-details-illustration-top-left {
+    display: block;
   }
 }

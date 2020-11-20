@@ -123,7 +123,7 @@ const CoursesDetailedList = ({ courseGroups, activeCourseG, activeGrade }) => {
 
   return (
     <div className="courses-detailed-lists">
-      <CoursesDetailedListCards coursesDetails={toBeDisplayedCourses} />;
+      <CoursesDetailedListCards coursesDetails={toBeDisplayedCourses} />
       {/* {courseGroupsList.map((subCourseGroupsList, sci) => { */}
       {/* return ( */}
       {/* <div key={sci}> */}

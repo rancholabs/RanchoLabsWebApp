@@ -9,6 +9,13 @@ function AdminCurriculum({ courseGroups, updateCourseGroups }) {
   const [showNewCourseForm, setShowNewCourseForm] = useState(false);
   const [currentCurriculum, setCurrentCurriculum] = useState(courseGroups[0]);
   const [tobeEditedCourse, setTobeEditedCourse] = useState({});
+  const [tobeEditedCurriculum, setTobeEditedCurriculum] = useState({});
+
+  useEffect(() => {
+    if (currentCurriculum?._id) {
+      closeAddNewForm();
+    }
+  }, [courseGroups, currentCurriculum]);
 
   const openNewCourseForm = () => {
     if (currentCurriculum) {
@@ -22,6 +29,7 @@ function AdminCurriculum({ courseGroups, updateCourseGroups }) {
   const openNewCurriculumForm = () => {
     setShowNewCourseForm(false);
     setShowNewForm(true);
+    setCurrentCurriculum({});
   };
 
   const editCourse = (course) => {
@@ -37,12 +45,6 @@ function AdminCurriculum({ courseGroups, updateCourseGroups }) {
     setCurrentCurriculum(cg);
   };
 
-  useEffect(() => {
-    if (currentCurriculum?._id) {
-      closeAddNewForm();
-    }
-  }, [courseGroups, currentCurriculum]);
-
   const closeAddNewForm = () => {
     setShowNewCourseForm(false);
     setShowNewForm(false);
@@ -51,6 +53,12 @@ function AdminCurriculum({ courseGroups, updateCourseGroups }) {
       (cg) => cg._id === currentCurriculum._id
     );
     setCurrentCurriculum(selectedCurriculum[0]);
+  };
+
+  const editCurriculum = () => {
+    setShowNewCourseForm(false);
+    setShowNewForm(true);
+    setTobeEditedCourse({});
   };
 
   return (
@@ -73,9 +81,17 @@ function AdminCurriculum({ courseGroups, updateCourseGroups }) {
             closeAddNewForm={closeAddNewForm}
           />
         ) : showNewForm ? (
-          <AdminNewCurriculum />
+          <AdminNewCurriculum currentCurriculum={currentCurriculum} />
         ) : (
           <div className="adminCurriculum__cardContainer">
+            {currentCurriculum && (
+              <button
+                className="adminCurriculum__editBtn"
+                onClick={editCurriculum}
+              >
+                Edit
+              </button>
+            )}
             {currentCurriculum?.courses?.map((cg) => {
               return <AdminCourseCard course={cg} editCourse={editCourse} />;
             })}

@@ -47,76 +47,73 @@ router.get("/:id", isAuthenticated, (req, res) => {
 });
 
 router.post("/", isAuthenticated, upload.single("files"), async (req, res) => {
-  const file = req.files;
-  console.log(req.file);
-  console.log(req.files);
-  //   const fileData = new File({
-  //     _id: new mongoose.Types.ObjectId(),
-  //     originalName: file.originalname,
-  //     mimeType: file.mimetype,
-  //     filePath: file.location,
-  //     size: file.size,
-  //     createdBy: req.userId,
-  //     createdAt: new Date().toISOString(),
-  //   });
+  const file = req.file;
+  const fileData = new File({
+    _id: new mongoose.Types.ObjectId(),
+    originalName: file.name,
+    mimeType: file.mimetype,
+    filePath: file.location,
+    size: file.size,
+    createdBy: req.userId,
+    createdAt: new Date().toISOString(),
+  });
 
-  //   await fileData
-  //     .save()
-  //     .then((doc) => {
-  //       res.status(201).send({ fileId: doc._id });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       res.status(400).send({ message: "Error adding file" });
-  //     });
+  await fileData
+    .save()
+    .then((doc) => {
+      res.status(201).send({ fileId: doc._id });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(400).send({ message: "Error adding file" });
+    });
 });
 
 router.post(
   "/multiple",
   isAuthenticated,
-  // upload.array("files", 12),
+  upload.array("files", 12),
   (req, res) => {
     const files = req.files;
     if (!files) {
       res.status(400).send({ message: "Please choose files" });
     }
-    console.log(files);
-    // const filePromise = new Promise(async (resolve, reject) => {
-    //   let resFileNames = [];
-    //   let resErrors = [];
-    //   await Promise.all(
-    //     files.map(async (file) => {
-    //       const fileData = new File({
-    //         _id: new mongoose.Types.ObjectId(),
-    //         originalName: file.originalname,
-    //         mimeType: file.mimetype,
-    //         filePath: file.location,
-    //         size: file.size,
-    //         createdBy: req.userId,
-    //         createdAt: new Date().toISOString(),
-    //       });
+    const filePromise = new Promise(async (resolve, reject) => {
+      let resFileNames = [];
+      let resErrors = [];
+      await Promise.all(
+        files.map(async (file) => {
+          const fileData = new File({
+            _id: new mongoose.Types.ObjectId(),
+            originalName: file.originalname,
+            mimeType: file.mimetype,
+            filePath: file.location,
+            size: file.size,
+            createdBy: req.userId,
+            createdAt: new Date().toISOString(),
+          });
 
-    //       await fileData
-    //         .save()
-    //         .then((doc) => {
-    //           resFileNames.push({ fileId: doc._id });
-    //         })
-    //         .catch((err) => {
-    //           console.log(err);
-    //           resErrors.push({ message: "Error adding file" });
-    //         });
-    //     })
-    //   );
-    //   resolve({
-    //     status: resFileNames.length === files.length,
-    //     filesUploaded: resFileNames,
-    //     errors: resErrors,
-    //   });
-    // });
+          await fileData
+            .save()
+            .then((doc) => {
+              resFileNames.push({ fileId: doc._id });
+            })
+            .catch((err) => {
+              console.log(err);
+              resErrors.push({ message: "Error adding file" });
+            });
+        })
+      );
+      resolve({
+        status: resFileNames.length === files.length,
+        filesUploaded: resFileNames,
+        errors: resErrors,
+      });
+    });
 
-    // filePromise
-    //   .then((resp) => res.status(201).send(resp))
-    //   .catch((err) => res.send("Error in adding files"));
+    filePromise
+      .then((resp) => res.status(201).send(resp))
+      .catch((err) => res.send("Error in adding files"));
   }
 );
 

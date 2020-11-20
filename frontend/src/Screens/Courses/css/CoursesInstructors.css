@@ -178,6 +178,17 @@
     justify-content: space-between;
     display: none;
   }
+  .courses-instructors .logos {
+    justify-content: space-between;
+    display: flex;
+    margin: 40px 0 0 0 !important;
+    width: 100%;
+  }
+  .courses-instructors .logos img {
+    height: 31px;
+    max-width: unset;
+    object-fit: contain;
+  }
 
   .courses-instructors-title {
     font-size: calc(20 * var(--vm));
@@ -225,10 +236,13 @@
   .mobile-instructors .instructor .instructor-pic {
     width: 100%;
     height: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .mobile-instructors .instructor .instructor-pic img {
-    width: 90%;
+    width: 50%;
   }
 
   .mobile-instructors .instructor .instructor-name {
@@ -243,9 +257,11 @@
   }
   .mobile-instructors .instructor-info {
     height: unset;
+    padding: 20px;
   }
   .mobile-instructors .instructor hr {
-    border-width: 3px;
+    border-width: 1px;
+    margin-bottom: 15px;
     width: calc(200 * var(--vp));
   }
   .mobile-instructors .react-multi-carousel-track {

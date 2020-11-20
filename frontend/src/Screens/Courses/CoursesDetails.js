@@ -12,6 +12,7 @@ import python from "./img/python.png";
 import ai2 from "./img/ai2.png";
 import orangecircle from "./img/orangecircle.png";
 import "./css/CoursesDetails.css";
+import journeyTopLeft from "../../Asssets/journeyTopLeft.png";
 
 const courseGroups = [
   {
@@ -113,9 +114,9 @@ const Mstepcard = (props) => {
         <img src={props.image} className="img-fluid" />
       </div>
       <div className="align-self-center">
-        <div className="step-card-title">{props.topic}</div>
+        <div className="step-card-title">{props.title}</div>
         <div className="mno-of-classes text-center">
-          {props.no_of_classes} Classes
+          {props.no_of_classes ? props.no_of_classes : props.classes} Classes
         </div>
       </div>
     </div>
@@ -155,7 +156,13 @@ const MStepCards = ({ activeCourseG }) => {
             </div>
           </div>
           <div className="step-cards col mx-0">
-            {activeCourseG?.journey?.map(Mstepcard)}
+            {activeCourseG?.name == "Robotics"
+              ? courseGroups[0].journey.map(Mstepcard)
+              : activeCourseG?.name == "Programming"
+              ? courseGroups[1].journey.map(Mstepcard)
+              : activeCourseG?.name == "Artificial Intelligence"
+              ? courseGroups[2].journey.map(Mstepcard)
+              : activeCourseG?.journey?.map(Mstepcard)}
           </div>
         </div>
       </div>
@@ -167,9 +174,9 @@ const Stepcard = (props) => {
   return (
     <div className="step-card">
       <div className="step-card-img">
-        <img src={Workshop} className="img-fluid" />
+        <img src={props.image} className="img-fluid" />
       </div>
-      <div className="step-card-title">{props.topic}</div>
+      <div className="step-card-title">{props.title}</div>
     </div>
   );
 };
@@ -178,7 +185,13 @@ const Stepcards = ({ activeCourseG }) => {
   return (
     <>
       <div className="step-cards row mx-0">
-        {activeCourseG?.journey?.map(Stepcard)}
+        {activeCourseG?.name == "Robotics"
+          ? courseGroups[0].journey.map(Stepcard)
+          : activeCourseG?.name == "Programming"
+          ? courseGroups[1].journey.map(Stepcard)
+          : activeCourseG?.name == "Artificial Intelligence"
+          ? courseGroups[2].journey.map(Stepcard)
+          : activeCourseG?.journey?.map(Stepcard)}
       </div>
       <div
         className="row mx-0 line-circle"
@@ -231,6 +244,10 @@ const CoursesDetails = ({ activeCourseG, activeGrade }) => {
   return (
     <>
       <div className="course-details">
+        {/* <img
+          src={journeyTopLeft}
+          className="course-details-illustration-top-left"
+        ></img> */}
         <div className="course-details-title">
           {activeCourseG?.name} journey path for grade{" "}
           {activeGrade?.minG + "-" + activeGrade?.maxG}

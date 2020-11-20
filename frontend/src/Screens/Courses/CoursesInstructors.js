@@ -2,47 +2,51 @@ import React from "react";
 import "./css/CoursesInstructors.css";
 import iitd from "./img/iitd.png";
 import google from "./img/google.png";
-import programming from "./img/instructor.png";
+import RohanYutthamInstructor from "./img/RohanYutthamInstructor.png";
+import RitizSainiInstructor from "./img/RitizSainiInstructor.png";
+import NazneenKhanInstructor from "./img/NazneenKhanInstructor.png";
+import KaashikaPhotoInstructor from "./img/KaashikaPhotoInstructor.png";
 import calendar from "./img/calendar.png";
 // import { Carousel } from "react-responsive-carousel";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import ArrowBack from "../../Asssets/Icon feather-arrow-left.png";
+import ReactHtmlParser from "react-html-parser";
 
 const instructors = [
   {
     id: 1,
-    name: "Anmol Gupta",
-    details: "Mechanical Engineer, IIT Delhi",
+    name: "Rohan Yuttham",
+    details: `<p>Overall Coordinator Robotics Club, IIT Delhi. <br/> Robotics and Automation Expert. </p>`,
     logo1: iitd,
     logo2: google,
-    image: programming,
+    image: RohanYutthamInstructor,
   },
   {
     id: 2,
-    name: "Rohan Yuttham",
-    details: "Mechanical Engineer, IIT Delhi",
+    name: "Ritiz Saini",
+    details: `<p>Electrical Engineer, IIT Bombay. <br/> Software and Application Expert. </p>`,
     logo1: iitd,
     logo2: google,
-    image: programming,
+    image: RitizSainiInstructor,
   },
   {
     id: 3,
-    name: "Abhishek Gupta",
+    name: "Kaashika Prajaapat",
     details:
-      "IIT DElhi ( Computer Software ) Head of Robotics in IIT delhi Worked at Google",
+      "<p>Computer Science Engineer, IIT Delhi.<br/> Artificial Intelligence Expert. </p>",
     logo1: iitd,
     logo2: google,
-    image: programming,
+    image: KaashikaPhotoInstructor,
   },
   {
     id: 4,
-    name: "V. Shreyas",
-    details: "Electrical Engineer, IIT Delhi",
+    name: "Nazneen Khan",
+    details:
+      "<p>Robotics Software Engineer, Drone Stark. <br /> Drones and Computer Vision Expert. </p>",
     logo1: iitd,
     logo2: google,
-    image: programming,
+    image: NazneenKhanInstructor,
   },
 ];
 
@@ -56,7 +60,9 @@ const InstructorCard = (props) => {
         <div className="instructor-info">
           <div className="instructor-name">{props.name}</div>
           <hr />
-          <div className="instructor-details">{props.details}</div>
+          <div className="instructor-details">
+            {ReactHtmlParser(props.details)}
+          </div>
           <div className="logos row mx-0">
             <img src={props.logo1} alt={props.logo1} />
             <img src={props.logo2} alt={props.logo2} />
@@ -92,7 +98,7 @@ const CourseInstructors = () => {
       className="course-carousel-icon-button course-carousel-icon-left"
       onClick={onClick}
     >
-      <ArrowBackIcon className="course-carousel-icon" />
+      <img src={ArrowBack} className="course-carousel-icon" />
     </button>
   );
 
@@ -101,7 +107,7 @@ const CourseInstructors = () => {
       className="course-carousel-icon-button course-carousel-icon-right"
       onClick={onClick}
     >
-      <ArrowForwardIcon className="course-carousel-icon" />
+      <img src={ArrowBack} className="course-carousel-icon" />
     </button>
   );
 
@@ -128,8 +134,8 @@ const CourseInstructors = () => {
         </div>
         <div className="mobile-instructors">
           <Carousel
-            swipeable={false}
-            draggable={false}
+            swipeable={true}
+            draggable={true}
             showDots={true}
             responsive={responsive}
             infinite={true}

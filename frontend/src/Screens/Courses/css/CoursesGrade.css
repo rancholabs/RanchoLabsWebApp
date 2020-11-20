@@ -1,6 +1,6 @@
 .courses-grade {
   padding-top: calc(100 * var(--vp));
-  padding-bottom: calc(100 * var(--vp));
+  padding-bottom: calc(60 * var(--vp));
   /* margin-left: calc(43 * var(--vp)); */
   display: flex;
   justify-content: space-between;

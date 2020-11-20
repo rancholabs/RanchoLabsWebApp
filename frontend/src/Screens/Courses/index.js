@@ -26,6 +26,8 @@ import {
   courseGroupsList,
 } from "../../Actions/courseActions";
 
+import purpleBlurBG from "../../Asssets/purpleBlurBG.svg";
+
 const Courses = () => {
   //const [grades, setGrades] = useState([])
   //const [activeGrade, setActiveGrade] = useState(undefined)
@@ -560,12 +562,19 @@ const Courses = () => {
         setActiveCourseG={setActiveCourseG}
         activeCourseG={activeCourseG}
       />
-      <CoursesDetails activeCourseG={activeCourseG} activeGrade={activeGrade} />
-      <CoursesDetailedList
-        courseGroups={activeCourseGroups}
-        activeCourseG={activeCourseG}
-        activeGrade={activeGrade}
-      />
+      <div className="course-purple-bg-container">
+        <img src={purpleBlurBG} className="course-purple-bg course-purple-bg-top-left"></img>
+        <img src={purpleBlurBG} className="course-purple-bg course-purple-bg-bottom-right"></img>
+        <CoursesDetails
+          activeCourseG={activeCourseG}
+          activeGrade={activeGrade}
+        />
+        <CoursesDetailedList
+          courseGroups={activeCourseGroups}
+          activeCourseG={activeCourseG}
+          activeGrade={activeGrade}
+        />
+      </div>
       <CoursesBanner />
       <CoursesLearn />
       <CoursesInstructors />

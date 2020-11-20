@@ -17,8 +17,8 @@ import $ from "jquery";
 // import { Carousel } from "react-responsive-carousel";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import ArrowBack from "../../Asssets/Icon feather-arrow-left.png";
+import purpleBlurBGright from "../../Asssets/purpleBlurBGright.png";
 
 const projects = [
   {
@@ -107,11 +107,11 @@ function StudentProjects() {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
-      items: 5,
+      items: 3,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4,
+      items: 3,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -128,7 +128,7 @@ function StudentProjects() {
       className="course-carousel-icon-button course-carousel-icon-left"
       onClick={onClick}
     >
-      <ArrowBackIcon className="course-carousel-icon" />
+      <img src={ArrowBack} className="course-carousel-icon" />
     </button>
   );
 
@@ -137,12 +137,16 @@ function StudentProjects() {
       className="course-carousel-icon-button course-carousel-icon-right"
       onClick={onClick}
     >
-      <ArrowForwardIcon className="course-carousel-icon" />
+      <img src={ArrowBack} className="course-carousel-icon" />
     </button>
   );
 
   return (
     <div className="courses-projects">
+      <img
+        src={purpleBlurBGright}
+        className="course-purple-bg course-purple-bg-bottom-rightA"
+      ></img>
       <div className="projects-title">Check out our Students’ Projects</div>
       <div className="projects-description">
         Eager and enthusiastic students with a pinch of right guidance innovate
@@ -155,18 +159,18 @@ function StudentProjects() {
             </div>  */}
       <div className="testimonial-row">
         <Carousel
-          swipeable={false}
-          draggable={false}
-          showDots={true}
+          swipeable={true}
+          draggable={true}
+          showDots={false}
           responsive={responsive}
           infinite={true}
-          // autoPlay={true}
-          // autoPlaySpeed={2500}
+          autoPlay={true}
+          autoPlaySpeed={2500}
           // centerMode={showCenteredMode}
           customLeftArrow={<CustomLeft />}
           customRightArrow={<CustomRight />}
           // keyBoardControl={true}
-          className="courses-instructor-carousel"
+          className="courses-projects-carousel"
         >
           {projects.map(ProjectCard)}
         </Carousel>

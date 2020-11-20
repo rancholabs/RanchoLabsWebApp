@@ -12,12 +12,12 @@
 
 .courses-courses-carousel {
   width: 90%;
-  margin: 0 auto 40px auto;
+  margin: 0 auto 10px auto;
 }
 
 .courses-course-card {
   /* max-width: 400px; */
-  filter: brightness(0.5);
+  filter: brightness(0.3);
 }
 
 .courses-course-card.active {
@@ -70,12 +70,14 @@
 }
 
 .course-carousel-icon {
-  font-size: 30px !important;
+  /* font-size: 30px !important; */
+  width: 50px;
 }
 
 .course-carousel-icon-left {
   left: 0;
   top: 25%;
+  transform: rotate(180deg);
 }
 
 .course-carousel-icon-right {
@@ -94,5 +96,9 @@
   }
   .course-name-line {
     flex-direction: column-reverse;
+  }
+  .course-carousel-icon {
+    width: 30px;
+    z-index: 3;
   }
 }

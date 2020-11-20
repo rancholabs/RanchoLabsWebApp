@@ -1,5 +1,6 @@
 import React from "react";
 import "./css/CoursesFaq.css";
+import ReactHtmlParser from "react-html-parser";
 
 const faqs = [
   {
@@ -7,49 +8,51 @@ const faqs = [
     id: 1,
     question: "What is Rancho Labs?",
     answer:
-      "Lido provides India’s best LIVE online classes with the country’s top 0.1% tutors and a 6:1 student-teacher ratio, so every student can score better marks and look forward to a bright future! Lido has live classes in Maths, Science, English, and Coding, and more. We cater to students of KG, class 1st, class 2nd, class 3rd, all the way to class 10th.",
+      "Started by IIT Delhi Alumni and Professors, Rancho Labs is a company that aims to ignite the curious minds of students and shine the light on lucrative career paths in AI, Coding, and Robotics, through practical knowledge. It provides India's best affordable LIVE online Coding, Robotics & AI classes by the country's top 0.1% tutors. It gives a 1:1 and 3:1 student-teacher ratio LIVE classes. Rancho Labs believe in practical learning and innovation; therefore, the curriculum is designed considering real-life examples. Project-based active learning helps students to grow their logical thinking. Students develop real-life projects under the guidance of experts from IITs that helps students build the entrepreneurial mindset from the early stage of life and set a strong foundation for their bright careers.",
   },
   {
     id: 2,
-    question: "How does Rancho Labs help my child?",
+    question: "Why should my child join Rancho Labs?",
     answer:
-      "Lido is the best solution for your child. For the best learning experience, a student needs face-to-face interaction with rockstar teachers, interactive content, and a personalized platform. Lido combines these three in its classroom for the 21st century, which is guaranteed to improve results. Personalized attention: With face-to-face interaction with tutors and a maximum of 6 students per class, your child receives personalized attention, regular feedback, and enough opportunities to clarify doubts. Engaging content: Designed by Harvard, Stanford, and IIT alums, every live online class has HD animated videos, interactive games, live quiz competitions, and more. This helps your child learn concepts better and fall in love with learning. Real-world skills: Lido covers full school curriculum AND extra-curricular skills like problem-solving, technical skills, communication, and creativity through its live online classes.",
+      "<p>If Driverless cars, new technologies, robots like Sophia and Alexa or AR/VR games like pokemon excites your child, then Rancho Labs is the best place for himher. Rancho Labs is developed from scratch to help students follow their curiosity in technology. We follow a unique methodology of Learn, Build, and Innovate to ensure your child's overall development. Let's understand this methodology.</p> <ol><li><strong>Learn</strong>: Students learn via live classes taught by highly qualified teachers. Each class is designed based on the curiosity and interests of the students.</li><li><strong>Build</strong>: Teach me and I may remember. Involve me and I learn. Each class at Rancho Labs is followed by a live project to maximize the student's learning. Students master the skills that they have learned by building projects, the fun way. Innovate: Students always come up with amazing and unique ideas while learning at Rancho Labs. With the help of mentors from IITs and leading industries they execute their ideas and develop amazing products. Many students end up featuring in newspapers and filing patents for their own innovation</li></ol>",
   },
   {
     id: 3,
-    question: "What does a week at Rancho Labs look like?",
+    question:
+      "Is it necessary to have physical components to learn robotics? How will my child learn robotics online?",
     answer:
-      "Every week at Lido is filled with fun and learning. We conduct 9 live online classes a week - our Maths classes are conducted on Monday, Wednesday, and Friday; English and Science on Tuesday and Thursday, and Coding on Saturday and Sunday. Additionally, all our students have access to a video library covering all key concepts, and an unlimited question bank for extra practice.",
+      "No, It is not necessary to have physical components to start learning the concepts of robotics. Students learn via online simulation software in a safe environment. Once students good knowledge, they develop the final project in real life with the help of mentors.",
   },
   {
     id: 4,
-    question: "Will Rancho Labs help with homework and clearing doubts?",
+    question: "What does a week at Rancho Labs look like?",
     answer:
-      "Our 6:1 student-teacher ratio allows every student enough time with the teacher to clarify doubts before the class ends. Further, our AI-driven homework solutions help students practice and learn independently, even without the teacher around!",
+      "There is never a dull day at Rancho Labs; every day is filled with fun, learning and innovation. We conduct 3 live online classes a week. The class timings and days are finalized in discussion with parents and child keeping their availability into consideration.",
   },
   {
     id: 5,
     question: "What happens if my child misses a class?",
     answer:
-      "In case of a missed class, we’ll provide all the content and homework assignments for that class to your child. Alternatively, your child can book an extra (paid) 1:1 session with the tutor.",
+      "In case of a missed class, we provide the content and homework assignments for the class to the student. Students can also request a tutor for a 15min doubt class. (2 per month) Alternatively, students can book an extra 1:1(paid) session with the tutor",
   },
   {
     id: 6,
-    question: "Do I have to sign up for all the subjects?",
+    question: "How does Rancho Labs select teachers?",
     answer:
-      "Lido offers live classes in Maths, Science, English, Coding, and more. Based on your child’s needs, you can choose to sign up for as many courses as you want - one subject, or two, or three, or all four! You can also sign up for any of the new courses we offer at any time. Lido will soon be launching live online classes for extracurricular subjects like Vedic Maths, Public Speaking, Robotics, and more!",
+      "We select only the top 0.1% teachers from the best institutes like the IITs, NITs, and other top tier colleges via a 3-stage selection process to teach students. We guarantee that every teacher is well-trained to ensure excellent results for your child.",
   },
   {
     id: 7,
-    question: "How does Rancho Labs select teachers?",
+    question:
+      "Is there any refund policy available for the already bought curriculum/course?",
     answer:
-      "We select only the top 0.1% teachers in India from the world’s best institutes like the IITs, MIT, Stanford, and Harvard, among others to teach your child in our live online classes. We guarantee that every teacher is well-trained to ensure excellent results for your child. Instead of you having to search for an online tutor for your child, our advanced AI algorithm finds the perfect teacher for your child.",
+      "Yes. We provide the same day 100% refund for the remaining classes. We believe in improving our services each day and are looking for constant feedback from our students and their parents. It is hardly a case when someone applies for a refund concerning our services.",
   },
   {
     id: 8,
     question: "Start learning with us!",
     answer:
-      "If you are a motivated parent and want to empower your child to learn skills, master concepts, and change the world, join Lido now. If you or your child want to learn more about the opportunities provided by our live online classes/programs, explore the Maths, Science, English, and Coding classes/courses offered by Lido Learning Jr. and enroll for a free class now! Remember, the trial is totally free!",
+      "If you are a motivated parent and want to empower your child to learn 21st-century skills, master coding concepts, and change the world, join Rancho Labs now. If you want to learn more about the opportunities provided, explore the AI, Robotics, and Programming courses offered, and enroll for a free class now! Remember, the trial is free!",
   },
 ];
 
@@ -57,7 +60,7 @@ const Faq = (props) => {
   return (
     <>
       <div className="faq-question">{props.question}</div>
-      <div className="faq-ans">{props.answer}</div>
+      <div className="faq-ans"> {ReactHtmlParser(props.answer)}</div>
     </>
   );
 };
@@ -72,6 +75,11 @@ const CoursesFaq = () => {
             <Faq key={faq.id} question={faq.question} answer={faq.answer} />
           );
         })}
+        <br />
+        <div className="faq-ans">
+          Have any queries? Feel free to reach out to our customer support or
+          shoot a mail to us!
+        </div>
       </div>
     </>
   );

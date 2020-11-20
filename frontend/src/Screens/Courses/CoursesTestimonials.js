@@ -4,8 +4,9 @@ import ai from "./img/ai.png";
 // import { Carousel } from "react-responsive-carousel";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import ArrowBack from "../../Asssets/Icon feather-arrow-left.png";
+import purpleBlurBG from "../../Asssets/purpleBlurBG.svg";
+import purpleBlurBGright from "../../Asssets/purpleBlurBGright.png";
 
 const Testimonial = () => {
   return (
@@ -13,6 +14,10 @@ const Testimonial = () => {
       <div className="courses-testimonial">
         <div className="testimonial-image">
           <img src={ai} alt="img" className="img-fluid" />
+          <div className="testimonial-image-dot testimonial-image-dot1"></div>
+          <div className="testimonial-image-dot testimonial-image-dot2"></div>
+          <div className="testimonial-image-dot testimonial-image-dot3"></div>
+          <div className="testimonial-image-dot testimonial-image-dot4"></div>
         </div>
         <div className="testimonial-body">
           <div className="testimonial-desc row mx-0">
@@ -45,11 +50,11 @@ const CoursesTestimonials = () => {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4,
+      items: 2,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 3,
+      items: 2,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
@@ -62,7 +67,7 @@ const CoursesTestimonials = () => {
       className="course-carousel-icon-button course-carousel-icon-left"
       onClick={onClick}
     >
-      <ArrowBackIcon className="course-carousel-icon" />
+      <img src={ArrowBack} className="course-carousel-icon" />
     </button>
   );
 
@@ -71,12 +76,20 @@ const CoursesTestimonials = () => {
       className="course-carousel-icon-button course-carousel-icon-right"
       onClick={onClick}
     >
-      <ArrowForwardIcon className="course-carousel-icon" />
+      <img src={ArrowBack} className="course-carousel-icon" />
     </button>
   );
   return (
     <>
       <div className="courses-testimonials">
+        <img
+          src={purpleBlurBG}
+          className="course-purple-bg course-purple-bg-top-left"
+        ></img>
+        <img
+          src={purpleBlurBG}
+          className="course-purple-bg course-purple-bg-top-right"
+        ></img>
         <div className="testimonials-title">What Parents and Students say</div>
         <div className="testimonials-subtitle">
           We have earned the trust of more than 8000 parents who believed in us
@@ -85,8 +98,8 @@ const CoursesTestimonials = () => {
 
         <div className="testimonial-row">
           <Carousel
-            swipeable={false}
-            draggable={false}
+            swipeable={true}
+            draggable={true}
             showDots={true}
             responsive={responsive}
             infinite={true}

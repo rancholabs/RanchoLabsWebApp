@@ -1,9 +1,15 @@
 import React from "react";
 import "./css/CoursesDetailedListCards.css";
-import { Carousel } from "react-responsive-carousel";
+// import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
 import Fontawesome from "react-fontawesome";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import courseClass from "../../Asssets/courseClass.png";
+import courseCardBottomRIght from "../../Asssets/courseCardBottomRIght.png";
+import courseCardTicks from "../../Asssets/courseCardTicks.png";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import ArrowBack from "../../Asssets/Icon feather-arrow-left.png";
 
 const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
   const {
@@ -25,6 +31,7 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
   console.log(courseDetails);
   return (
     <div className="courses-detailed-list-card-item">
+      <img src={courseCardBottomRIght} className="courseCardBottomRIght"></img>
       <div className="top-boxes">
         <div className="box1"></div>
         <div className="box2"></div>
@@ -41,7 +48,10 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
       </div>
       <div className="title">
         <h3>{name}</h3>
-        <p>{totalClasses + " Classes"}</p>
+        <span>
+          <img src={courseClass}></img>
+          <p>{totalClasses + " Classes"}</p>
+        </span>
       </div>
       {/* <div className="grade-duration">
         GRADE {gradeRange.minG} - {gradeRange.maxG}{" "}
@@ -64,7 +74,10 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
           <div className="sub-topics sub-topics-build">
             {updatedOutcomes(builds).map((build, si, stArr) => (
               <div key={si} className="sub-topics-build-section">
-                <CheckCircleIcon className="sub-topics-build-sectionIcon" />
+                <img
+                  src={courseCardTicks}
+                  className="sub-topics-build-sectionIcon"
+                />
                 <p>{build}</p>
               </div>
             ))}
@@ -143,17 +156,58 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
 
 const CoursesDetailedListCards = ({ coursesDetails }) => {
   console.log(coursesDetails);
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 3,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
 
+  const CustomLeft = ({ onClick }) => (
+    <button
+      className="course-carousel-icon-button course-carousel-icon-left"
+      onClick={onClick}
+    >
+      <img src={ArrowBack} className="course-carousel-icon" />
+    </button>
+  );
+
+  const CustomRight = ({ onClick }) => (
+    <button
+      className="course-carousel-icon-button course-carousel-icon-right"
+      onClick={onClick}
+    >
+      <img src={ArrowBack} className="course-carousel-icon" />
+    </button>
+  );
   return (
     <>
       <div className="courses-detailed-list-cards">
         {window.screen.width <= 600 ? (
           <Carousel
-            showThumbs={false}
-            infiniteLoop
-            useKeyboardArrows
-            showArrows
-            showIndicators
+            swipeable
+            draggable
+            // showDots={true}
+            responsive={responsive}
+            infinite={true}
+            // autoPlay={true}
+            // autoPlaySpeed={2500}
+            customLeftArrow={<CustomLeft />}
+            customRightArrow={<CustomRight />}
+            // keyBoardControl={true}
+            className="courses-courses-carousel"
           >
             {coursesDetails.map((courseDetails, ci) => {
               return (

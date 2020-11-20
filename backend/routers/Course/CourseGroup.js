@@ -14,12 +14,14 @@ router.post("/", isAuthenticated, isAuthorized(["admin"]), async (req, res) => {
   const image = req.body.image;
   var journey = req.body.journey;
 
-  journey = journey.map((jour, idx) => {
-    if (jour.image) {
-      jour.image = mongoose.Types.ObjectId(jour.image);
-    }
-    return jour;
-  });
+  if (journey) {
+    journey = journey.map((jour, idx) => {
+      if (jour.image) {
+        jour.image = mongoose.Types.ObjectId(jour.image);
+      }
+      return jour;
+    });
+  }
 
   const courseGroupData = new CourseGroup({
     _id: new mongoose.Types.ObjectId(),
@@ -51,6 +53,14 @@ router.put(
     const updateData = req.body;
     if (updateData.image)
       updateData.image = new mongoose.Types.ObjectId(updateData.image);
+
+    if (updateData.journey) {
+      updateData.journey.map((jour, idx) => {
+        if (jour.image) {
+          jour.image = mongoose.Types.ObjectId(jour.image);
+        }
+      });
+    }
 
     CourseGroup.updateOne({ _id: id }, updateData, (err, raw) => {
       if (err) {

@@ -1,97 +1,95 @@
-.courses-banner{
-    background-image: url('../img/banner.png');
+.courses-banner {
+  background-image: url("../img/banner.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: calc(149 * var(--vp)) 0 0 !important;
+  padding: calc(61 * var(--vp)) 0 calc(49 * var(--vp));
+}
+
+.courses-banner-title {
+  font-size: calc(55 * var(--vp));
+  text-align: center;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.courses-banner-desc {
+  font-size: calc(28 * var(--vp));
+  text-align: center;
+  font-weight: 300;
+  width: calc(1068 * var(--vp));
+  margin: auto;
+  color: #ffffff;
+  margin-top: calc(16 * var(--vp));
+}
+
+.banner-button button {
+  margin-top: calc(30 * var(--vp));
+  font-size: calc(33 * var(--vp));
+  color: #ffffff;
+  background-color: #f74b42;
+  outline: none;
+  box-shadow: none;
+  align-items: center;
+  height: calc(80 * var(--vp));
+  width: calc(613 * var(--vp));
+  border-radius: calc(9 * var(--vp));
+  border: calc(2 * var(--vp)) solid #f74b42;
+}
+
+.banner-button button img {
+  width: calc(31.5 * var(--vp));
+  height: calc(36 * var(--vp));
+  margin-right: calc(36 * var(--vp));
+}
+
+@media (max-width: 600px) {
+  .courses-banner {
+    background-image: url("../../../Asssets/mobileBanner.png");
     background-repeat: no-repeat;
     background-size: cover;
-    margin: calc(149*var(--vp)) 0 0 !important;
-    padding: calc(61*var(--vp)) 0 calc(49*var(--vp));
-}
+    margin: calc(149 * var(--vp)) 0 0 !important;
+    padding: calc(81 * var(--vm)) 0 calc(80 * var(--vm));
+    height: calc(352 * var(--vm));
+  }
 
-.courses-banner-title{
-    font-size: calc(55*var(--vp));
+  .courses-banner-title {
+    font-size: calc(24 * var(--vm));
+    width: calc(241 * var(--vm));
+    margin: auto;
     text-align: center;
     font-weight: 400;
-    color: #FFFFFF;
-}
+    color: #ffffff;
+  }
 
-.courses-banner-desc{
-    font-size: calc(28*var(--vp));
+  .courses-banner-desc {
+    font-size: calc(13 * var(--vm));
     text-align: center;
     font-weight: 300;
-    width: calc(1068*var(--vp));
+    width: calc(280 * var(--vm));
     margin: auto;
-    color: #FFFFFF;
-    margin-top: calc(16*var(--vp));
-}
+    color: #ffffff;
+    margin-top: calc(16 * var(--vm));
+    font-weight: lighter;
+  }
 
-.banner-button button{
-    margin-top: calc(30*var(--vp));
-    font-size: calc(33*var(--vp));
-    color: #FFFFFF;
-    background-color: #F74B42;
+  .banner-button button {
+    margin-top: calc(29 * var(--vm));
+    font-size: calc(15 * var(--vm));
+    color: #ffffff;
+    background-color: #f74b42;
     outline: none;
     box-shadow: none;
     align-items: center;
-    height: calc(80*var(--vp));
-    width: calc(613*var(--vp));
-    border-radius: calc(9*var(--vp));
-    border: calc(2*var(--vp)) solid #F74B42;
-}
+    height: calc(31 * var(--vm));
+    width: max-content;
+    border-radius: calc(5 * var(--vm));
+    border: calc(2 * var(--vm)) solid #f74b42;
+  }
 
-.banner-button button img{
-    width: calc(31.5*var(--vp));
-    height: calc(36*var(--vp));
-    margin-right: calc(36*var(--vp));
-}
-
-
-@media(max-width:600px){
-    .courses-banner{
-        background-image: url('../img/banner.png');
-        background-repeat: no-repeat;
-        background-size: cover;
-        margin: calc(149*var(--vp)) 0 0 !important;
-        padding: calc(81*var(--vm)) 0 calc(80*var(--vm));
-        height: calc(352*var(--vm));
-    }
-    
-    .courses-banner-title{
-        font-size: calc(24*var(--vm));
-        width: calc(241*var(--vm));
-        margin: auto;
-        text-align: center;
-        font-weight: 400;
-        color: #FFFFFF;
-    }
-    
-    .courses-banner-desc{
-        font-size: calc(13*var(--vm));
-        text-align: center;
-        font-weight: 300;
-        width: calc(280*var(--vm));
-        margin: auto;
-        color: #FFFFFF;
-        margin-top: calc(16*var(--vm));
-        font-weight: lighter;
-    }
-    
-    .banner-button button{
-        margin-top: calc(29*var(--vm));
-        font-size: calc(15*var(--vm));
-        color: #FFFFFF;
-        background-color: #F74B42;
-        outline: none;
-        box-shadow: none;
-        align-items: center;
-        height: calc(31*var(--vm));
-        width: max-content;
-        border-radius: calc(5*var(--vm));
-        border: calc(2*var(--vm)) solid #F74B42;
-    }
-    
-    .banner-button button img{
-        width: calc(15.75*var(--vm));
-        height: calc(18*var(--vm));
-        margin-right: calc(13*var(--vm));
-    }
-    
+  .banner-button button img {
+    width: calc(15.75 * var(--vm));
+    height: calc(18 * var(--vm));
+    margin-right: calc(13 * var(--vm));
+  }
 }

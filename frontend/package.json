@@ -33,6 +33,7 @@
     "react-dom": "^16.12.0",
     "react-fontawesome": "^1.7.1",
     "react-helmet": "^6.1.0",
+    "react-html-parser": "^2.0.2",
     "react-modal": "^3.11.2",
     "react-multi-carousel": "^2.5.5",
     "react-progressbar": "^15.4.1",

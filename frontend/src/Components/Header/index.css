@@ -1,52 +1,85 @@
+.header {
+  /* padding-top: calc(53 * var(--vp));
+      padding-left: calc(73 * var(--vp)); */
+  /* background: #020122 0% 0% no-repeat padding-box; */
+  border: calc(0 * var(--vp)) solid #707070;
+  opacity: 1;
+  padding: 32px calc(120 * var(--vp)) 32px calc(77 * var(--vp));
+}
+
 .header .app-icon {
-    background: transparent 0% 0% no-repeat padding-box;
-    opacity: 1;
-    width: calc(170 * var(--vp));
-    height: calc(142 * var(--vp));
+  /* background: transparent 0% 0% no-repeat padding-box;
+  opacity: 1;
+  width: calc(170 * var(--vp));
+  height: calc(142 * var(--vp)); */
+  width: 100%;
+  object-fit: contain;
+}
+
+.nav-menu-button {
+  margin-right: 50px;
+  outline: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.nav-menu-button-transparent {
+  background-color: transparent;
+  border: 2px solid #3cfaff;
+  color: white;
+  font-weight: normal;
+}
+
+.nav-menu-button-filled {
+  background-color: #3cfaff;
+  color: #020122;
+  border: 2px solid #3cfaff;
+  margin-right: 74px;
+  font-weight: normal;
 }
 
 .header .app-name {
-    text-align: center;
-    letter-spacing: calc(0 * var(--vp));
-    color: #FFFFFF;
-    margin-left: calc(-37 * var(--vp));
-    opacity: 1;
-    font: normal normal 500 calc(47 * var(--vp))/calc(62 * var(--vp)) Roboto;
-    width: calc(354 * var(--vp));
-    height: calc(62 * var(--vp));
+  text-align: center;
+  letter-spacing: calc(0 * var(--vp));
+  color: #ffffff;
+  margin-left: calc(-37 * var(--vp));
+  opacity: 1;
+  font: normal normal 500 calc(47 * var(--vp)) / calc(62 * var(--vp)) Roboto;
+  width: calc(354 * var(--vp));
+  height: calc(62 * var(--vp));
 }
 
 .header .nav-menu-icon {
-    margin-right: calc(107 * var(--vp));
-    font-size: calc(53 * var(--vp));
-    cursor: pointer;
-    color: #3CFAFF;
+  /* margin-right: calc(107 * var(--vp)); */
+  /* font-size: calc(53 * var(--vp)); */
+  cursor: pointer;
+  width: 24px;
+  color: #3cfaff;
+  position: fixed;
+  top: 30px;
+  right: calc(120 * var(--vp));
+  z-index: 15;
 }
 
 .header .nav-menu {
-    position: fixed;
-    right: 0;
-    z-index: 15;
+  /* position: fixed;
+  right: 0;
+  z-index: 15; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .header > .header-app-line {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .header .logo {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.header {
-    padding-top: calc(53 * var(--vp));
-    padding-left: calc(73 * var(--vp));
-    background: #020122 0% 0% no-repeat padding-box;
-    border: calc(0 * var(--vp)) solid #707070;
-    opacity: 1;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 /* Mobile CSS similar to @media all and (max-width: 600px) {
@@ -54,38 +87,51 @@
 } */
 
 .header.mobile .app-icon {
-    background: transparent 0% 0% no-repeat padding-box;
-    opacity: 1;
-    width: calc(53 * var(--vm));
-    height: calc(44 * var(--vm));
+  /* background: transparent 0% 0% no-repeat padding-box;
+  opacity: 1;
+  width: calc(53 * var(--vm));
+  height: calc(44 * var(--vm)); */
+  width: 100%;
+  object-fit: contain;
+}
+
+.header .logo {
+  width: 20%;
 }
 
 .header.mobile .app-name {
-    text-align: center;
-    letter-spacing: calc(0 * var(--vm));
-    color: #FFFFFF;
-    margin-left: calc(-13 * var(--vm));
-    opacity: 1;
-    font-size: calc(20 * var(--vm));
-    width: calc(143 * var(--vm));
-    height: calc(26 * var(--vm));
-    line-height: initial;
-    text-transform: capitalize;
+  text-align: center;
+  letter-spacing: calc(0 * var(--vm));
+  color: #ffffff;
+  margin-left: calc(-13 * var(--vm));
+  opacity: 1;
+  font-size: calc(20 * var(--vm));
+  width: calc(143 * var(--vm));
+  height: calc(26 * var(--vm));
+  line-height: initial;
+  text-transform: capitalize;
 }
 
 .header.mobile .nav-menu-icon {
-    margin-right: calc(16 * var(--vm));
-    font-size: calc(18 * var(--vm));
-    color: #FFFFFF;
-    cursor: pointer;
+  margin-right: calc(16 * var(--vm));
+  font-size: calc(18 * var(--vm));
+  color: #ffffff;
+  cursor: pointer;
 }
 
 .header.mobile {
-    padding-top: calc(30 * var(--vm));
-    padding-left: calc(16 * var(--vm));
-    background: #020122 0% 0% no-repeat padding-box;
+  padding: 30px 20px;
+  background: #020122 0% 0% no-repeat padding-box;
 }
 
-/* @media all and (max-width: 600px) {
-    
-} */
+@media all and (max-width: 600px) {
+  .nav-menu-button {
+    display: none;
+  }
+  .header .logo {
+    width: 60%;
+  }
+  .header .nav-menu-icon {
+    right: 0px;
+  }
+}

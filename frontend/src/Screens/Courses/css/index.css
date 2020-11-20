@@ -8,9 +8,42 @@
     margin-right: calc(108 * var(--vp)); */
 }
 
+.course-purple-bg-container {
+  position: relative;
+  z-index: 1;
+}
+
+.course-purple-bg {
+  position: absolute;
+
+  z-index: -1;
+  width: 50%;
+}
+
+.course-purple-bg-top-left {
+  top: -153px;
+}
+
+.course-purple-bg-bottom-right {
+  bottom: -91px;
+  right: 0;
+  transform: rotate(180deg);
+}
+
 @media all and (max-width: 600px) {
   .courses-main > * {
     /* margin-left: calc(16 * var(--vm));
         margin-right: calc(16 * var(--vm)); */
+  }
+  .course-purple-bg-top-left {
+    top: -140px;
+    width: 100%;
+  }
+
+  .course-purple-bg-bottom-right {
+    width: 100%;
+    bottom: -85px;
+    right: 0;
+    transform: rotateY(180deg);
   }
 }
