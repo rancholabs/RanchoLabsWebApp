@@ -161,14 +161,15 @@ function StudentProjects() {
         <Carousel
           swipeable={true}
           draggable={true}
-          showDots={false}
+          showDots={true}
           responsive={responsive}
           infinite={true}
           autoPlay={true}
           autoPlaySpeed={2500}
+          arrows={false}
           // centerMode={showCenteredMode}
-          customLeftArrow={<CustomLeft />}
-          customRightArrow={<CustomRight />}
+          // customLeftArrow={<CustomLeft />}
+          // customRightArrow={<CustomRight />}
           // keyBoardControl={true}
           className="courses-projects-carousel"
         >

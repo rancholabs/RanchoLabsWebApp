@@ -26,7 +26,7 @@
   /* width: calc(721 * var(--vp)); */
 
   margin: 0 2vw 3vw 2vw;
-  height: 500px;
+  /* height: 500px; */
   /* width: 90%; */
   width: 500px;
   background-color: #190a4d;
@@ -34,7 +34,8 @@
   /* padding: calc(53 * var(--vp)) calc(48 * var(--vp)); */
   box-shadow: 0 calc(6 * var(--vp)) calc(6 * var(--vp)) #00000070;
   text-align: center;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   /* margin: 0 calc(60 * var(--vp)) calc(100 * var(--vp)); */
 }
@@ -87,6 +88,12 @@
   padding: 1vw;
 }
 
+.testimonial-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .testimonial-body .testimonial-desc {
   font-size: calc(28 * var(--vp));
   color: #ffffff;
@@ -113,6 +120,10 @@
   color: #f74b42;
   margin-top: calc(39 * var(--vp));
   text-align: end;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .testimonials-title {
@@ -223,7 +234,7 @@
     height: unset;
     width: 90%;
     margin: 0 auto;
-    display: block;
+    /* display: block; */
   }
   .testimonials-title {
     font-size: calc(108 * var(--vp));
@@ -297,5 +308,33 @@
   }
   .courses-testimonials .course-purple-bg-top-right {
     display: none;
+  }
+
+  .courses-testimonial .testimonial-image .testimonial-image-dot1 {
+    top: 36%;
+    left: 18%;
+    width: calc(90 * var(--vp));
+    height: calc(90 * var(--vp));
+  }
+
+  .courses-testimonial .testimonial-image .testimonial-image-dot2 {
+    top: 62%;
+    left: 62%;
+    width: calc(128 * var(--vp));
+    height: calc(128 * var(--vp));
+  }
+
+  .courses-testimonial .testimonial-image .testimonial-image-dot3 {
+    top: 14%;
+    right: 22%;
+    width: calc(78 * var(--vp));
+    height: calc(78 * var(--vp));
+  }
+
+  .courses-testimonial .testimonial-image .testimonial-image-dot4 {
+    top: 10%;
+    right: 16%;
+    width: calc(42 * var(--vp));
+    height: calc(42 * var(--vp));
   }
 }

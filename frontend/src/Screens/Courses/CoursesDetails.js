@@ -11,6 +11,13 @@ import brain from "./img/brain.png";
 import python from "./img/python.png";
 import ai2 from "./img/ai2.png";
 import orangecircle from "./img/orangecircle.png";
+import roboticsjourney1 from "./img/robotics-journey-1.png";
+import roboticsjourney2 from "./img/roboticsjourney2.png";
+import roboticsjourney3 from "./img/roboticsjourney3.png";
+import aijourney1 from "./img/aijourney1.png";
+import aijourney2 from "./img/aijourney2.png";
+import aijourney3 from "./img/aijourney3.png";
+import aijourney4 from "./img/aijourney4.png";
 import "./css/CoursesDetails.css";
 import journeyTopLeft from "../../Asssets/journeyTopLeft.png";
 
@@ -19,28 +26,28 @@ const courseGroups = [
     name: "ROBOTICS",
     journey: [
       {
-        title: "Free Workshop",
-        image: Workshop,
+        title: "Programming & Arduino",
+        image: roboticsjourney1,
         classes: 2,
       },
       {
-        title: "Arduino Programing",
+        title: "Electrical Concepts and IoT",
         image: arduino,
         classes: 12,
       },
       {
-        title: `Internet of Things`,
-        image: iot,
+        title: `CAD Design & 3D Printing`,
+        image: roboticsjourney2,
         classes: 12,
       },
       {
-        title: "Drone Building and Computer Vision",
+        title: "Drone Building and Open CV",
         image: drone,
         classes: 12,
       },
       {
         title: "Innovation Project",
-        image: innovation,
+        image: roboticsjourney3,
         classes: 12,
       },
     ],
@@ -79,28 +86,28 @@ const courseGroups = [
     name: "ARTIFICIAL INTELLIGENCE",
     journey: [
       {
-        title: "Free Workshop",
-        image: Workshop,
+        title: "Logic and Python Coding",
+        image: aijourney1,
         classes: 2,
       },
       {
-        title: "Python Programming",
-        image: python,
+        title: "Machine Learning & Data Visualization",
+        image: aijourney2,
         classes: 12,
       },
       {
-        title: `Machine Learning`,
-        image: ai,
+        title: `Neural Networks`,
+        image: aijourney3,
         classes: 12,
       },
       {
-        title: "ML and Neural Networks",
-        image: brain,
+        title: "Chatbots",
+        image: aijourney4,
         classes: 12,
       },
       {
         title: "Innovation Project",
-        image: innovation,
+        image: roboticsjourney3,
         classes: 12,
       },
     ],

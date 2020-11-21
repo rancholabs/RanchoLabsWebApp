@@ -50,7 +50,7 @@ router.post("/", isAuthenticated, upload.single("files"), async (req, res) => {
   const file = req.file;
   const fileData = new File({
     _id: new mongoose.Types.ObjectId(),
-    originalName: file.name,
+    originalName: file.originalName,
     mimeType: file.mimetype,
     filePath: file.location,
     size: file.size,

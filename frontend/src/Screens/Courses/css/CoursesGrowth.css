@@ -68,6 +68,7 @@
   }
   .courses-growth-robot {
     margin-top: 50px;
+    width: 180px;
   }
   .courses-growth .courses-growth-title {
     font-size: calc(100 * var(--vp));

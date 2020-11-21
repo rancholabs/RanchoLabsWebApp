@@ -141,22 +141,28 @@ const CoursesCourses = ({ courseGroups, activeCourseG, setActiveCourseG }) => {
       <img src={ArrowBack} className="course-carousel-icon" />
     </button>
   );
-
+  let myCarousel = null;
   return (
     <>
       {/* <div className="courses-courses row mx-0"> */}
       {/* {courseGroups.map(CourseCard)} */}
       <Carousel
-        swipeable={false}
-        draggable={false}
+        ref={(el) => (myCarousel = el)}
+        swipeable={showCenteredMode}
+        draggable={showCenteredMode}
         // showDots={true}
         responsive={responsive}
         infinite={true}
         // autoPlay={true}
         // autoPlaySpeed={2500}
         centerMode={showCenteredMode}
-        customLeftArrow={showCenteredMode && <CustomLeft />}
-        customRightArrow={showCenteredMode && <CustomRight />}
+        arrows={false}
+        // focusOnSelect={true}
+        afterChange={() =>
+          setActiveCourseG(courseGroups[myCarousel?.state?.currentSlide - 2])
+        }
+        // customLeftArrow={showCenteredMode && <CustomLeft />}
+        // customRightArrow={showCenteredMode && <CustomRight />}
         // keyBoardControl={true}
         className="courses-courses-carousel"
       >

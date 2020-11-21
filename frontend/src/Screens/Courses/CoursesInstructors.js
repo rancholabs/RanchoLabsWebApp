@@ -1,6 +1,8 @@
 import React from "react";
 import "./css/CoursesInstructors.css";
 import iitd from "./img/iitd.png";
+import iitb from "./img/iitb.png";
+import DroneStark_white from "./img/DroneStark_white.png";
 import google from "./img/google.png";
 import RohanYutthamInstructor from "./img/RohanYutthamInstructor.png";
 import RitizSainiInstructor from "./img/RitizSainiInstructor.png";
@@ -21,14 +23,16 @@ const instructors = [
     logo1: iitd,
     logo2: google,
     image: RohanYutthamInstructor,
+    logoDesc: "IIT Delhi",
   },
   {
     id: 2,
     name: "Ritiz Saini",
     details: `<p>Electrical Engineer, IIT Bombay. <br/> Software and Application Expert. </p>`,
-    logo1: iitd,
+    logo1: iitb,
     logo2: google,
     image: RitizSainiInstructor,
+    logoDesc: "IIT Bombay",
   },
   {
     id: 3,
@@ -38,15 +42,17 @@ const instructors = [
     logo1: iitd,
     logo2: google,
     image: KaashikaPhotoInstructor,
+    logoDesc: "IIT Delhi",
   },
   {
     id: 4,
     name: "Nazneen Khan",
     details:
       "<p>Robotics Software Engineer, Drone Stark. <br /> Drones and Computer Vision Expert. </p>",
-    logo1: iitd,
+    logo1: DroneStark_white,
     logo2: google,
     image: NazneenKhanInstructor,
+    logoDesc: "Drone Stark",
   },
 ];
 
@@ -64,8 +70,10 @@ const InstructorCard = (props) => {
             {ReactHtmlParser(props.details)}
           </div>
           <div className="logos row mx-0">
-            <img src={props.logo1} alt={props.logo1} />
-            <img src={props.logo2} alt={props.logo2} />
+            <span>
+              <img src={props.logo1} alt={props.logo1} />
+              <p>{props.logoDesc}</p>
+            </span>
           </div>
         </div>
       </div>
@@ -127,6 +135,7 @@ const CourseInstructors = () => {
                 logo1={i.logo1}
                 logo2={i.logo2}
                 details={i.details}
+                logoDesc={i.logoDesc}
                 image={i.image}
               />
             );
@@ -155,6 +164,7 @@ const CourseInstructors = () => {
                   logo1={i.logo1}
                   logo2={i.logo2}
                   details={i.details}
+                  logoDesc={i.logoDesc}
                   image={i.image}
                 />
               );

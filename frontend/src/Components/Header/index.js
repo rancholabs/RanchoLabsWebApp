@@ -10,6 +10,7 @@ import NewLogoSVG from "./logo.svg";
 
 const Header = () => {
   const header = useRef();
+  const { userInfo } = useSelector((state) => state.userLogin);
   const { appName, isIPadMiniMobileView } = useSelector(
     (state) => state.appDetails
   );
@@ -67,12 +68,22 @@ const Header = () => {
           <SideNav isOpen={isNavOpen} navCloseHandler={navCloseHandler} />
         ) : (
           <div className="nav-menu">
-            <button className="nav-menu-button nav-menu-button-transparent">
-              Curriculum + Pricing
-            </button>
-            <button className="nav-menu-button nav-menu-button-filled">
-              Book a free class
-            </button>
+            {!userInfo && (
+              <>
+                <button
+                  className="nav-menu-button nav-menu-button-transparent"
+                  onClick={() => history.push("/courses")}
+                >
+                  Curriculum + Pricing
+                </button>
+                <button
+                  className="nav-menu-button nav-menu-button-filled"
+                  onClick={() => history.push("/freeclass?loginfor=freeclass")}
+                >
+                  Book a free class
+                </button>
+              </>
+            )}
             <svg
               aria-hidden="true"
               onClick={() => navOpenHandler(true)}

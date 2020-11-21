@@ -199,7 +199,7 @@ const CoursesDetailedListCards = ({ coursesDetails }) => {
           <Carousel
             swipeable
             draggable
-            // showDots={true}
+            showDots={true}
             responsive={responsive}
             infinite={true}
             // autoPlay={true}

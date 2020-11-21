@@ -267,7 +267,7 @@ section.is-visible-viewport > * {
     margin: 0 auto;
   }
   .courses-projects .react-multi-carousel-dot-list {
-    bottom: 16px;
+    bottom: 0px;
   }
   .courses-projects .react-multi-carousel-dot-list li button {
     width: 10px !important;
