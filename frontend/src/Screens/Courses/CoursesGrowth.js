@@ -15,7 +15,11 @@ const CoursesGrowth = () => {
         </div>
         <div className="freeclass-button">
           <div className="text-center">
-            <button>
+            <button
+              onClick={() =>
+                (window.location.href = "/freeclass?loginfor=freeclass")
+              }
+            >
               <img src={calendar} alt="freeclass" />
               Book a free class now
             </button>

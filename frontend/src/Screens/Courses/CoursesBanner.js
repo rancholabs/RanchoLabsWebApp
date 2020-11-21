@@ -15,7 +15,11 @@ const CoursesBanner = () => {
           path based on your child’s interest and performance.
         </div>
         <div className="banner-button text-center">
-          <button>
+          <button
+            onClick={() =>
+              (window.location.href = "/freeclass?loginfor=freeclass")
+            }
+          >
             <img src={calendar} alt="calendar" /> Book A Free Class Now
           </button>
         </div>

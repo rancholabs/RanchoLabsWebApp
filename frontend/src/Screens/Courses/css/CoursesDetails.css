@@ -67,6 +67,7 @@
 
 .course-details .step-card .step-card-img img {
   width: 80%;
+  object-fit: contain;
 }
 
 .course-details .step-card .step-card-title {

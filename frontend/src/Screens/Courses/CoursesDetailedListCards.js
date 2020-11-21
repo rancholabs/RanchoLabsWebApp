@@ -195,7 +195,7 @@ const CoursesDetailedListCards = ({ coursesDetails }) => {
   return (
     <>
       <div className="courses-detailed-list-cards">
-        {window.screen.width <= 600 ? (
+        {window.screen.width <= 800 ? (
           <Carousel
             swipeable
             draggable

@@ -24,7 +24,7 @@
   padding-bottom: calc(44 * var(--vp));
   padding-left: calc(32 * var(--vp));
   /* padding-right: calc(32 * var(--vp)); */
-  min-width: 386px;
+  /* min-width: calc(542 * var(--vp));  */
   display: flex;
   flex-direction: column;
 }

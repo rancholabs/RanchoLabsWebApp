@@ -172,7 +172,12 @@ const CourseInstructors = () => {
           </Carousel>
         </div>
         <div className="text-center">
-          <button className="course-instructor-bookfreeclass-btn">
+          <button
+            className="course-instructor-bookfreeclass-btn"
+            onClick={() =>
+              (window.location.href = "/freeclass?loginfor=freeclass")
+            }
+          >
             <img src={calendar} alt="freeclass" />
             Book a free class now
           </button>

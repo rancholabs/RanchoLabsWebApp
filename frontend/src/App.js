@@ -26,6 +26,7 @@ import AboutUs from "./Screens/AboutUs";
 import FreeClass from "./Screens/FreeClass";
 import InstructorProfile from "./Screens/InstructorProfile";
 import InstructorSchedule from "./Screens/InstructorSchedule";
+import Blog from "./Screens/Blog";
 
 // ADMIN
 import Admin from "./Screens/Admin";
@@ -132,10 +133,11 @@ function App() {
                   />
                   <Route
                     path="/blog"
-                    component={() => {
-                      window.location.href = "http://blog.rancholabs.com";
-                      return null;
-                    }}
+                    component={Blog}
+                    // component={() => {
+                    //   window.location.href = "http://blog.rancholabs.com";
+                    //   return null;
+                    // }}
                   />
                   <Route component={PageNotFound} />
                 </Switch>

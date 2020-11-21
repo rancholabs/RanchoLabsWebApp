@@ -23,7 +23,7 @@
   }
 
   .home.main-content {
-    padding-bottom: 0;
+    padding-bottom: 0 !important;
   }
 
   .main-content .main-bg-mob {
@@ -189,7 +189,7 @@
 
 @media (max-width: 1100px) {
   .home.main-content {
-    /* padding-bottom: 42px; */
+    padding-bottom: 6.7vw;
   }
 }
 
