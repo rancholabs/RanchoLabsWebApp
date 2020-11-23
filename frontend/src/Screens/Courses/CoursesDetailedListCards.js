@@ -61,26 +61,39 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
         <div className="outcomes-section">
           <div className="topic">LEARN</div>
           <div className="sub-topics">
-            {updatedOutcomes(learns).map((learn, si, stArr) => (
-              <>
-                <div key={si}>{learn}</div>
-                <p>{si < stArr.length - 1 ? "|" : ""}</p>
-              </>
-            ))}
+            {updatedOutcomes(learns).map((learn, si, stArr) => {
+              console.log(si);
+              console.log(stArr);
+              if (learn.toString() !== "") {
+                return (
+                  <>
+                    <div key={si}>{learn}</div>
+                    <p>
+                      {si < stArr.length - 1 && stArr[si + 1]?.toString() !== ""
+                        ? "|"
+                        : ""}
+                    </p>
+                  </>
+                );
+              }
+            })}
           </div>
         </div>
         <div className="outcomes-section">
           <div className="topic">BUILD</div>
           <div className="sub-topics sub-topics-build">
-            {updatedOutcomes(builds).map((build, si, stArr) => (
-              <div key={si} className="sub-topics-build-section">
-                <img
-                  src={courseCardTicks}
-                  className="sub-topics-build-sectionIcon"
-                />
-                <p>{build}</p>
-              </div>
-            ))}
+            {updatedOutcomes(builds).map((build, si, stArr) => {
+              if (build !== "")
+                return (
+                  <div key={si} className="sub-topics-build-section">
+                    <img
+                      src={courseCardTicks}
+                      className="sub-topics-build-sectionIcon"
+                    />
+                    <p>{build}</p>
+                  </div>
+                );
+            })}
           </div>
         </div>
         <div className="outcomes-section">
