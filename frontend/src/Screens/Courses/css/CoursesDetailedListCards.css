@@ -140,7 +140,7 @@
   align-items: center;
   z-index: 2;
   justify-content: space-between;
-  padding-right: calc(32 * var(--vp));
+  /* padding-right: calc(32 * var(--vp)); */
 }
 
 .courses-detailed-list-card-item > .grade-duration {
@@ -303,15 +303,17 @@
   font-size: calc(8 * var(--vm));
   line-height: initial;
   letter-spacing: calc(0.3 * var(--vm));
-  flex: 1;
+  /* flex: 1; */
   z-index: 1;
   margin: 0;
+  width: 60%;
   /* width: fit-content; */
 }
 
 .courses-detailed-list-card-item > .title > span {
   display: flex;
   align-items: flex-end;
+  width: 40%;
 }
 
 .courses-detailed-list-card-item > .title > span > img {
