@@ -111,6 +111,7 @@
   .courses-detailed-lists {
     /* padding: calc(20 * var(--vm)) calc(30 * var(--vm)); */
     /* padding-bottom: calc(78 * var(--vm)); */
+    width: 100%;
   }
 
   .courses-detailed-list {

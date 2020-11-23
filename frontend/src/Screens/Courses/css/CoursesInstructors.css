@@ -287,7 +287,7 @@
     margin-bottom: 60px;
   }
   .mobile-instructors .courses-instructor-carousel {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
   }
   .mobile-instructors .react-multi-carousel-dot-list {
@@ -310,12 +310,13 @@
     top: unset !important;
     bottom: 10px !important;
     z-index: 2;
+    left: 5%;
   }
   .mobile-instructors .course-carousel-icon-right {
     top: unset !important;
     bottom: 10px !important;
     z-index: 2;
-    /* right: ; */
+    right: 5%;
   }
   .mobile-instructors .react-multi-carousel-list {
     /* overflow: unset; */

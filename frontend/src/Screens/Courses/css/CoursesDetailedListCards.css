@@ -13,6 +13,7 @@
 
 .courses-detailed-list-cards .courses-courses-carousel {
   position: unset;
+  /* width: 100%; */
 }
 
 .courses-detailed-list-cards
@@ -382,15 +383,15 @@
 @media all and (max-width: 600px) {
   .courses-detailed-list-cards {
     /* padding-top: calc(75 * var(--vm)); */
-    padding-left: calc(0 * var(--vm));
-    padding-right: calc(0 * var(--vm));
-    width: calc(326 * var(--vm));
+    /* padding-left: calc(0 * var(--vm));
+    padding-right: calc(0 * var(--vm)); */
+    /* width: calc(326 * var(--vm)); */
     margin: auto !important;
     display: block;
   }
 
   .courses-detailed-list-card-item {
-    width: 100%;
+    width: 90%;
     height: 100%;
     min-width: unset;
     box-shadow: calc(0 * var(--vm)) calc(4 * var(--vm)) calc(2 * var(--vm))
@@ -610,6 +611,9 @@
     width: 12px;
     margin-right: 0;
   }
+  .courses-detailed-list-cards .courses-courses-carousel {
+    width: 100%;
+  }
   .courses-detailed-list-cards .react-multi-carousel-track {
     margin-bottom: 60px;
   }
@@ -637,11 +641,13 @@
     top: unset !important;
     bottom: 0 !important;
     z-index: 2;
+    left: 5%;
   }
   .courses-detailed-list-cards .course-carousel-icon-right {
     top: unset !important;
     bottom: 0 !important;
     z-index: 2;
+    right: 5%;
   }
   .sub-topics div {
     /* font: normal normal normal calc(100 * var(--vp)) / calc(33 * var(--vp))

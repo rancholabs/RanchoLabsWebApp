@@ -39,7 +39,7 @@
   }
 
   .courses-faq .faq-question {
-    color: #f74b42;
+    color: #ffffff;
     font-size: calc(18 * var(--vm));
     letter-spacing: calc(1.65 * var(--vp));
     margin-top: calc(11 * var(--vm));

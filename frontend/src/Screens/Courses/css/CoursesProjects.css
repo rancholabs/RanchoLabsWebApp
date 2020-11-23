@@ -192,15 +192,19 @@ section.is-visible-viewport > * {
 
 @media (max-width: 768px) and (max-height: 854px) {
   .courses-projects {
-    padding: 40px 20px;
+    padding: 40px 0px;
   }
 
   .courses-projects .project-cat {
     font-size: 3.5vw;
   }
 
-  .courses-projects .card {
+  .courses-projects .testimonial-row {
     width: 100%;
+  }
+
+  .courses-projects .card {
+    width: 90%;
     margin: 0 auto;
     /* height: 100%; */
     /* margin-top: calc(31 * var(--vp)); */
@@ -263,7 +267,7 @@ section.is-visible-viewport > * {
     /* margin-bottom: 60px; */
   }
   .courses-projects .courses-projects-carousel {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
   }
   .courses-projects .react-multi-carousel-dot-list {

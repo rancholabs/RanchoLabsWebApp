@@ -157,9 +157,13 @@ const CoursesCourses = ({ courseGroups, activeCourseG, setActiveCourseG }) => {
         // autoPlaySpeed={2500}
         centerMode={showCenteredMode}
         arrows={false}
-        // focusOnSelect={true}
+        focusOnSelect={true}
         afterChange={() =>
-          setActiveCourseG(courseGroups[myCarousel?.state?.currentSlide - 2])
+          myCarousel
+            ? setActiveCourseG(
+                courseGroups[myCarousel?.state?.currentSlide - 2]
+              )
+            : null
         }
         // customLeftArrow={showCenteredMode && <CustomLeft />}
         // customRightArrow={showCenteredMode && <CustomRight />}
