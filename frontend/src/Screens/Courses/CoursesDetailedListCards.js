@@ -159,11 +159,11 @@ const CoursesDetailedListCards = ({ coursesDetails }) => {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
-      items: 5,
+      items: 4,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4,
+      items: 3,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -220,15 +220,29 @@ const CoursesDetailedListCards = ({ coursesDetails }) => {
             })}
           </Carousel>
         ) : (
-          coursesDetails.map((courseDetails, ci) => {
-            return (
-              <CoursesDetailedListCardItem
-                key={courseDetails._id}
-                index={ci}
-                courseDetails={courseDetails}
-              />
-            );
-          })
+          <Carousel
+            swipeable
+            draggable
+            showDots={true}
+            responsive={responsive}
+            infinite={true}
+            // autoPlay={true}
+            // autoPlaySpeed={2500}
+            // customLeftArrow={<CustomLeft />}
+            // customRightArrow={<CustomRight />}
+            // keyBoardControl={true}
+            className="courses-courses-carousel"
+          >
+            {coursesDetails.map((courseDetails, ci) => {
+              return (
+                <CoursesDetailedListCardItem
+                  key={courseDetails._id}
+                  index={ci}
+                  courseDetails={courseDetails}
+                />
+              );
+            })}
+          </Carousel>
         )}
       </div>
       <div className="course-note">

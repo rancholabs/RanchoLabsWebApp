@@ -169,7 +169,7 @@ const MStepCards = ({ activeCourseG }) => {
               ? courseGroups[1].journey.map(Mstepcard)
               : activeCourseG?.name == "Artificial Intelligence"
               ? courseGroups[2].journey.map(Mstepcard)
-              : activeCourseG?.journey?.map(Mstepcard)}
+              : courseGroups[0].journey.map(Mstepcard)}
           </div>
         </div>
       </div>
@@ -198,7 +198,7 @@ const Stepcards = ({ activeCourseG }) => {
           ? courseGroups[1].journey.map(Stepcard)
           : activeCourseG?.name == "Artificial Intelligence"
           ? courseGroups[2].journey.map(Stepcard)
-          : activeCourseG?.journey?.map(Stepcard)}
+          : courseGroups[0].journey.map(Stepcard)}
       </div>
       <div
         className="row mx-0 line-circle"

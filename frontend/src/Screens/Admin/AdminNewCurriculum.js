@@ -117,7 +117,6 @@ function AdminNewCurriculum({ currentCurriculum }) {
       alert("no updates");
     } else {
       // create new
-
       const userInfo = localStorage.getItem("userInfo");
       const token = userInfo ? JSON.parse(userInfo).token : "";
       const config = {
@@ -152,33 +151,6 @@ function AdminNewCurriculum({ currentCurriculum }) {
       axios
         .post("/api/course/group", body, config)
         .then((res) => console.log(res.data));
-
-      // let bodyFormData = new FormData();
-
-      // bodyFormData.append("files[]", categoryImage);
-
-      // journey.forEach((jour, index) => {
-      //   bodyFormData.append("files[]", jour.image);
-      // });
-
-      // console.log(bodyFormData.getAll("files[]"));
-
-      // axios({
-      //   method: "post",
-      //   url: "/api/file/multiple",
-      //   data: bodyFormData,
-      //   headers: {
-      //     "Content-Type": "multipart/form-data",
-      //     authorization: token,
-      //   },
-      // })
-      //   .then((res) => {
-      //     console.log(res.data);
-      //   })
-      //   .catch((err) => {
-      //     //handle error
-      //     console.log(err);
-      //   });
     }
   };
 

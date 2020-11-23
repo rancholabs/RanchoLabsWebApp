@@ -1,0 +1,42 @@
+.blogAdmin {
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.blogAdmin__inputSection {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin-bottom: 20px;
+}
+
+.blogAdmin__inputSection label {
+  width: 30%;
+}
+
+.blogAdmin__inputSection input,
+.blogAdmin__inputSection textarea {
+  width: 65%;
+  outline: none;
+  color: #333333;
+}
+
+.blogAdmin__quil {
+  width: 50%;
+  margin-bottom: 20px;
+  height: 400px;
+}
+
+.blogAdmin__submitBtn {
+  margin-top: 40px;
+  border: none;
+  background-color: #3cfaff;
+  color: #333333;
+  padding: 6px 12px;
+  text-transform: uppercase;
+  font-weight: 500;
+}

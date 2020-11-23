@@ -27,6 +27,8 @@ import FreeClass from "./Screens/FreeClass";
 import InstructorProfile from "./Screens/InstructorProfile";
 import InstructorSchedule from "./Screens/InstructorSchedule";
 import Blog from "./Screens/Blog";
+import SingleBlog from "./Screens/SingleBlog";
+import BlogAdmin from "./Screens/BlogAdmin";
 
 // ADMIN
 import Admin from "./Screens/Admin";
@@ -134,6 +136,25 @@ function App() {
                   <Route
                     path="/blog"
                     component={Blog}
+                    exact
+                    // component={() => {
+                    //   window.location.href = "http://blog.rancholabs.com";
+                    //   return null;
+                    // }}
+                  />
+                  <Route
+                    path="/blog/:blogID"
+                    component={SingleBlog}
+                    exact
+                    // component={() => {
+                    //   window.location.href = "http://blog.rancholabs.com";
+                    //   return null;
+                    // }}
+                  />
+                  <Route
+                    path="/blogadmin"
+                    component={BlogAdmin}
+                    exact
                     // component={() => {
                     //   window.location.href = "http://blog.rancholabs.com";
                     //   return null;

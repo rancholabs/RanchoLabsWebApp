@@ -29,6 +29,7 @@ const projects = [
     category: "Innovation and Robotics",
     link: "",
     image: glove,
+    grade: "12",
   },
   {
     title: "Voice controlled automation",
@@ -39,6 +40,7 @@ const projects = [
     category: "AI and Robotics",
     link: "",
     image: vca,
+    grade: "11",
   },
   {
     title: "Intuitive Sanitizing Tunnel",
@@ -49,6 +51,7 @@ const projects = [
     category: "Robotics and Innovation",
     link: "",
     image: ist,
+    grade: "12",
   },
   {
     title: "Bed-o-Boat",
@@ -58,6 +61,7 @@ const projects = [
     category: "Robotics and Innovation",
     link: "",
     image: btb,
+    grade: "7",
   },
   {
     title: "Fire rescue robot",
@@ -67,6 +71,7 @@ const projects = [
     category: "Robotics and Innovation",
     link: "",
     image: lfr,
+    grade: "9",
   },
 ];
 
@@ -85,7 +90,7 @@ function ProjectCard(project) {
         <div className="reveal">
           <div className="project-subtitle">{project.subtitle}</div>
           <div className="student-info" style={{ verticalAlign: "baseline" }}>
-            {project.studentname}
+            {project.studentname + " (Class " + project.grade + ")"}
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@
   display: flex;
   /* justify-content: center; */
   /* margin: 0 !important; */
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   /* overflow: auto; */
 }
@@ -16,7 +16,7 @@
 
 .courses-detailed-list-card-item {
   position: relative;
-  width: calc(542 * var(--vp));
+  /* width: calc(542 * var(--vp)); */
   background: #190a4d 0% 0% no-repeat padding-box;
   box-shadow: 0 10px 6px #000000c4;
   opacity: 1;
@@ -27,6 +27,7 @@
   /* min-width: calc(542 * var(--vp));  */
   display: flex;
   flex-direction: column;
+  margin: 0 1vw;
 }
 
 .courseCardBottomRIght {
@@ -319,6 +320,7 @@
 
 .sub-topics-build-section {
   display: flex;
+  letter-spacing: 0 !important;
 }
 
 .sub-topics p {

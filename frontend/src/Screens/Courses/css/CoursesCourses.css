@@ -51,6 +51,9 @@
 }
 
 .courses-course-card.active .active-line {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   background-color: #f74b42;
   height: calc(118 * var(--vp));
   margin: calc(29.5 * var(--vp)) auto;

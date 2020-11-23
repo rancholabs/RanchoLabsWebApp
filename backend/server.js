@@ -11,11 +11,11 @@ const db = require("./db");
 const { PORT } = config;
 db.connect();
 
-app.use(busboy());
+// app.use(busboy());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(busboyBodyParser());
+// app.use(busboyBodyParser());
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");

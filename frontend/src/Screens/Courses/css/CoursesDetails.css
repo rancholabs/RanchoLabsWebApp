@@ -47,7 +47,7 @@
   height: calc(222 * var(--vp));
   box-shadow: 0 6px 6px #0000008f;
   background-color: #190a4d;
-  padding-top: calc(3 * var(--vp));
+  /* padding-top: calc(3 * var(--vp)); */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -60,6 +60,7 @@
 .course-details .step-card .step-card-img {
   width: calc(153 * var(--vp));
   margin: auto;
+  -webkit-padding-start: calc(11 * var(--vp)) 0 calc(7 * var(--vp));
   padding: calc(11 * var(--vp)) 0 calc(7 * var(--vp));
   display: flex;
   justify-content: center;
@@ -78,7 +79,8 @@
   margin: auto;
   text-align: center;
   width: 90%;
-  margin-top: 4px;
+  /* -webkit-margin-start: 4px; */
+  margin-top: 4px !important;
 }
 
 .course-details .step-card:nth-child(4) .step-card-title {

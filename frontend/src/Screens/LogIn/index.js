@@ -12,6 +12,7 @@ import { Link, useHistory } from "react-router-dom";
 import { setDefaultHeader, updateHeader } from "../../Actions/Header";
 import { setIsIpadMiniMobileView } from "../../Actions/App";
 import { updateFooter } from "../../Actions/Footer";
+import Fontawesome from "react-fontawesome";
 
 function validateEmail(email) {
   const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
@@ -53,13 +54,13 @@ const LogIn = () => {
     dispatch(setDefaultHeader());
     dispatch(
       updateHeader({
-        backgroundColor: "#0A0E2A",
+        backgroundColor: "#171636",
         color: "#171636",
         iconColor: "#3CFAFF",
       })
     );
+    dispatch(updateFooter({ footerDisplay: "none" }));
     dispatch(setIsIpadMiniMobileView(true));
-    dispatch(updateFooter({ footerDisplay: "block" }));
     return () => {
       dispatch(setDefaultHeader());
       dispatch(setIsIpadMiniMobileView(false));
@@ -75,7 +76,7 @@ const LogIn = () => {
       } else if (userInfo.role === "instructor") {
         history.push("/instructor/schedule");
       } else {
-        history.push("/");
+        window.location.reload();
       }
     } else {
       // GoogleSignIn(googleBtn.current, loginGoogle, dispatch)
@@ -94,7 +95,7 @@ const LogIn = () => {
       <div className="LogIn">
         {!userInfo && (
           <>
-            <div className="row">
+            {/* <div className="row">
               <div
                 className="col-xl-5"
                 style={{ textAlign: "center", marginTop: "auto" }}
@@ -106,25 +107,6 @@ const LogIn = () => {
               </div>
               <div className="col-xl-7">
                 <div className="card">
-                  {/* <div className="row">
-                                <div ref={googleBtn} className="col-6 p-0 llogo">
-                                    <img src={google} alt="Google"></img>
-                                    <div className="signupw">Login with Google</div>
-                                </div>
-                                <div ref={facebookBtn} className="col-6 p-0 llogo">
-                                    <img src={facebook} alt="Facebook"></img>
-                                    <div className="signupw">Login with Facebook</div>
-                                </div>
-                            </div>
-                            <div className="row or d-flex" style={{ justifyContent: "center" }}>
-                                <div className="col-4" style={{ paddingRight: "0", alignSelf: "center" }}>
-                                    <hr style={{ margin: "0", borderColor: "#4D4D4F" }}></hr>
-                                </div>
-                                <div className="col-1" style={{ padding: "0", textAlign: "center", color: "#4D4D4F", fontSize: "1.255vw" }}>or</div>
-                                <div className="col-4" style={{ paddingLeft: "0", alignSelf: "center" }}>
-                                    <hr style={{ margin: "0", borderColor: "#4D4D4F" }}></hr>
-                                </div>
-                            </div> */}
                   <form onSubmit={submitHandler}>
                     <div className="row" style={{ margin: "unset" }}>
                       <input
@@ -173,12 +155,82 @@ const LogIn = () => {
                   </form>
                 </div>
               </div>
+            </div> */}
+            <div className="freeclass row mx-0">
+              <div className="freeclass-content">
+                <div className="freeclass-title">
+                  <div className="text-title">Log in to your account</div>
+                </div>
+                <div className="freeclass-desc">
+                  Learn, build and Innovate with Rancho Labs
+                </div>
+              </div>
+              <div className="freeclass-signup-form login-form">
+                <form>
+                  <div className="freeclass-form-title">Sign in!</div>
+                  <div className="hr"></div>
+                  <div className="p-name">
+                    <div className="row mx-0">
+                      {/* <div className="input-icon">
+                        <Fontawesome name="envelope" />
+                      </div> */}
+                      <input
+                        type="text"
+                        name="email"
+                        placeholder="Email Address"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      ></input>
+                    </div>
+                  </div>
+                  <div className="p-name">
+                    <div className="row mx-0">
+                      {/* <div className="input-icon">
+                        <Fontawesome name="password" />
+                      </div> */}
+                      <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      ></input>
+                    </div>
+                  </div>
+                  <div className="forgotpass">
+                    <Link to="/forgotPassword">Forgot your password?</Link>
+                  </div>
+                  {message ? (
+                    <p style={{ color: "#70707A", marginBottom: "0" }}>
+                      {message}
+                    </p>
+                  ) : (
+                    setMessage
+                  )}
+                  {error && (
+                    <p style={{ color: "#FFFFFF", marginBottom: "0" }}>
+                      {error.auth === false
+                        ? "Invalid Username/Password"
+                        : error.user === false
+                        ? "Seems like you have not registered account with us. Please signup to continue"
+                        : error.message}
+                    </p>
+                  )}
+                  <button type="submit" onClick={submitHandler}>
+                    LOGIN
+                  </button>
+                  <div className="login">
+                    New to Rancho Labs? <Link to={signuplink}>Sign Up</Link>{" "}
+                    here
+                  </div>
+                </form>
+              </div>
             </div>
           </>
         )}
       </div>
 
-      <div className="row llowerrow mr-0"></div>
+      {/* <div className="row llowerrow mr-0"></div> */}
     </div>
   );
 };

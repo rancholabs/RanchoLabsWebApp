@@ -18,6 +18,7 @@
 .side-nav > .head-line {
   display: flex;
   margin-top: calc(61 * var(--vp));
+  margin-bottom: calc(41 * var(--vp));
   align-items: center;
   justify-content: space-evenly;
 }

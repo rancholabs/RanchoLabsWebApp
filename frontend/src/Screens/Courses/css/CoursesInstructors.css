@@ -180,6 +180,12 @@
   height: calc(42 * var(--vp));
 }
 
+@media (max-width: 800px) {
+  .courses-instructors .logos span p {
+    font-size: 12px;
+  }
+}
+
 @media (max-width: 600px) {
   .courses-instructors {
     background-color: #020122;
@@ -313,5 +319,8 @@
   }
   .mobile-instructors .react-multi-carousel-list {
     /* overflow: unset; */
+  }
+  .courses-instructors .logos span p {
+    font-size: 14px;
   }
 }
