@@ -95,34 +95,34 @@ function AdminNewCurriculum({ currentCurriculum }) {
   );
   const [journeyImageURL, setJourneyImageURL] = useState(["", "", "", "", ""]);
 
-  useEffect(() => {
-    const userInfo = localStorage.getItem("userInfo");
-    const token = userInfo ? JSON.parse(userInfo).token : "";
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: token,
-      },
-    };
-    if (currentCurriculum._id) {
-      currentCurriculum.journey.forEach((jour) => {
-        if (jour.image !== undefined) {
-          axios.get(`/api/file/${jour.image}`, config).then((res) => {
-            console.log(res.data);
-          });
-        }
-      });
-    }
-    // return () => {
-    //   cleanup
-    // }
-  }, [currentCurriculum]);
+  // useEffect(() => {
+  // const userInfo = localStorage.getItem("userInfo");
+  // const token = userInfo ? JSON.parse(userInfo).token : "";
+  // const config = {
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     authorization: token,
+  //   },
+  // };
+  // if (currentCurriculum._id) {
+  //   currentCurriculum.journey.forEach((jour) => {
+  //     if (jour.image !== undefined) {
+  //       axios.get(`/api/file/${jour.image}`, config).then((res) => {
+  //         console.log(res.data);
+  //       });
+  //     }
+  //   });
+  // }
+  // return () => {
+  //   cleanup
+  // }
+  // }, [currentCurriculum]);
 
   const saveCurriculum = async () => {
     if (currentCurriculum._id) {
       // update
       const allJourney = [];
-      if (currentCurriculum.journey.length) {
+      if (currentCurriculum.journey !== null) {
         allJourney = journey.map((jour, index) => {
           jour.image = currentCurriculum.journey[index].image;
           return jour;
