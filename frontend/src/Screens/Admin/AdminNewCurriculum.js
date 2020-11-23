@@ -10,7 +10,61 @@ function AdminNewCurriculum({ currentCurriculum }) {
   const [categoryImageURL, setCategoryImageURL] = useState("");
   const [journey, setJourney] = useState(
     currentCurriculum._id
-      ? currentCurriculum.journey
+      ? currentCurriculum.journey === null
+        ? [
+            {
+              topic: "",
+              no_of_classes: 0,
+              image: null,
+            },
+            {
+              topic: "",
+              no_of_classes: 0,
+              image: null,
+            },
+            {
+              topic: "",
+              no_of_classes: 0,
+              image: null,
+            },
+            {
+              topic: "",
+              no_of_classes: 0,
+              image: null,
+            },
+            {
+              topic: "",
+              no_of_classes: 0,
+              image: null,
+            },
+          ]
+        : [
+            {
+              topic: "",
+              no_of_classes: 0,
+              image: null,
+            },
+            {
+              topic: "",
+              no_of_classes: 0,
+              image: null,
+            },
+            {
+              topic: "",
+              no_of_classes: 0,
+              image: null,
+            },
+            {
+              topic: "",
+              no_of_classes: 0,
+              image: null,
+            },
+            {
+              topic: "",
+              no_of_classes: 0,
+              image: null,
+            },
+          ]
       : [
           {
             topic: "",
@@ -67,11 +121,16 @@ function AdminNewCurriculum({ currentCurriculum }) {
   const saveCurriculum = async () => {
     if (currentCurriculum._id) {
       // update
+      const allJourney = [];
+      if (currentCurriculum.journey.length) {
+        allJourney = journey.map((jour, index) => {
+          jour.image = currentCurriculum.journey[index].image;
+          return jour;
+        });
+      } else {
+        allJourney = [...journey];
+      }
 
-      const allJourney = journey.map((jour, index) => {
-        jour.image = currentCurriculum.journey[index].image;
-        return jour;
-      });
       const body = {
         name: categoryName,
         // image: categoryImage,
@@ -243,7 +302,7 @@ function AdminNewCurriculum({ currentCurriculum }) {
             Journey Section Details
           </label>
           <div className="adminNewCurriculum__journeyCardContainer">
-            {journey.map((jour, index) => {
+            {journey?.map((jour, index) => {
               return (
                 <div className="adminNewCurriculum__journeyCard">
                   <div className="adminNewCurriculum__journeyContent">
