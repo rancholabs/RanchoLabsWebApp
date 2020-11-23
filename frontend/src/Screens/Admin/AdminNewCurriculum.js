@@ -67,26 +67,31 @@ function AdminNewCurriculum({ currentCurriculum }) {
   const saveCurriculum = async () => {
     if (currentCurriculum._id) {
       // update
-      // const body = {
-      //   name: categoryName,
-      //   image: categoryImage,
-      //   journey: journey,
-      // };
 
-      // const userInfo = localStorage.getItem("userInfo");
-      // const token = userInfo ? JSON.parse(userInfo).token : "";
-      // const config = {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     authorization: token,
-      //   },
-      // };
+      const allJourney = journey.map((jour, index) => {
+        jour.image = currentCurriculum.journey[index].image;
+        return jour;
+      });
+      const body = {
+        name: categoryName,
+        // image: categoryImage,
+        journey: allJourney,
+      };
 
-      // axios
-      //   .post(`/api/course/group/${currentCurriculum._id}`, body, config)
-      //   .then((res) => {
-      //     console.log(res.data);
-      //   });
+      const userInfo = localStorage.getItem("userInfo");
+      const token = userInfo ? JSON.parse(userInfo).token : "";
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: token,
+        },
+      };
+
+      axios
+        .post(`/api/course/group/${currentCurriculum._id}`, body, config)
+        .then((res) => {
+          console.log(res.data);
+        });
 
       // let bodyFormData = new FormData();
 

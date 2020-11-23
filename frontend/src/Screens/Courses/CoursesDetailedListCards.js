@@ -195,7 +195,7 @@ const CoursesDetailedListCards = ({ coursesDetails }) => {
   return (
     <>
       <div className="courses-detailed-list-cards">
-        {window.screen.width <= 800 ? (
+        {window.screen.width <= 600 ? (
           <Carousel
             swipeable
             draggable
@@ -223,13 +223,14 @@ const CoursesDetailedListCards = ({ coursesDetails }) => {
           <Carousel
             swipeable
             draggable
-            showDots={true}
+            showDots={false}
             responsive={responsive}
             infinite={true}
+            // arrows={false}
             // autoPlay={true}
             // autoPlaySpeed={2500}
-            // customLeftArrow={<CustomLeft />}
-            // customRightArrow={<CustomRight />}
+            customLeftArrow={<CustomLeft />}
+            customRightArrow={<CustomRight />}
             // keyBoardControl={true}
             className="courses-courses-carousel"
           >

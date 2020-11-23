@@ -76,7 +76,7 @@ const LogIn = () => {
       } else if (userInfo.role === "instructor") {
         history.push("/instructor/schedule");
       } else {
-        window.location.reload();
+        history.push("/");
       }
     } else {
       // GoogleSignIn(googleBtn.current, loginGoogle, dispatch)
