@@ -10,34 +10,8 @@ function AdminNewCurriculum({ currentCurriculum }) {
   const [categoryImageURL, setCategoryImageURL] = useState("");
   const [journey, setJourney] = useState(
     currentCurriculum._id
-      ? currentCurriculum.journey === null
-        ? [
-            {
-              topic: "",
-              no_of_classes: 0,
-              image: null,
-            },
-            {
-              topic: "",
-              no_of_classes: 0,
-              image: null,
-            },
-            {
-              topic: "",
-              no_of_classes: 0,
-              image: null,
-            },
-            {
-              topic: "",
-              no_of_classes: 0,
-              image: null,
-            },
-            {
-              topic: "",
-              no_of_classes: 0,
-              image: null,
-            },
-          ]
+      ? currentCurriculum.journey
+        ? currentCurriculum.journey
         : [
             {
               topic: "",
@@ -121,8 +95,8 @@ function AdminNewCurriculum({ currentCurriculum }) {
   const saveCurriculum = async () => {
     if (currentCurriculum._id) {
       // update
-      const allJourney = [];
-      if (currentCurriculum.journey !== null) {
+      var allJourney = [];
+      if (currentCurriculum.journey) {
         allJourney = journey.map((jour, index) => {
           jour.image = currentCurriculum.journey[index].image;
           return jour;
@@ -147,7 +121,7 @@ function AdminNewCurriculum({ currentCurriculum }) {
       };
 
       axios
-        .post(`/api/course/group/${currentCurriculum._id}`, body, config)
+        .put(`/api/course/group/${currentCurriculum._id}`, body, config)
         .then((res) => {
           console.log(res.data);
         });
@@ -178,7 +152,7 @@ function AdminNewCurriculum({ currentCurriculum }) {
       //     //handle error
       //     console.log(err);
       //   });
-      alert("no updates");
+      // alert("no updates");
     } else {
       // create new
       const userInfo = localStorage.getItem("userInfo");
