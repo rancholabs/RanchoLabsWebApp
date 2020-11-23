@@ -53,7 +53,7 @@ const CardData = [
   },
   {
     coursename: "Artificial Intelligence",
-    tag: "SMARTY PANTS",
+    tag: "SMARTY CHAMPS",
     Title: "Artificial Intelligence",
     Description:
       "Look forward to solve some real life problems with machines enabled with human intelligence. AI is intelligence demonstrated by machine, unlike the natural human intelligence.",

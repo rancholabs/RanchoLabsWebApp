@@ -257,4 +257,26 @@
     border-top: calc(35 * var(--vp)) solid transparent !important;
     border-bottom: calc(35 * var(--vp)) solid transparent !important;
   }
+
+  .things .courses-testimonials-carousel .react-multi-carousel-track {
+    margin-bottom: 40px;
+  }
+
+  .things .courses-testimonials-carousel .react-multi-carousel-dot-list {
+    bottom: 20px;
+  }
+
+  .things .react-multi-carousel-dot-list li button {
+    width: 10px !important;
+    height: 10px !important;
+    background-color: #fff;
+    border-color: #fff;
+  }
+  .things
+    .react-multi-carousel-dot-list
+    .react-multi-carousel-dot--active
+    button {
+    background-color: #f74b42;
+    border-color: #f74b42;
+  }
 }

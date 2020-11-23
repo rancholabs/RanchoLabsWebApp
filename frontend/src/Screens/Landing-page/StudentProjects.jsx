@@ -158,7 +158,7 @@ function StudentProjects() {
       <Carousel
         swipeable={true}
         draggable={true}
-        // showDots={true}
+        showDots={window.innerWidth < 600 ? true : false}
         responsive={responsive}
         infinite={true}
         autoPlay={true}
@@ -167,7 +167,7 @@ function StudentProjects() {
         customLeftArrow={<CustomLeft />}
         customRightArrow={<CustomRight />}
         // keyBoardControl={true}
-        // arrows={false}
+        arrows={window.innerWidth < 600 ? false : true}
         className="courses-testimonials-carousel"
       >
         {projects.map(ProjectCard)}

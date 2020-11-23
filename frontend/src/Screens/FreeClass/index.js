@@ -53,7 +53,7 @@ const FreeClass = ({ location }) => {
 
   useEffect(() => {
     if (isUpdated) {
-      hHistory.push("/setPassword");
+      hHistory.push(`/setPassword/${email}`);
     }
   });
 

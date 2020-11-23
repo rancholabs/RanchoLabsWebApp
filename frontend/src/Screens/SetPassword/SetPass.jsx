@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import "./css/SetPass.css";
+import { useParams } from "react-router-dom";
 
 import robot from "./img/robot.png";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { updateUserInfo } from "../../Actions/userAction";
-import { setUserPassword } from "../../Actions/userAction";
+import { setUserPassword, login } from "../../Actions/userAction";
 // import robot2 from './img/robot2.png'
 
 const SetPass = ({ location }) => {
+  let { email } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -22,6 +24,9 @@ const SetPass = ({ location }) => {
   const { isPasswordChanged } = useSelector((state) => state.userSetPassword);
   console.log(useSelector((state) => state.userSetPassword));
   const redirectPath = location.pathname;
+  const { regUserInfo } = useSelector((state) => state.userRegister);
+
+  console.log(email);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -39,6 +44,7 @@ const SetPass = ({ location }) => {
   useEffect(() => {
     if (isPasswordChanged) {
       console.log("sending to dashboard...");
+      dispatch(login(email, password));
       var path = "/dashboard/?mode=signup";
 
       history.replace(path);

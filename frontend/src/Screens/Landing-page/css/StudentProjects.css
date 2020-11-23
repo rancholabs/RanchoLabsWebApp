@@ -217,6 +217,28 @@ section.is-visible-viewport > * {
     font-size: 4.5vw;
   }
 
+  .stud-projects .courses-testimonials-carousel .react-multi-carousel-track {
+    margin-bottom: 40px;
+  }
+
+  .stud-projects .courses-testimonials-carousel .react-multi-carousel-dot-list {
+    bottom: 20px;
+  }
+
+  .stud-projects .react-multi-carousel-dot-list li button {
+    width: 10px !important;
+    height: 10px !important;
+    background-color: #afafaf;
+    border-color: #afafaf;
+  }
+  .stud-projects
+    .react-multi-carousel-dot-list
+    .react-multi-carousel-dot--active
+    button {
+    background-color: #fff;
+    border-color: #fff;
+  }
+
   .stud-projects .courses-testimonials-carousel .course-carousel-icon-left {
     left: 1vw;
     top: 68%;
@@ -225,5 +247,9 @@ section.is-visible-viewport > * {
   .stud-projects .courses-testimonials-carousel .course-carousel-icon-right {
     right: 1vw;
     top: 68%;
+  }
+
+  .stud-projects .projects-description {
+    font-size: 1.15rem;
   }
 }

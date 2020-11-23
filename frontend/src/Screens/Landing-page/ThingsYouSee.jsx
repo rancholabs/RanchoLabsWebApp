@@ -122,7 +122,7 @@ function Things() {
       <Carousel
         swipeable={true}
         draggable={true}
-        // showDots={true}
+        showDots={window.innerWidth < 600 ? true : false}
         responsive={responsive}
         infinite={true}
         // autoPlay={true}
@@ -130,7 +130,7 @@ function Things() {
         // centerMode={showCenteredMode}
         customLeftArrow={<CustomLeft />}
         customRightArrow={<CustomRight />}
-        // keyBoardControl={true}
+        arrows={window.innerWidth < 600 ? false : true}
         className="courses-testimonials-carousel"
       >
         {testimonials.map(StudentExp)}

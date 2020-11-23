@@ -73,7 +73,11 @@ function App() {
                   />
                   {/* <Route path="/studentInfo" exact={true} component={StudentInfo} /> */}
                   <Route path="/login" exact={true} component={LoginAccount} />
-                  <Route path="/setPassword" exact={true} component={SetPass} />
+                  <Route
+                    path={["/setPassword", "/setPassword/:email"]}
+                    exact={true}
+                    component={SetPass}
+                  />
                   <Route
                     path="/resetPassword"
                     exact={true}
