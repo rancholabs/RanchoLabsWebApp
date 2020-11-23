@@ -164,10 +164,10 @@ function StudentProjects() {
         autoPlay={true}
         autoPlaySpeed={2500}
         // centerMode={showCenteredMode}
-        // customLeftArrow={<CustomLeft />}
-        // customRightArrow={<CustomRight />}
+        customLeftArrow={<CustomLeft />}
+        customRightArrow={<CustomRight />}
         // keyBoardControl={true}
-        arrows={false}
+        // arrows={false}
         className="courses-testimonials-carousel"
       >
         {projects.map(ProjectCard)}
