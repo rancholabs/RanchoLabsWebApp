@@ -43,6 +43,7 @@ const Courses = () => {
   const { courseGroupsList: courseGroups } = useSelector(
     (state) => state.courseGroupsList
   );
+  console.log(courseGroups);
   const setActiveGrade = (activeGrade) => {
     setState((prevState) => {
       return {
@@ -68,8 +69,10 @@ const Courses = () => {
   useEffect(() => {
     dispatch(courseGroupsList());
   }, []);
+  console.log(courseGroups);
   useEffect(() => {
     const rCourses = courseGroups.flatMap((courseGroup) => courseGroup.courses);
+    console.log(rCourses);
     const rGrades = [
       ...new Set(rCourses.map((course) => JSON.stringify(course.gradeRange))),
     ]

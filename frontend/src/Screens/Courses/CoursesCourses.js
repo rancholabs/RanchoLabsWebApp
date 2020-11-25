@@ -87,6 +87,8 @@ const CoursesCourses = ({
   activeGrade,
 }) => {
   const [showCenteredMode, setShowCenteredMode] = useState(false);
+  const [newOrderCourseGroups, setnewOrderCourseGroups] = useState([]);
+  let myCarousel = null;
 
   useEffect(() => {
     if (window.innerWidth < 500) setShowCenteredMode(true);
@@ -103,6 +105,34 @@ const CoursesCourses = ({
       window.removeEventListener("resize", () => {});
     };
   }, [showCenteredMode]);
+
+  useEffect(() => {
+    if (courseGroups.length > 0) {
+      var courseArray = [];
+      courseArray[0] = courseGroups.filter(
+        (cg) => cg.name === "Recommended"
+      )[0];
+      courseArray[1] = courseGroups.filter(
+        (cg) => cg.name === "Programming"
+      )[0];
+      courseArray[2] = courseGroups.filter((cg) => cg.name === "Robotics")[0];
+      courseArray[3] = courseGroups.filter(
+        (cg) => cg.name === "Artificial Intelligence"
+      )[0];
+      setnewOrderCourseGroups(courseArray);
+    }
+  }, [courseGroups]);
+
+  useEffect(() => {
+    if (activeGrade.minG === 6 && activeGrade.maxG === 8) {
+      console.log(myCarousel);
+      myCarousel.goToSlide(
+        newOrderCourseGroups.indexOf(
+          newOrderCourseGroups.filter((cg) => cg.name === "Recommended")[0]
+        ) + 2
+      );
+    }
+  }, [activeGrade]);
 
   const handleActiveCourses = (course) => {
     if (activeGrade.minG === 6 && activeGrade.maxG === 8) {
@@ -150,7 +180,30 @@ const CoursesCourses = ({
       <img src={ArrowBack} className="course-carousel-icon" />
     </button>
   );
-  let myCarousel = null;
+
+  console.log(newOrderCourseGroups);
+
+  const handleCarouselChange = () => {
+    console.log(activeGrade);
+    if (myCarousel) {
+      if (activeGrade.minG === 6 && activeGrade.maxG === 8) {
+        console.log("6-8 blocked");
+
+        myCarousel.goToSlide(
+          newOrderCourseGroups.indexOf(
+            newOrderCourseGroups.filter((cg) => cg.name === "Recommended")[0]
+          ) + 2
+        );
+      } else {
+        console.log("not 6-8");
+        console.log(newOrderCourseGroups[myCarousel?.state?.currentSlide - 2]);
+        setActiveCourseG(
+          newOrderCourseGroups[myCarousel?.state?.currentSlide - 2]
+        );
+      }
+    }
+  };
+
   return (
     <>
       {/* <div className="courses-courses row mx-0"> */}
@@ -167,19 +220,13 @@ const CoursesCourses = ({
         centerMode={showCenteredMode}
         arrows={false}
         focusOnSelect={showCenteredMode}
-        afterChange={() =>
-          myCarousel
-            ? setActiveCourseG(
-                courseGroups[myCarousel?.state?.currentSlide - 2]
-              )
-            : null
-        }
+        afterChange={handleCarouselChange}
         // customLeftArrow={showCenteredMode && <CustomLeft />}
         // customRightArrow={showCenteredMode && <CustomRight />}
         // keyBoardControl={true}
         className="courses-courses-carousel"
       >
-        {courseGroups.map((course, index) => {
+        {newOrderCourseGroups.map((course, index) => {
           return (
             <div
               className={`courses-course-card col p-0 ${
