@@ -1,50 +1,40 @@
 import React from "react";
 import "./BlogCard.css";
 
-function BlogCard({ isVertical }) {
+function BlogCard({ isVertical, blog }) {
+  console.log(blog);
   return (
     <>
       {isVertical ? (
         <div className="blogCard blogCard__vertical">
-          <img
-            className="blogCard__image"
-            src="https://picsum.photos/700/500"
-          ></img>
+          <img className="blogCard__image" src={blog?.image?.filePath}></img>
           <div className="blogCard__body">
-            <h3 className="blogCard__title">Introduction To Space Science</h3>
+            <h3 className="blogCard__title">{blog?.blogTitle}</h3>
             <hr className="blogCard__divider" />
             <span className="blogCard__info">
-              <p>By Vignesh</p>
-              <p>May 12, 2020</p>
+              <p>By {blog?.author?.name}</p>
+              <p>{blog?.blogDate}</p>
             </span>
-            <p className="blogCard__desc">
-              Artificial Intelligence Refers To The Intelligence Portrayed By
-              The Machines. It Is A Branch Of ‘Computer Science’ That Deals With
-              The Study Of Intelligent Agents. Artificial Intelligence Refers To
-              The Intelligence Portrayed By The Machines.{" "}
-            </p>
+            <p className="blogCard__desc">{blog?.blogShortDescription}</p>
           </div>
         </div>
       ) : (
         <div className="blogCard blogCard__horizontal">
-          <img
-            className="blogCard__image"
-            src="https://picsum.photos/700"
-          ></img>
+          <img className="blogCard__image" src={blog?.image?.filePath}></img>
           <div className="blogCard__body">
-            <h3 className="blogCard__title">Introduction To Space Science</h3>
+            <h3 className="blogCard__title">{blog?.blogTitle}</h3>
             <hr className="blogCard__divider" />
             <span className="blogCard__info">
-              <p>By Vignesh</p>
-              <p>May 12, 2020</p>
+              <p>By {blog?.author?.name}</p>
+              <p>{blog?.blogDate}</p>
             </span>
-            <p className="blogCard__desc">
-              Artificial Intelligence Refers To The Intelligence Portrayed By
-              The Machines. It Is A Branch Of ‘Computer Science’ That Deals With
-              The Study Of Intelligent Agents. Artificial Intelligence Refers To
-              The Intelligence Portrayed By The Machines.{" "}
-            </p>
-            <button className="blogCard__button">Read more</button>
+            <p className="blogCard__desc">{blog?.blogShortDescription}</p>
+            <button
+              className="blogCard__button"
+              onClick={() => (window.location.href = `/blog/${blog._id}`)}
+            >
+              Read more
+            </button>
           </div>
         </div>
       )}

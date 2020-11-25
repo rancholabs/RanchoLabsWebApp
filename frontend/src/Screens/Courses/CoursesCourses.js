@@ -80,7 +80,12 @@ const CourseCard = (props, index) => {
   );
 };
 
-const CoursesCourses = ({ courseGroups, activeCourseG, setActiveCourseG }) => {
+const CoursesCourses = ({
+  courseGroups,
+  activeCourseG,
+  setActiveCourseG,
+  activeGrade,
+}) => {
   const [showCenteredMode, setShowCenteredMode] = useState(false);
 
   useEffect(() => {
@@ -122,8 +127,6 @@ const CoursesCourses = ({ courseGroups, activeCourseG, setActiveCourseG }) => {
     },
   };
 
-  console.log(showCenteredMode);
-
   const CustomLeft = ({ onClick }) => (
     <button
       className="course-carousel-icon-button course-carousel-icon-left"
@@ -157,7 +160,7 @@ const CoursesCourses = ({ courseGroups, activeCourseG, setActiveCourseG }) => {
         // autoPlaySpeed={2500}
         centerMode={showCenteredMode}
         arrows={false}
-        focusOnSelect={true}
+        focusOnSelect={showCenteredMode}
         afterChange={() =>
           myCarousel
             ? setActiveCourseG(
@@ -176,7 +179,15 @@ const CoursesCourses = ({ courseGroups, activeCourseG, setActiveCourseG }) => {
               className={`courses-course-card col p-0 ${
                 course._id === activeCourseG?._id ? "active" : ""
               }`}
-              style={{ alignSelf: "flex-start" }}
+              style={{
+                alignSelf: "flex-start",
+                pointerEvents:
+                  activeGrade.minG === 6
+                    ? course.name === "Recommended"
+                      ? "unset"
+                      : "none"
+                    : "unset",
+              }}
               key={course._id}
               id={course._id}
               onClick={() => handleActiveCourses(course)}

@@ -1,0 +1,7 @@
+.blog__author__form__inputs {
+  height: fit-content;
+}
+
+.blog__author__form__inputs .blogAdmin__inputSection {
+  margin-bottom: 20px;
+}

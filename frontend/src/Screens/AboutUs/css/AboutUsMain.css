@@ -40,7 +40,8 @@
 .aboutUs .main-content {
   margin-top: 3.52vw;
   margin-left: 7.29vw;
-  background-color: #0a0e2a;
+  /* background-color: #0a0e2a; */
+  /* background-image: url("../img/about us 10.png"); */
 }
 
 .aboutUs .main-content-title {

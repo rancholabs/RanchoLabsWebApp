@@ -48,6 +48,7 @@ router.get("/:id", isAuthenticated, (req, res) => {
 
 router.post("/", isAuthenticated, upload.single("files"), async (req, res) => {
   const file = req.file;
+  console.log("uploading...");
   const fileData = new File({
     _id: new mongoose.Types.ObjectId(),
     originalName: file.originalName,

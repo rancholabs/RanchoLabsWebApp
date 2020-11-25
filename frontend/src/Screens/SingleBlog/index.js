@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import ReactHTMLparser from "react-html-parser";
 import { blogList } from "../../Actions/Blog";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 import "./index.css";
 
@@ -16,9 +17,24 @@ function SingleBlog() {
   }, []);
 
   useEffect(() => {
+    const userInfo = localStorage.getItem("userInfo");
+    const token = userInfo ? JSON.parse(userInfo).token : "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    };
     if (blogs) {
       const blogOBJ = blogs.filter((singleb) => singleb._id === blogID);
-      if (blogOBJ.length > 0) setSingleB(blogOBJ[0]);
+      if (blogOBJ.length > 0) {
+        axios
+          .get(`/api/file/${blogOBJ[0].author.authorImage}`, config)
+          .then((res) => {
+            blogOBJ[0].author.authorImageURL = res.data.filePath;
+            setSingleB(blogOBJ[0]);
+          });
+      }
     }
   }, [blogs]);
 
@@ -39,10 +55,15 @@ function SingleBlog() {
 
   return (
     <div className="singleBlog">
-      <h1 className="singleBlog__title">{singleB.blogTitle}</h1>
+      <h1
+        className="singleBlog__title"
+        // style={{ fontFamily: " Lato, sans-serif" }}
+      >
+        {singleB.blogTitle}
+      </h1>
       <div className="singleBlog__info">
         <span>{singleB.blogDate}</span>
-        <button>{singleB.blogCategory}</button>
+        <button>{singleB.category?.name}</button>
       </div>
       <img className="singleBlog__banner" src={singleB.image?.filePath}></img>
       <div className="singleBlog__body">
@@ -53,18 +74,11 @@ function SingleBlog() {
 
       <div className="singleBlog__author">
         <div class="singleBlog__authorImage">
-          <img src={singleB.image?.filePath} />
+          <img src={singleB.author?.authorImageURL} />
         </div>
         <div class="singleBlog__author__data">
-          <p class="singleBlog__author__name">Vignesh Hariharan</p>
-          <p class="singleBlog__author__about">
-            The author is a student of SSN College of Engineering pursuing his
-            Bachelors in Computer Science and Engineering. He is a Product
-            Management and Cloud Computing enthusiast. Passionate about Football
-            and watching Manchester City play. Loves to read Agatha Christie and
-            other thriller novels. He writes on Robotics, Artificial
-            Intelligence and Space Science for Rancho Labs.
-          </p>
+          <p class="singleBlog__author__name">{singleB.author?.name}</p>
+          <p class="singleBlog__author__about">{singleB.author?.description}</p>
         </div>
       </div>
 

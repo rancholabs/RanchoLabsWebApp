@@ -10,7 +10,7 @@ const courseLearns = [
     image: b1,
     title: "Interactive and \n Live Classes",
     desc:
-      "One on one live classes from teachers who provide you a near classroom experience.",
+      "1:3 live classes from teachers who provide you a near classroom experience.",
   },
   {
     image: b4,

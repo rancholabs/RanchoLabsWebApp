@@ -186,6 +186,7 @@ router.get("/courseList", async (req, res) => {
               gradeRange: 1,
               courseStructure: 1,
               totalClasses: 1,
+              curriculumPDF: 1,
             },
           },
         ],

@@ -1,71 +1,70 @@
-
-.dashboard-body{
-    background-color: #F0F0F2;
+.dashboard-body {
+  background-color: #f0f0f2;
 }
 
-.dashboard-card-title{
-    font-size: 1.71vw;
-    letter-spacing: 1.65px;
-    font-weight: 500;
-    color: #3A3C4A;
-    margin-bottom: 1.14vw;
-    margin-left: 0.98vw;
+.dashboard-card-title {
+  font-size: 1.71vw;
+  letter-spacing: 1.65px;
+  font-weight: 500;
+  color: #3a3c4a;
+  margin-bottom: 1.14vw;
+  margin-left: 0.98vw;
 }
 
-.dashboard-body .card{
-    box-shadow: 0px 4px 4px #0000004D;
-    border-radius: 0.7rem;
-    border: 1px solid #707070;
+.dashboard-body .card {
+  box-shadow: 0px 4px 4px #0000004d;
+  border-radius: 0.7rem;
+  border: 1px solid #707070;
 }
 
-.dashboard-body .card-content{
-    padding: 1.66vw 1vw 0.5vw 2.8vw;
-    height: 23.25vw;
-    overflow-y: auto;
+.dashboard-body .card-content {
+  padding: 1.66vw 1vw 0.5vw 2.8vw;
+  height: 23.25vw;
+  overflow-y: auto;
 }
 
-.dashboard-body .card-title{
-    font-size: 1.71vw;
-    color: #151B49;
-    letter-spacing: 0;
-    font-weight: 500;
-    margin-bottom: unset;
+.dashboard-body .card-title {
+  font-size: 1.71vw;
+  color: #151b49;
+  letter-spacing: 0;
+  font-weight: 500;
+  margin-bottom: unset;
 }
 
-.dashboard-body .card .section-day{
-    font-size: 1.4vw;
-    color: #3A3C4A;
-    font-weight: 500;
+.dashboard-body .card .section-day {
+  font-size: 1.4vw;
+  color: #3a3c4a;
+  font-weight: 500;
 }
 
-.dashboard-body .card .section-intro{
-    color: #3A3C4A;
-    font-size: 1.3vw;
+.dashboard-body .card .section-intro {
+  color: #3a3c4a;
+  font-size: 1.3vw;
 }
 
 .dashboard-body .card .inner-card {
-    background-color: #F0F0F2;
-    padding: 1.5vw;
-    border-radius: 0.7rem;
-    color: #0A0E2A;
-    font-size: 1.2vw;
-    margin-bottom: 2vw;
+  background-color: #f0f0f2;
+  padding: 1.5vw;
+  border-radius: 0.7rem;
+  color: #0a0e2a;
+  font-size: 1.2vw;
+  margin-bottom: 2vw;
 }
 
-.section-intro button{
-    background-color: #9999995E;
-    color: #3A3C4A;
-    border: none;
-    margin: 0.5vw 0 0 1vw;
-    font-size: 1vw;
-    padding: 0.5vw 1.5vw;
-    cursor: pointer;
+.section-intro button {
+  background-color: #9999995e;
+  color: #3a3c4a;
+  border: none;
+  margin: 0.5vw 0 0 1vw;
+  font-size: 1vw;
+  padding: 0.5vw 1.5vw;
+  cursor: pointer;
 }
 
-.dashboard-body .status{
-    color: #F74B42;
-    font-size: 1.1vw;
-    margin-left: 2.2vw;
+.dashboard-body .status {
+  color: #f74b42;
+  font-size: 1.1vw;
+  margin-left: 2.2vw;
 }
 
 /* .show{
@@ -87,134 +86,131 @@
     z-index: 1;
 } */
 
-.progressbar-progress{
-    background-color: #32C1CD !important;
-    height: 1.7vw !important;
-    border-radius: 0.7rem !important;
+.progressbar-progress {
+  background-color: #32c1cd !important;
+  height: 1.7vw !important;
+  border-radius: 0.7rem !important;
 }
 
-.progressbar-container{
-    border: 1px solid #C9C5C5 !important;
-    border-radius: 0.7rem !important;
+.progressbar-container {
+  border: 1px solid #c9c5c5 !important;
+  border-radius: 0.7rem !important;
 }
 
-.dashboard-body .joining-details button{
-    color: #F74B42;
-    border: 1px solid #F74B42;
-    padding: 0.1vw 1.4vw;
-    background-color: transparent;
-    border-radius: 1rem;
-    font-size: 1.1vw;
-    margin: 0 0 0 1vw;
+.dashboard-body .joining-details button {
+  color: #f74b42;
+  border: 1px solid #f74b42;
+  padding: 0.1vw 1.4vw;
+  background-color: transparent;
+  border-radius: 1rem;
+  font-size: 1.1vw;
+  margin: 0 0 0 1vw;
 }
 
-.dashboard-body .joining-details .join-date{
-    font-size: 1vw;
+.dashboard-body .joining-details .join-date {
+  font-size: 1vw;
 }
 
-.dashboard-body .learncard{
-    margin-right: 1.6vw;
-    width: 42vw;
-    min-height: 23.56vw;
+.dashboard-body .learncard {
+  margin-right: 1.6vw;
+  width: 42vw;
+  min-height: 23.56vw;
 }
 
-.not-enrolled{
-    font-size: 2vw !important;
+.not-enrolled {
+  font-size: 2vw !important;
 }
-.not-enrolled button{
-    font-size: 1.5vw;
-    padding: 1vw 1vw;
-    margin-top: 2vw;
+.not-enrolled button {
+  font-size: 1.5vw;
+  padding: 1vw 1vw;
+  margin-top: 2vw;
 }
 
-@media (max-width:1200px){
-    .dashboard-card-title{
-        font-size: 4.44vw;
-        letter-spacing:unset;
-        font-weight: 500;
-        color: #3A3C4A;
-        margin-bottom: 3.33vw;
-        margin-top: 4.72vw;
-        margin-left: 6.94vw;
-    }
-    .dashboard-body .card-title{
-        font-size: 4.44vw;
-        color: #151B49;
-        letter-spacing: unset;
-        font-weight: 500;
-    }
+@media (max-width: 600px) {
+  .dashboard-card-title {
+    font-size: 4.44vw;
+    letter-spacing: unset;
+    font-weight: 500;
+    color: #3a3c4a;
+    margin-bottom: 3.33vw;
+    margin-top: 4.72vw;
+    margin-left: 6.94vw;
+  }
+  .dashboard-body .card-title {
+    font-size: 4.44vw;
+    color: #151b49;
+    letter-spacing: unset;
+    font-weight: 500;
+  }
 
-    .dashboard-body .card{
-        box-shadow: 0px 4px 4px #0000004D;
-        border-radius: 0.4rem;
-        border: 1px solid #707070;
-        width: 90.55vw;
-        margin: auto;
-    }
-    .dashboard-body .card-content{
-        height: 56.38vw;
-        padding: 1rem 1.3rem;
-    }
+  .dashboard-body .card {
+    box-shadow: 0px 4px 4px #0000004d;
+    border-radius: 0.4rem;
+    border: 1px solid #707070;
+    width: 90.55vw;
+    margin: auto;
+  }
+  .dashboard-body .card-content {
+    height: 56.38vw;
+    padding: 1rem 1.3rem;
+  }
 
-    .dashboard-body .card .section-day{
-        font-size: 1rem;
-        padding-right: 0.4rem !important;
-    }
+  .dashboard-body .card .section-day {
+    font-size: 1rem;
+    padding-right: 0.4rem !important;
+  }
 
-    .dashboard-body .card .section-title{
-        font-size: 0.9rem;
-    }
-    .dashboard-body .status{
-        font-size: 0.8rem;
-    }
-    .dashboard-body .card .inner-card {
-        background-color: #F0F0F2;
-        padding: 0.8rem;
-        border-radius: 0.4rem;
-        color: #0A0E2A;
-        font-size: 0.9rem;
-    }
-    .dashboard-body .joining-details button{
-        background-color: #F74B42;
-        color: #FFFFFF;
-        font-size: 0.7rem;
-        padding: 0.15rem 0.6rem;
-    }
-    .dashboard-body .joining-details .join-date{
-        font-size: 0.65rem;
-        font-weight: 500;
-    }
-    .section-intro button{
-        font-size: 0.7rem;
-        margin: 0.6rem 0 0.5rem 0.7rem;
-    }
-    .progressbar-progress{
-        height: 0.9rem !important;
-    }
+  .dashboard-body .card .section-title {
+    font-size: 0.9rem;
+  }
+  .dashboard-body .status {
+    font-size: 0.8rem;
+  }
+  .dashboard-body .card .inner-card {
+    background-color: #f0f0f2;
+    padding: 0.8rem;
+    border-radius: 0.4rem;
+    color: #0a0e2a;
+    font-size: 0.9rem;
+  }
+  .dashboard-body .joining-details button {
+    background-color: #f74b42;
+    color: #ffffff;
+    font-size: 0.7rem;
+    padding: 0.15rem 0.6rem;
+  }
+  .dashboard-body .joining-details .join-date {
+    font-size: 0.65rem;
+    font-weight: 500;
+  }
+  .section-intro button {
+    font-size: 0.7rem;
+    margin: 0.6rem 0 0.5rem 0.7rem;
+  }
+  .progressbar-progress {
+    height: 0.9rem !important;
+  }
 
-    
-    .dashboard-body .card-title{
-        margin-bottom: .4rem
-    }
-    .dashboard-body .card ul{
-        margin-bottom: 0.4rem;
-    }
-    .header-upper{
-        padding: 1rem 2rem 1.5rem 2.2rem;
-    }
-    .learncard{
+  .dashboard-body .card-title {
+    margin-bottom: 0.4rem;
+  }
+  .dashboard-body .card ul {
+    margin-bottom: 0.4rem;
+  }
+  .header-upper {
+    padding: 1rem 2rem 1.5rem 2.2rem;
+  }
+  .learncard {
     margin-right: unset;
-    
-}
-    .not-enrolled{
-        font-size: 5vw !important;
-    }
-    .not-enrolled button{
-        font-size: 3vw;
-        padding: 1vw 2vw;
-        margin-top: 2vw;
-    }
-
+  }
+  .not-enrolled {
+    font-size: 5vw !important;
+  }
+  .not-enrolled button {
+    font-size: 3vw;
+    padding: 1vw 2vw;
+    margin-top: 2vw;
+  }
 }
 /* 
 @media (max-width:400px){

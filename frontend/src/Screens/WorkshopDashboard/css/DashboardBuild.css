@@ -1,123 +1,123 @@
-.dboard-build .card{
-    min-height: 25.26vw;
-    border: 1px solid #707070;
-    width: 20vw;
+.dboard-build .card {
+  min-height: 25.26vw;
+  border: 1px solid #707070;
+  width: 20vw;
 }
 
-.dboard-build .card .project-name{
-    margin-bottom: 2vw;
-    color: #000000;
-    font-size: 1.4vw;
-    font-weight: 500;
-    letter-spacing: 0.34px;
+.dboard-build .card .project-name {
+  margin-bottom: 2vw;
+  color: #000000;
+  font-size: 1.4vw;
+  font-weight: 500;
+  letter-spacing: 0.34px;
 }
 
-.startbuilding button{
-    border: 1px solid #F74B42 !important;
-    background-color: transparent !important;
-    font-size: 1vw;
-    border-radius: 1rem;
-    color: #F74B42;
-    padding: 0.2vw 1.2vw;
-    cursor: pointer;
+.startbuilding button {
+  border: 1px solid #f74b42 !important;
+  background-color: transparent !important;
+  font-size: 1vw;
+  border-radius: 1rem;
+  color: #f74b42;
+  padding: 0.2vw 1.2vw;
+  cursor: pointer;
 }
 
-.submitbuild button{
-    border: 1px solid #F74B42 !important;
-    background-color: #F74B42 !important;
-    font-size: 1vw;
-    padding: 0.2vw 1.2vw;
-    color: #FFFFFF;
-    border-radius: 1rem;
-    cursor: pointer;
+.submitbuild button {
+  border: 1px solid #f74b42 !important;
+  background-color: #f74b42 !important;
+  font-size: 1vw;
+  padding: 0.2vw 1.2vw;
+  color: #ffffff;
+  border-radius: 1rem;
+  cursor: pointer;
 }
 
-.editsub button{
-    color: #F74B42;
-    border: none;
-    background-color: transparent;
-    font-size: 0.95vw;
+.editsub button {
+  color: #f74b42;
+  border: none;
+  background-color: transparent;
+  font-size: 0.95vw;
 }
 
-.carousel.carousel-slider .control-arrow:hover{
-    background: unset !important;
+.carousel.carousel-slider .control-arrow:hover {
+  background: unset !important;
 }
 
-.buildcard .carousel .slide{
-    background: transparent !important;
+.buildcard .carousel .slide {
+  background: transparent !important;
 }
 
-.buildcard .carousel  .carousel-status{
-    display: none;
+.buildcard .carousel .carousel-status {
+  display: none;
 }
 
-.buildcard .carousel .carousel-slider .control-arrow{
-    padding: 1.4rem !important;
+.buildcard .carousel .carousel-slider .control-arrow {
+  padding: 1.4rem !important;
 }
 
-.buildcard .carousel .control-dots{
-    margin: 0 !important;
-    bottom: 3vw;
+.buildcard .carousel .control-dots {
+  margin: 0 !important;
+  bottom: 3vw;
 }
 
-.buildcard .carousel .control-dots .dot{
-    box-shadow: unset !important;
-    background: #070000;
+.buildcard .carousel .control-dots .dot {
+  box-shadow: unset !important;
+  background: #070000;
 }
 
-.buildcard .carousel .slider .animated{
-    transition-duration: 1000ms !important;
-    transition: all 12.35s ease-in-out !important;
+.buildcard .carousel .slider .animated {
+  transition-duration: 1000ms !important;
+  transition: all 12.35s ease-in-out !important;
 }
 
-.buildcard .carousel .control-prev.control-arrow:before{
-    border-right: 10px solid #241f1f;
-    margin: 0 4vw 0 0;
+.buildcard .carousel .control-prev.control-arrow:before {
+  border-right: 10px solid #241f1f;
+  margin: 0 4vw 0 0;
 }
 
-.buildcard .carousel .control-next.control-arrow:before{
-    border-left: 8px solid #241f1f;
-    margin: 0 0 0 4vw;
+.buildcard .carousel .control-next.control-arrow:before {
+  border-left: 8px solid #241f1f;
+  margin: 0 0 0 4vw;
 }
 
-.buildcard .carousel.carousel-slider .control-arrow{
-    margin: 0 2vh;
-    display: none;
+.buildcard .carousel.carousel-slider .control-arrow {
+  margin: 0 2vh;
+  display: none;
 }
 
-.buildcard .carousel .thumbs-wrapper{
-    display: none;
+.buildcard .carousel .thumbs-wrapper {
+  display: none;
 }
 
-.buildcardmobile{
-    display: none;
+.buildcardmobile {
+  display: none;
 }
 
-.project-no{
-    font-size: 1.4vw;
-    color: #0A0E2A;
-    font-weight: 500;
+.project-no {
+  font-size: 1.4vw;
+  color: #0a0e2a;
+  font-weight: 500;
 }
 
-.deadline{
-    font-size: 1vw;
+.deadline {
+  font-size: 1vw;
 }
 
-.lock-msg{
-    font-size: 1vw;
-    letter-spacing: 0.27px;
-    background-color: #F0F0F2;
-    display: none;
-    box-shadow: 0px 10px 16px #00000042;
-    padding: 1vw 2vw;
-    top: 35%;
-    position: absolute;
-    width: 90%;
-    right: 5%;
+.lock-msg {
+  font-size: 1vw;
+  letter-spacing: 0.27px;
+  background-color: #f0f0f2;
+  display: none;
+  box-shadow: 0px 10px 16px #00000042;
+  padding: 1vw 2vw;
+  top: 35%;
+  position: absolute;
+  width: 90%;
+  right: 5%;
 }
 
-.lock:hover .lock-msg{
-    display: block;
+.lock:hover .lock-msg {
+  display: block;
 }
 
 /* 
@@ -247,236 +247,229 @@
 
 } */
 
+@media (max-width: 600px) {
+  .dboard-build .card {
+    min-height: 49.16vw;
+    padding: 9.5vw 3.5vw;
+    border-radius: 3vw;
+    width: 89.72vw;
+    margin: auto;
+  }
+  .buildcard {
+    display: none;
+  }
 
-@media (max-width:1200px){
-    .dboard-build .card{
-        min-height: 49.16vw;
-        padding: 9.5vw 3.5vw;
-        border-radius: 3vw;
-        width: 89.72vw;
-        margin: auto;
-    }
-    .buildcard{
-        display: none;
-    }
+  .buildcardmobile {
+    display: block;
+    padding: 1.7rem;
+  }
+  .buildcardmobile .carousel .slide {
+    background: transparent !important;
+  }
 
-    .buildcardmobile{
-        display: block;
-        padding: 1.7rem;
-    }
-    .buildcardmobile .carousel .slide{
-        background: transparent !important;
-    }
-    
-    .buildcardmobile .carousel  .carousel-status{
-        display: none;
-    }
-    
-    .buildcardmobile .carousel .carousel-slider .control-arrow{
-        padding: 1.4rem !important;
-    }
-    
-    .buildcardmobile .carousel .control-dots{
-        margin: 0 !important;
-    }
-    
-    .buildcardmobile .carousel .control-dots .dot{
-        box-shadow: unset !important;
-        background: #070000;
-    }
-    
-    .buildcardmobile .carousel .slider .animated{
-        transition-duration: 1000ms !important;
-        transition: all 12.35s ease-in-out !important;
-    }
-    
-    .buildcardmobile .carousel .control-prev.control-arrow:before{
-        border-right: 10px solid #241f1f;
-        margin: 0 4vw 0 0;
-    }
-    
-    .buildcardmobile .carousel .control-next.control-arrow:before{
-        border-left: 8px solid #241f1f;
-        margin: 0 0 0 4vw;
-    }
-    
-    .buildcardmobile .carousel.carousel-slider .control-arrow{
-        margin: 0 2vh;
-        display: none;
-    }
-    
-    .buildcardmobile .carousel .thumbs-wrapper{
-        display: none;
-    }
+  .buildcardmobile .carousel .carousel-status {
+    display: none;
+  }
 
-    .buildcardmobile .project-no{
-        font-size: 4vw;
-        margin-bottom: 0.6rem;
-        margin-top: 0.4rem;
-    }
-    .buildcardmobile .deadline{
-        font-size: 3vw;
-        font-weight: 500;
-        margin-bottom: 0.9rem;
-    }
+  .buildcardmobile .carousel .carousel-slider .control-arrow {
+    padding: 1.4rem !important;
+  }
 
-    .buildcardmobile .projectname{
-        font-size: 4.1vw;
-        font-weight: 500;
-        margin-bottom: 0.5rem;
-    }
-    .startbuilding button{
-        font-size: 2.5vw !important;
-        padding: 0.9vw 3.2vw;
-        border-radius: 4vw;
-        font-weight: 500;
+  .buildcardmobile .carousel .control-dots {
+    margin: 0 !important;
+  }
 
-    }
-    .submitbuild button{
-        font-size: 2.5vw !important;
-        padding: 1vw 2.2vw;
-        font-weight: 500;
-        border-radius: 4vw;
-    }
-    .buildcardmobile .carousel .control-dots{
-        position: absolute;
-        left: -30%;
-        bottom: -0.4vw;
-        
-    }
-    .buildcardmobile .carousel .control-dots .dot{
-        height: 5px;
-        width: 5px;
-        margin: 0 8px;
-        border-radius: 50%;
-    }
+  .buildcardmobile .carousel .control-dots .dot {
+    box-shadow: unset !important;
+    background: #070000;
+  }
 
-    .editsub button{
-        font-size: 2.2vw;
-    }
+  .buildcardmobile .carousel .slider .animated {
+    transition-duration: 1000ms !important;
+    transition: all 12.35s ease-in-out !important;
+  }
 
-    .lock-msg{
-        font-size: 3vw;
-        letter-spacing: 0.27px;
-        background-color: #F0F0F2;
-        display: none;
-        box-shadow: 0px 10px 16px #00000042;
-        padding: 1vw 2vw;
-        top: 25%;
-        position: absolute;
-        width: 50%;
-        right: 25%;
-    }
+  .buildcardmobile .carousel .control-prev.control-arrow:before {
+    border-right: 10px solid #241f1f;
+    margin: 0 4vw 0 0;
+  }
 
-    .lock img{
-        width: 21.2vw !important;
-    }
+  .buildcardmobile .carousel .control-next.control-arrow:before {
+    border-left: 8px solid #241f1f;
+    margin: 0 0 0 4vw;
+  }
+
+  .buildcardmobile .carousel.carousel-slider .control-arrow {
+    margin: 0 2vh;
+    display: none;
+  }
+
+  .buildcardmobile .carousel .thumbs-wrapper {
+    display: none;
+  }
+
+  .buildcardmobile .project-no {
+    font-size: 4vw;
+    margin-bottom: 0.6rem;
+    margin-top: 0.4rem;
+  }
+  .buildcardmobile .deadline {
+    font-size: 3vw;
+    font-weight: 500;
+    margin-bottom: 0.9rem;
+  }
+
+  .buildcardmobile .projectname {
+    font-size: 4.1vw;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .startbuilding button {
+    font-size: 2.5vw !important;
+    padding: 0.9vw 3.2vw;
+    border-radius: 4vw;
+    font-weight: 500;
+  }
+  .submitbuild button {
+    font-size: 2.5vw !important;
+    padding: 1vw 2.2vw;
+    font-weight: 500;
+    border-radius: 4vw;
+  }
+  .buildcardmobile .carousel .control-dots {
+    position: absolute;
+    left: -30%;
+    bottom: -0.4vw;
+  }
+  .buildcardmobile .carousel .control-dots .dot {
+    height: 5px;
+    width: 5px;
+    margin: 0 8px;
+    border-radius: 50%;
+  }
+
+  .editsub button {
+    font-size: 2.2vw;
+  }
+
+  .lock-msg {
+    font-size: 3vw;
+    letter-spacing: 0.27px;
+    background-color: #f0f0f2;
+    display: none;
+    box-shadow: 0px 10px 16px #00000042;
+    padding: 1vw 2vw;
+    top: 25%;
+    position: absolute;
+    width: 50%;
+    right: 25%;
+  }
+
+  .lock img {
+    width: 21.2vw !important;
+  }
 }
 
+@media (max-width: 400px) and(max-height:860px) {
+  .dboard-build .card {
+    min-height: 49.16vw;
+    padding: 6vw 1.2rem;
+  }
+  .buildcard {
+    display: none;
+  }
 
+  .buildcardmobile {
+    display: block;
+    padding: 1.7rem;
+  }
+  .buildcardmobile .carousel .slide {
+    background: transparent !important;
+  }
 
-@media (max-width:400px) and(max-height:860px){
-    .dboard-build .card{
-        min-height: 49.16vw;
-        padding: 6vw 1.2rem;
-    }
-    .buildcard{
-        display: none;
-    }
+  .buildcardmobile .carousel .carousel-status {
+    display: none;
+  }
 
-    .buildcardmobile{
-        display: block;
-        padding: 1.7rem;
-    }
-    .buildcardmobile .carousel .slide{
-        background: transparent !important;
-    }
-    
-    .buildcardmobile .carousel  .carousel-status{
-        display: none;
-    }
-    
-    .buildcardmobile .carousel .carousel-slider .control-arrow{
-        padding: 1.4rem !important;
-    }
-    
-    .buildcardmobile .carousel .control-dots{
-        margin: 0 !important;
-    }
-    
-    .buildcardmobile .carousel .control-dots .dot{
-        box-shadow: unset !important;
-        background: #070000;
-    }
-    
-    .buildcardmobile .carousel .slider .animated{
-        transition-duration: 1000ms !important;
-        transition: all 12.35s ease-in-out !important;
-    }
-    
-    .buildcardmobile .carousel .control-prev.control-arrow:before{
-        border-right: 10px solid #241f1f;
-        margin: 0 4vw 0 0;
-    }
-    
-    .buildcardmobile .carousel .control-next.control-arrow:before{
-        border-left: 8px solid #241f1f;
-        margin: 0 0 0 4vw;
-    }
-    
-    .buildcardmobile .carousel.carousel-slider .control-arrow{
-        margin: 0 2vh;
-        display: none;
-    }
-    
-    .buildcardmobile .carousel .thumbs-wrapper{
-        display: none;
-    }
+  .buildcardmobile .carousel .carousel-slider .control-arrow {
+    padding: 1.4rem !important;
+  }
 
-    .buildcardmobile .project-no{
-        font-size: 1rem;
-        margin-bottom: 0.6rem;
-        margin-top: 0.4rem;
-    }
-    .buildcardmobile .deadline{
-        font-size: 0.7rem;
-        font-weight: 500;
-        margin-bottom: 0.9rem;
-    }
+  .buildcardmobile .carousel .control-dots {
+    margin: 0 !important;
+  }
 
-    .buildcardmobile .projectname{
-        font-size: 4.1vw;
-        font-weight: 500;
-        margin-bottom: 0.5rem;
-    }
-    .startbuilding button{
-        font-size: 2.4vw !important;
-        padding: 0.9vw 3.2vw;
-    }
-    .submitbuild button{
-        font-size: 2.4vw !important;
-        padding: 1vw 2.2vw;
-    }
-    .buildcardmobile .carousel .control-dots{
-        position: absolute;
-        left: -30%;
-        bottom: -0.2rem;
-        
-    }
-    .buildcardmobile .carousel .control-dots .dot{
-        height: 4px;
-        width: 4px;
-        margin: 0 6px;
-        border-radius: 50%;
-    }
-    .editsub button{
-        font-size: 2vw !important;
-    }
+  .buildcardmobile .carousel .control-dots .dot {
+    box-shadow: unset !important;
+    background: #070000;
+  }
 
-    .startbuilding button{
-        font-size: 2.9vw;
-        padding: 0.5vw 3.2vw;
-        font-weight: 500;
-    };
+  .buildcardmobile .carousel .slider .animated {
+    transition-duration: 1000ms !important;
+    transition: all 12.35s ease-in-out !important;
+  }
 
+  .buildcardmobile .carousel .control-prev.control-arrow:before {
+    border-right: 10px solid #241f1f;
+    margin: 0 4vw 0 0;
+  }
+
+  .buildcardmobile .carousel .control-next.control-arrow:before {
+    border-left: 8px solid #241f1f;
+    margin: 0 0 0 4vw;
+  }
+
+  .buildcardmobile .carousel.carousel-slider .control-arrow {
+    margin: 0 2vh;
+    display: none;
+  }
+
+  .buildcardmobile .carousel .thumbs-wrapper {
+    display: none;
+  }
+
+  .buildcardmobile .project-no {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+    margin-top: 0.4rem;
+  }
+  .buildcardmobile .deadline {
+    font-size: 0.7rem;
+    font-weight: 500;
+    margin-bottom: 0.9rem;
+  }
+
+  .buildcardmobile .projectname {
+    font-size: 4.1vw;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .startbuilding button {
+    font-size: 2.4vw !important;
+    padding: 0.9vw 3.2vw;
+  }
+  .submitbuild button {
+    font-size: 2.4vw !important;
+    padding: 1vw 2.2vw;
+  }
+  .buildcardmobile .carousel .control-dots {
+    position: absolute;
+    left: -30%;
+    bottom: -0.2rem;
+  }
+  .buildcardmobile .carousel .control-dots .dot {
+    height: 4px;
+    width: 4px;
+    margin: 0 6px;
+    border-radius: 50%;
+  }
+  .editsub button {
+    font-size: 2vw !important;
+  }
+
+  .startbuilding button {
+    font-size: 2.9vw;
+    padding: 0.5vw 3.2vw;
+    font-weight: 500;
+  }
 }

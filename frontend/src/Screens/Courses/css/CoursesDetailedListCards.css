@@ -307,14 +307,14 @@
   /* flex: 1; */
   z-index: 1;
   margin: 0;
-  width: 60%;
+  width: 54%;
   /* width: fit-content; */
 }
 
 .courses-detailed-list-card-item > .title > span {
   display: flex;
   align-items: flex-end;
-  width: 40%;
+  width: 46%;
 }
 
 .courses-detailed-list-card-item > .title > span > img {

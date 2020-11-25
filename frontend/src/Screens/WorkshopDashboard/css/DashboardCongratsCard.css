@@ -1,97 +1,97 @@
-.congrats-card{
-    width: calc(1702*var(--vp));
-    height: calc(442*var(--vp));
-    margin: calc(80*var(--vp)) auto calc(126*var(--vp));
-    background-color: #FFFFFF;
-    border-radius: calc(10*var(--vp));
-    box-shadow: 0px calc(6*var(--vp)) calc(6*var(--vp)) #00000045;
-    text-align: center;
+.congrats-card {
+  width: calc(1702 * var(--vp));
+  height: calc(442 * var(--vp));
+  margin: calc(80 * var(--vp)) auto calc(126 * var(--vp));
+  background-color: #ffffff;
+  border-radius: calc(10 * var(--vp));
+  box-shadow: 0px calc(6 * var(--vp)) calc(6 * var(--vp)) #00000045;
+  text-align: center;
 }
 
-.congrats-card .congrats-image img{
-    width: calc(341*var(--vp));
-    height: calc(177*var(--vp));
-    text-align: center;
-    margin-top: calc(27*var(--vp));
-    margin-bottom: calc(17*var(--vp));
+.congrats-card .congrats-image img {
+  width: calc(341 * var(--vp));
+  height: calc(177 * var(--vp));
+  text-align: center;
+  margin-top: calc(27 * var(--vp));
+  margin-bottom: calc(17 * var(--vp));
 }
 
-.congrats-card .congrats-title{
-    font-size: calc(40*var(--vp));
+.congrats-card .congrats-title {
+  font-size: calc(40 * var(--vp));
+  font-weight: 500;
+  color: #f74b42;
+}
+
+.congrats-card .congrats-content {
+  width: calc(1409 * var(--vp));
+  margin: calc(10 * var(--vp)) auto auto;
+  font-size: calc(28 * var(--vp));
+  color: #020122;
+  line-height: normal;
+}
+
+.congrats-card .close {
+  position: relative;
+  right: 2vw;
+  top: 2vw;
+  font-size: calc(50 * var(--vp));
+  font-weight: lighter;
+  margin-left: calc(-50 * var(--vp));
+  font-weight: 400;
+}
+
+.congrats-card .close button {
+  background-color: transparent;
+  border: none;
+  color: #707070;
+}
+
+@media (max-width: 600px) {
+  .congrats-card {
+    width: calc(326 * var(--vm));
+    height: calc(438 * var(--vm));
+    margin: calc(80 * var(--vp)) auto calc(77 * var(--vm));
+    background-color: #ffffff;
+    border-radius: calc(9 * var(--vm));
+    box-shadow: 0px calc(6 * var(--vp)) calc(6 * var(--vp)) #00000045;
+    text-align: center;
+  }
+
+  .congrats-card .congrats-image img {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-top: calc(27 * var(--vm));
+    margin-bottom: calc(19 * var(--vm));
+  }
+
+  .congrats-card .congrats-title {
+    font-size: calc(20 * var(--vm));
     font-weight: 500;
-    color: #F74B42;
-}
+    color: #f74b42;
+  }
 
-.congrats-card .congrats-content{
-    width: calc(1409*var(--vp));
-    margin: calc(10*var(--vp)) auto auto;
-    font-size: calc(28*var(--vp));
+  .congrats-card .congrats-content {
+    width: calc(246 * var(--vm));
+    margin: calc(10 * var(--vp)) auto auto;
+    font-size: calc(12 * var(--vm));
     color: #020122;
-    line-height: normal;
-}
+    line-height: inherit;
+  }
 
-.congrats-card .close{
+  .congrats-card .close {
     position: relative;
     right: 2vw;
     top: 2vw;
-    font-size: calc(50*var(--vp));
+    font-size: calc(20 * var(--vm));
     font-weight: lighter;
-    margin-left: calc(-50*var(--vp));
+    margin-left: calc(-50 * var(--vp));
     font-weight: 400;
-}
+  }
 
-.congrats-card .close button{
+  .congrats-card .close button {
     background-color: transparent;
     border: none;
     color: #707070;
-}
-
-@media(max-width:1200px){
-    .congrats-card{
-        width: calc(326*var(--vm));
-        height: calc(438*var(--vm));
-        margin: calc(80*var(--vp)) auto calc(77*var(--vm));
-        background-color: #FFFFFF;
-        border-radius: calc(9*var(--vm));
-        box-shadow: 0px calc(6*var(--vp)) calc(6*var(--vp)) #00000045;
-        text-align: center;
-    }
-    
-    .congrats-card .congrats-image img{
-        width: 100%;
-        height: auto;
-        text-align: center;
-        margin-top: calc(27*var(--vm));
-        margin-bottom: calc(19*var(--vm));
-    }
-    
-    .congrats-card .congrats-title{
-        font-size: calc(20*var(--vm));
-        font-weight: 500;
-        color: #F74B42;
-    }
-    
-    .congrats-card .congrats-content{
-        width: calc(246*var(--vm));
-        margin: calc(10*var(--vp)) auto auto;
-        font-size: calc(12*var(--vm));
-        color: #020122;
-        line-height: inherit;
-    }
-    
-    .congrats-card .close{
-        position: relative;
-        right: 2vw;
-        top: 2vw;
-        font-size: calc(20*var(--vm));
-        font-weight: lighter;
-        margin-left: calc(-50*var(--vp));
-        font-weight: 400;
-    }
-    
-    .congrats-card .close button{
-        background-color: transparent;
-        border: none;
-        color: #707070;
-    }
+  }
 }

@@ -11,6 +11,7 @@ import blogMobileBanner from "./images/blogMobileBanner.png";
 function Blog() {
   const { blogs } = useSelector((state) => state.blogs);
   const [temparray, settemparray] = useState([]);
+  const [selectedCategory, setselectedCategory] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(blogList());
@@ -64,31 +65,63 @@ function Blog() {
     </button>
   );
 
+  console.log(temparray);
+  // className="selected"
   return (
     <div className="blog">
       <div className="blog__category">
         <ul className="blog__categoryList">
-          <li className="selected">Robotics</li>
-          <li>Programming</li>
-          <li>Artificial Intelligence</li>
-          <li>Miscellaneous</li>
+          <li
+            className={selectedCategory === "Miscellaneous" && "selected"}
+            onClick={() => setselectedCategory("Miscellaneous")}
+          >
+            Miscellaneous
+          </li>
+          <li
+            className={selectedCategory === "Robotics" && "selected"}
+            onClick={() => setselectedCategory("Robotics")}
+          >
+            Robotics
+          </li>
+          <li
+            className={selectedCategory === "Programming" && "selected"}
+            onClick={() => setselectedCategory("Programming")}
+          >
+            Programming
+          </li>
+          <li
+            className={
+              selectedCategory === "Artificial Intelligence" && "selected"
+            }
+            onClick={() => setselectedCategory("Artificial Intelligence")}
+          >
+            Artificial Intelligence
+          </li>
         </ul>
       </div>
       <div className="blog__categoryMobile">
         <label className="blog__categoryList__label">
           Select A Particular Category
         </label>
-        <select className="blog__categoryList__select">
-          <option>Robotics</option>
-          <option>Programming</option>
-          <option>Artificial Intelligence</option>
-          <option>Miscellaneous</option>
+        <select
+          className="blog__categoryList__select"
+          value={selectedCategory}
+          onChange={(e) => setselectedCategory(e.target.value)}
+        >
+          <option value="Miscellaneous">Miscellaneous</option>
+          <option value="Robotics">Robotics</option>
+          <option value="Programming">Programming</option>
+          <option value="Artificial Intelligence">
+            Artificial Intelligence
+          </option>
         </select>
       </div>
-      {[1, 1, 1].map((blogSet, index) => {
+      {temparray.map((blogSet, index) => {
         return (
           <div className="blog__cardsContainer">
-            <BlogCard isVertical={false} />
+            {blogSet[0] && blogSet[0].category?.name === selectedCategory && (
+              <BlogCard isVertical={false} blog={blogSet[0]} />
+            )}
             {window.innerWidth < 600 ? (
               <Carousel
                 swipeable={true}
@@ -105,15 +138,33 @@ function Blog() {
                 // keyBoardControl={true}
                 className="blog__cards__carousel"
               >
-                <BlogCard isVertical={true} />
-                <BlogCard isVertical={true} />
-                <BlogCard isVertical={true} />
+                {blogSet[1] &&
+                  blogSet[0].category?.name === selectedCategory && (
+                    <BlogCard isVertical={true} blog={blogSet[1]} />
+                  )}
+                {blogSet[2] &&
+                  blogSet[0].category?.name === selectedCategory && (
+                    <BlogCard isVertical={true} blog={blogSet[2]} />
+                  )}
+                {blogSet[3] &&
+                  blogSet[0].category?.name === selectedCategory && (
+                    <BlogCard isVertical={true} blog={blogSet[3]} />
+                  )}
               </Carousel>
             ) : (
               <div className="blog__cardsContainer__vertical">
-                <BlogCard isVertical={true} />
-                <BlogCard isVertical={true} />
-                <BlogCard isVertical={true} />
+                {blogSet[1] &&
+                  blogSet[0].category?.name === selectedCategory && (
+                    <BlogCard isVertical={true} blog={blogSet[1]} />
+                  )}
+                {blogSet[2] &&
+                  blogSet[0].category?.name === selectedCategory && (
+                    <BlogCard isVertical={true} blog={blogSet[2]} />
+                  )}
+                {blogSet[3] &&
+                  blogSet[0].category?.name === selectedCategory && (
+                    <BlogCard isVertical={true} blog={blogSet[3]} />
+                  )}
               </div>
             )}
           </div>

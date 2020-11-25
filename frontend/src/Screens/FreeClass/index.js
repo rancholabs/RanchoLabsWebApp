@@ -61,6 +61,8 @@ const FreeClass = ({ location }) => {
     location && location.search ? location.search.split("loginfor=")[1] : null;
 
   useEffect(() => {
+    console.log(loginfor);
+
     if (userInfo) {
       // hHistory.push('/setPassword')
       const pfullname = pname.split(" ");
@@ -72,16 +74,16 @@ const FreeClass = ({ location }) => {
 
       const parentDetails = {
         name: pfinalname,
+        email: pemail,
         mobileNo: {
           code: pdialcode,
           number: contact,
-          email: pemail,
         },
       };
 
       const freeEnrollment = {
         freeClass: {
-          enrolled: loginfor === "freeClass" ? true : false,
+          enrolled: loginfor === "freeclass" ? true : false,
           completed: false,
         },
         freeWorkshop: {
@@ -89,6 +91,8 @@ const FreeClass = ({ location }) => {
           completed: false,
         },
       };
+
+      console.log(parentDetails, grade, loginfor, freeEnrollment);
 
       dispatch(
         updateStudent({ parentDetails, grade, loginfor, freeEnrollment })

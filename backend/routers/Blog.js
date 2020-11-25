@@ -14,6 +14,7 @@ router.post("/", async (req, res) => {
     blogShortDescription,
     blogDate,
     blogBody,
+    blogAuthor,
     blogBanner,
   } = req.body;
 
@@ -23,6 +24,7 @@ router.post("/", async (req, res) => {
     blogShortDescription,
     blogDate,
     blogBody,
+    blogAuthor,
     blogBanner,
   });
   newBlog
@@ -72,6 +74,64 @@ router.get("/", async (req, res) => {
       },
     },
     {
+      $lookup: {
+        from: "blogauthors",
+        let: { blogAuthor: "$blogAuthor" },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $eq: ["$_id", "$$blogAuthor"],
+              },
+            },
+          },
+          {
+            $project: {
+              name: 1,
+              _id: 1,
+              authorImage: 1,
+              description: 1,
+            },
+          },
+        ],
+        as: "author",
+      },
+    },
+    {
+      $unwind: {
+        path: "$author",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
+    {
+      $lookup: {
+        from: "blogcategories",
+        let: { blogCategory: "$blogCategory" },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $eq: ["$_id", "$$blogCategory"],
+              },
+            },
+          },
+          {
+            $project: {
+              name: 1,
+              _id: 1,
+            },
+          },
+        ],
+        as: "category",
+      },
+    },
+    {
+      $unwind: {
+        path: "$category",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
+    {
       $project: {
         __v: 0,
       },
@@ -117,26 +177,15 @@ router.get("/:bid", async (req, res) => {
   }
 });
 
-// router.put("/:bid/:cid", async (req, res) => {
-//   try {
-//     const batch = await Batch.findOne({ _id: req.params.bid });
-//     const clas = batch.classes.filter((c) => {
-//       if (c.classId == req.params.cid) return c;
-//     });
-//     const updates = Object.keys(req.body);
-//     updates.forEach((update) => {
-//       if (update === "instructorNote") {
-//         clas[0].instructorNote.push(req.body[update]);
-//       } else {
-//         clas[0][update] = req.body[update];
-//       }
-//     });
-//     await batch.save();
-//     res.status(201).send(clas);
-//   } catch (e) {
-//     console.log(e);
-//     res.status(400).send("Error");
-//   }
-// });
+router.put("/:bid", async (req, res) => {
+  try {
+    Blog.findByIdAndUpdate({ _id: req.params.bid }, req.body).then((doc) =>
+      res.status(200).send("Blog updated")
+    );
+  } catch (e) {
+    console.log(e);
+    res.status(400).send("Error");
+  }
+});
 
 module.exports = router;

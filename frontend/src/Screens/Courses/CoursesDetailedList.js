@@ -117,9 +117,9 @@ const CoursesDetailedList = ({ courseGroups, activeCourseG, activeGrade }) => {
     }
   }, [activeCourseG, activeGrade]);
 
-  console.log(activeGrade);
-  console.log(activeCourseG);
-  console.log(toBeDisplayedCourses);
+  // console.log(activeGrade);
+  // console.log(activeCourseG);
+  // console.log(toBeDisplayedCourses);
 
   return (
     <div className="courses-detailed-lists">

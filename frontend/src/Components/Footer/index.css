@@ -361,6 +361,14 @@ footer {
   display: none;
 }
 
+.footer-mobile-links a {
+  color: inherit;
+}
+
+.footer-mobile-links a:hover {
+  text-decoration: none;
+}
+
 .footer-mobile-icons {
   display: none;
 }

@@ -30,8 +30,8 @@ const Footer = () => {
   useEffect(() => {
     const onresize = () => {
       if (
-        window.screen.width <= 600 ||
-        (isIPadMiniMobileView && window.screen.width <= 768)
+        window.screen.width <= 600
+        // (isIPadMiniMobileView && window.screen.width <= 768)
       ) {
         footerTop.current.classList.add("mobile");
         footerLinks.current.classList.add("mobile");
@@ -87,8 +87,12 @@ const Footer = () => {
             </div>
           </div>
           <div className="footer-mobile-links">
-            <p>Curriculum</p>
-            <p>About Us</p>
+            <a href="/courses">
+              <p>Curriculum</p>
+            </a>
+            <a href="/aboutUs">
+              <p>About us</p>
+            </a>
             <p
               onClick={() =>
                 document
@@ -121,28 +125,39 @@ const Footer = () => {
                 labs.rancho@gmail.com
               </p>
             </span>
-            <p>Blog</p>
+            <a href="/blog">
+              <p>Blog</p>
+            </a>
+
             <div className="footer-mobile-icons">
-              <FontAwesomeIcon
-                className="icon"
-                color="#3CFAFF"
-                icon={faTwitter}
-              />
-              <FontAwesomeIcon
-                className="icon"
-                color="#3CFAFF"
-                icon={faLinkedinIn}
-              />
-              <FontAwesomeIcon
-                className="icon"
-                color="#3CFAFF"
-                icon={faFacebookF}
-              />
-              <FontAwesomeIcon
-                className="icon"
-                color="#3CFAFF"
-                icon={faInstagram}
-              />
+              <a href="https://twitter.com/RanchoLabs">
+                <FontAwesomeIcon
+                  className="icon"
+                  color="#3CFAFF"
+                  icon={faTwitter}
+                />
+              </a>
+              <a href="https://www.linkedin.com/company/rancho-labs/">
+                <FontAwesomeIcon
+                  className="icon"
+                  color="#3CFAFF"
+                  icon={faLinkedinIn}
+                />{" "}
+              </a>{" "}
+              <a href="https://www.facebook.com/RanchoLabs">
+                <FontAwesomeIcon
+                  className="icon"
+                  color="#3CFAFF"
+                  icon={faFacebookF}
+                />{" "}
+              </a>{" "}
+              <a href="https://www.instagram.com/rancho.labs/">
+                <FontAwesomeIcon
+                  className="icon"
+                  color="#3CFAFF"
+                  icon={faInstagram}
+                />
+              </a>
             </div>
           </div>
           <div className="footer-links" ref={footerLinks}>
@@ -211,26 +226,34 @@ const Footer = () => {
         </p>
         <div className="footer-bottom-right-section">
           <div className="footer-bottom-icons">
-            <FontAwesomeIcon
-              className="icon"
-              color="#3CFAFF"
-              icon={faTwitter}
-            />
-            <FontAwesomeIcon
-              className="icon"
-              color="#3CFAFF"
-              icon={faLinkedinIn}
-            />
-            <FontAwesomeIcon
-              className="icon"
-              color="#3CFAFF"
-              icon={faFacebookF}
-            />
-            <FontAwesomeIcon
-              className="icon"
-              color="#3CFAFF"
-              icon={faInstagram}
-            />
+            <a href="https://twitter.com/RanchoLabs">
+              <FontAwesomeIcon
+                className="icon"
+                color="#3CFAFF"
+                icon={faTwitter}
+              />
+            </a>
+            <a href="https://www.linkedin.com/company/rancho-labs/">
+              <FontAwesomeIcon
+                className="icon"
+                color="#3CFAFF"
+                icon={faLinkedinIn}
+              />{" "}
+            </a>{" "}
+            <a href="https://www.facebook.com/RanchoLabs">
+              <FontAwesomeIcon
+                className="icon"
+                color="#3CFAFF"
+                icon={faFacebookF}
+              />{" "}
+            </a>{" "}
+            <a href="https://www.instagram.com/rancho.labs/">
+              <FontAwesomeIcon
+                className="icon"
+                color="#3CFAFF"
+                icon={faInstagram}
+              />
+            </a>
           </div>
           <div className="footer-bottom-dum"></div>
           <p className="footer-bottom-center-align">Terms and Conditions</p>

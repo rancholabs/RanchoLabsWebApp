@@ -21,6 +21,7 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
     price,
     courseStructure,
     totalClasses,
+    curriculumPDF,
   } = courseDetails;
   const curriculum = courseStructure ? courseStructure.filePath : "";
   const updatedOutcomes = (outcomes) => {
@@ -62,8 +63,6 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
           <div className="topic">LEARN</div>
           <div className="sub-topics">
             {updatedOutcomes(learns).map((learn, si, stArr) => {
-              console.log(si);
-              console.log(stArr);
               if (learn.toString() !== "") {
                 return (
                   <>
@@ -96,17 +95,22 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
             })}
           </div>
         </div>
-        <div className="outcomes-section">
-          <div className="topic">INNOVATE</div>
-          <div className="sub-topics">
-            {updatedOutcomes(innovates).map((innovate, si, stArr) => (
-              <div key={si}>
-                {innovate}
-                {si < stArr.length - 1 ? " |" : ""}
-              </div>
-            ))}
+        {innovates.topics[0] !== "" && (
+          <div className="outcomes-section">
+            <div className="topic">INNOVATE</div>
+            <div className="sub-topics">
+              {updatedOutcomes(innovates).map((innovate, si, stArr) => {
+                if (innovate !== "")
+                  return (
+                    <div key={si}>
+                      {innovate}
+                      {si < stArr.length - 1 ? " |" : ""}
+                    </div>
+                  );
+              })}
+            </div>
           </div>
-        </div>
+        )}
       </div>
       {/*(curriculum && index === 0) ? (
                 <a href={curriculum} target="_blank" className={`syllabus-padding syllabus`}>
@@ -122,17 +126,17 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
                 </div>
             )*/}
       <a
-        href={curriculum}
+        href={curriculumPDF}
         target="_blank"
         className={`syllabus-padding syllabus`}
       >
-        DETAILED CURRICULAM
+        DETAILED CURRICULUM
       </a>
       <div className="learn-price">
         {curriculum ? (
           index !== 0 ? (
             <a
-              href={curriculum}
+              href={"/enroll/" + id}
               style={{ textDecoration: "none" }}
               target="_blank"
               className="learn-more-btn"
@@ -141,7 +145,7 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
             </a>
           ) : (
             <Link
-              to={`/course/${id}`}
+              href={"/enroll/" + id}
               className="learn-more-btn"
               style={{ textDecoration: "none" }}
             >
@@ -149,18 +153,20 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
             </Link>
           )
         ) : (
-          <div className="learn-more-btn">
+          <a
+            href={"/enroll/" + id}
+            style={{ textDecoration: "none" }}
+            target="_blank"
+            className="learn-more-btn"
+          >
             <div className="text">ENROLL NOW</div>
-          </div>
+          </a>
         )}
         {/*<Link to={`/course/${id}`} className="learn-more-btn" style={{textDecoration: "none"}}>
                     <div className="text">LEARN MORE</div>
                 </Link>*/}
         <div className="price">
-          <div className="text">
-            {price.currency}
-            {price.amount}/-
-          </div>
+          <div className="text">₹{price.amountAfterDiscount}/-</div>
         </div>
       </div>
     </div>
@@ -168,7 +174,6 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
 };
 
 const CoursesDetailedListCards = ({ coursesDetails }) => {
-  console.log(coursesDetails);
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -234,16 +239,16 @@ const CoursesDetailedListCards = ({ coursesDetails }) => {
           </Carousel>
         ) : (
           <Carousel
-            swipeable
-            draggable
+            swipeable={false}
+            draggable={false}
             showDots={false}
             responsive={responsive}
-            infinite={true}
-            // arrows={false}
+            infinite={false}
+            arrows={false}
             // autoPlay={true}
             // autoPlaySpeed={2500}
-            customLeftArrow={<CustomLeft />}
-            customRightArrow={<CustomRight />}
+            // customLeftArrow={<CustomLeft />}
+            // customRightArrow={<CustomRight />}
             // keyBoardControl={true}
             className="courses-courses-carousel"
           >

@@ -558,13 +558,20 @@ const Courses = () => {
         setActiveGrade={setActiveGrade}
       />
       <CoursesCourses
+        activeGrade={activeGrade}
         courseGroups={courseGroups}
         setActiveCourseG={setActiveCourseG}
         activeCourseG={activeCourseG}
       />
       <div className="course-purple-bg-container">
-        <img src={purpleBlurBG} className="course-purple-bg course-purple-bg-top-left"></img>
-        <img src={purpleBlurBG} className="course-purple-bg course-purple-bg-bottom-right"></img>
+        <img
+          src={purpleBlurBG}
+          className="course-purple-bg course-purple-bg-top-left"
+        ></img>
+        <img
+          src={purpleBlurBG}
+          className="course-purple-bg course-purple-bg-bottom-right"
+        ></img>
         <CoursesDetails
           activeCourseG={activeCourseG}
           activeGrade={activeGrade}

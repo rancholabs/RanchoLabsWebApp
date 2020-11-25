@@ -7,6 +7,8 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import EditIcon from "../../Asssets/Icon feather-edit.png";
+import Backdrop from "@material-ui/core/Backdrop";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 function AdminNewCourse({
   currentCurriculum,
@@ -76,6 +78,7 @@ function AdminNewCourse({
       ? tobeEditedCourse.gradeRange.maxG
       : 12
   );
+  const [curriculumPDF, setcurriculumPDF] = useState("");
 
   // NEW CLASS VARS
   const [classNo, setclassNo] = useState(0);
@@ -90,6 +93,8 @@ function AdminNewCourse({
   const [projectDeadline, setProjectDeadline] = useState(0);
   const [projectFormat, setProjectFormat] = useState("");
   const [projects, setProjects] = useState([]);
+
+  const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
     if (tobeEditedCourse._id) {
@@ -123,6 +128,12 @@ function AdminNewCourse({
         });
     }
   }, [tobeEditedCourse]);
+
+  // const handleFileUpload = (e) => {
+  //   if (e.target.files[0]) {
+  //     setcurriculumPDF(e.target.files[0]);
+  //   }
+  // };
 
   const getUpdatedClasses = () => {
     const userInfo = localStorage.getItem("userInfo");
@@ -164,8 +175,18 @@ function AdminNewCourse({
       });
   };
 
-  const addNewCourse = () => {
+  const addNewCourse = async () => {
+    const userInfo = localStorage.getItem("userInfo");
+    const token = userInfo ? JSON.parse(userInfo).token : "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    };
     if (tobeEditedCourse._id) {
+      // if (curriculumPDF === null) {
+      // console.log("no pdf");
       const body = {
         name: name,
         //   courseImage: "",
@@ -197,17 +218,9 @@ function AdminNewCourse({
           },
         },
         courseStructure: null,
+        curriculumPDF: curriculumPDF,
         totalClasses: totalClasses,
         instructors: [],
-      };
-
-      const userInfo = localStorage.getItem("userInfo");
-      const token = userInfo ? JSON.parse(userInfo).token : "";
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          authorization: token,
-        },
       };
 
       axios
@@ -220,7 +233,74 @@ function AdminNewCourse({
         .catch((err) => {
           alert("Error updating data.");
         });
+      // } else {
+      //   setOpen(true);
+      //   console.log("uploading pdf...");
+      //   // update pdf file
+      //   const formData = new FormData();
+      //   formData.append("files", curriculumPDF);
+      //   const fileID = await axios
+      //     .post("/api/file", formData, config)
+      //     .then((res) => res.data.fileId)
+      //     .catch((error) => {
+      //       setOpen(false);
+      //       alert("Error uploading file. Please try again.");
+      //     });
+      //   const body = {
+      //     name: name,
+      //     //   courseImage: "",
+      //     builds: [],
+      //     innovates: [],
+      //     description: "description",
+      //     durationInHours: durationInHours,
+      //     NoOfWeeks: NoOfWeeks,
+      //     hoursPerWeek: hoursPerWeek,
+      //     overview: "overview",
+      //     detailedView: "detailedView",
+      //     gradeRange: {
+      //       minG: minimumGrade,
+      //       maxG: maximumGrade,
+      //     },
+      //     price: {
+      //       amount: amount,
+      //       amountAfterDiscount: amountAfterDiscount,
+      //     },
+      //     outcomesByTopics: {
+      //       learns: {
+      //         topics: [learn[0], learn[1], learn[2]],
+      //       },
+      //       builds: {
+      //         topics: [build[0], build[1], build[2]],
+      //       },
+      //       innovates: {
+      //         topics: [innovate],
+      //       },
+      //     },
+      //     courseStructure: fileID,
+      //     totalClasses: totalClasses,
+      //     instructors: [],
+      //   };
+
+      //   axios
+      //     .put(`/api/course/${tobeEditedCourse._id}`, body, config)
+      //     .then(async (res) => {
+      //       await updateCourseGroups();
+      //       closeAddNewForm();
+      //       console.log(res.data);
+      //       setOpen(false);
+      //     })
+      //     .catch((err) => {
+      //       alert("Error updating data.");
+      //       setOpen(false);
+      //     });
+      // }
     } else {
+      // const formData = new FormData();
+      // formData.append("files", curriculumPDF);
+      // const fileID = await axios
+      //   .post("/api/file", formData, config)
+      //   .then((res) => res.data.fileId)
+      //   .catch((error) => ({ message: "Error" }));
       const body = {
         groupId: currentCurriculum,
         name: name,
@@ -253,19 +333,10 @@ function AdminNewCourse({
           },
         },
         courseStructure: null,
+        curriculumPDF: curriculumPDF,
         totalClasses: totalClasses,
         instructors: [],
       };
-
-      const userInfo = localStorage.getItem("userInfo");
-      const token = userInfo ? JSON.parse(userInfo).token : "";
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          authorization: token,
-        },
-      };
-
       axios
         .post("/api/course", body, config)
         .then((res) => {
@@ -396,8 +467,15 @@ function AdminNewCourse({
 
   console.log(tobeEditedCourse);
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div className="adminNewCourse">
+      <Backdrop open={open} onClick={handleClose}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <div className="adminNewCourse__section">
         <div className="adminNewCourse__content">
           {tobeEditedCourse._id && (
@@ -487,10 +565,11 @@ function AdminNewCourse({
                 Curriculum PDF{" "}
               </label>
               <input
-                type="file"
+                type="text"
                 disabled={
                   tobeEditedCourse._id ? (allowEdits ? false : true) : false
                 }
+                onChange={(e) => setcurriculumPDF(e.target.value)}
               />
             </div>
           </div>
