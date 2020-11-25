@@ -28,7 +28,7 @@ router.get("/", isAuthenticated, (req, res) => {
     });
 });
 
-router.get("/:id", isAuthenticated, (req, res) => {
+router.get("/:id", (req, res) => {
   const error = {
     message: "Error in retreiving the file",
     error: "Bad Request",

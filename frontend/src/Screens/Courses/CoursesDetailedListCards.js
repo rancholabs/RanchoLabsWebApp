@@ -10,8 +10,11 @@ import courseCardTicks from "../../Asssets/courseCardTicks.png";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ArrowBack from "../../Asssets/Icon feather-arrow-left.png";
+import { useHistory } from "react-router-dom";
 
 const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
+  const hHistory = useHistory();
+
   const {
     _id: id,
     name,
@@ -136,28 +139,31 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
         {curriculum ? (
           index !== 0 ? (
             <a
-              href={"/enroll/" + id}
+              // href={"/enroll/" + id}
               style={{ textDecoration: "none" }}
               target="_blank"
               className="learn-more-btn"
+              onClick={() => hHistory.push(`/enroll/${id}`)}
             >
               <div className="text">ENROLL NOW</div>
             </a>
           ) : (
             <Link
-              href={"/enroll/" + id}
+              // href={"/enroll/" + id}
               className="learn-more-btn"
               style={{ textDecoration: "none" }}
+              onClick={() => hHistory.push(`/enroll/${id}`)}
             >
               <div className="text">ENROLL NOW</div>
             </Link>
           )
         ) : (
           <a
-            href={"/enroll/" + id}
+            // href={"/enroll/" + id}
             style={{ textDecoration: "none" }}
             target="_blank"
             className="learn-more-btn"
+            onClick={() => hHistory.push(`/enroll/${id}`)}
           >
             <div className="text">ENROLL NOW</div>
           </a>

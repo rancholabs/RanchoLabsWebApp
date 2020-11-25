@@ -1,7 +1,9 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import "./BlogCard.css";
 
 function BlogCard({ isVertical, blog }) {
+  const _history = useHistory();
   console.log(blog);
   return (
     <>
@@ -31,7 +33,7 @@ function BlogCard({ isVertical, blog }) {
             <p className="blogCard__desc">{blog?.blogShortDescription}</p>
             <button
               className="blogCard__button"
-              onClick={() => (window.location.href = `/blog/${blog._id}`)}
+              onClick={() => _history.push(`/blog/${blog._id}`)}
             >
               Read more
             </button>

@@ -8,7 +8,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ArrowBack from "../../Asssets/Icon feather-arrow-left.png";
 
-const imageArray = [robotics, ai, programming, recommended];
+const imageArray = [recommended, programming, robotics, ai];
 
 const Courses = [
   {

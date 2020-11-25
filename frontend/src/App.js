@@ -149,7 +149,11 @@ function App() {
                   />
                   <Route path="/blog/:blogID" component={SingleBlog} exact />
                   <Route path="/blogadmin" component={BlogAdmin} exact />
-                  <Route path="/enroll/:courseId" component={Payment} exact />
+                  <Route
+                    path={["/enroll", "/enroll/:courseId"]}
+                    exact={true}
+                    component={Payment}
+                  />
                   <Route component={PageNotFound} />
                 </Switch>
               </ScrollToTop>

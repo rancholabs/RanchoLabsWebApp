@@ -7,26 +7,32 @@ import { updateFooter } from "../../Actions/Footer";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./index.css";
+import PaymentEnroll from "./PaymentEnroll";
 
 function Payment() {
-  let { courseId } = useParams();
-  const [enrolledCourse, setEnrolledCourse] = useState({});
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(updateFooter({ footerDisplay: "none" }));
-  }, []);
+  // let { courseId } = useParams();
+  // const [enrolledCourse, setEnrolledCourse] = useState({});
+  // const { activeCourse: activeCourse } = useSelector(
+  //   (state) => state.activeCourse
+  // );
+  // console.log(activeCourse);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(updateFooter({ footerDisplay: "none" }));
+  // }, []);
 
-  useEffect(() => {
-    axios
-      .get(`/api/course/${courseId}`)
-      .then((res) => setEnrolledCourse(res.data));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`/api/course/${courseId}`)
+  //     .then((res) => setEnrolledCourse(res.data));
+  // }, []);
 
-  console.log(enrolledCourse);
+  // console.log(enrolledCourse);
 
   return (
-    <div className="payment">
-      {enrolledCourse._id && (
+    <div>
+      <PaymentEnroll />
+      {/* {enrolledCourse._id && (
         <>
           <div className="payment__details">
             <div className="payment__details__section">
@@ -109,7 +115,7 @@ function Payment() {
             </div>
           </div>
         </>
-      )}
+      )} */}
     </div>
   );
 }
