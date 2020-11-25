@@ -114,6 +114,8 @@ const CoursesDetailedList = ({ courseGroups, activeCourseG, activeGrade }) => {
         }
       });
       settoBeDisplayedCourses(toBeDisplayedCourses);
+    } else {
+      settoBeDisplayedCourses([]);
     }
   }, [activeCourseG, activeGrade]);
 

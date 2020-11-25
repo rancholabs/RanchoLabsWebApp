@@ -11,7 +11,7 @@ import blogMobileBanner from "./images/blogMobileBanner.png";
 function Blog() {
   const { blogs } = useSelector((state) => state.blogs);
   const [temparray, settemparray] = useState([]);
-  const [selectedCategory, setselectedCategory] = useState([]);
+  const [selectedCategory, setselectedCategory] = useState("Miscellaneous");
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(blogList());
@@ -21,12 +21,22 @@ function Blog() {
     if (blogs) {
       var size = 4;
       var arrayOfArrays = [];
-      for (var i = 0; i < blogs.length; i += size) {
-        arrayOfArrays.push(blogs.slice(i, i + size));
+
+      var singleCategoryBlogs = [];
+
+      blogs.forEach((singleBlog) => {
+        if (singleBlog.category.name === selectedCategory) {
+          singleCategoryBlogs.push(singleBlog);
+        }
+      });
+
+      for (var i = 0; i < singleCategoryBlogs.length; i += size) {
+        arrayOfArrays.push(singleCategoryBlogs.slice(i, i + size));
       }
+
       settemparray(arrayOfArrays);
     }
-  }, [blogs]);
+  }, [blogs, selectedCategory]);
 
   const responsive = {
     superLargeDesktop: {
@@ -119,9 +129,7 @@ function Blog() {
       {temparray.map((blogSet, index) => {
         return (
           <div className="blog__cardsContainer">
-            {blogSet[0] && blogSet[0].category?.name === selectedCategory && (
-              <BlogCard isVertical={false} blog={blogSet[0]} />
-            )}
+            {blogSet[0] && <BlogCard isVertical={false} blog={blogSet[0]} />}
             {window.innerWidth < 600 ? (
               <Carousel
                 swipeable={true}
@@ -138,33 +146,15 @@ function Blog() {
                 // keyBoardControl={true}
                 className="blog__cards__carousel"
               >
-                {blogSet[1] &&
-                  blogSet[0].category?.name === selectedCategory && (
-                    <BlogCard isVertical={true} blog={blogSet[1]} />
-                  )}
-                {blogSet[2] &&
-                  blogSet[0].category?.name === selectedCategory && (
-                    <BlogCard isVertical={true} blog={blogSet[2]} />
-                  )}
-                {blogSet[3] &&
-                  blogSet[0].category?.name === selectedCategory && (
-                    <BlogCard isVertical={true} blog={blogSet[3]} />
-                  )}
+                {blogSet[1] && <BlogCard isVertical={true} blog={blogSet[1]} />}
+                {blogSet[2] && <BlogCard isVertical={true} blog={blogSet[2]} />}
+                {blogSet[3] && <BlogCard isVertical={true} blog={blogSet[3]} />}
               </Carousel>
             ) : (
               <div className="blog__cardsContainer__vertical">
-                {blogSet[1] &&
-                  blogSet[0].category?.name === selectedCategory && (
-                    <BlogCard isVertical={true} blog={blogSet[1]} />
-                  )}
-                {blogSet[2] &&
-                  blogSet[0].category?.name === selectedCategory && (
-                    <BlogCard isVertical={true} blog={blogSet[2]} />
-                  )}
-                {blogSet[3] &&
-                  blogSet[0].category?.name === selectedCategory && (
-                    <BlogCard isVertical={true} blog={blogSet[3]} />
-                  )}
+                {blogSet[1] && <BlogCard isVertical={true} blog={blogSet[1]} />}
+                {blogSet[2] && <BlogCard isVertical={true} blog={blogSet[2]} />}
+                {blogSet[3] && <BlogCard isVertical={true} blog={blogSet[3]} />}
               </div>
             )}
           </div>
@@ -184,7 +174,9 @@ function Blog() {
           Explore The Tech Sector With Us And Take A Step Towards Your Passion
           And Future.
         </p>
-        <button>Enroll Now</button>
+        <button onClick={() => (window.location.href = "/courses")}>
+          Enroll Now
+        </button>
       </div>
     </div>
   );

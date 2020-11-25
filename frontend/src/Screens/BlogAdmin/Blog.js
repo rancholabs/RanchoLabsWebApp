@@ -176,7 +176,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
       const fileID = await axios
         .post("/api/file", formData, config)
         .then((res) => res.data.fileId)
-        .catch((error) => ({ message: "Error" }));
+        .catch((error) => console.log(error));
 
       const body = {
         blogTitle,
@@ -190,6 +190,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
 
       axios.post("/api/blog", body, config).then((res) => {
         console.log(res);
+        alert("Blog added");
       });
     }
   };

@@ -47,10 +47,15 @@ const Courses = () => {
     setState((prevState) => {
       return {
         ...prevState,
+        activeCourseG:
+          activeGrade.minG === 6 && activeGrade.maxG === 8
+            ? courseGroups.filter((cg) => cg.name === "Recommended")[0]
+            : activeCourseG,
         activeGrade: activeGrade,
       };
     });
   };
+  console.log(activeCourseG);
   const setActiveCourseG = (activeCourseG) => {
     setState((prevState) => {
       return {
@@ -70,6 +75,9 @@ const Courses = () => {
     ]
       .map((grade) => JSON.parse(grade))
       .sort((a, b) => (a.minG > b.minG ? 1 : b.minG > a.minG ? -1 : 0));
+    const defaultCourseG = courseGroups.filter(
+      (cg) => cg.name === "Recommended"
+    );
     setState((prevState) => {
       return {
         ...prevState,
@@ -77,7 +85,7 @@ const Courses = () => {
         activeCourseGroups: courseGroups.sort((a, b) =>
           a._id > b._id ? 1 : b._id > a._id ? -1 : 0
         ),
-        activeCourseG: courseGroups.length ? courseGroups[0] : undefined,
+        activeCourseG: defaultCourseG.length ? defaultCourseG[0] : null,
         // activeGrade: rGrades.length ? rGrades[0] : undefined,
       };
     });

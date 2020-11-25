@@ -105,7 +105,13 @@ const CoursesCourses = ({
   }, [showCenteredMode]);
 
   const handleActiveCourses = (course) => {
-    setActiveCourseG(course);
+    if (activeGrade.minG === 6 && activeGrade.maxG === 8) {
+      if (course.name === "Recommended") {
+        setActiveCourseG(course);
+      }
+    } else {
+      setActiveCourseG(course);
+    }
   };
 
   const responsive = {
@@ -181,12 +187,6 @@ const CoursesCourses = ({
               }`}
               style={{
                 alignSelf: "flex-start",
-                pointerEvents:
-                  activeGrade.minG === 6
-                    ? course.name === "Recommended"
-                      ? "unset"
-                      : "none"
-                    : "unset",
               }}
               key={course._id}
               id={course._id}
