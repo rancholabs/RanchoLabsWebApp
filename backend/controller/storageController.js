@@ -81,6 +81,7 @@ const awsS3DeleteFile = (fileLocation, cb) => {
     },
     function (err, data) {
       if (err) {
+        console.log(err);
         res.status(400).send("Error in deleting the file");
       } else {
         cb();

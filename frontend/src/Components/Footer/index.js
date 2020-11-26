@@ -112,7 +112,7 @@ const Footer = () => {
                   icon={faPhoneAlt}
                   style={{ marginRight: "4px" }}
                 />{" "}
-                +91-9876543211
+                +91-7427800499
               </p>
               <p className="footer-mobile-links-contact-section-tags">
                 {" "}
@@ -199,7 +199,7 @@ const Footer = () => {
                     icon={faPhoneAlt}
                     style={{ marginRight: "4px" }}
                   />{" "}
-                  +91-9876543211
+                  +91-7427800499
                 </p>
                 <p>
                   {" "}

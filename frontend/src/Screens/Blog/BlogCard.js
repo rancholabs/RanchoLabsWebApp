@@ -8,8 +8,14 @@ function BlogCard({ isVertical, blog }) {
   return (
     <>
       {isVertical ? (
-        <div className="blogCard blogCard__vertical">
-          <img className="blogCard__image" src={blog?.image?.filePath}></img>
+        <div
+          className="blogCard blogCard__vertical"
+          onClick={() => _history.push(`/blog/${blog._id}`)}
+        >
+          <img
+            className="blogCard__image"
+            src={blog?.cardImage?.filePath}
+          ></img>
           <div className="blogCard__body">
             <h3 className="blogCard__title">{blog?.blogTitle}</h3>
             <hr className="blogCard__divider" />
@@ -22,7 +28,10 @@ function BlogCard({ isVertical, blog }) {
         </div>
       ) : (
         <div className="blogCard blogCard__horizontal">
-          <img className="blogCard__image" src={blog?.image?.filePath}></img>
+          <img
+            className="blogCard__image"
+            src={blog?.cardImage?.filePath}
+          ></img>
           <div className="blogCard__body">
             <h3 className="blogCard__title">{blog?.blogTitle}</h3>
             <hr className="blogCard__divider" />

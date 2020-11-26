@@ -78,7 +78,11 @@ function AdminNewCourse({
       ? tobeEditedCourse.gradeRange.maxG
       : 12
   );
-  const [curriculumPDF, setcurriculumPDF] = useState("");
+  const [curriculumPDF, setcurriculumPDF] = useState(
+    tobeEditedCourse && tobeEditedCourse.curriculumPDF
+      ? tobeEditedCourse.curriculumPDF
+      : ""
+  );
 
   // NEW CLASS VARS
   const [classNo, setclassNo] = useState(0);

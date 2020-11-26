@@ -12,7 +12,7 @@ import axios from "axios";
 function Blog() {
   const { blogs } = useSelector((state) => state.blogs);
   const [temparray, settemparray] = useState([]);
-  const [selectedCategory, setselectedCategory] = useState("Miscellaneous");
+  const [selectedCategory, setselectedCategory] = useState("Robotics");
   const [allBlogCategory, setallBlogCategory] = useState([]);
   const dispatch = useDispatch();
   console.log(blogs);
@@ -32,14 +32,28 @@ function Blog() {
   }, []);
 
   useEffect(() => {
-    if (blogs) {
+    if (blogs && allBlogCategory) {
       var size = 4;
       var arrayOfArrays = [];
-
       var singleCategoryBlogs = [];
 
+      // for (var j = 0; j < blogs.length; j++) {
+      //   for (var k = 0; k < blogs[j].blogCategory; k++) {
+      //     if (blogs[j].blogCategory[k].categoryName === selectedCategory) {
+      //       singleCategoryBlogs.push(blogs[j]);
+      //     }
+      //   }
+      // }
+      const blogCatID = allBlogCategory.filter(
+        (bcat) => bcat.name === selectedCategory
+      );
+      console.log(blogCatID);
       blogs.forEach((singleBlog) => {
-        if (singleBlog.category.name === selectedCategory) {
+        if (
+          (singleBlog.blogCategory?.filter(
+            (bcat) => bcat.categoryName === blogCatID[0]?._id
+          )).length > 0
+        ) {
           singleCategoryBlogs.push(singleBlog);
         }
       });
@@ -50,7 +64,7 @@ function Blog() {
 
       settemparray(arrayOfArrays);
     }
-  }, [blogs, selectedCategory]);
+  }, [blogs, selectedCategory, allBlogCategory]);
 
   const responsive = {
     superLargeDesktop: {

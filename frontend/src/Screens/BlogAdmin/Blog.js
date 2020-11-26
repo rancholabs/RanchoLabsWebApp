@@ -16,7 +16,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
   let { blogs } = useSelector((state) => state.blogs);
   const [allBlogs, setAllBlogs] = useState(blogs);
   const [updateBlog, setupdateBlog] = useState(false);
-  const [tobeEditedBlog, settobeEditedBlog] = useState(false);
+  const [tobeEditedBlog, settobeEditedBlog] = useState({});
   const [showEditForm, setshowEditForm] = useState(false);
 
   const [blogBody, setBlogBody] = useState("");
@@ -181,7 +181,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
 
     if (updateBlog) {
       //   update
-      if (blogBanner === null) {
+      if (blogBanner === null && blogCardBanner === null) {
         // dont update image
         const body = {
           blogTitle,
@@ -208,6 +208,72 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
           });
       } else {
         // update image
+
+        const body = {
+          blogTitle,
+          blogCategory,
+          blogShortDescription,
+          blogDate,
+          blogBody,
+          blogAuthor,
+        };
+
+        console.log(tobeEditedBlog);
+
+        if (blogBanner !== null) {
+          console.log("update blog banner");
+          await axios
+            .delete(`/api/file/${tobeEditedBlog.image?._id}`, config)
+            .then((res) => {
+              console.log(res.data);
+              return res.data;
+            })
+            .catch((err) => console.log(err));
+
+          const formData = new FormData();
+          formData.append("files", blogBanner);
+          const fileID = await axios
+            .post("/api/file", formData, config)
+            .then((res) => res.data.fileId)
+            .catch((error) => console.log(error));
+
+          body.blogBanner = fileID;
+        }
+
+        if (blogCardBanner !== null) {
+          console.log("update blog  card banner");
+          await axios
+            .delete(`/api/file/${tobeEditedBlog.cardImage?._id}`, config)
+            .then((res) => {
+              console.log(res.data);
+              return res.data;
+            })
+            .catch((err) => console.log(err));
+
+          const _formData = new FormData();
+          _formData.append("files", blogCardBanner);
+          const fileIDCard = await axios
+            .post("/api/file", _formData, config)
+            .then((res) => res.data.fileId)
+            .catch((error) => console.log(error));
+
+          body.blogCardBanner = fileIDCard;
+        }
+
+        axios
+          .put(`/api/blog/${tobeEditedBlog._id}`, body, config)
+          .then((res) => {
+            console.log(res);
+            var newAllBlogs = [...allBlogs];
+            for (var i in newAllBlogs) {
+              if (newAllBlogs[i]._id == tobeEditedBlog._id) {
+                newAllBlogs[i] = tobeEditedBlog;
+                break;
+              }
+            }
+            setAllBlogs(newAllBlogs);
+            goBack();
+          });
       }
     } else {
       //   new
