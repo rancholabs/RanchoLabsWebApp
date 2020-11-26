@@ -30,8 +30,11 @@ function AdminDashboardFreeClass({ allStudentData }) {
       </TableHead>
       <TableBody>
         {allStudentData?.map((stud) => {
-          if (stud.studentDetails.role === "student") {
-            var utcTime = new Date(stud.studentDetails.createdAt);
+          if (
+            stud.studentDetails?.role === "student" &&
+            stud.loginfor === "freeclass"
+          ) {
+            var utcTime = new Date(stud.studentDetails?.createdAt);
             var hour =
               utcTime.getHours() == 0
                 ? 12
@@ -50,30 +53,30 @@ function AdminDashboardFreeClass({ allStudentData }) {
                 <TableCell>Student ID</TableCell>
                 <TableCell>
                   {" "}
-                  {(stud.studentDetails.name.first
-                    ? stud.studentDetails.name.first
+                  {(stud.studentDetails?.name?.first
+                    ? stud.studentDetails?.name?.first
                     : "") +
                     " " +
-                    (stud.studentDetails.name.last
-                      ? stud.studentDetails.name.last
+                    (stud.studentDetails?.name?.last
+                      ? stud.studentDetails?.name?.last
                       : "")}
                 </TableCell>
                 <TableCell>{stud.grade}</TableCell>
-                <TableCell>{stud.studentDetails.email}</TableCell>
+                <TableCell>{stud.studentDetails?.email}</TableCell>
                 <TableCell>
-                  {(stud.parentDetails.name.first
-                    ? stud.parentDetails.name.first
+                  {(stud.parentDetails?.name?.first
+                    ? stud.parentDetails?.name?.first
                     : "") +
                     " " +
-                    (stud.parentDetails.name.last
-                      ? stud.parentDetails.name.last
+                    (stud.parentDetails?.name?.last
+                      ? stud.parentDetails?.name?.last
                       : "")}
                 </TableCell>
-                <TableCell>{stud.parentDetails.email}</TableCell>
+                <TableCell>{stud.parentDetails?.email}</TableCell>
                 <TableCell>
-                  {stud.parentDetails.mobileNo.code +
+                  {stud.parentDetails?.mobileNo?.code +
                     "-" +
-                    stud.parentDetails.mobileNo.number}
+                    stud.parentDetails?.mobileNo?.number}
                 </TableCell>
                 <TableCell>Assign Batch</TableCell>
                 <TableCell>Date and Time</TableCell>
@@ -109,8 +112,11 @@ function AdminDashboardFreeWorkshop({ allStudentData }) {
       </TableHead>
       <TableBody>
         {allStudentData?.map((stud) => {
-          if (stud.studentDetails.role === "student") {
-            var utcTime = new Date(stud.studentDetails.createdAt);
+          if (
+            stud.studentDetails?.role === "student" &&
+            stud.loginfor === "workshop"
+          ) {
+            var utcTime = new Date(stud.studentDetails?.createdAt);
             var hour =
               utcTime.getHours() == 0
                 ? 12
@@ -129,30 +135,30 @@ function AdminDashboardFreeWorkshop({ allStudentData }) {
                 <TableCell>Student ID</TableCell>
                 <TableCell>
                   {" "}
-                  {(stud.studentDetails.name.first
-                    ? stud.studentDetails.name.first
+                  {(stud.studentDetails?.name?.first
+                    ? stud.studentDetails?.name?.first
                     : "") +
                     " " +
-                    (stud.studentDetails.name.last
-                      ? stud.studentDetails.name.last
+                    (stud.studentDetails?.name?.last
+                      ? stud.studentDetails?.name?.last
                       : "")}
                 </TableCell>
                 <TableCell>{stud.grade}</TableCell>
-                <TableCell>{stud.studentDetails.email}</TableCell>
+                <TableCell>{stud.studentDetails?.email}</TableCell>
                 <TableCell>
-                  {(stud.parentDetails.name.first
-                    ? stud.parentDetails.name.first
+                  {(stud.parentDetails?.name?.first
+                    ? stud.parentDetails?.name?.first
                     : "") +
                     " " +
-                    (stud.parentDetails.name.last
-                      ? stud.parentDetails.name.last
+                    (stud.parentDetails?.name?.last
+                      ? stud.parentDetails?.name?.last
                       : "")}
                 </TableCell>
-                <TableCell>{stud.parentDetails.email}</TableCell>
+                <TableCell>{stud.parentDetails?.email}</TableCell>
                 <TableCell>
-                  {stud.parentDetails.mobileNo.code +
+                  {stud.parentDetails?.mobileNo?.code +
                     "-" +
-                    stud.parentDetails.mobileNo.number}
+                    stud.parentDetails?.mobileNo?.number}
                 </TableCell>
                 <TableCell>Assign Batch</TableCell>
                 <TableCell>Date and Time</TableCell>
@@ -193,8 +199,8 @@ function AdminDashboardPayment({ allStudentData }) {
       </TableHead>
       <TableBody>
         {allStudentData?.map((stud) => {
-          if (stud.studentDetails.role === "student") {
-            var utcTime = new Date(stud.studentDetails.createdAt);
+          if (stud.studentDetails?.role === "student") {
+            var utcTime = new Date(stud.studentDetails?.createdAt);
             var hour =
               utcTime.getHours() == 0
                 ? 12
@@ -253,8 +259,8 @@ function AdminDashboardTotalSignUp({ allStudentData }) {
       </TableHead>
       <TableBody>
         {allStudentData?.map((stud) => {
-          if (stud.studentDetails.role === "student") {
-            var utcTime = new Date(stud.studentDetails.createdAt);
+          if (stud.studentDetails?.role === "student") {
+            var utcTime = new Date(stud.studentDetails?.createdAt);
             var hour =
               utcTime.getHours() == 0
                 ? 12
@@ -273,30 +279,30 @@ function AdminDashboardTotalSignUp({ allStudentData }) {
                 <TableCell>Student ID</TableCell>
                 <TableCell>
                   {" "}
-                  {(stud.studentDetails.name.first
-                    ? stud.studentDetails.name.first
+                  {(stud.studentDetails?.name?.first
+                    ? stud.studentDetails?.name?.first
                     : "") +
                     " " +
-                    (stud.studentDetails.name.last
-                      ? stud.studentDetails.name.last
+                    (stud.studentDetails?.name?.last
+                      ? stud.studentDetails?.name?.last
                       : "")}
                 </TableCell>
                 <TableCell>{stud.grade}</TableCell>
-                <TableCell>{stud.studentDetails.email}</TableCell>
+                <TableCell>{stud.studentDetails?.email}</TableCell>
                 <TableCell>
-                  {(stud.parentDetails.name.first
-                    ? stud.parentDetails.name.first
+                  {(stud.parentDetails?.name?.first
+                    ? stud.parentDetails?.name?.first
                     : "") +
                     " " +
-                    (stud.parentDetails.name.last
-                      ? stud.parentDetails.name.last
+                    (stud.parentDetails?.name?.last
+                      ? stud.parentDetails?.name?.last
                       : "")}
                 </TableCell>
-                <TableCell>{stud.parentDetails.email}</TableCell>
+                <TableCell>{stud.parentDetails?.email}</TableCell>
                 <TableCell>
-                  {stud.parentDetails.mobileNo.code +
+                  {stud.parentDetails?.mobileNo?.code +
                     "-" +
-                    stud.parentDetails.mobileNo.number}
+                    stud.parentDetails?.mobileNo?.number}
                 </TableCell>
                 <TableCell>{stud.loginfor}</TableCell>
               </TableRow>

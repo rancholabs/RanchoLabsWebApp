@@ -8,6 +8,9 @@ router.post("/", async (req, res) => {
   if (req.body.blogBanner) {
     req.body.blogBanner = mongoose.Types.ObjectId(req.body.blogBanner);
   }
+  if (req.body.blogCardBanner) {
+    req.body.blogCardBanner = mongoose.Types.ObjectId(req.body.blogCardBanner);
+  }
   const {
     blogTitle,
     blogCategory,
@@ -16,6 +19,7 @@ router.post("/", async (req, res) => {
     blogBody,
     blogAuthor,
     blogBanner,
+    blogCardBanner,
   } = req.body;
 
   const newBlog = new Blog({
@@ -26,6 +30,7 @@ router.post("/", async (req, res) => {
     blogBody,
     blogAuthor,
     blogBanner,
+    blogCardBanner,
   });
   newBlog
     .save()
@@ -70,6 +75,35 @@ router.get("/", async (req, res) => {
     {
       $unwind: {
         path: "$image",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
+    {
+      $lookup: {
+        from: "files",
+        let: { blogCardBanner: "$blogCardBanner" },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $eq: ["$_id", "$$blogCardBanner"],
+              },
+            },
+          },
+          {
+            $project: {
+              filePath: 1,
+              _id: 1,
+              originalName: 1,
+            },
+          },
+        ],
+        as: "cardImage",
+      },
+    },
+    {
+      $unwind: {
+        path: "$cardImage",
         preserveNullAndEmptyArrays: true,
       },
     },
@@ -181,6 +215,17 @@ router.put("/:bid", async (req, res) => {
   try {
     Blog.findByIdAndUpdate({ _id: req.params.bid }, req.body).then((doc) =>
       res.status(200).send("Blog updated")
+    );
+  } catch (e) {
+    console.log(e);
+    res.status(400).send("Error");
+  }
+});
+
+router.delete("/:bid", async (req, res) => {
+  try {
+    Blog.findByIdAndDelete({ _id: req.params.bid }).then((doc) =>
+      res.status(200).send("Blog deleted")
     );
   } catch (e) {
     console.log(e);

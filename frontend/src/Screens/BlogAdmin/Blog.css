@@ -67,3 +67,25 @@
   border: none;
   outline: none;
 }
+
+.blogAdmin__categoryTabs {
+  display: flex;
+}
+
+.blogAdmin__category__tab {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  background-color: #cfcfcf;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.blogAdmin__category__tab p {
+  margin: 0 4px 0 0;
+}
+
+.blogAdmin__category__tabRemove {
+  cursor: pointer;
+  color: red;
+}

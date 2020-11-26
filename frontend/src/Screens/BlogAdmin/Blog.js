@@ -21,17 +21,20 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
 
   const [blogBody, setBlogBody] = useState("");
   const [blogTitle, setblogTitle] = useState("");
-  const [blogCategory, setBlogCategory] = useState("");
+  const [blogCategory, setBlogCategory] = useState([{ categoryName: "" }]);
   const [blogShortDescription, setblogShortDescription] = useState("");
   const [blogDate, setblogDate] = useState("");
   const [blogAuthor, setblogAuthor] = useState("");
   const [blogBanner, setblogBanner] = useState(null);
+  const [blogCardBanner, setblogCardBanner] = useState(null);
 
   const [allBlogImages, setallBlogImages] = useState([]);
 
   useEffect(() => {
     setAllBlogs(blogs);
   }, [blogs]);
+
+  console.log(blogs);
 
   useEffect(() => {
     const userInfo = localStorage.getItem("userInfo");
@@ -57,7 +60,6 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
     setblogShortDescription(blog.blogShortDescription);
     setblogDate(blog.blogDate);
     setblogAuthor(blog.blogAuthor);
-    setBlogCategory(blog.blogCategory);
   };
 
   const addNewBlog = () => {
@@ -66,11 +68,10 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
     setshowEditForm(true);
     setBlogBody("");
     setblogTitle("");
-    setBlogCategory("");
+    setBlogCategory([]);
     setblogShortDescription("");
     setblogDate("");
     setblogAuthor("");
-    setBlogCategory("");
   };
 
   const goBack = () => {
@@ -79,11 +80,10 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
     setshowEditForm(false);
     setBlogBody("");
     setblogTitle("");
-    setBlogCategory("");
+    setBlogCategory([]);
     setblogShortDescription("");
     setblogDate("");
     setblogAuthor("");
-    setBlogCategory("");
   };
 
   const handleChange = (value) => {
@@ -94,6 +94,48 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
     if (e.target.files[0]) {
       setblogBanner(e.target.files[0]);
     }
+  };
+
+  const handleCardBannerUpload = (e) => {
+    if (e.target.files[0]) {
+      setblogCardBanner(e.target.files[0]);
+    }
+  };
+
+  const deleteBlog = async (blog) => {
+    const userInfo = localStorage.getItem("userInfo");
+    const token = userInfo ? JSON.parse(userInfo).token : "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    };
+    // delete file
+    await axios
+      .delete(`/api/file/${blog.image?._id}`, config)
+      .then((res) => {
+        console.log(res.data);
+        return res.data;
+      })
+      .catch((err) => console.log(err));
+    await axios
+      .delete(`/api/file/${blog.cardImage?._id}`, config)
+      .then((res) => {
+        console.log(res.data);
+        return res.data;
+      })
+      .catch((err) => console.log(err));
+
+    // delete blog
+    await axios
+      .delete(`/api/blog/${blog._id}`, config)
+      .then((res) => {
+        console.log(res.data);
+        alert("Blog deleted!");
+        return res.data;
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleQuilFileUpload = async (e) => {
@@ -178,6 +220,13 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
         .then((res) => res.data.fileId)
         .catch((error) => console.log(error));
 
+      const _formData = new FormData();
+      _formData.append("files", blogBanner);
+      const fileIDCard = await axios
+        .post("/api/file", _formData, config)
+        .then((res) => res.data.fileId)
+        .catch((error) => console.log(error));
+
       const body = {
         blogTitle,
         blogCategory,
@@ -186,13 +235,38 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
         blogBody,
         blogAuthor,
         blogBanner: fileID,
+        blogCardBanner: fileIDCard,
       };
+
+      console.log(blogCategory);
 
       axios.post("/api/blog", body, config).then((res) => {
         console.log(res);
         alert("Blog added");
       });
     }
+  };
+
+  const handleblogCategoryChange = (e) => {
+    let _blogCategoryArray = [...blogCategory];
+    let singleBlogCatOBJ = {
+      categoryName: e.target.value,
+    };
+    if (
+      _blogCategoryArray.filter((bcat) => bcat.categoryName === e.target.value)
+        .length === 0
+    ) {
+      _blogCategoryArray.push(singleBlogCatOBJ);
+    }
+    setBlogCategory(_blogCategoryArray);
+  };
+
+  const removeCategory = (cat) => {
+    var _blogCategoryArray = [...blogCategory];
+
+    const index = _blogCategoryArray.indexOf(cat);
+    _blogCategoryArray.splice(index, 1);
+    setBlogCategory(_blogCategoryArray);
   };
 
   return (
@@ -215,8 +289,8 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
               <div className="blogAdmin__inputSection">
                 <label>Blog Category</label>
                 <select
-                  value={blogCategory}
-                  onChange={(e) => setBlogCategory(e.target.value)}
+                  // value={blogCategory}
+                  onChange={(e) => handleblogCategoryChange(e)}
                 >
                   <option>--select category--</option>
                   {allBlogCategory.map((singleCategory) => {
@@ -227,6 +301,27 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
                     );
                   })}
                 </select>
+              </div>
+              <div className="blogAdmin__categoryTabs">
+                {blogCategory?.map((blogCat) => {
+                  return (
+                    <div className="blogAdmin__category__tab">
+                      <p>
+                        {
+                          allBlogCategory.filter(
+                            (bcat) => bcat._id === blogCat.categoryName
+                          )[0].name
+                        }
+                      </p>
+                      <div
+                        className="blogAdmin__category__tabRemove"
+                        onClick={() => removeCategory(blogCat)}
+                      >
+                        x
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
               <div className="blogAdmin__inputSection">
                 <label>Blog Author</label>
@@ -255,6 +350,10 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
               <div className="blogAdmin__inputSection">
                 <label>Blog Banner</label>
                 <input type="file" onChange={handleBannerUpload}></input>
+              </div>
+              <div className="blogAdmin__inputSection">
+                <label>Blog Card Banner</label>
+                <input type="file" onChange={handleCardBannerUpload}></input>
               </div>
               <div className="blogAdmin__inputSection">
                 <label>Short Description</label>
@@ -325,6 +424,14 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
                         onClick={() => editBlog(singleBlog)}
                       >
                         Edit
+                      </button>
+                    </TableCell>
+                    <TableCell>
+                      <button
+                        className="blog__table__editBtn"
+                        onClick={() => deleteBlog(singleBlog)}
+                      >
+                        Delete
                       </button>
                     </TableCell>
                   </TableRow>

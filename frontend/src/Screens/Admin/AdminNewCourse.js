@@ -471,31 +471,31 @@ function AdminNewCourse({
     setOpen(false);
   };
 
-  const uploadPDF = (e) => {
-    console.log("uploading file pdf");
-    const userInfo = localStorage.getItem("userInfo");
-    const token = userInfo ? JSON.parse(userInfo).token : "";
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: token,
-      },
-    };
-    if (e.target.files[0]) {
-      const formData = new FormData();
-      formData.append("files", e.target.files[0]);
-      axios
-        .post("/api/file", formData, config)
-        .then((res) => {
-          console.log("got the response");
-          console.log(res.data);
-        })
-        .catch((error) => {
-          console.log("some error");
-          console.log(error);
-        });
-    }
-  };
+  // const uploadPDF = (e) => {
+  //   console.log("uploading file pdf");
+  //   const userInfo = localStorage.getItem("userInfo");
+  //   const token = userInfo ? JSON.parse(userInfo).token : "";
+  //   const config = {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       authorization: token,
+  //     },
+  //   };
+  //   if (e.target.files[0]) {
+  //     const formData = new FormData();
+  //     formData.append("files", e.target.files[0]);
+  //     axios
+  //       .post("/api/file", formData, config)
+  //       .then((res) => {
+  //         console.log("got the response");
+  //         console.log(res.data);
+  //       })
+  //       .catch((error) => {
+  //         console.log("some error");
+  //         console.log(error);
+  //       });
+  //   }
+  // };
 
   return (
     <div className="adminNewCourse">
@@ -590,20 +590,20 @@ function AdminNewCourse({
               >
                 Curriculum PDF{" "}
               </label>
-              {/* <input
+              <input
                 type="text"
                 disabled={
                   tobeEditedCourse._id ? (allowEdits ? false : true) : false
                 }
                 onChange={(e) => setcurriculumPDF(e.target.value)}
-              /> */}
-              <input
+              />
+              {/* <input
                 type="file"
                 disabled={
                   tobeEditedCourse._id ? (allowEdits ? false : true) : false
                 }
                 onChange={uploadPDF}
-              />
+              /> */}
             </div>
           </div>
           <div className="adminNewCourse__detailsmiddle">

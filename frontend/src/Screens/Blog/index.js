@@ -7,14 +7,28 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ArrowBack from "./images/arrowRight.png";
 import blogMobileBanner from "./images/blogMobileBanner.png";
+import axios from "axios";
 
 function Blog() {
   const { blogs } = useSelector((state) => state.blogs);
   const [temparray, settemparray] = useState([]);
   const [selectedCategory, setselectedCategory] = useState("Miscellaneous");
+  const [allBlogCategory, setallBlogCategory] = useState([]);
   const dispatch = useDispatch();
+  console.log(blogs);
   useEffect(() => {
     dispatch(blogList());
+    const userInfo = localStorage.getItem("userInfo");
+    const token = userInfo ? JSON.parse(userInfo).token : "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    };
+    axios
+      .get("/api/blogcategory", config)
+      .then((res) => setallBlogCategory(res.data));
   }, []);
 
   useEffect(() => {
@@ -81,13 +95,17 @@ function Blog() {
     <div className="blog">
       <div className="blog__category">
         <ul className="blog__categoryList">
-          <li
-            className={selectedCategory === "Miscellaneous" && "selected"}
-            onClick={() => setselectedCategory("Miscellaneous")}
-          >
-            Miscellaneous
-          </li>
-          <li
+          {allBlogCategory?.map((blogCat) => {
+            return (
+              <li
+                className={selectedCategory === blogCat.name && "selected"}
+                onClick={() => setselectedCategory(blogCat.name)}
+              >
+                {blogCat.name}
+              </li>
+            );
+          })}
+          {/* <li
             className={selectedCategory === "Robotics" && "selected"}
             onClick={() => setselectedCategory("Robotics")}
           >
@@ -106,7 +124,7 @@ function Blog() {
             onClick={() => setselectedCategory("Artificial Intelligence")}
           >
             Artificial Intelligence
-          </li>
+          </li> */}
         </ul>
       </div>
       <div className="blog__categoryMobile">
@@ -118,12 +136,9 @@ function Blog() {
           value={selectedCategory}
           onChange={(e) => setselectedCategory(e.target.value)}
         >
-          <option value="Miscellaneous">Miscellaneous</option>
-          <option value="Robotics">Robotics</option>
-          <option value="Programming">Programming</option>
-          <option value="Artificial Intelligence">
-            Artificial Intelligence
-          </option>
+          {allBlogCategory?.map((blogCat) => {
+            return <option value={blogCat.name}> {blogCat.name}</option>;
+          })}
         </select>
       </div>
       {temparray.map((blogSet, index) => {
