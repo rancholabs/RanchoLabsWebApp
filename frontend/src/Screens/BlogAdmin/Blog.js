@@ -34,8 +34,6 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
     setAllBlogs(blogs);
   }, [blogs]);
 
-  console.log(blogs);
-
   useEffect(() => {
     const userInfo = localStorage.getItem("userInfo");
     const token = userInfo ? JSON.parse(userInfo).token : "";
@@ -221,7 +219,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
         .catch((error) => console.log(error));
 
       const _formData = new FormData();
-      _formData.append("files", blogBanner);
+      _formData.append("files", blogCardBanner);
       const fileIDCard = await axios
         .post("/api/file", _formData, config)
         .then((res) => res.data.fileId)
@@ -237,8 +235,6 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
         blogBanner: fileID,
         blogCardBanner: fileIDCard,
       };
-
-      console.log(blogCategory);
 
       axios.post("/api/blog", body, config).then((res) => {
         console.log(res);
@@ -414,7 +410,15 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
                       {singleBlog.blogDate}
                     </TableCell>
                     <TableCell>{singleBlog.blogTitle}</TableCell>
-                    <TableCell>{singleBlog.category?.name}</TableCell>
+                    <TableCell>
+                      {singleBlog.blogCategory?.map((bcat) => {
+                        return (
+                          allBlogCategory?.filter(
+                            (allbCat) => allbCat._id === bcat.categoryName
+                          )[0]?.name + ","
+                        );
+                      })}
+                    </TableCell>
                     <TableCell width="50%">
                       {singleBlog.blogShortDescription}
                     </TableCell>

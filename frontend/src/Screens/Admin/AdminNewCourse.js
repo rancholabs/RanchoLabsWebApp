@@ -595,6 +595,7 @@ function AdminNewCourse({
                 disabled={
                   tobeEditedCourse._id ? (allowEdits ? false : true) : false
                 }
+                value={curriculumPDF}
                 onChange={(e) => setcurriculumPDF(e.target.value)}
               />
               {/* <input
