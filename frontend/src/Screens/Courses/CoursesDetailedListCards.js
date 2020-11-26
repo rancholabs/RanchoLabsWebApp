@@ -25,6 +25,7 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
     courseStructure,
     totalClasses,
     curriculumPDF,
+    websiteEnabled,
   } = courseDetails;
   const curriculum = courseStructure ? courseStructure.filePath : "";
   const updatedOutcomes = (outcomes) => {
@@ -33,89 +34,94 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
       : [...outcomes.topics];
   };
   console.log(courseDetails);
-  return (
-    <div className="courses-detailed-list-card-item">
-      <img src={courseCardBottomRIght} className="courseCardBottomRIght"></img>
-      <div className="top-boxes">
-        <div className="box1"></div>
-        <div className="box2"></div>
-        <div className="box3">
-          <div className="border-left"></div>
-        </div>
-        <div className="box4"></div>
-        {/* {index > 0 && index < 3 && (
+  if (websiteEnabled) {
+    return (
+      <div className="courses-detailed-list-card-item">
+        <img
+          src={courseCardBottomRIght}
+          className="courseCardBottomRIght"
+        ></img>
+        <div className="top-boxes">
+          <div className="box1"></div>
+          <div className="box2"></div>
+          <div className="box3">
+            <div className="border-left"></div>
+          </div>
+          <div className="box4"></div>
+          {/* {index > 0 && index < 3 && (
           <div className="marketing-box">
             {index === 1 && <>Most Popular</>}
             {index === 2 && <>Best Value</>}
           </div>
         )} */}
-      </div>
-      <div className="title">
-        <h3>{name}</h3>
-        <span>
-          <img src={courseClass}></img>
-          <p>{totalClasses + " Classes"}</p>
-        </span>
-      </div>
-      {/* <div className="grade-duration">
+        </div>
+        <div className="title">
+          <h3>{name}</h3>
+          <span>
+            <img src={courseClass}></img>
+            <p>{totalClasses + " Classes"}</p>
+          </span>
+        </div>
+        {/* <div className="grade-duration">
         GRADE {gradeRange.minG} - {gradeRange.maxG}{" "}
         <span className="splitter">|</span> {duration} hrs Live
       </div> */}
-      <div className="outcomes">
-        <div className="outcomes-section">
-          <div className="topic">LEARN</div>
-          <div className="sub-topics">
-            {updatedOutcomes(learns).map((learn, si, stArr) => {
-              if (learn.toString() !== "") {
-                return (
-                  <>
-                    <div key={si}>{learn}</div>
-                    <p>
-                      {si < stArr.length - 1 && stArr[si + 1]?.toString() !== ""
-                        ? "|"
-                        : ""}
-                    </p>
-                  </>
-                );
-              }
-            })}
-          </div>
-        </div>
-        <div className="outcomes-section">
-          <div className="topic">BUILD</div>
-          <div className="sub-topics sub-topics-build">
-            {updatedOutcomes(builds).map((build, si, stArr) => {
-              if (build !== "")
-                return (
-                  <div key={si} className="sub-topics-build-section">
-                    <img
-                      src={courseCardTicks}
-                      className="sub-topics-build-sectionIcon"
-                    />
-                    <p>{build}</p>
-                  </div>
-                );
-            })}
-          </div>
-        </div>
-        {innovates.topics[0] !== "" && (
+        <div className="outcomes">
           <div className="outcomes-section">
-            <div className="topic">INNOVATE</div>
+            <div className="topic">LEARN</div>
             <div className="sub-topics">
-              {updatedOutcomes(innovates).map((innovate, si, stArr) => {
-                if (innovate !== "")
+              {updatedOutcomes(learns).map((learn, si, stArr) => {
+                if (learn.toString() !== "") {
                   return (
-                    <div key={si}>
-                      {innovate}
-                      {si < stArr.length - 1 ? " |" : ""}
+                    <>
+                      <div key={si}>{learn}</div>
+                      <p>
+                        {si < stArr.length - 1 &&
+                        stArr[si + 1]?.toString() !== ""
+                          ? "|"
+                          : ""}
+                      </p>
+                    </>
+                  );
+                }
+              })}
+            </div>
+          </div>
+          <div className="outcomes-section">
+            <div className="topic">BUILD</div>
+            <div className="sub-topics sub-topics-build">
+              {updatedOutcomes(builds).map((build, si, stArr) => {
+                if (build && build !== "")
+                  return (
+                    <div key={si} className="sub-topics-build-section">
+                      <img
+                        src={courseCardTicks}
+                        className="sub-topics-build-sectionIcon"
+                      />
+                      <p>{build}</p>
                     </div>
                   );
               })}
             </div>
           </div>
-        )}
-      </div>
-      {/*(curriculum && index === 0) ? (
+          {innovates.topics[0] !== "" && (
+            <div className="outcomes-section">
+              <div className="topic">INNOVATE</div>
+              <div className="sub-topics">
+                {updatedOutcomes(innovates).map((innovate, si, stArr) => {
+                  if (innovate !== "")
+                    return (
+                      <div key={si}>
+                        {innovate}
+                        {si < stArr.length - 1 ? " |" : ""}
+                      </div>
+                    );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
+        {/*(curriculum && index === 0) ? (
                 <a href={curriculum} target="_blank" className={`syllabus-padding syllabus`}>
                     DETAILED CURRICULAM
                 </a>
@@ -128,16 +134,36 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
                     )}
                 </div>
             )*/}
-      <a
-        href={curriculumPDF}
-        target="_blank"
-        className={`syllabus-padding syllabus`}
-      >
-        DETAILED CURRICULUM
-      </a>
-      <div className="learn-price">
-        {curriculum ? (
-          index !== 0 ? (
+        <a
+          href={curriculumPDF}
+          target="_blank"
+          className={`syllabus-padding syllabus`}
+        >
+          DETAILED CURRICULUM
+        </a>
+        <div className="learn-price">
+          {curriculum ? (
+            index !== 0 ? (
+              <a
+                // href={"/enroll/" + id}
+                style={{ textDecoration: "none" }}
+                target="_blank"
+                className="learn-more-btn"
+                onClick={() => hHistory.push(`/enroll/${id}`)}
+              >
+                <div className="text">ENROLL NOW</div>
+              </a>
+            ) : (
+              <Link
+                // href={"/enroll/" + id}
+                className="learn-more-btn"
+                style={{ textDecoration: "none" }}
+                onClick={() => hHistory.push(`/enroll/${id}`)}
+              >
+                <div className="text">ENROLL NOW</div>
+              </Link>
+            )
+          ) : (
             <a
               // href={"/enroll/" + id}
               style={{ textDecoration: "none" }}
@@ -147,36 +173,17 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
             >
               <div className="text">ENROLL NOW</div>
             </a>
-          ) : (
-            <Link
-              // href={"/enroll/" + id}
-              className="learn-more-btn"
-              style={{ textDecoration: "none" }}
-              onClick={() => hHistory.push(`/enroll/${id}`)}
-            >
-              <div className="text">ENROLL NOW</div>
-            </Link>
-          )
-        ) : (
-          <a
-            // href={"/enroll/" + id}
-            style={{ textDecoration: "none" }}
-            target="_blank"
-            className="learn-more-btn"
-            onClick={() => hHistory.push(`/enroll/${id}`)}
-          >
-            <div className="text">ENROLL NOW</div>
-          </a>
-        )}
-        {/*<Link to={`/course/${id}`} className="learn-more-btn" style={{textDecoration: "none"}}>
+          )}
+          {/*<Link to={`/course/${id}`} className="learn-more-btn" style={{textDecoration: "none"}}>
                     <div className="text">LEARN MORE</div>
                 </Link>*/}
-        <div className="price">
-          <div className="text">₹{price.amountAfterDiscount}/-</div>
+          <div className="price">
+            <div className="text">₹{price.amountAfterDiscount}/-</div>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else return null;
 };
 
 const CoursesDetailedListCards = ({ coursesDetails }) => {

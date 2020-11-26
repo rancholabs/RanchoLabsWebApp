@@ -22,7 +22,7 @@ function Index() {
       },
     };
     axios
-      .get("/api/course/group/courseList", config)
+      .get("/api/course/group/courseListAdmin", config)
       .then((res) => {
         console.log(res.data);
         setCourseGroups(res.data);
@@ -58,7 +58,7 @@ function Index() {
       },
     };
     axios
-      .get("/api/course/group/courseList", config)
+      .get("/api/course/group/courseListAdmin", config)
       .then((res) => {
         console.log(res.data);
         setCourseGroups(res.data);

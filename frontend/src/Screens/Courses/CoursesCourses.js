@@ -128,15 +128,15 @@ const CoursesCourses = ({
       console.log(myCarousel);
       myCarousel.goToSlide(
         newOrderCourseGroups.indexOf(
-          newOrderCourseGroups.filter((cg) => cg.name === "Recommended")[0]
-        ) + 2
+          newOrderCourseGroups.filter((cg) => cg.name === "Programming")[0]
+        ) + (window.innerWidth < 600 ? 2 : 3)
       );
     }
   }, [activeGrade]);
 
   const handleActiveCourses = (course) => {
     if (activeGrade.minG === 6 && activeGrade.maxG === 8) {
-      if (course.name === "Recommended") {
+      if (course.name === "Programming") {
         setActiveCourseG(course);
       }
     } else {
@@ -191,7 +191,7 @@ const CoursesCourses = ({
 
         myCarousel.goToSlide(
           newOrderCourseGroups.indexOf(
-            newOrderCourseGroups.filter((cg) => cg.name === "Recommended")[0]
+            newOrderCourseGroups.filter((cg) => cg.name === "Programming")[0]
           ) + 2
         );
       } else {

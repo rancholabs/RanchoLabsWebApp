@@ -198,6 +198,10 @@ const CourseSchema = new mongoose.Schema({
   totalClasses: {
     type: Number,
   },
+  websiteEnabled: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("Course", CourseSchema);

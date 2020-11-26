@@ -173,6 +173,9 @@ router.get("/courseList", async (req, res) => {
               $expr: {
                 $eq: ["$groupId", "$$groupId"],
               },
+              // $expr: {
+              //   $eq: ["$websiteEnabled", true],
+              // },
             },
           },
           {
@@ -187,6 +190,151 @@ router.get("/courseList", async (req, res) => {
               courseStructure: 1,
               totalClasses: 1,
               curriculumPDF: 1,
+              websiteEnabled: 1,
+            },
+          },
+        ],
+        as: "courses",
+      },
+    },
+    {
+      $unwind: {
+        path: "$courses",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
+    {
+      $lookup: {
+        from: "files",
+        let: { courseStructure: "$courses.courseStructure" },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $eq: ["$_id", "$$courseStructure"],
+              },
+            },
+          },
+          {
+            $project: {
+              filePath: 1,
+              _id: 1,
+              originalName: 1,
+            },
+          },
+        ],
+        as: "courses.courseStructure",
+      },
+    },
+    {
+      $unwind: {
+        path: "$courses.courseStructure",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
+    {
+      $group: {
+        _id: "$_id",
+        name: { $first: "$name" },
+        image: { $first: "$image" },
+        journey: { $first: "$journey" },
+        courses: { $push: "$courses" },
+      },
+    },
+    {
+      $project: {
+        _id: 1,
+        name: 1,
+        image: 1,
+        journey: 1,
+        courses: {
+          $filter: {
+            input: "$courses",
+            as: "course",
+            cond: { $gt: ["$$course", {}] },
+          },
+        },
+      },
+    },
+  ])
+    .exec()
+    .then(async (courseGroups) => {
+      await courseGroups.forEach((cg) => {
+        cg.courses.forEach((course, index) => {
+          if (!course.websiteEnabled) {
+            delete cg[index];
+          }
+        });
+      });
+      res.status(200).send(courseGroups);
+    })
+    .catch((err) => {
+      console.log("Error:", err);
+      res.status(400).send(error);
+    });
+});
+
+// FOR ADMIN ALL COURSES ARE SHOWN
+router.get("/courseListAdmin", async (req, res) => {
+  const error = {
+    message: "Error in retrieving course groups",
+    error: "Bad Request",
+  };
+  CourseGroup.aggregate([
+    {
+      $lookup: {
+        from: "files",
+        let: { groupImage: "$image" },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $eq: ["$_id", "$$groupImage"],
+              },
+            },
+          },
+          {
+            $project: {
+              filePath: 1,
+              _id: 1,
+              originalName: 1,
+            },
+          },
+        ],
+        as: "image",
+      },
+    },
+    {
+      $unwind: {
+        path: "$image",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
+    {
+      $lookup: {
+        from: "courses",
+        let: { groupId: "$_id" },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $eq: ["$groupId", "$$groupId"],
+              },
+            },
+          },
+          {
+            $project: {
+              _id: 1,
+              name: 1,
+              price: 1,
+              level: 1,
+              durationInHours: 1,
+              outcomesByTopics: 1,
+              gradeRange: 1,
+              courseStructure: 1,
+              totalClasses: 1,
+              curriculumPDF: 1,
+              websiteEnabled: 1,
             },
           },
         ],

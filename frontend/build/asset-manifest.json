@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "./static/css/main.1d762405.chunk.css",
-    "main.js": "./static/js/main.2b0aeed8.chunk.js",
-    "main.js.map": "./static/js/main.2b0aeed8.chunk.js.map",
+    "main.css": "./static/css/main.8fdd511c.chunk.css",
+    "main.js": "./static/js/main.a8b17a5b.chunk.js",
+    "main.js.map": "./static/js/main.a8b17a5b.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.a60e205c.js",
     "runtime-main.js.map": "./static/js/runtime-main.a60e205c.js.map",
     "static/css/2.4999fbef.chunk.css": "./static/css/2.4999fbef.chunk.css",
-    "static/js/2.94879d93.chunk.js": "./static/js/2.94879d93.chunk.js",
-    "static/js/2.94879d93.chunk.js.map": "./static/js/2.94879d93.chunk.js.map",
+    "static/js/2.735e1a49.chunk.js": "./static/js/2.735e1a49.chunk.js",
+    "static/js/2.735e1a49.chunk.js.map": "./static/js/2.735e1a49.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.b6a0dfd9d5df8f0862646e6a2ade9b74.js": "./precache-manifest.b6a0dfd9d5df8f0862646e6a2ade9b74.js",
+    "precache-manifest.45a9fd4d4ec3f71422b8d0bcf5913b29.js": "./precache-manifest.45a9fd4d4ec3f71422b8d0bcf5913b29.js",
     "service-worker.js": "./service-worker.js",
     "static/css/2.4999fbef.chunk.css.map": "./static/css/2.4999fbef.chunk.css.map",
-    "static/css/main.1d762405.chunk.css.map": "./static/css/main.1d762405.chunk.css.map",
-    "static/js/2.94879d93.chunk.js.LICENSE.txt": "./static/js/2.94879d93.chunk.js.LICENSE.txt",
+    "static/css/main.8fdd511c.chunk.css.map": "./static/css/main.8fdd511c.chunk.css.map",
+    "static/js/2.735e1a49.chunk.js.LICENSE.txt": "./static/js/2.735e1a49.chunk.js.LICENSE.txt",
     "static/media/54998decefee4eff03de436edd73d832-removebg-preview.png": "./static/media/54998decefee4eff03de436edd73d832-removebg-preview.8789e2b0.png",
     "static/media/AICurriculum.pdf": "./static/media/AICurriculum.bd042191.pdf",
     "static/media/Aman.jpg": "./static/media/Aman.a8b50611.jpg",
@@ -110,7 +110,6 @@
     "static/media/robot.png": "./static/media/robot.fa3022a9.png",
     "static/media/robotics.png": "./static/media/robotics.30060819.png",
     "static/media/robotics2.png": "./static/media/robotics2.29a55be8.png",
-    "static/media/roboticsjourney3.png": "./static/media/roboticsjourney3.0f000f4e.png",
     "static/media/shaikarif.jpeg": "./static/media/shaikarif.7fd55478.jpeg",
     "static/media/siddharth.jpg": "./static/media/siddharth.a4dfb9fc.jpg",
     "static/media/siddharthproject.png": "./static/media/siddharthproject.6446bb2e.png",
@@ -132,8 +131,8 @@
   "entrypoints": [
     "static/js/runtime-main.a60e205c.js",
     "static/css/2.4999fbef.chunk.css",
-    "static/js/2.94879d93.chunk.js",
-    "static/css/main.1d762405.chunk.css",
-    "static/js/main.2b0aeed8.chunk.js"
+    "static/js/2.735e1a49.chunk.js",
+    "static/css/main.8fdd511c.chunk.css",
+    "static/js/main.a8b17a5b.chunk.js"
   ]
 }

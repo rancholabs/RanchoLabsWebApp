@@ -5,10 +5,15 @@ import EditIcon from "../../Asssets/Icon feather-edit.png";
 import TickIcon from "../../Asssets/Group 30.png";
 import Switch from "@material-ui/core/Switch";
 import { withStyles } from "@material-ui/core/styles";
+import axios from "axios";
 
-function AdminCourseCard({ newCourse, openNewCourseForm, course, editCourse }) {
-  const [courseChecked, setCourseChecked] = useState(false);
-
+function AdminCourseCard({
+  newCourse,
+  openNewCourseForm,
+  course,
+  editCourse,
+  updateCourseGroups,
+}) {
   const PurpleSwitch = withStyles({
     switchBase: {
       color: "#4320BF",
@@ -22,6 +27,34 @@ function AdminCourseCard({ newCourse, openNewCourseForm, course, editCourse }) {
     checked: {},
     track: {},
   })(Switch);
+
+  const handleCourseEnableChange = (e) => {
+    e.persist();
+    const userInfo = localStorage.getItem("userInfo");
+    const token = userInfo ? JSON.parse(userInfo).token : "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    };
+    const body = {
+      websiteEnabled: e.target.checked,
+    };
+    console.log(body);
+    axios
+      .put(`/api/course/${course._id}`, body, config)
+      .then((res) => {
+        if (body.websiteEnabled === true) alert("Course enabled!");
+        else alert("Course disabled!");
+        console.log(res.data);
+        updateCourseGroups();
+      })
+      .catch((err) => {
+        alert("Unable to update course");
+        console.log(err);
+      });
+  };
 
   return (
     <>
@@ -48,8 +81,8 @@ function AdminCourseCard({ newCourse, openNewCourseForm, course, editCourse }) {
                 <h3>{course.totalClasses + " classes"}</h3>
               </div>
               <PurpleSwitch
-                checked={courseChecked}
-                onChange={() => setCourseChecked(!courseChecked)}
+                checked={course.websiteEnabled}
+                onChange={handleCourseEnableChange}
                 name="courseChecked"
               />
             </div>

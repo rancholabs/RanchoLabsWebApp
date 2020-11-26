@@ -6,7 +6,7 @@
 }
 
 .dashboard-testimonial-image img {
-  width: calc(560 * var(--vp));
+  width: calc(560 * var(--vp)) !important;
   height: auto;
   box-shadow: calc(48 * var(--vp)) calc(52 * var(--vp)) 0 #151b49;
 }
@@ -116,6 +116,63 @@
 
 .dashboard-testimonials .carousel .thumbs-wrapper {
   display: none;
+}
+
+.dashboard-testimonials
+  .dashboard-testimonials-carousel
+  .react-multi-carousel-track
+  .react-multi-carousel-item {
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+.dashboard-testimonials
+  .dashboard-testimonials-carousel
+  .react-multi-carousel-dot-list {
+  bottom: 20px;
+}
+
+.dashboard-testimonials .react-multi-carousel-dot-list li button {
+  width: 10px !important;
+  height: 10px !important;
+  background-color: #ababab;
+  border-color: #ababab;
+}
+.dashboard-testimonials
+  .react-multi-carousel-dot-list
+  .react-multi-carousel-dot--active
+  button {
+  background-color: #f74b42;
+  border-color: #f74b42;
+}
+
+.dashboard-testimonials .course-carousel-icon-left {
+  bottom: 0;
+  top: unset;
+  z-index: 2;
+}
+
+.dashboard-testimonials .course-carousel-icon-right {
+  bottom: 0;
+  top: unset;
+  z-index: 2;
+}
+
+.dashboard-testimonials .course-carousel-icon-right img,
+.dashboard-testimonials .course-carousel-icon-left img {
+  filter: brightness(0.1);
+}
+
+@media (max-width: 800px) {
+  .dashboard-testimonials .course-carousel-icon-right img,
+  .dashboard-testimonials .course-carousel-icon-left img {
+    width: 25px;
+  }
+  .dashboard-testimonials
+    .dashboard-testimonials-carousel
+    .react-multi-carousel-dot-list {
+    bottom: 0;
+  }
 }
 
 @media (max-width: 600px) {

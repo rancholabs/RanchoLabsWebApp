@@ -35,7 +35,7 @@ const Courses = () => {
   //const [activeCourseGroups, setActiveCourseGroups] = useState([])
   const [state, setState] = useState({
     grades: [],
-    activeGrade: { minG: 6, maxG: 8 },
+    activeGrade: { minG: 9, maxG: 12 },
     activeCourseG: undefined,
     activeCourseGroups: [],
   });
@@ -50,7 +50,7 @@ const Courses = () => {
         ...prevState,
         activeCourseG:
           activeGrade.minG === 6 && activeGrade.maxG === 8
-            ? courseGroups.filter((cg) => cg.name === "Recommended")[0]
+            ? courseGroups.filter((cg) => cg.name === "Programming")[0]
             : activeCourseG,
         activeGrade: activeGrade,
       };

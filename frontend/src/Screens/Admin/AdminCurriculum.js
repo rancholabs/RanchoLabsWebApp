@@ -93,11 +93,18 @@ function AdminCurriculum({ courseGroups, updateCourseGroups }) {
               </button>
             )}
             {currentCurriculum?.courses?.map((cg) => {
-              return <AdminCourseCard course={cg} editCourse={editCourse} />;
+              return (
+                <AdminCourseCard
+                  course={cg}
+                  editCourse={editCourse}
+                  updateCourseGroups={updateCourseGroups}
+                />
+              );
             })}
             <AdminCourseCard
               newCourse={true}
               openNewCourseForm={openNewCourseForm}
+              updateCourseGroups={updateCourseGroups}
             />
           </div>
         )}

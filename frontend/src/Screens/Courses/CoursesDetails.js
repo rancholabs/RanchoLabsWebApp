@@ -18,6 +18,9 @@ import aijourney1 from "./img/aijourney1.png";
 import aijourney2 from "./img/aijourney2.png";
 import aijourney3 from "./img/aijourney3.png";
 import aijourney4 from "./img/aijourney4.png";
+import programmingJourney1 from "./img/programmingJourney1.png";
+import programmingJourney2 from "./img/programmingJourney2.png";
+import programmingJourney3 from "./img/programmingJourney3.png";
 import "./css/CoursesDetails.css";
 import journeyTopLeft from "../../Asssets/journeyTopLeft.png";
 
@@ -56,34 +59,64 @@ const courseGroups = [
     name: "PROGRAMMING",
     journey: [
       {
-        title: "Free Workshop",
-        image: Workshop,
+        title: "Logic & JavaScript Programming",
+        image: aijourney1,
         classes: 2,
       },
       {
-        title: "Arduino Programing",
-        image: arduino,
+        title: "Game Development",
+        image: programmingJourney1,
         classes: 12,
       },
       {
-        title: `Internet of Things`,
-        image: iot,
+        title: "App Development & UI/UX",
+        image: programmingJourney2,
         classes: 12,
       },
       {
-        title: "Drone Building and Computer Vision",
-        image: drone,
+        title: "Website Development & Data Visualization",
+        image: programmingJourney3,
         classes: 12,
       },
       {
         title: "Innovation Project",
-        image: innovation,
+        image: roboticsjourney3,
         classes: 12,
       },
     ],
   },
   {
     name: "ARTIFICIAL INTELLIGENCE",
+    journey: [
+      {
+        title: "Logic and Python Coding",
+        image: aijourney1,
+        classes: 2,
+      },
+      {
+        title: "Machine Learning & Data Visualization",
+        image: aijourney2,
+        classes: 12,
+      },
+      {
+        title: `Neural Networks`,
+        image: aijourney3,
+        classes: 12,
+      },
+      {
+        title: "Chatbots",
+        image: aijourney4,
+        classes: 12,
+      },
+      {
+        title: "Innovation Project",
+        image: roboticsjourney3,
+        classes: 12,
+      },
+    ],
+  },
+  {
+    name: "RECOMMENDED",
     journey: [
       {
         title: "Logic and Python Coding",
@@ -169,6 +202,8 @@ const MStepCards = ({ activeCourseG }) => {
               ? courseGroups[1].journey.map(Mstepcard)
               : activeCourseG?.name == "Artificial Intelligence"
               ? courseGroups[2].journey.map(Mstepcard)
+              : activeCourseG?.name == "Recommended"
+              ? courseGroups[3].journey.map(Stepcard)
               : courseGroups[0].journey.map(Mstepcard)}
           </div>
         </div>
@@ -198,6 +233,8 @@ const Stepcards = ({ activeCourseG }) => {
           ? courseGroups[1].journey.map(Stepcard)
           : activeCourseG?.name == "Artificial Intelligence"
           ? courseGroups[2].journey.map(Stepcard)
+          : activeCourseG?.name == "Recommended"
+          ? courseGroups[3].journey.map(Stepcard)
           : courseGroups[0].journey.map(Stepcard)}
       </div>
       <div
