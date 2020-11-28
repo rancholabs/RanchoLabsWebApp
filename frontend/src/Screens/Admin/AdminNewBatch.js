@@ -7,8 +7,16 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import ClearIcon from "@material-ui/icons/Clear";
 
-function AdminNewBatch({ backToAllBatches }) {
+function AdminNewBatch({ backToAllBatches, courseGroups, allStudentData }) {
   const [batchName, setBatchName] = useState("");
+  const [batchType, setbatchType] = useState("normal");
+  const [batchStartingDate, setbatchStartingDate] = useState("");
+  const [batchEndingDate, setbatchEndingDate] = useState("");
+  const [batchSingleDate, setbatchSingleDate] = useState("");
+  const [batchSingleTime, setbatchSingleTime] = useState("");
+  const [minGrade, setminGrade] = useState("");
+  const [maxGrade, setmaxGrade] = useState("");
+
   const [numberOfDays, setnumberOfDays] = useState(1);
   const [day_time, setday_time] = useState([
     {
@@ -16,10 +24,30 @@ function AdminNewBatch({ backToAllBatches }) {
       time: "",
     },
   ]);
-  //   const [batchName, setBatchName] = useState("");
-  //   const [batchName, setBatchName] = useState("");
   const [instructors, setInstructors] = useState([]);
   const [assignedInstructors, setAssignedInstructors] = useState([]);
+  const [assignedStudents, setAssignedStudents] = useState([]);
+  const [selectedCourseGroup, setSelectedCourseGroup] = useState({});
+  const [selectedCourse, setSelectedCourse] = useState({});
+
+  const [_allStudentData, set_allStudentData] = useState([]);
+
+  useEffect(() => {
+    console.log("running...");
+    const fetchStudents = async () => {
+      const __allStudentData = [];
+      allStudentData.forEach((stud) => {
+        if (
+          stud.studentDetails?.role === "student" &&
+          stud.loginfor === "freeclass"
+        )
+          __allStudentData.push(stud);
+      });
+      console.log(__allStudentData);
+      set_allStudentData(__allStudentData);
+    };
+    fetchStudents();
+  }, [allStudentData]);
 
   useEffect(() => {
     const userInfo = localStorage.getItem("userInfo");
@@ -36,35 +64,7 @@ function AdminNewBatch({ backToAllBatches }) {
     });
   }, []);
 
-  const addNewBatch = () => {
-    // batch
-    const body = [
-      {
-        name: batchName,
-        //   courseImage: "",
-        startDate: new Date(),
-        endDate: new Date(),
-        gradeRange: {
-          minG: 6,
-          maxG: 12,
-        },
-        date_time: [
-          {
-            date: "dummy date 1",
-            time: "dummy time 1",
-          },
-          {
-            date: "dummy date 2",
-            time: "dummy time 2",
-          },
-          {
-            date: "dummy date 3",
-            time: "dummy time 3",
-          },
-        ],
-      },
-    ];
-
+  const addNewBatch = async () => {
     const userInfo = localStorage.getItem("userInfo");
     const token = userInfo ? JSON.parse(userInfo).token : "";
     const config = {
@@ -74,11 +74,48 @@ function AdminNewBatch({ backToAllBatches }) {
       },
     };
 
-    const courseID = "5fafb394e684a3387cfd9181";
+    // CREATE NEW BATCH IN BATCH SCHEMA
+    const body = [
+      {
+        name: batchName,
+        batchType: batchType,
+        startDate: batchStartingDate,
+        endDate: batchEndingDate,
+        singleDate: batchSingleDate,
+        gradeRange: {
+          minG: minGrade,
+          maxG: maxGrade,
+        },
+        date_time: day_time,
+        singleTime: batchSingleTime,
+        instructor: assignedInstructors[0]?.toString().split(" - ")[1],
+      },
+    ];
 
-    axios
-      .post(`/api/course/batch/${courseID}`, body, config)
-      .then((res) => console.log(res.data));
+    const batchID = await axios
+      .post(`/api/course/batch/${selectedCourse._id}`, body, config)
+      .then((res) => {
+        console.log(res.data);
+        return res.data.id;
+      });
+
+    if (assignedStudents.length > 0) {
+      // ASSIGN BATCH TO STUDENT IN STUDENTCOURSE SCHEMA
+      const _body = {
+        userId: assignedStudents[0].toString().split(" - ")[1],
+        courseId: selectedCourse._id,
+        batchId: batchID,
+        payment: {
+          paymentId: "freeclass",
+          orderId: "freeclass",
+          signature: "freeclass",
+        },
+      };
+      console.log(_body);
+      axios
+        .post(`/api/course/enroll/admin`, _body, config)
+        .then((res) => console.log(res.data));
+    }
   };
 
   const handleNumberOfDaysChange = (e) => {
@@ -125,6 +162,48 @@ function AdminNewBatch({ backToAllBatches }) {
     setAssignedInstructors(allAssignedInstructors);
   };
 
+  const handleStudentSearchChange = (e, value) => {
+    if (value !== null) {
+      var allAssignedStudents = [...assignedStudents];
+      const index = allAssignedStudents.indexOf(value);
+      if (index < 0) {
+        allAssignedStudents.push(value);
+        setAssignedStudents(allAssignedStudents);
+      }
+    }
+  };
+
+  const handleStudentSearchChangeRemove = (ai) => {
+    var allAssignedStudents = [...assignedStudents];
+    const index = allAssignedStudents.indexOf(ai);
+    allAssignedStudents.splice(index, 1);
+    setAssignedStudents(allAssignedStudents);
+  };
+
+  const handleCourseGroupChange = (e) => {
+    if (e.target.value !== "") {
+      const _selectedCourseGroup = courseGroups.filter(
+        (cg) => cg._id === e.target.value
+      );
+      setSelectedCourseGroup(_selectedCourseGroup[0]);
+      setSelectedCourse({});
+    } else {
+      setSelectedCourseGroup({});
+      setSelectedCourse({});
+    }
+  };
+
+  const handleCourseChange = (e) => {
+    if (e.target.value !== "") {
+      const _selectedCourse = selectedCourseGroup.courses.filter(
+        (course) => course._id === e.target.value
+      );
+      setSelectedCourse(_selectedCourse[0]);
+    } else {
+      setSelectedCourse({});
+    }
+  };
+
   console.log(instructors);
 
   return (
@@ -144,41 +223,88 @@ function AdminNewBatch({ backToAllBatches }) {
             />
           </div>
           <div className="adminNewBatch__inputSection">
+            <label>Batch Type</label>
+            <select
+              value={batchType}
+              onChange={(e) => setbatchType(e.target.value)}
+            >
+              <option value="normal">Normal</option>
+              <option value="freeclass">Free Class</option>
+              <option value="workshop">Workshop</option>
+            </select>
+          </div>
+          <div className="adminNewBatch__inputSection">
             <label>Category</label>
-            <input
-              type="text"
-              //   onChange={(e) => setTotalClasses(e.target.value)}
-              //   value={totalClasses}
-              //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
-            />
+            <select
+              value={selectedCourseGroup._id ? selectedCourseGroup._id : ""}
+              onChange={handleCourseGroupChange}
+            >
+              <option value="">--Select--</option>
+              {courseGroups.map((cg) => {
+                return <option value={cg._id}>{cg.name}</option>;
+              })}
+            </select>
           </div>
           <div className="adminNewBatch__inputSection">
             <label>Course</label>
-            <input
-              type="text"
-              //   onChange={(e) => setTotalClasses(e.target.value)}
-              //   value={totalClasses}
-              //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
-            />
+            <select
+              value={selectedCourse._id ? selectedCourse._id : ""}
+              onChange={handleCourseChange}
+            >
+              <option value="">--Select--</option>
+              {selectedCourseGroup.courses?.map((course) => {
+                return <option value={course._id}>{course.name}</option>;
+              })}
+            </select>
           </div>
-          <div className="adminNewBatch__inputSection">
-            <label>Starting Date</label>
-            <input
-              type="date"
-              //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
-            />
-          </div>
-          <div className="adminNewBatch__inputSection">
-            <label>Ending Date</label>
-            <input
-              type="date"
-              //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
-            />
-          </div>
+          {batchType === "normal" ? (
+            <>
+              <div className="adminNewBatch__inputSection">
+                <label>Starting Date</label>
+                <input
+                  type="date"
+                  // disabled={tobeEditedCourse._id && allowEdits ? false : true}
+                  value={batchStartingDate}
+                  onChange={(e) => setbatchStartingDate(e.target.value)}
+                />
+              </div>
+              <div className="adminNewBatch__inputSection">
+                <label>Ending Date</label>
+                <input
+                  type="date"
+                  value={batchEndingDate}
+                  onChange={(e) => setbatchEndingDate(e.target.value)}
+                  //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
+                />
+              </div>
+            </>
+          ) : batchType === "freeclass" ? (
+            <div className="adminNewBatch__inputSection">
+              <label>Date</label>
+              <input
+                type="date"
+                value={batchSingleDate}
+                onChange={(e) => setbatchSingleDate(e.target.value)}
+                //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
+              />
+            </div>
+          ) : (
+            <div className="adminNewBatch__inputSection">
+              <label>Date</label>
+              <input
+                type="date"
+                value={batchSingleDate}
+                onChange={(e) => setbatchSingleDate(e.target.value)}
+                //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
+              />
+            </div>
+          )}
           <div className="adminNewBatch__inputSection">
             <label>Minimum Grade</label>
             <input
               type="text"
+              value={minGrade}
+              onChange={(e) => setminGrade(e.target.value)}
               //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
             />
           </div>
@@ -186,55 +312,83 @@ function AdminNewBatch({ backToAllBatches }) {
             <label>Maximum Grade</label>
             <input
               type="text"
+              value={maxGrade}
+              onChange={(e) => setmaxGrade(e.target.value)}
               //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
             />
           </div>
         </div>
-        <div className="adminNewBatch__detailsmiddle">
-          <div className="adminNewBatch__inputSection">
-            <label>Set Day and time</label>
-            <select value={numberOfDays} onChange={handleNumberOfDaysChange}>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-              <option value={6}>6</option>
-              <option value={7}>7</option>
-            </select>
-          </div>
-          <div className="adminNewBatch__inputSection adminNewBatch__inputSectionDayTimeContainerParent">
-            {[...Array(parseInt(numberOfDays))].map((day, index) => {
-              return (
-                <div className="adminNewBatch__inputSectionDayTimeContainer">
-                  <div className="adminNewBatch__inputSectionDayTime">
-                    <label>Select Day</label>
-                    <select
-                      value={day_time[index].day}
-                      onChange={(e) => handleDayChange(e, index)}
-                    >
-                      <option value="Monday">Monday</option>
-                      <option value="Tuesday">Tuesday</option>
-                      <option value="Wednesday">Wednesday</option>
-                      <option value="Thursday">Thursday</option>
-                      <option value="Friday">Friday</option>
-                      <option value="Saturday">Saturday</option>
-                      <option value="Sunday">Sunday</option>
-                    </select>
+        {batchType === "normal" ? (
+          <div className="adminNewBatch__detailsmiddle">
+            <div className="adminNewBatch__inputSection">
+              <label>Set Day and time</label>
+              <select value={numberOfDays} onChange={handleNumberOfDaysChange}>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
+                <option value={6}>6</option>
+                <option value={7}>7</option>
+              </select>
+            </div>
+            <div className="adminNewBatch__inputSection adminNewBatch__inputSectionDayTimeContainerParent">
+              {[...Array(parseInt(numberOfDays))].map((day, index) => {
+                return (
+                  <div className="adminNewBatch__inputSectionDayTimeContainer">
+                    <div className="adminNewBatch__inputSectionDayTime">
+                      <label>Select Day</label>
+                      <select
+                        value={day_time[index].day}
+                        onChange={(e) => handleDayChange(e, index)}
+                      >
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                        <option value="Sunday">Sunday</option>
+                      </select>
+                    </div>
+                    <div className="adminNewBatch__inputSectionDayTime">
+                      <label>Enter Time</label>
+                      <input
+                        type="time"
+                        value={day_time[index].time}
+                        onChange={(e) => handleTimeChange(e, index)}
+                      />
+                    </div>
                   </div>
-                  <div className="adminNewBatch__inputSectionDayTime">
-                    <label>Enter Time</label>
-                    <input
-                      type="time"
-                      value={day_time[index].time}
-                      onChange={(e) => handleTimeChange(e, index)}
-                    />
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
+        ) : batchType === "freeclass" ? (
+          <div className="adminNewBatch__detailsmiddle">
+            <div className="adminNewBatch__inputSection">
+              <label>Time</label>
+              <input
+                type="time"
+                value={batchSingleTime}
+                onChange={(e) => setbatchSingleTime(e.target.value)}
+                //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
+              />
+            </div>
+          </div>
+        ) : (
+          <div className="adminNewBatch__detailsmiddle">
+            <div className="adminNewBatch__inputSection">
+              <label>Time</label>
+              <input
+                type="time"
+                value={batchSingleTime}
+                onChange={(e) => setbatchSingleTime(e.target.value)}
+                //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
+              />
+            </div>
+          </div>
+        )}
         <div className="adminNewBatch__detailsright">
           <div className="adminNewBatch__inputSection">
             <label>Assign Instructor</label>
@@ -272,13 +426,38 @@ function AdminNewBatch({ backToAllBatches }) {
           <div className="adminNewBatch__inputSection">
             <label>Assign Student</label>
             <div className="adminNewBatch__searchBox">
-              <input
-                type="text"
-                //   onChange={(e) => setInnovate(e.target.value)}
-                //   value={innovate}
-                //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
+              <Autocomplete
+                id="free-solo-demo_"
+                freeSolo
+                onChange={handleStudentSearchChange}
+                options={_allStudentData.map(
+                  (stud) =>
+                    stud?.studentDetails?.name?.first +
+                    " " +
+                    stud?.studentDetails?.name?.last +
+                    " - " +
+                    stud?.userId
+                )}
+                renderInput={(params) => (
+                  <TextField {...params} margin="normal" />
+                )}
               />
-              <SearchIcon className="adminNewBatch__searchIcon" />
+              {/* <SearchIcon className="adminNewBatch__searchIcon" /> */}
+            </div>
+            <div className="adminNewBatch__assignedInstructors__Tags">
+              {assignedStudents.map((ai, index) => {
+                return (
+                  <>
+                    <div className="adminNewBatch__assignedInstructor">
+                      <h3>{ai.toString().split(" - ")[0]}</h3>
+                      <ClearIcon
+                        className="adminNewBatch__assignedInstructor__removeBtn"
+                        onClick={() => handleStudentSearchChangeRemove(ai)}
+                      />
+                    </div>
+                  </>
+                );
+              })}
             </div>
           </div>
         </div>

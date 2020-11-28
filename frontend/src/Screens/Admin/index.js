@@ -11,6 +11,8 @@ function Index() {
   const [currentSection, setCurrentSection] = useState("curriculum");
   const [courseGroups, setCourseGroups] = useState([]);
   const [allStudentData, setallStudentData] = useState([]);
+  const [allAssignedBatchesData, setallAssignedBatchesData] = useState([]);
+  const [allInstructors, setallInstructors] = useState([]);
 
   useEffect(() => {
     const userInfo = localStorage.getItem("userInfo");
@@ -26,6 +28,21 @@ function Index() {
       .then((res) => {
         console.log(res.data);
         setCourseGroups(res.data);
+      })
+      .catch((err) => console.log(err));
+    axios
+      .get("/api/course/enroll/all", config)
+      .then((res) => {
+        console.log(res.data);
+        setallAssignedBatchesData(res.data);
+      })
+      .catch((err) => console.log(err));
+
+    axios
+      .get("/api/instructor/admin", config)
+      .then((res) => {
+        console.log(res.data);
+        setallInstructors(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -122,11 +139,20 @@ function Index() {
             />
           )}
           {currentSection === "batch" && (
-            <AdminBatch courseGroups={courseGroups} />
+            <AdminBatch
+              courseGroups={courseGroups}
+              allStudentData={allStudentData}
+              allInstructors={allInstructors}
+            />
           )}
           {currentSection === "instructor" && <AdminInstructor />}
           {currentSection === "dashboard" && (
-            <AdminDashboard allStudentData={allStudentData} />
+            <AdminDashboard
+              allStudentData={allStudentData}
+              courseGroups={courseGroups}
+              allAssignedBatchesData={allAssignedBatchesData}
+              allInstructors={allInstructors}
+            />
           )}
           {currentSection === "master" && (
             <AdminMasterData allStudentData={allStudentData} />

@@ -7,6 +7,19 @@
   margin: 20px auto 0 auto;
 }
 
+.adminBatch {
+  position: relative;
+}
+
+.adminBatch__backto__dashboard {
+  position: absolute;
+  cursor: pointer;
+  margin: 0;
+  top: -10px;
+  left: 65px;
+  text-transform: capitalize;
+}
+
 .adminBatch__filter {
   display: flex;
 }

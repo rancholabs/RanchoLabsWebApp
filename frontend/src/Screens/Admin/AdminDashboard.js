@@ -6,10 +6,16 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import AdminBatch from "./AdminBatch";
 
 import "./AdminDashboard.css";
 
-function AdminDashboardFreeClass({ allStudentData }) {
+function AdminDashboardFreeClass({
+  allStudentData,
+  assignBatch,
+  allAssignedBatchesData,
+  allInstructors,
+}) {
   return (
     <>
       <TableHead>
@@ -30,6 +36,21 @@ function AdminDashboardFreeClass({ allStudentData }) {
       </TableHead>
       <TableBody>
         {allStudentData?.map((stud) => {
+          let singleStudentbatchObj = allAssignedBatchesData.filter(
+            (obj) => obj.userId === stud.userId
+          );
+          console.log(singleStudentbatchObj);
+          let singleInstructor;
+          if (singleStudentbatchObj.length > 0) {
+            singleStudentbatchObj = singleStudentbatchObj[0];
+            singleInstructor = allInstructors.filter(
+              (sintruct) =>
+                sintruct._id === singleStudentbatchObj.batchData.instructor
+            );
+            if (singleInstructor.length > 0)
+              singleInstructor = singleInstructor[0];
+          }
+          console.log(singleInstructor);
           if (
             stud.studentDetails?.role === "student" &&
             stud.loginfor === "freeclass"
@@ -78,9 +99,58 @@ function AdminDashboardFreeClass({ allStudentData }) {
                     "-" +
                     stud.parentDetails?.mobileNo?.number}
                 </TableCell>
-                <TableCell>Assign Batch</TableCell>
-                <TableCell>Date and Time</TableCell>
-                <TableCell>Instructor</TableCell>
+                <TableCell>
+                  {singleStudentbatchObj._id ? (
+                    singleStudentbatchObj.batchData?.name
+                  ) : (
+                    <button onClick={() => assignBatch(stud.userId)}>
+                      Assign
+                    </button>
+                  )}
+                </TableCell>
+                <TableCell>
+                  {singleStudentbatchObj?.batchData?.singleDate
+                    ? (new Date(
+                        singleStudentbatchObj.batchData.singleDate
+                      ).getDate() < 10
+                        ? "0" +
+                          new Date(
+                            singleStudentbatchObj.batchData.singleDate
+                          ).getDate()
+                        : new Date(
+                            singleStudentbatchObj.batchData.singleDate
+                          ).getDate()) +
+                      "/" +
+                      (new Date(
+                        singleStudentbatchObj.batchData.singleDate
+                      ).getMonth() +
+                        1 <
+                      10
+                        ? "0" +
+                          (new Date(
+                            singleStudentbatchObj.batchData.singleDate
+                          ).getMonth() +
+                            1)
+                        : new Date(
+                            singleStudentbatchObj.batchData.singleDate
+                          ).getMonth() + 1) +
+                      "/" +
+                      new Date(
+                        singleStudentbatchObj.batchData.singleDate
+                      ).getFullYear() +
+                      " - " +
+                      singleStudentbatchObj?.batchData?.singleTime
+                    : "n/a"}
+                </TableCell>
+                <TableCell>
+                  {singleInstructor?._id
+                    ? (singleInstructor?.fname ? singleInstructor?.fname : "") +
+                      " " +
+                      (singleInstructor?.mname ? singleInstructor?.mname : "") +
+                      " " +
+                      (singleInstructor?.lname ? singleInstructor?.lname : "")
+                    : "n/a"}
+                </TableCell>
                 <TableCell>Class Status</TableCell>
               </TableRow>
             );
@@ -314,100 +384,139 @@ function AdminDashboardTotalSignUp({ allStudentData }) {
   );
 }
 
-function AdminDashboard({ allStudentData }) {
+function AdminDashboard({
+  allStudentData,
+  courseGroups,
+  allAssignedBatchesData,
+  allInstructors,
+}) {
   const [currentSection, setCurrentSection] = useState("freeclass");
+  const [setbatchWindow, setsetbatchWindow] = useState(false);
+  const [setBatchUserId, setsetBatchUserId] = useState("");
+  const assignBatch = (userId) => {
+    setsetbatchWindow(true);
+    setsetBatchUserId(userId);
+  };
+  const backtoDashboard = () => {
+    setsetbatchWindow(false);
+    setsetBatchUserId("");
+  };
   return (
-    <div className="adminDashboard">
-      <div className="adminDashboard__cards">
-        <div
-          className={
-            currentSection === "freeclass"
-              ? "adminDashboard__singleCard active"
-              : "adminDashboard__singleCard"
-          }
-          onClick={() => setCurrentSection("freeclass")}
-        >
-          <label>Free Class</label>
-        </div>
-        <div
-          className={
-            currentSection === "freeworkshop"
-              ? "adminDashboard__singleCard active"
-              : "adminDashboard__singleCard"
-          }
-          onClick={() => setCurrentSection("freeworkshop")}
-        >
-          <label>Free Workshops</label>
-        </div>
-        <div
-          className={
-            currentSection === "payment"
-              ? "adminDashboard__singleCard active"
-              : "adminDashboard__singleCard"
-          }
-          onClick={() => setCurrentSection("payment")}
-        >
-          <label>Payments</label>
-        </div>
-        <div
-          className={
-            currentSection === "totalsignup"
-              ? "adminDashboard__singleCard active"
-              : "adminDashboard__singleCard"
-          }
-          onClick={() => setCurrentSection("totalsignup")}
-        >
-          <label>Total Sign up</label>
-        </div>
-      </div>
-      <div className="adminDashboard__body">
-        <div className="adminDashboard__body__header">
-          <div className="adminDashboard__body__headerSection">
-            <div></div>
-            <label>Completed</label>
+    <>
+      {setbatchWindow ? (
+        <AdminBatch
+          setBatchUserId={setBatchUserId}
+          allStudentData={allStudentData}
+          courseGroups={courseGroups}
+          backtoDashboard={backtoDashboard}
+          allInstructors={allInstructors}
+        />
+      ) : (
+        <div className="adminDashboard">
+          <div className="adminDashboard__cards">
+            <div
+              className={
+                currentSection === "freeclass"
+                  ? "adminDashboard__singleCard active"
+                  : "adminDashboard__singleCard"
+              }
+              onClick={() => setCurrentSection("freeclass")}
+            >
+              <label>Free Class</label>
+            </div>
+            <div
+              className={
+                currentSection === "freeworkshop"
+                  ? "adminDashboard__singleCard active"
+                  : "adminDashboard__singleCard"
+              }
+              onClick={() => setCurrentSection("freeworkshop")}
+            >
+              <label>Free Workshops</label>
+            </div>
+            <div
+              className={
+                currentSection === "payment"
+                  ? "adminDashboard__singleCard active"
+                  : "adminDashboard__singleCard"
+              }
+              onClick={() => setCurrentSection("payment")}
+            >
+              <label>Payments</label>
+            </div>
+            <div
+              className={
+                currentSection === "totalsignup"
+                  ? "adminDashboard__singleCard active"
+                  : "adminDashboard__singleCard"
+              }
+              onClick={() => setCurrentSection("totalsignup")}
+            >
+              <label>Total Sign up</label>
+            </div>
           </div>
-          <div className="adminDashboard__body__headerSection">
-            <div></div>
-            <label>Absent/Not Completed</label>
-          </div>
-          <div className="adminDashboard__body__headerSection">
-            <div></div>
-            <label>Scheduled</label>
-          </div>
-          <div className="adminDashboard__body__headerSection">
-            <div></div>
-            <label>Not Scheduled</label>
+          <div className="adminDashboard__body">
+            <div className="adminDashboard__body__header">
+              <div className="adminDashboard__body__headerSection">
+                <div></div>
+                <label>Completed</label>
+              </div>
+              <div className="adminDashboard__body__headerSection">
+                <div></div>
+                <label>Absent/Not Completed</label>
+              </div>
+              <div className="adminDashboard__body__headerSection">
+                <div></div>
+                <label>Scheduled</label>
+              </div>
+              <div className="adminDashboard__body__headerSection">
+                <div></div>
+                <label>Not Scheduled</label>
+              </div>
+            </div>
+            <div className="adminDashboard__body__filters">
+              <input
+                type="date"
+                className="adminDashboard__body__input__colored"
+              />
+              <input type="text" placeholder="Student ID" />
+              <input type="text" placeholder="Student Name" />
+              <input type="text" placeholder="Parents Name" />
+              <button className="adminDashboard__body__input__colored">
+                Download Sheet
+              </button>
+            </div>
+            <div className="adminDashboard__body__tableContainer">
+              <TableContainer component={Paper}>
+                <Table className="adminDashboard__body__table" size="small">
+                  {currentSection === "freeclass" && (
+                    <AdminDashboardFreeClass
+                      allStudentData={allStudentData}
+                      allAssignedBatchesData={allAssignedBatchesData}
+                      allInstructors={allInstructors}
+                      assignBatch={assignBatch}
+                    />
+                  )}
+                  {currentSection === "freeworkshop" && (
+                    <AdminDashboardFreeWorkshop
+                      allStudentData={allStudentData}
+                    />
+                  )}
+                  {currentSection === "payment" && (
+                    <AdminDashboardPayment allStudentData={allStudentData} />
+                  )}
+                  {currentSection === "totalsignup" && (
+                    <AdminDashboardTotalSignUp
+                      allStudentData={allStudentData}
+                    />
+                  )}
+                </Table>
+              </TableContainer>
+            </div>
           </div>
         </div>
-        <div className="adminDashboard__body__filters">
-          <input type="date" className="adminDashboard__body__input__colored" />
-          <input type="text" placeholder="Student ID" />
-          <input type="text" placeholder="Student Name" />
-          <input type="text" placeholder="Parents Name" />
-          <button className="adminDashboard__body__input__colored">
-            Download Sheet
-          </button>
-        </div>
-        <div className="adminDashboard__body__tableContainer">
-          <TableContainer component={Paper}>
-            <Table className="adminDashboard__body__table" size="small">
-              {currentSection === "freeclass" && (
-                <AdminDashboardFreeClass allStudentData={allStudentData} />
-              )}
-              {currentSection === "freeworkshop" && (
-                <AdminDashboardFreeWorkshop allStudentData={allStudentData} />
-              )}
-              {currentSection === "payment" && (
-                <AdminDashboardPayment allStudentData={allStudentData} />
-              )}
-              {currentSection === "totalsignup" && (
-                <AdminDashboardTotalSignUp allStudentData={allStudentData} />
-              )}
-            </Table>
-          </TableContainer>
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 

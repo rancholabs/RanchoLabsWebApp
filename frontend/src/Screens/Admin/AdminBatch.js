@@ -3,28 +3,41 @@ import "./AdminBatch.css";
 import AdminNewBatch from "./AdminNewBatch";
 import axios from "axios";
 
-function AdminBatch({ courseGroups }) {
-  const [selectedCourseGroup, setSelectedCourseGroup] = useState({});
+function AdminBatch({
+  courseGroups,
+  allStudentData,
+  setBatchUserId,
+  backtoDashboard,
+  allInstructors,
+}) {
+  const [selectedCourseGroup, setSelectedCourseGroup] = useState(
+    courseGroups[0]
+  );
   const [selectedCourse, setSelectedCourse] = useState({});
   const [batches, setbatches] = useState([]);
+  const [selectedBatchType, setSelectedBatchType] = useState("all");
   const [addNewBatch, setAddNewBatch] = useState(false);
 
   useEffect(() => {
-    const userInfo = localStorage.getItem("userInfo");
-    const token = userInfo ? JSON.parse(userInfo).token : "";
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: token,
-      },
-    };
-    axios
-      .get("/api/course/batch/5fafb394e684a3387cfd9181", config)
-      .then((res) => {
-        console.log(res.data);
-        setbatches(res.data);
-      });
-  }, []);
+    if (selectedCourse._id) {
+      const userInfo = localStorage.getItem("userInfo");
+      const token = userInfo ? JSON.parse(userInfo).token : "";
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: token,
+        },
+      };
+      console.log(selectedCourse);
+
+      axios
+        .get(`/api/course/batch/${selectedCourse._id}`, config)
+        .then((res) => {
+          console.log(res.data);
+          setbatches(res.data);
+        });
+    }
+  }, [selectedCourse]);
 
   const handleCourseGroupChange = (e) => {
     if (e.target.value !== "") {
@@ -33,9 +46,11 @@ function AdminBatch({ courseGroups }) {
       );
       setSelectedCourseGroup(_selectedCourseGroup[0]);
       setSelectedCourse({});
+      setbatches([]);
     } else {
       setSelectedCourseGroup({});
       setSelectedCourse({});
+      setbatches([]);
     }
   };
 
@@ -54,8 +69,41 @@ function AdminBatch({ courseGroups }) {
     setAddNewBatch(false);
   };
 
+  const assignBatchToStudent = (singleBatch) => {
+    // assign batch to student with userId = userId prop
+    const userInfo = localStorage.getItem("userInfo");
+    const token = userInfo ? JSON.parse(userInfo).token : "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    };
+
+    const _body = {
+      userId: setBatchUserId,
+      courseId: singleBatch.courseId,
+      batchId: singleBatch._id,
+      payment: {
+        paymentId: "freeclass",
+        orderId: "freeclass",
+        signature: "freeclass",
+      },
+    };
+
+    axios.post(`/api/course/enroll/admin`, _body, config).then((res) => {
+      backtoDashboard();
+      console.log(res.data);
+    });
+  };
+
   return (
     <div className="adminBatch">
+      {setBatchUserId && (
+        <p onClick={backtoDashboard} className="adminBatch__backto__dashboard">
+          back to dashboard
+        </p>
+      )}
       <div className="adminBatch__header">
         <div className="adminBatch__filter">
           <select
@@ -76,6 +124,16 @@ function AdminBatch({ courseGroups }) {
               return <option value={course._id}>{course.name}</option>;
             })}
           </select>
+          <select
+            value={selectedBatchType}
+            onChange={(e) => setSelectedBatchType(e.target.value)}
+          >
+            <option value="">--Select--</option>
+            <option value="all">All</option>
+            <option value="normal">Normal</option>
+            <option value="freeclass">Free Class</option>
+            <option value="workshop">Workshop</option>
+          </select>
         </div>
         <div className="adminBatch__filterRight">
           <button>All</button>
@@ -85,7 +143,11 @@ function AdminBatch({ courseGroups }) {
         </div>
       </div>
       {addNewBatch ? (
-        <AdminNewBatch backToAllBatches={backToAllBatches} />
+        <AdminNewBatch
+          backToAllBatches={backToAllBatches}
+          courseGroups={courseGroups}
+          allStudentData={allStudentData}
+        />
       ) : (
         <div className="adminBatch__cardsContainer">
           <div
@@ -96,28 +158,158 @@ function AdminBatch({ courseGroups }) {
             <h3>Add New Batch</h3>
           </div>
           {batches.map((singleBatch) => {
-            return (
-              <>
-                <div className="adminBatch__card">
-                  <div className="adminBatch__cardSection">
-                    <h2>{singleBatch.name}</h2>
-                    <h3>{"Starting Date - " + singleBatch.startDate}</h3>
-                    <h3>{"Ending Date - " + singleBatch.endDate}</h3>
-                  </div>
-                  <div className="adminBatch__cardSection">
-                    <h2>Weekly Schedule</h2>
-                    {singleBatch.date_time.map((dateTime) => {
-                      return <h3>{dateTime.date + " - " + dateTime.time}</h3>;
-                    })}
-                  </div>
-                  <div className="adminBatch__cardSection">
-                    <h2>Instructor</h2>
-
-                    <h3>No instructor</h3>
-                  </div>
-                </div>
-              </>
+            let singleInstructor = allInstructors.filter(
+              (sintruct) => sintruct._id === singleBatch.instructor
             );
+            if (singleInstructor.length > 0)
+              singleInstructor = singleInstructor[0];
+            if (selectedBatchType !== "all") {
+              if (selectedBatchType === singleBatch.batchType) {
+                return (
+                  <>
+                    <div className="adminBatch__card">
+                      <div className="adminBatch__cardSection">
+                        <h2>{singleBatch.name}</h2>
+                        {singleBatch.batchType === "normal" ? (
+                          <>
+                            <h3>
+                              {"Starting Date - " + singleBatch.startDate}
+                            </h3>
+                            <h3>{"Ending Date - " + singleBatch.endDate}</h3>
+                          </>
+                        ) : (
+                          <h3>
+                            {"Date - " +
+                              (new Date(singleBatch.singleDate).getDate() < 10
+                                ? "0" +
+                                  new Date(singleBatch.singleDate).getDate()
+                                : new Date(singleBatch.singleDate).getDate()) +
+                              "/" +
+                              (new Date(singleBatch.singleDate).getMonth() + 1 <
+                              10
+                                ? "0" +
+                                  (new Date(singleBatch.singleDate).getMonth() +
+                                    1)
+                                : new Date(singleBatch.singleDate).getMonth() +
+                                  1) +
+                              "/" +
+                              new Date(singleBatch.singleDate).getFullYear()}
+                          </h3>
+                        )}
+                      </div>
+                      <div className="adminBatch__cardSection">
+                        <h2>Weekly Schedule</h2>
+                        {singleBatch.batchType === "normal" ? (
+                          singleBatch.date_time.map((dateTime) => {
+                            return (
+                              <h3>{dateTime.date + " - " + dateTime.time}</h3>
+                            );
+                          })
+                        ) : (
+                          <h3>{"Time - " + singleBatch.singleTime}</h3>
+                        )}
+                      </div>
+                      <div className="adminBatch__cardSection">
+                        <h2>Instructor</h2>
+                        <h3>
+                          {" "}
+                          {singleInstructor?._id
+                            ? (singleInstructor?.fname
+                                ? singleInstructor?.fname
+                                : "") +
+                              " " +
+                              (singleInstructor?.mname
+                                ? singleInstructor?.mname
+                                : "") +
+                              " " +
+                              (singleInstructor?.lname
+                                ? singleInstructor?.lname
+                                : "")
+                            : "n/a"}
+                        </h3>
+                      </div>
+                      {setBatchUserId && (
+                        <button
+                          onClick={() => assignBatchToStudent(singleBatch)}
+                        >
+                          Assign Batch
+                        </button>
+                      )}
+                    </div>
+                  </>
+                );
+              }
+            } else {
+              return (
+                <>
+                  <div className="adminBatch__card">
+                    <div className="adminBatch__cardSection">
+                      <h2>{singleBatch.name}</h2>
+                      {singleBatch.batchType === "normal" ? (
+                        <>
+                          <h3>{"Starting Date - " + singleBatch.startDate}</h3>
+                          <h3>{"Ending Date - " + singleBatch.endDate}</h3>
+                        </>
+                      ) : (
+                        <h3>
+                          {"Date - " +
+                            (new Date(singleBatch.singleDate).getDate() < 10
+                              ? "0" + new Date(singleBatch.singleDate).getDate()
+                              : new Date(singleBatch.singleDate).getDate()) +
+                            "/" +
+                            (new Date(singleBatch.singleDate).getMonth() + 1 <
+                            10
+                              ? "0" +
+                                (new Date(singleBatch.singleDate).getMonth() +
+                                  1)
+                              : new Date(singleBatch.singleDate).getMonth() +
+                                1) +
+                            "/" +
+                            new Date(singleBatch.singleDate).getFullYear()}
+                        </h3>
+                      )}
+                    </div>
+                    <div className="adminBatch__cardSection">
+                      <h2>Weekly Schedule</h2>
+                      {singleBatch.batchType === "normal" ? (
+                        singleBatch.date_time.map((dateTime) => {
+                          return (
+                            <h3>{dateTime.date + " - " + dateTime.time}</h3>
+                          );
+                        })
+                      ) : (
+                        <h3>{"Time - " + singleBatch.singleTime}</h3>
+                      )}
+                    </div>
+                    <div className="adminBatch__cardSection">
+                      <h2>Instructor</h2>
+
+                      <h3>
+                        {" "}
+                        {singleInstructor?._id
+                          ? (singleInstructor?.fname
+                              ? singleInstructor?.fname
+                              : "") +
+                            " " +
+                            (singleInstructor?.mname
+                              ? singleInstructor?.mname
+                              : "") +
+                            " " +
+                            (singleInstructor?.lname
+                              ? singleInstructor?.lname
+                              : "")
+                          : "n/a"}
+                      </h3>
+                    </div>
+                    {setBatchUserId && (
+                      <button onClick={() => assignBatchToStudent(singleBatch)}>
+                        Assign Batch
+                      </button>
+                    )}
+                  </div>
+                </>
+              );
+            }
           })}
         </div>
       )}

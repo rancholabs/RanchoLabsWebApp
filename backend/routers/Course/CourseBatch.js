@@ -35,10 +35,16 @@ router.post("/:cid", async (req, res) => {
             projects: uProjects,
           }));
           Batch.insertMany(batches)
-            .then((batch) => {
-              res
-                .status(201)
-                .send({ message: "Course batches added Succesfully" });
+            .then(async (batch) => {
+              const addedBatch = await Batch.find({
+                instructor: batch[0].instructor,
+                courseId: batch[0].courseId,
+                name: batch[0].name,
+              });
+              res.status(201).json({
+                message: "Course batches added Succesfully",
+                id: addedBatch[0]._id,
+              });
             })
             .catch((err) => {
               console.log("Error:", err);
@@ -202,14 +208,10 @@ router.put("/class/:bid/:cid", async (req, res) => {
               console.log(err);
             });
         }
-        res
-          .status(204)
-          .send({
-            message:
-              n > 0
-                ? `Course class updated Succesfully`
-                : "No Changes detected",
-          });
+        res.status(204).send({
+          message:
+            n > 0 ? `Course class updated Succesfully` : "No Changes detected",
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -242,14 +244,12 @@ router.put("/project/:bid/:pid", async (req, res) => {
     )
       .then((raw) => {
         const { nModified: n } = raw;
-        res
-          .status(204)
-          .send({
-            message:
-              n > 0
-                ? `Course project updated Succesfully`
-                : "No Changes detected",
-          });
+        res.status(204).send({
+          message:
+            n > 0
+              ? `Course project updated Succesfully`
+              : "No Changes detected",
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -272,12 +272,10 @@ router.delete("/:bid", async (req, res) => {
       res.send(500).send(error);
     } else {
       const { nModified: n } = raw;
-      res
-        .status(204)
-        .send({
-          message:
-            n > 0 ? `Course batch deleted Succesfully` : "No Changes detected",
-        });
+      res.status(204).send({
+        message:
+          n > 0 ? `Course batch deleted Succesfully` : "No Changes detected",
+      });
     }
   });
 });
