@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./AdminBatch.css";
 import AdminNewBatch from "./AdminNewBatch";
 import axios from "axios";
+import EditIcon from "../../Asssets/Icon feather-edit.png";
 
 function AdminBatch({
   courseGroups,
@@ -17,6 +18,8 @@ function AdminBatch({
   const [batches, setbatches] = useState([]);
   const [selectedBatchType, setSelectedBatchType] = useState("all");
   const [addNewBatch, setAddNewBatch] = useState(false);
+  const [editBatch, seteditBatch] = useState(false);
+  const [toBeEditedBatch, settoBeEditedBatch] = useState({});
 
   useEffect(() => {
     if (selectedCourse._id) {
@@ -67,6 +70,8 @@ function AdminBatch({
 
   const backToAllBatches = (e) => {
     setAddNewBatch(false);
+    seteditBatch(false);
+    settoBeEditedBatch({});
   };
 
   const assignBatchToStudent = (singleBatch) => {
@@ -95,6 +100,11 @@ function AdminBatch({
       backtoDashboard();
       console.log(res.data);
     });
+  };
+
+  const editBatchFunction = (editBatch) => {
+    seteditBatch(true);
+    settoBeEditedBatch(editBatch);
   };
 
   return (
@@ -148,6 +158,13 @@ function AdminBatch({
           courseGroups={courseGroups}
           allStudentData={allStudentData}
         />
+      ) : editBatch ? (
+        <AdminNewBatch
+          backToAllBatches={backToAllBatches}
+          courseGroups={courseGroups}
+          allStudentData={allStudentData}
+          toBeEditedBatch={toBeEditedBatch}
+        />
       ) : (
         <div className="adminBatch__cardsContainer">
           <div
@@ -168,6 +185,11 @@ function AdminBatch({
                 return (
                   <>
                     <div className="adminBatch__card">
+                      <img
+                        src={EditIcon}
+                        className="adminBatch__editIcon"
+                        onClick={() => editBatchFunction(singleBatch)}
+                      ></img>
                       <div className="adminBatch__cardSection">
                         <h2>{singleBatch.name}</h2>
                         {singleBatch.batchType === "normal" ? (
@@ -243,6 +265,11 @@ function AdminBatch({
               return (
                 <>
                   <div className="adminBatch__card">
+                    <img
+                      src={EditIcon}
+                      className="adminBatch__editIcon"
+                      onClick={() => editBatchFunction(singleBatch)}
+                    ></img>
                     <div className="adminBatch__cardSection">
                       <h2>{singleBatch.name}</h2>
                       {singleBatch.batchType === "normal" ? (

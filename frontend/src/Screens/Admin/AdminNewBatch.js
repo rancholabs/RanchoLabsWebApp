@@ -7,7 +7,12 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import ClearIcon from "@material-ui/icons/Clear";
 
-function AdminNewBatch({ backToAllBatches, courseGroups, allStudentData }) {
+function AdminNewBatch({
+  backToAllBatches,
+  courseGroups,
+  allStudentData,
+  toBeEditedBatch,
+}) {
   const [batchName, setBatchName] = useState("");
   const [batchType, setbatchType] = useState("normal");
   const [batchStartingDate, setbatchStartingDate] = useState("");
@@ -16,6 +21,7 @@ function AdminNewBatch({ backToAllBatches, courseGroups, allStudentData }) {
   const [batchSingleTime, setbatchSingleTime] = useState("");
   const [minGrade, setminGrade] = useState("");
   const [maxGrade, setmaxGrade] = useState("");
+  const [batch_link, setbatch_link] = useState("");
 
   const [numberOfDays, setnumberOfDays] = useState(1);
   const [day_time, setday_time] = useState([
@@ -31,6 +37,75 @@ function AdminNewBatch({ backToAllBatches, courseGroups, allStudentData }) {
   const [selectedCourse, setSelectedCourse] = useState({});
 
   const [_allStudentData, set_allStudentData] = useState([]);
+
+  useEffect(() => {
+    console.log(toBeEditedBatch);
+    if (toBeEditedBatch._id) {
+      const userInfo = localStorage.getItem("userInfo");
+      const token = userInfo ? JSON.parse(userInfo).token : "";
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: token,
+        },
+      };
+      setBatchName(toBeEditedBatch.name);
+      setbatchType(toBeEditedBatch.batchType);
+      setbatchStartingDate(toBeEditedBatch.startDate);
+      setbatchEndingDate(toBeEditedBatch.endDate);
+      setbatchSingleDate(toBeEditedBatch.singleDate);
+      setbatchSingleTime(toBeEditedBatch.singleTime);
+      setminGrade(toBeEditedBatch.gradeRange?.minG);
+      setmaxGrade(toBeEditedBatch.gradeRange?.maxG);
+      setday_time(toBeEditedBatch.date_time);
+      setbatch_link(toBeEditedBatch.batch_link);
+
+      let assignedInstruct = [];
+      let _instruct = instructors.filter(
+        (ins) => ins._id === toBeEditedBatch.instructor
+      )[0];
+      let _instructName =
+        _instruct?.fname + " " + _instruct?.lname + " - " + _instruct?._id;
+      assignedInstruct.push(_instructName);
+      setAssignedInstructors(assignedInstruct);
+
+      axios.get(`/api/course/enroll/all`, config).then((res) => {
+        let assignedStud = [];
+        let _eCourse = [];
+        let _eCourseGroup = [];
+
+        console.log(res.data);
+        res.data.forEach((estud) => {
+          if (estud.batchId === toBeEditedBatch._id) {
+            let _stud = _allStudentData.filter(
+              (std) => std.userId === estud.userId
+            )[0];
+            let _studName =
+              _stud?.studentDetails?.name?.first +
+              " " +
+              _stud?.studentDetails?.name?.last +
+              " - " +
+              _stud?.userId;
+            assignedStud.push(_studName);
+
+            courseGroups.forEach((cg) => {
+              const _cgcourse = cg.courses.filter(
+                (cgcourse) => cgcourse._id === estud.courseId
+              );
+              if (_cgcourse.length > 0) {
+                _eCourse.push(_cgcourse[0]);
+                _eCourseGroup.push(cg);
+              }
+            });
+          }
+        });
+        setSelectedCourse(_eCourse[0]);
+        setSelectedCourseGroup(_eCourseGroup[0]);
+        setAssignedStudents(assignedStud);
+        setAssignedInstructors(assignedInstruct);
+      });
+    }
+  }, [toBeEditedBatch, instructors, courseGroups]);
 
   useEffect(() => {
     console.log("running...");
@@ -74,47 +149,133 @@ function AdminNewBatch({ backToAllBatches, courseGroups, allStudentData }) {
       },
     };
 
-    // CREATE NEW BATCH IN BATCH SCHEMA
-    const body = [
-      {
-        name: batchName,
-        batchType: batchType,
-        startDate: batchStartingDate,
-        endDate: batchEndingDate,
-        singleDate: batchSingleDate,
-        gradeRange: {
-          minG: minGrade,
-          maxG: maxGrade,
+    if (toBeEditedBatch._id) {
+      // UPDATE BATCH DATA
+      const body = [
+        {
+          name: batchName,
+          batchType: batchType,
+          startDate: batchStartingDate,
+          endDate: batchEndingDate,
+          singleDate: batchSingleDate,
+          gradeRange: {
+            minG: minGrade,
+            maxG: maxGrade,
+          },
+          date_time: day_time,
+          singleTime: batchSingleTime,
+          batch_link: batch_link,
+          instructor: assignedInstructors[0]?.toString().split(" - ")[1],
         },
-        date_time: day_time,
-        singleTime: batchSingleTime,
-        instructor: assignedInstructors[0]?.toString().split(" - ")[1],
-      },
-    ];
+      ];
 
-    const batchID = await axios
-      .post(`/api/course/batch/${selectedCourse._id}`, body, config)
-      .then((res) => {
-        console.log(res.data);
-        return res.data.id;
-      });
-
-    if (assignedStudents.length > 0) {
-      // ASSIGN BATCH TO STUDENT IN STUDENTCOURSE SCHEMA
-      const _body = {
-        userId: assignedStudents[0].toString().split(" - ")[1],
-        courseId: selectedCourse._id,
-        batchId: batchID,
-        payment: {
-          paymentId: "freeclass",
-          orderId: "freeclass",
-          signature: "freeclass",
-        },
-      };
-      console.log(_body);
       axios
-        .post(`/api/course/enroll/admin`, _body, config)
-        .then((res) => console.log(res.data));
+        .put(`/api/course/batch/${toBeEditedBatch._id}`, body, config)
+        .then((res) => {
+          console.log(res.data);
+        });
+
+      // CHECK FOR CHANGED/NEW STUDENTS
+      if (assignedStudents.length > 0) {
+        // ASSIGN BATCH TO STUDENT IN STUDENTCOURSE SCHEMA
+
+        if (batchType === "normal") {
+          assignedStudents.forEach((stud) => {
+            const _body = {
+              userId: stud.toString().split(" - ")[1],
+              courseId: selectedCourse._id,
+              batchId: toBeEditedBatch._id,
+              payment: {
+                paymentId: "freeclass",
+                orderId: "freeclass",
+                signature: "freeclass",
+              },
+            };
+            console.log(_body);
+            axios
+              .post(`/api/course/enroll/admin`, _body, config)
+              .then((res) => console.log(res.data));
+          });
+        } else {
+          const _body = {
+            userId: assignedStudents[0].toString().split(" - ")[1],
+            courseId: selectedCourse._id,
+            batchId: toBeEditedBatch._id,
+            payment: {
+              paymentId: "freeclass",
+              orderId: "freeclass",
+              signature: "freeclass",
+            },
+          };
+          console.log(_body);
+          axios
+            .post(`/api/course/enroll/admin`, _body, config)
+            .then((res) => console.log(res.data));
+        }
+      }
+    } else {
+      // CREATE NEW BATCH IN BATCH SCHEMA
+      const body = [
+        {
+          name: batchName,
+          batchType: batchType,
+          startDate: batchStartingDate,
+          endDate: batchEndingDate,
+          singleDate: batchSingleDate,
+          gradeRange: {
+            minG: minGrade,
+            maxG: maxGrade,
+          },
+          date_time: day_time,
+          singleTime: batchSingleTime,
+          batch_link: batch_link,
+          instructor: assignedInstructors[0]?.toString().split(" - ")[1],
+        },
+      ];
+
+      const batchID = await axios
+        .post(`/api/course/batch/${selectedCourse._id}`, body, config)
+        .then((res) => {
+          console.log(res.data);
+          return res.data.id;
+        });
+
+      if (assignedStudents.length > 0) {
+        // ASSIGN BATCH TO STUDENT IN STUDENTCOURSE SCHEMA
+        if (batchType === "normal") {
+          assignedStudents.forEach((stud) => {
+            const _body = {
+              userId: stud.toString().split(" - ")[1],
+              courseId: selectedCourse._id,
+              batchId: batchID,
+              payment: {
+                paymentId: "freeclass",
+                orderId: "freeclass",
+                signature: "freeclass",
+              },
+            };
+            console.log(_body);
+            axios
+              .post(`/api/course/enroll/admin`, _body, config)
+              .then((res) => console.log(res.data));
+          });
+        } else {
+          const _body = {
+            userId: assignedStudents[0].toString().split(" - ")[1],
+            courseId: selectedCourse._id,
+            batchId: batchID,
+            payment: {
+              paymentId: "freeclass",
+              orderId: "freeclass",
+              signature: "freeclass",
+            },
+          };
+          console.log(_body);
+          axios
+            .post(`/api/course/enroll/admin`, _body, config)
+            .then((res) => console.log(res.data));
+        }
+      }
     }
   };
 
@@ -178,6 +339,25 @@ function AdminNewBatch({ backToAllBatches, courseGroups, allStudentData }) {
     const index = allAssignedStudents.indexOf(ai);
     allAssignedStudents.splice(index, 1);
     setAssignedStudents(allAssignedStudents);
+
+    if (toBeEditedBatch._id) {
+      // REMOVE STUDENT FROM COURSE ENROLLED
+      const userInfo = localStorage.getItem("userInfo");
+      const token = userInfo ? JSON.parse(userInfo).token : "";
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: token,
+        },
+      };
+      const bid = toBeEditedBatch._id;
+      const uid = ai.toString().split("-")[1].toString().trim();
+      console.log(bid);
+      console.log(uid);
+      axios.delete(`/api/course/enroll/${bid}/${uid}`, config).then((res) => {
+        console.log(res.data);
+      });
+    }
   };
 
   const handleCourseGroupChange = (e) => {
@@ -222,6 +402,7 @@ function AdminNewBatch({ backToAllBatches, courseGroups, allStudentData }) {
               //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
             />
           </div>
+
           <div className="adminNewBatch__inputSection">
             <label>Batch Type</label>
             <select
@@ -284,7 +465,10 @@ function AdminNewBatch({ backToAllBatches, courseGroups, allStudentData }) {
               <input
                 type="date"
                 value={batchSingleDate}
-                onChange={(e) => setbatchSingleDate(e.target.value)}
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  setbatchSingleDate(e.target.value);
+                }}
                 //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
               />
             </div>
@@ -299,6 +483,15 @@ function AdminNewBatch({ backToAllBatches, courseGroups, allStudentData }) {
               />
             </div>
           )}
+          <div className="adminNewBatch__inputSection">
+            <label>Batch Link</label>
+            <input
+              type="text"
+              onChange={(e) => setbatch_link(e.target.value)}
+              value={batch_link}
+              //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
+            />
+          </div>
           <div className="adminNewBatch__inputSection">
             <label>Minimum Grade</label>
             <input

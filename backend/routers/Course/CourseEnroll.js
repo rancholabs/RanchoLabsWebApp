@@ -79,9 +79,9 @@ router.post("/", async (req, res) => {
 router.post("/admin", async (req, res) => {
   console.log("...");
   StudentCourse.find({
-    courseId: req.body.courseId,
+    // courseId: req.body.courseId,
     userId: req.body.userId,
-    // batchId: req.body.batchId,
+    batchId: req.body.batchId,
   }).then((doc) => {
     console.log(doc);
     if (doc && doc.length > 0) {
@@ -123,6 +123,21 @@ router.get("/", (req, res) => {
       res.status(200).send(courses);
     })
     .catch((err) => {
+      res.status(400).send({ message: "Error in retreiving the user courses" });
+    });
+});
+
+router.delete("/:bid/:uid", (req, res) => {
+  console.log("deleting student from course enroll");
+  StudentCourse.findOneAndDelete({
+    batchId: req.params.bid,
+    userId: req.params.uid,
+  })
+    .then((courses) => {
+      res.status(200).send("User Course deleted");
+    })
+    .catch((err) => {
+      console.log(err);
       res.status(400).send({ message: "Error in retreiving the user courses" });
     });
 });

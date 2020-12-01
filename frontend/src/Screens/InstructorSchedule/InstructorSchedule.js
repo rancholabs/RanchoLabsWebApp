@@ -13,6 +13,7 @@ import {
   instructorUpdateBatchClass,
   updateClassLink,
 } from "../../Actions/Instructor";
+import axios from "axios";
 
 const batches = ["A", "B", "C", "All"];
 
@@ -91,6 +92,21 @@ const Event = () => {
 };
 
 const Student = (props) => {
+  const dispatch = useDispatch();
+  const [presentStatus, setpresentStatus] = React.useState(props.attendance);
+  const handleStudentAttendance = (e) => {
+    const attendance = [
+      {
+        userId: props.details._id,
+        present: e.target.checked,
+      },
+    ];
+    dispatch(
+      instructorUpdateBatchClass({ attendance }, props.batchId, props.classId)
+    );
+    setpresentStatus(e.target.checked);
+  };
+
   return (
     <>
       <div className="attendance-list-item">
@@ -113,6 +129,8 @@ const Student = (props) => {
                   type="checkbox"
                   className="check"
                   disabled={props.disabled}
+                  checked={presentStatus}
+                  onChange={handleStudentAttendance}
                 />
               </div>
             </>
@@ -126,6 +144,7 @@ const Student = (props) => {
 const Attendance = (props) => {
   const disable = props.status === "upcoming" ? true : false;
   const saveLink = props.status === "completed" ? true : false;
+  console.log(props);
 
   return (
     <>
@@ -133,11 +152,29 @@ const Attendance = (props) => {
         <div className="attendance-title border-bottom">Attendance</div>
         <div className="attendance-list">
           {props.students.map((s) => {
-            return <Student details={s.details[0]} disabled={disable} />;
+            return (
+              <Student
+                details={s.details[0]}
+                disabled={disable}
+                batchId={props.batchId}
+                classId={props.classId}
+                attendance={
+                  props.attendance?.filter((att) => att.userId === s.userId)[0]
+                    ?.present
+                    ? true
+                    : false
+                }
+              />
+            );
           })}
         </div>
         <div className="save-attendance">
-          <button disabled>Save</button>
+          <button
+            disabled={disable}
+            onClick={() => alert("Attendance Updated!")}
+          >
+            Save
+          </button>
         </div>
       </div>
     </>
@@ -173,7 +210,7 @@ const Materials = (props) => {
 
   const [all, shareAll] = useState(allState);
   const [classLink, setClassLink] = useState(
-    props.classDetails.classLink != null ? props.classDetails.classLink : ""
+    props.classDetails?.classLink != null ? props.classDetails?.classLink : ""
   );
 
   const disable = !(props.status === "upcoming") ? false : true;
@@ -205,6 +242,38 @@ const Materials = (props) => {
     );
   }, [link, slide, quiz, assignment]);
 
+  const handleLinkShare = (e, mat) => {
+    switch (mat) {
+      case "link": {
+        shareLink(e.target.checked);
+        break;
+      }
+      case "slides": {
+        shareSlides(e.target.checked);
+        break;
+      }
+      case "assignments": {
+        shareAssignment(e.target.checked);
+        break;
+      }
+      case "quiz": {
+        shareQuiz(e.target.checked);
+        break;
+      }
+    }
+    const materials = {
+      link: mat === "link" ? e.target.checked : link,
+      slides: mat === "slides" ? e.target.checked : slide,
+      assignments: mat === "assignments" ? e.target.checked : link,
+      quiz: mat === "quiz" ? e.target.checked : link,
+    };
+    dispatch(
+      instructorUpdateBatchClass({ materials }, props.batchId, props.classId)
+    );
+  };
+
+  console.log(props);
+
   return (
     <>
       <div className="class-material-details border">
@@ -218,7 +287,7 @@ const Materials = (props) => {
                 shareAll(!all);
               }}
               checked={all}
-              disabled={disable}
+              // disabled={disable}
             />
             <span class="slider"></span>
           </label>
@@ -231,11 +300,9 @@ const Materials = (props) => {
                 <input
                   type="checkbox"
                   id="share-link"
-                  onChange={() => {
-                    shareLink(!link);
-                  }}
+                  onChange={(e) => handleLinkShare(e, "link")}
                   checked={link}
-                  disabled={saveLink}
+                  // disabled={saveLink}
                 />
                 <span class="slider"></span>
               </label>
@@ -261,11 +328,9 @@ const Materials = (props) => {
               <input
                 type="checkbox"
                 id="share-slides"
-                onChange={() => {
-                  shareSlides(!slide);
-                }}
+                onChange={(e) => handleLinkShare(e, "slides")}
                 checked={slide}
-                disabled={disable}
+                // disabled={disable}
               />
               <span class="slider"></span>
             </label>
@@ -276,11 +341,9 @@ const Materials = (props) => {
               <input
                 type="checkbox"
                 id="share-assignment"
-                onChange={() => {
-                  shareAssignment(!assignment);
-                }}
+                onChange={(e) => handleLinkShare(e, "assignments")}
                 checked={assignment}
-                disabled={disable}
+                // disabled={disable}
               />
               <span class="slider"></span>
             </label>
@@ -291,11 +354,9 @@ const Materials = (props) => {
               <input
                 type="checkbox"
                 id="share-quiz"
-                onChange={() => {
-                  shareQuiz(!quiz);
-                }}
+                onChange={(e) => handleLinkShare(e, "quiz")}
                 checked={quiz}
-                disabled={disable}
+                // disabled={disable}
               />
               <span class="slider"></span>
             </label>
@@ -372,7 +433,7 @@ const ClassListCard = (props) => {
       : "";
   var className = "class-card " + status;
 
-  console.log(props.materials);
+  console.log(props);
 
   return (
     <>
@@ -441,7 +502,13 @@ const ClassListCard = (props) => {
                         batchId={props.batchId}
                         classId={props.classId}
                       />
-                      <Attendance students={props.students} status={status} />
+                      <Attendance
+                        students={props.students}
+                        status={status}
+                        batchId={props.batchId}
+                        classId={props.classId}
+                        attendance={props.attendance}
+                      />
                     </div>
                   </div>
                 </div>
@@ -487,15 +554,27 @@ const Schedule = () => {
   const classList =
     schedule && date
       ? schedule.classes.filter((clas) => {
-          if (
-            new Date(clas.startTime).getDate() === date.getDate() &&
-            new Date(clas.startTime).getMonth() === date.getMonth() &&
-            new Date(clas.startTime).getFullYear() === date.getFullYear()
-          )
-            return clas;
+          if (clas.batchType === "freeclass") {
+            if (
+              new Date(clas.singleDate).getDate() === date.getDate() &&
+              new Date(clas.singleDate).getMonth() === date.getMonth() &&
+              new Date(clas.singleDate).getFullYear() === date.getFullYear()
+            )
+              return clas;
+          }
+          // else if(clas.batchType === "normal") {
+          //   if (
+          //     new Date() >= new Date(clas.startDate) && new Date() <= new Date(clas.endDate) &&
+          //     new Date(clas.startTime).getDate() === date.getDate() &&
+          //     new Date(clas.startTime).getMonth() === date.getMonth() &&
+          //     new Date(clas.startTime).getFullYear() === date.getFullYear()
+          //   )
+          //     return clas;
+          // }
         })
       : null;
 
+  console.log(schedule);
   console.log(classList);
 
   return (
@@ -547,19 +626,55 @@ const Schedule = () => {
           <div className="row mx-0" style={{ justifyContent: "space-between" }}>
             <div className="class-list">
               {classList &&
-                classList.map((C) => (
-                  <ClassListCard
-                    key={C._id}
-                    batch={C.batch}
-                    startTime={C.startTime}
-                    endTime={C.endTime}
-                    classId={C.classDetails._id}
-                    batchId={C._id}
-                    materials={C.materials}
-                    students={C.students}
-                    classDetails={C.classDetails}
-                  />
-                ))}
+                classList.map((C) => {
+                  let _studentsArr = [];
+                  let _studentsObj = {};
+                  for (let i in C.students) {
+                    // Extract the title
+                    let objTitle = C.students[i]["userId"];
+
+                    // Use the title as the index
+                    _studentsObj[objTitle] = C.students[i];
+                  }
+                  for (let j in _studentsObj) {
+                    _studentsArr.push(_studentsObj[j]);
+                  }
+                  console.log(_studentsArr);
+                  return (
+                    <ClassListCard
+                      key={C._id}
+                      batch={C.batch}
+                      startTime={
+                        C.batchType === "freeclass" ||
+                        C.batchType === "workshop"
+                          ? new Date(date).setHours(
+                              C.singleTime.toString().split(":")[0],
+                              C.singleTime.toString().split(":")[1],
+                              0,
+                              0
+                            )
+                          : C.startTime
+                      }
+                      endTime={
+                        C.batchType === "freeclass" ||
+                        C.batchType === "workshop"
+                          ? new Date(date).setHours(
+                              C.singleTime.toString().split(":")[0],
+                              C.singleTime.toString().split(":")[1],
+                              0,
+                              0
+                            )
+                          : C.endTime
+                      }
+                      classId={C.classDetails?._id}
+                      batchId={C._id}
+                      materials={C.materials}
+                      students={_studentsArr}
+                      classDetails={C.classDetails}
+                      attendance={C.attendance}
+                    />
+                  );
+                })}
             </div>
           </div>
         </>

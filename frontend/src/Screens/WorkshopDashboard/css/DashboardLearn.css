@@ -111,6 +111,14 @@
   font-size: 1vw;
 }
 
+.join a {
+  color: inherit;
+}
+
+.join a:hover {
+  text-decoration: none;
+}
+
 .dashboard-body .learncard {
   margin-right: 1.6vw;
   width: 42vw;
@@ -124,6 +132,34 @@
   font-size: 1.5vw;
   padding: 1vw 1vw;
   margin-top: 2vw;
+}
+
+.access-session-material {
+  background-color: #d3d3d3;
+  width: fit-content;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.access-session-material h3 {
+  font-size: 14px;
+  width: fit-content;
+  margin: 0;
+}
+
+.access-session-material-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.access-session-material-content a {
+  color: inherit;
+  font-size: 14px;
+  width: fit-content;
+}
+
+.access-session-material-content a:hover {
+  text-decoration: none;
 }
 
 @media (max-width: 600px) {

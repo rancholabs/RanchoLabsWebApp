@@ -38,14 +38,10 @@ router.put("/:id", async (req, res) => {
       res.send(500).send(error);
     } else {
       const { nModified: n } = raw;
-      res
-        .status(204)
-        .send({
-          message:
-            n > 0
-              ? `Course project updated Succesfully`
-              : "No Changes detected",
-        });
+      res.status(204).send({
+        message:
+          n > 0 ? `Course project updated Succesfully` : "No Changes detected",
+      });
     }
   });
 });
@@ -62,14 +58,10 @@ router.delete("/:id", async (req, res) => {
       res.send(500).send(error);
     } else {
       const { nModified: n } = raw;
-      res
-        .status(204)
-        .send({
-          message:
-            n > 0
-              ? `Course project deleted Succesfully`
-              : "No Changes detected",
-        });
+      res.status(204).send({
+        message:
+          n > 0 ? `Course project deleted Succesfully` : "No Changes detected",
+      });
     }
   });
 });
@@ -88,6 +80,114 @@ router.get("/:cid", async (req, res) => {
       res.status(200).send(data);
     }
   });
+});
+
+router.get("/all", async (req, res) => {
+  const cid = req.params.cid;
+  const error = {
+    message: "Error in getting course project",
+    error: "Bad Request",
+  };
+  console.log("projects called");
+  Project.aggregate([
+    {
+      $lookup: {
+        from: "files",
+        let: { image: "$image" },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $eq: ["$_id", "$$image"],
+              },
+            },
+          },
+          {
+            $project: {
+              filePath: 1,
+              _id: 1,
+              originalName: 1,
+            },
+          },
+        ],
+        as: "mainimage",
+      },
+    },
+    {
+      $unwind: {
+        path: "$mainimage",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
+    {
+      $lookup: {
+        from: "files",
+        let: { image_Student: "$image_Student" },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $eq: ["$_id", "$$image_Student"],
+              },
+            },
+          },
+          {
+            $project: {
+              filePath: 1,
+              _id: 1,
+              originalName: 1,
+            },
+          },
+        ],
+        as: "studentimage",
+      },
+    },
+    {
+      $unwind: {
+        path: "$studentimage",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
+    // {
+    //   $group: {
+    //     _id: "$_id",
+    //     courseId: { $first: "$courseId" },
+    //     no: { $first: "$no" },
+    //     name: { $first: "$name" },
+    //     mainimage: { $first: "$mainimage" },
+    //     studentimage: { $first: "$studentimage" },
+    //     question: { $first: "$question" },
+    //     deadline: { $first: "$deadline" },
+    //     image: { $first: "$image" },
+    //     image_Student: { $first: "$image_Student" },
+    //     format_submit: { $first: "$format_submit" },
+    //   },
+    // },
+    {
+      $project: {
+        _id: 1,
+        courseId: 1,
+        no: 1,
+        name: 1,
+        question: 1,
+        deadline: 1,
+        image: 1,
+        image_Student: 1,
+        format_submit: 1,
+        mainimage: 1,
+        studentimage: 1,
+      },
+    },
+  ])
+    .exec()
+    .then((allprojects) => {
+      console.log(allprojects);
+      res.status(200).send(allprojects);
+    })
+    .catch((err) => {
+      console.log("Error:", err);
+      res.status(400).send(error);
+    });
 });
 
 module.exports = router;

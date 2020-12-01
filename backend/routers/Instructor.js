@@ -162,19 +162,27 @@ router.post(
         {
           $project: {
             batch: "$name",
+            batchType: 1,
             startTime: "$classes.startTime",
             endTime: "$classes.endTime",
+            startDate: 1,
+            endDate: 1,
+            singleDate: 1,
+            singleTime: 1,
+            date_time: 1,
             classId: "$classes.classId",
+            // classes: 1,
             _id: 1,
             students: "$students",
             materials: "$classes.materials",
+            attendance: "$classes.attendance",
           },
         },
-        {
-          $match: {
-            batch: { $in: req.body.batch },
-          },
-        },
+        // {
+        //   $match: {
+        //     batch: { $in: req.body.batch },
+        //   },
+        // },
         {
           $lookup: {
             from: "classes",
@@ -239,6 +247,14 @@ router.post(
             students: { $push: "$students" },
             classDetails: { $first: "$classDetails" },
             materials: { $first: "$materials" },
+            attendance: { $first: "$attendance" },
+            batchType: { $first: "$batchType" },
+            startDate: { $first: "$startDate" },
+            endDate: { $first: "$endDate" },
+            singleDate: { $first: "$singleDate" },
+            singleTime: { $first: "$singleTime" },
+            date_time: { $first: "$date_time" },
+            // classes: { $first: "$classes" },
           },
         },
         {

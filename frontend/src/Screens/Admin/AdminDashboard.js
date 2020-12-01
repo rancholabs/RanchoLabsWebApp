@@ -15,6 +15,7 @@ function AdminDashboardFreeClass({
   assignBatch,
   allAssignedBatchesData,
   allInstructors,
+  filterDate,
 }) {
   return (
     <>
@@ -42,118 +43,332 @@ function AdminDashboardFreeClass({
           console.log(singleStudentbatchObj);
           let singleInstructor;
           if (singleStudentbatchObj.length > 0) {
-            singleStudentbatchObj = singleStudentbatchObj[0];
+            singleStudentbatchObj = singleStudentbatchObj.filter(
+              (singleB) => singleB?.batchData?.batchType === "freeclass"
+            )[0]
+              ? singleStudentbatchObj.filter(
+                  (singleB) => singleB?.batchData?.batchType === "freeclass"
+                )[0]
+              : {};
             singleInstructor = allInstructors.filter(
               (sintruct) =>
-                sintruct._id === singleStudentbatchObj.batchData.instructor
+                sintruct._id === singleStudentbatchObj?.batchData?.instructor
             );
             if (singleInstructor.length > 0)
               singleInstructor = singleInstructor[0];
           }
-          console.log(singleInstructor);
           if (
             stud.studentDetails?.role === "student" &&
             stud.loginfor === "freeclass"
           ) {
-            var utcTime = new Date(stud.studentDetails?.createdAt);
-            var hour =
-              utcTime.getHours() == 0
-                ? 12
-                : utcTime.getHours() > 12
-                ? utcTime.getHours() - 12
-                : utcTime.getHours();
-            var min =
-              utcTime.getMinutes() < 10
-                ? "0" + utcTime.getMinutes()
-                : utcTime.getMinutes();
-            var ampm = utcTime.getHours() < 12 ? "AM" : "PM";
-            var time = hour + ":" + min + " " + ampm;
-            return (
-              <TableRow>
-                <TableCell>{time}</TableCell>
-                <TableCell>Student ID</TableCell>
-                <TableCell>
-                  {" "}
-                  {(stud.studentDetails?.name?.first
-                    ? stud.studentDetails?.name?.first
-                    : "") +
-                    " " +
-                    (stud.studentDetails?.name?.last
-                      ? stud.studentDetails?.name?.last
-                      : "")}
-                </TableCell>
-                <TableCell>{stud.grade}</TableCell>
-                <TableCell>{stud.studentDetails?.email}</TableCell>
-                <TableCell>
-                  {(stud.parentDetails?.name?.first
-                    ? stud.parentDetails?.name?.first
-                    : "") +
-                    " " +
-                    (stud.parentDetails?.name?.last
-                      ? stud.parentDetails?.name?.last
-                      : "")}
-                </TableCell>
-                <TableCell>{stud.parentDetails?.email}</TableCell>
-                <TableCell>
-                  {stud.parentDetails?.mobileNo?.code +
-                    "-" +
-                    stud.parentDetails?.mobileNo?.number}
-                </TableCell>
-                <TableCell>
-                  {singleStudentbatchObj._id ? (
-                    singleStudentbatchObj.batchData?.name
-                  ) : (
-                    <button onClick={() => assignBatch(stud.userId)}>
-                      Assign
-                    </button>
-                  )}
-                </TableCell>
-                <TableCell>
-                  {singleStudentbatchObj?.batchData?.singleDate
-                    ? (new Date(
-                        singleStudentbatchObj.batchData.singleDate
-                      ).getDate() < 10
-                        ? "0" +
-                          new Date(
+            if (filterDate !== "") {
+              if (
+                new Date(filterDate).getDate() ===
+                  new Date(stud.studentDetails?.createdAt).getDate() &&
+                new Date(filterDate).getMonth() ===
+                  new Date(stud.studentDetails?.createdAt).getMonth() &&
+                new Date(filterDate).getFullYear() ===
+                  new Date(stud.studentDetails?.createdAt).getFullYear()
+              ) {
+                var utcTime = new Date(stud.studentDetails?.createdAt);
+                var hour =
+                  utcTime.getHours() == 0
+                    ? 12
+                    : utcTime.getHours() > 12
+                    ? utcTime.getHours() - 12
+                    : utcTime.getHours();
+                var min =
+                  utcTime.getMinutes() < 10
+                    ? "0" + utcTime.getMinutes()
+                    : utcTime.getMinutes();
+                var ampm = utcTime.getHours() < 12 ? "AM" : "PM";
+                var time = hour + ":" + min + " " + ampm;
+
+                var today = new Date();
+                var status = "";
+                var startingDate = new Date(
+                  singleStudentbatchObj?.batchData?.singleDate
+                ).setHours(
+                  singleStudentbatchObj?.batchData?.singleTime
+                    .toString()
+                    .split(":")[0],
+                  singleStudentbatchObj?.batchData?.singleTime
+                    .toString()
+                    .split(":")[1],
+                  0,
+                  0
+                );
+                var endingDate = new Date(
+                  singleStudentbatchObj?.batchData?.singleDate
+                ).setHours(
+                  singleStudentbatchObj?.batchData?.singleTime
+                    .toString()
+                    .split(":")[0],
+                  singleStudentbatchObj?.batchData?.singleTime
+                    .toString()
+                    .split(":")[1],
+                  0,
+                  0
+                );
+                if (startingDate && endingDate) {
+                  if (new Date(startingDate) > today) {
+                    status = "upcoming";
+                  } else if (new Date(endingDate) < today) {
+                    status = "completed";
+                  } else if (
+                    new Date(startingDate) < today &&
+                    new Date(endingDate) > today
+                  ) {
+                    status = "active";
+                  } else {
+                    status = "completed";
+                  }
+                } else {
+                  status = "N/A";
+                }
+
+                return (
+                  <TableRow>
+                    <TableCell>{time}</TableCell>
+                    <TableCell>Student ID</TableCell>
+                    <TableCell>
+                      {" "}
+                      {(stud.studentDetails?.name?.first
+                        ? stud.studentDetails?.name?.first
+                        : "") +
+                        " " +
+                        (stud.studentDetails?.name?.last
+                          ? stud.studentDetails?.name?.last
+                          : "")}
+                    </TableCell>
+                    <TableCell>{stud.grade}</TableCell>
+                    <TableCell>{stud.studentDetails?.email}</TableCell>
+                    <TableCell>
+                      {(stud.parentDetails?.name?.first
+                        ? stud.parentDetails?.name?.first
+                        : "") +
+                        " " +
+                        (stud.parentDetails?.name?.last
+                          ? stud.parentDetails?.name?.last
+                          : "")}
+                    </TableCell>
+                    <TableCell>{stud.parentDetails?.email}</TableCell>
+                    <TableCell>
+                      {stud.parentDetails?.mobileNo?.code +
+                        "-" +
+                        stud.parentDetails?.mobileNo?.number}
+                    </TableCell>
+                    <TableCell>
+                      {singleStudentbatchObj._id ? (
+                        singleStudentbatchObj.batchData?.name
+                      ) : (
+                        <button onClick={() => assignBatch(stud.userId)}>
+                          Assign
+                        </button>
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      {singleStudentbatchObj?.batchData?.singleDate
+                        ? (new Date(
                             singleStudentbatchObj.batchData.singleDate
-                          ).getDate()
-                        : new Date(
-                            singleStudentbatchObj.batchData.singleDate
-                          ).getDate()) +
-                      "/" +
-                      (new Date(
-                        singleStudentbatchObj.batchData.singleDate
-                      ).getMonth() +
-                        1 <
-                      10
-                        ? "0" +
+                          ).getDate() < 10
+                            ? "0" +
+                              new Date(
+                                singleStudentbatchObj.batchData.singleDate
+                              ).getDate()
+                            : new Date(
+                                singleStudentbatchObj.batchData.singleDate
+                              ).getDate()) +
+                          "/" +
                           (new Date(
                             singleStudentbatchObj.batchData.singleDate
                           ).getMonth() +
-                            1)
-                        : new Date(
+                            1 <
+                          10
+                            ? "0" +
+                              (new Date(
+                                singleStudentbatchObj.batchData.singleDate
+                              ).getMonth() +
+                                1)
+                            : new Date(
+                                singleStudentbatchObj.batchData.singleDate
+                              ).getMonth() + 1) +
+                          "/" +
+                          new Date(
                             singleStudentbatchObj.batchData.singleDate
-                          ).getMonth() + 1) +
-                      "/" +
-                      new Date(
-                        singleStudentbatchObj.batchData.singleDate
-                      ).getFullYear() +
-                      " - " +
-                      singleStudentbatchObj?.batchData?.singleTime
-                    : "n/a"}
-                </TableCell>
-                <TableCell>
-                  {singleInstructor?._id
-                    ? (singleInstructor?.fname ? singleInstructor?.fname : "") +
+                          ).getFullYear() +
+                          " - " +
+                          singleStudentbatchObj?.batchData?.singleTime
+                        : "n/a"}
+                    </TableCell>
+                    <TableCell>
+                      {singleInstructor?._id
+                        ? (singleInstructor?.fname
+                            ? singleInstructor?.fname
+                            : "") +
+                          " " +
+                          (singleInstructor?.mname
+                            ? singleInstructor?.mname
+                            : "") +
+                          " " +
+                          (singleInstructor?.lname
+                            ? singleInstructor?.lname
+                            : "")
+                        : "n/a"}
+                    </TableCell>
+                    <TableCell>{status}</TableCell>
+                  </TableRow>
+                );
+              }
+            } else {
+              var utcTime = new Date(stud.studentDetails?.createdAt);
+              var hour =
+                utcTime.getHours() == 0
+                  ? 12
+                  : utcTime.getHours() > 12
+                  ? utcTime.getHours() - 12
+                  : utcTime.getHours();
+              var min =
+                utcTime.getMinutes() < 10
+                  ? "0" + utcTime.getMinutes()
+                  : utcTime.getMinutes();
+              var ampm = utcTime.getHours() < 12 ? "AM" : "PM";
+              var time = hour + ":" + min + " " + ampm;
+
+              var today = new Date();
+              var status = "";
+              var startingDate = new Date(
+                singleStudentbatchObj?.batchData?.singleDate
+              ).setHours(
+                singleStudentbatchObj?.batchData?.singleTime
+                  .toString()
+                  .split(":")[0],
+                singleStudentbatchObj?.batchData?.singleTime
+                  .toString()
+                  .split(":")[1],
+                0,
+                0
+              );
+              var endingDate = new Date(
+                singleStudentbatchObj?.batchData?.singleDate
+              ).setHours(
+                singleStudentbatchObj?.batchData?.singleTime
+                  .toString()
+                  .split(":")[0],
+                singleStudentbatchObj?.batchData?.singleTime
+                  .toString()
+                  .split(":")[1],
+                0,
+                0
+              );
+              if (startingDate && endingDate) {
+                if (new Date(startingDate) > today) {
+                  status = "upcoming";
+                } else if (new Date(endingDate) < today) {
+                  status = "completed";
+                } else if (
+                  new Date(startingDate) < today &&
+                  new Date(endingDate) > today
+                ) {
+                  status = "active";
+                } else {
+                  status = "completed";
+                }
+              } else {
+                status = "N/A";
+              }
+
+              return (
+                <TableRow>
+                  <TableCell>{time}</TableCell>
+                  <TableCell>Student ID</TableCell>
+                  <TableCell>
+                    {" "}
+                    {(stud.studentDetails?.name?.first
+                      ? stud.studentDetails?.name?.first
+                      : "") +
                       " " +
-                      (singleInstructor?.mname ? singleInstructor?.mname : "") +
+                      (stud.studentDetails?.name?.last
+                        ? stud.studentDetails?.name?.last
+                        : "")}
+                  </TableCell>
+                  <TableCell>{stud.grade}</TableCell>
+                  <TableCell>{stud.studentDetails?.email}</TableCell>
+                  <TableCell>
+                    {(stud.parentDetails?.name?.first
+                      ? stud.parentDetails?.name?.first
+                      : "") +
                       " " +
-                      (singleInstructor?.lname ? singleInstructor?.lname : "")
-                    : "n/a"}
-                </TableCell>
-                <TableCell>Class Status</TableCell>
-              </TableRow>
-            );
+                      (stud.parentDetails?.name?.last
+                        ? stud.parentDetails?.name?.last
+                        : "")}
+                  </TableCell>
+                  <TableCell>{stud.parentDetails?.email}</TableCell>
+                  <TableCell>
+                    {stud.parentDetails?.mobileNo?.code +
+                      "-" +
+                      stud.parentDetails?.mobileNo?.number}
+                  </TableCell>
+                  <TableCell>
+                    {singleStudentbatchObj._id ? (
+                      singleStudentbatchObj.batchData?.name
+                    ) : (
+                      <button onClick={() => assignBatch(stud.userId)}>
+                        Assign
+                      </button>
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    {singleStudentbatchObj?.batchData?.singleDate
+                      ? (new Date(
+                          singleStudentbatchObj.batchData.singleDate
+                        ).getDate() < 10
+                          ? "0" +
+                            new Date(
+                              singleStudentbatchObj.batchData.singleDate
+                            ).getDate()
+                          : new Date(
+                              singleStudentbatchObj.batchData.singleDate
+                            ).getDate()) +
+                        "/" +
+                        (new Date(
+                          singleStudentbatchObj.batchData.singleDate
+                        ).getMonth() +
+                          1 <
+                        10
+                          ? "0" +
+                            (new Date(
+                              singleStudentbatchObj.batchData.singleDate
+                            ).getMonth() +
+                              1)
+                          : new Date(
+                              singleStudentbatchObj.batchData.singleDate
+                            ).getMonth() + 1) +
+                        "/" +
+                        new Date(
+                          singleStudentbatchObj.batchData.singleDate
+                        ).getFullYear() +
+                        " - " +
+                        singleStudentbatchObj?.batchData?.singleTime
+                      : "n/a"}
+                  </TableCell>
+                  <TableCell>
+                    {singleInstructor?._id
+                      ? (singleInstructor?.fname
+                          ? singleInstructor?.fname
+                          : "") +
+                        " " +
+                        (singleInstructor?.mname
+                          ? singleInstructor?.mname
+                          : "") +
+                        " " +
+                        (singleInstructor?.lname ? singleInstructor?.lname : "")
+                      : "n/a"}
+                  </TableCell>
+                  <TableCell>{status}</TableCell>
+                </TableRow>
+              );
+            }
           }
         })}
       </TableBody>
@@ -393,6 +608,9 @@ function AdminDashboard({
   const [currentSection, setCurrentSection] = useState("freeclass");
   const [setbatchWindow, setsetbatchWindow] = useState(false);
   const [setBatchUserId, setsetBatchUserId] = useState("");
+
+  const [filterDate, setfilterDate] = useState("");
+
   const assignBatch = (userId) => {
     setsetbatchWindow(true);
     setsetBatchUserId(userId);
@@ -478,6 +696,8 @@ function AdminDashboard({
               <input
                 type="date"
                 className="adminDashboard__body__input__colored"
+                value={filterDate}
+                onChange={(e) => setfilterDate(e.target.value)}
               />
               <input type="text" placeholder="Student ID" />
               <input type="text" placeholder="Student Name" />
@@ -495,6 +715,7 @@ function AdminDashboard({
                       allAssignedBatchesData={allAssignedBatchesData}
                       allInstructors={allInstructors}
                       assignBatch={assignBatch}
+                      filterDate={filterDate}
                     />
                   )}
                   {currentSection === "freeworkshop" && (

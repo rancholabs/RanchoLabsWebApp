@@ -182,6 +182,7 @@ const CoursesCourses = ({
   );
 
   console.log(newOrderCourseGroups);
+  console.log(courseGroups);
 
   const handleCarouselChange = () => {
     console.log(activeGrade);
@@ -230,13 +231,13 @@ const CoursesCourses = ({
           return (
             <div
               className={`courses-course-card col p-0 ${
-                course._id === activeCourseG?._id ? "active" : ""
+                course?._id === activeCourseG?._id ? "active" : ""
               }`}
               style={{
                 alignSelf: "flex-start",
               }}
-              key={course._id}
-              id={course._id}
+              key={course?._id}
+              id={course?._id}
               onClick={() => handleActiveCourses(course)}
             >
               <button>

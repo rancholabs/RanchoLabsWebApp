@@ -86,7 +86,11 @@ function AdminNewCourse({
 
   // NEW CLASS VARS
   const [classNo, setclassNo] = useState(0);
+  const [classTopic, setclassTopic] = useState("");
   const [quizLink, setquizLink] = useState("");
+  const [assignmentLink, setassignmentLink] = useState("");
+  const [slidesLink, setslidesLink] = useState("");
+  const [videoLink, setvideoLink] = useState("");
   const [refLink, setrefLink] = useState("");
   const [classes, setClasses] = useState([]);
 
@@ -96,6 +100,8 @@ function AdminNewCourse({
   const [projectQuestion, setprojectQuestion] = useState("");
   const [projectDeadline, setProjectDeadline] = useState(0);
   const [projectFormat, setProjectFormat] = useState("");
+  const [projectMainImage, setprojectMainImage] = useState(null);
+  const [projectStudentImage, setprojectStudentImage] = useState(null);
   const [projects, setProjects] = useState([]);
 
   const [open, setOpen] = React.useState(false);
@@ -370,9 +376,12 @@ function AdminNewCourse({
       {
         courseId: tobeEditedCourse._id,
         classNo: classNo,
-        topic: "Introduction to basics",
+        topic: classTopic,
         materials: {
           quizLink: quizLink,
+          videoLink: videoLink,
+          assignmentLink: assignmentLink,
+          slideLink: slidesLink,
           references: [
             {
               refType: "text",
@@ -395,24 +404,31 @@ function AdminNewCourse({
         .querySelector(".adminNewCourse__newClassForm")
         .classList.remove("show");
       setclassNo(0);
+      setclassTopic("");
       setquizLink("");
+      setassignmentLink("");
+      setvideoLink("");
+      setslidesLink("");
       setrefLink("");
       getUpdatedClasses();
     });
   };
 
-  const addProject = (e) => {
+  const handleProjectStudentImageUpload = (e) => {
+    if (e.target.files[0]) {
+      setprojectStudentImage(e.target.files[0]);
+    }
+  };
+
+  const handleProjectMainImageUpload = (e) => {
+    if (e.target.files[0]) {
+      setprojectMainImage(e.target.files[0]);
+    }
+  };
+
+  const addProject = async (e) => {
     e.preventDefault();
-    const body = [
-      {
-        courseId: tobeEditedCourse._id,
-        no: projectNumber,
-        name: projectTitle,
-        question: projectQuestion,
-        deadline: projectDeadline,
-        format_submit: projectFormat,
-      },
-    ];
+
     const userInfo = localStorage.getItem("userInfo");
     const token = userInfo ? JSON.parse(userInfo).token : "";
     const config = {
@@ -421,6 +437,34 @@ function AdminNewCourse({
         authorization: token,
       },
     };
+
+    const formData = new FormData();
+    formData.append("files", projectMainImage);
+    const fileID = await axios
+      .post("/api/file", formData, config)
+      .then((res) => res.data.fileId)
+      .catch((error) => console.log(error));
+
+    const _formData = new FormData();
+    _formData.append("files", projectStudentImage);
+    const fileIDStudent = await axios
+      .post("/api/file", _formData, config)
+      .then((res) => res.data.fileId)
+      .catch((error) => console.log(error));
+
+    const body = [
+      {
+        courseId: tobeEditedCourse._id,
+        no: projectNumber,
+        name: projectTitle,
+        question: projectQuestion,
+        deadline: projectDeadline,
+        format_submit: projectFormat,
+        image: fileID,
+        image_Student: fileIDStudent,
+      },
+    ];
+
     axios.post("/api/course/project", body, config).then((res) => {
       document
         .querySelector(".adminNewCourse__newProjectForm")
@@ -814,18 +858,30 @@ function AdminNewCourse({
                         />
                       </div>
                       <div className="adminNewCourse__newClassInputSection">
-                        <label>Upload Assignment</label>
-                        <input type="text" />
+                        <label>Class Topic</label>
+                        <input
+                          type="text"
+                          value={classTopic}
+                          onChange={(e) => setclassTopic(e.target.value)}
+                        />
                       </div>
                       <div className="adminNewCourse__newClassInputSection">
-                        <label>Upload Video</label>
-                        <input type="text" />
+                        <label>Video Link</label>
+                        <input
+                          type="text"
+                          value={videoLink}
+                          onChange={(e) => setvideoLink(e.target.value)}
+                        />
                       </div>
                     </div>
                     <div className="adminNewCourse__newClassFormHalf">
                       <div className="adminNewCourse__newClassInputSection">
-                        <label>Upload Slides</label>
-                        <input type="text" />
+                        <label>Slides Link</label>
+                        <input
+                          type="text"
+                          value={slidesLink}
+                          onChange={(e) => setslidesLink(e.target.value)}
+                        />
                       </div>
                       <div className="adminNewCourse__newClassInputSection">
                         <label>Quiz Link</label>
@@ -857,7 +913,6 @@ function AdminNewCourse({
                 </div>
                 {/* EXISTING CLASSES */}
                 {classes.map((singleClass, index) => {
-                  console.log(singleClass);
                   return (
                     <Accordion key={singleClass._id}>
                       <AccordionSummary
@@ -897,10 +952,16 @@ function AdminNewCourse({
                                   // onChange={(e) => setclassNo(e.target.value)}
                                 />
                               </div>
-                              {/* <div className="adminNewCourse__newClassInputSection">
-                                <label>Upload Assignment</label>
-                                <input type="text" disabled />
-                              </div> */}
+                              <div className="adminNewCourse__newClassInputSection">
+                                <label>Class Topic</label>
+                                <input
+                                  type="text"
+                                  value={singleClass.classTopic}
+                                  // onChange={(e) =>
+                                  //   setclassTopic(e.target.value)
+                                  // }
+                                />
+                              </div>
                               <div className="adminNewCourse__newClassInputSection">
                                 <label
                                   style={{
@@ -928,10 +989,11 @@ function AdminNewCourse({
                                       : "#9D9D9D",
                                   }}
                                 >
-                                  Upload Video
+                                  Video Link
                                 </label>
                                 <input
                                   type="text"
+                                  value={singleClass.materials.videoLink}
                                   disabled={singleClass.edit ? false : true}
                                 />
                               </div>
@@ -945,10 +1007,11 @@ function AdminNewCourse({
                                       : "#9D9D9D",
                                   }}
                                 >
-                                  Upload Slides
+                                  Slides Link
                                 </label>
                                 <input
                                   type="text"
+                                  value={singleClass.materials.slideLink}
                                   disabled={singleClass.edit ? false : true}
                                 />
                               </div>
@@ -1028,16 +1091,40 @@ function AdminNewCourse({
                     </div>
                     <div className="adminNewCourse__newProjectInputSection">
                       <label>Image</label>
-                      <div className="adminNewCourse__newProjectInputSectionImage">
-                        <input type="file" style={{ display: "none" }} />
+                      <div
+                        className="adminNewCourse__newProjectInputSectionImage"
+                        onClick={() =>
+                          document
+                            .getElementById("project_main_image_input")
+                            .click()
+                        }
+                      >
+                        <input
+                          type="file"
+                          id="project_main_image_input"
+                          style={{ display: "none" }}
+                          onChange={handleProjectMainImageUpload}
+                        />
                         <h3>+</h3>
                         <p>Attach file</p>
                       </div>
                     </div>
                     <div className="adminNewCourse__newProjectInputSection">
                       <label>Image for student dashboard</label>
-                      <div className="adminNewCourse__newProjectInputSectionImage">
-                        <input type="file" style={{ display: "none" }} />
+                      <div
+                        className="adminNewCourse__newProjectInputSectionImage"
+                        onClick={() =>
+                          document
+                            .getElementById("project_student_image_input")
+                            .click()
+                        }
+                      >
+                        <input
+                          type="file"
+                          style={{ display: "none" }}
+                          id="project_student_image_input"
+                          onChange={handleProjectStudentImageUpload}
+                        />
                         <h3>+</h3>
                         <p>Attach file</p>
                       </div>

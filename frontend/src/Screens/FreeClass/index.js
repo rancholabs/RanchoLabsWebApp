@@ -26,7 +26,7 @@ const FreeClass = ({ location }) => {
   const [email, setEmail] = useState("");
   const [pemail, setPemail] = useState("");
   const [contact, setContact] = useState("");
-  const [grade, setGrade] = useState("6");
+  const [grade, setGrade] = useState("");
   const [message, setMessage] = useState(null);
   const hHistory = useHistory();
   const [isEmailExists, setIsEmailExists] = useState(false);
@@ -245,12 +245,11 @@ const FreeClass = ({ location }) => {
                 </div>
                 <select
                   value={grade}
-                  onChange={(e) => setGrade(e.value)}
-                  placeholder="select grade"
+                  onChange={(e) => setGrade(e.target.value)}
+                  // placeholder="select grade"
                 >
-                  <option value="6" selected>
-                    6
-                  </option>
+                  <option>Select Grade</option>
+                  <option value="6">6</option>
                   <option value="7">7</option>
                   <option value="8">8</option>
                   <option value="9">9</option>

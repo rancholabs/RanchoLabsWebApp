@@ -83,6 +83,7 @@
   border-radius: 8px;
   box-shadow: 0 6px 6px;
   padding: 20px;
+  position: relative;
 }
 
 .adminBatch__cardSection {
@@ -128,4 +129,11 @@
   font-size: 20px;
   text-transform: uppercase;
   text-align: center;
+}
+
+.adminBatch__editIcon {
+  object-fit: contain;
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
 }

@@ -10,6 +10,7 @@
   font-size: 1.4vw;
   font-weight: 500;
   letter-spacing: 0.34px;
+  text-align: center;
 }
 
 .startbuilding button {
@@ -246,6 +247,10 @@
     }
 
 } */
+
+.dproject {
+  width: 100%;
+}
 
 @media (max-width: 600px) {
   .dboard-build .card {

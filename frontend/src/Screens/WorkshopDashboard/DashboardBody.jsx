@@ -127,22 +127,26 @@ const DashboardHeaderLower = () => {
 };
 
 function DashboardBody(props) {
-  const { activeCourseGroup } = useSelector((state) => state.activeCourse);
+  const { activeCourse } = useSelector((state) => state.activeCourse);
 
-  var activeCourse = props.courses.filter((course) => {
-    if (course.courseDetails.groupId === activeCourseGroup) return course;
+  var _activeCourse = props.courses.filter((course) => {
+    if (course.courseDetails.groupId === activeCourse) return course;
   });
 
   var workshop = props.courses.filter((course) => {
     if (course.courseDetails.groupId === "") return course;
   });
 
-  var coursedata = activeCourse.length ? activeCourse[0] : null;
+  console.log(props.courses);
+  console.log(_activeCourse);
+
+  var coursedata = _activeCourse.length ? _activeCourse[0] : null;
   // console.log(activeCourse.courseDetails.groupId)
+  console.log(coursedata);
 
   return (
     <>
-      {activeCourse && (
+      {_activeCourse && (
         <>
           <DashboardHeaderLowerMob />
           <DashboardHeaderLower />
@@ -151,7 +155,7 @@ function DashboardBody(props) {
               <DashboardBanner />
               <DashboardCards
                 coursedata={coursedata}
-                activeCourse={activeCourse}
+                activeCourse={_activeCourse}
               />
               {/* <DashboardCertificate /> */}
               {/* <DashboardCertificateComplete /> */}

@@ -296,4 +296,15 @@ router.get("/:cid", async (req, res) => {
   });
 });
 
+router.put("/:bid", async (req, res) => {
+  const bid = req.params.bid;
+  const error = {
+    message: "Error in getting course batch",
+    error: "Bad Request",
+  };
+  Batch.findByIdAndUpdate({ _id: bid }, req.body).then((doc) =>
+    res.send("Batch updated")
+  );
+});
+
 module.exports = router;

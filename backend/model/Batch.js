@@ -1,5 +1,14 @@
 const mongoose = require("mongoose");
 
+const attendanceSchema = new mongoose.Schema({
+  userId: {
+    type: String,
+  },
+  present: {
+    type: Boolean,
+  },
+});
+
 const ClassSchema = new mongoose.Schema({
   classId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -27,6 +36,7 @@ const ClassSchema = new mongoose.Schema({
       default: false,
     },
   },
+  attendance: [attendanceSchema],
 });
 
 const ProjectSchema = new mongoose.Schema({
