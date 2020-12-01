@@ -3,6 +3,7 @@ import "./AdminBatch.css";
 import AdminNewBatch from "./AdminNewBatch";
 import axios from "axios";
 import EditIcon from "../../Asssets/Icon feather-edit.png";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 function AdminBatch({
   courseGroups,
@@ -107,6 +108,29 @@ function AdminBatch({
     settoBeEditedBatch(editBatch);
   };
 
+  const deleteBatchFunction = (deleteBatch) => {
+    const userInfo = localStorage.getItem("userInfo");
+    const token = userInfo ? JSON.parse(userInfo).token : "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    };
+
+    console.log(deleteBatch);
+
+    axios.delete(`/api/batch/${deleteBatch._id}`, config).then((res) => {
+      console.log(res.data);
+    });
+
+    axios
+      .delete(`/api/course/enroll/deletebatch/${deleteBatch._id}`, config)
+      .then((res) => {
+        console.log(res.data);
+      });
+  };
+
   return (
     <div className="adminBatch">
       {setBatchUserId && (
@@ -190,6 +214,10 @@ function AdminBatch({
                         className="adminBatch__editIcon"
                         onClick={() => editBatchFunction(singleBatch)}
                       ></img>
+                      <DeleteIcon
+                        className="adminBatch__DeleteIcon"
+                        onClick={() => deleteBatchFunction(singleBatch)}
+                      />
                       <div className="adminBatch__cardSection">
                         <h2>{singleBatch.name}</h2>
                         {singleBatch.batchType === "normal" ? (
@@ -270,6 +298,11 @@ function AdminBatch({
                       className="adminBatch__editIcon"
                       onClick={() => editBatchFunction(singleBatch)}
                     ></img>
+                    <DeleteIcon
+                      className="adminBatch__DeleteIcon"
+                      onClick={() => deleteBatchFunction(singleBatch)}
+                    />
+
                     <div className="adminBatch__cardSection">
                       <h2>{singleBatch.name}</h2>
                       {singleBatch.batchType === "normal" ? (

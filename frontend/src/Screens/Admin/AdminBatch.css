@@ -137,3 +137,12 @@
   right: 20px;
   cursor: pointer;
 }
+
+.adminBatch__DeleteIcon {
+  object-fit: contain;
+  position: absolute;
+  right: 20px;
+  top: 60px;
+  color: #4320bf;
+  cursor: pointer;
+}

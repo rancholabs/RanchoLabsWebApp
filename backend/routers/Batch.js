@@ -78,4 +78,12 @@ router.put("/:bid/:cid", async (req, res) => {
   }
 });
 
+router.delete("/:bid", async (req, res) => {
+  Batch.findByIdAndDelete(req.params.bid)
+    .then((doc) => {
+      res.status(201).send(clas);
+    })
+    .catch((err) => res.status(400).send("Error"));
+});
+
 module.exports = router;

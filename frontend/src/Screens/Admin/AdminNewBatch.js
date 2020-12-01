@@ -234,7 +234,7 @@ function AdminNewBatch({
       ];
 
       const batchID = await axios
-        .post(`/api/course/batch/${selectedCourse._id}`, body, config)
+        .post(`/api/course/batch/${selectedCourse?._id}`, body, config)
         .then((res) => {
           console.log(res.data);
           return res.data.id;
@@ -246,7 +246,7 @@ function AdminNewBatch({
           assignedStudents.forEach((stud) => {
             const _body = {
               userId: stud.toString().split(" - ")[1],
-              courseId: selectedCourse._id,
+              courseId: selectedCourse?._id,
               batchId: batchID,
               payment: {
                 paymentId: "freeclass",
@@ -262,7 +262,7 @@ function AdminNewBatch({
         } else {
           const _body = {
             userId: assignedStudents[0].toString().split(" - ")[1],
-            courseId: selectedCourse._id,
+            courseId: selectedCourse?._id,
             batchId: batchID,
             payment: {
               paymentId: "freeclass",
@@ -340,7 +340,7 @@ function AdminNewBatch({
     allAssignedStudents.splice(index, 1);
     setAssignedStudents(allAssignedStudents);
 
-    if (toBeEditedBatch._id) {
+    if (toBeEditedBatch?._id) {
       // REMOVE STUDENT FROM COURSE ENROLLED
       const userInfo = localStorage.getItem("userInfo");
       const token = userInfo ? JSON.parse(userInfo).token : "";
@@ -350,20 +350,22 @@ function AdminNewBatch({
           authorization: token,
         },
       };
-      const bid = toBeEditedBatch._id;
+      const bid = toBeEditedBatch?._id;
       const uid = ai.toString().split("-")[1].toString().trim();
       console.log(bid);
       console.log(uid);
-      axios.delete(`/api/course/enroll/${bid}/${uid}`, config).then((res) => {
-        console.log(res.data);
-      });
+      axios
+        .delete(`/api/course/enroll/deleteuser/${bid}/${uid}`, config)
+        .then((res) => {
+          console.log(res.data);
+        });
     }
   };
 
   const handleCourseGroupChange = (e) => {
     if (e.target.value !== "") {
       const _selectedCourseGroup = courseGroups.filter(
-        (cg) => cg._id === e.target.value
+        (cg) => cg?._id === e.target.value
       );
       setSelectedCourseGroup(_selectedCourseGroup[0]);
       setSelectedCourse({});
@@ -376,7 +378,7 @@ function AdminNewBatch({
   const handleCourseChange = (e) => {
     if (e.target.value !== "") {
       const _selectedCourse = selectedCourseGroup.courses.filter(
-        (course) => course._id === e.target.value
+        (course) => course?._id === e.target.value
       );
       setSelectedCourse(_selectedCourse[0]);
     } else {
@@ -417,24 +419,24 @@ function AdminNewBatch({
           <div className="adminNewBatch__inputSection">
             <label>Category</label>
             <select
-              value={selectedCourseGroup._id ? selectedCourseGroup._id : ""}
+              value={selectedCourseGroup?._id ? selectedCourseGroup?._id : ""}
               onChange={handleCourseGroupChange}
             >
               <option value="">--Select--</option>
               {courseGroups.map((cg) => {
-                return <option value={cg._id}>{cg.name}</option>;
+                return <option value={cg?._id}>{cg.name}</option>;
               })}
             </select>
           </div>
           <div className="adminNewBatch__inputSection">
             <label>Course</label>
             <select
-              value={selectedCourse._id ? selectedCourse._id : ""}
+              value={selectedCourse?._id ? selectedCourse?._id : ""}
               onChange={handleCourseChange}
             >
               <option value="">--Select--</option>
               {selectedCourseGroup.courses?.map((course) => {
-                return <option value={course._id}>{course.name}</option>;
+                return <option value={course?._id}>{course.name}</option>;
               })}
             </select>
           </div>

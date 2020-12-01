@@ -78,7 +78,7 @@ router.use("/dashboard", isAuthenticated, courseDashboardRouter);
 router.use(
   "/enroll",
   isAuthenticated,
-  isAuthorized(["student", "admin"]),
+  // isAuthorized(["student", "admin"]),
   courseEnrollRouter
 );
 router.use("/group", courseGroupRouter);

@@ -127,7 +127,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.delete("/:bid/:uid", (req, res) => {
+router.delete("/deleteuser/:bid/:uid", (req, res) => {
   console.log("deleting student from course enroll");
   StudentCourse.findOneAndDelete({
     batchId: req.params.bid,
@@ -140,6 +140,22 @@ router.delete("/:bid/:uid", (req, res) => {
       console.log(err);
       res.status(400).send({ message: "Error in retreiving the user courses" });
     });
+});
+
+router.delete("/deletebatch/:bid", (req, res) => {
+  console.log("deleting entire batch from course enroll");
+  StudentCourse.find({ batchId: req.params.bid }).then((docs) => {
+    docs.forEach((bat) => {
+      StudentCourse.findByIdAndDelete(bat._id)
+        .then((courses) => {
+          console.log("batch deleted");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+    res.status(200).send("batch deleted");
+  });
 });
 
 router.get("/all", (req, res) => {
