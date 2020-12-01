@@ -43,41 +43,52 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   const id = req.params.id;
-  const updateData = req.body ? req.body : {};
-  if (updateData.materials) {
-    if (updateData.materials.lesson) {
-      updateData.materials.lesson = mongoose.Types.ObjectId(
-        updateData.materials.lesson
-      );
-    }
-    if (updateData.materials.video) {
-      updateData.materials.video = mongoose.Types.ObjectId(
-        updateData.materials.video
-      );
-    }
-    if (updateData.materials.references) {
-      updateData.materials.references = updateData.materials.references.map(
-        (ref, idx) => {
-          if (ref.file) {
-            ref.file = mongoose.Types.ObjectId(ref.file);
-          }
-          return ref;
-        }
-      );
-    }
-  }
-  Class.updateOne({ _id: id }, { $set: updateData }, (err, raw) => {
-    if (err) {
-      console.log(error);
-      res.send(500).send(error);
-    } else {
-      const { nModified: n } = raw;
-      res.status(204).send({
-        message:
-          n > 0 ? `Course class updated Succesfully` : "No Changes detected",
-      });
-    }
-  });
+  console.log(id);
+  // const updateData = req.body ? req.body : {};
+  // if (updateData.materials) {
+  //   if (updateData.materials.lesson) {
+  //     updateData.materials.lesson = mongoose.Types.ObjectId(
+  //       updateData.materials.lesson
+  //     );
+  //   }
+  //   if (updateData.materials.video) {
+  //     updateData.materials.video = mongoose.Types.ObjectId(
+  //       updateData.materials.video
+  //     );
+  //   }
+  //   if (updateData.materials.references) {
+  //     updateData.materials.references = updateData.materials.references.map(
+  //       (ref, idx) => {
+  //         if (ref.file) {
+  //           ref.file = mongoose.Types.ObjectId(ref.file);
+  //         }
+  //         return ref;
+  //       }
+  //     );
+  //   }
+  // }
+  console.log(req.body);
+  Class.findByIdAndUpdate(id, req.body)
+    .then((doc) => {
+      res.status(204).send("Class updated");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send(err);
+    });
+
+  // , (err, raw) => {
+  //   if (err) {
+  //     console.log(err);
+  //     res.send(500).send(err);
+  //   } else {
+  //     const { nModified: n } = raw;
+  //     res.status(204).send({
+  //       message:
+  //         n > 0 ? `Course class updated Succesfully` : "No Changes detected",
+  //     });
+  //   }
+  // });
 });
 
 router.delete("/:id", async (req, res) => {

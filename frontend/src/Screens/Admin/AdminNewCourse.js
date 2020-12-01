@@ -414,6 +414,43 @@ function AdminNewCourse({
     });
   };
 
+  const updateClasses = (e, index) => {
+    e.preventDefault();
+    console.log(classes[index]);
+    const body = {
+      // courseId: tobeEditedCourse._id,
+      classNo: classes[index].classNo,
+      topic: classes[index].classTopic,
+      materials: classes[index].materials,
+    };
+
+    const userInfo = localStorage.getItem("userInfo");
+    const token = userInfo ? JSON.parse(userInfo).token : "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    };
+    axios
+      .put(`/api/course/class/${classes[index]._id}`, body, config)
+      .then((res) => {
+        // document
+        //   .querySelector(".adminNewCourse__newClassForm")
+        //   .classList.remove("show");
+        console.log(res.data);
+        alert("Class Updated!");
+        // setclassNo(0);
+        // setclassTopic("");
+        // setquizLink("");
+        // setassignmentLink("");
+        // setvideoLink("");
+        // setslidesLink("");
+        // setrefLink("");
+        // getUpdatedClasses();
+      });
+  };
+
   const handleProjectStudentImageUpload = (e) => {
     if (e.target.files[0]) {
       setprojectStudentImage(e.target.files[0]);
@@ -517,6 +554,36 @@ function AdminNewCourse({
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleClassChange = (e, index) => {
+    let _classes = [...classes];
+    let _state = e.target.id.toString().split("-")[0];
+    _classes[index][_state] = e.target.value;
+    setClasses(_classes);
+  };
+
+  const handleClassLinkChange = (e, section, index) => {
+    let _classes = [...classes];
+    switch (section) {
+      case "reference": {
+        _classes[index].materials.references[0].link = e.target.value;
+        break;
+      }
+      case "video": {
+        _classes[index].materials.videoLink = e.target.value;
+        break;
+      }
+      case "slides": {
+        _classes[index].materials.slideLink = e.target.value;
+        break;
+      }
+      case "quiz": {
+        _classes[index].materials.quizLink = e.target.value;
+        break;
+      }
+    }
+    setClasses(_classes);
   };
 
   // const uploadPDF = (e) => {
@@ -949,17 +1016,26 @@ function AdminNewCourse({
                                   type="text"
                                   value={singleClass.classNo}
                                   disabled={singleClass.edit ? false : true}
-                                  // onChange={(e) => setclassNo(e.target.value)}
+                                  id={"classNo-" + index}
+                                  onChange={(e) => handleClassChange(e, index)}
                                 />
                               </div>
                               <div className="adminNewCourse__newClassInputSection">
-                                <label>Class Topic</label>
+                                <label
+                                  style={{
+                                    color: singleClass.edit
+                                      ? "#4320BF"
+                                      : "#9D9D9D",
+                                  }}
+                                >
+                                  Class Topic
+                                </label>
                                 <input
                                   type="text"
-                                  value={singleClass.classTopic}
-                                  // onChange={(e) =>
-                                  //   setclassTopic(e.target.value)
-                                  // }
+                                  value={singleClass.topic}
+                                  id={"topic-" + index}
+                                  disabled={singleClass.edit ? false : true}
+                                  onChange={(e) => handleClassChange(e, index)}
                                 />
                               </div>
                               <div className="adminNewCourse__newClassInputSection">
@@ -978,7 +1054,9 @@ function AdminNewCourse({
                                     singleClass.materials.references[0].link
                                   }
                                   disabled={singleClass.edit ? false : true}
-                                  // onChange={(e) => setrefLink(e.target.value)}
+                                  onChange={(e) =>
+                                    handleClassLinkChange(e, "reference", index)
+                                  }
                                 />
                               </div>
                               <div className="adminNewCourse__newClassInputSection">
@@ -995,6 +1073,9 @@ function AdminNewCourse({
                                   type="text"
                                   value={singleClass.materials.videoLink}
                                   disabled={singleClass.edit ? false : true}
+                                  onChange={(e) =>
+                                    handleClassLinkChange(e, "video", index)
+                                  }
                                 />
                               </div>
                             </div>
@@ -1013,6 +1094,9 @@ function AdminNewCourse({
                                   type="text"
                                   value={singleClass.materials.slideLink}
                                   disabled={singleClass.edit ? false : true}
+                                  onChange={(e) =>
+                                    handleClassLinkChange(e, "slides", index)
+                                  }
                                 />
                               </div>
                               <div className="adminNewCourse__newClassInputSection">
@@ -1030,6 +1114,9 @@ function AdminNewCourse({
                                   value={singleClass.materials.quizLink}
                                   // onChange={(e) => setquizLink(e.target.value)}
                                   disabled={singleClass.edit ? false : true}
+                                  onChange={(e) =>
+                                    handleClassLinkChange(e, "quiz", index)
+                                  }
                                 />
                               </div>
                             </div>
@@ -1039,7 +1126,9 @@ function AdminNewCourse({
                               <button className="adminNewCourse__newClassFormButtons__cancel">
                                 Cancel
                               </button>
-                              <button>Save</button>
+                              <button onClick={(e) => updateClasses(e, index)}>
+                                Save
+                              </button>
                             </div>
                           )}
                         </div>
