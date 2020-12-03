@@ -19,6 +19,20 @@ router.get("/:bid", async (req, res) => {
   }
 });
 
+router.get("/school/:sid", async (req, res) => {
+  const sid = req.params.sid;
+  const batch = await Batch.find({ school: sid });
+  try {
+    if (batch) {
+      res.status(201).send({ batch });
+    } else {
+      res.status(404).send({ error: "Batch not found" });
+    }
+  } catch (e) {
+    res.status(404).send({ message: "error", error: e });
+  }
+});
+
 router.patch("/:bid/:iid", async (req, res) => {
   try {
     const update = await Batch.updateOne(

@@ -6,6 +6,7 @@ import AdminBatch from "./AdminBatch";
 import AdminInstructor from "./AdminInstructor";
 import AdminDashboard from "./AdminDashboard";
 import AdminMasterData from "./AdminMasterData";
+import AdminSchool from "./AdminSchool";
 
 function Index() {
   const [currentSection, setCurrentSection] = useState("curriculum");
@@ -13,6 +14,7 @@ function Index() {
   const [allStudentData, setallStudentData] = useState([]);
   const [allAssignedBatchesData, setallAssignedBatchesData] = useState([]);
   const [allInstructors, setallInstructors] = useState([]);
+  const [allSchools, setallSchools] = useState([]);
 
   useEffect(() => {
     const userInfo = localStorage.getItem("userInfo");
@@ -43,6 +45,14 @@ function Index() {
       .then((res) => {
         console.log(res.data);
         setallInstructors(res.data);
+      })
+      .catch((err) => console.log(err));
+
+    axios
+      .get("/api/school", config)
+      .then((res) => {
+        console.log(res.data);
+        setallSchools(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -112,6 +122,12 @@ function Index() {
               Batches
             </li>
             <li
+              onClick={() => setCurrentSection("school")}
+              className={currentSection === "school" && "selected"}
+            >
+              Schools
+            </li>
+            <li
               onClick={() => setCurrentSection("curriculum")}
               // className={currentSection === "curriculum" && "selected"}
             >
@@ -143,6 +159,7 @@ function Index() {
               courseGroups={courseGroups}
               allStudentData={allStudentData}
               allInstructors={allInstructors}
+              allSchoolsData={allSchools}
             />
           )}
           {currentSection === "instructor" && <AdminInstructor />}
@@ -156,6 +173,9 @@ function Index() {
           )}
           {currentSection === "master" && (
             <AdminMasterData allStudentData={allStudentData} />
+          )}
+          {currentSection === "school" && (
+            <AdminSchool allSchoolsData={allSchools} />
           )}
         </div>
       </div>

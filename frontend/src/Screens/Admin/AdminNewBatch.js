@@ -12,6 +12,7 @@ function AdminNewBatch({
   courseGroups,
   allStudentData,
   toBeEditedBatch,
+  allSchoolsData,
 }) {
   const [batchName, setBatchName] = useState("");
   const [batchType, setbatchType] = useState("normal");
@@ -19,9 +20,12 @@ function AdminNewBatch({
   const [batchEndingDate, setbatchEndingDate] = useState("");
   const [batchSingleDate, setbatchSingleDate] = useState("");
   const [batchSingleTime, setbatchSingleTime] = useState("");
+  const [batchDoubleDate, setbatchDoubleDate] = useState("");
+  const [batchDoubleTime, setbatchDoubleTime] = useState("");
   const [minGrade, setminGrade] = useState("");
   const [maxGrade, setmaxGrade] = useState("");
   const [batch_link, setbatch_link] = useState("");
+  const [school, setschool] = useState("");
 
   const [numberOfDays, setnumberOfDays] = useState(1);
   const [day_time, setday_time] = useState([
@@ -40,7 +44,7 @@ function AdminNewBatch({
 
   useEffect(() => {
     console.log(toBeEditedBatch);
-    if (toBeEditedBatch._id) {
+    if (toBeEditedBatch?._id) {
       const userInfo = localStorage.getItem("userInfo");
       const token = userInfo ? JSON.parse(userInfo).token : "";
       const config = {
@@ -55,10 +59,13 @@ function AdminNewBatch({
       setbatchEndingDate(toBeEditedBatch.endDate);
       setbatchSingleDate(toBeEditedBatch.singleDate);
       setbatchSingleTime(toBeEditedBatch.singleTime);
+      setbatchDoubleDate(toBeEditedBatch.doubleDate);
+      setbatchDoubleTime(toBeEditedBatch.doubleTime);
       setminGrade(toBeEditedBatch.gradeRange?.minG);
       setmaxGrade(toBeEditedBatch.gradeRange?.maxG);
       setday_time(toBeEditedBatch.date_time);
       setbatch_link(toBeEditedBatch.batch_link);
+      setschool(toBeEditedBatch.school);
 
       let assignedInstruct = [];
       let _instruct = instructors.filter(
@@ -112,10 +119,7 @@ function AdminNewBatch({
     const fetchStudents = async () => {
       const __allStudentData = [];
       allStudentData.forEach((stud) => {
-        if (
-          stud.studentDetails?.role === "student" &&
-          stud.loginfor === "freeclass"
-        )
+        if (stud.studentDetails?.role === "student")
           __allStudentData.push(stud);
       });
       console.log(__allStudentData);
@@ -149,25 +153,27 @@ function AdminNewBatch({
       },
     };
 
-    if (toBeEditedBatch._id) {
+    if (toBeEditedBatch?._id) {
       // UPDATE BATCH DATA
-      const body = [
-        {
-          name: batchName,
-          batchType: batchType,
-          startDate: batchStartingDate,
-          endDate: batchEndingDate,
-          singleDate: batchSingleDate,
-          gradeRange: {
-            minG: minGrade,
-            maxG: maxGrade,
-          },
-          date_time: day_time,
-          singleTime: batchSingleTime,
-          batch_link: batch_link,
-          instructor: assignedInstructors[0]?.toString().split(" - ")[1],
+      const body = {
+        name: batchName,
+        batchType: batchType,
+        startDate: batchStartingDate,
+        endDate: batchEndingDate,
+        singleDate: batchSingleDate,
+        singleTime: batchSingleTime,
+        doubleDate: batchDoubleDate,
+        doubleTime: batchDoubleTime,
+        gradeRange: {
+          minG: minGrade,
+          maxG: maxGrade,
         },
-      ];
+        date_time: day_time,
+        batch_link: batch_link,
+        instructor: assignedInstructors[0]?.toString().split(" - ")[1],
+        school,
+        // courseId: selectedCourse._id,
+      };
 
       axios
         .put(`/api/course/batch/${toBeEditedBatch._id}`, body, config)
@@ -179,16 +185,16 @@ function AdminNewBatch({
       if (assignedStudents.length > 0) {
         // ASSIGN BATCH TO STUDENT IN STUDENTCOURSE SCHEMA
 
-        if (batchType === "normal") {
+        if (batchType === "normal" || batchType === "workshop") {
           assignedStudents.forEach((stud) => {
             const _body = {
               userId: stud.toString().split(" - ")[1],
               courseId: selectedCourse._id,
               batchId: toBeEditedBatch._id,
               payment: {
-                paymentId: "freeclass",
-                orderId: "freeclass",
-                signature: "freeclass",
+                paymentId: batchType === "workshop" ? "workshop" : "normal",
+                orderId: batchType === "workshop" ? "workshop" : "normal",
+                signature: batchType === "workshop" ? "workshop" : "normal",
               },
             };
             console.log(_body);
@@ -222,43 +228,53 @@ function AdminNewBatch({
           startDate: batchStartingDate,
           endDate: batchEndingDate,
           singleDate: batchSingleDate,
+          doubleDate: batchDoubleDate,
+          doubleTime: batchDoubleTime,
+          singleTime: batchSingleTime,
           gradeRange: {
             minG: minGrade,
             maxG: maxGrade,
           },
           date_time: day_time,
-          singleTime: batchSingleTime,
           batch_link: batch_link,
           instructor: assignedInstructors[0]?.toString().split(" - ")[1],
         },
       ];
 
+      if (batchType === "workshop") {
+        body[0].school = school;
+      }
+
       const batchID = await axios
         .post(`/api/course/batch/${selectedCourse?._id}`, body, config)
         .then((res) => {
           console.log(res.data);
+
           return res.data.id;
         });
 
       if (assignedStudents.length > 0) {
         // ASSIGN BATCH TO STUDENT IN STUDENTCOURSE SCHEMA
-        if (batchType === "normal") {
+        if (batchType === "normal" || batchType === "workshop") {
           assignedStudents.forEach((stud) => {
             const _body = {
               userId: stud.toString().split(" - ")[1],
               courseId: selectedCourse?._id,
               batchId: batchID,
               payment: {
-                paymentId: "freeclass",
-                orderId: "freeclass",
-                signature: "freeclass",
+                paymentId: batchType === "workshop" ? "workshop" : "normal",
+                orderId: batchType === "workshop" ? "workshop" : "normal",
+                signature: batchType === "workshop" ? "workshop" : "normal",
               },
             };
             console.log(_body);
             axios
               .post(`/api/course/enroll/admin`, _body, config)
-              .then((res) => console.log(res.data));
+              .then((res) => {
+                console.log(res.data);
+              });
           });
+          alert("Batch Created!");
         } else {
           const _body = {
             userId: assignedStudents[0].toString().split(" - ")[1],
@@ -475,15 +491,46 @@ function AdminNewBatch({
               />
             </div>
           ) : (
-            <div className="adminNewBatch__inputSection">
-              <label>Date</label>
-              <input
-                type="date"
-                value={batchSingleDate}
-                onChange={(e) => setbatchSingleDate(e.target.value)}
-                //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
-              />
-            </div>
+            <>
+              <div className="adminNewBatch__inputSection">
+                <label>Day 1 Date</label>
+                <input
+                  type="date"
+                  value={batchSingleDate}
+                  onChange={(e) => setbatchSingleDate(e.target.value)}
+                  //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
+                />
+              </div>
+              <div className="adminNewBatch__inputSection">
+                <label>Day 2 Date</label>
+                <input
+                  type="date"
+                  value={batchDoubleDate}
+                  onChange={(e) => setbatchDoubleDate(e.target.value)}
+                  //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
+                />
+              </div>
+            </>
+          )}
+          {batchType === "workshop" && (
+            <>
+              <div className="adminNewBatch__inputSection">
+                <label>School</label>
+                <select
+                  value={school}
+                  onChange={(e) => setschool(e.target.value)}
+                >
+                  <option value="">--Select School--</option>
+                  {allSchoolsData.map((singleSchool) => {
+                    return (
+                      <option value={singleSchool._id}>
+                        {singleSchool.name}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+            </>
           )}
           <div className="adminNewBatch__inputSection">
             <label>Batch Link</label>
@@ -574,11 +621,20 @@ function AdminNewBatch({
         ) : (
           <div className="adminNewBatch__detailsmiddle">
             <div className="adminNewBatch__inputSection">
-              <label>Time</label>
+              <label>Day 1 Time</label>
               <input
                 type="time"
                 value={batchSingleTime}
                 onChange={(e) => setbatchSingleTime(e.target.value)}
+                //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
+              />
+            </div>
+            <div className="adminNewBatch__inputSection">
+              <label>Day 2 Time</label>
+              <input
+                type="time"
+                value={batchDoubleTime}
+                onChange={(e) => setbatchDoubleTime(e.target.value)}
                 //   disabled={tobeEditedCourse._id && allowEdits ? false : true}
               />
             </div>

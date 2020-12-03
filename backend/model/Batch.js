@@ -68,17 +68,23 @@ const BatchSchema = new mongoose.Schema({
     ref: "Course",
   },
   startDate: {
-    type: Date,
+    type: String,
     // required: true,
   },
   endDate: {
-    type: Date,
+    type: String,
     // required: true,
   },
   singleDate: {
-    type: Date,
+    type: String,
   },
   singleTime: {
+    type: String,
+  },
+  doubleDate: {
+    type: String,
+  },
+  doubleTime: {
     type: String,
   },
   gradeRange: {
@@ -100,6 +106,10 @@ const BatchSchema = new mongoose.Schema({
   projects: [ProjectSchema],
   batch_link: String,
   batchType: String,
+  school: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "School",
+  },
 });
 
 module.exports = mongoose.model("Batch", BatchSchema);

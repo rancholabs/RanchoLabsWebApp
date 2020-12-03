@@ -1,0 +1,8 @@
+.workshop-school-logo {
+  height: 50px;
+  position: fixed;
+  top: 30px;
+  right: calc(120 * var(--vp));
+  z-index: 15;
+  object-fit: contain;
+}

@@ -132,12 +132,12 @@ router.post(
             instructor: instructorb._id,
           },
         },
-        {
-          $unwind: {
-            path: "$classes",
-            preserveNullAndEmptyArrays: true,
-          },
-        },
+        // {
+        //   $unwind: {
+        //     path: "$classes",
+        //     preserveNullAndEmptyArrays: true,
+        //   },
+        // },
         {
           $lookup: {
             from: "studentcourses",
@@ -160,6 +160,34 @@ router.post(
           },
         },
         {
+          $lookup: {
+            from: "classes",
+            let: { courseId: "$courseId" },
+            pipeline: [
+              {
+                $match: {
+                  $expr: {
+                    $eq: ["$courseId", "$$courseId"],
+                  },
+                },
+              },
+              {
+                $project: {
+                  __v: 0,
+                  courseId: 0,
+                },
+              },
+            ],
+            as: "classesDetails",
+          },
+        },
+        {
+          $unwind: {
+            path: "$classesDetails",
+            preserveNullAndEmptyArrays: true,
+          },
+        },
+        {
           $project: {
             batch: "$name",
             batchType: 1,
@@ -169,13 +197,16 @@ router.post(
             endDate: 1,
             singleDate: 1,
             singleTime: 1,
+            doubleDate: 1,
+            doubleTime: 1,
             date_time: 1,
-            classId: "$classes.classId",
-            // classes: 1,
+            // classId: "$classes.classId",
+            classes: 1,
             _id: 1,
             students: "$students",
-            materials: "$classes.materials",
-            attendance: "$classes.attendance",
+            classesDetails: 1,
+            // materials: "$classes.materials",
+            // attendance: "$classes.attendance",
           },
         },
         // {
@@ -183,34 +214,34 @@ router.post(
         //     batch: { $in: req.body.batch },
         //   },
         // },
-        {
-          $lookup: {
-            from: "classes",
-            let: { classId: "$classId" },
-            pipeline: [
-              {
-                $match: {
-                  $expr: {
-                    $eq: ["$_id", "$$classId"],
-                  },
-                },
-              },
-              {
-                $project: {
-                  attendance: 1,
-                  classLink: 1,
-                },
-              },
-            ],
-            as: "classDetails",
-          },
-        },
-        {
-          $unwind: {
-            path: "$classDetails",
-            preserveNullAndEmptyArrays: true,
-          },
-        },
+        // {
+        //   $lookup: {
+        //     from: "classes",
+        //     let: { classId: "$classId" },
+        //     pipeline: [
+        //       {
+        //         $match: {
+        //           $expr: {
+        //             $eq: ["$_id", "$$classId"],
+        //           },
+        //         },
+        //       },
+        //       {
+        //         $project: {
+        //           attendance: 1,
+        //           classLink: 1,
+        //         },
+        //       },
+        //     ],
+        //     as: "classDetails",
+        //   },
+        // },
+        // {
+        //   $unwind: {
+        //     path: "$classDetails",
+        //     preserveNullAndEmptyArrays: true,
+        //   },
+        // },
         {
           $unwind: {
             path: "$students",
@@ -245,7 +276,7 @@ router.post(
             startTime: { $first: "$startTime" },
             endTime: { $first: "$endTime" },
             students: { $push: "$students" },
-            classDetails: { $first: "$classDetails" },
+            // classDetails: { $first: "$classDetails" },
             materials: { $first: "$materials" },
             attendance: { $first: "$attendance" },
             batchType: { $first: "$batchType" },
@@ -253,10 +284,28 @@ router.post(
             endDate: { $first: "$endDate" },
             singleDate: { $first: "$singleDate" },
             singleTime: { $first: "$singleTime" },
+            doubleDate: { $first: "$doubleDate" },
+            doubleTime: { $first: "$doubleTime" },
             date_time: { $first: "$date_time" },
-            // classes: { $first: "$classes" },
+            classes: { $first: "$classes" },
+            classesDetails: { $push: "$classesDetails" },
           },
         },
+        // {
+        //   $project: {
+        //     _id: 1,
+        //     students: 1,
+        //     batch: 1,
+        //     batchId: 1,
+        //     classes: 1,
+        //     projects: 1,
+        //     batchClasses: "$batch.classes",
+        //     batchProjects: "$batch.projects",
+        //     progressClasses: "$progress.learns",
+        //     progressProjects: "$progress.builds",
+        //     innovations: "$progress.innovations",
+        //   },
+        // },
         {
           $sort: {
             startTime: 1,

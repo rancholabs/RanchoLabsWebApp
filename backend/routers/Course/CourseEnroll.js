@@ -77,22 +77,24 @@ router.post("/", async (req, res) => {
 });
 
 router.post("/admin", async (req, res) => {
-  console.log("...");
   StudentCourse.find({
     // courseId: req.body.courseId,
-    userId: req.body.userId,
+    userId: req.body.userId ? req.body.userId : req.userId,
     batchId: req.body.batchId,
   }).then((doc) => {
-    console.log(doc);
     if (doc && doc.length > 0) {
       // UPDATE
       console.log("update");
     } else {
       // NEW
       console.log("new");
-      const courseId = mongoose.Types.ObjectId(req.body.courseId);
+      const courseId = req.body.courseId
+        ? mongoose.Types.ObjectId(req.body.courseId)
+        : null;
       const studentCourse = new StudentCourse({
-        userId: mongoose.Types.ObjectId(req.body.userId),
+        userId: mongoose.Types.ObjectId(
+          req.body.userId ? req.body.userId : req.userId
+        ),
         courseId: courseId,
         batchId: mongoose.Types.ObjectId(req.body.batchId),
         payment: req.body.payment,

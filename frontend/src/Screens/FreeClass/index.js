@@ -10,6 +10,7 @@ import Fontawesome from "react-fontawesome";
 import codes from "./codes";
 import { useHistory } from "react-router-dom";
 import EmailExistsAlertModal from "./EmailExistsAlertModal";
+import queryString from "query-string";
 
 function validateEmail(email) {
   var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
@@ -36,6 +37,10 @@ const FreeClass = ({ location }) => {
 
   const { isUpdated } = useSelector((state) => state.studentUpdate);
 
+  const params = queryString.parse(location.search);
+
+  console.log(params);
+
   useEffect(() => {
     if (error) {
       if (error && error.message === "Email already exists") {
@@ -57,8 +62,7 @@ const FreeClass = ({ location }) => {
     }
   });
 
-  const loginfor =
-    location && location.search ? location.search.split("loginfor=")[1] : null;
+  const loginfor = params.loginfor ? params.loginfor : null;
 
   useEffect(() => {
     console.log(loginfor);
@@ -94,9 +98,23 @@ const FreeClass = ({ location }) => {
 
       console.log(parentDetails, grade, loginfor, freeEnrollment);
 
-      dispatch(
-        updateStudent({ parentDetails, grade, loginfor, freeEnrollment })
-      );
+      if (params.school) {
+        dispatch(
+          updateStudent({
+            parentDetails,
+            grade,
+            loginfor,
+            freeEnrollment,
+            school: params.school,
+            batch: params.batch,
+            course: params.course,
+          })
+        );
+      } else {
+        dispatch(
+          updateStudent({ parentDetails, grade, loginfor, freeEnrollment })
+        );
+      }
     }
   }, [userInfo]);
 

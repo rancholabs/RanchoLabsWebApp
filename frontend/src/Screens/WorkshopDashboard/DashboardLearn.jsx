@@ -57,18 +57,27 @@ const Daywise = ({ singleClass, batch }) => {
 
   //   var sdate = getDate(singleClass.classTime.startTime);
   //   var edate = getDate(singleClass.classTime.endTime);
+
+  var currentDate =
+    singleClass.classNo === 1 ? batch.singleDate : batch.doubleDate;
+  var currentTime =
+    singleClass.classNo === 1 ? batch.singleTime : batch.doubleTime;
+
   var sdate = getDate(
-    batch.batchType === "freeclass" ? new Date(batch.singleDate) : new Date()
+    batch.batchType === "freeclass"
+      ? new Date(currentDate)
+      : new Date(currentDate)
   );
   var edate = getDate(
-    batch.batchType === "freeclass" ? new Date(batch.singleDate) : new Date()
+    batch.batchType === "freeclass"
+      ? new Date(currentDate)
+      : new Date(currentDate)
   );
   var suffix =
-    parseInt(batch.singleTime.toString().split(":")[0]) >= 12 ? "PM" : "AM";
-  var hours =
-    ((parseInt(batch.singleTime.toString().split(":")[0]) + 11) % 12) + 1;
+    parseInt(currentTime.toString().split(":")[0]) >= 12 ? "PM" : "AM";
+  var hours = ((parseInt(currentTime.toString().split(":")[0]) + 11) % 12) + 1;
   var freeclasstime =
-    hours + ":" + batch.singleTime.toString().split(":")[1] + " " + suffix;
+    hours + ":" + currentTime.toString().split(":")[1] + " " + suffix;
 
   const [showsessionMaterial, setshowsessionMaterial] = React.useState(false);
 
@@ -172,7 +181,8 @@ const Daywise = ({ singleClass, batch }) => {
                     </div>
                     <div className="align-self-center join-date">
                       {sdate.date} {sdate.month} {sdate.year} -{" "}
-                      {batch.batchType === "freeclass" ? (
+                      {batch.batchType === "freeclass" ||
+                      batch.batchType === "workshop" ? (
                         "From " + freeclasstime + " IST"
                       ) : (
                         <>
@@ -246,6 +256,18 @@ const DashboardLearnCard = (props) => {
                 {Dlearn.classes.map((singleClass, index) => {
                   if (Dlearn.batch.batchType === "freeclass") {
                     if (singleClass.classNo === 1) {
+                      return (
+                        <Daywise
+                          singleClass={singleClass}
+                          batch={Dlearn.batch}
+                        />
+                      );
+                    }
+                  } else if (Dlearn.batch.batchType === "workshop") {
+                    if (
+                      singleClass.classNo === 1 ||
+                      singleClass.classNo === 2
+                    ) {
                       return (
                         <Daywise
                           singleClass={singleClass}

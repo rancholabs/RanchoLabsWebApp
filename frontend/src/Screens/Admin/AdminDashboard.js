@@ -57,6 +57,7 @@ function AdminDashboardFreeClass({
             if (singleInstructor.length > 0)
               singleInstructor = singleInstructor[0];
           }
+          console.log(singleStudentbatchObj);
           if (
             stud.studentDetails?.role === "student" &&
             stud.loginfor === "freeclass"

@@ -45,10 +45,10 @@ const MaterialsSchema = {
     type: String,
     required: true,
   },
-  assignmentLink: {
-    type: String,
-    required: true,
-  },
+  // assignmentLink: {
+  //   type: String,
+  //   required: true,
+  // },
   quizLink: {
     type: String,
     required: true,

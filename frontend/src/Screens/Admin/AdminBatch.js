@@ -11,6 +11,7 @@ function AdminBatch({
   setBatchUserId,
   backtoDashboard,
   allInstructors,
+  allSchoolsData,
 }) {
   const [selectedCourseGroup, setSelectedCourseGroup] = useState(
     courseGroups[0]
@@ -181,6 +182,7 @@ function AdminBatch({
           backToAllBatches={backToAllBatches}
           courseGroups={courseGroups}
           allStudentData={allStudentData}
+          allSchoolsData={allSchoolsData}
         />
       ) : editBatch ? (
         <AdminNewBatch
@@ -188,6 +190,7 @@ function AdminBatch({
           courseGroups={courseGroups}
           allStudentData={allStudentData}
           toBeEditedBatch={toBeEditedBatch}
+          allSchoolsData={allSchoolsData}
         />
       ) : (
         <div className="adminBatch__cardsContainer">

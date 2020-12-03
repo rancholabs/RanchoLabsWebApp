@@ -184,7 +184,7 @@ const Attendance = (props) => {
 const Materials = (props) => {
   const dispatch = useDispatch();
 
-  console.log(props.classDetails);
+  console.log(props);
 
   const [slide, shareSlides] = useState(
     props.materials != null ? props.materials.slides : false
@@ -450,7 +450,9 @@ const ClassListCard = (props) => {
                 }}
               >
                 <div>
-                  <div className="class-course-name">Programming for AI</div>
+                  <div className="class-course-name">
+                    {props?.classDetails?.topic}
+                  </div>
                   <div className="class-status">{status}</div>
                 </div>
                 <div>
@@ -551,6 +553,10 @@ const Schedule = () => {
     }
   }, [userInfo, batch]);
 
+  useEffect(() => {
+    axios.get(``);
+  }, []);
+
   const classList =
     schedule && date
       ? schedule.classes.filter((clas) => {
@@ -559,6 +565,17 @@ const Schedule = () => {
               new Date(clas.singleDate).getDate() === date.getDate() &&
               new Date(clas.singleDate).getMonth() === date.getMonth() &&
               new Date(clas.singleDate).getFullYear() === date.getFullYear()
+            )
+              return clas;
+          } else if (clas.batchType === "workshop") {
+            if (
+              (new Date(clas.singleDate).getDate() === date.getDate() &&
+                new Date(clas.singleDate).getMonth() === date.getMonth() &&
+                new Date(clas.singleDate).getFullYear() ===
+                  date.getFullYear()) ||
+              (new Date(clas.doubleDate).getDate() === date.getDate() &&
+                new Date(clas.doubleDate).getMonth() === date.getMonth() &&
+                new Date(clas.doubleDate).getFullYear() === date.getFullYear())
             )
               return clas;
           }
@@ -627,6 +644,7 @@ const Schedule = () => {
             <div className="class-list">
               {classList &&
                 classList.map((C) => {
+                  // REMOVE DUPLICATED FROM STUDENTS
                   let _studentsArr = [];
                   let _studentsObj = {};
                   for (let i in C.students) {
@@ -640,38 +658,104 @@ const Schedule = () => {
                     _studentsArr.push(_studentsObj[j]);
                   }
                   console.log(_studentsArr);
+
+                  // REMOVE DUPLICATES FROM CLASSES
+                  let _classArray = [];
+                  let _classObj = {};
+                  for (let i in C.classesDetails) {
+                    // Extract the title
+                    let objTitle = C.classesDetails[i]["_id"];
+
+                    // Use the title as the index
+                    _classObj[objTitle] = C.classesDetails[i];
+                  }
+                  for (let j in _classObj) {
+                    _classArray.push(_classObj[j]);
+                  }
+                  console.log(_classArray);
+
+                  if (
+                    new Date(C.singleDate).getDate() === date.getDate() &&
+                    new Date(C.singleDate).getMonth() === date.getMonth() &&
+                    new Date(C.singleDate).getFullYear() === date.getFullYear()
+                  ) {
+                    C.currentDate = C.singleDate;
+                    C.currentTime = C.singleTime;
+                    C.activeClassDetails = _classArray.filter(
+                      (cobj) => cobj.classNo === 1
+                    )[0]
+                      ? _classArray.filter((cobj) => cobj.classNo === 1)[0]
+                      : {};
+                  } else if (
+                    new Date(C.doubleDate).getDate() === date.getDate() &&
+                    new Date(C.doubleDate).getMonth() === date.getMonth() &&
+                    new Date(C.doubleDate).getFullYear() === date.getFullYear()
+                  ) {
+                    C.currentDate = C.doubleDate;
+                    C.currentTime = C.doubleTime;
+                    C.activeClassDetails = _classArray.filter(
+                      (cobj) => cobj.classNo === 2
+                    )[0]
+                      ? _classArray.filter((cobj) => cobj.classNo === 2)[0]
+                      : {};
+                  }
                   return (
                     <ClassListCard
                       key={C._id}
                       batch={C.batch}
                       startTime={
-                        C.batchType === "freeclass" ||
-                        C.batchType === "workshop"
+                        C.batchType === "freeclass"
                           ? new Date(date).setHours(
                               C.singleTime.toString().split(":")[0],
                               C.singleTime.toString().split(":")[1],
+                              0,
+                              0
+                            )
+                          : C.batchType === "workshop"
+                          ? new Date(date).setHours(
+                              C.currentTime.toString().split(":")[0],
+                              C.currentTime.toString().split(":")[1],
                               0,
                               0
                             )
                           : C.startTime
                       }
                       endTime={
-                        C.batchType === "freeclass" ||
-                        C.batchType === "workshop"
+                        C.batchType === "freeclass"
                           ? new Date(date).setHours(
                               C.singleTime.toString().split(":")[0],
                               C.singleTime.toString().split(":")[1],
                               0,
                               0
                             )
+                          : C.batchType === "workshop"
+                          ? new Date(date).setHours(
+                              C.currentTime.toString().split(":")[0],
+                              C.currentTime.toString().split(":")[1],
+                              0,
+                              0
+                            )
                           : C.endTime
                       }
-                      classId={C.classDetails?._id}
+                      classId={
+                        C.batchType === "workshop" ||
+                        C.batchType === "freeclass"
+                          ? C.activeClassDetails?._id
+                          : ""
+                      }
                       batchId={C._id}
-                      materials={C.materials}
+                      materials={
+                        C.classes.filter(
+                          (clas) => clas.classId === C.activeClassDetails?._id
+                        )[0]?.materials
+                      }
                       students={_studentsArr}
-                      classDetails={C.classDetails}
-                      attendance={C.attendance}
+                      classDetails={C.activeClassDetails}
+                      attendance={
+                        C.classes.filter(
+                          (clas) => clas.classId === C.activeClassDetails?._id
+                        )[0]?.attendance
+                      }
                     />
                   );
                 })}

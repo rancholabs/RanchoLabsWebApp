@@ -1,106 +1,112 @@
-
-.Workshop-cards{
-    padding: 3vw 9vw ;
-    background-color: #0A0E2A;
+.Workshop-cards {
+  padding: 3vw 9vw;
+  background-color: #0a0e2a;
 }
 
-.Workshop-cards .card-title{
-    color: #F74B42;
-    /* border-bottom: 3px solid #3CFAFF; */
-    width: max-content;
-    padding: 0 2vw 0.6vw 0;
-    font-weight: 500;
-    font-size: 1.9vw;
-    margin-bottom: 0;
+.Workshop-cards .card-title {
+  color: #f74b42;
+  /* border-bottom: 3px solid #3CFAFF; */
+  width: max-content;
+  padding: 0 2vw 0.6vw 0;
+  font-weight: 500;
+  font-size: 1.9vw;
+  margin-bottom: 0;
 }
-.Workshop-cards hr{
-    border-top: 4px solid #3CFAFF;
-    margin-left: 0;
-    margin-top: 0;
+.Workshop-cards hr {
+  border-top: 4px solid #3cfaff;
+  margin-left: 0;
+  margin-top: 0;
 }
 
-.Workshop-cards .Mobilecards{
-    display: none;
+.Workshop-cards .Mobilecards {
+  display: none;
+}
+
+.Workshop-cards .info-title {
+  color: #3cfaff;
+  font-size: 2.7vw;
+  margin: 3vw 0 0.8vw;
+  text-align: center;
 }
 
 .Workshop-cards ul {
-    margin: 0;
-    font-size: 1.35vw;
-    padding-left: 1vw;
+  margin: 0;
+  font-size: 1.35vw;
+  padding-left: 1vw;
 }
 
-.Workshop-cards ul li{
-    font-weight: 300;
+.Workshop-cards ul li {
+  font-weight: 300;
 }
 
-.Workshop-cards .card{
-    background-color: #190A4D;
-    padding: 3vh 1.5vh;
-    margin: 2.5vh 0;
-    /* box-shadow: 0px 5px 6px #3AF2F8; */
+.Workshop-cards .card {
+  background-color: #190a4d;
+  padding: 3vh 1.5vh;
+  margin: 2.5vh 0;
+  /* box-shadow: 0px 5px 6px #3AF2F8; */
 }
 
 .Workshop-cards ul.dashed {
+  list-style-type: "-  ";
+  color: #ffffff;
+  line-height: 2.4vw;
+}
+
+.Workshop-cards .card-body {
+  padding: 1vw 1vw 0 1.5vw;
+}
+
+@media (max-width: 768px) and (min-height: 901px) {
+  .Workshop-cards .card {
+    height: 85% !important;
+  }
+}
+
+@media (max-width: 1024px) and (min-height: 1366px) {
+  .Workshop-cards .card {
+    height: 85% !important;
+  }
+}
+
+@media (max-width: 768px) and (max-height: 900px) {
+  .Workshop-cards {
+    padding: 0 6vw;
+  }
+
+  .Workshop-cards .card-title {
+    color: #f74b42;
+    border-bottom: 3px solid #3cfaff;
+    width: fit-content;
+    padding: 1vh 1vh 0.5vh 0;
+    font-weight: 600;
+    font-size: 2.5vh;
+    margin: auto;
+    margin-top: 3vh;
+  }
+
+  .Workshop-cards ul {
+    margin: 0;
+    font-size: 2vh;
+    padding-left: unset;
+  }
+
+  .Workshop-cards .card {
+    background-color: #190a4d;
+    padding: 3vh 1.5vh;
+    margin: 2.5vh 0;
+    box-shadow: unset;
+  }
+
+  .Workshop-cards ul.dashed {
     list-style-type: "-  ";
-    color: #FFFFFF;
-    line-height: 2.4vw;
-}
+    color: #ffffff;
+    line-height: 3.4vh;
+  }
+  .Workshop-cards .Mobilecards {
+    display: block;
+  }
 
-.Workshop-cards .card-body{
-    padding: 1vw 1vw 0 1.5vw;
-}
-
-@media(max-width:768px) and (min-height:901px){
-    .Workshop-cards .card{
-        height: 85% !important;
-    }
-}
-
-@media (max-width:1024px) and (min-height:1366px){
-    .Workshop-cards .card{
-        height: 85% !important;
-    }
-}
-
-@media(max-width:768px) and (max-height:900px){    
-    .Workshop-cards{
-        padding: 0 6vw;
-    }
-    
-    .Workshop-cards .card-title{
-        color: #F74B42;
-        border-bottom: 3px solid #3CFAFF;
-        width: fit-content;
-        padding: 1vh 1vh 0.5vh 0;
-        font-weight: 600;
-        font-size: 2.5vh;
-        margin: auto;
-        margin-top: 3vh;
-    }
-    
-    .Workshop-cards ul {
-        margin: 0;
-        font-size: 2vh;
-        padding-left: unset;
-    }
-    
-    .Workshop-cards .card{
-        background-color: #190A4D;
-        padding: 3vh 1.5vh;
-        margin: 2.5vh 0;
-        box-shadow: unset;
-    }
-    
-    .Workshop-cards ul.dashed {
-        list-style-type: "-  ";
-        color: #FFFFFF;
-        line-height: 3.4vh;
-    }    
-    .Workshop-cards .Mobilecards{
-        display: block;
-    }
-
-    .Workshop-cards .Desktopcards{
-        display: none;
-    }
+  .Workshop-cards .Desktopcards {
+    display: none;
+  }
 }

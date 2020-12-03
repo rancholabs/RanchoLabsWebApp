@@ -1,0 +1,34 @@
+.desktopLearnCards {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 80px;
+}
+
+.learn__singleCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 18%;
+}
+
+.build__singleCard {
+  width: 22%;
+}
+
+.learn__singleCard img {
+  width: 50%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.learn__singleCard h3 {
+  margin: 20px 0 0 0;
+  color: #f74b42;
+  font-size: 1.35vw;
+  font-weight: normal;
+  text-align: center;
+}
+
+.desktop-learn-title {
+  text-align: left !important;
+}
