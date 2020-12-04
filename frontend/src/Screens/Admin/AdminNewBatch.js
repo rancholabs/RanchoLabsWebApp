@@ -95,15 +95,25 @@ function AdminNewBatch({
               _stud?.userId;
             assignedStud.push(_studName);
 
-            courseGroups.forEach((cg) => {
-              const _cgcourse = cg.courses.filter(
-                (cgcourse) => cgcourse._id === estud.courseId
-              );
-              if (_cgcourse.length > 0) {
-                _eCourse.push(_cgcourse[0]);
-                _eCourseGroup.push(cg);
-              }
-            });
+            // courseGroups.forEach((cg) => {
+            //   const _cgcourse = cg.courses.filter(
+            //     (cgcourse) => cgcourse._id === estud.courseId
+            //   );
+            //   if (_cgcourse.length > 0) {
+            //     _eCourse.push(_cgcourse[0]);
+            //     _eCourseGroup.push(cg);
+            //   }
+            // });
+          }
+        });
+
+        courseGroups.forEach((cg) => {
+          const _cgcourse = cg.courses.filter(
+            (cgcourse) => cgcourse._id === toBeEditedBatch.courseId
+          );
+          if (_cgcourse.length > 0) {
+            _eCourse.push(_cgcourse[0]);
+            _eCourseGroup.push(cg);
           }
         });
         setSelectedCourse(_eCourse[0]);
