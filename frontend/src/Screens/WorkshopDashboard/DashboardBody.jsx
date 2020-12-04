@@ -21,26 +21,28 @@ const DashboardCourseChoice = (props) => {
   const groups = useSelector((state) => state.courseGroups);
   const { loading, error, coursegroups } = groups;
 
+  const { activeCourse } = useSelector((state) => state.activeCourse);
+  const { student } = useSelector((state) => state.studentInfo);
+
   useEffect(() => {
     dispatch(courseGroups());
   }, []);
 
   useEffect(() => {
+    console.log(coursegroups);
+    console.log(student);
     if (student?.loginfor === "workshop") {
-      let workshopID = coursegroups.filter(
+      let workshopID = coursegroups?.filter(
         (cg) => cg.name.toString().toLowerCase() === "workshop"
       )[0]?._id;
       dispatch(activeCourseGroup(workshopID));
     } else if (student?.loginfor === "freeclass") {
-      let freeclassID = coursegroups.filter(
+      let freeclassID = coursegroups?.filter(
         (cg) => cg.name.toString().toLowerCase() === "free class"
       )[0]?._id;
       dispatch(activeCourseGroup(freeclassID));
     }
-  }, [coursegroups]);
-
-  const { activeCourse } = useSelector((state) => state.activeCourse);
-  const { student } = useSelector((state) => state.studentInfo);
+  }, [coursegroups, student]);
 
   if (coursegroups) {
     var selected = coursegroups.filter((course) => {

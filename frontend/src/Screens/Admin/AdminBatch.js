@@ -208,10 +208,13 @@ function AdminBatch({
             if (singleInstructor.length > 0)
               singleInstructor = singleInstructor[0];
 
-            let singleSchool = allSchoolsData.filter(
-              (sch) => sch._id === singleBatch.school
-            );
-            if (singleSchool.length > 0) singleSchool = singleSchool[0];
+            let singleSchool;
+            if (singleBatch.batchType === "workshop") {
+              singleSchool = allSchoolsData.filter(
+                (sch) => sch._id === singleBatch.school
+              );
+              if (singleSchool.length > 0) singleSchool = singleSchool[0];
+            }
 
             if (selectedBatchType !== "all") {
               if (selectedBatchType === singleBatch.batchType) {
