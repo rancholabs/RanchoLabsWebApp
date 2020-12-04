@@ -207,6 +207,12 @@ function AdminBatch({
             );
             if (singleInstructor.length > 0)
               singleInstructor = singleInstructor[0];
+
+            let singleSchool = allSchoolsData.filter(
+              (sch) => sch._id === singleBatch.school
+            );
+            if (singleSchool.length > 0) singleSchool = singleSchool[0];
+
             if (selectedBatchType !== "all") {
               if (selectedBatchType === singleBatch.batchType) {
                 return (
@@ -281,6 +287,15 @@ function AdminBatch({
                             : "n/a"}
                         </h3>
                       </div>
+                      {singleSchool?._id ? (
+                        <div className="adminBatch__cardSection">
+                          <h2>School</h2>
+                          <h3>
+                            {" "}
+                            {singleSchool?._id ? singleSchool?.name : ""}
+                          </h3>
+                        </div>
+                      ) : null}
                       {setBatchUserId && (
                         <button
                           onClick={() => assignBatchToStudent(singleBatch)}
@@ -364,6 +379,12 @@ function AdminBatch({
                           : "n/a"}
                       </h3>
                     </div>
+                    {singleSchool?._id ? (
+                      <div className="adminBatch__cardSection">
+                        <h2>School</h2>
+                        <h3> {singleSchool?._id ? singleSchool?.name : ""}</h3>
+                      </div>
+                    ) : null}
                     {setBatchUserId && (
                       <button onClick={() => assignBatchToStudent(singleBatch)}>
                         Assign Batch

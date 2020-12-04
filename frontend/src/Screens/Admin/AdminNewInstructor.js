@@ -54,65 +54,69 @@ function AdminNewInstructor({
   }, [selectedInstructor]);
 
   const addNewInstructor = () => {
-    // API TO CREATE USER
-    const body = {
-      name: {
-        first: fname,
-        last: lname,
-      },
-      mobileNo: {
-        code: "+91",
-        number: phoneNumber,
-      },
-      email: instructorEmail,
-      password: instructorPassword,
-    };
-    const userInfo = localStorage.getItem("userInfo");
-    const token = userInfo ? JSON.parse(userInfo).token : "";
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: token,
-      },
-    };
-
-    axios.post("/api/register/admin", body, config).then((res) => {
-      console.log(res.data);
-      const userID = res.data.userID;
-
-      // API TO UPDATE ROLE
-      const roleBody = {
-        role: "instructor",
+    if (selectedInstructor.id) {
+      alert("Instructor updation pending.");
+    } else {
+      // API TO CREATE USER
+      const body = {
+        name: {
+          first: fname,
+          last: lname,
+        },
+        mobileNo: {
+          code: "+91",
+          number: phoneNumber,
+        },
+        email: instructorEmail,
+        password: instructorPassword,
+      };
+      const userInfo = localStorage.getItem("userInfo");
+      const token = userInfo ? JSON.parse(userInfo).token : "";
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: token,
+        },
       };
 
-      axios
-        .put(`/api/user/updateRole/${userID}`, roleBody, config)
-        .then((res) => {
-          console.log(res.data);
-        });
-
-      // API TO CREATE INSTRUCTOR WITH USER'S ID
-      const instructorBody = {
-        userId: userID,
-        fname,
-        lname,
-        mname,
-        email,
-        phoneNumber,
-        aadharNumber,
-        panNumber,
-        joiningDate,
-        accountNumber,
-        accountName,
-        bankName,
-        ifscCode,
-      };
-
-      axios.post(`/api/instructor`, instructorBody, config).then((res) => {
+      axios.post("/api/register/admin", body, config).then((res) => {
         console.log(res.data);
-        getUpdatedInstructors();
+        const userID = res.data.userID;
+
+        // API TO UPDATE ROLE
+        const roleBody = {
+          role: "instructor",
+        };
+
+        axios
+          .put(`/api/user/updateRole/${userID}`, roleBody, config)
+          .then((res) => {
+            console.log(res.data);
+          });
+
+        // API TO CREATE INSTRUCTOR WITH USER'S ID
+        const instructorBody = {
+          userId: userID,
+          fname,
+          lname,
+          mname,
+          email,
+          phoneNumber,
+          aadharNumber,
+          panNumber,
+          joiningDate,
+          accountNumber,
+          accountName,
+          bankName,
+          ifscCode,
+        };
+
+        axios.post(`/api/instructor`, instructorBody, config).then((res) => {
+          console.log(res.data);
+          getUpdatedInstructors();
+        });
       });
-    });
+    }
   };
 
   return (

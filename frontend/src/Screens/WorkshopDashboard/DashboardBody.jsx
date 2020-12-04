@@ -14,7 +14,7 @@ import DashboardTestimonials from "./DashboardTestimonial";
 import DashboardCongratsCard from "./DashboardCongratsCard";
 import DashboardCertificateComplete from "./DashboardCertificateComplete";
 
-const DashboardCourseChoice = () => {
+const DashboardCourseChoice = (props) => {
   // const [course, setCourse] = useState(0);
   const dispatch = useDispatch();
 
@@ -25,7 +25,22 @@ const DashboardCourseChoice = () => {
     dispatch(courseGroups());
   }, []);
 
+  useEffect(() => {
+    if (student?.loginfor === "workshop") {
+      let workshopID = coursegroups.filter(
+        (cg) => cg.name.toString().toLowerCase() === "workshop"
+      )[0]?._id;
+      dispatch(activeCourseGroup(workshopID));
+    } else if (student?.loginfor === "freeclass") {
+      let freeclassID = coursegroups.filter(
+        (cg) => cg.name.toString().toLowerCase() === "free class"
+      )[0]?._id;
+      dispatch(activeCourseGroup(freeclassID));
+    }
+  }, [coursegroups]);
+
   const { activeCourse } = useSelector((state) => state.activeCourse);
+  const { student } = useSelector((state) => state.studentInfo);
 
   if (coursegroups) {
     var selected = coursegroups.filter((course) => {
@@ -38,6 +53,8 @@ const DashboardCourseChoice = () => {
   function handleClick(id) {
     dispatch(activeCourseGroup(id));
   }
+
+  console.log(coursegroups);
 
   return (
     <>
@@ -80,13 +97,33 @@ const DashboardCourseChoice = () => {
               {selected[0]?.name}
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              {coursegroups.map((group) => (
-                <>
-                  <Dropdown.Item onClick={() => handleClick(group._id)}>
-                    {group.name}
-                  </Dropdown.Item>
-                </>
-              ))}
+              {coursegroups.map((group) => {
+                if (
+                  student?.loginfor === "workshop" &&
+                  group.name.toString().toLowerCase() !== "free class"
+                ) {
+                  return (
+                    <>
+                      <Dropdown.Item onClick={() => handleClick(group._id)}>
+                        {group.name}
+                      </Dropdown.Item>
+                    </>
+                  );
+                } else if (
+                  student?.loginfor === "freeclass" &&
+                  group.name.toString().toLowerCase() !== "workshop"
+                ) {
+                  return (
+                    <>
+                      <Dropdown.Item onClick={() => handleClick(group._id)}>
+                        {group.name}
+                      </Dropdown.Item>
+                    </>
+                  );
+                } else {
+                  return null;
+                }
+              })}
             </Dropdown.Menu>
           </Dropdown>
         </div>
@@ -102,7 +139,7 @@ const DashboardHeaderLowerMob = (props) => {
       style={{ height: "9vw" }}
     >
       <div className="col-7 p-0">
-        <DashboardCourseChoice />
+        <DashboardCourseChoice courses={props.courses} />
       </div>
       <div className="col-5 pl-15">
         <div className="profile-title">PROFILE</div>
@@ -111,12 +148,12 @@ const DashboardHeaderLowerMob = (props) => {
   );
 };
 
-const DashboardHeaderLower = () => {
+const DashboardHeaderLower = (props) => {
   return (
     <div style={{ backgroundColor: "#020122", paddingTop: "2vw" }}>
       <div className="row dashboard-header-lower mr-0">
         <div className="col-lg-5">
-          <DashboardCourseChoice />
+          <DashboardCourseChoice courses={props.courses} />
         </div>
         <div className="col-lg-7" style={{ alignSelf: "flex-end" }}>
           <div className="profile-title">PROFILE</div>
@@ -128,6 +165,7 @@ const DashboardHeaderLower = () => {
 
 function DashboardBody(props) {
   const { activeCourse } = useSelector((state) => state.activeCourse);
+  const dispatch = useDispatch();
 
   var _activeCourse = props.courses.filter((course) => {
     if (course.courseDetails.groupId === activeCourse) return course;
@@ -148,8 +186,8 @@ function DashboardBody(props) {
     <>
       {_activeCourse && (
         <>
-          <DashboardHeaderLowerMob />
-          <DashboardHeaderLower />
+          <DashboardHeaderLowerMob courses={props.courses} />
+          <DashboardHeaderLower courses={props.courses} />
           {
             <div style={{ backgroundColor: "#F0F0F2" }}>
               <DashboardBanner />

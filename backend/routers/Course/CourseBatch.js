@@ -294,6 +294,61 @@ router.get("/:cid", async (req, res) => {
       res.status(200).send(data);
     }
   });
+
+  // const error = {
+  //   message: "Error in retrieving schools",
+  //   error: "Bad Request",
+  // };
+
+  // Batch.aggregate([
+  //   {
+  //     $match: {
+  //       courseId: cid,
+  //     },
+  //   },
+  //   {
+  //     $lookup: {
+  //       from: "files",
+  //       let: { image: "$image" },
+  //       pipeline: [
+  //         {
+  //           $match: {
+  //             $expr: {
+  //               $eq: ["$_id", "$$image"],
+  //             },
+  //           },
+  //         },
+  //         {
+  //           $project: {
+  //             filePath: 1,
+  //             _id: 1,
+  //             originalName: 1,
+  //           },
+  //         },
+  //       ],
+  //       as: "image",
+  //     },
+  //   },
+  //   {
+  //     $unwind: {
+  //       path: "$image",
+  //       preserveNullAndEmptyArrays: true,
+  //     },
+  //   },
+  //   {
+  //     $project: {
+  //       __v: 0,
+  //     },
+  //   },
+  // ])
+  //   .exec()
+  //   .then((school) => {
+  //     res.status(200).send(school);
+  //   })
+  //   .catch((err) => {
+  //     console.log("Error:", err);
+  //     res.status(400).send(error);
+  //   });
 });
 
 router.put("/:bid", async (req, res) => {
