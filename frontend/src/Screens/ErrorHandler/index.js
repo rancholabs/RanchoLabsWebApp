@@ -10,7 +10,6 @@ const ErrorHandler = (props) => {
     const goHome = () => {
       history.push('/')
     }
-    console.log(props.location.search)
     const message = props.location.search ? props.location.search.split("=")[1] : 'Unknown Error';
     const dispatch = useDispatch()
     

@@ -1,0 +1,226 @@
+.student-profile-side-nav {
+    width: calc(503 * var(--vp));
+    background: #030224 0% 0% no-repeat padding-box;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.student-profile-side-nav .image-container {
+    margin-top: calc(47 * var(--vp));
+    margin-bottom: calc(47 * var(--vp));
+}
+
+.student-profile-side-nav .image {
+    position: relative;
+}
+
+.student-profile-side-nav .back-image,
+.student-profile-side-nav .main-image {
+    width: calc(326 * var(--vp));
+    height: calc(326 * var(--vp));
+    background: #707070 0% 0% no-repeat padding-box;
+    border: calc(10 * var(--vp)) solid #FFFFFF;
+    border-radius: 50%;
+}
+
+.student-profile-side-nav .front-circle {
+    width: calc(326 * var(--vp));
+    height: calc(326 * var(--vp));
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: calc(10 * var(--vp)) solid #FFFFFF;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.9;
+    z-index: 2;
+}
+
+.student-profile-side-nav .front-image {
+    width: calc(156 * var(--vp));
+    height: calc(126 * var(--vp));
+    position: absolute;
+    top: calc(50% - 63 * var(--vp));
+    left: calc(50% - 78 * var(--vp));
+    z-index: 3;
+}
+
+.student-profile-side-nav .image-file {
+    width: calc(326 * var(--vp));
+    height: calc(326 * var(--vp));
+    border: calc(10 * var(--vp)) solid transparent;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 4;
+    cursor: pointer;
+}
+
+.student-profile-side-nav .name-container {
+    margin-top: calc(71 * var(--vp));
+    margin-bottom: calc(82 * var(--vp));
+    text-align: center;
+}
+
+.student-profile-side-nav .name-container .label {
+    font: normal normal bold calc(30 * var(--vp))/calc(39 * var(--vp)) Roboto;
+    letter-spacing: calc(0 * var(--vp));
+    color: #FFFFFF;
+}
+
+.student-profile-side-nav .name-container .box {
+    margin-top: calc(16 * var(--vp));
+    margin-left: calc(32 * var(--vp));
+    margin-right: calc(32 * var(--vp));
+    border: calc(3 * var(--vp)) dashed #3CFAFF;
+    opacity: 0.82;
+    position: relative;
+    padding: calc(32 * var(--vp));
+    font: normal normal normal calc(30 * var(--vp))/calc(39 * var(--vp)) Roboto;
+    letter-spacing: calc(0 * var(--vp));
+    color: #3CFAFF;
+}
+
+.student-profile-side-nav .name-container .name {
+    font: normal normal bold calc(40 * var(--vp))/calc(39 * var(--vp)) Roboto;
+    margin-bottom: calc(72 * var(--vp));
+}
+
+.student-profile-side-nav .name-container input {
+    width: 100%;
+    border-width: 0;
+    background-color: transparent;
+    color: #3CFAFF;
+}
+
+.student-profile-side-nav .actions {
+    margin-top: calc(15.5 * var(--vp));
+    width: calc(231 * var(--vp));
+    display: flex;
+    justify-content: space-between;
+}
+
+.student-profile-side-nav .actions > button {
+    border: calc(2 * var(--vp)) solid #F74B42;
+    border-radius: calc(55 * var(--vp));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: normal normal 500 calc(20 * var(--vp))/calc(1 * var(--vp)) Roboto;
+    letter-spacing: calc(0.3 * var(--vp));
+    height: calc(30 * var(--vp));
+    outline: none;
+}
+
+.student-profile-side-nav .actions > .save {
+    color: #FFFFFF;
+    background: #F74B42 0% 0% no-repeat padding-box;
+    width: calc(82 * var(--vp));
+}
+
+.student-profile-side-nav .actions > .cancel {
+    color: #F74B42;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    width: calc(113 * var(--vp));
+}
+
+.student-profile-side-nav .nav {
+    display: flex;
+    flex-direction: column;
+    margin-top: calc(-11 * var(--vp));
+    margin-bottom: calc(11 * var(--vp));
+}
+
+.student-profile-side-nav .nav-item {
+    display: flex;
+    align-items: center;
+    column-gap: calc(44 * var(--vp));
+    font: normal normal normal calc(24 * var(--vp))/calc(1 * var(--vp)) Roboto;
+    letter-spacing: calc(0.36 * var(--vp));
+    color: #FFFFFF;
+    margin-top: calc(24 * var(--vp));
+    margin-bottom: calc(24 * var(--vp));
+    cursor: pointer;
+}
+
+.student-profile-side-nav .nav-item > img {
+    width: calc(44 * var(--vp));
+    height: calc(44 * var(--vp));
+}
+
+.student-profile-side-nav .preview-website {
+    width: calc(376 * var(--vp));
+    min-height: calc(59 * var(--vp));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: calc(0 * var(--vp)) calc(3 * var(--vp)) calc(6 * var(--vp)) #8B8A8A57;
+    border: calc(2 * var(--vp)) solid #3CFAFF;
+    border-radius: calc(55 * var(--vp));
+    background-color: transparent;
+    font: normal normal normal calc(24 * var(--vp))/calc(1 * var(--vp)) Roboto;
+    letter-spacing: calc(0.36 * var(--vp));
+    color: #FFFFFF;
+    text-shadow: calc(0 * var(--vp)) calc(3 * var(--vp)) calc(6 * var(--vp)) #615F5F59;
+    outline: none;
+}
+
+.student-profile-side-nav .share-website {
+    margin-top: calc(27 * var(--vp));
+    font: normal normal normal calc(24 * var(--vp))/calc(1 * var(--vp)) Roboto;
+    letter-spacing: calc(0.36 * var(--vp));
+    color: #F74B42;
+    text-shadow: calc(0 * var(--vp)) calc(3 * var(--vp)) calc(6 * var(--vp)) #615F5F59;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: calc(22 * var(--vp));
+    width: calc(287 * var(--vp));
+    height: calc(56 * var(--vp));
+}
+
+.student-profile-side-nav .share-website button {
+    width: calc(56 * var(--vp));
+    height: calc(56 * var(--vp));
+    background: #020122 0% 0% no-repeat padding-box;
+    box-shadow: calc(0 * var(--vp)) calc(3 * var(--vp)) calc(6 * var(--vp)) #46454578;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border-width: 0;
+}
+
+.student-profile-side-nav .share-website .share-icon {
+    color: #3CFAFF;
+    font-size: calc(37 * var(--vp));
+}
+
+@media screen and (min-width: 1300px) {
+    .student-profile-side-nav .name-container {
+        margin-top: calc(51 * var(--vp));
+        margin-bottom: calc(52 * var(--vp));
+    }
+}
+
+@media screen and (min-width: 1380px) {
+    .student-profile-side-nav .name-container {
+        margin-top: calc(31 * var(--vp));
+        margin-bottom: calc(32 * var(--vp));
+    }
+}
+
+@media screen and (min-width: 1310px) {
+    .student-profile-side-nav .nav-item {
+        margin-top: calc(12 * var(--vp));
+        margin-bottom: calc(12 * var(--vp));
+    }
+}

@@ -1,0 +1,100 @@
+.project-profile {
+    position: relative;
+    width: 100%;
+    height: calc(437 * var(--vp));
+}
+
+.project-profile > div {
+    position: absolute;
+    width: 100%;
+    background: #030224 0% 0% no-repeat padding-box;
+    z-index: 4;
+}
+
+.project-profile > div > .box {
+    padding-left: calc(503 * var(--vp));
+    padding-right: calc(575 * var(--vp));
+    padding-top: calc(51 * var(--vp));
+    padding-bottom: calc(51 * var(--vp));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-profile > div > .box > .profile {
+    min-width: calc(335 * var(--vp));
+    max-width: calc(335 * var(--vp));
+    height: calc(335 * var(--vp));
+    border-radius: 50%;
+    background-color: #F0F0F2;
+    border: calc(3 * var(--vp)) solid #F0F0F2;
+}
+
+.project-profile > div > .box > .name-box {
+    width: calc(432 * var(--vp));
+    height: calc(196 * var(--vp));
+}
+
+.project-profile > div > .box > .name-box > .name {
+    text-align: center;
+    font: normal normal bold calc(38 * var(--vp))/calc(50 * var(--vp)) Roboto;
+    letter-spacing: calc(0 * var(--vp));
+    color: #3CFAFF;
+}
+
+.project-profile > div > .box > .name-box > .message {
+    margin-top: calc(6 * var(--vp));
+    margin-bottom: calc(24 * var(--vp));
+    font: normal normal normal calc(30 * var(--vp))/calc(39 * var(--vp)) Roboto;
+    letter-spacing: calc(0.45 * var(--vp));
+    color: #3CFAFF;
+}
+
+.project-profile > div > .box > .name-box > .upload-btn {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.project-profile > div > .box > .name-box > .upload-btn > .box {
+    width: calc(147 * var(--vp));
+    height: calc(56 * var(--vp));
+    box-shadow: calc(0 * var(--vp)) calc(3 * var(--vp)) calc(20 * var(--vp)) #00000042;
+    border: 1px solid #3CFAFF;
+    border-radius: calc(24 * var(--vp));
+    font: normal normal normal calc(24 * var(--vp))/calc(32 * var(--vp)) Roboto;
+    letter-spacing: calc(0 * var(--vp));
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-profile > div > .preview-btn {
+    width: calc(157 * var(--vp));
+    height: calc(56 * var(--vp));
+    background: #F74B42 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 20px #00000042;
+    border-radius: 24px;
+    position: absolute;
+    right: calc(170 * var(--vp));
+    bottom: calc(73 * var(--vp));
+    font: normal normal 500 calc(24 * var(--vp))/calc(32 * var(--vp)) Roboto;
+    letter-spacing: calc(0 * var(--vp));
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.project-profile > div > .nav-close {
+    position: absolute;
+    top: calc(80 * var(--vp));
+    right: calc(128 * var(--vp));
+    font-size: calc(46 * var(--vp));
+    width: calc(46 * var(--vp));
+    height: calc(46 * var(--vp));
+    color: #32C1CD;
+    cursor: pointer;
+}

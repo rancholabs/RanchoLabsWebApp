@@ -1,0 +1,273 @@
+.student-profile-skills {
+    display: flex;
+    align-items: center;
+}
+
+.student-profile-skills > .add-skill-long-btn {
+    width: calc(249 * var(--vp));
+    border: calc(3 * var(--vp)) dashed rgba(112, 112, 112, 0.5);
+    padding: calc(95 * var(--vp)) calc(42.5 * var(--vp));
+    font: normal normal 500 calc(30 * var(--vp))/calc(40 * var(--vp)) Roboto;
+    letter-spacing: calc(0.45 * var(--vp));
+    color: #707070;
+    opacity: 0.73;
+    text-align: center;
+    cursor: pointer;
+}
+
+.student-profile-skills .skills-container {
+    width: calc(764 * var(--vp));
+}
+
+.student-profile-skills .add-skills-btn {
+    height: calc(44 * var(--vp));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: calc(3 * var(--vp)) dashed rgba(112, 112, 112, 0.5);
+    width: 100%;
+    background-color: transparent;
+    outline: none;
+    color: #F74B42;
+    font: normal normal normal calc(23 * var(--vp))/calc(30 * var(--vp)) Roboto;
+    letter-spacing: calc(0.34 * var(--vp));
+}
+
+.student-profile-skills .dots {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    column-gap: calc(24 * var(--vp));
+}
+
+.student-profile-skills .dots > div {
+    width: calc(11 * var(--vp));
+    height: calc(11 * var(--vp));
+    border-radius: 50%;
+    background: rgba(171, 171, 182, 0.6) 0% 0% no-repeat padding-box;
+    cursor: pointer;
+}
+
+.student-profile-skills .dots > .active {
+    background: #F74B42 0% 0% no-repeat padding-box;
+}
+
+.student-profile-skills .skills {
+    padding-top: calc(48 * var(--vp));
+    padding-bottom: calc(20 * var(--vp));
+}
+
+.student-profile-skills .skills > div {
+    width: 100%;
+    height: calc(37 * var(--vp));
+    display: flex;
+    align-items: center;
+    column-gap: calc(20 * var(--vp));
+    font: normal normal normal calc(27 * var(--vp))/calc(35 * var(--vp)) Roboto;
+    letter-spacing: calc(0.41 * var(--vp));
+    margin-bottom: calc(36 * var(--vp));
+    color: #3A3C4A;
+    text-align: left;
+    position: relative;
+}
+
+.student-profile-skills .skills > div .skill-remove-icon {
+    display: none;
+}
+
+.student-profile-skills .skills > div:hover .skill-remove-icon {
+    display: block;
+    position: absolute;
+    right: calc(-23 * var(--vp));
+    top: calc(50% - 11.5 * var(--vp));
+    width: calc(23 * var(--vp));
+    height: calc(23 * var(--vp));
+    font-size: calc(23 * var(--vp));
+    color: #707070;
+    cursor: pointer;
+}
+
+.student-profile-skills .skills > div > button {
+    width: calc(45 * var(--vp));
+    height: calc(19 * var(--vp));
+    border-radius: calc(18 * var(--vp));
+    position: relative;
+    background: #221F1F42 0% 0% no-repeat padding-box;
+    margin-right: calc(30 * var(--vp));
+    outline: none;
+    border-width: 0;
+}
+
+.student-profile-skills .skills > div > .enabled {
+    background: rgba(247, 75, 66, 0.6) 0% 0% no-repeat padding-box;
+}
+
+.student-profile-skills .skills .circle {
+    width: calc(25 * var(--vp));
+    height: calc(25 * var(--vp));
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: calc(50% - 13.5 * var(--vp));
+    background: #F1F1F1 0% 0% no-repeat padding-box;
+    box-shadow: calc(0 * var(--vp)) calc(2 * var(--vp)) calc(2 * var(--vp)) #0000003D;
+}
+
+.student-profile-skills .skills .enabled .circle {
+    left: unset;
+    right: 0;
+    background: #F74B42 0% 0% no-repeat padding-box;
+}
+
+.student-profile-skills .skills .name {
+    min-width: calc(206 * var(--vp));
+}
+
+.student-profile-skills .skills .level {
+    min-width: calc(443 * var(--vp));
+    height: calc(100% * var(--vp));
+    background: #F0F0F2 0% 0% no-repeat padding-box;
+}
+
+.student-profile-skills .skills .level > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: calc(1 * var(--vp)) solid #707070;
+    font: normal normal normal calc(23 * var(--vp))/calc(30 * var(--vp)) Roboto;
+    letter-spacing: calc(0.34 * var(--vp));
+    color: #FFFFFF;
+}
+
+.student-profile-skills .skills .level-1 {
+    background: #95B631 0% 0% no-repeat padding-box;
+    width: 33.33%;
+}
+
+.student-profile-skills .skills .level-2 {
+    background: #158FE2 0% 0% no-repeat padding-box;
+    width: 66.66%;
+}
+
+.student-profile-skills .skills .level-3 {
+    background: #FE730C 0% 0% no-repeat padding-box;
+    width: 100%;
+}
+
+.student-profile-skills .plus-icon {
+    margin-left: calc(35 * var(--vp));
+    margin-right: calc(35 * var(--vp));
+    margin-bottom: calc(28.5 * var(--vp));
+    width: calc(94 * var(--vp));
+    height: calc(94 * var(--vp));
+    font-size: calc(94 * var(--vp));
+    line-height: initial;
+    color: #3A3C4A;
+}
+
+.student-profile-skills .add-skill {
+    width: calc(769 * var(--vp));
+    padding: calc(57.25 * var(--vp)) calc(141.25 * var(--vp));
+    border: calc(3 * var(--vp)) dashed rgba(112, 112, 112, 0.5);
+}
+
+.student-profile-skills .add-skill > *:not(.actions) {
+    width: 100%;
+    height: calc(44 * var(--vp));
+    border: calc(3 * var(--vp)) dashed rgba(112, 112, 112, 0.5);
+    font: normal normal 500 calc(20 * var(--vp))/calc(1 * var(--vp)) Roboto;
+    letter-spacing: calc(0.3 * var(--vp));
+    color: #F74B42;
+}
+
+.student-profile-skills .add-skill > .label,
+.student-profile-skills .add-skill > input,
+.student-profile-skills .add-skill > .value > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.student-profile-skills .add-skill > input {
+    text-align: center;
+}
+
+.student-profile-skills .add-skill > input::placeholder {
+    opacity: 1;
+}
+
+.student-profile-skills .add-skill > .label {
+    height: calc(92 * var(--vp));
+    margin-top: calc(40 * var(--vp));
+    border-bottom-width: 0;
+}
+
+.student-profile-skills .add-skill > .value {
+    color: rgba(58, 60, 74, 0.5);
+    background-color: transparent;
+    margin-bottom: calc(29 * var(--vp));
+}
+
+.student-profile-skills .add-skill > .value.selected {
+    color: #FFFFFF;
+}
+
+.student-profile-skills .add-skill > .value:nth-of-type(1) > div {
+    width: 33.33%;
+}
+
+.student-profile-skills .add-skill > .value:nth-of-type(2) > div {
+    width: 66.66%;
+}
+
+.student-profile-skills .add-skill > .value:nth-of-type(3) > div {
+    width: 100%;
+}
+
+.student-profile-skills .add-skill > .value.selected:nth-of-type(1) {
+    background-color: #95B631;
+}
+
+.student-profile-skills .add-skill > .value.selected:nth-of-type(2) {
+    background-color: #158FE2;
+}
+
+.student-profile-skills .add-skill > .value.selected:nth-of-type(3) {
+    background-color: #FE730C;
+}
+
+.student-profile-skills .add-skill > .actions {
+    margin-top: calc(15.5 * var(--vp));
+    width: calc(231 * var(--vp));
+    display: flex;
+    justify-content: space-between;
+}
+
+.student-profile-skills .add-skill > .actions > button {
+    border: calc(2 * var(--vp)) solid #F74B42;
+    border-radius: calc(55 * var(--vp));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: normal normal 500 calc(20 * var(--vp))/calc(1 * var(--vp)) Roboto;
+    letter-spacing: calc(0.3 * var(--vp));
+    height: calc(30 * var(--vp));
+    outline: none;
+}
+
+.student-profile-skills .add-skill > .actions > .add {
+    color: #FFFFFF;
+    background: #F74B42 0% 0% no-repeat padding-box;
+    width: calc(82 * var(--vp));
+}
+
+.student-profile-skills .add-skill > .actions > .add.disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.student-profile-skills .add-skill > .actions > .cancel {
+    color: #F74B42;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    width: calc(113 * var(--vp));
+}

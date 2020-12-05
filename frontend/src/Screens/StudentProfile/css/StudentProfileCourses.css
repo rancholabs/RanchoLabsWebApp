@@ -1,0 +1,240 @@
+.student-profile-courses, .student-profile-courses .courses {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.student-profile-courses .courses-container {
+    width: 95%;
+}
+
+.student-profile-courses .courses {
+    justify-content: initial;
+    column-gap: calc(24 * var(--vp));
+    margin-bottom: calc(138 * var(--vp));
+    align-items: flex-start;
+}
+
+.student-profile-courses .courses > div {
+    width: calc(389 * var(--vp));
+    position: relative;
+}
+
+.student-profile-courses .courses > .add-course-btn {
+    border: calc(3 * var(--vp)) dashed rgba(112, 112, 112, 0.5);
+    padding: calc(13 * var(--vp)) calc(102.5 * var(--vp));
+    font: normal normal 500 calc(30 * var(--vp))/calc(40 * var(--vp)) Roboto;
+    letter-spacing: calc(0.45 * var(--vp));
+    color: #707070;
+    opacity: 0.73;
+    text-align: center;
+    cursor: pointer;
+}
+
+.student-profile-courses .courses .course-content {
+    width: 100%;
+    background: #171636 0% 0% no-repeat padding-box;
+    padding: 0 calc(43.5 * var(--vp));
+    padding-top: calc(47 * var(--vp));
+    padding-bottom: calc(33 * var(--vp));
+}
+
+.student-profile-courses .courses .course-content > .category {
+    font: normal normal 500 calc(14 * var(--vp))/calc(1 * var(--vp)) Roboto;
+    letter-spacing: calc(-0.07 * var(--vp));
+    color: #F0F0F2;
+    height: calc(19 * var(--vp));
+    overflow: hidden;
+    line-height: initial;
+}
+
+.student-profile-courses .courses .course-content > .heading {
+    font: normal normal bold calc(22 * var(--vp))/calc(1 * var(--vp)) Roboto;
+    letter-spacing: calc(0.33 * var(--vp));
+    color: #F74B42;
+    height: calc(29 * var(--vp));
+    margin-top: calc(3 * var(--vp));
+    margin-bottom: calc(11.5 * var(--vp));
+    overflow: hidden;
+    line-height: initial;
+}
+
+.student-profile-courses .courses .course-content > .description {
+    height: calc(109 * var(--vp));
+    font: normal normal normal calc(22 * var(--vp))/calc(29 * var(--vp)) Roboto;
+    letter-spacing: calc(0.39 * var(--vp));
+    color: #F0F0F2;
+    overflow: hidden;
+}
+
+.student-profile-courses .courses .plus-icon {
+    margin-left: calc(45 * var(--vp));
+    margin-right: calc(45 * var(--vp));
+    margin-top: calc(13.5 * var(--vp));
+    margin-bottom: calc(28.5 * var(--vp));
+    width: calc(94 * var(--vp));
+    height: calc(94 * var(--vp));
+    font-size: calc(94 * var(--vp));
+    line-height: initial;
+    color: #3A3C4A;
+}
+
+.student-profile-courses .courses button {
+    width: calc(45 * var(--vp));
+    height: calc(19 * var(--vp));
+    border-radius: calc(18 * var(--vp));
+    position: relative;
+    background: #221F1F42 0% 0% no-repeat padding-box;
+    margin-right: calc(30 * var(--vp));
+    outline: none;
+    border-width: 0;
+}
+
+.student-profile-courses .courses button.enabled {
+    background: rgba(247, 75, 66, 0.6) 0% 0% no-repeat padding-box;
+}
+
+.student-profile-courses .courses .circle {
+    width: calc(25 * var(--vp));
+    height: calc(25 * var(--vp));
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: calc(50% - 13.5 * var(--vp));
+    background: #F1F1F1 0% 0% no-repeat padding-box;
+    box-shadow: calc(0 * var(--vp)) calc(2 * var(--vp)) calc(2 * var(--vp)) #0000003D;
+}
+
+.student-profile-courses .courses button.enabled .circle {
+    left: unset;
+    right: 0;
+    background: #F74B42 0% 0% no-repeat padding-box;
+}
+
+.student-profile-courses .dots {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    column-gap: calc(24 * var(--vp));
+}
+
+.student-profile-courses .dots > div {
+    width: calc(11 * var(--vp));
+    height: calc(11 * var(--vp));
+    border-radius: 50%;
+    background: rgba(171, 171, 182, 0.6) 0% 0% no-repeat padding-box;
+    cursor: pointer;
+}
+
+.student-profile-courses .dots > .active {
+    background: #F74B42 0% 0% no-repeat padding-box;
+}
+
+.student-profile-courses .add-course-dialog,
+.student-profile-courses .edit-course-dialog {
+    width: calc(838 * var(--vp));
+    padding: calc(74.25 * var(--vp)) calc(221 * var(--vp));
+    border: calc(3 * var(--vp)) dashed rgba(112, 112, 112, 0.5);
+}
+
+.student-profile-courses .add-course-dialog > *:not(.actions),
+.student-profile-courses .edit-course-dialog > *:not(.actions) {
+    width: 100%;
+    height: calc(44 * var(--vp));
+    font: normal normal 500 calc(20 * var(--vp))/calc(1 * var(--vp)) Roboto;
+    letter-spacing: calc(0.3 * var(--vp));
+    color: #F74B42;
+    border: calc(3 * var(--vp)) dashed rgba(112, 112, 112, 0.5);
+}
+
+.student-profile-courses .add-course-dialog > .category,
+.student-profile-courses .add-course-dialog > .description,
+.student-profile-courses .edit-course-dialog > .category,
+.student-profile-courses .edit-course-dialog > .description {
+    color: rgba(112, 112, 112, 0.5);
+}
+
+.student-profile-courses .add-course-dialog > .category,
+.student-profile-courses .edit-course-dialog > .category {
+    border-top-width: 0;
+    margin-bottom: calc(29 * var(--vp));
+    height: calc(44 * var(--vp));
+}
+
+.student-profile-courses .add-course-dialog > .heading,
+.student-profile-courses .edit-course-dialog > .heading {
+    height: calc(92 * var(--vp));
+}
+
+.student-profile-courses .add-course-dialog > .description,
+.student-profile-courses .edit-course-dialog > .description {
+    height: calc(117 * var(--vp));
+    line-height: initial;
+    padding: calc(5 * var(--vp));
+}
+
+.student-profile-courses .add-course-dialog > input,
+.student-profile-courses .add-course-dialog > textarea,
+.student-profile-courses .edit-course-dialog > input,
+.student-profile-courses .edit-course-dialog > textarea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.student-profile-courses .add-course-dialog > input::placeholder,
+.student-profile-courses .add-course-dialog > textarea::placeholder,
+.student-profile-courses .edit-course-dialog > input::placeholder,
+.student-profile-courses .edit-course-dialog > textarea::placeholder {
+    opacity: 1;
+}
+
+.student-profile-courses .add-course-dialog > .actions,
+.student-profile-courses .edit-course-dialog > .actions {
+    margin-top: calc(15.5 * var(--vp));
+    width: calc(231 * var(--vp));
+    display: flex;
+    justify-content: space-between;
+}
+
+.student-profile-courses .edit-course-dialog > .actions {
+    width: calc(331 * var(--vp));
+}
+
+.student-profile-courses .add-course-dialog > .actions > button,
+.student-profile-courses .edit-course-dialog > .actions > button {
+    border: calc(2 * var(--vp)) solid #F74B42;
+    border-radius: calc(55 * var(--vp));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: normal normal 500 calc(20 * var(--vp))/calc(1 * var(--vp)) Roboto;
+    letter-spacing: calc(0.3 * var(--vp));
+    height: calc(30 * var(--vp));
+    outline: none;
+}
+
+.student-profile-courses .add-course-dialog > .actions > .add,
+.student-profile-courses .edit-course-dialog > .actions > .save,
+.student-profile-courses .edit-course-dialog > .actions > .delete {
+    color: #FFFFFF;
+    background: #F74B42 0% 0% no-repeat padding-box;
+    width: calc(82 * var(--vp));
+}
+
+.student-profile-courses .edit-course-dialog > .actions > .delete {
+    width: calc(92 * var(--vp));
+}
+
+.student-profile-courses .add-course-dialog > .actions > .add.disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.student-profile-courses .add-course-dialog > .actions > .cancel,
+.student-profile-courses .edit-course-dialog > .actions > .cancel {
+    color: #F74B42;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    width: calc(113 * var(--vp));
+}

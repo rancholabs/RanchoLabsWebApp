@@ -95,7 +95,7 @@ const SideNav = ({ navCloseHandler }) => {
           },
           {
             display: "PROFILE",
-            link: "",
+            link: "/profile/student",
           },
         ]
       );

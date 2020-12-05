@@ -29,6 +29,16 @@ router.post('/validateToken', (req, res) => {
   })
 })
 
+router.post('/validateTokenExpiry', (req, res) => {
+  jwt.verify(req.headers['authorization'], JWT_SECRET, (err, decoded) => {
+    if (err) {
+      res.status(403).send({message: "Link has been expired"})
+    } else {
+      res.status(200).send({ message: "Token is valid" })
+    }
+  })
+})
+
 router.post('/forgotPassword', async (req, res) => {
   User.findOne({email: req.body.email})
   .exec()

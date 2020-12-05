@@ -5,6 +5,7 @@ const isAuthenticated = require('../controller/requestAuthenticator')
 const isAuthorized = require('../controller/requestAuthorizer')
 const bcrypt = require('bcryptjs')
 const { sendMail } = require('../Utils/Email')
+const { getFilePath } = require('../Utils/File')
 
 router.put('/updateRole/:id', isAuthenticated, isAuthorized(['admin']), (req, res) => {
     const id = req.params.id
@@ -80,6 +81,22 @@ router.patch('/changePassword', isAuthenticated, async(req,res) => {
         console.log(err)
         res.status(400).send('Error in changing the password!')
     }
+})
+
+router.get('/', isAuthenticated, async(req, res) => {
+    User.findOne({_id: req.userId})
+    .select({_id: 0, __v:0, password: 0})
+    .exec()
+    .then(async user => {
+        user = user.toObject()
+        if(user.profilePic)
+            user.profilePic = await getFilePath(user.profilePic)
+        res.status(200).send(user)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).send({message: "Error in retreiving innovation"})
+    })
 })
 
 module.exports = router
