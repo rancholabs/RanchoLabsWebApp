@@ -69,6 +69,9 @@
 }
 
 @media (max-width: 768px) and (max-height: 900px) {
+  .Workshop-cards .info-title {
+    font-size: calc(20 * var(--vm));
+  }
   .Workshop-cards {
     padding: 0 6vw;
   }

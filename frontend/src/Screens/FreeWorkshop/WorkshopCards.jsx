@@ -83,10 +83,10 @@ function MobileCardItem(cardData) {
 function WorkshopCards() {
   return (
     <div className="Workshop-cards">
+      <div className="info-title">Workshop Structure</div>
       <div className="row Mobilecards">
         {WorkshopCardData.map(MobileCardItem)}
       </div>
-      <div className="info-title">Workshop Structure</div>
       <div className="row Desktopcards">
         {WorkshopCardData.map(DesktopCardItem)}
       </div>

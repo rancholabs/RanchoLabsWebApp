@@ -32,3 +32,28 @@
 .desktop-learn-title {
   text-align: left !important;
 }
+
+.learn__mobile__singleCard {
+  width: 80%;
+  margin: 0 auto 50px auto;
+}
+
+.learn__mobile__singleCard h3 {
+  margin: 20px 0 0 0;
+  color: #f74b42;
+  font-size: 4.35vw;
+  font-weight: normal;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .desktopLearnCards {
+    display: none;
+  }
+
+  .desktop-learn-title {
+    font-size: 3vh !important;
+    padding-left: 7px;
+    margin-bottom: 40px !important;
+  }
+}

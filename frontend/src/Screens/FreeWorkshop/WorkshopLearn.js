@@ -45,15 +45,9 @@ function DesktopCardItem(cardData) {
 
 function MobileCardItem(cardData) {
   return (
-    <div className="col-md-4">
-      <div className="card">
-        <div className="row">
-          <div className="col-5">
-            <img className="img-fluid" src={cardData.src}></img>
-            <div className="card-title">{cardData.title} &nbsp;</div>
-          </div>
-        </div>
-      </div>
+    <div className="learn__singleCard learn__mobile__singleCard">
+      <img src={cardData.src}></img>
+      <h3>{cardData.title}</h3>
     </div>
   );
 }
@@ -61,10 +55,10 @@ function MobileCardItem(cardData) {
 function WorkshopLearn() {
   return (
     <div className="Workshop-cards">
-      <div className="Mobilecards">{WorkshopCardData.map(MobileCardItem)}</div>
       <div className="desktop-learn-title info-title ">
         What students will Learn?
       </div>
+      <div className="Mobilecards">{WorkshopCardData.map(MobileCardItem)}</div>
       <div className="desktopLearnCards">
         {WorkshopCardData.map(DesktopCardItem)}
       </div>
