@@ -98,7 +98,7 @@ const ProjectItemMob = (projectItem) => {
           className="img-src"
           src={projectItem.singleProject?.image?.filePath}
           alt={projectItem.singleProject?.name}
-          style={{ borderRadius: "40vw" }}
+          style={{ borderRadius: "40vw", width: "100%" }}
         ></img>
       </div>
       <div className="col-7" style={{ padding: "0 0 0 10px" }}>

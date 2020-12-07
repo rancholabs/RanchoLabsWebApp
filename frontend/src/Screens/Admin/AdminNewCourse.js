@@ -420,7 +420,7 @@ function AdminNewCourse({
     const body = {
       // courseId: tobeEditedCourse._id,
       classNo: classes[index].classNo,
-      topic: classes[index].classTopic,
+      topic: classes[index].topic,
       materials: classes[index].materials,
     };
 
@@ -448,6 +448,89 @@ function AdminNewCourse({
         // setslidesLink("");
         // setrefLink("");
         // getUpdatedClasses();
+      });
+  };
+
+  const updateProject = async (e, index) => {
+    e.preventDefault();
+    console.log(projects[index]);
+
+    const userInfo = localStorage.getItem("userInfo");
+    const token = userInfo ? JSON.parse(userInfo).token : "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    };
+
+    // UPDATE DATA
+    const body = {
+      courseId: tobeEditedCourse._id,
+      no: projects[index].no,
+      name: projects[index].name,
+      question: projects[index].question,
+      deadline: projects[index].deadline,
+      format_submit: projects[index].format_submit,
+    };
+
+    if (
+      projects[index].dashboardimage_student &&
+      projects[index].dashboardimage_student !== null
+    ) {
+      // DELETE PROJECT IMAGES
+      await axios
+        .delete(`/api/file/${projects[index].image_Student}`, config)
+        .then((res) => {
+          console.log(res.data);
+          return res.data;
+        })
+        .catch((err) => console.log(err));
+
+      // ADD NEW
+      const formData = new FormData();
+      formData.append("files", projects[index].dashboardimage_student);
+      const fileID = await axios
+        .post("/api/file", formData, config)
+        .then((res) => res.data.fileId)
+        .catch((error) => console.log(error));
+
+      body.image = fileID;
+    }
+    if (
+      projects[index].dashboardimage &&
+      projects[index].dashboardimage !== null
+    ) {
+      await axios
+        .delete(`/api/file/${projects[index].image}`, config)
+        .then((res) => {
+          console.log(res.data);
+          return res.data;
+        })
+        .catch((err) => console.log(err));
+
+      // ADD NEW IMAGES
+
+      const _formData = new FormData();
+      _formData.append("files", projects[index].dashboardimage);
+      const fileIDStudent = await axios
+        .post("/api/file", _formData, config)
+        .then((res) => res.data.fileId)
+        .catch((error) => console.log(error));
+
+      body.image_Student = fileIDStudent;
+    }
+
+    console.log(body);
+
+    axios
+      .put(`/api/course/project/${projects[index]._id}`, body, config)
+      .then((res) => {
+        // document
+        //   .querySelector(".adminNewCourse__newClassForm")
+        //   .classList.remove("show");
+        console.log(res.data);
+        alert("Project Updated!");
       });
   };
 
@@ -584,6 +667,25 @@ function AdminNewCourse({
       }
     }
     setClasses(_classes);
+  };
+
+  const handleProjectChange = (e, index) => {
+    let _projects = [...projects];
+    let _state = e.target.id.toString().split("-")[0];
+    _projects[index][_state] = e.target.value;
+    setProjects(_projects);
+  };
+
+  const handleProjectStudentDashboardImageChange = (e, index) => {
+    let _projects = [...projects];
+    _projects[index].dashboardimage = e.target.files[0];
+    setProjects(_projects);
+  };
+
+  const handleProjectDashboardImageChange = (e, index) => {
+    let _projects = [...projects];
+    _projects[index].dashboardimage_student = e.target.files[0];
+    setProjects(_projects);
   };
 
   // const uploadPDF = (e) => {
@@ -1313,7 +1415,8 @@ function AdminNewCourse({
                                 type="text"
                                 value={singleProject.name}
                                 disabled={singleProject.edit ? false : true}
-                                // onChange={(e) => setProjectTitle(e.target.value)}
+                                id={"name-" + index}
+                                onChange={(e) => handleProjectChange(e, index)}
                               />
                             </div>
                             <div className="adminNewCourse__newProjectInputSection">
@@ -1330,7 +1433,8 @@ function AdminNewCourse({
                                 type="text"
                                 value={singleProject.no}
                                 disabled={singleProject.edit ? false : true}
-                                // onChange={(e) => setprojectNumber(e.target.value)}
+                                id={"no-" + index}
+                                onChange={(e) => handleProjectChange(e, index)}
                               />
                             </div>
                             <div className="adminNewCourse__newProjectInputSection">
@@ -1347,7 +1451,8 @@ function AdminNewCourse({
                                 type="text"
                                 value={singleProject.question}
                                 disabled={singleProject.edit ? false : true}
-                                // onChange={(e) => setprojectQuestion(e.target.value)}
+                                id={"question-" + index}
+                                onChange={(e) => handleProjectChange(e, index)}
                                 rows={4}
                               />
                             </div>
@@ -1361,10 +1466,23 @@ function AdminNewCourse({
                               >
                                 Image
                               </label>
-                              <div className="adminNewCourse__newProjectInputSectionImage">
+                              <div
+                                className="adminNewCourse__newProjectInputSectionImage"
+                                onClick={() =>
+                                  document
+                                    .getElementById(
+                                      "project_dashboard_image_input" + index
+                                    )
+                                    .click()
+                                }
+                              >
                                 <input
                                   type="file"
                                   style={{ display: "none" }}
+                                  onChange={(e) =>
+                                    handleProjectDashboardImageChange(e, index)
+                                  }
+                                  id={"project_dashboard_image_input" + index}
                                 />
                                 <h3>+</h3>
                                 <p>Attach file</p>
@@ -1380,10 +1498,30 @@ function AdminNewCourse({
                               >
                                 Image for student dashboard
                               </label>
-                              <div className="adminNewCourse__newProjectInputSectionImage">
+                              <div
+                                className="adminNewCourse__newProjectInputSectionImage"
+                                onClick={() =>
+                                  document
+                                    .getElementById(
+                                      "project_student_dashboard_image_input" +
+                                        index
+                                    )
+                                    .click()
+                                }
+                              >
                                 <input
                                   type="file"
                                   style={{ display: "none" }}
+                                  onChange={(e) =>
+                                    handleProjectStudentDashboardImageChange(
+                                      e,
+                                      index
+                                    )
+                                  }
+                                  id={
+                                    "project_student_dashboard_image_input" +
+                                    index
+                                  }
                                 />
                                 <h3>+</h3>
                                 <p>Attach file</p>
@@ -1403,6 +1541,8 @@ function AdminNewCourse({
                                 type="text"
                                 disabled={singleProject.edit ? false : true}
                                 value={singleProject.deadline}
+                                id={"deadline-" + index}
+                                onChange={(e) => handleProjectChange(e, index)}
                                 // onChange={(e) => setProjectDeadline(e.target.value)}
                               />
                             </div>
@@ -1455,7 +1595,9 @@ function AdminNewCourse({
                               <button className="adminNewCourse__newClassFormButtons__cancel">
                                 Cancel
                               </button>
-                              <button>Save</button>
+                              <button onClick={(e) => updateProject(e, index)}>
+                                Save
+                              </button>
                             </div>
                           )}
                         </div>

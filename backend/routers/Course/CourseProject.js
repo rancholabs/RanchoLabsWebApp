@@ -28,6 +28,7 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   const id = req.params.id;
+  console.log(req.body, id);
   const updateData = req.body ? req.body : {};
   if (updateData.image) {
     updateData.image = mongoose.Types.ObjectId(updateData.image);

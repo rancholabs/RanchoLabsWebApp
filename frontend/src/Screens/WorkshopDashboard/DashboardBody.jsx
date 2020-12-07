@@ -82,7 +82,7 @@ const DashboardCourseChoice = (props) => {
               }}
             >
               <div id="plus" className="align-self-center">
-                <a href="/course">+</a>
+                <a href="/courses">+</a>
               </div>
             </Button>
             <Dropdown.Toggle
@@ -167,7 +167,11 @@ const DashboardHeaderLower = (props) => {
 
 function DashboardBody(props) {
   const { activeCourse } = useSelector((state) => state.activeCourse);
-  const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+  const [showWorkshopCert, setshowWorkshopCert] = useState(false);
+
+  console.log(userInfo);
 
   var _activeCourse = props.courses.filter((course) => {
     if (course.courseDetails.groupId === activeCourse) return course;
@@ -184,6 +188,30 @@ function DashboardBody(props) {
   // console.log(activeCourse.courseDetails.groupId)
   console.log(coursedata);
 
+  // useEffect(() => {
+  //   if (coursedata) {
+  //     if (coursedata.batch.batchType === "workshop") {
+  //       var batchEndDate = new Date(coursedata.batch.doubleDate).setHours(
+  //         coursedata.batch.doubleTime.toString().split(":")[0],
+  //         coursedata.batch.doubleTime.toString().split(":")[1],
+  //         0,
+  //         0
+  //       );
+  //       if (batchEndDate <= new Date()) {
+  //         coursedata.batch.classes.forEach((sc) => {
+  //           if (sc.attendance) {
+  //             sc.attendance.forEach((att) => {
+  //               if (att.userId === coursedata.userId && att.present === true) {
+  //                 setshowWorkshopCert(true);
+  //               }
+  //             });
+  //           }
+  //         });
+  //       }
+  //     }
+  //   }
+  // }, [coursedata]);
+
   return (
     <>
       {_activeCourse && (
@@ -197,9 +225,9 @@ function DashboardBody(props) {
                 coursedata={coursedata}
                 activeCourse={_activeCourse}
               />
-              {/* <DashboardCertificate /> */}
-              {/* <DashboardCertificateComplete /> */}
-              {/* <DashboardCongratsCard /> */}
+              {/* {showWorkshopCert && <DashboardCertificate />}
+              <DashboardCertificateComplete />
+              <DashboardCongratsCard /> */}
               <DashboardJourney />
               <DashboardTestimonials />
             </div>

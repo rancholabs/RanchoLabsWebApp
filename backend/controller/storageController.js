@@ -74,20 +74,22 @@ const awsS3Storage = multerS3({
 
 const awsS3DeleteFile = (fileLocation, cb) => {
   const fileKeyword = fileLocation.split("s3.amazonaws.com/")[1];
-  s3.deleteObject(
-    {
-      Bucket: AWS_S3_BUCKET,
-      Key: fileKeyword,
-    },
-    function (err, data) {
-      if (err) {
-        console.log(err);
-        res.status(400).send("Error in deleting the file");
-      } else {
-        cb();
+  console.log(fileKeyword);
+  if (fileKeyword) {
+    s3.deleteObject(
+      {
+        Bucket: AWS_S3_BUCKET,
+        Key: fileKeyword,
+      },
+      function (err, data) {
+        if (err) {
+          res.status(400).send("Error in deleting the file");
+        } else {
+          cb();
+        }
       }
-    }
-  );
+    );
+  }
 };
 
 module.exports = { diskStorage, awsS3Storage, awsS3DeleteFile };

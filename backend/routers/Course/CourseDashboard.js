@@ -218,6 +218,7 @@ router.get("/", async (req, res) => {
         progressClasses: "$progress.learns",
         progressProjects: "$progress.builds",
         innovations: "$progress.innovations",
+        userId: 1,
       },
     },
   ])

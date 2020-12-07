@@ -5,4 +5,13 @@
   right: calc(120 * var(--vp));
   z-index: 15;
   object-fit: contain;
+  /* width: 20%; */
+}
+
+@media (max-width: 600px) {
+  .workshop-school-logo {
+    right: calc(70 * var(--vp));
+    width: 30%;
+    height: unset;
+  }
 }
