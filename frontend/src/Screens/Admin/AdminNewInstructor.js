@@ -21,6 +21,27 @@ function AdminNewInstructor({
   const [ifscCode, setifscCode] = useState("");
   const [instructorEmail, setinstructorEmail] = useState("");
   const [instructorPassword, setinstructorPassword] = useState("");
+  const [instructorProfileImage, setinstructorProfileImage] = useState(null);
+  const [instructorAadharImage, setinstructorAadharImage] = useState(null);
+  const [instructorPanImage, setinstructorPanImage] = useState(null);
+
+  const handleInstructorProfileImageUpload = (e) => {
+    if (e.target.files[0]) {
+      setinstructorProfileImage(e.target.files[0]);
+    }
+  };
+
+  const handleInstructorAadharImageUpload = (e) => {
+    if (e.target.files[0]) {
+      setinstructorAadharImage(e.target.files[0]);
+    }
+  };
+
+  const handleInstructorPanImageUpload = (e) => {
+    if (e.target.files[0]) {
+      setinstructorPanImage(e.target.files[0]);
+    }
+  };
 
   useEffect(() => {
     console.log(selectedInstructor);
@@ -53,9 +74,114 @@ function AdminNewInstructor({
     }
   }, [selectedInstructor]);
 
-  const addNewInstructor = () => {
+  const addNewInstructor = async () => {
+    const userInfo = localStorage.getItem("userInfo");
+    const token = userInfo ? JSON.parse(userInfo).token : "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    };
+
     if (selectedInstructor.id) {
-      alert("Instructor updation pending.");
+      console.log("Updating instructor");
+      const instructorBody = {
+        userId: selectedInstructor.userId,
+        fname,
+        lname,
+        mname,
+        email,
+        phoneNumber,
+        aadharNumber,
+        panNumber,
+        joiningDate,
+        accountNumber,
+        accountName,
+        bankName,
+        ifscCode,
+      };
+
+      if (instructorProfileImage !== null) {
+        console.log("Updating instructor image...");
+        if (selectedInstructor.profileimage) {
+          // DELETE
+          await axios
+            .delete(`/api/file/${selectedInstructor.profileimage}`, config)
+            .then((res) => {
+              console.log(res.data);
+              return res.data;
+            })
+            .catch((err) => console.log(err));
+        }
+
+        // ADD NEW
+        const formData = new FormData();
+        formData.append("files", instructorProfileImage);
+        const instructorProfileImageId = await axios
+          .post("/api/file", formData, config)
+          .then((res) => res.data.fileId)
+          .catch((error) => console.log(error));
+
+        instructorBody.profileimage = instructorProfileImageId;
+        console.log("instructor image updated...");
+      }
+
+      if (instructorAadharImage !== null) {
+        console.log("Updating instructor aadhar image...");
+        if (selectedInstructor.aadharimage) {
+          // DELETE
+          await axios
+            .delete(`/api/file/${selectedInstructor.aadharimage}`, config)
+            .then((res) => {
+              console.log(res.data);
+              return res.data;
+            })
+            .catch((err) => console.log(err));
+        }
+
+        const formData = new FormData();
+        formData.append("files", instructorAadharImage);
+        const instructorAadharImageId = await axios
+          .post("/api/file", formData, config)
+          .then((res) => res.data.fileId)
+          .catch((error) => console.log(error));
+
+        instructorBody.aadharimage = instructorAadharImageId;
+        console.log("instructor aadhar image updated...");
+      }
+
+      if (instructorPanImage !== null) {
+        console.log("Updating instructor pan image...");
+        if (selectedInstructor.panimage) {
+          // DELETE
+          await axios
+            .delete(`/api/file/${selectedInstructor.panimage}`, config)
+            .then((res) => {
+              console.log(res.data);
+              return res.data;
+            })
+            .catch((err) => console.log(err));
+        }
+
+        const formData = new FormData();
+        formData.append("files", instructorPanImage);
+        const instructorPanImageId = await axios
+          .post("/api/file", formData, config)
+          .then((res) => res.data.fileId)
+          .catch((error) => console.log(error));
+
+        instructorBody.panimage = instructorPanImageId;
+        console.log("instructor pan image updated...");
+      }
+
+      axios
+        .put(`/api/instructor/updateadmin`, instructorBody, config)
+        .then((res) => {
+          console.log(res.data);
+          alert("Updated!");
+          getUpdatedInstructors();
+        });
     } else {
       // API TO CREATE USER
       const body = {
@@ -70,16 +196,8 @@ function AdminNewInstructor({
         email: instructorEmail,
         password: instructorPassword,
       };
-      const userInfo = localStorage.getItem("userInfo");
-      const token = userInfo ? JSON.parse(userInfo).token : "";
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          authorization: token,
-        },
-      };
 
-      axios.post("/api/register/admin", body, config).then((res) => {
+      axios.post("/api/register/admin", body, config).then(async (res) => {
         console.log(res.data);
         const userID = res.data.userID;
 
@@ -111,8 +229,42 @@ function AdminNewInstructor({
           ifscCode,
         };
 
+        if (instructorProfileImage !== null) {
+          const formData = new FormData();
+          formData.append("files", instructorProfileImage);
+          const instructorProfileImageId = await axios
+            .post("/api/file", formData, config)
+            .then((res) => res.data.fileId)
+            .catch((error) => console.log(error));
+
+          instructorBody.profileimage = instructorProfileImageId;
+        }
+
+        if (instructorAadharImage !== null) {
+          const formData = new FormData();
+          formData.append("files", instructorAadharImage);
+          const instructorAadharImageId = await axios
+            .post("/api/file", formData, config)
+            .then((res) => res.data.fileId)
+            .catch((error) => console.log(error));
+
+          instructorBody.aadharimage = instructorAadharImageId;
+        }
+
+        if (instructorPanImage !== null) {
+          const formData = new FormData();
+          formData.append("files", instructorPanImage);
+          const instructorPanImageId = await axios
+            .post("/api/file", formData, config)
+            .then((res) => res.data.fileId)
+            .catch((error) => console.log(error));
+
+          instructorBody.panimage = instructorPanImageId;
+        }
+
         axios.post(`/api/instructor`, instructorBody, config).then((res) => {
           console.log(res.data);
+          alert("Updated!");
           getUpdatedInstructors();
         });
       });
@@ -163,8 +315,18 @@ function AdminNewInstructor({
           </div>
           <div className="adminNewInstructor__inputSection ">
             <label>Image</label>
-            <div className="adminNewInstructor__inputSectionImage">
-              <input type="file" style={{ display: "none" }}></input>
+            <div
+              className="adminNewInstructor__inputSectionImage"
+              onClick={() =>
+                document.getElementById("instructor__profileImage").click()
+              }
+            >
+              <input
+                type="file"
+                style={{ display: "none" }}
+                id="instructor__profileImage"
+                onChange={handleInstructorProfileImageUpload}
+              ></input>
               <p>+</p>
               <h3>Attach file</h3>
             </div>
@@ -212,15 +374,35 @@ function AdminNewInstructor({
 
         <div className="adminNewInstructor__section">
           <div className="adminNewInstructor__inputSection adminNewInstructor__inputSection__halfwidth">
-            <div className="adminNewInstructor__inputSectionImage adminNewInstructor__inputSectionImage__fullwidth">
-              <input type="file" style={{ display: "none" }}></input>
+            <div
+              className="adminNewInstructor__inputSectionImage adminNewInstructor__inputSectionImage__fullwidth"
+              onClick={() =>
+                document.getElementById("instructor__aadharImage").click()
+              }
+            >
+              <input
+                type="file"
+                style={{ display: "none" }}
+                id="instructor__aadharImage"
+                onChange={handleInstructorAadharImageUpload}
+              ></input>
               <p>+</p>
               <h3>Attach file</h3>
             </div>
           </div>
           <div className="adminNewInstructor__inputSection adminNewInstructor__inputSection__halfwidth">
-            <div className="adminNewInstructor__inputSectionImage adminNewInstructor__inputSectionImage__fullwidth">
-              <input type="file" style={{ display: "none" }}></input>
+            <div
+              className="adminNewInstructor__inputSectionImage adminNewInstructor__inputSectionImage__fullwidth"
+              onClick={() =>
+                document.getElementById("instructor__panImage").click()
+              }
+            >
+              <input
+                type="file"
+                style={{ display: "none" }}
+                id="instructor__panImage"
+                onChange={handleInstructorPanImageUpload}
+              ></input>
               <p>+</p>
               <h3>Attach file</h3>
             </div>

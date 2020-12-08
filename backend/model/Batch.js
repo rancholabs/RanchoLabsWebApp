@@ -49,6 +49,16 @@ const ProjectSchema = new mongoose.Schema({
     default: false,
   },
   deadline: Date,
+  submission: [
+    {
+      userId: {
+        type: String,
+      },
+      link: {
+        type: String,
+      },
+    },
+  ],
 });
 
 const dateTimeSchema = new mongoose.Schema({

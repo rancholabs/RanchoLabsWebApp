@@ -23,6 +23,18 @@ const InstructorSchema = new mongoose.Schema({
   accountName: String,
   bankName: String,
   ifscCode: String,
+  profileimage: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "File",
+  },
+  aadharimage: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "File",
+  },
+  panimage: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "File",
+  },
 });
 
 module.exports = mongoose.model("Instructor", InstructorSchema);

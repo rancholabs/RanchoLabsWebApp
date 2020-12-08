@@ -95,12 +95,20 @@ const Student = (props) => {
   const dispatch = useDispatch();
   const [presentStatus, setpresentStatus] = React.useState(props.attendance);
   const handleStudentAttendance = (e) => {
-    const attendance = [
-      {
+    let count = 0;
+    props.allattendance.forEach((allAtt) => {
+      if (allAtt.userId === props.currentStudent) {
+        allAtt.present = e.target.checked;
+        count++;
+      }
+    });
+    let attendance = [...props.allattendance];
+    if (count === 0) {
+      attendance.push({
         userId: props.details._id,
         present: e.target.checked,
-      },
-    ];
+      });
+    }
     dispatch(
       instructorUpdateBatchClass({ attendance }, props.batchId, props.classId)
     );
@@ -164,6 +172,11 @@ const Attendance = (props) => {
                     ? true
                     : false
                 }
+                currentStudent={
+                  props.attendance?.filter((att) => att.userId === s.userId)[0]
+                    ?.userId
+                }
+                allattendance={props.attendance}
               />
             );
           })}
@@ -768,11 +781,45 @@ const Schedule = () => {
 };
 
 const InstructorShedule = () => {
+  const dispatch = useDispatch();
+  const { instructorInfo: instructor } = useSelector(
+    (state) => state.instructorInfo
+  );
+  const { userInfo } = useSelector((state) => state.userLogin);
+
+  const [instructorProfileImage, setInstructorProfileImage] = useState({});
+
+  useEffect(() => {
+    if (userInfo) {
+      dispatch(instructorInfo());
+    }
+  }, [instructorInfo, userInfo]);
+
+  useEffect(() => {
+    if (instructor) {
+      const userInfo = localStorage.getItem("userInfo");
+      const token = userInfo ? JSON.parse(userInfo).token : "";
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: token,
+        },
+      };
+      axios.get(`/api/file/${instructor.profileimage}`, config).then((res) => {
+        console.log(res.data);
+        setInstructorProfileImage(res.data);
+      });
+    }
+  }, [instructor]);
   return (
     <>
       {
         <>
-          <InstructorMenu />
+          <InstructorMenu
+            profileIMG={instructorProfileImage?.filePath}
+            fname={instructor?.name?.first}
+            lname={instructor?.name?.last}
+          />
           <div className="instructor-schedule-right">
             <TodoList />
             <Event />

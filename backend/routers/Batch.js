@@ -92,6 +92,29 @@ router.put("/:bid/:cid", async (req, res) => {
   }
 });
 
+router.put("/project/:bid/:pid", async (req, res) => {
+  console.log("updating projects...");
+  try {
+    const batch = await Batch.findOne({ _id: req.params.bid });
+    const proj = batch.projects.filter((p) => {
+      if (p.projectId == req.params.pid) return p;
+    });
+    const updates = Object.keys(req.body);
+    updates.forEach((update) => {
+      if (update === "instructorNote") {
+        proj[0].instructorNote.push(req.body[update]);
+      } else {
+        proj[0][update] = req.body[update];
+      }
+    });
+    await batch.save();
+    res.status(201).send(proj);
+  } catch (e) {
+    console.log(e);
+    res.status(400).send("Error");
+  }
+});
+
 router.delete("/:bid", async (req, res) => {
   Batch.findByIdAndDelete(req.params.bid)
     .then((doc) => {

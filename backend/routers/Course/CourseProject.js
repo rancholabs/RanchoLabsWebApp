@@ -35,8 +35,8 @@ router.put("/:id", async (req, res) => {
   }
   Project.updateOne({ _id: id }, { $set: updateData }, (err, raw) => {
     if (err) {
-      console.log(error);
-      res.send(500).send(error);
+      console.log(err);
+      res.send(500).send(err);
     } else {
       const { nModified: n } = raw;
       res.status(204).send({

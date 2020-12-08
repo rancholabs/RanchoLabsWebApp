@@ -21,9 +21,9 @@ function ProjectItemDesk(projectItem) {
   var SubmissionOver = false;
   console.log(projectItem.singleProject);
 
-  const  goToProjectBuild = () => {
-    window.location.href = `/buildproject?project=${projectItem.singleProject._id}`
-  }
+  const goToProjectBuild = () => {
+    window.location.href = `/buildproject?project=${projectItem.singleProject._id}&batch=${projectItem.batchId}`;
+  };
 
   if (projectItem.singleProject) {
     return (
@@ -47,8 +47,8 @@ function ProjectItemDesk(projectItem) {
             alt={projectItem.singleProject.name}
             style={{
               padding: "1vw",
-              height: "10vw",
-              width: "100%",
+              height: "130px",
+              width: "130px",
               borderRadius: "50%",
             }}
           ></img>
@@ -226,17 +226,29 @@ function DashboardBuildCard(props) {
                     useKeyboardArrows
                     infiniteLoop
                   >
-                    <ProjectItemDesk singleProject={proj} />
+                    <ProjectItemDesk
+                      singleProject={proj}
+                      batchId={Dbuild.batchId}
+                    />
                   </Carousel>
                 );
               })
             ) : Dbuild.batch.batchType === "freeclass" ? (
-              <ProjectItemDesk singleProject={Dbuild.projects[0]} />
+              <ProjectItemDesk
+                singleProject={Dbuild.projects[0]}
+                batchId={Dbuild.batchId}
+              />
             ) : (
               <>
                 <Carousel emulateTouch swipeable useKeyboardArrows infiniteLoop>
-                  <ProjectItemDesk singleProject={Dbuild.projects[0]} />
-                  <ProjectItemDesk singleProject={Dbuild.projects[1]} />
+                  <ProjectItemDesk
+                    singleProject={Dbuild.projects[0]}
+                    batchId={Dbuild.batchId}
+                  />
+                  <ProjectItemDesk
+                    singleProject={Dbuild.projects[1]}
+                    batchId={Dbuild.batchId}
+                  />
                 </Carousel>
               </>
             )}

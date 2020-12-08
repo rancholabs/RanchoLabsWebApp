@@ -65,6 +65,32 @@ router.put(
   }
 );
 
+router.put(
+  "/updateadmin",
+  isAuthenticated,
+  isAuthorized(["admin"]),
+  async (req, res) => {
+    try {
+      console.log("here");
+      const updates = Object.keys(req.body);
+      const instructor = await Instructor.findOne({ userId: req.body.userId });
+      if (instructor) {
+        updates.forEach((update) => {
+          instructor[update] = req.body[update];
+        });
+        await instructor.save();
+
+        res.status(201).send({ instructor });
+      } else {
+        throw new Error("Instructor not found");
+      }
+    } catch (e) {
+      console.log(e);
+      res.status(400).send({ error: e });
+    }
+  }
+);
+
 router.get(
   "/",
   isAuthenticated,
@@ -80,6 +106,7 @@ router.get(
           email: user.email,
           password: instructor.password,
           todolist: instructor.todolist,
+          profileimage: instructor.profileimage
         };
         res.status(201).send(info);
       } else {

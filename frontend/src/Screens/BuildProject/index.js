@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from "react";
 import queryString from "query-string";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setDefaultHeader, updateHeader } from "../../Actions/Header";
 import { setDefaultFooter, updateFooter } from "../../Actions/Footer";
 import LogoImg from "./img/logo 4@2x.png";
 import "./index.css";
+import { instructorUpdateBatchProject } from "../../Actions/Instructor";
 
 function ProjectBuild({ location }) {
   const dispatch = useDispatch();
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const params = queryString.parse(location.search);
   const [singleProject, setSingleProject] = useState({});
   const [singleCourse, setSingleCourse] = useState([]);
+  const [singlebatch, setSinglebatch] = useState({});
+  const [submitLink, setSubmitLink] = useState("");
 
   useEffect(() => {
     const userInfo = localStorage.getItem("userInfo");
@@ -29,6 +35,21 @@ function ProjectBuild({ location }) {
         console.log(res.data);
         setSingleProject(res.data[0]);
       });
+  }, []);
+
+  useEffect(() => {
+    const userInfo = localStorage.getItem("userInfo");
+    const token = userInfo ? JSON.parse(userInfo).token : "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    };
+    axios.get(`/api/batch/${params.batch}`, config).then((res) => {
+      console.log(res.data);
+      setSinglebatch(res.data.batch);
+    });
   }, []);
 
   useEffect(() => {
@@ -58,7 +79,42 @@ function ProjectBuild({ location }) {
     };
   }, []);
 
-  const addSubmission = () => {};
+  console.log(userInfo);
+
+  const addSubmission = () => {
+    console.log("submitting link...");
+    let singlePR = singlebatch.projects.filter(
+      (pr) => pr.projectId === params.project
+    );
+    if (singlePR.length > 0) {
+      let count = 0;
+      singlePR = singlePR[0];
+      singlePR.submission.forEach((subm) => {
+        if (subm.userId === userInfo.userId) {
+          subm.link = submitLink;
+          count++;
+        }
+      });
+      console.log(singlePR);
+      let submissions = [...singlePR.submission];
+      if (count === 0) {
+        submissions.push({
+          userId: userInfo.userId,
+          link: submitLink,
+        });
+      }
+      console.log(submissions);
+      console.log(params);
+      dispatch(
+        instructorUpdateBatchProject(
+          { submission: submissions },
+          params.batch,
+          params.project
+        )
+      );
+      alert("Submission Added!");
+    }
+  };
 
   return (
     <div className="buildProject">
@@ -85,6 +141,11 @@ function ProjectBuild({ location }) {
               <img src={singleProject?.studentimage?.filePath}></img>
             </div>
           </div>
+          <input
+            placeholder="Submission Link"
+            value={submitLink}
+            onChange={(e) => setSubmitLink(e.target.value)}
+          ></input>
           <button className="buildProject__submitBtn" onClick={addSubmission}>
             Add Submission
           </button>

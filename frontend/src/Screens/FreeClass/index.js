@@ -152,7 +152,7 @@ const FreeClass = ({ location }) => {
         backgroundColor: "#171636",
         color: "#FFFFFF",
         iconColor: "#3CFAFF",
-        iconDisplay: "block",
+        iconDisplay: params?.loginfor === "workshop" ? "none" : "block",
         headerDisplay: "block",
       })
     );

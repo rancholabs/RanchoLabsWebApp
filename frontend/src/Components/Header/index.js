@@ -73,12 +73,14 @@ const Header = () => {
                 <button
                   className="nav-menu-button nav-menu-button-transparent"
                   onClick={() => history.push("/courses")}
+                  style={{ display: iconDisplay }}
                 >
                   Curriculum + Pricing
                 </button>
                 <button
                   className="nav-menu-button nav-menu-button-filled"
                   onClick={() => history.push("/freeclass?loginfor=freeclass")}
+                  style={{ display: iconDisplay }}
                 >
                   Book a free class
                 </button>
