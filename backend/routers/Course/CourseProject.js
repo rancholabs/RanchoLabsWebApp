@@ -89,7 +89,6 @@ router.get("/all", async (req, res) => {
     message: "Error in getting course project",
     error: "Bad Request",
   };
-  console.log("projects called");
   Project.aggregate([
     {
       $lookup: {
@@ -183,6 +182,107 @@ router.get("/all", async (req, res) => {
     .exec()
     .then((allprojects) => {
       console.log(allprojects);
+      res.status(200).send(allprojects);
+    })
+    .catch((err) => {
+      console.log("Error:", err);
+      res.status(400).send(error);
+    });
+});
+
+router.get("/single/:id", async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  const error = {
+    message: "Error in getting course project",
+    error: "Bad Request",
+  };
+  // Project.findById(id)
+  //   .then((doc) => {
+  //     res.send(doc);
+  //   })
+  //   .catch((err) => console.log(err));
+  Project.aggregate([
+    {
+      $match: { _id: mongoose.Types.ObjectId(id) },
+    },
+    {
+      $lookup: {
+        from: "files",
+        let: { image: "$image" },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $eq: ["$_id", "$$image"],
+              },
+            },
+          },
+          {
+            $project: {
+              filePath: 1,
+              _id: 1,
+              originalName: 1,
+            },
+          },
+        ],
+        as: "mainimage",
+      },
+    },
+    {
+      $unwind: {
+        path: "$mainimage",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
+    {
+      $lookup: {
+        from: "files",
+        let: { image_Student: "$image_Student" },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $eq: ["$_id", "$$image_Student"],
+              },
+            },
+          },
+          {
+            $project: {
+              filePath: 1,
+              _id: 1,
+              originalName: 1,
+            },
+          },
+        ],
+        as: "studentimage",
+      },
+    },
+    {
+      $unwind: {
+        path: "$studentimage",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
+    {
+      $project: {
+        _id: 1,
+        courseId: 1,
+        no: 1,
+        name: 1,
+        question: 1,
+        deadline: 1,
+        image: 1,
+        image_Student: 1,
+        format_submit: 1,
+        mainimage: 1,
+        studentimage: 1,
+      },
+    },
+  ])
+    .exec()
+    .then((allprojects) => {
+      // console.log(allprojects);
       res.status(200).send(allprojects);
     })
     .catch((err) => {

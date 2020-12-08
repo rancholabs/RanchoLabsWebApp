@@ -13,6 +13,7 @@ import DashboardJourney from "./DashboardJourney";
 import DashboardTestimonials from "./DashboardTestimonial";
 import DashboardCongratsCard from "./DashboardCongratsCard";
 import DashboardCertificateComplete from "./DashboardCertificateComplete";
+import axios from "axios";
 
 const DashboardCourseChoice = (props) => {
   // const [course, setCourse] = useState(0);
@@ -169,7 +170,10 @@ function DashboardBody(props) {
   const { activeCourse } = useSelector((state) => state.activeCourse);
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  const [showWorkshopCert, setshowWorkshopCert] = useState(false);
+  const [applyForCertificate, setapplyForCertificate] = useState(false);
+  const [showLoadingCertificate, setshowLoadingCertificate] = useState(false);
+  const [showEnabledCertificate, setshowEnabledCertificate] = useState(false);
+  const [studentProfile, setstudentProfile] = useState({});
 
   console.log(userInfo);
 
@@ -188,29 +192,75 @@ function DashboardBody(props) {
   // console.log(activeCourse.courseDetails.groupId)
   console.log(coursedata);
 
-  // useEffect(() => {
-  //   if (coursedata) {
-  //     if (coursedata.batch.batchType === "workshop") {
-  //       var batchEndDate = new Date(coursedata.batch.doubleDate).setHours(
-  //         coursedata.batch.doubleTime.toString().split(":")[0],
-  //         coursedata.batch.doubleTime.toString().split(":")[1],
-  //         0,
-  //         0
-  //       );
-  //       if (batchEndDate <= new Date()) {
-  //         coursedata.batch.classes.forEach((sc) => {
-  //           if (sc.attendance) {
-  //             sc.attendance.forEach((att) => {
-  //               if (att.userId === coursedata.userId && att.present === true) {
-  //                 setshowWorkshopCert(true);
-  //               }
-  //             });
-  //           }
-  //         });
-  //       }
-  //     }
-  //   }
-  // }, [coursedata]);
+  useEffect(() => {
+    if (coursedata) {
+      if (coursedata.batch.batchType === "workshop") {
+        var batchEndDate = new Date(coursedata.batch.doubleDate).setHours(
+          coursedata.batch.doubleTime.toString().split(":")[0],
+          coursedata.batch.doubleTime.toString().split(":")[1],
+          0,
+          0
+        );
+        if (batchEndDate <= new Date()) {
+          coursedata.batch.classes.forEach((sc) => {
+            if (sc.attendance) {
+              sc.attendance.forEach((att) => {
+                if (att.userId === coursedata.userId && att.present === true) {
+                  setapplyForCertificate(true);
+                }
+              });
+            }
+          });
+        }
+      }
+    }
+  }, [coursedata]);
+
+  useEffect(() => {
+    const userInfo = localStorage.getItem("userInfo");
+    const token = userInfo ? JSON.parse(userInfo).token : "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    };
+    axios
+      .get("/api/profile/student", config)
+      .then((res) => {
+        console.log(res.data);
+        setstudentProfile(res.data);
+        if (coursedata.batch.batchType === "workshop") {
+          if (res.data.certificates.length > 0) {
+            setapplyForCertificate(false);
+            if (res.data.certificates[0].enabled === true) {
+              setshowLoadingCertificate(false);
+              setshowEnabledCertificate(true);
+            } else {
+              let timestamp = res.data.certificates[0]._id
+                .toString()
+                .substring(0, 8);
+              let certDate = new Date(parseInt(timestamp, 16) * 1000);
+              console.log(certDate);
+
+              let now = new Date();
+              let createdAt = certDate;
+              const oneDay = 60 * 60 * 24 * 1000;
+              var compareDatesBoolean = now - createdAt > oneDay;
+              if (compareDatesBoolean) {
+                setshowLoadingCertificate(false);
+                setshowEnabledCertificate(true);
+                // CHANGE ENABLED IN DB
+              } else {
+                setshowLoadingCertificate(true);
+                setshowEnabledCertificate(false);
+              }
+            }
+          }
+        }
+      })
+      .catch((err) => console.log(err));
+  }, [coursedata]);
 
   return (
     <>
@@ -225,9 +275,11 @@ function DashboardBody(props) {
                 coursedata={coursedata}
                 activeCourse={_activeCourse}
               />
-              {/* {showWorkshopCert && <DashboardCertificate />}
-              <DashboardCertificateComplete />
-              <DashboardCongratsCard /> */}
+              {applyForCertificate && (
+                <DashboardCertificate userInfo={userInfo.username} />
+              )}
+              {showLoadingCertificate && <DashboardCongratsCard />}
+              {showEnabledCertificate && <DashboardCertificateComplete />}
               <DashboardJourney />
               <DashboardTestimonials />
             </div>

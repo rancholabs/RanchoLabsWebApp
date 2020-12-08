@@ -1,0 +1,106 @@
+.buildProject {
+  background-color: #f7f7f7;
+  min-height: 100vh;
+}
+
+.buildProject__header {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 20px;
+}
+
+.buildProject__header img {
+  width: 20%;
+  object-fit: contain;
+}
+
+.buildProject__body {
+  width: 80%;
+  margin: 20px auto;
+}
+
+.buildProject__bodyHeader {
+  background-color: #9276ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: calc(25 * var(--vp)) calc(95 * var(--vp));
+}
+
+.buildProject__bodyHeader h3 {
+  color: white;
+  margin: 0;
+  font-size: calc(33 * var(--vp));
+}
+
+#project_name {
+  width: 60%;
+}
+
+#project_course_name {
+  width: 35%;
+}
+
+.buildProject__body__contentParent {
+  background-color: white;
+  padding: calc(50 * var(--vp)) calc(95 * var(--vp));
+}
+
+.buildProject__body__content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buildProject__body__contentSection {
+  width: 60%;
+}
+
+.buildProject__body__contentSection h3 {
+  font-size: calc(30 * var(--vp));
+  font-weight: normal;
+}
+
+.buildProject__body__contentSection__image h3 {
+  font-size: calc(33 * var(--vp));
+  font-weight: normal;
+  font-style: italic;
+}
+
+.buildProject__body__contentSection__image {
+  width: 35%;
+}
+
+.buildProject__body__contentSection__image img {
+  width: 100%;
+}
+
+.buildProject__submitBtn {
+  font-size: calc(30 * var(--vp));
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  border: calc(4 * var(--vp)) solid #f74b42;
+  border-radius: calc(40 * var(--vp));
+  background-color: transparent;
+  color: #3b3b3b;
+  padding: calc(20 * var(--vp)) calc(35 * var(--vp));
+}
+
+.buildProject__instructor {
+  margin: 20px 0;
+}
+
+.buildProject__instructor h3 {
+  font-size: calc(30 * var(--vp));
+  font-weight: normal;
+}
+
+.buildProject__instructor div {
+  border: 1px solid #707070;
+  padding: calc(40 * var(--vp));
+}
+
+.buildProject__instructor div h3 {
+  font-size: calc(28 * var(--vp));
+  font-weight: normal;
+  margin: 0;
+}

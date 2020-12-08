@@ -8,10 +8,30 @@
   /* width: 20%; */
 }
 
+.school__broughttoyouby {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.school__broughttoyouby h3 {
+  text-align: center;
+  color: #3cfaff;
+  font: normal normal normal calc(60 * var(--vp)) / calc(79 * var(--vp)) Roboto;
+}
+
+.school__broughttoyouby__logos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 50px 0;
+}
+
+.school__broughttoyouby__logos img {
+  width: 30%;
+}
+
 @media (max-width: 600px) {
   .workshop-school-logo {
-    right: calc(70 * var(--vp));
-    width: 30%;
-    height: unset;
+    display: none;
   }
 }

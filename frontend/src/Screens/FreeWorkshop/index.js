@@ -8,8 +8,11 @@ import WorkshopTeam from "./WorkshopTeam";
 import WorkshopExperience from "./WorkshopExperience";
 import WorkshopFaq from "./WorkshopFaq";
 import "./css/index.css";
+import NewLogoSVG from "../../Components/Header/logo.svg";
+import edciitd from "./img/edciitd.png";
 
 import { setDefaultHeader, updateHeader } from "./../../Actions/Header";
+import { setDefaultFooter, updateFooter } from "../../Actions/Footer";
 // import {setWorkshopDetails } from './../../Actions/Payment'
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -25,9 +28,11 @@ const FreeWorkshop = ({ location }) => {
   const [schoolBatches, setschoolBatches] = React.useState([]);
 
   useEffect(() => {
-    dispatch(updateHeader({ backgroundColor: "#0A0E2A" }));
+    dispatch(updateHeader({ backgroundColor: "#0A0E2A", iconDisplay: "none" }));
+    dispatch(updateFooter({ footerTopDisplay: "none" }));
     return () => {
       dispatch(setDefaultHeader());
+      dispatch(setDefaultFooter());
     };
   }, []);
 
@@ -158,6 +163,14 @@ const FreeWorkshop = ({ location }) => {
       {/* <WorkshopLearning /> */}
       {/* <WorkshopExperience /> */}
       <WorkshopFaq faqs={WorkshopDetails.faqs} />
+      <div className="school__broughttoyouby">
+        <h3>Brought to you by</h3>
+        <div className="school__broughttoyouby__logos">
+          <img src={NewLogoSVG} alt=""></img>
+          <img src={singleSchool?.image?.filePath} alt=""></img>
+          <img src={edciitd} style={{ width: "200px" }} alt=""></img>
+        </div>
+      </div>
     </div>
   );
 };

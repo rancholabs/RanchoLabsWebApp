@@ -21,6 +21,10 @@ function ProjectItemDesk(projectItem) {
   var SubmissionOver = false;
   console.log(projectItem.singleProject);
 
+  const  goToProjectBuild = () => {
+    window.location.href = `/buildproject?project=${projectItem.singleProject._id}`
+  }
+
   if (projectItem.singleProject) {
     return (
       <div className="project-item">
@@ -63,7 +67,7 @@ function ProjectItemDesk(projectItem) {
               {SubmissionOver ? (
                 <>
                   <div className="startbuilding">
-                    <button>Start Building</button>
+                    <button onClick={goToProjectBuild}>Start Building</button>
                   </div>
                   <div className="editsub">
                     <button>Edit submission</button>
@@ -72,7 +76,7 @@ function ProjectItemDesk(projectItem) {
               ) : (
                 <>
                   <div className="startbuilding">
-                    <button>Start Building</button>
+                    <button onClick={goToProjectBuild}>Start Building</button>
                   </div>
                   <div className="submitbuild">
                     <button>SUBMIT</button>

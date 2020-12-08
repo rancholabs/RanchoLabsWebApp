@@ -37,6 +37,7 @@ import Blog from "./Screens/Blog";
 import SingleBlog from "./Screens/SingleBlog";
 import BlogAdmin from "./Screens/BlogAdmin";
 import Payment from "./Screens/Payment";
+import BuildProject from "./Screens/BuildProject";
 
 // ADMIN
 import Admin from "./Screens/Admin";
@@ -58,12 +59,17 @@ function App() {
           </Switch>
         ) : (
           <>
-            <Route render={({location}) => ['/project', '/innovation'].includes(location.pathname)
-            ? <ProjectProfile />
-            : location.pathname.includes('/profile/student') 
-            ? <></>
-            : <Header />
-            } />
+            <Route
+              render={({ location }) =>
+                ["/project", "/innovation"].includes(location.pathname) ? (
+                  <ProjectProfile />
+                ) : location.pathname.includes("/profile/student") ? (
+                  <></>
+                ) : (
+                  <Header />
+                )
+              }
+            />
             <Loader />
             <main>
               <ScrollToTop>
@@ -132,35 +138,31 @@ function App() {
                     exact={true}
                     component={AboutUs}
                   />
+                  <Route path="/project" exact={true} component={Project} />
                   <Route
-                    path="/project" 
-                    exact={true} 
-                    component={Project}
-                  />
-                  <Route 
-                    path="/project/:projectId" 
-                    exact={true} 
+                    path="/project/:projectId"
+                    exact={true}
                     component={ProjectView}
                   />
-                  <Route 
-                    path="/innovation" 
-                    exact={true} 
-                    component={Innovation} 
+                  <Route
+                    path="/innovation"
+                    exact={true}
+                    component={Innovation}
                   />
-                  <Route 
-                    path="/innovation/:innovationId" 
-                    exact={true} 
-                    component={InnovationView} 
+                  <Route
+                    path="/innovation/:innovationId"
+                    exact={true}
+                    component={InnovationView}
                   />
-                  <Route 
-                    path="/profile/student" 
-                    exact={true} 
-                    component={StudentProfile} 
+                  <Route
+                    path="/profile/student"
+                    exact={true}
+                    component={StudentProfile}
                   />
-                  <Route 
-                    path="/profile/student/:profileId" 
-                    exact={true} 
-                    component={StudentProfile} 
+                  <Route
+                    path="/profile/student/:profileId"
+                    exact={true}
+                    component={StudentProfile}
                   />
                   <Route
                     exact
@@ -196,16 +198,26 @@ function App() {
                     exact={true}
                     component={Payment}
                   />
+                  <Route
+                    path="/buildproject"
+                    exact={true}
+                    component={BuildProject}
+                  />
                   <Route component={PageNotFound} />
                 </Switch>
               </ScrollToTop>
             </main>
-            <Route render={({location}) => ['/project', '/innovation'].includes(location.pathname)
-            ? <FooterBottom />
-            : location.pathname.includes('/profile/student') 
-            ? <></>
-            : <Footer />
-            } />
+            <Route
+              render={({ location }) =>
+                ["/project", "/innovation"].includes(location.pathname) ? (
+                  <FooterBottom />
+                ) : location.pathname.includes("/profile/student") ? (
+                  <></>
+                ) : (
+                  <Footer />
+                )
+              }
+            />
           </>
         )}
       </>

@@ -17,7 +17,9 @@ const Footer = () => {
   const { appName, isIPadMiniMobileView } = useSelector(
     (state) => state.appDetails
   );
-  const { footerDisplay } = useSelector((state) => state.footer);
+  const { footerDisplay, footerTopDisplay } = useSelector(
+    (state) => state.footer
+  );
   const footerTop = useRef();
   const footerLinks = useRef();
   const footerBottom = useRef();
@@ -52,7 +54,11 @@ const Footer = () => {
 
   return (
     <footer style={{ display: footerDisplay }}>
-      <div className="footer-top" ref={footerTop}>
+      <div
+        className="footer-top"
+        ref={footerTop}
+        style={{ display: footerTopDisplay }}
+      >
         <div className="flex">
           {/* <div className="reach-us">
                 <div className="logo" onClick={goHome}>

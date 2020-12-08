@@ -9,6 +9,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import EditIcon from "../../Asssets/Icon feather-edit.png";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 function AdminNewCourse({
   currentCurriculum,
@@ -627,6 +628,21 @@ function AdminNewCourse({
     setClasses(newClasses);
   };
 
+  const deleteSingleClassOBJ = (classId) => {
+    const userInfo = localStorage.getItem("userInfo");
+    const token = userInfo ? JSON.parse(userInfo).token : "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    };
+    axios.delete(`/api/course/class/${classId}`, config).then((res) => {
+      alert("Class Deleted");
+      getUpdatedClasses();
+    });
+  };
+
   const editSingleProjectOBJ = (index) => {
     var newProjects = [...projects];
     newProjects[index].edit = !newProjects[index].edit;
@@ -1102,6 +1118,12 @@ function AdminNewCourse({
                             className="adminNewCourse__existingClassFormEdit"
                             onClick={() => editSingleClassOBJ(index)}
                           ></img>
+                          <DeleteIcon
+                            className="adminNewCourse__existingClassFormEdit"
+                            onClick={() =>
+                              deleteSingleClassOBJ(singleClass._id)
+                            }
+                          />
                           <div className="adminNewCourse__newClassFormHalfContainer">
                             <div className="adminNewCourse__newClassFormHalf">
                               <div className="adminNewCourse__newClassInputSection">

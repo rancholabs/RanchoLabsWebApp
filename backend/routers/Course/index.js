@@ -71,7 +71,7 @@ router.use(
 router.use(
   "/project",
   isAuthenticated,
-  isAuthorized(["admin"]),
+  isAuthorized(["admin", "student"]),
   courseProjectRouter
 );
 router.use("/dashboard", isAuthenticated, courseDashboardRouter);
@@ -833,8 +833,6 @@ router.get("/:id", (req, res) => {
       res.status(400).send({ message: "Error in retrieving the course" });
     });
 });
-
-// router.get("")
 
 router.post("/", isAuthenticated, isAuthorized(["admin"]), async (req, res) => {
   const getValidatedData = (reqBody) => {
