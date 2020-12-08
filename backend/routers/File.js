@@ -34,7 +34,6 @@ router.get("/:id", (req, res) => {
     error: "Bad Request",
   };
   const id = mongoose.Types.ObjectId(req.params.id);
-  console.log(id);
   // File.find({ createdBy: req.userId, _id: id })
   File.find({ _id: id })
     .select({ originalName: 1, filePath: 1, mimeType: 1, size: 1 })
