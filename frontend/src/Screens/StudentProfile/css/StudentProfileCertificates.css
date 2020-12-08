@@ -1,0 +1,132 @@
+.student-profile-certificates, .student-profile-certificates .certificates {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.student-profile-certificates .certificates-container {
+    width: 95%;
+}
+
+.student-profile-certificates .certificates {
+    column-gap: calc(24 * var(--vp));
+    margin-bottom: calc(5 * var(--vp));
+    align-items: flex-start;
+}
+
+.student-profile-certificates .certificates > div {
+    width: calc(374 * var(--vp));
+    position: relative;
+}
+
+.student-profile-certificates .certificates .file {
+    width: 100%;
+    height: calc(557 * var(--vp));
+}
+
+.student-profile-certificates .certificates .certificate-remove-icon {
+    position: absolute;
+    right: calc(-16.5 * var(--vp));
+    top: calc(-16.5 * var(--vp));
+    width: calc(33 * var(--vp));
+    height: calc(33 * var(--vp));
+    font-size: calc(33 * var(--vp));
+    color: #707070;
+    cursor: pointer;
+}
+
+.student-profile-certificates .certificates .info {
+    font: normal normal normal calc(22 * var(--vp))/calc(29 * var(--vp)) Roboto;
+    letter-spacing: calc(0.33 * var(--vp));
+    color: #F74B42;
+    margin-top: calc(43.5 * var(--vp));
+    text-align: center;
+}
+
+.student-profile-certificates .certificates > .add-certificate-btn {
+    border: calc(3 * var(--vp)) dashed rgba(112, 112, 112, 0.5);
+    padding: calc(107.5 * var(--vp)) calc(20 * var(--vp));
+    font: normal normal 500 calc(30 * var(--vp))/calc(40 * var(--vp)) Roboto;
+    letter-spacing: calc(0.45 * var(--vp));
+    color: #707070;
+    opacity: 0.73;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.student-profile-certificates .certificates > .add-certificate-btn > .file-upload {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.student-profile-certificates .certificates .plus-icon {
+    margin-left: calc(95.5 * var(--vp));
+    margin-right: calc(95.5 * var(--vp));
+    margin-top: calc(20.5 * var(--vp));
+    margin-bottom: calc(43.5 * var(--vp));
+    width: calc(143 * var(--vp));
+    height: calc(143 * var(--vp));
+    font-size: calc(94 * var(--vp));
+    line-height: initial;
+    color: #3A3C4A;
+}
+
+.student-profile-certificates .certificates button {
+    width: calc(45 * var(--vp));
+    height: calc(19 * var(--vp));
+    border-radius: calc(18 * var(--vp));
+    position: relative;
+    background: #221F1F42 0% 0% no-repeat padding-box;
+    margin-right: calc(30 * var(--vp));
+    outline: none;
+    border-width: 0;
+}
+
+.student-profile-certificates .certificates button.enabled {
+    background: rgba(247, 75, 66, 0.6) 0% 0% no-repeat padding-box;
+}
+
+.student-profile-certificates .certificates .circle {
+    width: calc(25 * var(--vp));
+    height: calc(25 * var(--vp));
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: calc(50% - 13.5 * var(--vp));
+    background: #F1F1F1 0% 0% no-repeat padding-box;
+    box-shadow: calc(0 * var(--vp)) calc(2 * var(--vp)) calc(2 * var(--vp)) #0000003D;
+}
+
+.student-profile-certificates .certificates button.enabled .circle {
+    left: unset;
+    right: 0;
+    background: #F74B42 0% 0% no-repeat padding-box;
+}
+
+.student-profile-certificates .dots {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    column-gap: calc(24 * var(--vp));
+}
+
+.student-profile-certificates .dots > div {
+    width: calc(11 * var(--vp));
+    height: calc(11 * var(--vp));
+    border-radius: 50%;
+    background: rgba(171, 171, 182, 0.6) 0% 0% no-repeat padding-box;
+    cursor: pointer;
+}
+
+.student-profile-certificates .dots > .active {
+    background: #F74B42 0% 0% no-repeat padding-box;
+}

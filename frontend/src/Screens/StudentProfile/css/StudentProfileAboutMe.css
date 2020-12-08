@@ -1,0 +1,110 @@
+.student-profile-about-me {
+    padding-top: calc(70 * var(--vp));
+    font: normal normal normal calc(30 * var(--vp))/calc(39 * var(--vp)) Roboto;
+    letter-spacing: calc(0.45 * var(--vp));
+    color: #3A3C4A;
+}
+
+.student-profile-about-me > .editing-mode {
+    width: 100%;
+    padding-left: calc(100 * var(--vp));
+    padding-right: calc(100 * var(--vp));
+}
+
+.student-profile-about-me .btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.student-profile-about-me .btns > div {
+    margin: calc(48.5 * var(--vp)) 0;
+    width: calc(342 * var(--vp));
+    height: calc(30 * var(--vp));
+    display: flex;
+    justify-content: space-between;
+}
+
+.student-profile-about-me button {
+    height: calc(30 * var(--vp));
+    border: calc(2 * var(--vp)) solid #F74B42;
+    border-radius: calc(55 * var(--vp));
+    font: normal normal 500 calc(20 * var(--vp))/calc(1 * var(--vp)) Roboto;
+    letter-spacing: calc(0.3 * var(--vp));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.student-profile-about-me .cancel-btn {
+    width: calc(113 * var(--vp));
+    background: transparent 0% 0% no-repeat padding-box;
+    border: calc(2 * var(--vp)) solid #F74B42;
+    color: #F74B42;
+}
+
+.student-profile-about-me .save-btn {
+    width: calc(193 * var(--vp));
+    background: #F74B42 0% 0% no-repeat padding-box;
+    border: calc(3 * var(--vp)) solid #F74B42;
+    color: #FFFFFF;
+}
+
+.student-profile-about-me textarea,
+.student-profile-about-me input {
+    width: 100%;
+    color: unset;
+    border-width: 0;
+}
+
+.student-profile-about-me textarea {
+    height: 100%;
+}
+
+.student-profile-about-me > div {
+    position: relative;
+    width: calc(673 * var(--vp));
+    border: calc(3 * var(--vp)) dashed rgba(112, 112, 112, 0.5);
+    padding: calc(20 * var(--vp));
+}
+
+.student-profile-about-me .about {
+    height: calc(150 * var(--vp));
+    opacity: 0.5;
+}
+
+.student-profile-about-me .agrade, .student-profile-about-me .school {
+    display: flex;
+    column-gap: calc(50 * var(--vp));
+    align-items: center;
+}
+
+.student-profile-about-me .agrade > .desc, .student-profile-about-me .school > .desc {
+    opacity: 0.5;
+    width: 100%;
+}
+
+.student-profile-about-me .agrade {
+    margin-top: calc(49 * var(--vp));
+    margin-bottom: calc(23 * var(--vp));
+}
+
+.student-profile-about-me .agrade > .icon {
+    width: calc(40 * var(--vp));
+    height: calc(33 * var(--vp));
+}
+
+.student-profile-about-me .school > .icon {
+    width: calc(44 * var(--vp));
+    height: calc(45 * var(--vp));
+}
+
+@media screen and (max-width: 800px) {
+    .student-profile-about-me .save-btn {
+        width: calc(113 * var(--vp));
+    }
+
+    .student-profile-about-me .btns > div {
+        width: calc(292 * var(--vp));
+    }
+}

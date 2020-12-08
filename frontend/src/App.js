@@ -24,6 +24,13 @@ import PageNotFound from "./Screens/PageNotFound";
 import ErrorHandler from "./Screens/ErrorHandler";
 import AboutUs from "./Screens/AboutUs";
 import FreeClass from "./Screens/FreeClass";
+import Project from "./Screens/Project";
+import ProjectView from "./Screens/ProjectView";
+import FooterBottom from "./Components/FooterBottom";
+import ProjectProfile from "./Components/ProjectProfile";
+import Innovation from "./Screens/Innovation";
+import InnovationView from "./Screens/InnovationView";
+import StudentProfile from "./Screens/StudentProfile";
 import InstructorProfile from "./Screens/InstructorProfile";
 import InstructorSchedule from "./Screens/InstructorSchedule";
 import Blog from "./Screens/Blog";
@@ -51,7 +58,12 @@ function App() {
           </Switch>
         ) : (
           <>
-            <Header />
+            <Route render={({location}) => ['/project', '/innovation'].includes(location.pathname)
+            ? <ProjectProfile />
+            : location.pathname.includes('/profile/student') 
+            ? <></>
+            : <Header />
+            } />
             <Loader />
             <main>
               <ScrollToTop>
@@ -121,6 +133,36 @@ function App() {
                     component={AboutUs}
                   />
                   <Route
+                    path="/project" 
+                    exact={true} 
+                    component={Project}
+                  />
+                  <Route 
+                    path="/project/:projectId" 
+                    exact={true} 
+                    component={ProjectView}
+                  />
+                  <Route 
+                    path="/innovation" 
+                    exact={true} 
+                    component={Innovation} 
+                  />
+                  <Route 
+                    path="/innovation/:innovationId" 
+                    exact={true} 
+                    component={InnovationView} 
+                  />
+                  <Route 
+                    path="/profile/student" 
+                    exact={true} 
+                    component={StudentProfile} 
+                  />
+                  <Route 
+                    path="/profile/student/:profileId" 
+                    exact={true} 
+                    component={StudentProfile} 
+                  />
+                  <Route
                     exact
                     path="/freeclass"
                     exact={true}
@@ -158,7 +200,12 @@ function App() {
                 </Switch>
               </ScrollToTop>
             </main>
-            <Footer />
+            <Route render={({location}) => ['/project', '/innovation'].includes(location.pathname)
+            ? <FooterBottom />
+            : location.pathname.includes('/profile/student') 
+            ? <></>
+            : <Footer />
+            } />
           </>
         )}
       </>

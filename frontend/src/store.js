@@ -7,6 +7,7 @@ import { FooterReducer } from "./Reducers/Footer";
 import {
   ForgotPasswordReducer,
   SetPasswordReducer,
+  userGetReducer,
   userLoginReducer,
   userRegisterReducer,
   userRegisterWorkshopReducer,
@@ -23,6 +24,11 @@ import {
 } from "./Reducers/courseReducers";
 import { userUpdateReducer } from "./Reducers/userReducer";
 import { PaymentReducer } from "./Reducers/Payment";
+import { ProjectPreviewReducer } from "./Reducers/ProjectPreview";
+import { ProjectviewReducer } from "./Reducers/ProjectView";
+import { InnovationPreviewReducer } from "./Reducers/InnovationPreview";
+import { InnovationviewReducer } from "./Reducers/InnovationView";
+import { StudentProfileReducer } from "./Reducers/StudentProfile";
 import {
   studentCoursesReducer,
   studentUpdateReducer,
@@ -60,6 +66,12 @@ const reducer = combineReducers({
   studentUpdate: studentUpdateReducer,
   studentCourses: studentCoursesReducer,
   message: sendMailReducer,
+  projectPreview: ProjectPreviewReducer,
+  projectView: ProjectviewReducer,
+  innovationPreview: InnovationPreviewReducer,
+  innovationView: InnovationviewReducer,
+  studentProfile: StudentProfileReducer,
+  userInfoBasic: userGetReducer,
   journeycourse: journeycourseReducer,
   instructorInfo: instructorInfoReducer,
   instructorSchedule: instructorScheduleReducer,

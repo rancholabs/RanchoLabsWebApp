@@ -1,0 +1,208 @@
+.student-profile > .main {
+    width: calc(100% - 503 * var(--vp));
+    margin-left: calc(503 * var(--vp));
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    position: relative;
+}
+
+.student-profile .profile-labels {
+    position: absolute;
+    top: calc(1802 * var(--vp));
+    left: calc(-1803 * var(--vp));
+    background-color: inherit;
+    padding: 0 calc(6 * var(--vp));
+    display: flex;
+    transform: rotate(-90deg);
+}
+
+@media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) { 
+    .student-profile .profile-labels {
+        left: calc(-1810 * var(--vp));
+    }
+
+    @media screen and (min-width: 1300px) {
+        .student-profile .profile-labels {
+            left: calc(-1810 * var(--vp));
+        }
+    }
+}
+
+@-moz-document url-prefix() {
+    @media screen and (min-width: 1100px) {
+        .student-profile .profile-labels {
+            left: calc(-1807 * var(--vp));
+        }
+    }
+    @media screen and (min-width: 1200px) {
+        .student-profile .profile-labels {
+            left: calc(-1805 * var(--vp));
+        }
+    }
+
+    @media screen and (min-width: 1280px) {
+        .student-profile .profile-labels {
+            left: calc(-1807 * var(--vp));
+        }
+    }
+}
+
+.student-profile .profile-labels .closing-line {
+    height: calc(1016 * var(--vp));
+    border: calc(3 * var(--vp)) solid #ABABB6;
+    margin-top: calc(116.5 * var(--vp));
+    background-color: #ABABB6;
+}
+
+.student-profile .profile-labels > div:not(.closing-line) {
+    width: calc(589 * var(--vp));
+    height: calc(82 * var(--vp));
+    border-radius: 0 0 calc(75 * var(--vp)) calc(75 * var(--vp));
+    margin: 0 calc(41 * var(--vp));
+    font: normal normal bold calc(36 * var(--vp))/calc(30 * var(--vp)) Roboto;
+    letter-spacing: calc(1.08 * var(--vp));
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.student-profile .profile-labels > div:not(.closing-line)::before, .student-profile .profile-labels > div:not(.closing-line)::after {
+    width: calc(48 * var(--vp));
+    height: calc(24 * var(--vp));
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+}
+
+.student-profile .profile-labels > div:not(.closing-line)::before {
+    left: calc(-47 * var(--vp));
+    border-radius: 0 calc(24 * var(--vp)) 0 0;
+}
+
+.student-profile .profile-labels > div:not(.closing-line)::after {
+    right: calc(-47 * var(--vp));
+    border-radius: calc(24 * var(--vp)) 0 0 0;
+}
+
+.student-profile .profile-labels .about-me {
+    background: #158FE2 0% 0% no-repeat padding-box;
+}
+
+.student-profile .profile-labels .about-me::after {
+    box-shadow: calc(-24 * var(--vp)) 0 0 0 #158FE2;
+} 
+
+.student-profile .profile-labels .about-me::before {
+    box-shadow: calc(24 * var(--vp)) 0 0 0 #158FE2;
+}
+
+.student-profile .profile-labels .extracurricular {
+    background: #F00A4A 0% 0% no-repeat padding-box;
+}
+
+.student-profile .profile-labels .extracurricular::after {
+    box-shadow: calc(-24 * var(--vp)) 0 0 0 #F00A4A;
+} 
+
+.student-profile .profile-labels .extracurricular::before {
+    box-shadow: calc(24 * var(--vp)) 0 0 0 #F00A4A;
+}
+
+.student-profile .profile-labels .skills {
+    background: #FE730C 0% 0% no-repeat padding-box;
+}
+
+.student-profile .profile-labels .skills::after {
+    box-shadow: calc(-24 * var(--vp)) 0 0 0 #FE730C;
+} 
+
+.student-profile .profile-labels .skills::before {
+    box-shadow: calc(24 * var(--vp)) 0 0 0 #FE730C;
+}
+
+.student-profile .profile-labels .projects {
+    background: #95B631 0% 0% no-repeat padding-box;
+}
+
+.student-profile .profile-labels .projects::after {
+    box-shadow: calc(-24 * var(--vp)) 0 0 0 #95B631;
+} 
+
+.student-profile .profile-labels .projects::before {
+    box-shadow: calc(24 * var(--vp)) 0 0 0 #95B631;
+}
+
+.student-profile .profile-labels .innovations {
+    background: #F00A4A 0% 0% no-repeat padding-box;
+}
+
+.student-profile .profile-labels .innovations::after {
+    box-shadow: calc(-24 * var(--vp)) 0 0 0 #F00A4A;
+} 
+
+.student-profile .profile-labels .innovations::before {
+    box-shadow: calc(24 * var(--vp)) 0 0 0 #F00A4A;
+}
+
+.student-profile .profile-labels .courses {
+    background: #57017E 0% 0% no-repeat padding-box;
+}
+
+.student-profile .profile-labels .courses::after {
+    box-shadow: calc(-24 * var(--vp)) 0 0 0 #57017E;
+} 
+
+.student-profile .profile-labels .courses::before {
+    box-shadow: calc(24 * var(--vp)) 0 0 0 #57017E;
+}
+
+.student-profile .profile-labels .certificates {
+    background: #158FE2 0% 0% no-repeat padding-box;
+}
+
+.student-profile .profile-labels .certificates::after {
+    box-shadow: calc(-24 * var(--vp)) 0 0 0 #158FE2;
+} 
+
+.student-profile .profile-labels .certificates::before {
+    box-shadow: calc(24 * var(--vp)) 0 0 0 #158FE2;
+}
+
+.student-profile .contents {
+    padding-top: calc(6 * var(--vp));
+    padding-bottom: calc(331.5 * var(--vp));
+}
+
+.student-profile .contents > div:first-child {
+    margin-top: calc(41 * var(--vp));
+}
+
+.student-profile .contents > div {
+    margin-left: calc(210 * var(--vp));
+    margin-right: calc(350 * var(--vp));
+    margin-top: calc(85 * var(--vp));
+    margin-bottom: calc(44 * var(--vp));
+    height: calc(589 * var(--vp));
+    position: relative;
+}
+
+.student-profile .contents > div > .icon {
+    position: absolute;
+    top: calc(50% - 66 * var(--vp));
+    right: calc(-113 * var(--vp));
+    width: calc(111 * var(--vp));
+    height: calc(132 * var(--vp));
+}
+
+.student-profile .close-icon {
+    position: fixed;
+    top: calc(153 * var(--vp));
+    right: calc(128 * var(--vp));
+    width: calc(46 * var(--vp));
+    height: calc(46 * var(--vp));
+    font-size: calc(46 * var(--vp));
+    color: #030224;
+    cursor: pointer;
+}

@@ -27,7 +27,10 @@ import { USER_LOGIN_REQUEST,
   USER_MESSAGE_SUCCESS,	
   USER_CALLBACK_FAIL,	
   USER_CALLBACK_SUCCESS,	
-  USER_CALLBACK_REQUEST
+  USER_CALLBACK_REQUEST,
+  USER_GET_REQUEST,
+  USER_GET_SUCCESS,
+  USER_GET_FAIL
 
  } from "../Constants/userConstant"
 
@@ -580,4 +583,37 @@ export const callbackRequest = (senderName, senderContact) => async (dispatch) =
           : error.message,
     })
   }
+}
+
+export const GetUser = () => async (dispatch) => {
+  dispatch({
+    type: USER_GET_REQUEST,
+  })
+
+  const userInfo = localStorage.getItem('userInfo')
+  const token = userInfo ? JSON.parse(userInfo).token : ''
+
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization' : token
+    }
+  }
+
+  await axios.get('/api/user', config)
+  .then(({data}) => {
+    dispatch({
+      type: USER_GET_SUCCESS,
+      payload: data,
+    })
+  })
+  .catch(error => {
+    dispatch({
+      type: USER_GET_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  })
 }

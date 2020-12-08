@@ -1,0 +1,120 @@
+.project-brief > .long-top-arrow {
+    height: calc(156 * var(--vp));
+}
+
+.project-brief .label {
+    border: calc(3 * var(--vp)) dashed #c0c0c0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(132 * var(--vp));
+}
+
+.project-brief > .heading > .label {
+    height: calc(132 * var(--vp));
+    align-items: center;
+}
+
+.project-brief > .label > div {
+    width: calc(962 * var(--vp));
+}
+
+.project-brief .label > .box {
+    width: calc(962 * var(--vp));
+    height: calc(70 * var(--vp));
+    background: #F0F0F2 0% 0% no-repeat padding-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-brief .label > .box > .text {
+    font: normal normal bold calc(30 * var(--vp))/calc(40 * var(--vp)) Roboto;
+    letter-spacing: calc(0 * var(--vp));
+    color: #F74B42;
+}
+
+.project-brief .value {
+    margin-top: calc(38 * var(--vp));
+    margin-bottom: calc(38 * var(--vp));
+    background: #F0F0F2 0% 0% no-repeat padding-box;
+    height: calc(92 * var(--vp));
+    font: normal normal bold calc(22 * var(--vp))/calc(40 * var(--vp)) Roboto;
+    letter-spacing: calc(0.45 * var(--vp));
+    color: #707070;
+    opacity: 0.73;
+    width: 100%;
+    border: 0;
+    padding-left: calc(160 * var(--vp));
+}
+
+.project-brief > .brief .value {
+    height: calc(506 * var(--vp));
+    padding: calc(35 * var(--vp)) calc(39.5 * var(--vp));
+    font: normal normal normal calc(20 * var(--vp))/calc(27 * var(--vp)) Segoe UI;
+}
+
+.project-brief .components {
+    margin-top: calc(23 * var(--vp));
+}
+
+.project-brief .components > div {
+    position: relative;
+}
+
+.project-brief .components .bullet {
+    position: absolute;
+    left: calc(40 * var(--vp));
+    top: calc(50% - 5.5 * var(--vp));
+    width: calc(11 * var(--vp));
+    height: calc(11 * var(--vp));
+    background: #707070 0% 0% no-repeat padding-box;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.project-brief .components .trash-icon {
+    position: absolute;
+    right: calc(40 * var(--vp));
+    top: calc(50% - 15.5 * var(--vp));
+    width: calc(31 * var(--vp));
+    height: calc(38 * var(--vp));
+    color: #707070;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.project-brief .components .value {
+    margin-top: calc(7.5 * var(--vp));
+    margin-bottom: calc(7.5 * var(--vp));
+}
+
+.project-brief > .add-component {
+    margin-top: calc(8 * var(--vp));
+    width: calc(383 * var(--vp));
+    height: calc(92 * var(--vp));
+    background: #F0F0F2 0% 0% no-repeat padding-box;
+    padding-left: calc(40 * var(--vp));
+    padding-left: calc(49 * var(--vp));
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.project-brief > .add-component > .text {
+    font: normal normal 500 calc(25 * var(--vp))/calc(40 * var(--vp)) Roboto;
+    letter-spacing: calc(0.38 * var(--vp));
+    color: #F74B42;
+}
+
+.project-brief > .add-component > .plus-icon {
+    position: absolute;
+    right: calc(49 * var(--vp));
+    top: calc(50% - calc(13 * var(--vp)));
+    width: calc(26 * var(--vp));
+    height: calc(26 * var(--vp));
+    font-size: calc(26 * var(--vp));
+    color: #3A3C4A;
+    /*box-shadow: calc(0 * var(--vp)) calc(3 * var(--vp)) calc(6 * var(--vp)) #0000005C;*/
+}

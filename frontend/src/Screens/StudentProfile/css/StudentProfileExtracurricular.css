@@ -1,0 +1,105 @@
+.student-profile-extracurricular {
+    padding-top: calc(130.5 * var(--vp));
+}
+
+.student-profile-extracurricular > div {
+    width: calc(673 * var(--vp));
+    position: relative;
+    border: calc(3 * var(--vp)) dashed rgba(112, 112, 112, 0.5);
+    padding: calc(20 * var(--vp));
+}
+
+.student-profile-extracurricular .items {
+    font: normal normal normal calc(30 * var(--vp))/calc(39 * var(--vp)) Roboto;
+    letter-spacing: calc(0.45 * var(--vp));
+    color: #3A3C4A;
+    opacity: 0.5;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: calc(45 * var(--vp));
+    margin-top: calc(74 * var(--vp));
+    margin-bottom: calc(63 * var(--vp));
+}
+
+.student-profile-extracurricular .items > div {
+    height: calc(42 * var(--vp));
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    column-gap: calc(20 * var(--vp));
+}
+
+.student-profile-extracurricular .item-seperator {
+    position: relative;
+    width: calc(52 * var(--vp));
+}
+
+.student-profile-extracurricular .item-seperator > .line {
+    border: calc(2 * var(--vp)) solid #707070;
+    width: calc(52 * var(--vp));
+    position: absolute;
+    top: calc(50% - 0 * var(--vp));
+}
+
+.student-profile-extracurricular .item-seperator > .circle {
+    width: calc(22 * var(--vp));
+    height: calc(22 * var(--vp));
+    border-radius: 50%;
+    background: #32C1CD 0% 0% no-repeat padding-box;
+    position: absolute;
+    left: calc(50% - 11 * var(--vp));
+    top: calc(50% - 11 * var(--vp));
+    z-index: 2;
+}
+
+.student-profile-extracurricular > .editing-mode {
+    width: 90%;
+}
+
+.student-profile-extracurricular .btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.student-profile-extracurricular .btns > div {
+    margin: calc(48.5 * var(--vp)) 0;
+    width: calc(342 * var(--vp));
+    height: calc(30 * var(--vp));
+    display: flex;
+    justify-content: space-between;
+}
+
+.student-profile-extracurricular button {
+    height: calc(30 * var(--vp));
+    border: calc(2 * var(--vp)) solid #F74B42;
+    border-radius: calc(55 * var(--vp));
+    font: normal normal 500 calc(20 * var(--vp))/calc(1 * var(--vp)) Roboto;
+    letter-spacing: calc(0.3 * var(--vp));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.student-profile-extracurricular .cancel-btn {
+    width: calc(113 * var(--vp));
+    background: transparent 0% 0% no-repeat padding-box;
+    border: calc(2 * var(--vp)) solid #F74B42;
+    color: #F74B42;
+}
+
+.student-profile-extracurricular .save-btn {
+    width: calc(193 * var(--vp));
+    background: #F74B42 0% 0% no-repeat padding-box;
+    border: calc(3 * var(--vp)) solid #F74B42;
+    color: #FFFFFF;
+}
+
+.student-profile-extracurricular input {
+    width: calc(180 * var(--vp));
+    border-width: 0;
+    background-color: transparent;
+    color: #3A3C4A;
+    text-align: center;
+}

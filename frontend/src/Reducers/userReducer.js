@@ -28,6 +28,9 @@ import {
     USER_CALLBACK_REQUEST,	
     USER_CALLBACK_SUCCESS,	
     USER_CALLBACK_FAIL,
+    USER_GET_REQUEST,
+    USER_GET_SUCCESS,
+    USER_GET_FAIL
 
 } from '../Constants/userConstant'
 
@@ -153,5 +156,18 @@ export const callbackReducer  = (state = {} , action) =>{
             return {loading: false, error  : action.payload}
         default :
             return state  
+    }
+}
+
+export const userGetReducer  = (state = {} , action) =>{
+    switch(action.type) {
+        case USER_GET_REQUEST:
+            return {loading:true}
+        case USER_GET_SUCCESS:
+            return {loading:false, userInfo : action.payload}
+        case USER_GET_FAIL:
+            return {loading: false, error  : action.payload}       
+        default :
+            return state
     }
 }

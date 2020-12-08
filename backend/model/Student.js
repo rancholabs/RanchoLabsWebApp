@@ -23,8 +23,6 @@ const ParentSchema = new mongoose.Schema({
   },
 });
 
-const ProfileSchema = new mongoose.Schema({});
-
 const FreeEnrollmentSchema = new mongoose.Schema({
   freeClass: {
     enrolled: {
@@ -66,7 +64,6 @@ const StudentSchema = new mongoose.Schema({
   schoolDetails: SchoolSchema,
   parentDetails: ParentSchema,
   freeEnrollment: FreeEnrollmentSchema,
-  profile: ProfileSchema,
   loginfor: String,
   school: {
     type: mongoose.Schema.Types.ObjectId,

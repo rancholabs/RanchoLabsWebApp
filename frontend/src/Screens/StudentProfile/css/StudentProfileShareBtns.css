@@ -1,0 +1,87 @@
+.Student-profile-share-btns {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(169, 169, 169, 0.1);
+}
+
+.Student-profile-share-btns .btn-container {
+    background-color: #FFFFFF;
+    border-radius: calc(55 * var(--vp));
+    position: relative;
+}
+
+.Student-profile-share-btns .btn-container > .close-share-icon {
+    position: absolute;
+    top: calc(33.5 * var(--vp));
+    right: calc(33.5 * var(--vp));
+    width: calc(33 * var(--vp));
+    height: calc(33 * var(--vp));
+    font-size: calc(33 * var(--vp));
+    color: #707070;
+    cursor: pointer;
+}
+
+.Student-profile-share-btns .social-btns {
+    margin: calc(100 * var(--vp)) calc(100 * var(--vp));
+    display: flex;
+    column-gap: calc(33 * var(--vp));
+    height: calc(74 * var(--vp));
+}
+
+.Student-profile-share-btns .social-btn {
+    width: calc(224 * var(--vp));
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: calc(29 * var(--vp));
+    padding-right: calc(53 * var(--vp));
+    border-radius: calc(8 * var(--vp));
+    cursor: pointer;
+}
+
+.Student-profile-share-btns .social-btn > .icon {
+    width: calc(46 * var(--vp));
+    height: calc(46 * var(--vp));
+    font-size: calc(46 * var(--vp));
+    color: #FFFFFF;
+}
+
+.Student-profile-share-btns .social-btn > .text {
+    font: normal normal normal calc(25 * var(--vp))/calc(40 * var(--vp)) Roboto;
+    letter-spacing: calc(0.38 * var(--vp));
+    color: #FFFFFF;
+}
+
+.Student-profile-share-btns .social-btn.twitter {
+    background: #55ACEE 0% 0% no-repeat padding-box;
+}
+
+.Student-profile-share-btns .social-btn.fb {
+    background: #1B2FC5 0% 0% no-repeat padding-box;
+}
+
+.Student-profile-share-btns .social-btn.gmail {
+    background: #F0F0F2 0% 0% no-repeat padding-box;
+}
+
+.Student-profile-share-btns .social-btn.gmail > .text {
+    color: #707070;
+}
+
+.Student-profile-share-btns .social-btn.gmail > .icon {
+    color: #707070;;
+}
+
+.Student-profile-share-btns .social-btn.wa {
+    background: #4CAF50 0% 0% no-repeat padding-box;
+}

@@ -1,0 +1,193 @@
+.student-profile-innovations, .student-profile-innovations .innovations {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.student-profile-innovations > .icon {
+    width: calc(191 * var(--vp)) !important;
+    height: calc(182 * var(--vp)) !important;
+    top: calc(50% - 106 * var(--vp)) !important;
+    right: calc(-153 * var(--vp)) !important;
+}
+
+.student-profile-innovations > .innovations-container {
+    width: 95%;
+}
+
+.student-profile-innovations .innovations {
+    justify-content: initial;
+    column-gap: calc(24 * var(--vp));
+    margin-bottom: calc(56 * var(--vp));
+    align-items: flex-start;
+}
+
+.student-profile-innovations .innovations > div {
+    width: calc(249 * var(--vp));
+    position: relative;
+    cursor: pointer;
+}
+
+.student-profile-innovations .innovations > .add-innovation {
+    border: calc(3 * var(--vp)) dashed rgba(112, 112, 112, 0.5);
+    padding: calc(95 * var(--vp)) calc(42.5 * var(--vp));
+    font: normal normal 500 calc(30 * var(--vp))/calc(40 * var(--vp)) Roboto;
+    letter-spacing: calc(0.45 * var(--vp));
+    color: #707070;
+    opacity: 0.73;
+    text-align: center;
+    cursor: pointer;
+}
+
+.student-profile-innovations .innovations > div.draft {
+    opacity: 0.46;
+}
+
+.student-profile-innovations .innovations .image {
+    width: 100%;
+    height: calc(190 * var(--vp));
+}
+
+.student-profile-innovations .innovations .draft > .image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #171636 0% 0% no-repeat padding-box;
+    font: normal normal bold calc(39 * var(--vp))/calc(2 * var(--vp)) Roboto;
+    letter-spacing: calc(0.58 * var(--vp));
+    color: #ABABB6;
+}
+
+.student-profile-innovations .innovations .innovation-content {
+    width: 100%;
+    background: #171636 0% 0% no-repeat padding-box;
+    padding: 0 calc(21 * var(--vp));
+    padding-top: calc(18 * var(--vp));
+    padding-bottom: calc(22 * var(--vp));
+}
+
+.student-profile-innovations .innovations .draft > .innovation-content {
+    background: #ABABB6 0% 0% no-repeat padding-box;
+}
+
+.student-profile-innovations .innovations .innovation-content > .category {
+    font: normal normal 500 calc(14 * var(--vp))/calc(1 * var(--vp)) Roboto;
+    letter-spacing: calc(-0.07 * var(--vp));
+    color: #F0F0F2;
+    height: calc(19 * var(--vp));
+    overflow: hidden;
+    line-height: initial;
+}
+
+.student-profile-innovations .innovations .innovation-content > .heading {
+    font: normal normal bold calc(22 * var(--vp))/calc(1 * var(--vp)) Roboto;
+    letter-spacing: calc(0.33 * var(--vp));
+    color: #F74B42;
+    height: calc(29 * var(--vp));
+    margin-top: calc(3 * var(--vp));
+    margin-bottom: calc(11 * var(--vp));
+    overflow: hidden;
+    line-height: initial;
+}
+
+.student-profile-innovations .innovations .innovation-content > .brief {
+    height: calc(108 * var(--vp));
+    font: normal normal normal calc(22 * var(--vp))/calc(29 * var(--vp)) Roboto;
+    letter-spacing: calc(0.39 * var(--vp));
+    color: #F0F0F2;
+    overflow: hidden;
+}
+
+.student-profile-innovations .innovations .draft > .innovation-content > .category,
+.student-profile-innovations .innovations .draft > .innovation-content > .heading,
+.student-profile-innovations .innovations .draft > .innovation-content > .brief {
+    color: #707070;
+}
+
+.student-profile-innovations .innovations .plus-icon {
+    margin-left: calc(35 * var(--vp));
+    margin-right: calc(35 * var(--vp));
+    margin-bottom: calc(28.5 * var(--vp));
+    width: calc(94 * var(--vp));
+    height: calc(94 * var(--vp));
+    font-size: calc(94 * var(--vp));
+    line-height: initial;
+    color: #3A3C4A;
+}
+
+.student-profile-innovations .innovations .enable-share {
+    padding: 0 calc(53.5 * var(--vp));
+    padding-top: calc(16 * var(--vp));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: default;
+}
+
+.student-profile-innovations .innovations .enable-share > button {
+    width: calc(45 * var(--vp));
+    height: calc(19 * var(--vp));
+    border-radius: calc(18 * var(--vp));
+    position: relative;
+    background: #221F1F42 0% 0% no-repeat padding-box;
+    margin-right: calc(30 * var(--vp));
+    outline: none;
+    border-width: 0;
+}
+
+.student-profile-innovations .innovations .enable-share > .enabled {
+    background: rgba(247, 75, 66, 0.6) 0% 0% no-repeat padding-box;
+}
+
+.student-profile-innovations .innovations .circle {
+    width: calc(25 * var(--vp));
+    height: calc(25 * var(--vp));
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: calc(50% - 13.5 * var(--vp));
+    background: #F1F1F1 0% 0% no-repeat padding-box;
+    box-shadow: calc(0 * var(--vp)) calc(2 * var(--vp)) calc(2 * var(--vp)) #0000003D;
+}
+
+.student-profile-innovations .innovations .enabled .circle {
+    left: unset;
+    right: 0;
+    background: #F74B42 0% 0% no-repeat padding-box;
+}
+
+.student-profile-innovations .innovations .enable-share > .share-icon {
+    font-size: calc(37 * var(--vp));
+    color: #F74B42;
+    cursor: pointer;
+}
+
+.student-profile-innovations .dots {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    column-gap: calc(24 * var(--vp));
+}
+
+.student-profile-innovations .dots > div {
+    width: calc(11 * var(--vp));
+    height: calc(11 * var(--vp));
+    border-radius: 50%;
+    background: rgba(171, 171, 182, 0.6) 0% 0% no-repeat padding-box;
+    cursor: pointer;
+}
+
+.student-profile-innovations .dots > .active {
+    background: #F74B42 0% 0% no-repeat padding-box;
+}
+
+.student-profile-innovations .innovations .innovation-remove-icon {
+    position: absolute;
+    left: calc(-16.5 * var(--vp));
+    top: calc(-16.5 * var(--vp));
+    width: calc(33 * var(--vp));
+    height: calc(33 * var(--vp));
+    font-size: calc(33 * var(--vp));
+    color: #707070;
+    cursor: pointer;
+}
