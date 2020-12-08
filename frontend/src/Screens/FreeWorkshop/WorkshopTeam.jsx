@@ -31,10 +31,10 @@ const instructors = [
     id: 2,
     name: "Rohan Yuttham",
     details: `<p>Overall Coordinator  - Robotics Club, IIT Delhi <br/> Mechanical Engineer, IIT Delhi </p>`,
-    logo1: iitb,
+    logo1: iitd,
     logo2: google,
     // image: RitizSainiInstructor,
-    logoDesc: "IIT Bombay",
+    logoDesc: "IIT Delhi",
   },
   {
     id: 3,
