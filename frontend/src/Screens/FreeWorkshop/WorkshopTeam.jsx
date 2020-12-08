@@ -5,7 +5,8 @@ import iitb from "../Courses/img/iitb.png";
 // import DroneStark_white from "./img/DroneStark_white.png";
 import google from "../Courses/img/google.png";
 import RohanYutthamInstructor from "../Courses/img/RohanYutthamInstructor.png";
-import RitizSainiInstructor from "../Courses/img/RitizSainiInstructor.png";
+import Anshul from "../AboutUs/img/Anshul.png";
+import Aman from "../AboutUs/img/Aman.jpg";
 import NazneenKhanInstructor from "../Courses/img/NazneenKhanInstructor.png";
 import KaashikaPhotoInstructor from "../Courses/img/KaashikaPhotoInstructor.png";
 import calendar from "../Courses/img/calendar.png";
@@ -24,7 +25,7 @@ const instructors = [
      <br/> Chemical Engineer, IIT Delhi </p>`,
     logo1: iitd,
     logo2: google,
-    // image: RohanYutthamInstructor,
+    image: Aman,
     logoDesc: "IIT Delhi",
   },
   {
@@ -33,7 +34,7 @@ const instructors = [
     details: `<p>Overall Coordinator  - Robotics Club, IIT Delhi <br/> Mechanical Engineer, IIT Delhi </p>`,
     logo1: iitd,
     logo2: google,
-    // image: RitizSainiInstructor,
+    image: RohanYutthamInstructor,
     logoDesc: "IIT Delhi",
   },
   {
@@ -43,7 +44,7 @@ const instructors = [
       "<p>Co-Founder - Rancho Labs<br/> Mechanical Engineer, IIT Delhi </p>",
     logo1: iitd,
     logo2: google,
-    // image: KaashikaPhotoInstructor,
+    image: Anshul,
     logoDesc: "IIT Delhi",
   },
   //   {

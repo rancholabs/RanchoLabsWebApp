@@ -63,7 +63,12 @@
 
 .workshop-instructor .instructor .instructor-pic {
   width: 100%;
-  height: unset;
+  height: 300px;
+}
+
+.workshop-instructor .instructor .instructor-pic img {
+  width: 100%;
+  height: 100%;
 }
 
 @media (max-width: 768px) and (max-height: 900px) {
@@ -96,5 +101,11 @@
     color: #ffffff;
     margin-top: auto;
     font-weight: lighter;
+  }
+}
+
+@media (max-width: 600px) {
+  .workshop-instructor .mobile-instructors .instructor .instructor-pic img {
+    object-fit: unset;
   }
 }
