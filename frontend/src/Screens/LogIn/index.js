@@ -238,7 +238,11 @@ const LogIn = () => {
                           {/* <Link to="/forgotPassword">Forgot your password?</Link> */}
                           Login to your account
                         </div>
-                        <button type="submit" onClick={resetPassHandler}>
+                        <button
+                          type="submit"
+                          onClick={resetPassHandler}
+                          style={{ width: "fit-content" }}
+                        >
                           Reset Password
                         </button>
                         <div className="login">

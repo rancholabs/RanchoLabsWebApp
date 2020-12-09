@@ -42,6 +42,9 @@
   margin-right: calc(300 * 0.9 * var(--vp));
   box-shadow: calc(-26 * 0.9 * var(--vp)) calc(21 * 0.9 * var(--vp)) 0 #3cfaff;
   text-align: center;
+  /* display: flex;
+  flex-direction: column;
+  align-items: ; */
 }
 
 .freeclass .freeclass-signup-form form input {
@@ -123,8 +126,8 @@
 }
 
 .freeclass .freeclass-signup-form form button {
-  /* width: calc(408 * 0.9 * var(--vp)); */
-  width: fit-content;
+  width: calc(408 * 0.9 * var(--vp));
+  /* width: fit-content; */
   height: calc(80 * 0.9 * var(--vp));
   color: #ffffff;
   border: calc(2 * 0.9 * var(--vp)) solid #3cfaff;
