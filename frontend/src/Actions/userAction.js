@@ -376,11 +376,11 @@ export const setUserPassword = (password, reset = false) => async (
             "Your account password has been changed successfully. Please login again to continue."
           );
         }
-        console.log(regUserInfo);
-        dispatch({
-          type: USER_LOGIN_SUCCESS,
-          payload: regUserInfo,
-        });
+        // console.log(regUserInfo);
+        // dispatch({
+        //   type: USER_LOGIN_SUCCESS,
+        //   payload: regUserInfo,
+        // });
       })
       .catch((error) => {
         dispatch({

@@ -307,7 +307,9 @@ function DashboardBody(props) {
               {showLoadingCertificate && <DashboardCongratsCard />}
               {showEnabledCertificate && <DashboardCertificateComplete />}
               {!activeWorkshop && <DashboardJourney />}
-              <DashboardTestimonials />
+              {!activeWorkshop && <DashboardTestimonials />}
+              {activeWorkshop && <br />}
+              {activeWorkshop && <br />}
             </div>
           }
         </>

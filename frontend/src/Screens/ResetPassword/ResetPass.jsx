@@ -48,11 +48,11 @@ const ResetPass = ({ location }) => {
   //   }
   // }, [userInfo, isPasswordChanged]);
 
-  // useEffect(() => {
-  //   if (isPasswordChanged && changeRequested) {
-  //     dispatch(logout(false));
-  //   }
-  // }, [isPasswordChanged, changeRequested]);
+  useEffect(() => {
+    if (isPasswordChanged && changeRequested) {
+      dispatch(logout(false));
+    }
+  }, [isPasswordChanged, changeRequested]);
 
   return (
     <div>
