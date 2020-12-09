@@ -167,13 +167,39 @@ const DashboardHeaderLower = (props) => {
 };
 
 function DashboardBody(props) {
+  const dispatch = useDispatch();
+
   const { activeCourse } = useSelector((state) => state.activeCourse);
+  const groups = useSelector((state) => state.courseGroups);
+  const { loading, error, coursegroups } = groups;
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const [applyForCertificate, setapplyForCertificate] = useState(false);
   const [showLoadingCertificate, setshowLoadingCertificate] = useState(false);
   const [showEnabledCertificate, setshowEnabledCertificate] = useState(false);
   const [studentProfile, setstudentProfile] = useState({});
+  const [activeWorkshop, setactiveWorkshop] = useState(false);
+
+  useEffect(() => {
+    dispatch(courseGroups());
+  }, []);
+
+  useEffect(() => {
+    if (coursegroups) {
+      let workshopGroup = coursegroups?.filter(
+        (g) => g.name.toString().toLowerCase() === "workshop"
+      );
+      if (workshopGroup.length > 0) {
+        workshopGroup = workshopGroup[0];
+        if (workshopGroup._id === activeCourse) {
+          setactiveWorkshop(true);
+        } else {
+          setactiveWorkshop(false);
+        }
+      }
+    }
+  }, [activeCourse]);
 
   console.log(userInfo);
 
@@ -280,7 +306,7 @@ function DashboardBody(props) {
               )}
               {showLoadingCertificate && <DashboardCongratsCard />}
               {showEnabledCertificate && <DashboardCertificateComplete />}
-              <DashboardJourney />
+              {!activeWorkshop && <DashboardJourney />}
               <DashboardTestimonials />
             </div>
           }

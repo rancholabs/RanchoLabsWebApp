@@ -1,356 +1,357 @@
-.freeclass{
-    background-color: #171636;
-    min-height: calc(100vh - 190*var(--vp));
+.freeclass {
+  background-color: #171636;
+  min-height: calc(100vh - 190 * var(--vp));
 }
 
-.freeclass .freeclass-content{
-    width: calc(656*0.9*var(--vp));
-    margin-left: calc(163*0.9*var(--vp));
-    margin-top: calc(190*0.9*var(--vp));
-    
+.freeclass .freeclass-content {
+  width: calc(656 * 0.9 * var(--vp));
+  margin-left: calc(163 * 0.9 * var(--vp));
+  margin-top: calc(190 * 0.9 * var(--vp));
 }
 
-.freeclass .freeclass-content .freeclass-title{
-    font-size: calc(48*0.9*var(--vp));
-    color: #F74B42;
-    text-transform: capitalize;
+.freeclass .freeclass-content .freeclass-title {
+  font-size: calc(48 * 0.9 * var(--vp));
+  color: #f74b42;
+  text-transform: capitalize;
 }
 
-.freeclass .freeclass-content .freeclass-title .text-title{
-    background: linear-gradient(to top, #030224 50%, transparent 30%);
+.freeclass .freeclass-content .freeclass-title .text-title {
+  background: linear-gradient(to top, #030224 50%, transparent 30%);
 }
 
-.freeclass .freeclass-content .freeclass-desc{
-    width: calc(625*0.9*var(--vp));
-    color: #FFFFFF;
-    font-size: calc(28*0.9*var(--vp));
-    margin-top: calc(60*0.9*var(--vp));
+.freeclass .freeclass-content .freeclass-desc {
+  width: calc(625 * 0.9 * var(--vp));
+  color: #ffffff;
+  font-size: calc(28 * 0.9 * var(--vp));
+  margin-top: calc(60 * 0.9 * var(--vp));
 }
 
 .freeclass .freeclass-signup-form {
-    margin-left: auto;
-    margin-bottom: calc(52*0.9*var(--vp));
-    margin-top: 0vw;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
+  margin-left: auto;
+  margin-bottom: calc(52 * 0.9 * var(--vp));
+  margin-top: 0vw;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
 }
 
-.freeclass .freeclass-signup-form form{
-    width: calc(670*0.9*var(--vp));
-    min-height: calc(980*0.9*var(--vp));
-    background-color: #030224;
-    margin-right: calc(300*0.9*var(--vp));
-    box-shadow:  calc(-26*0.9*var(--vp)) calc(21*0.9*var(--vp)) 0 #3CFAFF;
-    text-align: center;
+.freeclass .freeclass-signup-form form {
+  width: calc(670 * 0.9 * var(--vp));
+  min-height: calc(980 * 0.9 * var(--vp));
+  background-color: #030224;
+  margin-right: calc(300 * 0.9 * var(--vp));
+  box-shadow: calc(-26 * 0.9 * var(--vp)) calc(21 * 0.9 * var(--vp)) 0 #3cfaff;
+  text-align: center;
 }
 
-.freeclass .freeclass-signup-form form input{
-    width: calc(338*0.9*var(--vp));
-    height: calc(69*0.9*var(--vp));
-    padding: calc(26.5*0.9*var(--vp)) calc(23.5*0.9*var(--vp));
-    background-color: #171636;
-    font-weight: 300;
-    font-size: calc(28*0.9*var(--vp));
-    border: none;
-    outline: none;
+.freeclass .freeclass-signup-form form input {
+  color: white;
+  width: calc(338 * 0.9 * var(--vp));
+  height: calc(69 * 0.9 * var(--vp));
+  padding: calc(26.5 * 0.9 * var(--vp)) calc(23.5 * 0.9 * var(--vp));
+  background-color: #171636;
+  font-weight: 300;
+  font-size: calc(28 * 0.9 * var(--vp));
+  border: none;
+  outline: none;
 }
 
-.freeclass .freeclass-signup-form form .input-icon{
-    align-self: center;
-    color: #FFFFFF;
-    opacity: 0.7;
-    width: calc(30*0.9*var(--vp));
+.freeclass .freeclass-signup-form form .input-icon {
+  align-self: center;
+  color: #ffffff;
+  opacity: 0.7;
+  width: calc(30 * 0.9 * var(--vp));
 }
 
-.freeclass .freeclass-signup-form form .p-name{
-    width: calc(408*0.9*var(--vp));
-    text-align: center;
-    margin: auto;
-    margin-bottom: calc(31*0.9*var(--vp));
-    background-color: #171636;
-    font-weight: 300;
-    font-size: calc(28*0.9*var(--vp));
-    padding-left: calc(23.5*0.9*var(--vp));
+.freeclass .freeclass-signup-form form .p-name {
+  width: calc(408 * 0.9 * var(--vp));
+  text-align: center;
+  margin: auto;
+  margin-bottom: calc(31 * 0.9 * var(--vp));
+  background-color: #171636;
+  font-weight: 300;
+  font-size: calc(28 * 0.9 * var(--vp));
+  padding-left: calc(23.5 * 0.9 * var(--vp));
 }
 
-.freeclass .freeclass-signup-form form select{
-    width: calc(408*0.9*var(--vp));
-    height: calc(69*0.9*var(--vp));
-    padding: 0 calc(23.5*0.9*var(--vp));
-    background-color: #171636;
-    font-weight: 300;
-    font-size: calc(28*0.9*var(--vp));
-    border: none;
-    color: rgba(255, 255, 255, 0.7);
-    outline: none;
+.freeclass .freeclass-signup-form form select {
+  width: calc(408 * 0.9 * var(--vp));
+  height: calc(69 * 0.9 * var(--vp));
+  padding: 0 calc(23.5 * 0.9 * var(--vp));
+  background-color: #171636;
+  font-weight: 300;
+  font-size: calc(28 * 0.9 * var(--vp));
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  outline: none;
 }
 
-.freeclass .freeclass-signup-form form .p-split{
-    background-color: #030224;
-    justify-content: space-between;
-    width: calc(408*0.9*var(--vp));
-    margin: auto;
-    margin-bottom: calc(31*0.9*var(--vp));
+.freeclass .freeclass-signup-form form .p-split {
+  background-color: #030224;
+  justify-content: space-between;
+  width: calc(408 * 0.9 * var(--vp));
+  margin: auto;
+  margin-bottom: calc(31 * 0.9 * var(--vp));
 }
 
-.freeclass .freeclass-signup-form form .p-split input:first-child{
-    width: calc(121*0.9*var(--vp));
-    margin-right: calc(13*0.9*var(--vp));
-    color: rgba(255, 255, 255, 0.699);
-    padding-right: 0.7vw;
+.freeclass .freeclass-signup-form form .p-split input:first-child {
+  width: calc(121 * 0.9 * var(--vp));
+  margin-right: calc(13 * 0.9 * var(--vp));
+  color: rgba(255, 255, 255, 0.699);
+  padding-right: 0.7vw;
 }
 
-.freeclass .freeclass-signup-form form .p-split input{
-    width: calc(274*0.9*var(--vp));
+.freeclass .freeclass-signup-form form .p-split input {
+  width: calc(274 * 0.9 * var(--vp));
 }
 
-.freeclass .freeclass-signup-form form .freeclass-form-title{
-    color: #3CFAFF;
-    text-transform: capitalize;
-    font-size:calc(40*0.9*var(--vp));
-    line-height: normal;
-    text-align: center;
-    padding-top: calc(62*0.9*var(--vp));
-    padding-bottom: calc(40*0.9*var(--vp));
+.freeclass .freeclass-signup-form form .freeclass-form-title {
+  color: #3cfaff;
+  text-transform: capitalize;
+  font-size: calc(40 * 0.9 * var(--vp));
+  line-height: normal;
+  text-align: center;
+  padding-top: calc(62 * 0.9 * var(--vp));
+  padding-bottom: calc(40 * 0.9 * var(--vp));
 }
 
-.freeclass .freeclass-signup-form form .hr{
-    border-bottom: calc(3*0.9*var(--vp)) solid #F74B42;
-    width: calc(196*0.9*var(--vp));
-    margin: auto;
-    margin-bottom: calc(48.5*0.9*var(--vp));
+.freeclass .freeclass-signup-form form .hr {
+  border-bottom: calc(3 * 0.9 * var(--vp)) solid #f74b42;
+  width: calc(196 * 0.9 * var(--vp));
+  margin: auto;
+  margin-bottom: calc(48.5 * 0.9 * var(--vp));
 }
 
-.freeclass .freeclass-signup-form form button{
-    width: calc(408*0.9*var(--vp));
-    height: calc(80*0.9*var(--vp));
-    color: #FFFFFF;
-    border: calc(2*0.9*var(--vp)) solid #3CFAFF;
-    box-shadow: 0 calc(6*0.9*var(--vp)) calc(6*0.9*var(--vp)) #0000003D;
-    border-radius: calc(9*0.9*var(--vp));
-    background-color: transparent;
-    margin-top: calc(20*0.9*var(--vp));
-    font-size: calc(33*0.9*var(--vp));
+.freeclass .freeclass-signup-form form button {
+  /* width: calc(408 * 0.9 * var(--vp)); */
+  width: fit-content;
+  height: calc(80 * 0.9 * var(--vp));
+  color: #ffffff;
+  border: calc(2 * 0.9 * var(--vp)) solid #3cfaff;
+  box-shadow: 0 calc(6 * 0.9 * var(--vp)) calc(6 * 0.9 * var(--vp)) #0000003d;
+  border-radius: calc(9 * 0.9 * var(--vp));
+  background-color: transparent;
+  margin-top: calc(20 * 0.9 * var(--vp));
+  font-size: calc(33 * 0.9 * var(--vp));
 }
 
-.freeclass .freeclass-signup-form form button:hover{
-    color: #030224;
-    background-color: #3CFAFF;
+.freeclass .freeclass-signup-form form button:hover {
+  color: #030224;
+  background-color: #3cfaff;
 }
 
 .freeclass input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
 textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
-select:-webkit-autofill:focus{
-  -webkit-text-fill-color: #FFFFFF;
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ffffff;
   transition: background-color 5000s ease-in-out 0s;
   outline: none !important;
 }
 
-.freeclass input::placeholder{
-    color: #FFFFFF;
-    font-size: calc(28*0.9*var(--vp));
+.freeclass input::placeholder {
+  color: #ffffff;
+  font-size: calc(28 * 0.9 * var(--vp));
+  opacity: 0.7;
+  font-weight: 300;
+}
+
+.freeclass p {
+  color: #f0f0f2;
+  margin-top: 1vw;
+  font-size: calc(22 * var(--vp));
+}
+
+.freeclass a {
+  color: #3cfaff;
+}
+
+.freeclass a:hover {
+  color: #3cfaff !important;
+}
+
+@media (max-width: 600px) {
+  .freeclass {
+    background-color: #171636;
+    min-height: calc(100vh - 190 * var(--vp));
+  }
+
+  .freeclass .freeclass-content {
+    width: unset;
+    margin: auto;
+    margin-top: 3vw;
+  }
+
+  .freeclass .freeclass-content .freeclass-title {
+    font-size: calc(22 * var(--vm));
+    color: #f74b42;
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  .freeclass .freeclass-content .freeclass-title .text-title {
+    background: linear-gradient(to top, #030224 50%, transparent 30%);
+  }
+
+  .freeclass .freeclass-content .freeclass-desc {
+    width: calc(255 * var(--vm));
+    color: #ffffff;
+    font-size: calc(15 * var(--vm));
+    margin-top: calc(60 * 0.9 * var(--vp));
+    text-align: center;
+  }
+
+  .freeclass .freeclass-signup-form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .freeclass .freeclass-signup-form form {
+    width: 90vw;
+    min-height: calc(980 * 0.9 * var(--vp));
+    background-color: #030224;
+    margin-right: 0;
+    box-shadow: calc(6 * var(--vm)) calc(6 * var(--vm)) 0 #3cfaff;
+    text-align: center;
+    padding: 7vw 8vw;
+    margin-top: 10vw;
+    margin-bottom: 5vw;
+  }
+
+  .freeclass .freeclass-signup-form form input {
+    width: unset;
+    height: unset;
+    padding: calc(10 * var(--vm)) calc(10 * var(--vm));
+    background-color: #171636;
+    font-weight: 300;
+    font-size: calc(15 * var(--vm));
+    border: none;
+    outline: none;
+  }
+
+  .freeclass .freeclass-signup-form form .input-icon {
+    align-self: center;
+    color: #ffffff;
+    opacity: 0.7;
+    width: calc(25 * var(--vm));
+    font-size: calc(17 * var(--vm));
+  }
+
+  .freeclass .freeclass-signup-form form .p-name {
+    width: unset;
+    text-align: center;
+    margin: auto;
+    margin-bottom: calc(15 * var(--vm));
+    background-color: #171636;
+    font-weight: 300;
+    font-size: calc(18 * var(--vm));
+    padding-left: calc(5 * var(--vm));
+  }
+
+  .freeclass .freeclass-signup-form form select {
+    width: 100%;
+    height: auto;
+    padding: calc(10 * var(--vm));
+    background-color: #171636;
+    font-weight: 300;
+    font-size: calc(15 * var(--vm));
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    outline: none;
+  }
+
+  .freeclass .freeclass-signup-form form .p-split {
+    background-color: #030224;
+    justify-content: space-between;
+    width: auto;
+    margin: auto;
+    margin-bottom: calc(15 * var(--vm));
+  }
+
+  .freeclass .freeclass-signup-form form .p-split input:first-child {
+    width: calc(60 * 0.9 * var(--vm));
+    margin-right: calc(7 * var(--vm));
+    color: rgba(255, 255, 255, 0.699);
+    padding-right: 0.7vw;
+  }
+
+  .freeclass .freeclass-signup-form form .p-split input {
+    width: calc(228 * 0.9 * var(--vm));
+  }
+
+  .freeclass .freeclass-signup-form form .freeclass-form-title {
+    color: #3cfaff;
+    text-transform: capitalize;
+    font-size: calc(22 * var(--vm));
+    line-height: inherit;
+    text-align: center;
+    padding-top: calc(62 * 0.9 * var(--vp));
+    padding-bottom: calc(15 * var(--vm));
+  }
+
+  .freeclass .freeclass-signup-form form .hr {
+    border-bottom: calc(2 * var(--vm)) solid #f74b42;
+    width: calc(80 * var(--vm));
+    margin: auto;
+    margin-bottom: calc(25 * var(--vm));
+  }
+
+  .freeclass .freeclass-signup-form form button {
+    width: calc(140 * var(--vm));
+    height: calc(33 * var(--vm));
+    color: #ffffff;
+    border: calc(2 * 0.9 * var(--vp)) solid #3cfaff;
+    box-shadow: 0 calc(6 * 0.9 * var(--vp)) calc(6 * 0.9 * var(--vp)) #0000003d;
+    border-radius: calc(5 * var(--vm));
+    background-color: transparent;
+    margin-top: calc(30 * 0.9 * var(--vm));
+    font-size: calc(15 * var(--vm));
+  }
+
+  .freeclass .freeclass-signup-form form button:hover {
+    color: #030224;
+    background-color: #3cfaff;
+  }
+
+  .freeclass input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    -webkit-text-fill-color: #ffffff;
+    transition: background-color 5000s ease-in-out 0s;
+    outline: none !important;
+  }
+
+  .freeclass input::placeholder {
+    color: #ffffff;
+    font-size: calc(15 * var(--vm));
     opacity: 0.7;
     font-weight: 300;
-}
+  }
 
-.freeclass p{
-    color: #F0F0F2;
-    margin-top: 1vw;
-    font-size: calc(22*var(--vp));
-}
+  .freeclass p {
+    color: #f0f0f2;
+    margin-top: 5vw;
+    font-size: calc(15 * var(--vm));
+  }
 
-.freeclass a{
-    color: #3CFAFF;
-}
+  .freeclass a {
+    color: #3cfaff;
+  }
 
-.freeclass a:hover{
-    color: #3CFAFF !important;
-}
-
-@media(max-width:600px){
-    .freeclass{
-        background-color: #171636;
-        min-height: calc(100vh - 190*var(--vp));
-    }
-    
-    .freeclass .freeclass-content{
-        width: unset;
-        margin: auto;
-        margin-top: 3vw;
-    }
-    
-    .freeclass .freeclass-content .freeclass-title{
-        font-size: calc(22*var(--vm));
-        color: #F74B42;
-        text-align: center;
-        text-transform: capitalize;
-    }
-    
-    .freeclass .freeclass-content .freeclass-title .text-title{
-        background: linear-gradient(to top, #030224 50%, transparent 30%);
-    }
-    
-    .freeclass .freeclass-content .freeclass-desc{
-        width: calc(255*var(--vm));
-        color: #FFFFFF;
-        font-size: calc(15*var(--vm));
-        margin-top: calc(60*0.9*var(--vp));
-        text-align: center;
-    }
-    
-    .freeclass .freeclass-signup-form {
-        margin: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-    
-    .freeclass .freeclass-signup-form form{
-        width: 90vw;
-        min-height: calc(980*0.9*var(--vp));
-        background-color: #030224;
-        margin-right: 0;
-        box-shadow:  calc(6*var(--vm)) calc(6*var(--vm)) 0 #3CFAFF;
-        text-align: center;
-        padding: 7vw 8vw;
-        margin-top: 10vw;
-        margin-bottom: 5vw;
-    }
-    
-    .freeclass .freeclass-signup-form form input{
-        width: unset;
-        height: unset;
-        padding: calc(10*var(--vm)) calc(10*var(--vm));
-        background-color: #171636;
-        font-weight: 300;
-        font-size: calc(15*var(--vm));
-        border: none;
-        outline: none;
-    }
-    
-    .freeclass .freeclass-signup-form form .input-icon{
-        align-self: center;
-        color: #FFFFFF;
-        opacity: 0.7;
-        width: calc(25*var(--vm));
-        font-size : calc(17*var(--vm));
-    }
-    
-    .freeclass .freeclass-signup-form form .p-name{
-        width: unset;
-        text-align: center;
-        margin: auto;
-        margin-bottom: calc(15*var(--vm));
-        background-color: #171636;
-        font-weight: 300;
-        font-size: calc(18*var(--vm));
-        padding-left: calc(5*var(--vm));
-    }
-    
-    .freeclass .freeclass-signup-form form select{
-        width: 100%;
-        height: auto;
-        padding: calc(10*var(--vm));
-        background-color: #171636;
-        font-weight: 300;
-        font-size: calc(15*var(--vm));
-        border: none;
-        color: rgba(255, 255, 255, 0.7);
-        outline: none;
-    }
-    
-    .freeclass .freeclass-signup-form form .p-split{
-        background-color: #030224;
-        justify-content: space-between;
-        width: auto;
-        margin: auto;
-        margin-bottom: calc(15*var(--vm));
-    }
-    
-    .freeclass .freeclass-signup-form form .p-split input:first-child{
-        width: calc(60*0.9*var(--vm));
-        margin-right: calc(7*var(--vm));
-        color: rgba(255, 255, 255, 0.699);
-        padding-right: 0.7vw;
-    }
-    
-    .freeclass .freeclass-signup-form form .p-split input{
-        width: calc(228*0.9*var(--vm));
-    }
-    
-    .freeclass .freeclass-signup-form form .freeclass-form-title{
-        color: #3CFAFF;
-        text-transform: capitalize;
-        font-size:calc(22*var(--vm));
-        line-height: inherit;
-        text-align: center;
-        padding-top: calc(62*0.9*var(--vp));
-        padding-bottom: calc(15*var(--vm));
-    }
-    
-    .freeclass .freeclass-signup-form form .hr{
-        border-bottom: calc(2*var(--vm)) solid #F74B42;
-        width: calc(80*var(--vm));
-        margin: auto;
-        margin-bottom: calc(25*var(--vm));
-    }
-    
-    .freeclass .freeclass-signup-form form button{
-        width: calc(140*var(--vm));
-        height: calc(33*var(--vm));
-        color: #FFFFFF;
-        border: calc(2*0.9*var(--vp)) solid #3CFAFF;
-        box-shadow: 0 calc(6*0.9*var(--vp)) calc(6*0.9*var(--vp)) #0000003D;
-        border-radius: calc(5*var(--vm));
-        background-color: transparent;
-        margin-top: calc(30*0.9*var(--vm));
-        font-size: calc(15*var(--vm));
-    }
-    
-    .freeclass .freeclass-signup-form form button:hover{
-        color: #030224;
-        background-color: #3CFAFF;
-    }
-    
-    .freeclass input:-webkit-autofill,
-    input:-webkit-autofill:hover, 
-    input:-webkit-autofill:focus,
-    textarea:-webkit-autofill,
-    textarea:-webkit-autofill:hover,
-    textarea:-webkit-autofill:focus,
-    select:-webkit-autofill,
-    select:-webkit-autofill:hover,
-    select:-webkit-autofill:focus{
-      -webkit-text-fill-color: #FFFFFF;
-      transition: background-color 5000s ease-in-out 0s;
-      outline: none !important;
-    }
-    
-    .freeclass input::placeholder{
-        color: #FFFFFF;
-        font-size: calc(15*var(--vm));
-        opacity: 0.7;
-        font-weight: 300;
-    }
-    
-    .freeclass p{
-        color: #F0F0F2;
-        margin-top: 5vw;
-        font-size: calc(15*var(--vm));
-    }
-    
-    .freeclass a{
-        color: #3CFAFF;
-    }
-    
-    .freeclass a:hover{
-        color: #3CFAFF !important;
-    }
+  .freeclass a:hover {
+    color: #3cfaff !important;
+  }
 }

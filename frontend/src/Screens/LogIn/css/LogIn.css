@@ -114,12 +114,31 @@
   color: rgba(240, 240, 242, 0.623);
   text-align: center;
   font-size: 1.1vw;
+  cursor: pointer;
+}
+
+.forgotpass:hover {
+  text-decoration: underline;
 }
 
 .forgotpass a,
 a:hover {
   color: unset;
   cursor: pointer;
+}
+
+.mail-sent {
+  color: #ffffff;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.mail-sent p {
+  margin: 0 !important;
+}
+
+.mail-sent .come-back {
+  color: #f74b42;
 }
 
 @media (min-width: 768px) and (min-height: 1000px) {

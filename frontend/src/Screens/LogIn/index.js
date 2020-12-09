@@ -1,7 +1,12 @@
 import React, { useRef } from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login, loginGoogle, loginFacebook } from "../../Actions/userAction";
+import {
+  login,
+  loginGoogle,
+  loginFacebook,
+  UserForgotPassword,
+} from "../../Actions/userAction";
 import "./css/LogIn.css";
 import google from "./img/google.png";
 import facebook from "./img/facebook.png";
@@ -22,17 +27,29 @@ function validateEmail(email) {
 }
 
 const LogIn = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState(null);
+  const [forgotPass, setforgotPass] = useState(false);
+  const [mailSent, setMailSent] = useState(false);
 
-  const dispatch = useDispatch();
-  const history = useHistory();
+  const { error: forgotpassworderror, isMailSent } = useSelector(
+    (state) => state.userForgotPassword
+  );
 
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
   const signuplink = userInfo ? "/" : "/freeclass";
+
+  useEffect(() => {
+    if (isMailSent) {
+      setMailSent(true);
+    }
+  }, [isMailSent]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -83,6 +100,11 @@ const LogIn = () => {
       // FacebookSignIn(facebookBtn.current, loginFacebook,  dispatch)
     }
   }, [userInfo]);
+
+  const resetPassHandler = (e) => {
+    e.preventDefault();
+    dispatch(UserForgotPassword(email));
+  };
 
   // useEffect(() => {
   //     if(userInfo) {
@@ -165,66 +187,134 @@ const LogIn = () => {
                   Learn, build and Innovate with Rancho Labs
                 </div>
               </div>
-              <div className="freeclass-signup-form login-form">
-                <form>
-                  <div className="freeclass-form-title">Sign in!</div>
-                  <div className="hr"></div>
-                  <div className="p-name">
-                    <div className="row mx-0">
-                      {/* <div className="input-icon">
+              {forgotPass ? (
+                <div className="freeclass-signup-form login-form">
+                  <form>
+                    <div className="freeclass-form-title">
+                      Reset Your Password
+                    </div>
+                    {mailSent ? (
+                      <>
+                        <div className="mail-sent">
+                          <p>
+                            A link has been sent to your registered Email id.
+                          </p>
+                          <p>
+                            Please go to your Email account and set your new
+                            password.
+                          </p>
+                          <br />
+                          KEEP LEARNING <br />
+                          BUILDING <br />
+                          and <br />
+                          INNOVATING <br />
+                          <br />
+                          <span className="come-back">COME BACK SOON !</span>
+                        </div>
+                      </>
+                    ) : forgotpassworderror ? (
+                      <div className="error">{error}</div>
+                    ) : (
+                      <>
+                        <div className="hr"></div>
+                        <div className="p-name">
+                          <div className="row mx-0">
+                            {/* <div className="input-icon">
                         <Fontawesome name="envelope" />
                       </div> */}
-                      <input
-                        type="text"
-                        name="email"
-                        placeholder="Email Address"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      ></input>
+                            <input
+                              type="text"
+                              name="email"
+                              placeholder="Student Email Address"
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                            ></input>
+                          </div>
+                        </div>
+                        <div
+                          className="forgotpass"
+                          onClick={() => setforgotPass(false)}
+                        >
+                          {/* <Link to="/forgotPassword">Forgot your password?</Link> */}
+                          Login to your account
+                        </div>
+                        <button type="submit" onClick={resetPassHandler}>
+                          Reset Password
+                        </button>
+                        <div className="login">
+                          New to Rancho Labs?{" "}
+                          <Link to={signuplink}>Sign Up</Link> here
+                        </div>
+                      </>
+                    )}
+                  </form>
+                </div>
+              ) : (
+                <div className="freeclass-signup-form login-form">
+                  <form>
+                    <div className="freeclass-form-title">Sign in!</div>
+                    <div className="hr"></div>
+                    <div className="p-name">
+                      <div className="row mx-0">
+                        {/* <div className="input-icon">
+                        <Fontawesome name="envelope" />
+                      </div> */}
+                        <input
+                          type="text"
+                          name="email"
+                          placeholder="Student Email Address"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                        ></input>
+                      </div>
                     </div>
-                  </div>
-                  <div className="p-name">
-                    <div className="row mx-0">
-                      {/* <div className="input-icon">
+                    <div className="p-name">
+                      <div className="row mx-0">
+                        {/* <div className="input-icon">
                         <Fontawesome name="password" />
                       </div> */}
-                      <input
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                      ></input>
+                        <input
+                          type="password"
+                          name="password"
+                          placeholder="Password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                        ></input>
+                      </div>
                     </div>
-                  </div>
-                  <div className="forgotpass">
-                    <Link to="/forgotPassword">Forgot your password?</Link>
-                  </div>
-                  {message ? (
-                    <p style={{ color: "#70707A", marginBottom: "0" }}>
-                      {message}
-                    </p>
-                  ) : (
-                    setMessage
-                  )}
-                  {error && (
-                    <p style={{ color: "#FFFFFF", marginBottom: "0" }}>
-                      {error.auth === false
-                        ? "Invalid Username/Password"
-                        : error.user === false
-                        ? "Seems like you have not registered account with us. Please signup to continue"
-                        : error.message}
-                    </p>
-                  )}
-                  <button type="submit" onClick={submitHandler}>
-                    LOGIN
-                  </button>
-                  <div className="login">
-                    New to Rancho Labs? <Link to={signuplink}>Sign Up</Link>{" "}
-                    here
-                  </div>
-                </form>
-              </div>
+                    <div
+                      className="forgotpass"
+                      onClick={() => setforgotPass(true)}
+                    >
+                      {/* <Link to="/forgotPassword">Forgot your password?</Link> */}
+                      Forgot your password?
+                    </div>
+                    {message ? (
+                      <p style={{ color: "#70707A", marginBottom: "0" }}>
+                        {message}
+                      </p>
+                    ) : (
+                      setMessage
+                    )}
+                    {error && (
+                      <p style={{ color: "#FFFFFF", marginBottom: "0" }}>
+                        {error.auth === false
+                          ? "Invalid Username/Password"
+                          : error.user === false
+                          ? "Seems like you have not registered account with us. Please signup to continue"
+                          : error.message}
+                      </p>
+                    )}
+                    <button type="submit" onClick={submitHandler}>
+                      LOGIN
+                    </button>
+                    <div className="login">
+                      New to Rancho Labs? <Link to={signuplink}>Sign Up</Link>{" "}
+                      here
+                    </div>
+                  </form>
+                </div>
+              )}
             </div>
           </>
         )}

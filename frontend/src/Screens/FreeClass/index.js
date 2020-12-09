@@ -5,7 +5,7 @@ import { UserForgotPassword } from "../../Actions/userAction";
 import { updateStudent } from "../../Actions/Student";
 import { updateHeader } from "../../Actions/Header";
 import { updateFooter } from "../../Actions/Footer";
-import { register, resetError } from "../../Actions/userAction";
+import { register, resetError, login } from "../../Actions/userAction";
 import Fontawesome from "react-fontawesome";
 import codes from "./codes";
 import { useHistory } from "react-router-dom";
@@ -25,6 +25,7 @@ const FreeClass = ({ location }) => {
   const [name, setName] = useState("");
   const [pname, setPname] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [pemail, setPemail] = useState("");
   const [contact, setContact] = useState("");
   const [grade, setGrade] = useState("");
@@ -58,9 +59,12 @@ const FreeClass = ({ location }) => {
 
   useEffect(() => {
     if (isUpdated) {
-      hHistory.push(`/setPassword/${email}`);
+      dispatch(login(email, password));
+      var path = "/dashboard/?mode=signup";
+
+      hHistory.replace(path);
     }
-  });
+  }, [isUpdated]);
 
   const loginfor = params.loginfor ? params.loginfor : null;
 
@@ -126,7 +130,8 @@ const FreeClass = ({ location }) => {
       pname === "" ||
       contact === "" ||
       pemail === "" ||
-      pdialcode === ""
+      pdialcode === "" ||
+      password === ""
     ) {
       setMessage("Please fill all details");
     } else if (!validateEmail(email) || !validateEmail(pemail)) {
@@ -141,7 +146,7 @@ const FreeClass = ({ location }) => {
 
       const mobileNo = "";
 
-      dispatch(register(finalname, email));
+      dispatch(register(finalname, email, password));
       //   dispatch(register( finalname , email, parentdetails, grade, loginfor, mobileNo, freeclass ))
     }
   };
@@ -235,6 +240,20 @@ const FreeClass = ({ location }) => {
                       placeholder="Student e-mail address"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="p-name">
+                  <div className="row mx-0">
+                    <div className="input-icon">
+                      <Fontawesome name="lock" />
+                    </div>
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="Student password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
                 </div>

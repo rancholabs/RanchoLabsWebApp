@@ -97,13 +97,13 @@ function App() {
                     exact={true}
                     component={SetPass}
                   />
-                  <Route
+                  {/* <Route
                     path="/resetPassword"
                     exact={true}
                     component={ResetPass}
-                  />
+                  /> */}
                   <Route
-                    path="/resetPassword/:token"
+                    path="/resetPassword"
                     exact={true}
                     component={ValidateResetLink}
                   />

@@ -277,7 +277,7 @@ function School({ allSchoolsData }) {
                 ></input>
               </div>
               <div className="blogAdmin__inputSection">
-                <label>Representative Number</label>
+                <label>Link</label>
                 <input
                   type="text"
                   readOnly={true}
