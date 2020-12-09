@@ -26,7 +26,6 @@ router.get(
   isAuthenticated,
   isAuthorized(["student"]),
   async (req, res) => {
-    console.log(req.userId);
     StudentProfile.findOne({ userId: req.userId })
       .select({ __v: 0 })
       .exec()

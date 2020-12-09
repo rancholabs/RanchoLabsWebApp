@@ -18,6 +18,8 @@ function ProjectBuild({ location }) {
   const [singleProject, setSingleProject] = useState({});
   const [singleCourse, setSingleCourse] = useState([]);
   const [singlebatch, setSinglebatch] = useState({});
+  const [batchSingleProject, setbatchSingleProject] = useState({});
+  const [singleSubmissionUser, setsingleSubmissionUser] = useState({});
   const [submitLink, setSubmitLink] = useState("");
 
   useEffect(() => {
@@ -53,6 +55,31 @@ function ProjectBuild({ location }) {
   }, []);
 
   useEffect(() => {
+    if (singleProject._id && singlebatch._id) {
+      let _batchSingleProject = singlebatch.projects.filter(
+        (proj) => proj.projectId === singleProject._id
+      );
+      if (_batchSingleProject.length > 0) {
+        _batchSingleProject = _batchSingleProject[0];
+        if (_batchSingleProject.submission) {
+          let _singleSubmissionUser = _batchSingleProject.submission.filter(
+            (sub) => sub.userId === userInfo.userId
+          );
+          if (_singleSubmissionUser.length > 0) {
+            _singleSubmissionUser = _singleSubmissionUser[0];
+            setsingleSubmissionUser(_singleSubmissionUser);
+            setSubmitLink(_singleSubmissionUser.link);
+          }
+        }
+        setbatchSingleProject(_batchSingleProject);
+      }
+    }
+  }, [singleProject, singlebatch]);
+
+  console.log(singleSubmissionUser);
+  console.log(batchSingleProject);
+
+  useEffect(() => {
     if (singleProject.courseId) {
       const userInfo = localStorage.getItem("userInfo");
       const token = userInfo ? JSON.parse(userInfo).token : "";
@@ -82,7 +109,6 @@ function ProjectBuild({ location }) {
   console.log(userInfo);
 
   const addSubmission = () => {
-    console.log("submitting link...");
     let singlePR = singlebatch.projects.filter(
       (pr) => pr.projectId === params.project
     );
@@ -95,7 +121,6 @@ function ProjectBuild({ location }) {
           count++;
         }
       });
-      console.log(singlePR);
       let submissions = [...singlePR.submission];
       if (count === 0) {
         submissions.push({
@@ -103,8 +128,6 @@ function ProjectBuild({ location }) {
           link: submitLink,
         });
       }
-      console.log(submissions);
-      console.log(params);
       dispatch(
         instructorUpdateBatchProject(
           { submission: submissions },
@@ -151,10 +174,19 @@ function ProjectBuild({ location }) {
           </button>
         </div>
         <div className="buildProject__body__contentParent buildProject__instructor">
-          <h3>Grade: Not graded yet</h3>
+          <h3>
+            Grade:{" "}
+            {singleSubmissionUser.instructorGrade
+              ? singleSubmissionUser.instructorGrade
+              : "Not graded yet"}
+          </h3>
           <h3>Teacher's Notes:</h3>
           <div>
-            <h3>Teacher's feedback will appear here.</h3>
+            {singleSubmissionUser.instructorComment ? (
+              <h3>{singleSubmissionUser.instructorComment}</h3>
+            ) : (
+              <h3>Teacher's feedback will appear here.</h3>
+            )}
           </div>
         </div>
       </div>

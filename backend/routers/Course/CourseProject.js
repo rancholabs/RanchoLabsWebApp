@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   const id = req.params.id;
-  console.log(req.body, id);
+  // console.log(req.body, id);
   const updateData = req.body ? req.body : {};
   if (updateData.image) {
     updateData.image = mongoose.Types.ObjectId(updateData.image);
@@ -181,7 +181,7 @@ router.get("/all", async (req, res) => {
   ])
     .exec()
     .then((allprojects) => {
-      console.log(allprojects);
+      // console.log(allprojects);
       res.status(200).send(allprojects);
     })
     .catch((err) => {
@@ -192,7 +192,7 @@ router.get("/all", async (req, res) => {
 
 router.get("/single/:id", async (req, res) => {
   const id = req.params.id;
-  console.log(id);
+  // console.log(id);
   const error = {
     message: "Error in getting course project",
     error: "Bad Request",

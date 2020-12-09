@@ -43,7 +43,7 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   const id = req.params.id;
-  console.log(id);
+  // console.log(id);
   // const updateData = req.body ? req.body : {};
   // if (updateData.materials) {
   //   if (updateData.materials.lesson) {
@@ -67,7 +67,7 @@ router.put("/:id", async (req, res) => {
   //     );
   //   }
   // }
-  console.log(req.body);
+  // console.log(req.body);
   Class.findByIdAndUpdate(id, req.body)
     .then((doc) => {
       res.status(204).send("Class updated");

@@ -106,7 +106,7 @@ router.get(
           email: user.email,
           password: instructor.password,
           todolist: instructor.todolist,
-          profileimage: instructor.profileimage
+          profileimage: instructor.profileimage,
         };
         res.status(201).send(info);
       } else {
@@ -215,6 +215,34 @@ router.post(
           },
         },
         {
+          $lookup: {
+            from: "projects",
+            let: { courseId: "$courseId" },
+            pipeline: [
+              {
+                $match: {
+                  $expr: {
+                    $eq: ["$courseId", "$$courseId"],
+                  },
+                },
+              },
+              {
+                $project: {
+                  __v: 0,
+                  courseId: 0,
+                },
+              },
+            ],
+            as: "projectsDetails",
+          },
+        },
+        {
+          $unwind: {
+            path: "$projectsDetails",
+            preserveNullAndEmptyArrays: true,
+          },
+        },
+        {
           $project: {
             batch: "$name",
             batchType: 1,
@@ -229,9 +257,11 @@ router.post(
             date_time: 1,
             // classId: "$classes.classId",
             classes: 1,
+            projects: 1,
             _id: 1,
             students: "$students",
             classesDetails: 1,
+            projectsDetails: 1,
             // materials: "$classes.materials",
             // attendance: "$classes.attendance",
           },
@@ -315,7 +345,9 @@ router.post(
             doubleTime: { $first: "$doubleTime" },
             date_time: { $first: "$date_time" },
             classes: { $first: "$classes" },
+            projects: { $first: "$projects" },
             classesDetails: { $push: "$classesDetails" },
+            projectsDetails: { $push: "$projectsDetails" },
           },
         },
         // {

@@ -877,7 +877,7 @@ router.put(
   isAuthorized(["admin"]),
   async (req, res) => {
     const { id } = req.params;
-    console.log(id);
+    // console.log(id);
     console.log(req.body);
 
     Course.findByIdAndUpdate(id, req.body)

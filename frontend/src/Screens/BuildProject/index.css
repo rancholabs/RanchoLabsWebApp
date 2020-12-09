@@ -44,6 +44,13 @@
 .buildProject__body__contentParent {
   background-color: white;
   padding: calc(50 * var(--vp)) calc(95 * var(--vp));
+  display: flex;
+  flex-direction: column;
+}
+
+.buildProject__body__contentParent input {
+  width: 25%;
+  margin-bottom: 50px;
 }
 
 .buildProject__body__content {
@@ -83,6 +90,7 @@
   background-color: transparent;
   color: #3b3b3b;
   padding: calc(20 * var(--vp)) calc(35 * var(--vp));
+  width: fit-content;
 }
 
 .buildProject__instructor {

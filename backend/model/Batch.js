@@ -57,6 +57,12 @@ const ProjectSchema = new mongoose.Schema({
       link: {
         type: String,
       },
+      instructorComment: {
+        type: String,
+      },
+      instructorGrade: {
+        type: String,
+      },
     },
   ],
 });

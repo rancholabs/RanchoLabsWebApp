@@ -12,8 +12,22 @@ import {
   instructorUpdate,
   instructorUpdateBatchClass,
   updateClassLink,
+  instructorUpdateBatchProject,
 } from "../../Actions/Instructor";
 import axios from "axios";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Button from "@material-ui/core/Button";
 
 const batches = ["A", "B", "C", "All"];
 
@@ -381,8 +395,52 @@ const Materials = (props) => {
 };
 
 const Results = (props) => {
-  const disable = props.status === "active" ? false : true;
+  // const disable = props.status === "active" ? false : true;
+  const disable = false;
   const saveLink = props.status === "completed" ? true : false;
+  const [open, setOpen] = React.useState(false);
+  const [allSubmissions, setAllSubmissions] = React.useState(
+    props.singleProjectDetails?.submission
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setAllSubmissions(props.singleProjectDetails?.submission);
+  }, [props.singleProjectDetails]);
+
+  const openSubmissions = () => {
+    console.log(props.singleProjectDetails);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleInstructorCommentChange = (e, id) => {
+    let _submissions = [...allSubmissions];
+    let index = _submissions.findIndex((element) => element._id == id);
+    _submissions[index].instructorComment = e.target.value;
+    setAllSubmissions(_submissions);
+  };
+
+  const handleInstructorGradeChange = (e, id) => {
+    let _submissions = [...allSubmissions];
+    let index = _submissions.findIndex((element) => element._id == id);
+    _submissions[index].instructorGrade = e.target.value;
+    setAllSubmissions(_submissions);
+  };
+
+  const saveInstuctorSubmission = () => {
+    dispatch(
+      instructorUpdateBatchProject(
+        { submission: allSubmissions },
+        props.batchId,
+        props.singleProjectDetails.projectId
+      )
+    );
+    alert("Details Saved!");
+  };
 
   return (
     <>
@@ -390,8 +448,78 @@ const Results = (props) => {
         <button disabled={disable}>View Quiz Results</button>
       </div>
       <div className="view">
-        <button disabled={disable}>View Submitted Assignments</button>
+        <button disabled={disable} onClick={openSubmissions}>
+          View Submitted Assignments
+        </button>
       </div>
+
+      {/* INTRUCTOR SUBMISSION MODAL TABLE */}
+      <Dialog
+        fullWidth={true}
+        maxWidth="md"
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="max-width-dialog-title"
+      >
+        <DialogTitle id="max-width-dialog-title">
+          Project Submissions
+        </DialogTitle>
+        <DialogContent>
+          <TableContainer component={Paper}>
+            <Table size="small" aria-label="a dense table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Name</TableCell>
+                  <TableCell>Link</TableCell>
+                  <TableCell align="right">Grade</TableCell>
+                  <TableCell align="right">Comment</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {allSubmissions?.map((row) => {
+                  let singleStudent = props.students.filter(
+                    (stud) => stud.userId === row.userId
+                  )[0];
+                  return (
+                    <TableRow key={row._id}>
+                      <TableCell component="th" scope="row">
+                        {singleStudent.details[0]?.name?.first +
+                          " " +
+                          singleStudent.details[0]?.name?.last}
+                      </TableCell>
+                      <TableCell>{row.link}</TableCell>
+                      <TableCell align="right">
+                        <input
+                          value={row.instructorGrade}
+                          onChange={(e) =>
+                            handleInstructorGradeChange(e, row._id)
+                          }
+                        ></input>
+                      </TableCell>
+                      <TableCell align="right">
+                        <input
+                          value={row.instructorComment}
+                          onChange={(e) =>
+                            handleInstructorCommentChange(e, row._id)
+                          }
+                        ></input>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Close
+          </Button>
+          <Button onClick={saveInstuctorSubmission} color="primary">
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };
@@ -508,7 +636,13 @@ const ClassListCard = (props) => {
                         classDetails={props.classDetails}
                       />
                       <div>
-                        <Results status={status} />
+                        <Results
+                          status={status}
+                          projectDetails={props.projectDetails}
+                          singleProjectDetails={props.singleProjectDetails}
+                          batchId={props.batchId}
+                          students={props.students}
+                        />
                       </div>
                     </div>
                     <div>
@@ -685,7 +819,20 @@ const Schedule = () => {
                   for (let j in _classObj) {
                     _classArray.push(_classObj[j]);
                   }
-                  console.log(_classArray);
+
+                  // REMOVE DUPLICATES FROM PROJECTS
+                  let _projectArray = [];
+                  let _projOBJ = {};
+                  for (let i in C.projectsDetails) {
+                    // Extract the title
+                    let objTitle = C.projectsDetails[i]["_id"];
+
+                    // Use the title as the index
+                    _projOBJ[objTitle] = C.projectsDetails[i];
+                  }
+                  for (let j in _projOBJ) {
+                    _projectArray.push(_projOBJ[j]);
+                  }
 
                   if (
                     new Date(C.singleDate).getDate() === date.getDate() &&
@@ -699,6 +846,11 @@ const Schedule = () => {
                     )[0]
                       ? _classArray.filter((cobj) => cobj.classNo === 1)[0]
                       : {};
+                    C.activeProjectDetails = _projectArray.filter(
+                      (proj) => proj.no === 1
+                    )[0]
+                      ? _projectArray.filter((proj) => proj.no === 1)[0]
+                      : {};
                   } else if (
                     new Date(C.doubleDate).getDate() === date.getDate() &&
                     new Date(C.doubleDate).getMonth() === date.getMonth() &&
@@ -710,6 +862,11 @@ const Schedule = () => {
                       (cobj) => cobj.classNo === 2
                     )[0]
                       ? _classArray.filter((cobj) => cobj.classNo === 2)[0]
+                      : {};
+                    C.activeProjectDetails = _projectArray.filter(
+                      (proj) => proj.no === 2
+                    )[0]
+                      ? _projectArray.filter((proj) => proj.no === 2)[0]
                       : {};
                   }
                   return (
@@ -768,6 +925,18 @@ const Schedule = () => {
                         C.classes.filter(
                           (clas) => clas.classId === C.activeClassDetails?._id
                         )[0]?.attendance
+                      }
+                      projectDetails={C.activeProjectDetails}
+                      singleProjectDetails={
+                        C.projects.filter(
+                          (proj) =>
+                            proj.projectId === C.activeProjectDetails._id
+                        )[0]
+                          ? C.projects.filter(
+                              (proj) =>
+                                proj.projectId === C.activeProjectDetails._id
+                            )[0]
+                          : {}
                       }
                     />
                   );
