@@ -35,23 +35,24 @@ const ResetPass = ({ location }) => {
     e.preventDefault();
     setChangeRequested(true);
     dispatch(setUserPassword(password, true));
+    history.push("/login");
   };
 
-  useEffect(() => {
-    if (!userInfo) {
-      let path = `/login`;
-      if (!isPasswordChanged) {
-        path += `?redirect=${location?.pathname}`;
-      }
-      history.push(path);
-    }
-  }, [userInfo, isPasswordChanged]);
+  // useEffect(() => {
+  //   if (!userInfo) {
+  //     let path = `/login`;
+  //     if (!isPasswordChanged) {
+  //       path += `?redirect=${location?.pathname}`;
+  //     }
+  //     history.push(path);
+  //   }
+  // }, [userInfo, isPasswordChanged]);
 
-  useEffect(() => {
-    if (isPasswordChanged && changeRequested) {
-      dispatch(logout(false));
-    }
-  }, [isPasswordChanged, changeRequested]);
+  // useEffect(() => {
+  //   if (isPasswordChanged && changeRequested) {
+  //     dispatch(logout(false));
+  //   }
+  // }, [isPasswordChanged, changeRequested]);
 
   return (
     <div>

@@ -57,11 +57,9 @@ router.post("/forgotPassword", async (req, res) => {
           type: "RESET_PASSWORD",
           args: { link: `${HOST}/resetPassword?account=${token}` },
         });
-        res
-          .status(200)
-          .send({
-            message: "Reset password link is sent to the registered email",
-          });
+        res.status(200).send({
+          message: "Reset password link is sent to the registered email",
+        });
       } else {
         res.status(404).send({ message: "User not found" });
       }
