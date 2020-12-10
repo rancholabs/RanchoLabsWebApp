@@ -39,7 +39,7 @@ router.post("/", (req, res) => {
               if (user.email)
                 sendMail([user.email], {
                   type: "ACCOUNT_REGISTERED",
-                  args: {},
+                  args: { name: req.body.name },
                 });
               const token = jwt.sign(
                 { id: user._id, role: user.role, email: user.email },

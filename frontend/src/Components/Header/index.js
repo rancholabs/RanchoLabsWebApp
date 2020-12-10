@@ -68,7 +68,7 @@ const Header = () => {
           <SideNav isOpen={isNavOpen} navCloseHandler={navCloseHandler} />
         ) : (
           <div className="nav-menu">
-            {!userInfo && (
+            {!userInfo && window.innerWidth > 600 && (
               <>
                 <button
                   className="nav-menu-button nav-menu-button-transparent"
