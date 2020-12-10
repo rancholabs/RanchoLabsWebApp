@@ -112,6 +112,10 @@ a:hover {
   box-shadow: none !important;
 }
 
+.workshop__emptyDiv {
+  height: 300px;
+}
+
 @media (max-width: 600px) {
   .dashboard-body {
     padding: 0vw 0 23.61vw;

@@ -111,72 +111,87 @@ const Daywise = ({ singleClass, batch }) => {
               <>
                 {showsessionMaterial ? (
                   <div className="access-session-material-content">
-                    <a
-                      href={
-                        batch.classes.filter(
-                          (bclass) => bclass.classId === singleClass.classId
-                        )[0]
-                          ? batch.classes.filter(
-                              (bclass) => bclass.classId === singleClass.classId
-                            )[0].materials.slides
-                            ? singleClass.materials.slideLink
-                            : ""
-                          : ""
-                      }
-                    >
-                      Slide
-                    </a>
-                    <a
-                      href={
-                        batch.classes.filter(
-                          (bclass) => bclass.classId === singleClass.classId
-                        )[0]
-                          ? batch.classes.filter(
-                              (bclass) => bclass.classId === singleClass.classId
-                            )[0].materials.assignments
-                            ? singleClass.materials.assignmentLink
-                            : ""
-                          : ""
-                      }
-                    >
-                      Assignment
-                    </a>
-                    <a
-                      href={
-                        batch.classes.filter(
-                          (bclass) => bclass.classId === singleClass.classId
-                        )[0]
-                          ? batch.classes.filter(
-                              (bclass) => bclass.classId === singleClass.classId
-                            )[0].materials.quiz
-                            ? singleClass.materials.quizLink
-                            : ""
-                          : ""
-                      }
-                    >
-                      Quiz
-                    </a>
+                    {batch.classes.filter(
+                      (bclass) => bclass.classId === singleClass.classId
+                    )[0] ? (
+                      batch.classes.filter(
+                        (bclass) => bclass.classId === singleClass.classId
+                      )[0].materials.slides ? (
+                        <a href={singleClass.materials.slideLink}>Slide</a>
+                      ) : (
+                        <a onClick={() => alert("Material not available yet.")}>
+                          Slide
+                        </a>
+                      )
+                    ) : (
+                      <a onClick={() => alert("Material not available yet.")}>
+                        Slide
+                      </a>
+                    )}
+                    {batch.classes.filter(
+                      (bclass) => bclass.classId === singleClass.classId
+                    )[0] ? (
+                      batch.classes.filter(
+                        (bclass) => bclass.classId === singleClass.classId
+                      )[0].materials.assignments ? (
+                        <a href={singleClass.materials.assignmentLink}>
+                          Assignment
+                        </a>
+                      ) : (
+                        <a onClick={() => alert("Material not available yet.")}>
+                          Assignment
+                        </a>
+                      )
+                    ) : (
+                      <a onClick={() => alert("Material not available yet.")}>
+                        Assignment
+                      </a>
+                    )}
+                    {batch.classes.filter(
+                      (bclass) => bclass.classId === singleClass.classId
+                    )[0] ? (
+                      batch.classes.filter(
+                        (bclass) => bclass.classId === singleClass.classId
+                      )[0].materials.quiz ? (
+                        <a href={singleClass.materials.quizLink}>Quiz</a>
+                      ) : (
+                        <a onClick={() => alert("Material not available yet.")}>
+                          Quiz
+                        </a>
+                      )
+                    ) : (
+                      <a onClick={() => alert("Material not available yet.")}>
+                        Quiz
+                      </a>
+                    )}
                   </div>
                 ) : (
                   <div className="row joining-details">
                     <div className="pl-3 pr-3">
                       <button className="join">
-                        <a
-                          href={
-                            batch.classes.filter(
-                              (bclass) => bclass.classId === singleClass.classId
-                            )[0]
-                              ? batch.classes.filter(
-                                  (bclass) =>
-                                    bclass.classId === singleClass.classId
-                                )[0].materials.link
-                                ? batch.batch_link
-                                : ""
-                              : ""
-                          }
-                        >
-                          Join Class
-                        </a>
+                        {batch.classes.filter(
+                          (bclass) => bclass.classId === singleClass.classId
+                        )[0] ? (
+                          batch.classes.filter(
+                            (bclass) => bclass.classId === singleClass.classId
+                          )[0].materials.link ? (
+                            <a href={batch.batch_link}>Join Class</a>
+                          ) : (
+                            <a
+                              onClick={() =>
+                                alert("Material not available yet.")
+                              }
+                            >
+                              Join Class
+                            </a>
+                          )
+                        ) : (
+                          <a
+                            onClick={() => alert("Material not available yet.")}
+                          >
+                            Join Class
+                          </a>
+                        )}
                       </button>
                     </div>
                     <div className="align-self-center join-date">

@@ -14,6 +14,7 @@ import DashboardTestimonials from "./DashboardTestimonial";
 import DashboardCongratsCard from "./DashboardCongratsCard";
 import DashboardCertificateComplete from "./DashboardCertificateComplete";
 import axios from "axios";
+import { setDefaultFooter, updateFooter } from "../../Actions/Footer";
 
 const DashboardCourseChoice = (props) => {
   // const [course, setCourse] = useState(0);
@@ -288,6 +289,16 @@ function DashboardBody(props) {
       .catch((err) => console.log(err));
   }, [coursedata]);
 
+  useEffect(() => {
+    if (activeWorkshop) {
+      dispatch(updateFooter({ footerTopDisplay: "none" }));
+
+      return () => {
+        dispatch(setDefaultFooter());
+      };
+    }
+  }, [activeWorkshop]);
+
   return (
     <>
       {_activeCourse && (
@@ -308,8 +319,7 @@ function DashboardBody(props) {
               {showEnabledCertificate && <DashboardCertificateComplete />}
               {!activeWorkshop && <DashboardJourney />}
               {!activeWorkshop && <DashboardTestimonials />}
-              {activeWorkshop && <br />}
-              {activeWorkshop && <br />}
+              {activeWorkshop && <div className="workshop__emptyDiv"></div>}
             </div>
           }
         </>
