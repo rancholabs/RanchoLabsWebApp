@@ -12,6 +12,7 @@ const StudentProfileInnovations = () => {
     const {innovations: innovationsArr, isEditView} = useSelector(state => state.studentProfile)
     const [innovations, setInnovations] = useState(innovationsArr ? innovationsArr : [])
     const [innovationsTemp, setInnovationsTemp] = useState(innovationsArr ? innovationsArr : [])
+    const [isPopupOpen, setIsPopupOpen] = useState(false)
 
     const dispatch = useDispatch()
 
@@ -33,7 +34,7 @@ const StudentProfileInnovations = () => {
     }
 
     const delInnovationHandler = (id) => {
-        if(window.confirm('Are you sure want to delete this Innovation ?')) {
+        if(window.screen.width > 600 && window.confirm('Are you sure want to delete this Innovation ?')) {
             const innovationsNew = innovations.filter(i => {
                 if(i._id !== id) {
                     return i
@@ -41,6 +42,12 @@ const StudentProfileInnovations = () => {
             })
             dispatch(updateInnovations(id))
             setInnovations(innovationsNew)
+        }
+        else {
+            setIsPopupOpen(true)
+            setTimeout(() => {
+                setIsPopupOpen(false)
+            }, 5000)
         }
     }
 
@@ -96,10 +103,21 @@ const StudentProfileInnovations = () => {
     return (
         <div id="student-profile-innovations" className="student-profile-innovations">
             <img src={innovationImage} className="icon" />
+            {isPopupOpen && <span className="popuptext">Please open the site in Desktop, Laptop or Tablet to add/delete your profile!</span>}
             <div className="innovations-container">
                 <div className="innovations">
                     {(isEditView && activePage === 0 && innovations.length < rowsPerPage * maxPages) && (
-                        <div className="add-innovation" onClick={() => {history.push('/innovation')}}>
+                        <div className="add-innovation" onClick={() => {
+                            if(window.screen.width > 600) {
+                                history.push('/innovation')
+                            }
+                            else {
+                                setIsPopupOpen(true)
+                                setTimeout(() => {
+                                    setIsPopupOpen(false)
+                                }, 5000)
+                            }
+                        }}>
                             <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" className="svg-inline--fa fa-plus fa-w-12 fa-3x plus-icon"><path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z" className=""></path></svg>
                             <div>ADD INNOVATION</div>
                         </div>
@@ -122,7 +140,7 @@ const StudentProfileInnovations = () => {
                                     <div className="heading">{i.header.heading}</div>
                                     <div className="brief">{i.brief}</div>
                                 </div>
-                                {(isEditView && i.isUploaded) && (
+                                {(isEditView && i.isUploaded && (window.screen.width > 600)) && (
                                     <div className="enable-share">
                                         <button onClick={(e) => {
                                             updateInnovationIsEnabled(i._id)

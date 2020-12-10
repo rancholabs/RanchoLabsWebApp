@@ -17,6 +17,7 @@ const StudentProfileProjects = () => {
 
     const [activePage, setActivePage] = useState(0)
     const [totalPagesLastIndex, setTotalPagesLastIndex] = useState(0)
+    const [isPopupOpen, setIsPopupOpen] = useState(false)
 
     const shareWebsite = (id) => {
         dispatch(setIsShareOpen({type: 'project', id: id}))
@@ -36,7 +37,7 @@ const StudentProfileProjects = () => {
     }
 
     const delProjectHandler = (id) => {
-        if(window.confirm('Are you sure want to delete this Project ?')) {
+        if(window.screen.width > 600 && window.confirm('Are you sure want to delete this Project ?')) {
             const projectsNew = projects.filter(p => {
                 if(p._id !== id) {
                     return p
@@ -44,6 +45,12 @@ const StudentProfileProjects = () => {
             })
             dispatch(updateProjects(id))
             setProjects(projectsNew)
+        }
+        else {
+            setIsPopupOpen(true)
+            setTimeout(() => {
+                setIsPopupOpen(false)
+            }, 5000)
         }
     }
 
@@ -96,10 +103,21 @@ const StudentProfileProjects = () => {
     return (
         <div id="student-profile-projects" className="student-profile-projects">
             <img src={projectImage} className="icon" />
+            {isPopupOpen && <span className="popuptext">Please open the site in Desktop, Laptop or Tablet to add/delete your profile!</span>}
             <div className="projects-container">
                 <div className="projects">
                     {(isEditView && activePage === 0 && projects.length < rowsPerPage * maxPages) && (
-                        <div className="add-project" onClick={() => {history.push('/project')}}>
+                        <div className="add-project" onClick={() => {
+                                if(window.screen.width > 600) {
+                                    history.push('/project')
+                                }
+                                else {
+                                    setIsPopupOpen(true)
+                                    setTimeout(() => {
+                                        setIsPopupOpen(false)
+                                    }, 5000)
+                                }
+                            }}>
                             <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" className="svg-inline--fa fa-plus fa-w-12 fa-3x plus-icon"><path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z" className=""></path></svg>
                             <div>ADD PROJECT</div>
                         </div>
@@ -122,7 +140,7 @@ const StudentProfileProjects = () => {
                                     <div className="heading">{p.header.heading}</div>
                                     <div className="brief">{p.brief}</div>
                                 </div>
-                                {(isEditView && p.isUploaded) && (
+                                {(isEditView && p.isUploaded && (window.screen.width > 600)) && (
                                     <div className="enable-share">
                                         <button onClick={(e) => {
                                             updateProjectIsEnabled(p._id)

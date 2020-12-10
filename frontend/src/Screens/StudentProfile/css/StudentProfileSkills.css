@@ -271,3 +271,41 @@
     background: #FFFFFF 0% 0% no-repeat padding-box;
     width: calc(113 * var(--vp));
 }
+
+.student-profile-skills .popuptext {
+    width: calc(500 * var(--vp));
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: calc(6 * var(--vp));
+    padding: calc(8 * var(--vp)) calc(0 * var(--vp));
+    position: absolute;
+    z-index: 1;
+    bottom: 75%;
+    left: calc(50% - 250 * var(--vp));
+    font: normal normal normal calc(30 * var(--vp))/calc(39 * var(--vp)) Roboto;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+  
+.student-profile-skills .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: calc(-5 * var(--vp));
+    border-width: calc(12 * var(--vp));
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}

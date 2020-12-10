@@ -32,7 +32,6 @@
     border-bottom: calc(3 * var(--vp)) solid transparent;
 }
 
-/* The actual popup */
 .student-profile-edit-icon .popuptext {
     width: calc(500 * var(--vp));
     background-color: #555;
@@ -49,7 +48,6 @@
     animation: fadeIn 1s;
 }
   
-/* Popup arrow */
 .student-profile-edit-icon .popuptext::after {
     content: "";
     position: absolute;

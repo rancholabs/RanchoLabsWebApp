@@ -48,6 +48,7 @@ const StudentProfileSkills = () => {
     const [isAddSkill, setIsAddSkill] = useState(false)
     const [skills, setSkills] = useState(skillsArr ? skillsArr : [])
     const [skillsTemp, setSkillsTemp] = useState(skillsArr ? skillsArr : [])
+    const [isPopupOpen, setIsPopupOpen] = useState(false)
 
     const dispatch = useDispatch()
 
@@ -65,13 +66,19 @@ const StudentProfileSkills = () => {
     }
 
     const delSkillHandler = (id) => {
-        if(window.confirm('Are you sure want to delete this Skill ?')) {
+        if(window.screen.width > 600 && window.confirm('Are you sure want to delete this Skill ?')) {
             const skillsNew = skills.filter(s => {
                 if(s.id != id)
                     return s
             })
             dispatch(updateSkills(skillsNew))
             setSkills(skillsNew)
+        }
+        else {
+            setIsPopupOpen(true)
+            setTimeout(() => {
+                setIsPopupOpen(false)
+            }, 5000)
         }
     }
 
@@ -125,18 +132,31 @@ const StudentProfileSkills = () => {
     return (
         <div id="student-profile-skills" className="student-profile-skills">
             <img src={skillsImage} className="icon" />
+            {isPopupOpen && <span className="popuptext">Please open the site in Desktop, Laptop or Tablet to add/delete your profile!</span>}
             {isAddSkill ? (
                 <AddSkill skills={skills} setSkills={setSkills} setIsAddSkill={setIsAddSkill} />
             ) : (
                 <>
                 {skills.length ? (
                     <div className="skills-container">
-                        {isEditView && <button onClick={(skills.length <= rowsPerPage * maxPages) ? () => setIsAddSkill(true) : ""} className="add-skills-btn" disabled={!(skills.length <= rowsPerPage * maxPages)}>ADD SKILL</button>}
+                        {isEditView && <button onClick={(skills.length <= rowsPerPage * maxPages) ? () => {
+                            if(window.screen.width > 600) {
+                                setIsAddSkill(true)
+                            }
+                            else {
+                                setIsPopupOpen(true)
+                                setTimeout(() => {
+                                    setIsPopupOpen(false)
+                                }, 5000)
+                            }
+                        } : ""} className="add-skills-btn" disabled={!(skills.length <= rowsPerPage * maxPages)}>
+                            ADD SKILL
+                        </button>}
                         <div className="skills">
                             {skills.slice(rowsPerPage * activePage, rowsPerPage * (activePage+1)).map((s, idx) => {
                                 return (
                                     <div key={s.id}>
-                                        {isEditView && (
+                                        {isEditView && (window.screen.width > 600) && (
                                             <button onClick={() => updateSkillIsEnabled(s.id)} className={s.isEnabled ? "enabled" : "disabled"}>
                                                 <div className="circle"></div>
                                             </button>
@@ -162,7 +182,17 @@ const StudentProfileSkills = () => {
                         </div>
                     </div>
                 ): isEditView ? (
-                    <div onClick={() => setIsAddSkill(true)} className="add-skill-long-btn">
+                    <div onClick={() => {
+                        if(window.screen.width > 600) {
+                            setIsAddSkill(true)
+                        }
+                        else {
+                            setIsPopupOpen(true)
+                            setTimeout(() => {
+                                setIsPopupOpen(false)
+                            }, 5000)
+                        }
+                    }} className="add-skill-long-btn">
                         <div>
                             <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" className="svg-inline--fa fa-plus fa-w-12 fa-3x plus-icon"><path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z" className=""></path></svg>
                             <div>ADD SKILL</div>

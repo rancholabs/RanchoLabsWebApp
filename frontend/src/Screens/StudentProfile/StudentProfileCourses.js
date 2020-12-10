@@ -50,7 +50,7 @@ const AddCourse = ({courses, setCourses, setIsAddCourse}) => {
     )
 }
 
-const EditCourse = ({id, courses, setCourses, setIsEditCourse}) => {
+const EditCourse = ({id, courses, setCourses, setIsEditCourse, setIsPopupOpen}) => {
     const objIndex = courses.findIndex((obj => obj.id === id))
     const [heading, setHeading] = useState(courses[objIndex].heading)
     const [category, setCategory] = useState(courses[objIndex].category)
@@ -78,7 +78,7 @@ const EditCourse = ({id, courses, setCourses, setIsEditCourse}) => {
     }
 
     const deleteHandler = () => {
-        const confirmed = window.confirm('Are you sure want to delete this course ?')
+        const confirmed = window.screen.width > 600 && window.confirm('Are you sure want to delete this course ?')
         if(confirmed) {
             const coursesNew = courses.filter(c => {
                 if(c.id !== id) {
@@ -88,6 +88,12 @@ const EditCourse = ({id, courses, setCourses, setIsEditCourse}) => {
             dispatch(updateCourses(coursesNew))
             setCourses(coursesNew)
             setIsEditCourse({value: false, id: -1})
+        }
+        else {
+            setIsPopupOpen(true)
+            setTimeout(() => {
+                setIsPopupOpen(false)
+            }, 5000)
         }
     }
 
@@ -117,6 +123,7 @@ const StudentProfileCourses = () => {
 
     const [activePage, setActivePage] = useState(0)
     const [totalPagesLastIndex, setTotalPagesLastIndex] = useState(0)
+    const [isPopupOpen, setIsPopupOpen] = useState(false)
 
     const updateCourseIsEnabled = (id) => {
         const objIndex = courses.findIndex((obj => obj.id === id))
@@ -176,15 +183,26 @@ const StudentProfileCourses = () => {
     return (
         <div id="student-profile-courses" className="student-profile-courses">
             <img src={courseImage} className="icon" />
+            {isPopupOpen && <span className="popuptext">Please open the site in Desktop, Laptop or Tablet to add/delete your profile!</span>}
             {isAddCourse ? (
                 <AddCourse courses={courses} setCourses={setCourses} setIsAddCourse={setIsAddCourse} />
             ) : isEditCourse.value ? (
-                <EditCourse id={isEditCourse.id} courses={courses} setCourses={setCourses} setIsEditCourse={setIsEditCourse} />
+                <EditCourse id={isEditCourse.id} courses={courses} setCourses={setCourses} setIsEditCourse={setIsEditCourse} setIsPopupOpen={setIsPopupOpen} />
             ) : (
                 <div className="courses-container">
                     <div className="courses">
                         {(isEditView && activePage === 0 && courses.length < rowsPerPage * maxPages) && (
-                            <div className="add-course-btn" onClick={() => setIsAddCourse(true)}>
+                            <div className="add-course-btn" onClick={() => {
+                                if(window.screen.width > 600) {
+                                    setIsAddCourse(true)
+                                }
+                                else {
+                                    setIsPopupOpen(true)
+                                    setTimeout(() => {
+                                        setIsPopupOpen(false)
+                                    }, 5000)
+                                }
+                            }}>
                                 <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" className="svg-inline--fa fa-plus fa-w-12 fa-3x plus-icon"><path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z" className=""></path></svg>
                                 <div>ADD COURSE</div>
                             </div>
@@ -198,7 +216,7 @@ const StudentProfileCourses = () => {
                                         <div className="heading">{c.heading}</div>
                                         <div className="description">{c.description}</div>
                                     </div>
-                                    {isEditView && (
+                                    {isEditView && (window.screen.width > 600) && (
                                         <button onClick={() => updateCourseIsEnabled(c.id)} className={c.isEnabled ? "enabled" : "disabled"}>
                                             <div className="circle"></div>
                                         </button>

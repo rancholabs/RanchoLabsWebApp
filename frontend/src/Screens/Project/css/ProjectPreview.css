@@ -307,6 +307,7 @@
     padding-left: calc(29 * var(--vp));
     padding-right: calc(53 * var(--vp));
     border-radius: calc(8 * var(--vp));
+    cursor: pointer;
 }
 
 .project-preview .social-btn > .icon {

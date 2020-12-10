@@ -12,6 +12,7 @@ const StudentProfileCertificates = () => {
 
     const [activePage, setActivePage] = useState(0)
     const [totalPagesLastIndex, setTotalPagesLastIndex] = useState(0)
+    const [isPopupOpen, setIsPopupOpen] = useState(false)
     const dispatch = useDispatch()
 
     const addCertificateHandler = (file) => {
@@ -44,7 +45,7 @@ const StudentProfileCertificates = () => {
     }
 
     const delCertificateHandler = (id) => {
-        if(window.confirm('Are you sure want to delete this Certificate ?')) {
+        if(window.screen.width > 600 && window.confirm('Are you sure want to delete this Certificate ?')) {
             const certificatesNew = certificates.filter(c => {
                 if(c.id !== id) {
                     return c
@@ -52,6 +53,12 @@ const StudentProfileCertificates = () => {
             })
             dispatch(updateCertificates(certificatesNew))
             setCertificates(certificatesNew)
+        }
+        else {
+            setIsPopupOpen(true)
+            setTimeout(() => {
+                setIsPopupOpen(false)
+            }, 5000)
         }
     }
 
@@ -115,6 +122,7 @@ const StudentProfileCertificates = () => {
     return (
         <div id="student-profile-certificates" className="student-profile-certificates">
             <img src={certificateImage} className="icon" />
+            {isPopupOpen && <span className="popuptext">Please open the site in Desktop, Laptop or Tablet to add/delete your profile!</span>}
             <div className="certificates-container">
                 <div className="certificates">
                     {(isEditView && activePage === 0 && certificates.length < rowsPerPage * maxPages) && (
@@ -122,15 +130,24 @@ const StudentProfileCertificates = () => {
                             <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" className="svg-inline--fa fa-plus fa-w-12 fa-3x plus-icon"><path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z" className=""></path></svg>
                             <div>ADD CERTIFICATE</div>
                             <div className="info">Add certificates in Image or PDF format</div>
-                            <input type="file" className="file-upload" accept="application/pdf, image/*"
-                            onChange={(e) => {
-                                let files = e.target.files
-                                console.log(files)
-                                if(files.length) {
-                                    addCertificateHandler(files[0])
-                                    e.target.value = null
-                                }
-                            }} />
+                            {window.screen.width > 600 ? (
+                                <input type="file" className="file-upload" accept="application/pdf, image/*"
+                                onChange={(e) => {
+                                    let files = e.target.files
+                                    console.log(files)
+                                    if(files.length) {
+                                        addCertificateHandler(files[0])
+                                        e.target.value = null
+                                    }
+                                }} />
+                            ) : (
+                                <div className="file-upload" onClick={() => {
+                                    setIsPopupOpen(true)
+                                    setTimeout(() => {
+                                        setIsPopupOpen(false)
+                                    }, 5000)
+                                }} />
+                            )}
                         </div>
                     )}
                     {certificates.slice(activePage === 0 && (certificates.length < rowsPerPage * maxPages) ? activePage * rowsPerPage : activePage * rowsPerPage - (isEditView ? 1 : 0), (activePage+1) * rowsPerPage - (isEditView && (certificates.length < rowsPerPage * maxPages) ? 1 : 0) ).map(c => {
@@ -142,7 +159,7 @@ const StudentProfileCertificates = () => {
                                 ) : (
                                     <img className="file" id={`certificate-file-${c.id}`} src={c.file.filePath ? c.file.filePath : typeof c.file === "object" ? readFile(c.file, c.id) : ''} />
                                 )}
-                                {isEditView && (
+                                {isEditView && (window.screen.width > 600) && (
                                     <button onClick={() => updateCertificateIsEnabled(c.id)} className={c.isEnabled ? "enabled" : "disabled"}>
                                         <div className="circle"></div>
                                     </button>
