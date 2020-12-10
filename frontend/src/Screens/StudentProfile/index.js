@@ -46,7 +46,7 @@ const StudentProfile = () => {
         },
         {
             label: 'courses',
-            className: 'courses'
+            className: 'pcourses'
         },
         {
             label: 'innovations',

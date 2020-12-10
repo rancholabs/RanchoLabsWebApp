@@ -190,7 +190,7 @@ const StudentProfileCourses = () => {
                 <EditCourse id={isEditCourse.id} courses={courses} setCourses={setCourses} setIsEditCourse={setIsEditCourse} setIsPopupOpen={setIsPopupOpen} />
             ) : (
                 <div className="courses-container">
-                    <div className="courses">
+                    <div className="pcourses">
                         {(isEditView && activePage === 0 && courses.length < rowsPerPage * maxPages) && (
                             <div className="add-course-btn" onClick={() => {
                                 if(window.screen.width > 600) {

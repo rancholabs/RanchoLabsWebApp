@@ -48,6 +48,7 @@
     animation: fadeIn 1s;
 }
   
+/* Popup arrow */
 .student-profile-edit-icon .popuptext::after {
     content: "";
     position: absolute;
