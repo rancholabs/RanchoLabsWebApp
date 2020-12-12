@@ -21,6 +21,7 @@ function ProjectBuild({ location }) {
   const [batchSingleProject, setbatchSingleProject] = useState({});
   const [singleSubmissionUser, setsingleSubmissionUser] = useState({});
   const [submitLink, setSubmitLink] = useState("");
+  const [existingsubmission, setexistingsubmission] = useState(false);
 
   useEffect(() => {
     const userInfo = localStorage.getItem("userInfo");
@@ -69,6 +70,7 @@ function ProjectBuild({ location }) {
             _singleSubmissionUser = _singleSubmissionUser[0];
             setsingleSubmissionUser(_singleSubmissionUser);
             setSubmitLink(_singleSubmissionUser.link);
+            setexistingsubmission(true);
           }
         }
         setbatchSingleProject(_batchSingleProject);
@@ -170,7 +172,7 @@ function ProjectBuild({ location }) {
             onChange={(e) => setSubmitLink(e.target.value)}
           ></input>
           <button className="buildProject__submitBtn" onClick={addSubmission}>
-            Add Submission
+            {setexistingsubmission ? "Update Submission" : "Add Submission"}
           </button>
         </div>
         <div className="buildProject__body__contentParent buildProject__instructor">

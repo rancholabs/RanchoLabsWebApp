@@ -181,6 +181,7 @@ function DashboardBody(props) {
   const [showEnabledCertificate, setshowEnabledCertificate] = useState(false);
   const [studentProfile, setstudentProfile] = useState({});
   const [activeWorkshop, setactiveWorkshop] = useState(false);
+  const [activeFreeclass, setactiveFreeclass] = useState(false);
 
   useEffect(() => {
     dispatch(courseGroups());
@@ -191,12 +192,22 @@ function DashboardBody(props) {
       let workshopGroup = coursegroups?.filter(
         (g) => g.name.toString().toLowerCase() === "workshop"
       );
+      let freeclassGroup = coursegroups?.filter(
+        (g) => g.name.toString().toLowerCase() === "free class"
+      );
       if (workshopGroup.length > 0) {
         workshopGroup = workshopGroup[0];
         if (workshopGroup._id === activeCourse) {
           setactiveWorkshop(true);
         } else {
           setactiveWorkshop(false);
+        }
+      } else if (freeclassGroup.length > 0) {
+        freeclassGroup = freeclassGroup[0];
+        if (freeclassGroup._id === activeCourse) {
+          setactiveFreeclass(true);
+        } else {
+          setactiveFreeclass(false);
         }
       }
     }
@@ -208,9 +219,9 @@ function DashboardBody(props) {
     if (course.courseDetails.groupId === activeCourse) return course;
   });
 
-  var workshop = props.courses.filter((course) => {
-    if (course.courseDetails.groupId === "") return course;
-  });
+  // var workshop = props.courses.filter((course) => {
+  //   if (course.courseDetails.groupId === "") return course;
+  // });
 
   console.log(props.courses);
   console.log(_activeCourse);
@@ -239,13 +250,31 @@ function DashboardBody(props) {
             }
           });
         }
+      } else if (coursedata.batch.batchType === "freeclass") {
+        var batchEndDate = new Date(coursedata.batch.singleDate).setHours(
+          coursedata.batch.singleTime.toString().split(":")[0],
+          coursedata.batch.singleTime.toString().split(":")[1],
+          0,
+          0
+        );
+        if (batchEndDate <= new Date()) {
+          coursedata.batch.classes.forEach((sc) => {
+            if (sc.attendance) {
+              sc.attendance.forEach((att) => {
+                if (att.userId === coursedata.userId && att.present === true) {
+                  setapplyForCertificate(true);
+                }
+              });
+            }
+          });
+        }
       }
     }
   }, [coursedata]);
 
   useEffect(() => {
-    const userInfo = localStorage.getItem("userInfo");
-    const token = userInfo ? JSON.parse(userInfo).token : "";
+    const _userInfo = localStorage.getItem("userInfo");
+    const token = _userInfo ? JSON.parse(_userInfo).token : "";
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -257,16 +286,26 @@ function DashboardBody(props) {
       .then((res) => {
         console.log(res.data);
         setstudentProfile(res.data);
-        if (coursedata.batch.batchType === "workshop") {
-          if (res.data.certificates.length > 0) {
+        if (
+          coursedata.batch.batchType === "workshop" ||
+          coursedata.batch.batchType === "freeclass"
+        ) {
+          let courseCert = res.data.certificates?.filter(
+            (cert) => cert.courseId === activeCourse
+          );
+          let iscourseCert = false;
+          if (courseCert.length > 0) {
+            courseCert = courseCert[0];
+            iscourseCert = true;
+          }
+
+          if (iscourseCert) {
             setapplyForCertificate(false);
-            if (res.data.certificates[0].enabled === true) {
+            if (courseCert.enabled === true) {
               setshowLoadingCertificate(false);
               setshowEnabledCertificate(true);
             } else {
-              let timestamp = res.data.certificates[0]._id
-                .toString()
-                .substring(0, 8);
+              let timestamp = courseCert._id.toString().substring(0, 8);
               let certDate = new Date(parseInt(timestamp, 16) * 1000);
               console.log(certDate);
 
@@ -299,6 +338,11 @@ function DashboardBody(props) {
     }
   }, [activeWorkshop]);
 
+  const showAppliedCertLoadingBanner = () => {
+    setapplyForCertificate(false);
+    setshowLoadingCertificate(true);
+  };
+
   return (
     <>
       {_activeCourse && (
@@ -313,7 +357,13 @@ function DashboardBody(props) {
                 activeCourse={_activeCourse}
               />
               {applyForCertificate && (
-                <DashboardCertificate userInfo={userInfo.username} />
+                <DashboardCertificate
+                  userInfo={userInfo?.userName}
+                  activeCourse={activeCourse}
+                  studentCerts={studentProfile?.certificates}
+                  showAppliedCertLoadingBanner={showAppliedCertLoadingBanner}
+                  freeClassCert={activeFreeclass}
+                />
               )}
               {showLoadingCertificate && <DashboardCongratsCard />}
               {showEnabledCertificate && <DashboardCertificateComplete />}

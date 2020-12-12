@@ -40,7 +40,13 @@ const shareIcons = [
   },
 ];
 
-const Certificate = ({ userInfo }) => {
+const Certificate = ({
+  userInfo,
+  activeCourse,
+  studentCerts,
+  showAppliedCertLoadingBanner,
+  freeClassCert,
+}) => {
   const [iscertificate, setCertficate] = useState(false);
   const [isShareExp, setShareExp] = useState(false);
 
@@ -56,28 +62,57 @@ const Certificate = ({ userInfo }) => {
 
   const copyShareLink = () => {
     // certificate shared => generate new cert for student
-    const userInfo = localStorage.getItem("userInfo");
-    const token = userInfo ? JSON.parse(userInfo).token : "";
+    const userInfoToken = localStorage.getItem("userInfo");
+    const token = userInfoToken ? JSON.parse(userInfoToken).token : "";
     const config = {
       headers: {
         "Content-Type": "application/json",
         authorization: token,
       },
     };
-    const body = {
-      certificates: [
-        {
-          id: 123123,
+
+    let count = 0;
+    // studentCerts.forEach((cert) => {
+    //   if (cert.userId === props.currentStudent) {
+    //     cert.present = e.target.checked;
+    //     count++;
+    //   }
+    // });
+    console.log(studentCerts);
+
+    let allCerts;
+
+    if (studentCerts) {
+      allCerts = [...studentCerts];
+      if (count === 0) {
+        allCerts.push({
+          id: 23123,
           file: "5fce0fc61453433f287a99c5",
+          courseId: activeCourse,
+        });
+      }
+    } else {
+      allCerts = [
+        {
+          id: 23123,
+          file: "5fce0fc61453433f287a99c5",
+          courseId: activeCourse,
         },
-      ],
+      ];
+    }
+
+    const body = {
+      certificates: allCerts,
     };
     axios
       .post("/api/profile/student/certificates", body, config)
       .then((res) => {
         console.log(res.data);
+        showAppliedCertLoadingBanner();
       });
   };
+
+  console.log(userInfo);
 
   return (
     <>
@@ -86,15 +121,14 @@ const Certificate = ({ userInfo }) => {
           <div className="certificate-title">CONGRATULATIONS</div>
           <div className="certificate-desc">
             Dear{" "}
-            {userInfo?.first
-              ? userInfo?.first
-              : "" + " " + userInfo?.last
-              ? userInfo?.last
-              : ""}
-            , we are so pleased to see you complete our workshop. Excellence
-            isn't a skill but an attitude. Keep up your good work and continue
-            to strive for perfection! As a token of appreciation, we are giving
-            you a Certificate of Completion.
+            {(userInfo?.first ? userInfo?.first : "") +
+              " " +
+              (userInfo?.last ? userInfo?.last : "")}
+            , we are so pleased to see you complete our{" "}
+            {freeClassCert ? "free class" : "workshop"}. Excellence isn't a
+            skill but an attitude. Keep up your good work and continue to strive
+            for perfection! As a token of appreciation, we are giving you a
+            Certificate of Completion.
           </div>
           <div className="get-certificate">
             <a>
@@ -124,7 +158,8 @@ const Certificate = ({ userInfo }) => {
                     : "" + " " + userInfo?.last
                     ? userInfo?.last
                     : ""}
-                  , Congratulations on completing the free workshop offered by
+                  , Congratulations on completing the{" "}
+                  {freeClassCert ? "free class" : "free workshop"} offered by
                   RanchoLabs. Not all students get this opportunity and we
                   really applaud your efforts in taking time to learn new
                   things. We hope this is the first achievement amongst many to
@@ -132,7 +167,8 @@ const Certificate = ({ userInfo }) => {
                 </div>
                 <div className="certificate-modal-content-unlock">
                   To unlock your certificate, Tell three friends about your
-                  experience at RanchoLabs’ Workshop.
+                  experience at RanchoLabs’{" "}
+                  {freeClassCert ? "Free Class" : "workshop"}.
                 </div>
                 <div className="certificate-share align-items-center">
                   <button

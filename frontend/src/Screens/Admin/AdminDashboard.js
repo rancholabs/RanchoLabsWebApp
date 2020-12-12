@@ -7,6 +7,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import AdminBatch from "./AdminBatch";
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 
 import "./AdminDashboard.css";
 
@@ -16,6 +17,7 @@ function AdminDashboardFreeClass({
   allAssignedBatchesData,
   allInstructors,
   filterDate,
+  filterStudentName,
 }) {
   return (
     <>
@@ -820,6 +822,7 @@ function AdminDashboard({
   const [setBatchUserId, setsetBatchUserId] = useState("");
 
   const [filterDate, setfilterDate] = useState("");
+  const [filterStudentName, setfilterStudentName] = useState("");
 
   const assignBatch = (userId) => {
     setsetbatchWindow(true);
@@ -910,15 +913,31 @@ function AdminDashboard({
                 onChange={(e) => setfilterDate(e.target.value)}
               />
               <input type="text" placeholder="Student ID" />
-              <input type="text" placeholder="Student Name" />
-              <input type="text" placeholder="Parents Name" />
-              <button className="adminDashboard__body__input__colored">
+              <input
+                type="text"
+                placeholder="Student Name"
+                value={filterStudentName}
+                onChange={(e) => setfilterStudentName(e.target.value)}
+              />
+              <input type="text" placeholder="Batch Name" />
+              {/* <button className="adminDashboard__body__input__colored">
                 Download Sheet
-              </button>
+              </button> */}
+              <ReactHTMLTableToExcel
+                className="adminDashboard__body__input__colored"
+                table="adminDashboardUserDataTable"
+                filename="user_data"
+                sheet="Sheet"
+                buttonText="Download Sheet"
+              />
             </div>
             <div className="adminDashboard__body__tableContainer">
               <TableContainer component={Paper}>
-                <Table className="adminDashboard__body__table" size="small">
+                <Table
+                  className="adminDashboard__body__table"
+                  size="small"
+                  id="adminDashboardUserDataTable"
+                >
                   {currentSection === "freeclass" && (
                     <AdminDashboardFreeClass
                       allStudentData={allStudentData}
@@ -926,6 +945,7 @@ function AdminDashboard({
                       allInstructors={allInstructors}
                       assignBatch={assignBatch}
                       filterDate={filterDate}
+                      filterStudentName={filterStudentName}
                     />
                   )}
                   {currentSection === "freeworkshop" && (
@@ -935,6 +955,7 @@ function AdminDashboard({
                       allInstructors={allInstructors}
                       assignBatch={assignBatch}
                       filterDate={filterDate}
+                      filterStudentName={filterStudentName}
                     />
                   )}
                   {currentSection === "payment" && (
@@ -943,6 +964,8 @@ function AdminDashboard({
                   {currentSection === "totalsignup" && (
                     <AdminDashboardTotalSignUp
                       allStudentData={allStudentData}
+                      filterDate={filterDate}
+                      filterStudentName={filterStudentName}
                     />
                   )}
                 </Table>

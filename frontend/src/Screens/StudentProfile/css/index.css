@@ -146,15 +146,15 @@
     box-shadow: calc(24 * var(--vp)) 0 0 0 #F00A4A;
 }
 
-.student-profile .profile-labels .courses {
+.student-profile .profile-labels .pcourses {
     background: #57017E 0% 0% no-repeat padding-box;
 }
 
-.student-profile .profile-labels .courses::after {
+.student-profile .profile-labels .pcourses::after {
     box-shadow: calc(-24 * var(--vp)) 0 0 0 #57017E;
 } 
 
-.student-profile .profile-labels .courses::before {
+.student-profile .profile-labels .pcourses::before {
     box-shadow: calc(24 * var(--vp)) 0 0 0 #57017E;
 }
 

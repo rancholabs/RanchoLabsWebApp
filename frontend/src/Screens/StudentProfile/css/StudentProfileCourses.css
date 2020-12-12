@@ -1,4 +1,4 @@
-.student-profile-courses, .student-profile-courses .courses {
+.student-profile-courses, .student-profile-courses .pcourses {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -8,19 +8,19 @@
     width: 95%;
 }
 
-.student-profile-courses .courses {
+.student-profile-courses .pcourses {
     justify-content: initial;
     column-gap: calc(24 * var(--vp));
     margin-bottom: calc(138 * var(--vp));
     align-items: flex-start;
 }
 
-.student-profile-courses .courses > div {
+.student-profile-courses .pcourses > div {
     width: calc(389 * var(--vp));
     position: relative;
 }
 
-.student-profile-courses .courses > .add-course-btn {
+.student-profile-courses .pcourses > .add-course-btn {
     border: calc(3 * var(--vp)) dashed rgba(112, 112, 112, 0.5);
     padding: calc(13 * var(--vp)) calc(102.5 * var(--vp));
     font: normal normal 500 calc(30 * var(--vp))/calc(40 * var(--vp)) Roboto;
@@ -31,7 +31,7 @@
     cursor: pointer;
 }
 
-.student-profile-courses .courses .course-content {
+.student-profile-courses .pcourses .course-content {
     width: 100%;
     background: #171636 0% 0% no-repeat padding-box;
     padding: 0 calc(43.5 * var(--vp));
@@ -39,7 +39,7 @@
     padding-bottom: calc(33 * var(--vp));
 }
 
-.student-profile-courses .courses .course-content > .category {
+.student-profile-courses .pcourses .course-content > .category {
     font: normal normal 500 calc(14 * var(--vp))/calc(1 * var(--vp)) Roboto;
     letter-spacing: calc(-0.07 * var(--vp));
     color: #F0F0F2;
@@ -48,7 +48,7 @@
     line-height: initial;
 }
 
-.student-profile-courses .courses .course-content > .heading {
+.student-profile-courses .pcourses .course-content > .heading {
     font: normal normal bold calc(22 * var(--vp))/calc(1 * var(--vp)) Roboto;
     letter-spacing: calc(0.33 * var(--vp));
     color: #F74B42;
@@ -59,7 +59,7 @@
     line-height: initial;
 }
 
-.student-profile-courses .courses .course-content > .description {
+.student-profile-courses .pcourses .course-content > .description {
     height: calc(109 * var(--vp));
     font: normal normal normal calc(22 * var(--vp))/calc(29 * var(--vp)) Roboto;
     letter-spacing: calc(0.39 * var(--vp));
@@ -67,7 +67,7 @@
     overflow: hidden;
 }
 
-.student-profile-courses .courses .plus-icon {
+.student-profile-courses .pcourses .plus-icon {
     margin-left: calc(45 * var(--vp));
     margin-right: calc(45 * var(--vp));
     margin-top: calc(13.5 * var(--vp));
@@ -79,7 +79,7 @@
     color: #3A3C4A;
 }
 
-.student-profile-courses .courses button {
+.student-profile-courses .pcourses button {
     width: calc(45 * var(--vp));
     height: calc(19 * var(--vp));
     border-radius: calc(18 * var(--vp));
@@ -90,11 +90,11 @@
     border-width: 0;
 }
 
-.student-profile-courses .courses button.enabled {
+.student-profile-courses .pcourses button.enabled {
     background: rgba(247, 75, 66, 0.6) 0% 0% no-repeat padding-box;
 }
 
-.student-profile-courses .courses .circle {
+.student-profile-courses .pcourses .circle {
     width: calc(25 * var(--vp));
     height: calc(25 * var(--vp));
     border-radius: 50%;
@@ -105,7 +105,7 @@
     box-shadow: calc(0 * var(--vp)) calc(2 * var(--vp)) calc(2 * var(--vp)) #0000003D;
 }
 
-.student-profile-courses .courses button.enabled .circle {
+.student-profile-courses .pcourses button.enabled .circle {
     left: unset;
     right: 0;
     background: #F74B42 0% 0% no-repeat padding-box;
@@ -237,4 +237,42 @@
     color: #F74B42;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     width: calc(113 * var(--vp));
+}
+
+.student-profile-courses .popuptext {
+    width: calc(500 * var(--vp));
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: calc(6 * var(--vp));
+    padding: calc(8 * var(--vp)) calc(0 * var(--vp));
+    position: absolute;
+    z-index: 1;
+    bottom: 75%;
+    left: calc(50% - 250 * var(--vp));
+    font: normal normal normal calc(30 * var(--vp))/calc(39 * var(--vp)) Roboto;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+  
+.student-profile-courses .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: calc(-5 * var(--vp));
+    border-width: calc(12 * var(--vp));
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
 }

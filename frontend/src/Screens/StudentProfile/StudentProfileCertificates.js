@@ -18,6 +18,7 @@ const StudentProfileCertificates = () => {
 
   const [activePage, setActivePage] = useState(0);
   const [totalPagesLastIndex, setTotalPagesLastIndex] = useState(0);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const dispatch = useDispatch();
 
   const addCertificateHandler = (file) => {
@@ -58,7 +59,10 @@ const StudentProfileCertificates = () => {
   };
 
   const delCertificateHandler = (id) => {
-    if (window.confirm("Are you sure want to delete this Certificate ?")) {
+    if (
+      window.screen.width > 600 &&
+      window.confirm("Are you sure want to delete this Certificate ?")
+    ) {
       const certificatesNew = certificates.filter((c) => {
         if (c.id !== id) {
           return c;
@@ -66,6 +70,11 @@ const StudentProfileCertificates = () => {
       });
       dispatch(updateCertificates(certificatesNew));
       setCertificates(certificatesNew);
+    } else {
+      setIsPopupOpen(true);
+      setTimeout(() => {
+        setIsPopupOpen(false);
+      }, 5000);
     }
   };
 
@@ -138,6 +147,12 @@ const StudentProfileCertificates = () => {
       className="student-profile-certificates"
     >
       <img src={certificateImage} className="icon" />
+      {isPopupOpen && (
+        <span className="popuptext">
+          Please open the site in Desktop, Laptop or Tablet to add/delete your
+          profile!
+        </span>
+      )}
       <div className="certificates-container">
         <div className="certificates">
           {isEditView &&
@@ -164,19 +179,31 @@ const StudentProfileCertificates = () => {
                 <div className="info">
                   Add certificates in Image or PDF format
                 </div>
-                <input
-                  type="file"
-                  className="file-upload"
-                  accept="application/pdf, image/*"
-                  onChange={(e) => {
-                    let files = e.target.files;
-                    console.log(files);
-                    if (files.length) {
-                      addCertificateHandler(files[0]);
-                      e.target.value = null;
-                    }
-                  }}
-                />
+                {window.screen.width > 600 ? (
+                  <input
+                    type="file"
+                    className="file-upload"
+                    accept="application/pdf, image/*"
+                    onChange={(e) => {
+                      let files = e.target.files;
+                      console.log(files);
+                      if (files.length) {
+                        addCertificateHandler(files[0]);
+                        e.target.value = null;
+                      }
+                    }}
+                  />
+                ) : (
+                  <div
+                    className="file-upload"
+                    onClick={() => {
+                      setIsPopupOpen(true);
+                      setTimeout(() => {
+                        setIsPopupOpen(false);
+                      }, 5000);
+                    }}
+                  />
+                )}
               </div>
             )}
           {certificates
@@ -232,15 +259,15 @@ const StudentProfileCertificates = () => {
                       className="file"
                       id={`certificate-file-${c.id}`}
                       src={
-                        c?.file?.filePath
-                          ? c?.file?.filePath
+                        c.file.filePath
+                          ? c.file.filePath
                           : typeof c.file === "object"
                           ? readFile(c.file, c.id)
                           : ""
                       }
                     />
                   )}
-                  {isEditView && (
+                  {isEditView && window.screen.width > 600 && (
                     <button
                       onClick={() => updateCertificateIsEnabled(c.id)}
                       className={c.isEnabled ? "enabled" : "disabled"}

@@ -29,7 +29,7 @@ router.post(
       } else {
         studentProfile = new StudentProfile({
           userId: mongoose.Types.ObjectId(req.userId),
-          certificates: reqData,
+          certificates: reqData.certificates,
         });
         await studentProfile
           .save()

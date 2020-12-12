@@ -8,8 +8,12 @@ import { useSelector } from 'react-redux'
 
 const ProjectPreview = ({previewCloseHandler}) => {
 
-    const {header, brief, components, steps, conclusion, user} = useSelector((state) => state.projectPreview)
+    const {header, brief, components, steps, conclusion, user, projectId} = useSelector((state) => state.projectPreview)
     const name = user ? user.name.first : ''
+
+    const sharePage = (url) => {
+        window.open(url.replace('[URL_FULL]', `${window.location.origin}/project/${projectId}`), '_blank')
+    }
 
     return (
         <div className="project-preview">
@@ -111,12 +115,12 @@ const ProjectPreview = ({previewCloseHandler}) => {
             )}
             <div className="social-btns">
                 {
-                    [{className: 'twitter', icon: faTwitterSquare },
-                    {className: 'fb', icon: faFacebookF },
-                    {className: 'gmail', icon: faEnvelope },
-                    {className: 'wa', icon: faWhatsappSquare }].map((sb, idx) => {
+                    [{className: 'twitter', icon: faTwitterSquare, url: 'http://twitter.com/share?text=MY PROJECT&url=[URL_FULL]&hashtags=#MYPROJECT' },
+                    {className: 'fb', icon: faFacebookF, url: 'http://www.facebook.com/sharer.php?u=[URL_FULL]' },
+                    {className: 'gmail', icon: faEnvelope, url: 'https://mail.google.com/mail/?view=cm&fs=1&su=My Project&body=[URL_FULL]' },
+                    {className: 'wa', icon: faWhatsappSquare, url: 'whatsapp://send?&text=MY PROJECT [URL_FULL]' }].map((sb, idx) => {
                         return (
-                            <div key={idx} className={`social-btn ${sb.className}`}>
+                            <div key={idx} onClick={() => sharePage(sb.url)} className={`social-btn ${sb.className}`}>
                                 <FontAwesomeIcon className="icon" icon={sb.icon} />
                                 <div className="text">Share</div>
                             </div>
