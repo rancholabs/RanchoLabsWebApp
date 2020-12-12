@@ -131,7 +131,8 @@ const FreeClass = ({ location }) => {
       contact === "" ||
       pemail === "" ||
       pdialcode === "" ||
-      password === ""
+      password === "" ||
+      grade === ""
     ) {
       setMessage("Please fill all details");
     } else if (!validateEmail(email) || !validateEmail(pemail)) {
@@ -285,7 +286,7 @@ const FreeClass = ({ location }) => {
                   onChange={(e) => setGrade(e.target.value)}
                   // placeholder="select grade"
                 >
-                  <option>Select Grade</option>
+                  <option value="">Select Grade</option>
                   <option value="6">6</option>
                   <option value="7">7</option>
                   <option value="8">8</option>
