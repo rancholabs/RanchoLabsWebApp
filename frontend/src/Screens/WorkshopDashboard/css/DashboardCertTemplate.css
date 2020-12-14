@@ -1,0 +1,220 @@
+#certificate_design__2 {
+  position: absolute;
+  width: 842px;
+  height: 595px;
+  background-color: rgba(255, 255, 255, 1);
+  overflow: hidden;
+  top: 0%;
+}
+#certificate-design-2 {
+  position: absolute;
+  width: 842px;
+  height: 595.5px;
+  left: 0px;
+  top: 0px;
+  overflow: visible;
+}
+#CERTIFICATE_OF_COMPLETION {
+  left: 196px;
+  top: 37px;
+  position: absolute;
+  overflow: visible;
+  width: 585px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 42px;
+  color: rgba(27, 20, 100, 1);
+}
+#logo_2 {
+  position: absolute;
+  width: 166px;
+  height: 81px;
+  left: 25px;
+  top: 126px;
+  overflow: visible;
+}
+#This_certificate_is_awarded_to {
+  left: 532px;
+  top: 164px;
+  position: absolute;
+  overflow: visible;
+  width: 214px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Gotham;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  color: rgba(0, 0, 0, 1);
+}
+#ID09122020 {
+  left: 670px;
+  top: 117px;
+  position: absolute;
+  overflow: visible;
+  width: 93px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Gotham;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 1);
+}
+#for_completing_the_2_Days_CODI {
+  left: 289px;
+  top: 294px;
+  position: absolute;
+  overflow: visible;
+  width: 500px;
+  white-space: nowrap;
+  text-align: right;
+  font-family: Gotham;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 1);
+}
+#Ananya {
+  left: 488px;
+  top: 166px;
+  position: absolute;
+  overflow: visible;
+  width: 293px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Baby Lovely;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 89px;
+  color: rgba(191, 158, 51, 1);
+}
+#ANSHUL_AGRAWAL_ {
+  left: 191px;
+  top: 517px;
+  position: absolute;
+  overflow: hidden;
+  width: 198px;
+  height: 32px;
+  text-align: left;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 1);
+}
+#ID_123_ {
+  left: 689px;
+  top: 425px;
+  position: absolute;
+  overflow: hidden;
+  width: 77px;
+  height: 32px;
+  text-align: left;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 1);
+}
+#Founder {
+  left: 241px;
+  top: 540px;
+  position: absolute;
+  overflow: visible;
+  width: 98px;
+  height: 32px;
+  text-align: left;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 1);
+}
+#ID123456 {
+  left: 663px;
+  top: 472px;
+  position: absolute;
+  overflow: visible;
+  width: 53px;
+  height: 12px;
+  text-align: left;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  color: rgba(0, 0, 0, 1);
+}
+#Co-Founder {
+  left: 513px;
+  top: 540px;
+  position: absolute;
+  overflow: visible;
+  width: 133px;
+  height: 32px;
+  text-align: left;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 1);
+}
+#AMAN_KUMAR_ {
+  left: 481px;
+  top: 517px;
+  position: absolute;
+  overflow: hidden;
+  width: 154px;
+  height: 32px;
+  text-align: left;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 1);
+}
+#download {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  left: 663px;
+  top: 414px;
+  overflow: visible;
+}
+#Path_1 {
+  fill: rgba(0, 0, 0, 0);
+  stroke: rgba(255, 255, 255, 1);
+  stroke-width: 5px;
+  stroke-linejoin: miter;
+  stroke-linecap: butt;
+  stroke-miterlimit: 4;
+  shape-rendering: auto;
+}
+.Path_1 {
+  overflow: visible;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  left: 777.5px;
+  top: 397.5px;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+#aman_sign-removebg-preview {
+  position: absolute;
+  width: 215px;
+  height: 215px;
+  left: 443px;
+  top: 368px;
+  overflow: visible;
+}
+#anshul_sign-removebg-preview {
+  position: absolute;
+  width: 209px;
+  height: 209px;
+  left: 160px;
+  top: 379px;
+  overflow: visible;
+}

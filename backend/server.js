@@ -12,8 +12,8 @@ const WorkshopClassMails = require("./Utils/WorkshopClassEmails");
 const { PORT } = config;
 db.connect();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -36,7 +36,10 @@ app.get("*", (req, res) => {
 
 app.use(cors());
 
-// WorkshopClassMails();
+setInterval(() => {
+  console.log("interval...");
+  WorkshopClassMails();
+}, 1000 * 60 * 60 * 1);
 
 app.listen(PORT, () => {
   console.log(`Rancho Labs API is running on port no ${PORT}`);

@@ -182,6 +182,7 @@ function DashboardBody(props) {
   const [studentProfile, setstudentProfile] = useState({});
   const [activeWorkshop, setactiveWorkshop] = useState(false);
   const [activeFreeclass, setactiveFreeclass] = useState(false);
+  const [allCerts, setallCerts] = useState([]);
 
   useEffect(() => {
     dispatch(courseGroups());
@@ -338,6 +339,21 @@ function DashboardBody(props) {
     }
   }, [activeWorkshop]);
 
+  useEffect(() => {
+    const _userInfo = localStorage.getItem("userInfo");
+    const token = _userInfo ? JSON.parse(_userInfo).token : "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    };
+    axios.get("/api/certificate", config).then((res) => {
+      console.log(res.data);
+      setallCerts(res.data);
+    });
+  }, []);
+
   const showAppliedCertLoadingBanner = () => {
     setapplyForCertificate(false);
     setshowLoadingCertificate(true);
@@ -363,10 +379,38 @@ function DashboardBody(props) {
                   studentCerts={studentProfile?.certificates}
                   showAppliedCertLoadingBanner={showAppliedCertLoadingBanner}
                   freeClassCert={activeFreeclass}
+                  allCerts={allCerts}
+                  userId={userInfo?.userId}
+                  from={
+                    coursedata.batch.batchType === "workshop"
+                      ? new Date(coursedata.batch.singleDate).getDate()
+                      : ""
+                  }
+                  to={
+                    coursedata.batch.batchType === "workshop"
+                      ? new Date(coursedata.batch.doubleDate).getDate()
+                      : ""
+                  }
+                  month={
+                    coursedata.batch.batchType === "workshop"
+                      ? new Date(coursedata.batch.singleDate).getMonth()
+                      : ""
+                  }
+                  year={
+                    coursedata.batch.batchType === "workshop"
+                      ? new Date(coursedata.batch.singleDate).getFullYear()
+                      : ""
+                  }
                 />
               )}
               {showLoadingCertificate && <DashboardCongratsCard />}
-              {showEnabledCertificate && <DashboardCertificateComplete />}
+              {showEnabledCertificate && (
+                <DashboardCertificateComplete
+                  userInfo={userInfo?.userName}
+                  activeCourse={activeCourse}
+                  studentCerts={studentProfile?.certificates}
+                />
+              )}
               {!activeWorkshop && <DashboardJourney />}
               {!activeWorkshop && <DashboardTestimonials />}
               {activeWorkshop && <div className="workshop__emptyDiv"></div>}

@@ -10,9 +10,15 @@
   border-radius: calc(10 * var(--vp));
 }
 
+.dashboard-certificate-complete .certificate-image {
+  position: relative;
+  width: 60%;
+}
+
 .dashboard-certificate-complete .certificate-image img {
-  width: calc(922 * var(--vp));
-  height: calc(641 * var(--vp));
+  /* width: calc(922 * var(--vp));
+  height: calc(641 * var(--vp)); */
+  width: 100%;
 }
 
 .dashboard-certificate-complete .complete-certificate-content {

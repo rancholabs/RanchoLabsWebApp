@@ -117,7 +117,12 @@ const Daywise = ({ singleClass, batch }) => {
                       batch.classes.filter(
                         (bclass) => bclass.classId === singleClass.classId
                       )[0].materials.slides ? (
-                        <a href={singleClass.materials.slideLink}>Slide</a>
+                        <a
+                          href={singleClass.materials.slideLink}
+                          target="_blank"
+                        >
+                          Slide
+                        </a>
                       ) : (
                         <a onClick={() => alert("Material not available yet.")}>
                           Slide
@@ -134,7 +139,10 @@ const Daywise = ({ singleClass, batch }) => {
                       batch.classes.filter(
                         (bclass) => bclass.classId === singleClass.classId
                       )[0].materials.assignments ? (
-                        <a href={singleClass.materials.assignmentLink}>
+                        <a
+                          href={singleClass.materials.assignmentLink}
+                          target="_blank"
+                        >
                           Assignment
                         </a>
                       ) : (
@@ -153,7 +161,12 @@ const Daywise = ({ singleClass, batch }) => {
                       batch.classes.filter(
                         (bclass) => bclass.classId === singleClass.classId
                       )[0].materials.quiz ? (
-                        <a href={singleClass.materials.quizLink}>Quiz</a>
+                        <a
+                          href={singleClass.materials.quizLink}
+                          target="_blank"
+                        >
+                          Quiz
+                        </a>
                       ) : (
                         <a onClick={() => alert("Material not available yet.")}>
                           Quiz
@@ -175,7 +188,9 @@ const Daywise = ({ singleClass, batch }) => {
                           batch.classes.filter(
                             (bclass) => bclass.classId === singleClass.classId
                           )[0].materials.link ? (
-                            <a href={batch.batch_link}>Join Class</a>
+                            <a href={batch.batch_link} target="_blank">
+                              Join Class
+                            </a>
                           ) : (
                             <a
                               onClick={() =>

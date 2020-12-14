@@ -67,6 +67,24 @@ const ProjectSchema = new mongoose.Schema({
   ],
 });
 
+const EmailSchema = new mongoose.Schema({
+  userId: {
+    type: String,
+  },
+  day1Mail: {
+    type: Boolean,
+    default: false,
+  },
+  day1TwoHoursMail: {
+    type: Boolean,
+    default: false,
+  },
+  day2TwoHoursMail: {
+    type: Boolean,
+    default: false,
+  },
+});
+
 const dateTimeSchema = new mongoose.Schema({
   date: {
     type: String,
@@ -120,6 +138,7 @@ const BatchSchema = new mongoose.Schema({
   },
   classes: [ClassSchema],
   projects: [ProjectSchema],
+  emails: [EmailSchema],
   batch_link: String,
   batchType: String,
   school: {

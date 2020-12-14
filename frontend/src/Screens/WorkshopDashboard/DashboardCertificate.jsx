@@ -12,24 +12,28 @@ import messenger from "./img/messanger.png";
 import linkedin from "./img/linkedin.png";
 import share from "./img/share.png";
 import axios from "axios";
+import DashboardCertTemplate from "./DashboardCertTemplate";
+import Backdrop from "@material-ui/core/Backdrop";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import ShareIcon from "./ShareIcon";
 
 const shareIcons = [
   {
     icon: fb,
     name: "Facebook",
   },
-  {
-    icon: messenger,
-    name: "Messenger",
-  },
+  // {
+  //   icon: messenger,
+  //   name: "Messenger",
+  // },
   {
     icon: wa,
     name: "WhatsApp",
   },
-  {
-    icon: gmail,
-    name: "Gmail",
-  },
+  // {
+  //   icon: gmail,
+  //   name: "Gmail",
+  // },
   {
     icon: linkedin,
     name: "LinkedIn",
@@ -46,9 +50,17 @@ const Certificate = ({
   studentCerts,
   showAppliedCertLoadingBanner,
   freeClassCert,
+  from,
+  to,
+  month,
+  year,
+  userId,
+  allCerts,
 }) => {
   const [iscertificate, setCertficate] = useState(false);
   const [isShareExp, setShareExp] = useState(false);
+  const [certFile, setcertFile] = useState(null);
+  const [open, setOpen] = React.useState(false);
 
   function showCertificate() {
     setCertficate(!iscertificate);
@@ -60,7 +72,8 @@ const Certificate = ({
     document.body.style.overflow = "auto";
   }
 
-  const copyShareLink = () => {
+  const copyShareLink = async () => {
+    setOpen(true);
     // certificate shared => generate new cert for student
     const userInfoToken = localStorage.getItem("userInfo");
     const token = userInfoToken ? JSON.parse(userInfoToken).token : "";
@@ -72,30 +85,33 @@ const Certificate = ({
     };
 
     let count = 0;
-    // studentCerts.forEach((cert) => {
-    //   if (cert.userId === props.currentStudent) {
-    //     cert.present = e.target.checked;
-    //     count++;
-    //   }
-    // });
-    console.log(studentCerts);
-
     let allCerts;
+
+    // GENERATE CERT FILE AND UPLOAD TO S3
+
+    const formData = new FormData();
+    formData.append("files", certFile);
+    const fileID = await axios
+      .post("/api/file", formData, config)
+      .then((res) => res.data.fileId)
+      .catch((error) => console.log(error));
+
+    // UPLOAD CERTIFICATE IN STUDENT PROFILE
 
     if (studentCerts) {
       allCerts = [...studentCerts];
       if (count === 0) {
         allCerts.push({
-          id: 23123,
-          file: "5fce0fc61453433f287a99c5",
+          id: 1111,
+          file: fileID,
           courseId: activeCourse,
         });
       }
     } else {
       allCerts = [
         {
-          id: 23123,
-          file: "5fce0fc61453433f287a99c5",
+          id: 1111,
+          file: fileID,
           courseId: activeCourse,
         },
       ];
@@ -108,14 +124,39 @@ const Certificate = ({
       .post("/api/profile/student/certificates", body, config)
       .then((res) => {
         console.log(res.data);
-        showAppliedCertLoadingBanner();
+        // UPDATE DATA IN ALL CERTIFICATES SCHEMA
+        const allcertbody = {
+          name: userInfo,
+          file: fileID,
+          userId: userId,
+          courseId: activeCourse,
+        };
+        axios.post("/api/certificate", allcertbody, config).then((resp) => {
+          setOpen(false);
+          console.log(resp.data);
+          showAppliedCertLoadingBanner();
+        });
       });
   };
 
-  console.log(userInfo);
+  const updateCertFile = (file) => {
+    setcertFile(file);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <>
+      <Backdrop
+        style={{ zIndex: 10000 }}
+        open={open}
+        className="cert__backdrop"
+      >
+        <CircularProgress color="inherit" />
+        Generating your certificate. This may take 1-2 minutes.
+      </Backdrop>
       <div className="dashboardcertificate row mx-auto">
         <div className="certificate-content">
           <div className="certificate-title">CONGRATULATIONS</div>
@@ -190,36 +231,63 @@ const Certificate = ({
         </>
       )}
       {isShareExp && (
-        <div className="dashboard-share-exp">
-          <div className="close">
-            <button onClick={() => setShareExp(false)}>&times;</button>
+        <>
+          <div className="dashboard-share-exp">
+            <div className="close">
+              <button onClick={() => setShareExp(false)}>&times;</button>
+            </div>
+            <div className="share-exp-content">
+              <div className="share-exp-title">Share the Experience</div>
+              <div className="share-exp-subtitle">
+                Tell others what you did at Rancho Labs
+              </div>
+              <div className="row mx-0 share-icons">
+                {shareIcons.map((i) => {
+                  return (
+                    <ShareIcon icon={i} copyShareLink={copyShareLink} />
+                    // <div
+                    //   className="text-center"
+                    //   style={{ alignSelf: "flex-end" }}
+                    //   onClick={() => {
+                    //     document.getElementById("fb-share-btn").click();
+                    //   }}
+                    // >
+                    //   <div>
+                    //     <img className="img-fluid" src={i.icon} />
+                    //   </div>
+                    //   <div className="icon-name">{i.name}</div>
+                    // </div>
+                  );
+                })}
+                {/* <FacebookShareButton
+                  quote="Check out Rancho Labs! | https://rancholabs.com"
+                  id="fb-share-btn"
+                />
+                <WhatsappShareButton
+                  title="Check out Rancho Labs! | https://rancholabs.com"
+                  separator="|"
+                />
+                <LinkedinShareButton title="Check out Rancho Labs! | https://rancholabs.com" />
+                <TwitterShareButton title="Check out Rancho Labs! | https://rancholabs.com" /> */}
+              </div>
+              <div className="share-link">
+                <input type="text" placeholder="link" />
+                <button onClick={copyShareLink}>COPY</button>
+              </div>
+            </div>
           </div>
-          <div className="share-exp-content">
-            <div className="share-exp-title">Share the Experience</div>
-            <div className="share-exp-subtitle">
-              Tell others what you did at Rancho Labs
-            </div>
-            <div className="row mx-0 share-icons">
-              {shareIcons.map((i) => {
-                return (
-                  <div
-                    className="text-center"
-                    style={{ alignSelf: "flex-end" }}
-                  >
-                    <div>
-                      <img className="img-fluid" src={i.icon} />
-                    </div>
-                    <div className="icon-name">{i.name}</div>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="share-link">
-              <input type="text" placeholder="link" />
-              <button onClick={copyShareLink}>COPY</button>
-            </div>
+          <div>
+            <DashboardCertTemplate
+              updateCertFile={updateCertFile}
+              userInfo={userInfo}
+              from={from}
+              to={to}
+              month={month}
+              year={year}
+              allCerts={allCerts}
+            />
           </div>
-        </div>
+        </>
       )}
     </>
   );

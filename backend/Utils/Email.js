@@ -1,6 +1,7 @@
 const nodemailer = require("nodemailer");
 const { MAIL: mailConfig } = require("./../config");
 const template = require("./img/Sign Up - Welcome to RL/template");
+const workshoptemplate = require("./WorkshopReminderTemplate");
 
 const transporter = nodemailer.createTransport({
   host: mailConfig.host,
@@ -65,6 +66,13 @@ const getTemplate = (type) => {
         return {
           subject: "Account Registered",
           mail: template.generate(args.name).toString(),
+        };
+      };
+    case "WORKSHOP_EMAIL":
+      return (args) => {
+        return {
+          subject: "Workshop Reminder",
+          mail: workshoptemplate.generate(args).toString(),
         };
       };
     case "PASSWORD_SET":

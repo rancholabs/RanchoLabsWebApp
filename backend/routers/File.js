@@ -7,6 +7,7 @@ const isAuthenticated = require("../controller/requestAuthenticator");
 const {
   awsS3Storage,
   awsS3DeleteFile,
+  awsS3Base64,
 } = require("../controller/storageController");
 
 const upload = multer({ storage: awsS3Storage });

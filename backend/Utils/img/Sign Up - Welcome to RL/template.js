@@ -180,7 +180,7 @@ module.exports = {
         <tr>
           <td style="padding-right: 0px;padding-left: 0px;" align="center">
             
-            <img align="center" border="0" src="images/image-1.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 52%;max-width: 301.6px;" width="301.6" class="v-src-width v-src-max-width"/>
+            <img align="center" border="0" src="https://rancho-labs-app.s3.amazonaws.com/images/logo-1607930535803.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 52%;max-width: 301.6px;" width="301.6" class="v-src-width v-src-max-width"/>
             
           </td>
         </tr>
@@ -221,7 +221,7 @@ module.exports = {
         <tr>
           <td style="padding-right: 0px;padding-left: 0px;" align="center">
             
-            <img align="center" border="0" src="images/image-2.jpeg" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 300px;" width="300" class="v-src-width v-src-max-width"/>
+            <img align="center" border="0" src="https://rancho-labs-app.s3.amazonaws.com/images/image-2-1607935901818.jpeg" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 300px;" width="300" class="v-src-width v-src-max-width"/>
             
           </td>
         </tr>

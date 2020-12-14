@@ -22,6 +22,10 @@
   margin-left: calc(118 * var(--vp));
 }
 
+.cert__backdrop {
+  color: white;
+}
+
 .dashboardcertificate .get-certificate a button {
   color: #f74b42;
   background-color: #fbfbf3;

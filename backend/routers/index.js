@@ -17,6 +17,7 @@ const blogFileRouter = require("./BlogFile");
 const blogAuthorRouter = require("./BlogAuthor");
 const blogCategoryRouter = require("./BlogCategory");
 const schoolRouter = require("./School");
+const certificateRouter = require("./Certificate");
 
 router.get("/", (req, res) => {
   res.send("Welcome to Rancho Labs API");
@@ -39,5 +40,6 @@ router.use("/blogfile", blogFileRouter);
 router.use("/blogauthor", blogAuthorRouter);
 router.use("/blogcategory", blogCategoryRouter);
 router.use("/school", schoolRouter);
+router.use("/certificate", certificateRouter);
 
 module.exports = router;
