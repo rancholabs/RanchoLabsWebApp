@@ -70,6 +70,11 @@ const handleWorkshopClassMails = async () => {
     const oneDay = 60 * 60 * 24 * 1000;
     let now = new Date();
 
+    console.log(singleBatch.name);
+    console.log(new Date(dayOne));
+    console.log(new Date(daytwo));
+    console.log(now);
+
     studCourse.forEach((singleStudent) => {
       User.findById(singleStudent.userId).then((docs) => {
         let count = 0;
