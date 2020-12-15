@@ -56,6 +56,7 @@ const Certificate = ({
   year,
   userId,
   allCerts,
+  minAttendance,
 }) => {
   const [iscertificate, setCertficate] = useState(false);
   const [isShareExp, setShareExp] = useState(false);
@@ -173,7 +174,13 @@ const Certificate = ({
           </div>
           <div className="get-certificate">
             <a>
-              <button onClick={showCertificate}>
+              <button
+                onClick={() => {
+                  if (minAttendance) {
+                    showCertificate();
+                  }
+                }}
+              >
                 GET IT NOW &nbsp; <Fontawesome name="arrow-right" />
               </button>
             </a>

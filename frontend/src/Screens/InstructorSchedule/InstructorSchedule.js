@@ -106,12 +106,13 @@ const Event = () => {
 };
 
 const Student = (props) => {
+  console.log(props);
   const dispatch = useDispatch();
   const [presentStatus, setpresentStatus] = React.useState(props.attendance);
   const handleStudentAttendance = (e) => {
     let count = 0;
     props.allattendance.forEach((allAtt) => {
-      if (allAtt.userId === props.currentStudent) {
+      if (allAtt.userId === props.details._id) {
         allAtt.present = e.target.checked;
         count++;
       }

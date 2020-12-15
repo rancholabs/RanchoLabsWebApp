@@ -182,6 +182,8 @@ function DashboardBody(props) {
   const [studentProfile, setstudentProfile] = useState({});
   const [activeWorkshop, setactiveWorkshop] = useState(false);
   const [activeFreeclass, setactiveFreeclass] = useState(false);
+  const [workshopEnd, setworkshopEnd] = useState(false);
+  const [minAttendance, setminAttendance] = useState(false);
   const [allCerts, setallCerts] = useState([]);
 
   useEffect(() => {
@@ -241,11 +243,13 @@ function DashboardBody(props) {
           0
         );
         if (batchEndDate <= new Date()) {
+          setworkshopEnd(true);
+          setapplyForCertificate(true);
           coursedata.batch.classes.forEach((sc) => {
             if (sc.attendance) {
               sc.attendance.forEach((att) => {
                 if (att.userId === coursedata.userId && att.present === true) {
-                  setapplyForCertificate(true);
+                  setminAttendance(true);
                 }
               });
             }
@@ -259,75 +263,79 @@ function DashboardBody(props) {
           0
         );
         if (batchEndDate <= new Date()) {
+          setworkshopEnd(true);
           coursedata.batch.classes.forEach((sc) => {
             if (sc.attendance) {
               sc.attendance.forEach((att) => {
                 if (att.userId === coursedata.userId && att.present === true) {
-                  setapplyForCertificate(true);
+                  setminAttendance(true);
                 }
               });
             }
           });
+          setapplyForCertificate(true);
         }
       }
     }
   }, [coursedata]);
 
   useEffect(() => {
-    const _userInfo = localStorage.getItem("userInfo");
-    const token = _userInfo ? JSON.parse(_userInfo).token : "";
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: token,
-      },
-    };
-    axios
-      .get("/api/profile/student", config)
-      .then((res) => {
-        console.log(res.data);
-        setstudentProfile(res.data);
-        if (
-          coursedata.batch.batchType === "workshop" ||
-          coursedata.batch.batchType === "freeclass"
-        ) {
-          let courseCert = res.data.certificates?.filter(
-            (cert) => cert.courseId === activeCourse
-          );
-          let iscourseCert = false;
-          if (courseCert.length > 0) {
-            courseCert = courseCert[0];
-            iscourseCert = true;
-          }
+    if (workshopEnd) {
+      const _userInfo = localStorage.getItem("userInfo");
+      const token = _userInfo ? JSON.parse(_userInfo).token : "";
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: token,
+        },
+      };
+      axios
+        .get("/api/profile/student", config)
+        .then((res) => {
+          console.log(res.data);
+          setstudentProfile(res.data);
+          if (
+            coursedata.batch.batchType === "workshop" ||
+            coursedata.batch.batchType === "freeclass"
+          ) {
+            let courseCert = res.data.certificates?.filter(
+              (cert) => cert.courseId === activeCourse
+            );
+            let iscourseCert = false;
+            if (courseCert.length > 0) {
+              courseCert = courseCert[0];
+              iscourseCert = true;
+            }
 
-          if (iscourseCert) {
-            setapplyForCertificate(false);
-            if (courseCert.enabled === true) {
-              setshowLoadingCertificate(false);
-              setshowEnabledCertificate(true);
-            } else {
-              let timestamp = courseCert._id.toString().substring(0, 8);
-              let certDate = new Date(parseInt(timestamp, 16) * 1000);
-              console.log(certDate);
-
-              let now = new Date();
-              let createdAt = certDate;
-              const oneDay = 60 * 60 * 24 * 1000;
-              var compareDatesBoolean = now - createdAt > oneDay;
-              if (compareDatesBoolean) {
+            if (iscourseCert) {
+              setapplyForCertificate(false);
+              if (courseCert.enabled === true) {
                 setshowLoadingCertificate(false);
                 setshowEnabledCertificate(true);
-                // CHANGE ENABLED IN DB
               } else {
-                setshowLoadingCertificate(true);
-                setshowEnabledCertificate(false);
+                let timestamp = courseCert._id.toString().substring(0, 8);
+                let certDate = new Date(parseInt(timestamp, 16) * 1000);
+                console.log(certDate);
+
+                let now = new Date();
+                let createdAt = certDate;
+                const oneDay = 60 * 60 * 24 * 1000;
+                var compareDatesBoolean = now - createdAt > oneDay;
+                if (compareDatesBoolean) {
+                  setshowLoadingCertificate(false);
+                  setshowEnabledCertificate(true);
+                  // CHANGE ENABLED IN DB
+                } else {
+                  setshowLoadingCertificate(true);
+                  setshowEnabledCertificate(false);
+                }
               }
             }
           }
-        }
-      })
-      .catch((err) => console.log(err));
-  }, [coursedata]);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [coursedata, workshopEnd]);
 
   useEffect(() => {
     if (activeWorkshop) {
@@ -374,6 +382,7 @@ function DashboardBody(props) {
               />
               {applyForCertificate && (
                 <DashboardCertificate
+                  minAttendance={minAttendance}
                   userInfo={userInfo?.userName}
                   activeCourse={activeCourse}
                   studentCerts={studentProfile?.certificates}
@@ -411,9 +420,17 @@ function DashboardBody(props) {
                   studentCerts={studentProfile?.certificates}
                 />
               )}
-              {!activeWorkshop && <DashboardJourney />}
-              {!activeWorkshop && <DashboardTestimonials />}
-              {activeWorkshop && <div className="workshop__emptyDiv"></div>}
+              {(applyForCertificate ||
+                showLoadingCertificate ||
+                showEnabledCertificate) && <DashboardJourney />}
+              {(applyForCertificate ||
+                showLoadingCertificate ||
+                showEnabledCertificate) && <DashboardTestimonials />}
+              {!(
+                applyForCertificate ||
+                showLoadingCertificate ||
+                showEnabledCertificate
+              ) && <div className="workshop__emptyDiv"></div>}
             </div>
           }
         </>
