@@ -106,29 +106,19 @@ const Event = () => {
 };
 
 const Student = (props) => {
-  console.log(props);
-  const dispatch = useDispatch();
   const [presentStatus, setpresentStatus] = React.useState(props.attendance);
   const handleStudentAttendance = (e) => {
-    let count = 0;
-    props.allattendance.forEach((allAtt) => {
-      if (allAtt.userId === props.details._id) {
-        allAtt.present = e.target.checked;
-        count++;
-      }
-    });
-    let attendance = [...props.allattendance];
-    if (count === 0) {
-      attendance.push({
-        userId: props.details._id,
-        present: e.target.checked,
-      });
-    }
-    dispatch(
-      instructorUpdateBatchClass({ attendance }, props.batchId, props.classId)
-    );
+    const studobj = {
+      userId: props.details._id,
+      present: e.target.checked,
+    };
+    props.addStudAttendance(studobj);
     setpresentStatus(e.target.checked);
   };
+
+  useEffect(() => {
+    setpresentStatus(props.attendance);
+  }, [props.attendance]);
 
   return (
     <>
@@ -165,14 +155,96 @@ const Student = (props) => {
 };
 
 const Attendance = (props) => {
+  const dispatch = useDispatch();
+
   const disable = props.status === "upcoming" ? true : false;
   const saveLink = props.status === "completed" ? true : false;
-  console.log(props);
+
+  const [studAttendanceArr, setstudAttendanceArr] = useState([]);
+  const [allStudentData, setallStudentData] = useState([]);
+  const [selectAllStudents, setselectAllStudents] = useState(false);
+
+  useEffect(() => {
+    setstudAttendanceArr(props.attendance);
+  }, [props.attendance]);
+
+  useEffect(() => {
+    setallStudentData(props.students);
+  }, [props.students]);
+
+  const addStudAttendance = (studobj) => {
+    let _studAttendanceArr = [...studAttendanceArr];
+
+    let count = 0;
+    _studAttendanceArr.forEach((allAtt) => {
+      if (allAtt.userId === studobj.userId) {
+        allAtt.present = studobj.present;
+        count++;
+      }
+    });
+    if (count === 0) {
+      _studAttendanceArr.push(studobj);
+    }
+    setstudAttendanceArr(_studAttendanceArr);
+  };
+
+  const saveattendance = () => {
+    dispatch(
+      instructorUpdateBatchClass(
+        { attendance: studAttendanceArr },
+        props.batchId,
+        props.classId
+      )
+    );
+    alert("Attendance Updated!");
+  };
+
+  const handleSelectAllChange = (e) => {
+    const status = e.target.checked;
+    let _studAttendanceArr = [...studAttendanceArr];
+    setselectAllStudents(status);
+    if (status) {
+      allStudentData.forEach((stud) => {
+        let studAttIndex = _studAttendanceArr.findIndex(
+          (att) => att.userId === stud.userId
+        );
+        if (studAttIndex !== -1) {
+          _studAttendanceArr[studAttIndex].present = true;
+        } else {
+          _studAttendanceArr.push({
+            userId: stud.userId,
+            present: true,
+          });
+        }
+      });
+      setstudAttendanceArr(_studAttendanceArr);
+    } else {
+      allStudentData.forEach((stud) => {
+        let studAttIndex = _studAttendanceArr.findIndex(
+          (att) => att.userId === stud.userId
+        );
+        if (studAttIndex !== -1) {
+          _studAttendanceArr[studAttIndex].present = false;
+        } else {
+          _studAttendanceArr.push({
+            userId: stud.userId,
+            present: false,
+          });
+        }
+      });
+      setstudAttendanceArr(_studAttendanceArr);
+    }
+  };
 
   return (
     <>
       <div className="attendance">
         <div className="attendance-title border-bottom">Attendance</div>
+        <input
+          type="checkbox"
+          value={selectAllStudents}
+          onChange={handleSelectAllChange}
+        ></input>
         <div className="attendance-list">
           {props.students.map((s) => {
             return (
@@ -182,25 +254,23 @@ const Attendance = (props) => {
                 batchId={props.batchId}
                 classId={props.classId}
                 attendance={
-                  props.attendance?.filter((att) => att.userId === s.userId)[0]
+                  studAttendanceArr?.filter((att) => att.userId === s.userId)[0]
                     ?.present
                     ? true
                     : false
                 }
                 currentStudent={
-                  props.attendance?.filter((att) => att.userId === s.userId)[0]
+                  studAttendanceArr?.filter((att) => att.userId === s.userId)[0]
                     ?.userId
                 }
-                allattendance={props.attendance}
+                allattendance={studAttendanceArr}
+                addStudAttendance={addStudAttendance}
               />
             );
           })}
         </div>
         <div className="save-attendance">
-          <button
-            disabled={disable}
-            onClick={() => alert("Attendance Updated!")}
-          >
+          <button disabled={disable} onClick={saveattendance}>
             Save
           </button>
         </div>
@@ -211,8 +281,6 @@ const Attendance = (props) => {
 
 const Materials = (props) => {
   const dispatch = useDispatch();
-
-  console.log(props);
 
   const [slide, shareSlides] = useState(
     props.materials != null ? props.materials.slides : false
@@ -299,8 +367,6 @@ const Materials = (props) => {
       instructorUpdateBatchClass({ materials }, props.batchId, props.classId)
     );
   };
-
-  console.log(props);
 
   return (
     <>
@@ -410,7 +476,6 @@ const Results = (props) => {
   }, [props.singleProjectDetails]);
 
   const openSubmissions = () => {
-    console.log(props.singleProjectDetails);
     setOpen(true);
   };
 
@@ -575,8 +640,6 @@ const ClassListCard = (props) => {
       : "";
   var className = "class-card " + status;
 
-  console.log(props);
-
   return (
     <>
       <div className={className}>
@@ -739,9 +802,6 @@ const Schedule = () => {
         })
       : null;
 
-  console.log(schedule);
-  console.log(classList);
-
   return (
     <>
       {
@@ -805,7 +865,6 @@ const Schedule = () => {
                   for (let j in _studentsObj) {
                     _studentsArr.push(_studentsObj[j]);
                   }
-                  console.log(_studentsArr);
 
                   // REMOVE DUPLICATES FROM CLASSES
                   let _classArray = [];
@@ -976,7 +1035,6 @@ const InstructorShedule = () => {
         },
       };
       axios.get(`/api/file/${instructor.profileimage}`, config).then((res) => {
-        console.log(res.data);
         setInstructorProfileImage(res.data);
       });
     }

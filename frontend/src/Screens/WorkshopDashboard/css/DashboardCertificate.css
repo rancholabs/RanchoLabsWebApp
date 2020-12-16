@@ -5,6 +5,8 @@
   margin: calc(80 * var(--vp)) auto calc(126 * var(--vp));
   box-shadow: 0px calc(6 * var(--vp)) calc(6 * var(--vp)) #00000045;
   border-radius: calc(10 * var(--vp));
+  overflow: hidden;
+  position: relative;
 }
 
 .dashboardcertificate .certificate-title {
@@ -43,6 +45,11 @@
 .dashboardcertificate .get-certificate a:hover button {
   color: #ffffff;
   background-color: #f74b42;
+}
+
+#dashboard__certTemp {
+  position: absolute;
+  left: 1000%;
 }
 
 .dashboard-certificate-modal {

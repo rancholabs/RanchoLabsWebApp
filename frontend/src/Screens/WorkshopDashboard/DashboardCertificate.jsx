@@ -135,18 +135,27 @@ const Certificate = ({
         axios.post("/api/certificate", allcertbody, config).then((resp) => {
           setOpen(false);
           console.log(resp.data);
-          showAppliedCertLoadingBanner();
+          showCertificate();
+          // showAppliedCertLoadingBanner();
         });
       });
   };
 
-  const updateCertFile = (file) => {
+  const updateCertFile = (file, dataUrl) => {
     setcertFile(file);
+    console.log(dataUrl);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
+
+  // React.useEffect(() => {
+  //   setTimeout(() => {
+  //     document.getElementById("dashboard__certTemp").style.visibility =
+  //       "hidden";
+  //   }, 2000);
+  // }, []);
 
   return (
     <>
@@ -156,7 +165,8 @@ const Certificate = ({
         className="cert__backdrop"
       >
         <CircularProgress color="inherit" />
-        Generating your certificate. This may take 1-2 minutes.
+        Generating your certificate. This may take 1-2 minutes. Kindly do not
+        refresh or close the window.
       </Backdrop>
       <div className="dashboardcertificate row mx-auto">
         <div className="certificate-content">
@@ -177,7 +187,8 @@ const Certificate = ({
               <button
                 onClick={() => {
                   if (minAttendance) {
-                    showCertificate();
+                    console.log("Generating cert...");
+                    copyShareLink();
                   }
                 }}
               >
@@ -188,6 +199,17 @@ const Certificate = ({
         </div>
         <div className="medal">
           <img src={medal} alt=""></img>
+        </div>
+        <div id="dashboard__certTemp">
+          <DashboardCertTemplate
+            updateCertFile={updateCertFile}
+            userInfo={userInfo}
+            from={from}
+            to={to}
+            month={month}
+            year={year}
+            allCerts={allCerts}
+          />
         </div>
       </div>
       {iscertificate && (
@@ -248,10 +270,17 @@ const Certificate = ({
               <div className="share-exp-subtitle">
                 Tell others what you did at Rancho Labs
               </div>
-              <div className="row mx-0 share-icons">
+              <div
+                className="row mx-0 share-icons"
+                onClick={() => {
+                  setTimeout(() => {
+                    showAppliedCertLoadingBanner();
+                  }, 3000);
+                }}
+              >
                 {shareIcons.map((i) => {
                   return (
-                    <ShareIcon icon={i} copyShareLink={copyShareLink} />
+                    <ShareIcon icon={i} />
                     // <div
                     //   className="text-center"
                     //   style={{ alignSelf: "flex-end" }}
@@ -279,20 +308,17 @@ const Certificate = ({
               </div>
               <div className="share-link">
                 <input type="text" placeholder="link" />
-                <button onClick={copyShareLink}>COPY</button>
+                <button
+                  onClick={() => {
+                    setTimeout(() => {
+                      showAppliedCertLoadingBanner();
+                    }, 3000);
+                  }}
+                >
+                  COPY
+                </button>
               </div>
             </div>
-          </div>
-          <div>
-            <DashboardCertTemplate
-              updateCertFile={updateCertFile}
-              userInfo={userInfo}
-              from={from}
-              to={to}
-              month={month}
-              year={year}
-              allCerts={allCerts}
-            />
           </div>
         </>
       )}

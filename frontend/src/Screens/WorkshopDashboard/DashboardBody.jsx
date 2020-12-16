@@ -319,7 +319,7 @@ function DashboardBody(props) {
 
                 let now = new Date();
                 let createdAt = certDate;
-                const oneDay = 60 * 60 * 24 * 1000;
+                const oneDay = 60 * 60 * 1 * 1000;
                 var compareDatesBoolean = now - createdAt > oneDay;
                 if (compareDatesBoolean) {
                   setshowLoadingCertificate(false);
@@ -363,8 +363,9 @@ function DashboardBody(props) {
   }, []);
 
   const showAppliedCertLoadingBanner = () => {
-    setapplyForCertificate(false);
-    setshowLoadingCertificate(true);
+    // setapplyForCertificate(false);
+    // setshowLoadingCertificate(true);
+    window.location.reload();
   };
 
   return (
@@ -373,66 +374,65 @@ function DashboardBody(props) {
         <>
           <DashboardHeaderLowerMob courses={props.courses} />
           <DashboardHeaderLower courses={props.courses} />
-          {
-            <div style={{ backgroundColor: "#F0F0F2" }}>
-              <DashboardBanner />
-              <DashboardCards
-                coursedata={coursedata}
-                activeCourse={_activeCourse}
+
+          <div style={{ backgroundColor: "#F0F0F2" }}>
+            <DashboardBanner />
+            <DashboardCards
+              coursedata={coursedata}
+              activeCourse={_activeCourse}
+            />
+            {applyForCertificate && (
+              <DashboardCertificate
+                minAttendance={minAttendance}
+                userInfo={userInfo?.userName}
+                activeCourse={activeCourse}
+                studentCerts={studentProfile?.certificates}
+                showAppliedCertLoadingBanner={showAppliedCertLoadingBanner}
+                freeClassCert={activeFreeclass}
+                allCerts={allCerts}
+                userId={userInfo?.userId}
+                from={
+                  coursedata.batch.batchType === "workshop"
+                    ? new Date(coursedata.batch.singleDate).getDate()
+                    : ""
+                }
+                to={
+                  coursedata.batch.batchType === "workshop"
+                    ? new Date(coursedata.batch.doubleDate).getDate()
+                    : ""
+                }
+                month={
+                  coursedata.batch.batchType === "workshop"
+                    ? new Date(coursedata.batch.singleDate).getMonth()
+                    : ""
+                }
+                year={
+                  coursedata.batch.batchType === "workshop"
+                    ? new Date(coursedata.batch.singleDate).getFullYear()
+                    : ""
+                }
               />
-              {applyForCertificate && (
-                <DashboardCertificate
-                  minAttendance={minAttendance}
-                  userInfo={userInfo?.userName}
-                  activeCourse={activeCourse}
-                  studentCerts={studentProfile?.certificates}
-                  showAppliedCertLoadingBanner={showAppliedCertLoadingBanner}
-                  freeClassCert={activeFreeclass}
-                  allCerts={allCerts}
-                  userId={userInfo?.userId}
-                  from={
-                    coursedata.batch.batchType === "workshop"
-                      ? new Date(coursedata.batch.singleDate).getDate()
-                      : ""
-                  }
-                  to={
-                    coursedata.batch.batchType === "workshop"
-                      ? new Date(coursedata.batch.doubleDate).getDate()
-                      : ""
-                  }
-                  month={
-                    coursedata.batch.batchType === "workshop"
-                      ? new Date(coursedata.batch.singleDate).getMonth()
-                      : ""
-                  }
-                  year={
-                    coursedata.batch.batchType === "workshop"
-                      ? new Date(coursedata.batch.singleDate).getFullYear()
-                      : ""
-                  }
-                />
-              )}
-              {showLoadingCertificate && <DashboardCongratsCard />}
-              {showEnabledCertificate && (
-                <DashboardCertificateComplete
-                  userInfo={userInfo?.userName}
-                  activeCourse={activeCourse}
-                  studentCerts={studentProfile?.certificates}
-                />
-              )}
-              {(applyForCertificate ||
-                showLoadingCertificate ||
-                showEnabledCertificate) && <DashboardJourney />}
-              {(applyForCertificate ||
-                showLoadingCertificate ||
-                showEnabledCertificate) && <DashboardTestimonials />}
-              {!(
-                applyForCertificate ||
-                showLoadingCertificate ||
-                showEnabledCertificate
-              ) && <div className="workshop__emptyDiv"></div>}
-            </div>
-          }
+            )}
+            {showLoadingCertificate && <DashboardCongratsCard />}
+            {showEnabledCertificate && (
+              <DashboardCertificateComplete
+                userInfo={userInfo?.userName}
+                activeCourse={activeCourse}
+                studentCerts={studentProfile?.certificates}
+              />
+            )}
+            {(applyForCertificate ||
+              showLoadingCertificate ||
+              showEnabledCertificate) && <DashboardJourney />}
+            {(applyForCertificate ||
+              showLoadingCertificate ||
+              showEnabledCertificate) && <DashboardTestimonials />}
+            {!(
+              applyForCertificate ||
+              showLoadingCertificate ||
+              showEnabledCertificate
+            ) && <div className="workshop__emptyDiv"></div>}
+          </div>
         </>
       )}
     </>

@@ -42,7 +42,7 @@ function DashboardCertTemplate({
       .toPng(node)
       .then(function (dataUrl) {
         const yourFile = dataURLtoFile(dataUrl, "coursecertificate.png");
-        updateCertFile(yourFile);
+        updateCertFile(yourFile, dataUrl);
       })
       .catch(function (error) {
         alert(error);
