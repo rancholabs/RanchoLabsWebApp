@@ -209,6 +209,37 @@ router.get("/all", (req, res) => {
         preserveNullAndEmptyArrays: true,
       },
     },
+    {
+      $lookup: {
+        from: "courses",
+        let: { courseId: "$courseId" },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $eq: ["$_id", "$$courseId"],
+              },
+              // $expr: {
+              //   $eq: ["$websiteEnabled", true],
+              // },
+            },
+          },
+          {
+            $project: {
+              _id: 1,
+              name: 1,
+            },
+          },
+        ],
+        as: "courseData",
+      },
+    },
+    {
+      $unwind: {
+        path: "$courseData",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
   ])
     .exec()
     .then(async (batches) => {

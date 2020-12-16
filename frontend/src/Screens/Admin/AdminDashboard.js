@@ -670,7 +670,13 @@ function AdminDashboardFreeWorkshop({
   );
 }
 
-function AdminDashboardPayment({ allStudentData }) {
+function AdminDashboardPayment({
+  allStudentData,
+  allAssignedBatchesData,
+  allPayments,
+  allInstructors,
+  allCouponsData,
+}) {
   return (
     <>
       <TableHead>
@@ -710,27 +716,102 @@ function AdminDashboardPayment({ allStudentData }) {
                 : utcTime.getMinutes();
             var ampm = utcTime.getHours() < 12 ? "AM" : "PM";
             var time = hour + ":" + min + " " + ampm;
-            return (
-              <TableRow>
-                <TableCell>Timestamp</TableCell>
-                <TableCell>Transaction ID</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>Student ID</TableCell>
-                <TableCell>Class</TableCell>
-                <TableCell>Email ID</TableCell>
-                <TableCell>Parents Name</TableCell>
-                <TableCell>Parents Email ID</TableCell>
-                <TableCell>Parents Phone Number</TableCell>
-                <TableCell>Email ID for transaction</TableCell>
-                <TableCell>Payment Phone Number</TableCell>
-                <TableCell>Course</TableCell>
-                <TableCell>Starting Date</TableCell>
-                <TableCell>Amount</TableCell>
-                <TableCell>Coupon</TableCell>
-                <TableCell>Batch</TableCell>
-                <TableCell>Instructor</TableCell>
-              </TableRow>
+
+            var singleStudentbatchObj = allAssignedBatchesData.filter(
+              (studBatch) =>
+                studBatch.userId === stud.userId &&
+                studBatch.batchData.batchType === "normal"
             );
+
+            if (singleStudentbatchObj.length > 0) {
+              singleStudentbatchObj = singleStudentbatchObj[0];
+              var singleStudentPaymentObj = allPayments.filter(
+                (studPay) =>
+                  studPay.payload.payment.entity.order_id ===
+                  singleStudentbatchObj.payment.orderId
+              );
+              if (singleStudentPaymentObj.length > 0) {
+                singleStudentPaymentObj = singleStudentPaymentObj[0];
+              }
+              var singleInstructor = allInstructors.filter(
+                (sintruct) =>
+                  sintruct._id === singleStudentbatchObj?.batchData?.instructor
+              );
+              if (singleInstructor.length > 0)
+                singleInstructor = singleInstructor[0];
+
+              var singleCoupon = allCouponsData.filter(
+                (sCoup) => sCoup._id === singleStudentPaymentObj?.couponId
+              );
+              if (singleCoupon.length > 0) singleCoupon = singleCoupon[0];
+
+              let timestamp = singleStudentPaymentObj._id
+                ?.toString()
+                .substring(0, 8);
+              let payDate = new Date(parseInt(timestamp, 16) * 1000);
+
+              // payDate = (payDate.getDate()<10?'0'+payDate.getDate():payDate.getDate()) + "/" + (payDate.getMonth()+1<10?'0'+payDate.getMonth()+1:payDate.getMonth()+1) + "/" + payDate.getFullYear()
+              return (
+                <TableRow>
+                  <TableCell>{payDate.toString().split("GMT")[0]}</TableCell>
+                  <TableCell>
+                    {singleStudentbatchObj?.payment?.orderId}
+                  </TableCell>
+                  <TableCell>Status</TableCell>
+                  <TableCell>Student ID</TableCell>
+                  <TableCell>{stud.grade}</TableCell>
+                  <TableCell>{stud.studentDetails?.email}</TableCell>
+                  <TableCell>
+                    {(stud.parentDetails?.name?.first
+                      ? stud.parentDetails?.name?.first
+                      : "") +
+                      " " +
+                      (stud.parentDetails?.name?.last
+                        ? stud.parentDetails?.name?.last
+                        : "")}
+                  </TableCell>
+                  <TableCell>{stud.parentDetails?.email}</TableCell>
+                  <TableCell>
+                    {stud.parentDetails?.mobileNo?.code +
+                      "-" +
+                      stud.parentDetails?.mobileNo?.number}
+                  </TableCell>
+                  <TableCell>
+                    {singleStudentPaymentObj?.payload?.payment?.entity?.email}
+                  </TableCell>
+                  <TableCell>
+                    {singleStudentPaymentObj?.payload?.payment?.entity?.contact}
+                  </TableCell>
+                  <TableCell>
+                    {singleStudentbatchObj?.courseData?.name}
+                  </TableCell>
+                  <TableCell>
+                    {singleStudentbatchObj?.batchData?.startDate}
+                  </TableCell>
+                  <TableCell>
+                    {singleStudentPaymentObj?.payload?.payment?.entity?.amount /
+                      100}
+                  </TableCell>
+                  <TableCell>{singleCoupon?.code}</TableCell>
+                  <TableCell>
+                    {singleStudentbatchObj?.batchData?.name}
+                  </TableCell>
+                  <TableCell>
+                    {singleInstructor?._id
+                      ? (singleInstructor?.fname
+                          ? singleInstructor?.fname
+                          : "") +
+                        " " +
+                        (singleInstructor?.mname
+                          ? singleInstructor?.mname
+                          : "") +
+                        " " +
+                        (singleInstructor?.lname ? singleInstructor?.lname : "")
+                      : "n/a"}
+                  </TableCell>
+                </TableRow>
+              );
+            }
           }
         })}
       </TableBody>
@@ -816,6 +897,8 @@ function AdminDashboard({
   courseGroups,
   allAssignedBatchesData,
   allInstructors,
+  allPayments,
+  allCouponsData,
 }) {
   const [currentSection, setCurrentSection] = useState("freeclass");
   const [setbatchWindow, setsetbatchWindow] = useState(false);
@@ -959,7 +1042,13 @@ function AdminDashboard({
                     />
                   )}
                   {currentSection === "payment" && (
-                    <AdminDashboardPayment allStudentData={allStudentData} />
+                    <AdminDashboardPayment
+                      allStudentData={allStudentData}
+                      allAssignedBatchesData={allAssignedBatchesData}
+                      allPayments={allPayments}
+                      allInstructors={allInstructors}
+                      allCouponsData={allCouponsData}
+                    />
                   )}
                   {currentSection === "totalsignup" && (
                     <AdminDashboardTotalSignUp

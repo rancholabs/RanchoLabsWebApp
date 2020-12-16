@@ -7,6 +7,7 @@ import AdminInstructor from "./AdminInstructor";
 import AdminDashboard from "./AdminDashboard";
 import AdminMasterData from "./AdminMasterData";
 import AdminSchool from "./AdminSchool";
+import AdminCoupon from "./AdminCoupon";
 
 function Index() {
   const [currentSection, setCurrentSection] = useState("curriculum");
@@ -15,6 +16,8 @@ function Index() {
   const [allAssignedBatchesData, setallAssignedBatchesData] = useState([]);
   const [allInstructors, setallInstructors] = useState([]);
   const [allSchools, setallSchools] = useState([]);
+  const [allCoupons, setallCoupons] = useState([]);
+  const [allPayments, setallPayments] = useState([]);
 
   useEffect(() => {
     const userInfo = localStorage.getItem("userInfo");
@@ -53,6 +56,22 @@ function Index() {
       .then((res) => {
         console.log(res.data);
         setallSchools(res.data);
+      })
+      .catch((err) => console.log(err));
+
+    axios
+      .get("/api/coupon", config)
+      .then((res) => {
+        console.log(res.data);
+        setallCoupons(res.data);
+      })
+      .catch((err) => console.log(err));
+
+    axios
+      .get("/api/allpayments", config)
+      .then((res) => {
+        console.log(res.data);
+        setallPayments(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -145,6 +164,12 @@ function Index() {
             >
               Master Data
             </li>
+            <li
+              onClick={() => setCurrentSection("coupon")}
+              className={currentSection === "coupon" && "selected"}
+            >
+              Coupon
+            </li>
           </ul>
         </div>
         <div className="admin__body">
@@ -169,6 +194,8 @@ function Index() {
               courseGroups={courseGroups}
               allAssignedBatchesData={allAssignedBatchesData}
               allInstructors={allInstructors}
+              allPayments={allPayments}
+              allCouponsData={allCoupons}
             />
           )}
           {currentSection === "master" && (
@@ -176,6 +203,9 @@ function Index() {
           )}
           {currentSection === "school" && (
             <AdminSchool allSchoolsData={allSchools} />
+          )}
+          {currentSection === "coupon" && (
+            <AdminCoupon allCouponsData={allCoupons} />
           )}
         </div>
       </div>

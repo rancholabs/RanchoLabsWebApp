@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
 
   let certID = "RLCT";
   if (allCerts.length) {
-    certID = certID + allCerts.length + 1;
+    certID = certID + parseInt(allCerts.length + 1);
   } else {
     certID = certID + "1";
   }

@@ -42,7 +42,7 @@ const CertificateComplete = ({
       if (singleCert.length > 0) {
         singleCert = singleCert[0];
         console.log(singleCert);
-        setCertURL(singleCert.file.filePath);
+        setCertURL(singleCert?.file?.filePath);
       }
     }
   }, [studentCerts]);
