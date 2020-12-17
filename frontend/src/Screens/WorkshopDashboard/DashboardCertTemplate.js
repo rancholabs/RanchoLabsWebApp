@@ -45,7 +45,7 @@ function DashboardCertTemplate({
         updateCertFile(yourFile, dataUrl);
       })
       .catch(function (error) {
-        alert(error);
+        // alert(error);
         console.error("oops, something went wrong!", error);
       });
 

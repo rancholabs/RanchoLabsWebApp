@@ -33,7 +33,7 @@ router.post("/validateToken", (req, res) => {
   });
 });
 
-router.post("/validateTokenExpiry", (req, res) => {
+router.get("/validateTokenExpiry", (req, res) => {
   jwt.verify(req.headers["authorization"], JWT_SECRET, (err, decoded) => {
     if (err) {
       res.status(403).send({ message: "Link has been expired" });

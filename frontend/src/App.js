@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch, withRouter } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "./Actions/userAction";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Header from "./Components/Header";
@@ -42,14 +44,49 @@ import BuildProject from "./Screens/BuildProject";
 // ADMIN
 import Admin from "./Screens/Admin";
 
+import axios from "axios";
+
 function App() {
   //const HeaderComponent = withRouter( props => <Header {...props}/>)
   const [showAdmin, setShowAdmin] = React.useState(false);
+  const dispatch = useDispatch();
+
   React.useEffect(() => {
     if (window.location.href.toString().includes("/admin")) {
       setShowAdmin(true);
     }
   });
+
+  React.useEffect(() => {
+    checkToken();
+    setInterval(() => {
+      checkToken();
+    }, 1000 * 60 * 5);
+  }, []);
+
+  const checkToken = () => {
+    const _userInfo = localStorage.getItem("userInfo");
+    const token = _userInfo ? JSON.parse(_userInfo).token : "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    };
+    if (token) {
+      axios
+        .get("/api/validateTokenExpiry", config)
+        .then((res) => {
+          // valid
+          console.log(res.data);
+        })
+        .catch((err) => {
+          // expire
+          console.log(err);
+          dispatch(logout());
+        });
+    }
+  };
   return (
     <BrowserRouter primary={false}>
       <>
