@@ -97,48 +97,56 @@ const Certificate = ({
       .then((res) => res.data.fileId)
       .catch((error) => console.log(error));
 
-    // UPLOAD CERTIFICATE IN STUDENT PROFILE
+    if (fileID && fileID.toString().length > 5) {
+      console.log(fileID);
+      // UPLOAD CERTIFICATE IN STUDENT PROFILE
 
-    if (studentCerts) {
-      allCerts = [...studentCerts];
-      if (count === 0) {
-        allCerts.push({
-          id: 1111,
-          file: fileID,
-          courseId: activeCourse,
-        });
+      if (studentCerts) {
+        allCerts = [...studentCerts];
+        if (count === 0) {
+          allCerts.push({
+            id: 1111,
+            file: fileID,
+            courseId: activeCourse,
+          });
+        }
+      } else {
+        allCerts = [
+          {
+            id: 1111,
+            file: fileID,
+            courseId: activeCourse,
+          },
+        ];
       }
-    } else {
-      allCerts = [
-        {
-          id: 1111,
-          file: fileID,
-          courseId: activeCourse,
-        },
-      ];
-    }
 
-    const body = {
-      certificates: allCerts,
-    };
-    axios
-      .post("/api/profile/student/certificates", body, config)
-      .then((res) => {
-        console.log(res.data);
-        // UPDATE DATA IN ALL CERTIFICATES SCHEMA
-        const allcertbody = {
-          name: userInfo,
-          file: fileID,
-          userId: userId,
-          courseId: activeCourse,
-        };
-        axios.post("/api/certificate", allcertbody, config).then((resp) => {
-          setOpen(false);
-          console.log(resp.data);
-          showCertificate();
-          // showAppliedCertLoadingBanner();
+      const body = {
+        certificates: allCerts,
+      };
+      console.log(body);
+      axios
+        .post("/api/profile/student/certificates", body, config)
+        .then((res) => {
+          console.log(res.data);
+          // UPDATE DATA IN ALL CERTIFICATES SCHEMA
+          const allcertbody = {
+            name: userInfo,
+            file: fileID,
+            userId: userId,
+            courseId: activeCourse,
+          };
+          axios.post("/api/certificate", allcertbody, config).then((resp) => {
+            setOpen(false);
+            console.log(resp.data);
+            showCertificate();
+            // showAppliedCertLoadingBanner();
+          });
         });
-      });
+    } else {
+      alert(
+        "Unable to generate certificate at this time. Please try again later!"
+      );
+    }
   };
 
   const updateCertFile = (file, dataUrl) => {

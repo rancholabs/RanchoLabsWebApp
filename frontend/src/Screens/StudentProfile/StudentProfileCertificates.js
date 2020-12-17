@@ -239,16 +239,17 @@ const StudentProfileCertificates = () => {
                     </svg>
                   )}
                   {c.file &&
-                  ((c.file.filePath &&
-                    c.file.filePath.split(".").pop().toLowerCase() === "pdf") ||
+                  ((c.file?.filePath &&
+                    c.file?.filePath.split(".").pop().toLowerCase() ===
+                      "pdf") ||
                     (c.file.name &&
                       c.file.name.split(".").pop().toLowerCase() === "pdf")) ? (
                     <embed
                       className="file"
                       id={`certificate-file-${c.id}`}
                       src={
-                        c.file.filePath
-                          ? c.file.filePath
+                        c.file?.filePath
+                          ? c.file?.filePath
                           : typeof c.file === "object"
                           ? readFile(c.file, c.id)
                           : ""
@@ -259,8 +260,8 @@ const StudentProfileCertificates = () => {
                       className="file"
                       id={`certificate-file-${c.id}`}
                       src={
-                        c.file.filePath
-                          ? c.file.filePath
+                        c.file?.filePath
+                          ? c.file?.filePath
                           : typeof c.file === "object"
                           ? readFile(c.file, c.id)
                           : ""
