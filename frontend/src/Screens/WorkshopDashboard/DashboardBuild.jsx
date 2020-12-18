@@ -43,8 +43,8 @@ function ProjectItemDesk(projectItem) {
         <div>
           <img
             className=""
-            src={projectItem.singleProject.image.filePath}
-            alt={projectItem.singleProject.name}
+            src={projectItem.singleProject?.image?.filePath}
+            alt={projectItem.singleProject?.name}
             style={{
               padding: "1vw",
               height: "130px",

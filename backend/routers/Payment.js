@@ -26,7 +26,7 @@ const enrollStudent = (student) => {
   const studentCourse = new StudentCourse({
     userId: mongoose.Types.ObjectId(student.userId),
     courseId: courseId,
-    batchId: mongoose.Types.ObjectId(student.batchId),
+    // batchId: mongoose.Types.ObjectId(student.batchId),
     payment: student.payment,
   });
   studentCourse
@@ -110,11 +110,12 @@ const updateCoupon = (couponData) => {
   }
 };
 
-const addPaymentObj = (pay, couponId, userId) => {
+const addPaymentObj = (pay, couponId, userId, selectedDate) => {
   const newPayment = new Payment({
     ...pay,
     couponId: couponId,
     userId: userId,
+    selectedDate: selectedDate,
   });
   newPayment.save().then((doc) => console.log("payment saved."));
 };
@@ -143,6 +144,7 @@ router.post("/order", isAuthenticated, async (req, res) => {
         userId: req.body.userId,
         email: req.email,
         couponId: req.body.couponId,
+        selectedDate: req.body.selectedDate,
       });
       console.log(orderData);
       res.json({
@@ -206,7 +208,12 @@ router.post("/verification", (req, res) => {
         };
         updateCoupon(couponData);
       }
-      addPaymentObj(req.body, userOrder.couponId, userOrder.userId);
+      addPaymentObj(
+        req.body,
+        userOrder.couponId,
+        userOrder.userId,
+        userOrder.selectedDate
+      );
     }
     console.log(req.body);
   } else {
@@ -215,7 +222,7 @@ router.post("/verification", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  res.send("payment api");
+  res.send("payment api rancho labs");
 });
 
 module.exports = router;

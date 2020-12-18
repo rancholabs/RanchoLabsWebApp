@@ -297,9 +297,10 @@ function AdminNewBatch({
             },
           };
           console.log(_body);
-          axios
-            .post(`/api/course/enroll/admin`, _body, config)
-            .then((res) => console.log(res.data));
+          axios.post(`/api/course/enroll/admin`, _body, config).then((res) => {
+            console.log(res.data);
+            alert("Batch Created!");
+          });
         }
       }
     }

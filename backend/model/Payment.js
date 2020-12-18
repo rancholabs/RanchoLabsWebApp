@@ -19,6 +19,7 @@ const PaymentSchema = new mongoose.Schema({
   created_at: Date,
   couponId: String,
   userId: String,
+  selectedDate: String,
 });
 
 module.exports = mongoose.model("payment", PaymentSchema);

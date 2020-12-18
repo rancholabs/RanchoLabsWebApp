@@ -676,6 +676,7 @@ function AdminDashboardPayment({
   allPayments,
   allInstructors,
   allCouponsData,
+  assignBatch,
 }) {
   return (
     <>
@@ -720,7 +721,8 @@ function AdminDashboardPayment({
             var singleStudentbatchObj = allAssignedBatchesData.filter(
               (studBatch) =>
                 studBatch.userId === stud.userId &&
-                studBatch.batchData.batchType === "normal"
+                studBatch.payment?.paymentId !== "workshop" &&
+                studBatch.payment?.paymentId !== "freeclass"
             );
 
             if (singleStudentbatchObj.length > 0) {
@@ -794,7 +796,20 @@ function AdminDashboardPayment({
                   </TableCell>
                   <TableCell>{singleCoupon?.code}</TableCell>
                   <TableCell>
-                    {singleStudentbatchObj?.batchData?.name}
+                    {singleStudentbatchObj.batchData ? (
+                      singleStudentbatchObj.batchData?.name
+                    ) : (
+                      <button
+                        onClick={() =>
+                          assignBatch(
+                            stud.userId,
+                            singleStudentbatchObj?.payment
+                          )
+                        }
+                      >
+                        Assign
+                      </button>
+                    )}
                   </TableCell>
                   <TableCell>
                     {singleInstructor?._id
@@ -903,13 +918,17 @@ function AdminDashboard({
   const [currentSection, setCurrentSection] = useState("freeclass");
   const [setbatchWindow, setsetbatchWindow] = useState(false);
   const [setBatchUserId, setsetBatchUserId] = useState("");
+  const [paymentObj, setpaymentObj] = useState({});
 
   const [filterDate, setfilterDate] = useState("");
   const [filterStudentName, setfilterStudentName] = useState("");
 
-  const assignBatch = (userId) => {
+  const assignBatch = (userId, paymentObj) => {
     setsetbatchWindow(true);
     setsetBatchUserId(userId);
+    if (paymentObj) {
+      setpaymentObj(paymentObj);
+    }
   };
   const backtoDashboard = () => {
     setsetbatchWindow(false);
@@ -920,6 +939,7 @@ function AdminDashboard({
       {setbatchWindow ? (
         <AdminBatch
           setBatchUserId={setBatchUserId}
+          paymentObj={paymentObj}
           allStudentData={allStudentData}
           courseGroups={courseGroups}
           backtoDashboard={backtoDashboard}
@@ -1048,6 +1068,7 @@ function AdminDashboard({
                       allPayments={allPayments}
                       allInstructors={allInstructors}
                       allCouponsData={allCouponsData}
+                      assignBatch={assignBatch}
                     />
                   )}
                   {currentSection === "totalsignup" && (

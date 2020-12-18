@@ -8,6 +8,9 @@ uploads
 nodemon.json
 /nodemon.json
 
+paykey.js
+/paykey.js
+
 # testing
 /coverage
 

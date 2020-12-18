@@ -9,6 +9,7 @@ function AdminBatch({
   courseGroups,
   allStudentData,
   setBatchUserId,
+  paymentObj,
   backtoDashboard,
   allInstructors,
   allSchoolsData,
@@ -87,21 +88,37 @@ function AdminBatch({
       },
     };
 
-    const _body = {
-      userId: setBatchUserId,
-      courseId: singleBatch.courseId,
-      batchId: singleBatch._id,
-      payment: {
-        paymentId: "freeclass",
-        orderId: "freeclass",
-        signature: "freeclass",
-      },
-    };
+    // check for payment
+    if(paymentObj.orderId){
+      // update against payment order id
+      const _body = {
+        batchId: singleBatch._id,
+        paymentObj: paymentObj,
+      };
+  
+      axios.post(`/api/course/enroll/admin`, _body, config).then((res) => {
+        backtoDashboard();
+        console.log(res.data);
+      });
+    } else {
+      // assign for free class
+      const _body = {
+        userId: setBatchUserId,
+        courseId: singleBatch.courseId,
+        batchId: singleBatch._id,
+        payment: {
+          paymentId: "freeclass",
+          orderId: "freeclass",
+          signature: "freeclass",
+        },
+      };
+  
+      axios.post(`/api/course/enroll/admin`, _body, config).then((res) => {
+        backtoDashboard();
+        console.log(res.data);
+      });
+    }
 
-    axios.post(`/api/course/enroll/admin`, _body, config).then((res) => {
-      backtoDashboard();
-      console.log(res.data);
-    });
   };
 
   const editBatchFunction = (editBatch) => {

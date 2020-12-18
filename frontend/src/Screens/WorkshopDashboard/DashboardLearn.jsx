@@ -63,15 +63,22 @@ const Daywise = ({ singleClass, batch }) => {
   var currentTime =
     singleClass.classNo === 1 ? batch.singleTime : batch.doubleTime;
 
+  if (batch.batchType === "freeclass") {
+    currentDate = batch.singleDate;
+  } else if (batch.batchType === "workshop") {
+    currentDate =
+      singleClass.classNo === 1 ? batch.singleDate : batch.doubleDate;
+  }
+
   var sdate = getDate(
-    batch.batchType === "freeclass"
+    batch.batchType === "freeclass" || batch.batchType === "workshop"
       ? new Date(currentDate)
-      : new Date(currentDate)
+      : new Date(batch.startDate)
   );
   var edate = getDate(
-    batch.batchType === "freeclass"
+    batch.batchType === "freeclass" || batch.batchType === "workshop"
       ? new Date(currentDate)
-      : new Date(currentDate)
+      : new Date(batch.endDate)
   );
   var suffix =
     parseInt(currentTime.toString().split(":")[0]) >= 12 ? "PM" : "AM";
