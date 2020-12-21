@@ -27,7 +27,7 @@ function validateEmail(email) {
   } else return true;
 }
 
-const LogIn = ({location}) => {
+const LogIn = ({ location }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -47,15 +47,19 @@ const LogIn = ({location}) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
-  const signuplink = userInfo ? "/" : redirectBack === "" ? "/freeclass" : `/freeclass?redirect=enroll&&course=${params.course}`;
+  const signuplink = userInfo
+    ? "/"
+    : redirectBack === ""
+    ? "/freeclass"
+    : `/freeclass?redirect=enroll&&course=${params.course}`;
 
   useEffect(() => {
-    if(params.redirect && params.course){
-      if(params.redirect === "enroll"){
-        setredirectBack(`/enroll/${params.course}`)
+    if (params.redirect && params.course) {
+      if (params.redirect === "enroll") {
+        setredirectBack(`/enroll/${params.course}`);
       }
     }
-  },[])
+  }, []);
 
   useEffect(() => {
     if (isMailSent) {
@@ -101,7 +105,11 @@ const LogIn = ({location}) => {
       console.log(userInfo);
 
       if (userInfo.role === "student") {
-        history.push("/dashboard?mode=login");
+        if (redirectBack !== "") {
+          history.push(redirectBack);
+        } else {
+          history.push("/dashboard?mode=login");
+        }
       } else if (userInfo.role === "instructor") {
         history.push("/instructor/schedule");
       } else {
