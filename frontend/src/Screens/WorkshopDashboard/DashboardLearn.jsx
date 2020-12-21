@@ -11,8 +11,8 @@ function over(e) {
 
 function ongoing(s) {
   var now = new Date().toISOString();
-  if (s < now) return "(Upcoming)";
-  else return "(Finished)";
+  if (s < now) return "(Finished)";
+  else return "(Upcoming)";
 }
 
 const DLlistItem = (dlitem) => {
