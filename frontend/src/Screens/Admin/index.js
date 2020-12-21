@@ -72,6 +72,7 @@ function Index() {
       .catch((err) => console.log(err));
 
     axios.get("/api/certificate", config).then((res) => {
+      console.log(res.data);
       setallCertificates(res.data);
     });
   }, []);

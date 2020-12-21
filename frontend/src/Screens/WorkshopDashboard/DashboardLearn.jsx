@@ -9,9 +9,9 @@ function over(e) {
   else return 0;
 }
 
-function ongoing(s, e) {
+function ongoing(s) {
   var now = new Date().toISOString();
-  if (s < now && e > now) return "(Ongoing)";
+  if (s < now) return "(Upcoming)";
   else return "(Finished)";
 }
 
@@ -103,8 +103,12 @@ const Daywise = ({ singleClass, batch }) => {
               {singleClass.topic}
               <span className="status">
                 {ongoing(
-                  singleClass.classTime?.startTime,
-                  singleClass.classTime?.endTime
+                  new Date(currentDate).setHours(
+                    currentTime.toString().split(":")[0],
+                    currentTime.toString().split(":")[1],
+                    0,
+                    0
+                  )
                 )}
               </span>
             </div>
