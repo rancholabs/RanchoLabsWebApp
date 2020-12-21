@@ -32,6 +32,7 @@ const FreeClass = ({ location }) => {
   const [message, setMessage] = useState(null);
   const hHistory = useHistory();
   const [isEmailExists, setIsEmailExists] = useState(false);
+  const [redirectbacktoEnroll, setredirectbacktoEnroll] = useState(false);
 
   const userRegister = useSelector((state) => state.userRegister);
   const { error, userInfo } = userRegister;
@@ -41,6 +42,14 @@ const FreeClass = ({ location }) => {
   const params = queryString.parse(location.search);
 
   console.log(params);
+
+  useEffect(() => {
+    if (params.redirect && params.course) {
+      if (params.redirect === "enroll") {
+        setredirectbacktoEnroll(true);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (error) {
@@ -60,7 +69,12 @@ const FreeClass = ({ location }) => {
   useEffect(() => {
     if (isUpdated) {
       dispatch(login(email, password));
-      var path = "/dashboard/?mode=signup";
+      var path = "";
+      if (redirectbacktoEnroll) {
+        path = `/enroll/${params.course}`;
+      } else {
+        path = "/dashboard/?mode=signup";
+      }
 
       hHistory.replace(path);
     }
@@ -276,7 +290,7 @@ const FreeClass = ({ location }) => {
                   <input
                     type="text"
                     name="contact"
-                    placeholder="Phone number"
+                    placeholder="Parent's Phone number"
                     value={contact}
                     onChange={(e) => setContact(e.target.value)}
                   />

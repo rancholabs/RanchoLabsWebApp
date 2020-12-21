@@ -122,6 +122,60 @@ router.get("/", async (req, res) => {
     });
 });
 
+router.post("/verify", (req, res) => {
+  const { userId, courseId, name, payment } = req.body;
+  Certificate.find({
+    userId: userId,
+    courseId: courseId,
+    name: name,
+    payment: payment,
+  })
+    .then((doc) => {
+      if (doc.length > 0) {
+        res.send("Valid payment");
+      } else {
+        res.status(404).send("invalid payment");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send("server error");
+    });
+});
+
+router.get("/single/:id", (req, res) => {
+  const certId = req.params.id;
+  Certificate.find({ id: certId }).then((docs) => {
+    if (docs.length > 0) {
+      res.send(docs);
+    } else {
+      res.status(404).send("Not found!");
+    }
+  });
+});
+
+router.put("/", (req, res) => {
+  const { userId, courseId, name, payment, file } = req.body;
+  Certificate.findOneAndUpdate(
+    {
+      userId: userId,
+      courseId: courseId,
+      name: name,
+      payment: payment,
+    },
+    {
+      file: file,
+    }
+  )
+    .then((doc) => {
+      res.send("certificate updated!");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send("server error");
+    });
+});
+
 // router.get("/:bid", async (req, res) => {
 //   const bid = req.params.bid;
 //   const blog = await Blog.findOne({ _id: bid });

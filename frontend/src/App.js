@@ -40,6 +40,7 @@ import SingleBlog from "./Screens/SingleBlog";
 import BlogAdmin from "./Screens/BlogAdmin";
 import Payment from "./Screens/Payment";
 import BuildProject from "./Screens/BuildProject";
+import SearchCertificate from "./Screens/AllCertificates";
 
 // ADMIN
 import Admin from "./Screens/Admin";
@@ -239,6 +240,11 @@ function App() {
                     path="/buildproject"
                     exact={true}
                     component={BuildProject}
+                  />
+                  <Route
+                    path="/certificates"
+                    exact={true}
+                    component={SearchCertificate}
                   />
                   <Route component={PageNotFound} />
                 </Switch>

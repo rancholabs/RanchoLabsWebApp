@@ -79,11 +79,11 @@
   color: rgba(0, 0, 0, 1);
 }
 #Ananya {
-  left: 488px;
+  right: 30px;
   top: 166px;
   position: absolute;
   overflow: visible;
-  width: 293px;
+  /* width: 293px; */
   white-space: nowrap;
   text-align: left;
   font-family: Baby Lovely;
@@ -91,6 +91,7 @@
   font-weight: normal;
   font-size: 89px;
   color: rgba(191, 158, 51, 1);
+  text-transform: capitalize;
 }
 #ANSHUL_AGRAWAL_ {
   left: 191px;

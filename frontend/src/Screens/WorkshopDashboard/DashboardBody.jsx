@@ -31,8 +31,6 @@ const DashboardCourseChoice = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log(coursegroups);
-    console.log(student);
     if (student?.loginfor === "workshop") {
       let workshopID = coursegroups?.filter(
         (cg) => cg.name.toString().toLowerCase() === "workshop"
@@ -57,8 +55,6 @@ const DashboardCourseChoice = (props) => {
   function handleClick(id) {
     dispatch(activeCourseGroup(id));
   }
-
-  console.log(coursegroups);
 
   return (
     <>
@@ -185,6 +181,7 @@ function DashboardBody(props) {
   const [workshopEnd, setworkshopEnd] = useState(false);
   const [minAttendance, setminAttendance] = useState(false);
   const [allCerts, setallCerts] = useState([]);
+  const [certPaid, setcertPaid] = useState(false);
 
   useEffect(() => {
     dispatch(courseGroups());
@@ -216,8 +213,6 @@ function DashboardBody(props) {
     }
   }, [activeCourse]);
 
-  console.log(userInfo);
-
   var _activeCourse = props.courses.filter((course) => {
     if (course.courseDetails.groupId === activeCourse) return course;
   });
@@ -226,12 +221,7 @@ function DashboardBody(props) {
   //   if (course.courseDetails.groupId === "") return course;
   // });
 
-  console.log(props.courses);
-  console.log(_activeCourse);
-
   var coursedata = _activeCourse.length ? _activeCourse[0] : null;
-  // console.log(activeCourse.courseDetails.groupId)
-  console.log(coursedata);
 
   useEffect(() => {
     if (coursedata) {
@@ -292,7 +282,6 @@ function DashboardBody(props) {
       axios
         .get("/api/profile/student", config)
         .then((res) => {
-          console.log(res.data);
           setstudentProfile(res.data);
           if (
             coursedata.batch.batchType === "workshop" ||
@@ -315,7 +304,6 @@ function DashboardBody(props) {
               } else {
                 let timestamp = courseCert._id.toString().substring(0, 8);
                 let certDate = new Date(parseInt(timestamp, 16) * 1000);
-                console.log(certDate);
 
                 let now = new Date();
                 let createdAt = certDate;
@@ -357,15 +345,26 @@ function DashboardBody(props) {
       },
     };
     axios.get("/api/certificate", config).then((res) => {
-      console.log(res.data);
+      let userCert = res.data.filter(
+        (cert) =>
+          cert.userId === userInfo?.userId && cert.courseId === activeCourse
+      );
+      if (userCert.length > 0) {
+        // user has paid for the certificate
+        setcertPaid(true);
+      }
       setallCerts(res.data);
     });
-  }, []);
+  }, [userInfo, activeCourse]);
 
   const showAppliedCertLoadingBanner = () => {
     // setapplyForCertificate(false);
     // setshowLoadingCertificate(true);
     window.location.reload();
+  };
+
+  const updateCertPaidStatus = (status) => {
+    setcertPaid(status);
   };
 
   return (
@@ -390,6 +389,8 @@ function DashboardBody(props) {
                 showAppliedCertLoadingBanner={showAppliedCertLoadingBanner}
                 freeClassCert={activeFreeclass}
                 allCerts={allCerts}
+                certPaid={certPaid}
+                updateCertPaidStatus={updateCertPaidStatus}
                 userId={userInfo?.userId}
                 from={
                   coursedata.batch.batchType === "workshop"

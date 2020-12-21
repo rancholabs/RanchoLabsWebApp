@@ -1,5 +1,20 @@
 const mongoose = require("mongoose");
 
+const PaymentSchema = {
+  paymentId: {
+    type: String,
+    default: null,
+  },
+  orderId: {
+    type: String,
+    default: null,
+  },
+  signature: {
+    type: String,
+    default: null,
+  },
+};
+
 const CertificateSchema = new mongoose.Schema({
   id: String,
   name: {
@@ -28,6 +43,7 @@ const CertificateSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Course",
   },
+  payment: PaymentSchema,
 });
 
 module.exports = mongoose.model("certificate", CertificateSchema);

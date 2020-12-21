@@ -5,8 +5,8 @@
   margin: calc(80 * var(--vp)) auto calc(126 * var(--vp));
   box-shadow: 0px calc(6 * var(--vp)) calc(6 * var(--vp)) #00000045;
   border-radius: calc(10 * var(--vp));
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
 }
 
 .dashboardcertificate .certificate-title {
@@ -56,15 +56,17 @@
   width: calc(1702 * var(--vp));
   height: calc(774 * var(--vp));
   background-color: #ffffff;
-  margin: auto;
+  margin: 100px auto 0 auto;
   border-radius: calc(10 * var(--vp));
   padding: calc(132 * var(--vp)) calc(123 * var(--vp));
-  position: fixed;
+  overflow: hidden;
+  position: relative;
+  /* position: fixed;
   top: 50%;
   right: 50%;
   transform: translateY(-50%) translateX(50%);
   box-shadow: 0 0 0 100vh #00000091;
-  z-index: 5;
+  z-index: 5; */
 }
 
 .dashboard-certificate-modal .certificate-title {

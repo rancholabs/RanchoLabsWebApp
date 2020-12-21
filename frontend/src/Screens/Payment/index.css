@@ -167,6 +167,16 @@
   border-radius: 10px;
 }
 
+.coupon__valid__text {
+  color: #3cfaff;
+  margin: 0;
+}
+
+.coupon__invalid__text {
+  color: red;
+  margin: 0;
+}
+
 @media (max-width: 800px) {
   .payment {
     flex-direction: column;

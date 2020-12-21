@@ -16,6 +16,21 @@ import DashboardCertTemplate from "./DashboardCertTemplate";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ShareIcon from "./ShareIcon";
+import keys from "../../paykey";
+
+function loadScript(src) {
+  return new Promise((resolve) => {
+    const script = document.createElement("script");
+    script.src = src;
+    script.onload = () => {
+      resolve(true);
+    };
+    script.onerror = () => {
+      resolve(false);
+    };
+    document.body.appendChild(script);
+  });
+}
 
 const shareIcons = [
   {
@@ -57,21 +72,33 @@ const Certificate = ({
   userId,
   allCerts,
   minAttendance,
+  certPaid,
+  updateCertPaidStatus,
 }) => {
   const [iscertificate, setCertficate] = useState(false);
   const [isShareExp, setShareExp] = useState(false);
   const [certFile, setcertFile] = useState(null);
   const [open, setOpen] = React.useState(false);
+  const [openForCertPay, setopenForCertPay] = React.useState(false);
+  const [userpaymentId, setuserpaymentId] = React.useState("");
+  const [userorderId, setuserorderId] = React.useState("");
 
   function showCertificate() {
     setCertficate(!iscertificate);
   }
+  console.log(certPaid);
+  React.useEffect(() => {
+    console.log(certPaid);
+    if (certPaid) {
+      setCertficate(true);
+    }
+  }, [certPaid]);
 
-  if (iscertificate || isShareExp) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "auto";
-  }
+  // if (iscertificate || isShareExp) {
+  //   document.body.style.overflow = "hidden";
+  // } else {
+  //   document.body.style.overflow = "auto";
+  // }
 
   const copyShareLink = async () => {
     setOpen(true);
@@ -134,11 +161,21 @@ const Certificate = ({
             file: fileID,
             userId: userId,
             courseId: activeCourse,
+            // payment: {
+            //   paymentId: userpaymentId,
+            //   orderId: userorderId,
+            // },
           };
+          // axios.put("/api/certificate", allcertbody, config).then((resp) => {
+          //   setOpen(false);
+          //   console.log(resp.data);
+          //   showAppliedCertLoadingBanner();
+          //   // showAppliedCertLoadingBanner();
+          // });
           axios.post("/api/certificate", allcertbody, config).then((resp) => {
             setOpen(false);
             console.log(resp.data);
-            showCertificate();
+            showAppliedCertLoadingBanner();
             // showAppliedCertLoadingBanner();
           });
         });
@@ -146,25 +183,110 @@ const Certificate = ({
       alert(
         "Unable to generate certificate at this time. Please try again later!"
       );
+      setOpen(false);
     }
+  };
+
+  const checkPayment = (payid, orderid) => {
+    setopenForCertPay(true);
+    setuserpaymentId(payid);
+    setuserorderId(orderid);
+    const body = {
+      userId: userId,
+      courseId: activeCourse,
+      name: userInfo,
+      payment: {
+        paymentId: payid,
+        signature: null,
+        orderId: orderid,
+      },
+    };
+    setTimeout(() => {
+      setopenForCertPay(false);
+      axios
+        .post("/api/certificate/verify", body)
+        .then((res) => {
+          // payment done
+          updateCertPaidStatus(true);
+          showCertificate();
+        })
+        .catch((err) => {
+          console.log(err);
+          // payment not done
+          alert("Unable to verify payment!");
+        });
+    }, 5000);
+  };
+
+  const displayRazorpay = async () => {
+    const _userInfo = localStorage.getItem("userInfo");
+    const token = _userInfo ? JSON.parse(_userInfo).token : "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    };
+
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+
+    if (!res) {
+      alert("Razorpay SDK failed to load. Are you online?");
+      return;
+    }
+
+    const paymentBody = {
+      name: userInfo,
+      userId: userId,
+      courseId: activeCourse,
+      price: {
+        amount: 199,
+        currencyCode: "INR",
+      },
+      reason: "certificate",
+    };
+
+    const data = await axios
+      .post("/api/payment/order", paymentBody, config)
+      .then((res) => {
+        return res.data;
+      });
+
+    const options = {
+      key: keys.RAZOR_PAY_KEY_ID, //test mode key
+      currency: data.currency,
+      amount: data.amount.toString(),
+      order_id: data.id,
+      name: "Rancho Labs",
+      description: "Thank you for choosing Rancho Labs.",
+      image:
+        "https://rancho-labs-app.s3.amazonaws.com/images/logo-1607930535803.png",
+      handler: function (response) {
+        //  after payment
+        checkPayment(response.razorpay_payment_id, response.razorpay_order_id);
+      },
+      prefill: {
+        name: userInfo.first + " " + (userInfo.last ? userInfo.last : ""),
+      },
+    };
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
   };
 
   const updateCertFile = (file, dataUrl) => {
     setcertFile(file);
-    console.log(dataUrl);
+    console.log(file);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  // React.useEffect(() => {
-  //   setTimeout(() => {
-  //     document.getElementById("dashboard__certTemp").style.visibility =
-  //       "hidden";
-  //   }, 2000);
-  // }, []);
-
+  const payCertFees = () => {
+    displayRazorpay();
+  };
   return (
     <>
       <Backdrop
@@ -176,51 +298,111 @@ const Certificate = ({
         Generating your certificate. This may take 1-2 minutes. Kindly do not
         refresh or close the window.
       </Backdrop>
-      <div className="dashboardcertificate row mx-auto">
-        <div className="certificate-content">
-          <div className="certificate-title">CONGRATULATIONS</div>
-          <div className="certificate-desc">
-            Dear{" "}
-            {(userInfo?.first ? userInfo?.first : "") +
-              " " +
-              (userInfo?.last ? userInfo?.last : "")}
-            , we are so pleased to see you complete our{" "}
-            {freeClassCert ? "free class" : "workshop"}. Excellence isn't a
-            skill but an attitude. Keep up your good work and continue to strive
-            for perfection! As a token of appreciation, we are giving you a
-            Certificate of Completion.
-          </div>
-          <div className="get-certificate">
-            <a>
-              <button
-                onClick={() => {
-                  if (minAttendance) {
-                    console.log("Generating cert...");
+      <Backdrop
+        style={{ zIndex: 10000 }}
+        open={openForCertPay}
+        className="cert__backdrop"
+      >
+        <CircularProgress color="inherit" />
+        Verifying your payment. Please wait. Kindly do not refresh or close the
+        window.
+      </Backdrop>
+      {iscertificate ? (
+        <div className="dashboard-certificate-modal">
+          {/* <span className="close">
+            <button onClick={showCertificate}>&times;</button>
+          </span> */}
+          <div className="row mx-0 cmodal-content">
+            <div className="certificate-details">
+              <div className="certificate-title">CONGRATULATIONS</div>
+              <div className="certificate-modal-content">
+                Dear{" "}
+                {userInfo?.first
+                  ? userInfo?.first
+                  : "" + " " + userInfo?.last
+                  ? userInfo?.last
+                  : ""}
+                , Congratulations on completing the{" "}
+                {freeClassCert ? "free class" : "free workshop"} offered by
+                RanchoLabs. Not all students get this opportunity and we really
+                applaud your efforts in taking time to learn new things. We hope
+                this is the first achievement amongst many to follow.
+              </div>
+              <div className="certificate-share align-items-center">
+                <button
+                  onClick={() => {
                     copyShareLink();
-                  }
-                }}
-              >
-                GET IT NOW &nbsp; <Fontawesome name="arrow-right" />
-              </button>
-            </a>
+                  }}
+                >
+                  Get Certificate
+                </button>
+              </div>
+            </div>
+            <div className="certificate-image">
+              <img src={certificate} alt="" />
+              <img className="lock" src={lock} />
+            </div>
+          </div>
+          <div id="dashboard__certTemp">
+            <DashboardCertTemplate
+              updateCertFile={updateCertFile}
+              userInfo={userInfo}
+              from={from}
+              to={to}
+              month={month}
+              year={year}
+              allCerts={allCerts}
+            />
           </div>
         </div>
-        <div className="medal">
-          <img src={medal} alt=""></img>
+      ) : (
+        <div className="dashboardcertificate row mx-auto">
+          <div className="certificate-content">
+            <div className="certificate-title">CONGRATULATIONS</div>
+            <div className="certificate-desc">
+              Dear{" "}
+              {(userInfo?.first ? userInfo?.first : "") +
+                " " +
+                (userInfo?.last ? userInfo?.last : "")}
+              , we are so pleased to see you complete our{" "}
+              {freeClassCert ? "free class" : "workshop"}. Excellence isn't a
+              skill but an attitude. Keep up your good work and continue to
+              strive for perfection! As a token of appreciation, we are giving
+              you a Certificate of Completion.
+            </div>
+            <div className="get-certificate">
+              <a>
+                <button
+                  onClick={() => {
+                    if (minAttendance) {
+                      console.log("Generating cert...");
+                      // payCertFees();
+                      copyShareLink();
+                    }
+                  }}
+                >
+                  GET IT NOW &nbsp; <Fontawesome name="arrow-right" />
+                </button>
+              </a>
+            </div>
+          </div>
+          <div className="medal">
+            <img src={medal} alt=""></img>
+          </div>
+          <div id="dashboard__certTemp">
+            <DashboardCertTemplate
+              updateCertFile={updateCertFile}
+              userInfo={userInfo}
+              from={from}
+              to={to}
+              month={month}
+              year={year}
+              allCerts={allCerts}
+            />
+          </div>
         </div>
-        <div id="dashboard__certTemp">
-          <DashboardCertTemplate
-            updateCertFile={updateCertFile}
-            userInfo={userInfo}
-            from={from}
-            to={to}
-            month={month}
-            year={year}
-            allCerts={allCerts}
-          />
-        </div>
-      </div>
-      {iscertificate && (
+      )}
+      {/* {iscertificate && (
         <>
           <div className="dashboard-certificate-modal">
             <span className="close">
@@ -243,19 +425,13 @@ const Certificate = ({
                   things. We hope this is the first achievement amongst many to
                   follow.
                 </div>
-                <div className="certificate-modal-content-unlock">
-                  To unlock your certificate, Tell three friends about your
-                  experience at RanchoLabs’{" "}
-                  {freeClassCert ? "Free Class" : "workshop"}.
-                </div>
                 <div className="certificate-share align-items-center">
                   <button
                     onClick={() => {
-                      setShareExp(true);
-                      showCertificate();
+                      copyShareLink();
                     }}
                   >
-                    <img src={share} /> SHARE EXPERIENCE
+                    Get Certificate
                   </button>
                 </div>
               </div>
@@ -266,7 +442,7 @@ const Certificate = ({
             </div>
           </div>
         </>
-      )}
+      )} */}
       {isShareExp && (
         <>
           <div className="dashboard-share-exp">

@@ -35,6 +35,7 @@ function PaymentEnroll() {
   const [finalAmount, setfinalAmount] = useState(0);
   const [batchMondays, setbatchMondays] = useState([]);
   const [batchDate, setbatchDate] = useState("");
+  const [showCouponError, setshowCouponError] = useState(false);
   const { userInfo } = useSelector((state) => state.userLogin);
 
   useEffect(() => {
@@ -158,7 +159,7 @@ function PaymentEnroll() {
         "https://rancho-labs-app.s3.amazonaws.com/images/logo-1607930535803.png",
       handler: function (response) {
         alert("Thank you for choosing Rancho Labs!");
-        window.location.href = "https://rancholabs.com/";
+        window.location.href = "/dashboard";
       },
       prefill: {
         name:
@@ -175,7 +176,7 @@ function PaymentEnroll() {
 
   const paynow = () => {
     if (!userInfo) {
-      alert("Kindly login/register to purchase a course.");
+      window.location.href = `/login?redirect=enroll&&course=${courseId}`;
     } else {
       // show razor pay screen
       displayRazorpay();
@@ -191,11 +192,13 @@ function PaymentEnroll() {
           if (res.data.coupon.active) {
             setvalidCouponDetails(res.data.coupon);
           } else {
-            alert("Invalid Coupon!");
+            setvalidCouponDetails({});
+            setcouponValidStatus(false);
+            setcouponDiscount(0);
+            setfinalAmount(enrolledCourse.price?.amountAfterDiscount);
           }
         })
         .catch((err) => {
-          alert("Invalid Coupon!");
           setvalidCouponDetails({});
           setcouponValidStatus(false);
           setcouponDiscount(0);
@@ -208,6 +211,7 @@ function PaymentEnroll() {
       setcouponDiscount(0);
       setfinalAmount(enrolledCourse.price?.amountAfterDiscount);
     }
+    setshowCouponError(true);
   };
 
   const handleBatchDayChange = (e, index) => {
@@ -221,8 +225,6 @@ function PaymentEnroll() {
     });
     setbatchMondays(_batchMondays);
   };
-
-  console.log(batchDate);
 
   return (
     <div className="payment">
@@ -254,7 +256,7 @@ function PaymentEnroll() {
               </div>
             </div>
             <div className="payment__details__section payment__details__batch">
-              <h3>Select Batch Starting Date</h3>
+              <h3>Select Batch</h3>
               {batchMondays.map((day, index) => {
                 let today = new Date(day.date);
                 return (
@@ -264,11 +266,13 @@ function PaymentEnroll() {
                       checked={day.checked}
                       name="batchdatestart"
                       onChange={(e) => handleBatchDayChange(e, index)}
+                      id={"batch" + index}
                     />
-                    <label>
-                      {(today.getDate() < 10
-                        ? "0" + today.getDate()
-                        : today.getDate()) +
+                    <label for={"batch" + index}>
+                      {"Starting from " +
+                        (today.getDate() < 10
+                          ? "0" + today.getDate()
+                          : today.getDate()) +
                         "/" +
                         (today.getMonth() + 1 < 10
                           ? "0" + (today.getMonth() + 1)
@@ -300,6 +304,13 @@ function PaymentEnroll() {
                 />
                 <button onClick={checkCoupon}>Apply</button>
               </div>
+              {userCoupon !== "" && showCouponError ? (
+                couponValidStatus ? (
+                  <p className="coupon__valid__text">Coupon Applied!</p>
+                ) : (
+                  <p className="coupon__invalid__text">Invalid Coupon!</p>
+                )
+              ) : null}
             </div>
             <div className="payment__window__feeDetails">
               <h3>Fee Details</h3>

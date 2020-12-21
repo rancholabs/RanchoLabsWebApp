@@ -18,6 +18,7 @@ import { setDefaultHeader, updateHeader } from "../../Actions/Header";
 import { setIsIpadMiniMobileView } from "../../Actions/App";
 import { updateFooter } from "../../Actions/Footer";
 import Fontawesome from "react-fontawesome";
+import queryString from "query-string";
 
 function validateEmail(email) {
   const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
@@ -26,7 +27,7 @@ function validateEmail(email) {
   } else return true;
 }
 
-const LogIn = () => {
+const LogIn = ({location}) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -35,6 +36,9 @@ const LogIn = () => {
   const [message, setMessage] = useState(null);
   const [forgotPass, setforgotPass] = useState(false);
   const [mailSent, setMailSent] = useState(false);
+  const [redirectBack, setredirectBack] = useState("");
+
+  const params = queryString.parse(location.search);
 
   const { error: forgotpassworderror, isMailSent } = useSelector(
     (state) => state.userForgotPassword
@@ -43,7 +47,15 @@ const LogIn = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
-  const signuplink = userInfo ? "/" : "/freeclass";
+  const signuplink = userInfo ? "/" : redirectBack === "" ? "/freeclass" : `/freeclass?redirect=enroll&&course=${params.course}`;
+
+  useEffect(() => {
+    if(params.redirect && params.course){
+      if(params.redirect === "enroll"){
+        setredirectBack(`/enroll/${params.course}`)
+      }
+    }
+  },[])
 
   useEffect(() => {
     if (isMailSent) {

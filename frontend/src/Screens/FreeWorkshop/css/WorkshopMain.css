@@ -48,6 +48,10 @@ body {
   border-right: 2px solid #3cfaff !important;
 }
 
+.workshop__btns {
+  display: flex;
+}
+
 .WorkshopMain .enroll {
   background-color: #f74b42;
   font-size: 1.8vw;
@@ -55,8 +59,31 @@ body {
   border-radius: 3rem;
   width: max-content;
   display: flex;
-  margin-right: auto;
+  margin-right: 20px;
   /* margin-bottom: 6vw; */
+}
+
+.workshop__btnLogin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.workshop__btnLogin p {
+  color: white;
+  margin: 8px 20px 0 0;
+}
+
+.WorkshopMain .outlined__enroll {
+  background-color: #3cfaff;
+  font-size: 1.8vw;
+  padding: 0.7vw 3vw;
+  border-radius: 3rem;
+  width: max-content;
+  display: flex;
+  margin-right: 20px;
+  /* margin-bottom: 6vw; */
+  color: #333333 !important;
 }
 
 .enroll.btn {
@@ -200,7 +227,7 @@ body {
     width: max-content;
     display: flex;
     margin: auto;
-    margin-bottom: 5.5vh;
+    margin-bottom: 3.5vh;
   }
 
   .WorkshopMain .embed-responsive {
@@ -252,5 +279,8 @@ body {
     color: #ffffff;
     padding: 2vh 0;
     font-size: 2.5vh;
+  }
+  .workshop__btns {
+    flex-direction: column;
   }
 }

@@ -149,17 +149,25 @@
 
 .access-session-material-content {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
+  justify-content: space-between;
 }
 
 .access-session-material-content a {
-  color: inherit;
   font-size: 14px;
-  width: fit-content;
+  width: 30%;
+  text-align: center;
+  background-color: transparent;
+  border: 2px solid #f74b42;
+  color: #f74b42 !important;
+  padding: 10px 0;
+  transition: all 0.2s linear;
 }
 
 .access-session-material-content a:hover {
   text-decoration: none;
+  background-color: #f74b42;
+  color: white !important;
 }
 
 @media (max-width: 600px) {

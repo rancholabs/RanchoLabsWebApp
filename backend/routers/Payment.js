@@ -12,6 +12,7 @@ const StudentCourse = require("../model/StudentCourse");
 const Course = require("../model/Course");
 const Coupon = require("../model/Coupon");
 const Payment = require("../model/Payment");
+const Certificate = require("../model/Certificate");
 const { sendMail } = require("../Utils/Email");
 
 const instance = new Razorpay({
@@ -20,6 +21,7 @@ const instance = new Razorpay({
 });
 
 let orderData = [];
+let certPayData = [];
 
 const enrollStudent = (student) => {
   const courseId = mongoose.Types.ObjectId(student.courseId);
@@ -120,6 +122,39 @@ const addPaymentObj = (pay, couponId, userId, selectedDate) => {
   newPayment.save().then((doc) => console.log("payment saved."));
 };
 
+const addUserCert = async (usercertdata) => {
+  if (usercertdata.userId) {
+    usercertdata.userId = mongoose.Types.ObjectId(usercertdata.userId);
+  }
+  if (usercertdata.courseId) {
+    usercertdata.courseId = mongoose.Types.ObjectId(usercertdata.courseId);
+  }
+  const { name, payment, userId, courseId } = usercertdata;
+
+  const allCerts = await Certificate.find({});
+
+  let certID = "RLCT";
+  if (allCerts.length) {
+    certID = certID + parseInt(allCerts.length + 1);
+  } else {
+    certID = certID + "1";
+  }
+
+  const newCertificate = new Certificate({
+    id: certID,
+    name,
+    userId,
+    courseId,
+    payment,
+  });
+  newCertificate
+    .save()
+    .then((doc) => {})
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 router.post("/order", isAuthenticated, async (req, res) => {
   const payment_capture = 1;
   const price = req.body.price;
@@ -137,16 +172,26 @@ router.post("/order", isAuthenticated, async (req, res) => {
     try {
       const response = await instance.orders.create(options);
       console.log(response);
-      orderData.push({
-        orderId: response.id,
-        batchId: req.body.batchId,
-        courseId: req.body.courseId,
-        userId: req.body.userId,
-        email: req.email,
-        couponId: req.body.couponId,
-        selectedDate: req.body.selectedDate,
-      });
+      if (req.body.reason) {
+        certPayData.push({
+          orderId: response.id,
+          name: req.body.name,
+          userId: req.body.userId,
+          courseId: req.body.courseId,
+        });
+      } else {
+        orderData.push({
+          orderId: response.id,
+          batchId: req.body.batchId,
+          courseId: req.body.courseId,
+          userId: req.body.userId,
+          email: req.email,
+          couponId: req.body.couponId,
+          selectedDate: req.body.selectedDate,
+        });
+      }
       console.log(orderData);
+      console.log(certPayData);
       res.json({
         id: response.id,
         currency: response.currency,
@@ -187,6 +232,10 @@ router.post("/verification", (req, res) => {
       (singleOrder) =>
         singleOrder.orderId === req.body.payload.payment.entity.order_id
     );
+    let userCertOrder = certPayData.filter(
+      (singleCertOrder) =>
+        singleCertOrder.orderId === req.body.payload.payment.entity.order_id
+    );
     if (userOrder.length > 0) {
       userOrder = userOrder[0];
       // ADD RECORD TO STUDENTCOURSE SCHEMA
@@ -214,6 +263,20 @@ router.post("/verification", (req, res) => {
         userOrder.userId,
         userOrder.selectedDate
       );
+    }
+    if (userCertOrder.length > 0) {
+      userCertOrder = userCertOrder[0];
+      // ADD NEW RECORD IN ALL CERTIFICATES SCHEMA WITH PAYMENT DETAILS
+      const certOBJ = {
+        payment: {
+          paymentId: req.body.payload.payment.entity.id,
+          orderId: req.body.payload.payment.entity.order_id,
+        },
+        name: userCertOrder.name,
+        courseId: userCertOrder.courseId,
+        userId: userCertOrder.userId,
+      };
+      addUserCert(certOBJ);
     }
     console.log(req.body);
   } else {

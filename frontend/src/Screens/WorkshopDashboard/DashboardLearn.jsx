@@ -11,8 +11,8 @@ function over(e) {
 
 function ongoing(s, e) {
   var now = new Date().toISOString();
-  if (s < now && e > now) return 1;
-  else return 0;
+  if (s < now && e > now) return "(Ongoing)";
+  else return "(Finished)";
 }
 
 const DLlistItem = (dlitem) => {
@@ -172,16 +172,28 @@ const Daywise = ({ singleClass, batch }) => {
                           href={singleClass.materials.quizLink}
                           target="_blank"
                         >
-                          Quiz
+                          {batch.batchType === "workshop"
+                            ? singleClass.classNo === 1
+                              ? "Tinkercad"
+                              : "Teachable Machine"
+                            : "Quiz"}
                         </a>
                       ) : (
                         <a onClick={() => alert("Material not available yet.")}>
-                          Quiz
+                          {batch.batchType === "workshop"
+                            ? singleClass.classNo === 1
+                              ? "Tinkercad"
+                              : "Teachable Machine"
+                            : "Quiz"}
                         </a>
                       )
                     ) : (
                       <a onClick={() => alert("Material not available yet.")}>
-                        Quiz
+                        {batch.batchType === "workshop"
+                          ? singleClass.classNo === 1
+                            ? "Tinkercad"
+                            : "Teachable Machine"
+                          : "Quiz"}
                       </a>
                     )}
                   </div>
@@ -253,7 +265,7 @@ const NotEnrolled = () => {
     >
       <div> Start learning today!</div>
       <div>
-        <a href="/FreeWorkshop">
+        <a href="/courses">
           <button>Enroll now</button>
         </a>
       </div>

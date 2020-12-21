@@ -8,6 +8,7 @@ import AdminDashboard from "./AdminDashboard";
 import AdminMasterData from "./AdminMasterData";
 import AdminSchool from "./AdminSchool";
 import AdminCoupon from "./AdminCoupon";
+import AdminCertificate from "./AdminCertificates";
 
 function Index() {
   const [currentSection, setCurrentSection] = useState("curriculum");
@@ -18,6 +19,7 @@ function Index() {
   const [allSchools, setallSchools] = useState([]);
   const [allCoupons, setallCoupons] = useState([]);
   const [allPayments, setallPayments] = useState([]);
+  const [allCertificates, setallCertificates] = useState([]);
 
   useEffect(() => {
     const userInfo = localStorage.getItem("userInfo");
@@ -31,14 +33,12 @@ function Index() {
     axios
       .get("/api/course/group/courseListAdmin", config)
       .then((res) => {
-        console.log(res.data);
         setCourseGroups(res.data);
       })
       .catch((err) => console.log(err));
     axios
       .get("/api/course/enroll/all", config)
       .then((res) => {
-        console.log(res.data);
         setallAssignedBatchesData(res.data);
       })
       .catch((err) => console.log(err));
@@ -46,7 +46,6 @@ function Index() {
     axios
       .get("/api/instructor/admin", config)
       .then((res) => {
-        console.log(res.data);
         setallInstructors(res.data);
       })
       .catch((err) => console.log(err));
@@ -54,7 +53,6 @@ function Index() {
     axios
       .get("/api/school", config)
       .then((res) => {
-        console.log(res.data);
         setallSchools(res.data);
       })
       .catch((err) => console.log(err));
@@ -62,7 +60,6 @@ function Index() {
     axios
       .get("/api/coupon", config)
       .then((res) => {
-        console.log(res.data);
         setallCoupons(res.data);
       })
       .catch((err) => console.log(err));
@@ -70,10 +67,13 @@ function Index() {
     axios
       .get("/api/allpayments", config)
       .then((res) => {
-        console.log(res.data);
         setallPayments(res.data);
       })
       .catch((err) => console.log(err));
+
+    axios.get("/api/certificate", config).then((res) => {
+      setallCertificates(res.data);
+    });
   }, []);
 
   useEffect(() => {
@@ -88,7 +88,6 @@ function Index() {
     axios
       .get("/api/student/all", config)
       .then((res) => {
-        console.log(res.data);
         setallStudentData(res.data);
       })
       .catch((err) => console.log(err));
@@ -106,7 +105,6 @@ function Index() {
     axios
       .get("/api/course/group/courseListAdmin", config)
       .then((res) => {
-        console.log(res.data);
         setCourseGroups(res.data);
       })
       .catch((err) => console.log(err));
@@ -170,6 +168,12 @@ function Index() {
             >
               Coupon
             </li>
+            <li
+              onClick={() => setCurrentSection("certificate")}
+              className={currentSection === "certificate" && "selected"}
+            >
+              Certificate
+            </li>
           </ul>
         </div>
         <div className="admin__body">
@@ -206,6 +210,9 @@ function Index() {
           )}
           {currentSection === "coupon" && (
             <AdminCoupon allCouponsData={allCoupons} />
+          )}
+          {currentSection === "certificate" && (
+            <AdminCertificate allCertificateData={allCertificates} />
           )}
         </div>
       </div>

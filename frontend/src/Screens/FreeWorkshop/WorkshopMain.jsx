@@ -84,9 +84,17 @@ function Main() {
               <li>2 Days</li>
             </ul>
           </div>
-          <a href="#batches">
-            <div className="btn enroll">ENROLL NOW</div>
-          </a>
+          <div className="workshop__btns">
+            <a href="#batches">
+              <div className="btn enroll">ENROLL NOW</div>
+            </a>
+            <div className="workshop__btnLogin">
+              <a href="/login">
+                <div className="btn enroll outlined__enroll">LOGIN</div>
+              </a>
+              <p>Already enrolled?</p>
+            </div>
+          </div>
         </div>
         <div className="col-md-5" style={{ padding: "0" }}>
           <div id="video">

@@ -12,6 +12,11 @@
   flex-direction: column;
   align-items: center;
   padding: 20px 0;
+  overflow-y: auto;
+}
+
+.admin__sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .admin__sidebarLogo {
