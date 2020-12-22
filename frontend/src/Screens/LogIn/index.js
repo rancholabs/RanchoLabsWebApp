@@ -90,6 +90,7 @@ const LogIn = ({ location }) => {
         backgroundColor: "#171636",
         color: "#171636",
         iconColor: "#3CFAFF",
+        iconDisplay: "none",
       })
     );
     dispatch(updateFooter({ footerDisplay: "none" }));

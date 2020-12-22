@@ -36,6 +36,7 @@ function PaymentEnroll() {
   const [batchMondays, setbatchMondays] = useState([]);
   const [batchDate, setbatchDate] = useState("");
   const [showCouponError, setshowCouponError] = useState(false);
+  const [showSelectedDayError, setshowSelectedDayError] = useState(false);
   const { userInfo } = useSelector((state) => state.userLogin);
 
   useEffect(() => {
@@ -178,8 +179,16 @@ function PaymentEnroll() {
     if (!userInfo) {
       window.location.href = `/login?redirect=enroll&&course=${courseId}`;
     } else {
-      // show razor pay screen
-      displayRazorpay();
+      // check for selected day
+      let _singleMonday = batchMondays.filter((day) => day.checked === true);
+      if (_singleMonday.length > 0) {
+        // show razor pay screen
+        displayRazorpay();
+        setshowSelectedDayError(false);
+      } else {
+        // show selected day error
+        setshowSelectedDayError(true);
+      }
     }
   };
 
@@ -283,6 +292,9 @@ function PaymentEnroll() {
                   </div>
                 );
               })}
+              {showSelectedDayError && (
+                <p className="coupon__invalid__text">Please select a date!</p>
+              )}
             </div>
             <p className="payment__courseNote">
               Note: Time and data will be decided after enrollment in discussion

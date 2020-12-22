@@ -10,6 +10,7 @@ import "./AdminCertificates.css";
 
 function Certificates({ allCertificateData }) {
   const [certId, setCertId] = useState("");
+  console.log(certId);
   return (
     <div className="blog" style={{ backgroundColor: "transparent" }}>
       <div className="certificate__searchHeader">

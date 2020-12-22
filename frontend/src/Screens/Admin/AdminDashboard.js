@@ -18,7 +18,62 @@ function AdminDashboardFreeClass({
   allInstructors,
   filterDate,
   filterStudentName,
+  filterBatch,
 }) {
+  const [filteredStudents, setfilteredStudents] = useState([]);
+  React.useEffect(() => {
+    let _filter = [];
+    if (filterStudentName !== "" && filterDate === "") {
+      allStudentData.forEach((stud) => {
+        let fullname = stud.studentDetails?.name?.first
+          ? stud.studentDetails?.name?.first
+          : "" + " " + stud.studentDetails?.name?.last
+          ? stud.studentDetails?.name?.last
+          : "";
+        if (fullname.toString().toLowerCase().includes(filterStudentName)) {
+          _filter.push(stud);
+        }
+      });
+    }
+    if (filterDate !== "" && filterStudentName === "") {
+      allStudentData.forEach((stud) => {
+        if (
+          new Date(filterDate).getDate() ===
+            new Date(stud.studentDetails?.createdAt).getDate() &&
+          new Date(filterDate).getMonth() ===
+            new Date(stud.studentDetails?.createdAt).getMonth() &&
+          new Date(filterDate).getFullYear() ===
+            new Date(stud.studentDetails?.createdAt).getFullYear()
+        ) {
+          _filter.push(stud);
+        }
+      });
+    }
+    if (filterDate !== "" && filterStudentName !== "") {
+      allStudentData.forEach((stud) => {
+        let fullname = stud.studentDetails?.name?.first
+          ? stud.studentDetails?.name?.first
+          : "" + " " + stud.studentDetails?.name?.last
+          ? stud.studentDetails?.name?.last
+          : "";
+        if (
+          new Date(filterDate).getDate() ===
+            new Date(stud.studentDetails?.createdAt).getDate() &&
+          new Date(filterDate).getMonth() ===
+            new Date(stud.studentDetails?.createdAt).getMonth() &&
+          new Date(filterDate).getFullYear() ===
+            new Date(stud.studentDetails?.createdAt).getFullYear() &&
+          fullname.toString().toLowerCase().includes(filterStudentName)
+        ) {
+          _filter.push(stud);
+        }
+      });
+    }
+    if (filterDate === "" && filterStudentName === "") {
+      _filter = [...allStudentData];
+    }
+    setfilteredStudents(_filter);
+  }, [filterStudentName, filterDate, allStudentData]);
   return (
     <>
       <TableHead>
@@ -38,7 +93,7 @@ function AdminDashboardFreeClass({
         </TableRow>
       </TableHead>
       <TableBody>
-        {allStudentData?.map((stud) => {
+        {filteredStudents?.map((stud) => {
           let singleStudentbatchObj = allAssignedBatchesData.filter(
             (obj) => obj.userId === stud.userId
           );
@@ -62,14 +117,12 @@ function AdminDashboardFreeClass({
             stud.studentDetails?.role === "student" &&
             stud.loginfor === "freeclass"
           ) {
-            if (filterDate !== "") {
+            if (filterBatch !== "") {
               if (
-                new Date(filterDate).getDate() ===
-                  new Date(stud.studentDetails?.createdAt).getDate() &&
-                new Date(filterDate).getMonth() ===
-                  new Date(stud.studentDetails?.createdAt).getMonth() &&
-                new Date(filterDate).getFullYear() ===
-                  new Date(stud.studentDetails?.createdAt).getFullYear()
+                singleStudentbatchObj?.batchData?.name
+                  .toString()
+                  .toLowerCase()
+                  .includes(filterBatch.toString())
               ) {
                 var utcTime = new Date(stud.studentDetails?.createdAt);
                 var hour =
@@ -383,7 +436,63 @@ function AdminDashboardFreeWorkshop({
   allAssignedBatchesData,
   allInstructors,
   filterDate,
+  filterStudentName,
+  filterBatch,
 }) {
+  const [filteredStudents, setfilteredStudents] = useState([]);
+  React.useEffect(() => {
+    let _filter = [];
+    if (filterStudentName !== "" && filterDate === "") {
+      allStudentData.forEach((stud) => {
+        let fullname = stud.studentDetails?.name?.first
+          ? stud.studentDetails?.name?.first
+          : "" + " " + stud.studentDetails?.name?.last
+          ? stud.studentDetails?.name?.last
+          : "";
+        if (fullname.toString().toLowerCase().includes(filterStudentName)) {
+          _filter.push(stud);
+        }
+      });
+    }
+    if (filterDate !== "" && filterStudentName === "") {
+      allStudentData.forEach((stud) => {
+        if (
+          new Date(filterDate).getDate() ===
+            new Date(stud.studentDetails?.createdAt).getDate() &&
+          new Date(filterDate).getMonth() ===
+            new Date(stud.studentDetails?.createdAt).getMonth() &&
+          new Date(filterDate).getFullYear() ===
+            new Date(stud.studentDetails?.createdAt).getFullYear()
+        ) {
+          _filter.push(stud);
+        }
+      });
+    }
+    if (filterDate !== "" && filterStudentName !== "") {
+      allStudentData.forEach((stud) => {
+        let fullname = stud.studentDetails?.name?.first
+          ? stud.studentDetails?.name?.first
+          : "" + " " + stud.studentDetails?.name?.last
+          ? stud.studentDetails?.name?.last
+          : "";
+        if (
+          new Date(filterDate).getDate() ===
+            new Date(stud.studentDetails?.createdAt).getDate() &&
+          new Date(filterDate).getMonth() ===
+            new Date(stud.studentDetails?.createdAt).getMonth() &&
+          new Date(filterDate).getFullYear() ===
+            new Date(stud.studentDetails?.createdAt).getFullYear() &&
+          fullname.toString().toLowerCase().includes(filterStudentName)
+        ) {
+          _filter.push(stud);
+        }
+      });
+    }
+    if (filterDate === "" && filterStudentName === "") {
+      _filter = [...allStudentData];
+    }
+    setfilteredStudents(_filter);
+  }, [filterStudentName, filterDate, allStudentData]);
   return (
     <>
       <TableHead>
@@ -402,7 +511,7 @@ function AdminDashboardFreeWorkshop({
         </TableRow>
       </TableHead>
       <TableBody>
-        {allStudentData?.map((stud) => {
+        {filteredStudents?.map((stud) => {
           let singleStudentbatchObj = allAssignedBatchesData.filter(
             (obj) => obj.userId === stud.userId
           );
@@ -426,14 +535,12 @@ function AdminDashboardFreeWorkshop({
             stud.studentDetails?.role === "student" &&
             stud.loginfor === "workshop"
           ) {
-            if (filterDate !== "") {
+            if (filterBatch !== "") {
               if (
-                new Date(filterDate).getDate() ===
-                  new Date(stud.studentDetails?.createdAt).getDate() &&
-                new Date(filterDate).getMonth() ===
-                  new Date(stud.studentDetails?.createdAt).getMonth() &&
-                new Date(filterDate).getFullYear() ===
-                  new Date(stud.studentDetails?.createdAt).getFullYear()
+                singleStudentbatchObj?.batchData?.name
+                  .toString()
+                  .toLowerCase()
+                  .includes(filterBatch.toString())
               ) {
                 var utcTime = new Date(stud.studentDetails?.createdAt);
                 var hour =
@@ -678,6 +785,7 @@ function AdminDashboardPayment({
   allCouponsData,
   assignBatch,
 }) {
+  console.log(allPayments);
   return (
     <>
       <TableHead>
@@ -753,6 +861,31 @@ function AdminDashboardPayment({
               let payDate = new Date(parseInt(timestamp, 16) * 1000);
 
               // payDate = (payDate.getDate()<10?'0'+payDate.getDate():payDate.getDate()) + "/" + (payDate.getMonth()+1<10?'0'+payDate.getMonth()+1:payDate.getMonth()+1) + "/" + payDate.getFullYear()
+
+              let userSelectedDate = singleStudentPaymentObj?.selectedDate
+                ? (new Date(singleStudentPaymentObj?.selectedDate).getDate() <
+                  10
+                    ? "0" +
+                      new Date(singleStudentPaymentObj?.selectedDate).getDate()
+                    : new Date(
+                        singleStudentPaymentObj?.selectedDate
+                      ).getDate()) +
+                  "/" +
+                  (new Date(singleStudentPaymentObj?.selectedDate).getMonth() +
+                    1 <
+                  10
+                    ? "0" +
+                      (new Date(
+                        singleStudentPaymentObj?.selectedDate
+                      ).getMonth() +
+                        1)
+                    : new Date(
+                        singleStudentPaymentObj?.selectedDate
+                      ).getMonth() + 1) +
+                  "/" +
+                  new Date(singleStudentPaymentObj?.selectedDate).getFullYear()
+                : "n/a";
+
               return (
                 <TableRow>
                   <TableCell>{payDate.toString().split("GMT")[0]}</TableCell>
@@ -787,9 +920,7 @@ function AdminDashboardPayment({
                   <TableCell>
                     {singleStudentbatchObj?.courseData?.name}
                   </TableCell>
-                  <TableCell>
-                    {singleStudentbatchObj?.batchData?.startDate}
-                  </TableCell>
+                  <TableCell>{userSelectedDate}</TableCell>
                   <TableCell>
                     {singleStudentPaymentObj?.payload?.payment?.entity?.amount /
                       100}
@@ -922,6 +1053,7 @@ function AdminDashboard({
 
   const [filterDate, setfilterDate] = useState("");
   const [filterStudentName, setfilterStudentName] = useState("");
+  const [filterBatch, setfilterBatch] = useState("");
 
   const assignBatch = (userId, paymentObj) => {
     setsetbatchWindow(true);
@@ -1022,7 +1154,12 @@ function AdminDashboard({
                 value={filterStudentName}
                 onChange={(e) => setfilterStudentName(e.target.value)}
               />
-              <input type="text" placeholder="Batch Name" />
+              <input
+                type="text"
+                placeholder="Batch Name"
+                value={filterBatch}
+                onChange={(e) => setfilterBatch(e.target.value)}
+              />
               {/* <button className="adminDashboard__body__input__colored">
                 Download Sheet
               </button> */}
@@ -1049,6 +1186,7 @@ function AdminDashboard({
                       assignBatch={assignBatch}
                       filterDate={filterDate}
                       filterStudentName={filterStudentName}
+                      filterBatch={filterBatch}
                     />
                   )}
                   {currentSection === "freeworkshop" && (
@@ -1059,6 +1197,7 @@ function AdminDashboard({
                       assignBatch={assignBatch}
                       filterDate={filterDate}
                       filterStudentName={filterStudentName}
+                      filterBatch={filterBatch}
                     />
                   )}
                   {currentSection === "payment" && (
