@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "./static/css/main.e3891737.chunk.css",
-    "main.js": "./static/js/main.99aef7fd.chunk.js",
-    "main.js.map": "./static/js/main.99aef7fd.chunk.js.map",
+    "main.js": "./static/js/main.eb6bcfad.chunk.js",
+    "main.js.map": "./static/js/main.eb6bcfad.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.a60e205c.js",
     "runtime-main.js.map": "./static/js/runtime-main.a60e205c.js.map",
     "static/css/2.4999fbef.chunk.css": "./static/css/2.4999fbef.chunk.css",
-    "static/js/2.d97d959f.chunk.js": "./static/js/2.d97d959f.chunk.js",
-    "static/js/2.d97d959f.chunk.js.map": "./static/js/2.d97d959f.chunk.js.map",
+    "static/js/2.9eace5ad.chunk.js": "./static/js/2.9eace5ad.chunk.js",
+    "static/js/2.9eace5ad.chunk.js.map": "./static/js/2.9eace5ad.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.beefa77a8d9b3888041503c45d87f7db.js": "./precache-manifest.beefa77a8d9b3888041503c45d87f7db.js",
+    "precache-manifest.d363be7ddb6ccfd41f53c6d7baed83e3.js": "./precache-manifest.d363be7ddb6ccfd41f53c6d7baed83e3.js",
     "service-worker.js": "./service-worker.js",
     "static/css/2.4999fbef.chunk.css.map": "./static/css/2.4999fbef.chunk.css.map",
     "static/css/main.e3891737.chunk.css.map": "./static/css/main.e3891737.chunk.css.map",
-    "static/js/2.d97d959f.chunk.js.LICENSE.txt": "./static/js/2.d97d959f.chunk.js.LICENSE.txt",
+    "static/js/2.9eace5ad.chunk.js.LICENSE.txt": "./static/js/2.9eace5ad.chunk.js.LICENSE.txt",
     "static/media/54998decefee4eff03de436edd73d832-removebg-preview.png": "./static/media/54998decefee4eff03de436edd73d832-removebg-preview.8789e2b0.png",
     "static/media/AICurriculum.pdf": "./static/media/AICurriculum.bd042191.pdf",
     "static/media/Aman.jpg": "./static/media/Aman.a8b50611.jpg",
@@ -111,6 +111,7 @@
     "static/media/logo 4@2x.png": "./static/media/logo 4@2x.e743c04e.png",
     "static/media/logo.png": "./static/media/logo.06548755.png",
     "static/media/logo.svg": "./static/media/logo.3cb194cd.svg",
+    "static/media/logo.jpeg": "./static/media/logo.4de1e5f0.jpeg",
     "static/media/lostandfound.png": "./static/media/lostandfound.6925615e.png",
     "static/media/main.png": "./static/media/main.ad6ae03d.png",
     "static/media/mainbgmob.png": "./static/media/mainbgmob.faee2f6f.png",
@@ -157,8 +158,8 @@
   "entrypoints": [
     "static/js/runtime-main.a60e205c.js",
     "static/css/2.4999fbef.chunk.css",
-    "static/js/2.d97d959f.chunk.js",
+    "static/js/2.9eace5ad.chunk.js",
     "static/css/main.e3891737.chunk.css",
-    "static/js/main.99aef7fd.chunk.js"
+    "static/js/main.eb6bcfad.chunk.js"
   ]
 }
