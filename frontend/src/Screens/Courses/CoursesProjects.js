@@ -98,7 +98,7 @@ function ProjectCard(project) {
   );
 }
 
-function StudentProjects() {
+function StudentProjects({ title, paddingBot }) {
   function scrollL() {
     console.log($("#p-row").scrollLeft);
     $("#p-row").scrollLeft += 10;
@@ -147,15 +147,19 @@ function StudentProjects() {
   );
 
   return (
-    <div className="courses-projects">
+    <div
+      className="courses-projects"
+      style={{ paddingBottom: paddingBot ? paddingBot : "" }}
+    >
       <img
         src={purpleBlurBGright}
         className="course-purple-bg course-purple-bg-bottom-rightA"
       ></img>
       <div className="projects-title">Check out our Students’ Projects</div>
       <div className="projects-description">
-        Eager and enthusiastic students with a pinch of right guidance innovate
-        great projects at Rancho Labs
+        {title
+          ? title
+          : "Eager and enthusiastic students with a pinch of right guidance innovate great projects at Rancho Labs"}
       </div>
       {/* <div className="project-row" id="p-row">
                 {

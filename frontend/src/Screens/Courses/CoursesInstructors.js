@@ -81,7 +81,7 @@ const InstructorCard = (props) => {
   );
 };
 
-const CourseInstructors = () => {
+const CourseInstructors = ({ title, buttonDisplay, bgColor }) => {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -121,9 +121,15 @@ const CourseInstructors = () => {
 
   return (
     <>
-      <div className="courses-instructors">
+      <div
+        className="courses-instructors"
+        style={{
+          background: bgColor ? bgColor : "",
+          paddingBottom: bgColor ? "40px" : "",
+        }}
+      >
         <div className="courses-instructors-title">
-          Brought to You by Best in The Country
+          {title ? title : "Brought to You by Best in The Country"}
         </div>
         {/* <div className="courses-instructors-subtitle">Meet our instructors</div> */}
         <div className="row mx-0">
@@ -171,7 +177,11 @@ const CourseInstructors = () => {
             })}
           </Carousel>
         </div>
-        <div className="text-center">
+
+        <div
+          className="text-center"
+          style={{ display: buttonDisplay ? buttonDisplay : "" }}
+        >
           <button
             className="course-instructor-bookfreeclass-btn"
             onClick={() =>

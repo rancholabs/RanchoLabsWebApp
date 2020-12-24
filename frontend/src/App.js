@@ -41,6 +41,7 @@ import BlogAdmin from "./Screens/BlogAdmin";
 import Payment from "./Screens/Payment";
 import BuildProject from "./Screens/BuildProject";
 import SearchCertificate from "./Screens/AllCertificates";
+import YoungInnovator from "./Screens/YoungInnovator";
 
 // ADMIN
 import Admin from "./Screens/Admin";
@@ -245,6 +246,11 @@ function App() {
                     path="/certificates"
                     exact={true}
                     component={SearchCertificate}
+                  />
+                  <Route
+                    path="/younginnovator"
+                    exact={true}
+                    component={YoungInnovator}
                   />
                   <Route component={PageNotFound} />
                 </Switch>

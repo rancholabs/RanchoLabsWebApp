@@ -22,68 +22,80 @@ const instance = new Razorpay({
 
 let orderData = [];
 let certPayData = [];
+let youngInnovatorData = [];
 
 const enrollStudent = (student) => {
-  const courseId = mongoose.Types.ObjectId(student.courseId);
-  const studentCourse = new StudentCourse({
-    userId: mongoose.Types.ObjectId(student.userId),
-    courseId: courseId,
-    // batchId: mongoose.Types.ObjectId(student.batchId),
-    payment: student.payment,
-  });
+  let studentCourse;
+  if (student.youngInnovatorOrder) {
+    studentCourse = new StudentCourse({
+      userId: mongoose.Types.ObjectId(student.userId),
+      // courseId: courseId,
+      // batchId: mongoose.Types.ObjectId(student.batchId),
+      payment: student.payment,
+    });
+  } else {
+    const courseId = mongoose.Types.ObjectId(student.courseId);
+    studentCourse = new StudentCourse({
+      userId: mongoose.Types.ObjectId(student.userId),
+      courseId: courseId,
+      // batchId: mongoose.Types.ObjectId(student.batchId),
+      payment: student.payment,
+    });
+  }
   studentCourse
     .save()
     .then((sc) => {
-      Course.aggregate([
-        {
-          $match: { _id: courseId },
-        },
-        {
-          $lookup: {
-            from: "batches",
-            let: { courseId: "$_id" },
-            pipeline: [
-              {
-                $match: {
-                  $expr: {
-                    $eq: ["$courseId", "$$courseId"],
-                  },
-                },
-              },
-              {
-                $project: {
-                  _id: 0,
-                  startDate: 1,
-                },
-              },
-            ],
-            as: "batch",
-          },
-        },
-        {
-          $unwind: "$batch",
-        },
-        {
-          $project: {
-            _id: 0,
-            courseName: "$name",
-            startDate: "$batch.startDate",
-          },
-        },
-      ])
-        .exec()
-        .then((courses) => {
-          if (courses[0]) {
-            console.log("Sending email for new course to ", student.email);
-            sendMail([student.email], {
-              type: "COURSE_REGISTERED",
-              args: courses[0],
-            });
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      console.log("record added.");
+      // Course.aggregate([
+      //   {
+      //     $match: { _id: courseId },
+      //   },
+      //   {
+      //     $lookup: {
+      //       from: "batches",
+      //       let: { courseId: "$_id" },
+      //       pipeline: [
+      //         {
+      //           $match: {
+      //             $expr: {
+      //               $eq: ["$courseId", "$$courseId"],
+      //             },
+      //           },
+      //         },
+      //         {
+      //           $project: {
+      //             _id: 0,
+      //             startDate: 1,
+      //           },
+      //         },
+      //       ],
+      //       as: "batch",
+      //     },
+      //   },
+      //   {
+      //     $unwind: "$batch",
+      //   },
+      //   {
+      //     $project: {
+      //       _id: 0,
+      //       courseName: "$name",
+      //       startDate: "$batch.startDate",
+      //     },
+      //   },
+      // ])
+      //   .exec()
+      //   .then((courses) => {
+      //     if (courses[0]) {
+      //       console.log("Sending email for new course to ", student.email);
+      //       sendMail([student.email], {
+      //         type: "COURSE_REGISTERED",
+      //         args: courses[0],
+      //       });
+      //     }
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
       //   res.status(201).send({ message: "Course Registered Successfully" });
     })
     .catch((err) => {
@@ -172,7 +184,15 @@ router.post("/order", isAuthenticated, async (req, res) => {
     try {
       const response = await instance.orders.create(options);
       console.log(response);
-      if (req.body.reason) {
+      if (req.body.showYoungInnovator === true) {
+        youngInnovatorData.push({
+          orderId: response.id,
+          userId: req.body.userId,
+          email: req.email,
+          couponId: req.body.couponId,
+          selectedDate: req.body.selectedDate,
+        });
+      } else if (req.body.reason) {
         certPayData.push({
           orderId: response.id,
           name: req.body.name,
@@ -192,6 +212,7 @@ router.post("/order", isAuthenticated, async (req, res) => {
       }
       console.log(orderData);
       console.log(certPayData);
+      console.log(youngInnovatorData);
       res.json({
         id: response.id,
         currency: response.currency,
@@ -236,6 +257,11 @@ router.post("/verification", (req, res) => {
       (singleCertOrder) =>
         singleCertOrder.orderId === req.body.payload.payment.entity.order_id
     );
+    let youngInnovatorOrder = youngInnovatorData.filter(
+      (singleYoungInnovatorOrder) =>
+        singleYoungInnovatorOrder.orderId ===
+        req.body.payload.payment.entity.order_id
+    );
     if (userOrder.length > 0) {
       userOrder = userOrder[0];
       // ADD RECORD TO STUDENTCOURSE SCHEMA
@@ -262,6 +288,35 @@ router.post("/verification", (req, res) => {
         userOrder.couponId,
         userOrder.userId,
         userOrder.selectedDate
+      );
+    }
+    if (youngInnovatorOrder.length > 0) {
+      youngInnovatorOrder = youngInnovatorOrder[0];
+      // CHECK FOR COUPONS
+      if (youngInnovatorOrder.couponId !== null) {
+        const couponData = {
+          couponId: youngInnovatorOrder.couponId,
+        };
+        updateCoupon(couponData);
+      }
+      // ADD RECORD TO STUDENTCOURSE SCHEMA
+      const student = {
+        // batchId: youngInnovatorOrder.batchId,
+        // courseId: youngInnovatorOrder.courseId,
+        userId: youngInnovatorOrder.userId,
+        email: youngInnovatorOrder.email,
+        youngInnovator: true,
+        payment: {
+          paymentId: req.body.payload.payment.entity.id,
+          orderId: req.body.payload.payment.entity.order_id,
+        },
+      };
+      enrollStudent(student);
+      addPaymentObj(
+        req.body,
+        youngInnovatorOrder.couponId,
+        youngInnovatorOrder.userId,
+        youngInnovatorOrder.selectedDate
       );
     }
     if (userCertOrder.length > 0) {

@@ -1,0 +1,21 @@
+.youngInnovators-main-text {
+  width: 40%;
+}
+
+.youngInnovators-main-illustrations {
+  width: 60%;
+}
+
+.youngInnovators-main-illustrations img {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .youngInnovators-main-text {
+    width: 90%;
+    margin-top: 40px;
+  }
+  .youngInnovators-main-illustrations {
+    width: 90%;
+  }
+}

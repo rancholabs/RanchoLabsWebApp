@@ -785,7 +785,6 @@ function AdminDashboardPayment({
   allCouponsData,
   assignBatch,
 }) {
-  console.log(allPayments);
   return (
     <>
       <TableHead>
@@ -810,39 +809,45 @@ function AdminDashboardPayment({
         </TableRow>
       </TableHead>
       <TableBody>
-        {allStudentData?.map((stud) => {
-          if (stud.studentDetails?.role === "student") {
-            var utcTime = new Date(stud.studentDetails?.createdAt);
-            var hour =
-              utcTime.getHours() == 0
-                ? 12
-                : utcTime.getHours() > 12
-                ? utcTime.getHours() - 12
-                : utcTime.getHours();
-            var min =
-              utcTime.getMinutes() < 10
-                ? "0" + utcTime.getMinutes()
-                : utcTime.getMinutes();
-            var ampm = utcTime.getHours() < 12 ? "AM" : "PM";
-            var time = hour + ":" + min + " " + ampm;
+        {allPayments?.map((payment) => {
+          // if (stud.studentDetails?.role === "student") {
+          // var utcTime = new Date(stud.studentDetails?.createdAt);
+          // var hour =
+          //   utcTime.getHours() == 0
+          //     ? 12
+          //     : utcTime.getHours() > 12
+          //     ? utcTime.getHours() - 12
+          //     : utcTime.getHours();
+          // var min =
+          //   utcTime.getMinutes() < 10
+          //     ? "0" + utcTime.getMinutes()
+          //     : utcTime.getMinutes();
+          // var ampm = utcTime.getHours() < 12 ? "AM" : "PM";
+          // var time = hour + ":" + min + " " + ampm;
+
+          var singleStudentOBJ = allStudentData.filter(
+            (stud) => stud.userId === payment.userId
+          );
+          if (singleStudentOBJ.length > 0) {
+            singleStudentOBJ = singleStudentOBJ[0];
 
             var singleStudentbatchObj = allAssignedBatchesData.filter(
               (studBatch) =>
-                studBatch.userId === stud.userId &&
-                studBatch.payment?.paymentId !== "workshop" &&
-                studBatch.payment?.paymentId !== "freeclass"
+                studBatch.userId === singleStudentOBJ.userId &&
+                studBatch.payment?.orderId ===
+                  payment.payload.payment.entity.order_id
             );
 
             if (singleStudentbatchObj.length > 0) {
               singleStudentbatchObj = singleStudentbatchObj[0];
-              var singleStudentPaymentObj = allPayments.filter(
-                (studPay) =>
-                  studPay.payload.payment.entity.order_id ===
-                  singleStudentbatchObj.payment.orderId
-              );
-              if (singleStudentPaymentObj.length > 0) {
-                singleStudentPaymentObj = singleStudentPaymentObj[0];
-              }
+              // var singleStudentPaymentObj = allPayments.filter(
+              //   (studPay) =>
+              //     studPay.payload.payment.entity.order_id ===
+              //     singleStudentbatchObj.payment.orderId
+              // );
+              // if (singleStudentPaymentObj.length > 0) {
+              //   singleStudentPaymentObj = singleStudentPaymentObj[0];
+              // }
               var singleInstructor = allInstructors.filter(
                 (sintruct) =>
                   sintruct._id === singleStudentbatchObj?.batchData?.instructor
@@ -851,39 +856,25 @@ function AdminDashboardPayment({
                 singleInstructor = singleInstructor[0];
 
               var singleCoupon = allCouponsData.filter(
-                (sCoup) => sCoup._id === singleStudentPaymentObj?.couponId
+                (sCoup) => sCoup._id === payment?.couponId
               );
               if (singleCoupon.length > 0) singleCoupon = singleCoupon[0];
 
-              let timestamp = singleStudentPaymentObj._id
-                ?.toString()
-                .substring(0, 8);
+              let timestamp = payment._id?.toString().substring(0, 8);
               let payDate = new Date(parseInt(timestamp, 16) * 1000);
 
               // payDate = (payDate.getDate()<10?'0'+payDate.getDate():payDate.getDate()) + "/" + (payDate.getMonth()+1<10?'0'+payDate.getMonth()+1:payDate.getMonth()+1) + "/" + payDate.getFullYear()
 
-              let userSelectedDate = singleStudentPaymentObj?.selectedDate
-                ? (new Date(singleStudentPaymentObj?.selectedDate).getDate() <
-                  10
-                    ? "0" +
-                      new Date(singleStudentPaymentObj?.selectedDate).getDate()
-                    : new Date(
-                        singleStudentPaymentObj?.selectedDate
-                      ).getDate()) +
+              let userSelectedDate = payment?.selectedDate
+                ? (new Date(payment?.selectedDate).getDate() < 10
+                    ? "0" + new Date(payment?.selectedDate).getDate()
+                    : new Date(payment?.selectedDate).getDate()) +
                   "/" +
-                  (new Date(singleStudentPaymentObj?.selectedDate).getMonth() +
-                    1 <
-                  10
-                    ? "0" +
-                      (new Date(
-                        singleStudentPaymentObj?.selectedDate
-                      ).getMonth() +
-                        1)
-                    : new Date(
-                        singleStudentPaymentObj?.selectedDate
-                      ).getMonth() + 1) +
+                  (new Date(payment?.selectedDate).getMonth() + 1 < 10
+                    ? "0" + (new Date(payment?.selectedDate).getMonth() + 1)
+                    : new Date(payment?.selectedDate).getMonth() + 1) +
                   "/" +
-                  new Date(singleStudentPaymentObj?.selectedDate).getFullYear()
+                  new Date(payment?.selectedDate).getFullYear()
                 : "n/a";
 
               return (
@@ -894,36 +885,37 @@ function AdminDashboardPayment({
                   </TableCell>
                   <TableCell>Status</TableCell>
                   <TableCell>Student ID</TableCell>
-                  <TableCell>{stud.grade}</TableCell>
-                  <TableCell>{stud.studentDetails?.email}</TableCell>
+                  <TableCell>{singleStudentOBJ.grade}</TableCell>
                   <TableCell>
-                    {(stud.parentDetails?.name?.first
-                      ? stud.parentDetails?.name?.first
+                    {singleStudentOBJ.studentDetails?.email}
+                  </TableCell>
+                  <TableCell>
+                    {(singleStudentOBJ.parentDetails?.name?.first
+                      ? singleStudentOBJ.parentDetails?.name?.first
                       : "") +
                       " " +
-                      (stud.parentDetails?.name?.last
-                        ? stud.parentDetails?.name?.last
+                      (singleStudentOBJ.parentDetails?.name?.last
+                        ? singleStudentOBJ.parentDetails?.name?.last
                         : "")}
                   </TableCell>
-                  <TableCell>{stud.parentDetails?.email}</TableCell>
+                  <TableCell>{singleStudentOBJ.parentDetails?.email}</TableCell>
                   <TableCell>
-                    {stud.parentDetails?.mobileNo?.code +
+                    {singleStudentOBJ.parentDetails?.mobileNo?.code +
                       "-" +
-                      stud.parentDetails?.mobileNo?.number}
+                      singleStudentOBJ.parentDetails?.mobileNo?.number}
                   </TableCell>
                   <TableCell>
-                    {singleStudentPaymentObj?.payload?.payment?.entity?.email}
+                    {payment?.payload?.payment?.entity?.email}
                   </TableCell>
                   <TableCell>
-                    {singleStudentPaymentObj?.payload?.payment?.entity?.contact}
+                    {payment?.payload?.payment?.entity?.contact}
                   </TableCell>
                   <TableCell>
                     {singleStudentbatchObj?.courseData?.name}
                   </TableCell>
                   <TableCell>{userSelectedDate}</TableCell>
                   <TableCell>
-                    {singleStudentPaymentObj?.payload?.payment?.entity?.amount /
-                      100}
+                    {payment?.payload?.payment?.entity?.amount / 100}
                   </TableCell>
                   <TableCell>{singleCoupon?.code}</TableCell>
                   <TableCell>
@@ -933,7 +925,7 @@ function AdminDashboardPayment({
                       <button
                         onClick={() =>
                           assignBatch(
-                            stud.userId,
+                            singleStudentOBJ.userId,
                             singleStudentbatchObj?.payment
                           )
                         }
@@ -958,6 +950,7 @@ function AdminDashboardPayment({
                 </TableRow>
               );
             }
+            // }
           }
         })}
       </TableBody>
