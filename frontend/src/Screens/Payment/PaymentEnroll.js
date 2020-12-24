@@ -292,20 +292,35 @@ function PaymentEnroll() {
     setbatchMondays(_batchMondays);
     let singleDay = _batchMondays.filter((day) => day.checked === true);
     singleDay = singleDay[0];
-    if (singleDay.preebook) {
-      setyoungInnovatorAmount(499);
-      setcouponValidStatus(false);
-      setcouponDiscount(0);
-      // setvalidCouponDetails({})
-      setfinalAmount(499);
-    } else {
-      setyoungInnovatorAmount(5499);
-      if (validCouponDetails.active) {
-        if (5499 > validCouponDetails.minAmount) {
-          if (validCouponDetails.frequency - validCouponDetails.usedTimes > 0) {
-            setcouponValidStatus(true);
-            setcouponDiscount(validCouponDetails.amount);
-            setfinalAmount(5499 - validCouponDetails.amount);
+    if (showYoungInnovator) {
+      if (singleDay.preebook) {
+        setyoungInnovatorAmount(499);
+        setcouponValidStatus(false);
+        setcouponDiscount(0);
+        // setvalidCouponDetails({})
+        setfinalAmount(499);
+      } else {
+        setyoungInnovatorAmount(5499);
+        if (validCouponDetails._id) {
+          if (validCouponDetails.active) {
+            if (5499 > validCouponDetails.minAmount) {
+              if (
+                validCouponDetails.frequency - validCouponDetails.usedTimes >
+                0
+              ) {
+                setcouponValidStatus(true);
+                setcouponDiscount(validCouponDetails.amount);
+                setfinalAmount(5499 - validCouponDetails.amount);
+              } else {
+                setcouponValidStatus(false);
+                setcouponDiscount(0);
+                setfinalAmount(5499);
+              }
+            } else {
+              setcouponValidStatus(false);
+              setcouponDiscount(0);
+              setfinalAmount(5499);
+            }
           } else {
             setcouponValidStatus(false);
             setcouponDiscount(0);
@@ -316,10 +331,6 @@ function PaymentEnroll() {
           setcouponDiscount(0);
           setfinalAmount(5499);
         }
-      } else {
-        setcouponValidStatus(false);
-        setcouponDiscount(0);
-        setfinalAmount(5499);
       }
     }
   };
