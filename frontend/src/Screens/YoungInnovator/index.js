@@ -17,11 +17,14 @@ import CoursesFaq from "../Courses/CoursesFaq";
 import CoursesTestimonials from "../Courses/CoursesTestimonials";
 import CoursesProjects from "../Courses/CoursesProjects";
 import "../Courses/css/index.css";
-import Robotics from "../Courses/img/robotics.png";
-import Programming from "../Courses/img/programming.png";
-import AI from "../Courses/img/ai.png";
-import RoboticsCurriculum from "../files/RoboticsCurriculum.pdf";
-import AICurriculum from "../files/AICurriculum.pdf";
+import iitd from "../Courses/img/iitd.png";
+import iitb from "../Courses/img/iitb.png";
+import DroneStark_white from "../Courses/img/DroneStark_white.png";
+import google from "../Courses/img/google.png";
+import RohanYutthamInstructor from "../Courses/img/RohanYutthamInstructor.png";
+import Anshul from "../AboutUs/img/Anshul.png";
+import Aman from "../AboutUs/img/Aman.jpg";
+import KaashikaPhotoInstructor from "../Courses/img/KaashikaPhotoInstructor.png";
 
 import { Helmet } from "react-helmet";
 
@@ -114,16 +117,51 @@ const YoungInnovator = () => {
       },
     ],
   };
+
+  const instructors = [
+    {
+      id: 1,
+      name: "Rohan Yuttham",
+      details: `<p>Overall Coordinator Robotics Club, IIT Delhi. <br/> Robotics and Automation Expert. </p>`,
+      logo1: iitd,
+      logo2: google,
+      image: RohanYutthamInstructor,
+      logoDesc: "IIT Delhi",
+    },
+    {
+      id: 2,
+      name: "Aman Kumar",
+      details: `<p>Co-Founder - Rancho Labs
+       <br/> Chemical Engineer, IIT Delhi </p>`,
+      logo1: iitd,
+      logo2: google,
+      image: Aman,
+      logoDesc: "IIT Delhi",
+    },
+    {
+      id: 3,
+      name: "Kaashika Prajaapat",
+      details:
+        "<p>Computer Science Engineer, IIT Delhi.<br/> Artificial Intelligence Expert. </p>",
+      logo1: iitd,
+      logo2: google,
+      image: KaashikaPhotoInstructor,
+      logoDesc: "IIT Delhi",
+    },
+    {
+      id: 4,
+      name: "Anshul Agrawal",
+      details:
+        "<p>Co-Founder - Rancho Labs<br/> Mechanical Engineer, IIT Delhi </p>",
+      logo1: iitd,
+      logo2: google,
+      image: Anshul,
+      logoDesc: "IIT Delhi",
+    },
+  ];
+
   return (
     <div className="courses-main">
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Course</title>
-        <meta
-          name="description"
-          content="You can become the next Tech Genius! Check out our courses on Programming, Robotics, and Artificial Intelligence for students of Grades 6-12. Each course is curated and customized based on the student’s needs and interests."
-        />
-      </Helmet>
       <YoungInnovatorsMain />
 
       <div className="course-purple-bg-container">
@@ -164,6 +202,7 @@ const YoungInnovator = () => {
         title="Learn From The Best In The World"
         buttonDisplay="none"
         bgColor="#0E0234"
+        allInstructors={instructors}
       />
       <CoursesProjects
         paddingBot="40px"

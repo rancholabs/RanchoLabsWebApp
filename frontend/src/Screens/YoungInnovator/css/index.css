@@ -17,7 +17,7 @@
 }
 
 .youngInnovator-purple-bg-bottom-left {
-  top: -60px;
+  top: 100px;
   width: 40%;
   bottom: unset;
   transform: rotateY(180deg);
@@ -42,7 +42,6 @@
   }
 
   .youngInnovator-purple-bg-bottom-left {
-    top: -0;
     width: 100%;
     z-index: 0;
   }

@@ -341,7 +341,7 @@ function PaymentEnroll() {
         <div className="payment__details__section">
           {showYoungInnovator ? (
             <h1>
-              Young Innovators <br /> Programme
+              Young Innovators <br /> Program
             </h1>
           ) : (
             <h1>{enrolledCourse?.courseGroup?.name + " Curriculum"}</h1>
@@ -366,51 +366,52 @@ function PaymentEnroll() {
             <div className="payment__details__courseDataSection">
               <img src={ClassesIcon} />
               {showYoungInnovator ? (
-                <label>{"30" + " Classes"}</label>
+                <label>{"24" + " Hours"}</label>
               ) : (
                 <label>{enrolledCourse.totalClasses + " Classes"}</label>
               )}
             </div>
             <div className="payment__details__courseDataSection">
-              <label>1:3 Live Class</label>
+              {!showYoungInnovator && <label>1:3 Live Class</label>}
             </div>
           </div>
         </div>
-        <div className="payment__details__section payment__details__batch">
-          <h3>Select Batch</h3>
-          {batchMondays.map((day, index) => {
-            let today = new Date(day.date);
-            return (
-              <div className="payment__details__courseDataSection">
-                <input
-                  type="radio"
-                  checked={day.checked}
-                  name="batchdatestart"
-                  onChange={(e) => handleBatchDayChange(e, index)}
-                  id={"batch" + index}
-                />
-                <label for={"batch" + index}>
-                  {(showYoungInnovator ? "" : "Starting from ") +
-                    (day.preebook ? "Prebooking " : "") +
-                    (today.getDate() < 10
-                      ? "0" + today.getDate()
-                      : today.getDate()) +
-                    "/" +
-                    (today.getMonth() + 1 < 10
-                      ? "0" + (today.getMonth() + 1)
-                      : today.getMonth() + 1) +
-                    "/" +
-                    today.getFullYear()}
-                </label>
-              </div>
-            );
-          })}
-          {showSelectedDayError && (
-            <p className="coupon__invalid__text">Please select a date!</p>
-          )}
-        </div>
+        {window.innerWidth > 600 && (
+          <div className="payment__details__section payment__details__batch">
+            <h3>Select a Batch</h3>
+            {batchMondays.map((day, index) => {
+              let today = new Date(day.date);
+              return (
+                <div className="payment__details__courseDataSection">
+                  <input
+                    type="radio"
+                    checked={day.checked}
+                    name="batchdatestart"
+                    onChange={(e) => handleBatchDayChange(e, index)}
+                    id={"batch" + index}
+                  />
+                  <label for={"batch" + index}>
+                    {(day.preebook ? "Prebooking " : "Starting from ") +
+                      (today.getDate() < 10
+                        ? "0" + today.getDate()
+                        : today.getDate()) +
+                      "/" +
+                      (today.getMonth() + 1 < 10
+                        ? "0" + (today.getMonth() + 1)
+                        : today.getMonth() + 1) +
+                      "/" +
+                      today.getFullYear()}
+                  </label>
+                </div>
+              );
+            })}
+            {showSelectedDayError && (
+              <p className="coupon__invalid__text">Please select a date!</p>
+            )}
+          </div>
+        )}
         <p className="payment__courseNote">
-          Note: Time and data will be decided after enrollment in discussion
+          Note: Time and date will be decided after enrollment in discussion
           with parent according to the availability of students
         </p>
       </div>
@@ -437,6 +438,40 @@ function PaymentEnroll() {
             )
           ) : null}
         </div>
+        {window.innerWidth < 600 && (
+          <div className="payment__details__section payment__details__batch">
+            <h3>Select a Batch</h3>
+            {batchMondays.map((day, index) => {
+              let today = new Date(day.date);
+              return (
+                <div className="payment__details__courseDataSection">
+                  <input
+                    type="radio"
+                    checked={day.checked}
+                    name="batchdatestart"
+                    onChange={(e) => handleBatchDayChange(e, index)}
+                    id={"batch" + index}
+                  />
+                  <label for={"batch" + index}>
+                    {(day.preebook ? "Prebooking " : "Starting from ") +
+                      (today.getDate() < 10
+                        ? "0" + today.getDate()
+                        : today.getDate()) +
+                      "/" +
+                      (today.getMonth() + 1 < 10
+                        ? "0" + (today.getMonth() + 1)
+                        : today.getMonth() + 1) +
+                      "/" +
+                      today.getFullYear()}
+                  </label>
+                </div>
+              );
+            })}
+            {showSelectedDayError && (
+              <p className="coupon__invalid__text">Please select a date!</p>
+            )}
+          </div>
+        )}
         <div className="payment__window__feeDetails">
           <h3>Fee Details</h3>
           <div className="payment__window__feeData">

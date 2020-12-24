@@ -1,6 +1,6 @@
 .youngInnovatorCards__container {
   background-color: #0e0234;
-  padding: 80px 0;
+  padding: 40px 0;
 }
 
 .youngInnovatorCards__header h3 {
@@ -61,20 +61,20 @@
   .youngInnovatorCards__header hr {
     border-color: #f74b42;
     width: 40%;
-    margin: calc(100.5 * var(--vp)) auto calc(100.5 * var(--vp)) auto;
+    margin: calc(80.5 * var(--vp)) auto 40px auto;
     border-width: calc(15 * var(--vp));
   }
   .youngInnovatorCards__enrollBtn {
     background-color: #f74b42;
-    font-size: calc(15 * var(--vm));
+    font-size: calc(20 * var(--vm));
     letter-spacing: 0;
-    height: calc(31 * var(--vm));
+    /* height: calc(31 * var(--vm)); */
     color: #ffffff;
     text-transform: capitalize;
     border: calc(2 * var(--vp)) solid #f74b42;
-    border-radius: calc(5 * var(--vm));
+    border-radius: 40px;
     margin: 40px auto 0 auto;
     width: fit-content;
-    padding: 0 20px;
+    padding: 20px 40px;
   }
 }

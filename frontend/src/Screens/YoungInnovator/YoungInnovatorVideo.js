@@ -6,15 +6,11 @@ function YoungInnovatorVideo() {
     <div className="youngInnovatorVideo">
       <div className="youngInnovatorVideo__video"></div>
       <div className="youngInnovatorVideo__body">
-        <h3>
-          Ensure Your <br /> Journey With Us
-        </h3>
+        <h3>The Need of The Hour</h3>
         <hr />
         <p>
-          We at rancho labs provide the best curriculum for the students to
-          learn and develop various tech sectors.We at rancho labs provide the
-          best curriculum for the students to learn and develop various tech
-          sectors.
+          The future is all about automation, programming, robots and computers.
+          It’s time to take the right step forward now.
         </p>
       </div>
     </div>

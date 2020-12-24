@@ -187,18 +187,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 60%;
-    margin: 24px 0;
+    width: 85%;
+    margin: 0 0;
   }
   .payment__window {
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-between; */
-    width: 60%;
-    /* background-color: #171636;
-    box-shadow: -14px 14px #3cfaff;
-    padding: 36px; */
+    width: 85%;
     height: auto;
+    box-shadow: -6px 6px #3cfaff;
   }
   .payment__window__btn {
     padding: 4px 0;
@@ -213,11 +208,11 @@
   }
 
   .payment__details__section h1 {
-    font-size: calc(88 * var(--vp));
+    font-size: calc(20 * var(--vm));
   }
 
   .payment__details__section h3 {
-    font-size: calc(73 * var(--vp));
+    font-size: calc(18 * var(--vm));
   }
 
   .payment__details__section hr {
@@ -226,18 +221,18 @@
   }
 
   .payment__details__courseDataSection label {
-    font-size: calc(68 * var(--vp));
+    font-size: calc(15 * var(--vm));
   }
 
   .payment__details__courseDataSection img {
     width: 12px;
   }
   .payment__courseNote {
-    font-size: calc(65 * var(--vp));
+    font-size: calc(12 * var(--vm));
   }
 
   .payment__window__couponContent h3 {
-    font-size: calc(73 * var(--vp));
+    font-size: calc(18 * var(--vm));
   }
 
   .payment__window__couponContent img {
@@ -248,25 +243,34 @@
     padding: 24px;
   }
   .payment__window__coupon input {
-    padding: 6px;
-
-    font-size: calc(64 * var(--vp));
+    padding: 12px 6px;
+    font-size: calc(15 * var(--vm));
   }
 
   .payment__window__coupon button {
     width: 30%;
-
-    padding: 6px 0;
-    font-size: calc(64 * var(--vp));
+    padding: 12px 0;
+    font-size: calc(15 * var(--vm));
   }
 
   .payment__window__feeDetails h3 {
-    font-size: calc(73 * var(--vp));
+    font-size: calc(18 * var(--vm));
   }
   .payment__window__feeData label {
-    font-size: calc(68 * var(--vp));
+    font-size: calc(15 * var(--vm));
   }
   .payment__window__btn {
-    font-size: calc(73 * var(--vp));
+    font-size: calc(20 * var(--vm));
+  }
+  .coupon__invalid__text {
+    margin-bottom: 25px;
+    font-size: calc(65 * var(--vp));
+  }
+  .coupon__valid__text {
+    margin-bottom: 25px;
+    font-size: calc(65 * var(--vp));
+  }
+  .payment__details__section {
+    margin-bottom: 20px;
   }
 }

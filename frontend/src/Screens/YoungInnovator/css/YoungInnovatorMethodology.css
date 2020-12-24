@@ -3,4 +3,7 @@
     font-size: calc(24 * var(--vm)) !important;
     text-align: center;
   }
+  .youngInnovatorMethodology__titleContent {
+    margin-bottom: 40px !important;
+  }
 }

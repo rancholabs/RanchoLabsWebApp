@@ -41,5 +41,6 @@
   .youngInnovatorBanner button {
     font-size: calc(15 * var(--vm));
     height: unset;
+    padding: 10px 30px;
   }
 }

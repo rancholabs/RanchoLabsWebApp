@@ -47,7 +47,7 @@
 
 .courses-instructors .instructor .instructor-pic img {
   /* width: calc(381 * var(--vp)); */
-  /* height: 100%; */
+  height: 100%;
   width: 100%;
 }
 
@@ -253,7 +253,7 @@
 
   .mobile-instructors .instructor .instructor-pic {
     width: 100%;
-    height: unset;
+    height: calc(300 * var(--vm));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -261,7 +261,8 @@
 
   .mobile-instructors .instructor .instructor-pic img {
     width: 100%;
-    object-fit: contain;
+    height: 100%;
+    /* object-fit: contain; */
   }
 
   .mobile-instructors .instructor .instructor-name {

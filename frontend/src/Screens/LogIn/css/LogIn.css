@@ -51,7 +51,7 @@
 
 .LogIn form input::placeholder {
   color: #ffffff;
-  font-size: calc(28 * 0.9 * var(--vp));
+  /* font-size: calc(28 * 0.9 * var(--vp)); */
   opacity: 0.7;
   font-weight: 300;
 }

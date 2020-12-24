@@ -11,28 +11,28 @@ import "./css/YoungInnovatorMethodology.css";
 const thoughts = [
   {
     img: t1,
-    title: "Play And Learn",
-    // quote: "“Every expert was once a beginner”.",
+    title: "Learn",
+    quote: "“Every expert was once a beginner”.",
     desc:
-      "We believe in providing the students a platform of exposure and practical knowledge. We want the students to understand and enjoy our courses. Let's have a glimpse of the thought process.",
+      "Students learn via one on one live lectures taught by highly qualified teachers. Each class is designed based on the curiosity and interests of the student.",
     mdesc:
       "We believe in providing the students a platform of exposure and practical knowledge.",
   },
   {
     img: t2,
-    title: "Develop Your Ideas",
-    // quote: "“Teach me and I may remember. Involve me and I learn”.",
+    title: "Build",
+    quote: "“Teach me and I may remember. Involve me and I learn”.",
     desc:
-      "We believe in providing the students a platform of exposure and practical knowledge. We want the students to understand and enjoy our courses. Let's have a glimpse of the thought process.",
+      "Each class is followed by a live project to maximize the student’s learning. Master the skills that you’ve learnt by building projects, the fun way.",
     mdesc:
       "We believe in providing the students a platform of exposure and practical knowledge.",
   },
   {
     img: t3,
     title: "Innovate",
-    // quote: "“Innovation distinguishes between a leader and a follower”.",
+    quote: "“Innovation distinguishes between a leader and a follower”.",
     desc:
-      "We believe in providing the students a platform of exposure and practical knowledge. We want the students to understand and enjoy our courses. Let's have a glimpse of the thought process.",
+      "Do you have an idea? At RanchoLabs, students acquire the right skills and experiences by learning and building to solve a real-life problem.",
     mdesc:
       "We believe in providing the students a platform of exposure and practical knowledge.",
   },
@@ -87,7 +87,7 @@ const YoungInnovatorMethodology = () => {
       <div className="tp-title youngInnovatorMethodology__title">
         Our Unique Methodology
       </div>
-      <div className="tp-desc">
+      <div className="tp-desc youngInnovatorMethodology__titleContent">
         We believe in providing the students a platform of exposure and
         practical knowledge. We want the students to understand and enjoy our
         courses. Let's have a glimpse of the thought process.

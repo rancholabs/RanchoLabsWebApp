@@ -1,6 +1,7 @@
 .youngInnovatorVideo {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 90%;
   margin: 150px auto 150px auto;
 }
@@ -8,7 +9,7 @@
 .youngInnovatorVideo__video {
   width: 46%;
   background-color: #171636;
-  height: 200px;
+  height: 400px;
 }
 
 .youngInnovatorVideo__body {
@@ -34,6 +35,7 @@
   color: #fff;
   letter-spacing: calc(1.58 * var(--vp));
   text-align: left;
+  /* margin-top: 20px; */
 }
 
 @media (max-width: 600px) {
@@ -44,6 +46,7 @@
   }
   .youngInnovatorVideo__video {
     width: 90%;
+    height: 200px;
   }
   .youngInnovatorVideo__body {
     width: 90%;
@@ -56,11 +59,13 @@
   .youngInnovatorVideo__body p {
     font-size: calc(14 * var(--vm));
     text-align: center;
+    margin-top: 30px;
   }
   .youngInnovatorVideo__body hr {
     border-color: #f74b42;
     width: 40%;
     margin: calc(60.5 * var(--vp)) auto calc(60.5 * var(--vp)) auto;
     border-width: calc(15 * var(--vp));
+    margin-top: 20px;
   }
 }

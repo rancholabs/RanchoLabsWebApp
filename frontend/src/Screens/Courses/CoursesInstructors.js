@@ -81,7 +81,22 @@ const InstructorCard = (props) => {
   );
 };
 
-const CourseInstructors = ({ title, buttonDisplay, bgColor }) => {
+const CourseInstructors = ({
+  title,
+  buttonDisplay,
+  bgColor,
+  allInstructors,
+}) => {
+  const [instructorsCards, setInstructorCards] = React.useState([]);
+
+  React.useEffect(() => {
+    if (allInstructors && allInstructors.length) {
+      setInstructorCards(allInstructors);
+    } else {
+      setInstructorCards(instructors);
+    }
+  }, [allInstructors]);
+
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -133,7 +148,7 @@ const CourseInstructors = ({ title, buttonDisplay, bgColor }) => {
         </div>
         {/* <div className="courses-instructors-subtitle">Meet our instructors</div> */}
         <div className="row mx-0">
-          {instructors.map((i) => {
+          {instructorsCards?.map((i) => {
             return (
               <InstructorCard
                 key={i.id}
@@ -162,7 +177,7 @@ const CourseInstructors = ({ title, buttonDisplay, bgColor }) => {
             // keyBoardControl={true}
             className="courses-instructor-carousel"
           >
-            {instructors.map((i) => {
+            {instructorsCards?.map((i) => {
               return (
                 <InstructorCard
                   key={i.id}
