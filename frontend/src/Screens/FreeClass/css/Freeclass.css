@@ -134,7 +134,7 @@
   box-shadow: 0 calc(6 * 0.9 * var(--vp)) calc(6 * 0.9 * var(--vp)) #0000003d;
   border-radius: calc(9 * 0.9 * var(--vp));
   background-color: transparent;
-  margin-top: calc(20 * 0.9 * var(--vp));
+  margin: calc(20 * 0.9 * var(--vp)) auto;
   font-size: calc(33 * 0.9 * var(--vp));
   display: flex;
   justify-content: center;

@@ -52,7 +52,7 @@ const Tpitem = (props) => {
       <div className="col-md-5 tp-item-info">
         <div className="tp-item-title">{props.title}</div>
         <div className="tp-item-desc">
-          {/* <span style={{ fontStyle: "italic" }}>{props.quote}</span> <br /> */}
+          <span style={{ fontStyle: "italic" }}>{props.quote}</span> <br />
           {props.desc}
         </div>
       </div>
@@ -73,7 +73,7 @@ const MTpitem = (props) => {
         </div>
         <div className="mtp-item-title">{props.title}</div>
         <div className="mtp-item-desc">
-          {/* <span style={{ fontStyle: "italic" }}>{props.quote}</span> <br /> */}
+          <span style={{ fontStyle: "italic" }}>{props.quote}</span> <br />
           {props.desc}
         </div>
       </div>

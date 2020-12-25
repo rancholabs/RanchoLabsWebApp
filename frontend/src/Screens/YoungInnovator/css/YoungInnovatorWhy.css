@@ -30,10 +30,12 @@
   color: #3cfaff;
   letter-spacing: calc(1.58 * var(--vp));
   text-align: center;
+  font-size: calc(30 * var(--vp));
 }
 
 .youngInnovatorWhy__card img {
   width: 50%;
+  margin-bottom: 10px;
 }
 
 @media (max-width: 600px) {
