@@ -15,14 +15,9 @@ const Payment = require("../model/Payment");
 const Certificate = require("../model/Certificate");
 const { sendMail } = require("../Utils/Email");
 
-// const instance = new Razorpay({
-//   key_id: RAZOR_PAY_KEY_ID,
-//   key_secret: RAZOR_PAY_KEY_SECRET,
-// });
-
 const instance = new Razorpay({
-  key_id: "rzp_test_zK76yRJ4yJGnxj",
-  key_secret: "bBRa9uvTzg7fmn4VZPVTkpnN",
+  key_id: RAZOR_PAY_KEY_ID,
+  key_secret: RAZOR_PAY_KEY_SECRET,
 });
 
 let orderData = [];
