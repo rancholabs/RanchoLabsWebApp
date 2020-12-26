@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./css/DashboardCertificate.css";
 import certificate from "./img/certificatemodal.png";
 import lock from "./img/lock.png";
@@ -76,8 +76,15 @@ const Certificate = ({
   updateCertPaidStatus,
 }) => {
   const [iscertificate, setCertficate] = useState(false);
+  const [isCouponScreen, setCouponScreen] = useState(false);
   const [isShareExp, setShareExp] = useState(false);
   const [certFile, setcertFile] = useState(null);
+  const [couponCode, setcouponCode] = useState("");
+  const [couponCodeValid, setcouponCodeValid] = useState(false);
+  const [couponCodeError, setcouponCodeError] = useState(false);
+  const [validCouponDetails, setvalidCouponDetails] = useState({});
+  const [couponDiscount, setcouponDiscount] = useState(0);
+  const [finalAmount, setfinalAmount] = useState(199);
   const [open, setOpen] = React.useState(false);
   const [openForCertPay, setopenForCertPay] = React.useState(false);
   const [userpaymentId, setuserpaymentId] = React.useState("");
@@ -99,6 +106,26 @@ const Certificate = ({
   // } else {
   //   document.body.style.overflow = "auto";
   // }
+
+  useEffect(() => {
+    if (validCouponDetails._id) {
+      if (finalAmount > validCouponDetails.minAmount) {
+        if (validCouponDetails.frequency - validCouponDetails.usedTimes > 0) {
+          setcouponCodeValid(true);
+          setcouponDiscount(validCouponDetails.amount);
+          setfinalAmount(finalAmount - validCouponDetails.amount);
+        } else {
+          setcouponCodeValid(false);
+          setcouponDiscount(0);
+          setfinalAmount(199);
+        }
+      } else {
+        setcouponCodeValid(false);
+        setcouponDiscount(0);
+        setfinalAmount(199);
+      }
+    }
+  }, [validCouponDetails]);
 
   const copyShareLink = async () => {
     setOpen(true);
@@ -124,7 +151,7 @@ const Certificate = ({
       .then((res) => res.data.fileId)
       .catch((error) => console.log(error));
 
-    if (fileID && fileID.toString().length > 5) {
+    if (fileID) {
       console.log(fileID);
       // UPLOAD CERTIFICATE IN STUDENT PROFILE
 
@@ -150,7 +177,9 @@ const Certificate = ({
       const body = {
         certificates: allCerts,
       };
+
       console.log(body);
+
       axios
         .post("/api/profile/student/certificates", body, config)
         .then((res) => {
@@ -161,23 +190,23 @@ const Certificate = ({
             file: fileID,
             userId: userId,
             courseId: activeCourse,
-            // payment: {
-            //   paymentId: userpaymentId,
-            //   orderId: userorderId,
-            // },
+            payment: {
+              paymentId: userpaymentId,
+              orderId: userorderId,
+            },
           };
-          // axios.put("/api/certificate", allcertbody, config).then((resp) => {
-          //   setOpen(false);
-          //   console.log(resp.data);
-          //   showAppliedCertLoadingBanner();
-          //   // showAppliedCertLoadingBanner();
-          // });
-          axios.post("/api/certificate", allcertbody, config).then((resp) => {
+          axios.put("/api/certificate", allcertbody, config).then((resp) => {
             setOpen(false);
             console.log(resp.data);
             showAppliedCertLoadingBanner();
             // showAppliedCertLoadingBanner();
           });
+          // axios.post("/api/certificate", allcertbody, config).then((resp) => {
+          //   setOpen(false);
+          //   console.log(resp.data);
+          //   showAppliedCertLoadingBanner();
+          //   // showAppliedCertLoadingBanner();
+          // });
         });
     } else {
       alert(
@@ -242,10 +271,11 @@ const Certificate = ({
       userId: userId,
       courseId: activeCourse,
       price: {
-        amount: 199,
+        amount: finalAmount,
         currencyCode: "INR",
       },
       reason: "certificate",
+      couponId: couponCodeValid ? validCouponDetails._id : null,
     };
 
     const data = await axios
@@ -287,6 +317,38 @@ const Certificate = ({
   const payCertFees = () => {
     displayRazorpay();
   };
+
+  const checkCouponCode = () => {
+    if (couponCode !== "") {
+      axios
+        .get(`/api/coupon/code/${couponCode}`)
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.coupon.active) {
+            setvalidCouponDetails(res.data.coupon);
+          } else {
+            setvalidCouponDetails({});
+            setcouponCodeValid(false);
+            setcouponDiscount(0);
+            setfinalAmount(199);
+          }
+        })
+        .catch((err) => {
+          setvalidCouponDetails({});
+          setcouponCodeValid(false);
+          setcouponDiscount(0);
+          setfinalAmount(199);
+          console.log(err);
+        });
+      setcouponCodeError(true);
+    } else {
+      setvalidCouponDetails({});
+      setcouponCodeValid(false);
+      setcouponDiscount(0);
+      setfinalAmount(199);
+    }
+  };
+
   return (
     <>
       <Backdrop
@@ -355,6 +417,60 @@ const Certificate = ({
             />
           </div>
         </div>
+      ) : isCouponScreen ? (
+        <div className="dashboardcertificate row mx-auto">
+          <div className="certificate-content">
+            <div className="certificate-title">ALMOST THERE</div>
+            <div className="certificate-desc">
+              Dear{" "}
+              {(userInfo?.first ? userInfo?.first : "") +
+                " " +
+                (userInfo?.last ? userInfo?.last : "")}
+              , we are so pleased to see you complete our{" "}
+              {freeClassCert ? "free class" : "workshop"}. You need to pay our
+              certificate fees in order to get access to your certificate.
+              <div className="certificate-couponCode">
+                <label>Coupon Code</label>
+                <input
+                  type="text"
+                  value={couponCode}
+                  onChange={(e) => setcouponCode(e.target.value)}
+                />
+                <button
+                  className="certificate-couponCode-btn"
+                  onClick={checkCouponCode}
+                >
+                  Apply
+                </button>
+              </div>
+              {couponCodeError ? (
+                couponCodeValid ? (
+                  <p className="certificate-valid-msg">Code Applied!</p>
+                ) : (
+                  <p className="certificate-error-msg">Invalid Code!</p>
+                )
+              ) : null}
+            </div>
+            <div className="get-certificate">
+              <a>
+                <button
+                  onClick={() => {
+                    if (minAttendance) {
+                      console.log("Generating cert...");
+                      payCertFees();
+                      // copyShareLink();
+                    }
+                  }}
+                >
+                  PAY NOW &nbsp; <Fontawesome name="arrow-right" />
+                </button>
+              </a>
+            </div>
+          </div>
+          <div className="medal">
+            <img src={medal} alt=""></img>
+          </div>
+        </div>
       ) : (
         <div className="dashboardcertificate row mx-auto">
           <div className="certificate-content">
@@ -376,8 +492,9 @@ const Certificate = ({
                   onClick={() => {
                     if (minAttendance) {
                       console.log("Generating cert...");
+                      setCouponScreen(true);
                       // payCertFees();
-                      copyShareLink();
+                      // copyShareLink();
                     }
                   }}
                 >
@@ -389,7 +506,7 @@ const Certificate = ({
           <div className="medal">
             <img src={medal} alt=""></img>
           </div>
-          <div id="dashboard__certTemp">
+          {/* <div id="dashboard__certTemp">
             <DashboardCertTemplate
               updateCertFile={updateCertFile}
               userInfo={userInfo}
@@ -399,7 +516,7 @@ const Certificate = ({
               year={year}
               allCerts={allCerts}
             />
-          </div>
+          </div> */}
         </div>
       )}
       {/* {iscertificate && (

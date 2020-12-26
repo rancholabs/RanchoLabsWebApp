@@ -50,6 +50,7 @@ function Index() {
         .get("/api/course/enroll/all", config)
         .then((res) => {
           setallAssignedBatchesData(res.data);
+          console.log(res.data);
         })
         .catch((err) => console.log(err));
 

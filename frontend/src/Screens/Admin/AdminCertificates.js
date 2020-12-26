@@ -31,6 +31,7 @@ function Certificates({ allCertificateData }) {
                 <TableCell>Name</TableCell>
                 <TableCell>Date</TableCell>
                 <TableCell>Payment</TableCell>
+                <TableCell>File</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -61,6 +62,19 @@ function Certificates({ allCertificateData }) {
                         <TableCell>
                           {singleCert.payment?.paymentId ? "Paid" : "Unpaid"}
                         </TableCell>
+                        <TableCell>
+                          {singleCert.filedata?.filePath ? (
+                            <button
+                              onClick={() =>
+                                window.open(singleCert.filedata?.filePath)
+                              }
+                            >
+                              Open
+                            </button>
+                          ) : (
+                            "N/A"
+                          )}
+                        </TableCell>
                       </TableRow>
                     );
                   } else return null;
@@ -80,6 +94,19 @@ function Certificates({ allCertificateData }) {
                       <TableCell>{date}</TableCell>
                       <TableCell>
                         {singleCert.payment?.paymentId ? "Paid" : "Unpaid"}
+                      </TableCell>
+                      <TableCell>
+                        {singleCert.filedata?.filePath ? (
+                          <button
+                            onClick={() =>
+                              window.open(singleCert.filedata?.filePath)
+                            }
+                          >
+                            Open
+                          </button>
+                        ) : (
+                          "N/A"
+                        )}
                       </TableCell>
                     </TableRow>
                   );

@@ -1,12 +1,12 @@
 .dashboardcertificate {
   background-color: #fbfbf3;
   width: calc(1702 * var(--vp));
-  height: calc(442 * var(--vp));
+  /* height: calc(442 * var(--vp)); */
   margin: calc(80 * var(--vp)) auto calc(126 * var(--vp));
   box-shadow: 0px calc(6 * var(--vp)) calc(6 * var(--vp)) #00000045;
   border-radius: calc(10 * var(--vp));
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .dashboardcertificate .certificate-title {
@@ -24,6 +24,49 @@
   margin-left: calc(118 * var(--vp));
 }
 
+.dashboardcertificate .certificate-couponCode {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.dashboardcertificate .certificate-couponCode input {
+  margin: 0 20px;
+  padding: 4px;
+  border: 1px solid black;
+  outline: none;
+  color: #333333;
+}
+
+.dashboardcertificate .certificate-couponCode label {
+  font: normal normal normal calc(28 * var(--vp)) Roboto;
+  font-size: calc(28 * var(--vp));
+  color: #020122;
+  margin: 0;
+  padding: 0;
+}
+
+.certificate-couponCode-btn {
+  border: 1px solid #f74b42 !important;
+  background-color: #f74b42 !important;
+  padding: 0.2vw 1.2vw;
+  color: #ffffff;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.certificate-valid-msg {
+  color: green;
+  font-size: 14px;
+  margin: 10px 0 0 0;
+}
+
+.certificate-error-msg {
+  color: red;
+  font-size: 14px;
+  margin: 10px 0 0 0;
+}
+
 .cert__backdrop {
   color: white;
 }
@@ -36,8 +79,7 @@
   border: 1px solid #f74b42;
   width: calc(395 * var(--vp));
   height: calc(71 * var(--vp));
-  margin-left: calc(118 * var(--vp));
-  margin-top: calc(28 * var(--vp));
+  margin: calc(28 * var(--vp)) 0 calc(72 * var(--vp)) calc(118 * var(--vp));
   cursor: pointer;
   border-radius: calc(5 * var(--vp));
 }

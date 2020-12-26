@@ -424,15 +424,16 @@ function DashboardBody(props) {
             )}
             {(applyForCertificate ||
               showLoadingCertificate ||
-              showEnabledCertificate) && <DashboardJourney />}
+              showEnabledCertificate ||
+              !activeWorkshop) && <DashboardJourney />}
             {(applyForCertificate ||
               showLoadingCertificate ||
-              showEnabledCertificate) && <DashboardTestimonials />}
-            {!(
-              applyForCertificate ||
+              showEnabledCertificate ||
+              !activeWorkshop) && <DashboardTestimonials />}
+            {(applyForCertificate ||
               showLoadingCertificate ||
-              showEnabledCertificate
-            ) && <div className="workshop__emptyDiv"></div>}
+              showEnabledCertificate ||
+              !activeWorkshop) && <div className="workshop__emptyDiv"></div>}
           </div>
         </>
       )}

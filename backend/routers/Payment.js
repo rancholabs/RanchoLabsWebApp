@@ -15,9 +15,14 @@ const Payment = require("../model/Payment");
 const Certificate = require("../model/Certificate");
 const { sendMail } = require("../Utils/Email");
 
+// const instance = new Razorpay({
+//   key_id: RAZOR_PAY_KEY_ID,
+//   key_secret: RAZOR_PAY_KEY_SECRET,
+// });
+
 const instance = new Razorpay({
-  key_id: RAZOR_PAY_KEY_ID,
-  key_secret: RAZOR_PAY_KEY_SECRET,
+  key_id: "rzp_test_zK76yRJ4yJGnxj",
+  key_secret: "bBRa9uvTzg7fmn4VZPVTkpnN",
 });
 
 let orderData = [];
@@ -161,7 +166,9 @@ const addUserCert = async (usercertdata) => {
   });
   newCertificate
     .save()
-    .then((doc) => {})
+    .then((doc) => {
+      console.log("cert added!");
+    })
     .catch((err) => {
       console.log(err);
     });
@@ -198,6 +205,7 @@ router.post("/order", isAuthenticated, async (req, res) => {
           name: req.body.name,
           userId: req.body.userId,
           courseId: req.body.courseId,
+          couponId: req.body.couponId,
         });
       } else {
         orderData.push({
@@ -332,6 +340,7 @@ router.post("/verification", (req, res) => {
         userId: userCertOrder.userId,
       };
       addUserCert(certOBJ);
+      addPaymentObj(req.body, userCertOrder.couponId, userCertOrder.userId);
     }
     console.log(req.body);
   } else {

@@ -25,12 +25,15 @@ function AdminDashboardFreeClass({
     let _filter = [];
     if (filterStudentName !== "" && filterDate === "") {
       allStudentData.forEach((stud) => {
-        let fullname = stud.studentDetails?.name?.first
-          ? stud.studentDetails?.name?.first
-          : "" + " " + stud.studentDetails?.name?.last
-          ? stud.studentDetails?.name?.last
-          : "";
-        if (fullname.toString().toLowerCase().includes(filterStudentName)) {
+        let fullname =
+          (stud.studentDetails?.name?.first
+            ? stud.studentDetails?.name?.first
+            : "") +
+          " " +
+          (stud.studentDetails?.name?.last
+            ? stud.studentDetails?.name?.last
+            : "");
+        if (fullname?.toString().toLowerCase().includes(filterStudentName)) {
           _filter.push(stud);
         }
       });
@@ -51,11 +54,14 @@ function AdminDashboardFreeClass({
     }
     if (filterDate !== "" && filterStudentName !== "") {
       allStudentData.forEach((stud) => {
-        let fullname = stud.studentDetails?.name?.first
-          ? stud.studentDetails?.name?.first
-          : "" + " " + stud.studentDetails?.name?.last
-          ? stud.studentDetails?.name?.last
-          : "";
+        let fullname =
+          (stud.studentDetails?.name?.first
+            ? stud.studentDetails?.name?.first
+            : "") +
+          " " +
+          (stud.studentDetails?.name?.last
+            ? stud.studentDetails?.name?.last
+            : "");
         if (
           new Date(filterDate).getDate() ===
             new Date(stud.studentDetails?.createdAt).getDate() &&
@@ -63,7 +69,7 @@ function AdminDashboardFreeClass({
             new Date(stud.studentDetails?.createdAt).getMonth() &&
           new Date(filterDate).getFullYear() ===
             new Date(stud.studentDetails?.createdAt).getFullYear() &&
-          fullname.toString().toLowerCase().includes(filterStudentName)
+          fullname?.toString().toLowerCase().includes(filterStudentName)
         ) {
           _filter.push(stud);
         }
@@ -444,12 +450,15 @@ function AdminDashboardFreeWorkshop({
     let _filter = [];
     if (filterStudentName !== "" && filterDate === "") {
       allStudentData.forEach((stud) => {
-        let fullname = stud.studentDetails?.name?.first
-          ? stud.studentDetails?.name?.first
-          : "" + " " + stud.studentDetails?.name?.last
-          ? stud.studentDetails?.name?.last
-          : "";
-        if (fullname.toString().toLowerCase().includes(filterStudentName)) {
+        let fullname =
+          (stud.studentDetails?.name?.first
+            ? stud.studentDetails?.name?.first
+            : "") +
+          " " +
+          (stud.studentDetails?.name?.last
+            ? stud.studentDetails?.name?.last
+            : "");
+        if (fullname?.toString().toLowerCase().includes(filterStudentName)) {
           _filter.push(stud);
         }
       });
@@ -470,11 +479,14 @@ function AdminDashboardFreeWorkshop({
     }
     if (filterDate !== "" && filterStudentName !== "") {
       allStudentData.forEach((stud) => {
-        let fullname = stud.studentDetails?.name?.first
-          ? stud.studentDetails?.name?.first
-          : "" + " " + stud.studentDetails?.name?.last
-          ? stud.studentDetails?.name?.last
-          : "";
+        let fullname =
+          (stud.studentDetails?.name?.first
+            ? stud.studentDetails?.name?.first
+            : "") +
+          " " +
+          (stud.studentDetails?.name?.last
+            ? stud.studentDetails?.name?.last
+            : "");
         if (
           new Date(filterDate).getDate() ===
             new Date(stud.studentDetails?.createdAt).getDate() &&
@@ -482,7 +494,7 @@ function AdminDashboardFreeWorkshop({
             new Date(stud.studentDetails?.createdAt).getMonth() &&
           new Date(filterDate).getFullYear() ===
             new Date(stud.studentDetails?.createdAt).getFullYear() &&
-          fullname.toString().toLowerCase().includes(filterStudentName)
+          fullname?.toString().toLowerCase().includes(filterStudentName)
         ) {
           _filter.push(stud);
         }
@@ -933,6 +945,100 @@ function AdminDashboardPayment({
                         Assign
                       </button>
                     )}
+                  </TableCell>
+                  <TableCell>
+                    {singleInstructor?._id
+                      ? (singleInstructor?.fname
+                          ? singleInstructor?.fname
+                          : "") +
+                        " " +
+                        (singleInstructor?.mname
+                          ? singleInstructor?.mname
+                          : "") +
+                        " " +
+                        (singleInstructor?.lname ? singleInstructor?.lname : "")
+                      : "n/a"}
+                  </TableCell>
+                </TableRow>
+              );
+            } else {
+              // payment is not for a course
+              singleStudentbatchObj = singleStudentbatchObj[0];
+
+              var singleInstructor = allInstructors.filter(
+                (sintruct) =>
+                  sintruct._id === singleStudentbatchObj?.batchData?.instructor
+              );
+              if (singleInstructor.length > 0)
+                singleInstructor = singleInstructor[0];
+
+              var singleCoupon = allCouponsData.filter(
+                (sCoup) => sCoup._id === payment?.couponId
+              );
+              if (singleCoupon.length > 0) singleCoupon = singleCoupon[0];
+
+              let timestamp = payment._id?.toString().substring(0, 8);
+              let payDate = new Date(parseInt(timestamp, 16) * 1000);
+
+              // payDate = (payDate.getDate()<10?'0'+payDate.getDate():payDate.getDate()) + "/" + (payDate.getMonth()+1<10?'0'+payDate.getMonth()+1:payDate.getMonth()+1) + "/" + payDate.getFullYear()
+
+              let userSelectedDate = payment?.selectedDate
+                ? (new Date(payment?.selectedDate).getDate() < 10
+                    ? "0" + new Date(payment?.selectedDate).getDate()
+                    : new Date(payment?.selectedDate).getDate()) +
+                  "/" +
+                  (new Date(payment?.selectedDate).getMonth() + 1 < 10
+                    ? "0" + (new Date(payment?.selectedDate).getMonth() + 1)
+                    : new Date(payment?.selectedDate).getMonth() + 1) +
+                  "/" +
+                  new Date(payment?.selectedDate).getFullYear()
+                : "n/a";
+
+              return (
+                <TableRow>
+                  <TableCell>{payDate.toString().split("GMT")[0]}</TableCell>
+                  <TableCell>
+                    {payment.payload.payment.entity.order_id}
+                  </TableCell>
+                  <TableCell>Status</TableCell>
+                  <TableCell>Student ID</TableCell>
+                  <TableCell>{singleStudentOBJ.grade}</TableCell>
+                  <TableCell>
+                    {singleStudentOBJ.studentDetails?.email}
+                  </TableCell>
+                  <TableCell>
+                    {(singleStudentOBJ.parentDetails?.name?.first
+                      ? singleStudentOBJ.parentDetails?.name?.first
+                      : "") +
+                      " " +
+                      (singleStudentOBJ.parentDetails?.name?.last
+                        ? singleStudentOBJ.parentDetails?.name?.last
+                        : "")}
+                  </TableCell>
+                  <TableCell>{singleStudentOBJ.parentDetails?.email}</TableCell>
+                  <TableCell>
+                    {singleStudentOBJ.parentDetails?.mobileNo?.code +
+                      "-" +
+                      singleStudentOBJ.parentDetails?.mobileNo?.number}
+                  </TableCell>
+                  <TableCell>
+                    {payment?.payload?.payment?.entity?.email}
+                  </TableCell>
+                  <TableCell>
+                    {payment?.payload?.payment?.entity?.contact}
+                  </TableCell>
+                  <TableCell>
+                    {singleStudentbatchObj?.courseData?.name}
+                  </TableCell>
+                  <TableCell>{userSelectedDate}</TableCell>
+                  <TableCell>
+                    {payment?.payload?.payment?.entity?.amount / 100}
+                  </TableCell>
+                  <TableCell>{singleCoupon?.code}</TableCell>
+                  <TableCell>
+                    {singleStudentbatchObj?.batchData
+                      ? singleStudentbatchObj?.batchData?.name
+                      : "n/a"}
                   </TableCell>
                   <TableCell>
                     {singleInstructor?._id

@@ -101,7 +101,7 @@ const Daywise = ({ singleClass, batch }) => {
             </div>
             <div className="section-title pl-0 align-self-center">
               {singleClass.topic}
-              <span className="status">
+              {/* <span className="status">
                 {ongoing(
                   new Date(currentDate).setHours(
                     currentTime.toString().split(":")[0],
@@ -110,7 +110,7 @@ const Daywise = ({ singleClass, batch }) => {
                     0
                   )
                 )}
-              </span>
+              </span> */}
             </div>
           </div>
           <div className="inner-card">

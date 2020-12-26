@@ -79,6 +79,35 @@ router.get("/", async (req, res) => {
     },
     {
       $lookup: {
+        from: "files",
+        let: { file: "$file" },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $eq: ["$_id", "$$file"],
+              },
+            },
+          },
+          {
+            $project: {
+              originalName: 1,
+              filePath: 1,
+              _id: 1,
+            },
+          },
+        ],
+        as: "filedata",
+      },
+    },
+    {
+      $unwind: {
+        path: "$filedata",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
+    {
+      $lookup: {
         from: "users",
         let: { userId: "$userId" },
         pipeline: [
@@ -125,10 +154,10 @@ router.get("/", async (req, res) => {
 router.post("/verify", (req, res) => {
   const { userId, courseId, name, payment } = req.body;
   Certificate.find({
-    userId: userId,
-    courseId: courseId,
-    name: name,
-    payment: payment,
+    // userId: userId,
+    // courseId: courseId,
+    // name: name,
+    "payment.orderId": payment.orderId,
   })
     .then((doc) => {
       if (doc.length > 0) {
@@ -158,10 +187,7 @@ router.put("/", (req, res) => {
   const { userId, courseId, name, payment, file } = req.body;
   Certificate.findOneAndUpdate(
     {
-      userId: userId,
-      courseId: courseId,
-      name: name,
-      payment: payment,
+      "payment.orderId": payment.orderId,
     },
     {
       file: file,
