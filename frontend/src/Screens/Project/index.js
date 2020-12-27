@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setDefaultHeader, updateHeader } from '../../Actions/Header'
-import { FormUploadedHandler } from '../../Actions/ProjectPreview'
+import { FormUploadedHandler, ResetProject } from '../../Actions/ProjectPreview'
 import { AddPreviewOpenHandler, AddUploadHandler, GetProject, UpdatePreviewSaveHandler, UploadProject } from '../../Actions/ProjectPreview'
 import './css/index.css'
 import ProjectBrief from './ProjectBrief'
@@ -22,6 +22,9 @@ const Project = ({history, location}) => {
         else {
             if(projectIdParams) {
                 dispatch(GetProject(projectIdParams))
+            }
+            else {
+                dispatch(ResetProject())
             }
         }
     }, [userInfo])

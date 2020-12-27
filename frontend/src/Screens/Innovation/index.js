@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setDefaultHeader, updateHeader } from '../../Actions/Header'
-import { AddPreviewOpenHandler, AddUploadHandler, FormUploadedHandler, GetInnovation, UpdatePreviewSaveHandler, UploadInnovation } from '../../Actions/InnovationPreview'
+import { AddPreviewOpenHandler, AddUploadHandler, FormUploadedHandler, GetInnovation, ResetInnovation, UpdatePreviewSaveHandler, UploadInnovation } from '../../Actions/InnovationPreview'
 import './css/index.css'
 import InnovationBrief from './InnovationBrief'
 import InnovationComments from './InnovationComments'
@@ -23,6 +23,9 @@ const Innovation = ({history, location}) => {
         else {
             if(innovationIdParams) {
                 dispatch(GetInnovation(innovationIdParams))
+            }
+            else {
+                dispatch(ResetInnovation())
             }
         }
 

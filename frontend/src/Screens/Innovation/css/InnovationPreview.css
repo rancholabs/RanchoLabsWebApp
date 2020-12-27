@@ -38,9 +38,9 @@
 }
 
 .innovation-preview > .watermark > .box {
-    position: absolute;
+    position: fixed;
     right: 0;
-    top: calc(-95.5 * var(--vp));
+    bottom: calc(78 * var(--vp));
 }
 
 .innovation-preview > .watermark .box-container {
@@ -175,7 +175,7 @@
     box-shadow: calc(0 * var(--vp)) calc(5 * var(--vp)) calc(15 * var(--vp)) #00000029;
     border: calc(1 * var(--vp)) dashed #FE730C;
     border-radius: calc(3 * var(--vp));
-    font: normal normal medium calc(28 * var(--vp))/calc(37 * var(--vp)) Roboto;
+    font: normal normal 500 calc(28 * var(--vp))/calc(37 * var(--vp)) Roboto;
     letter-spacing: calc(0 * var(--vp));
     color: #FE730C;
     padding: 0 calc(26 * var(--vp));

@@ -12,7 +12,8 @@ import { ADD_PREVIEW_OPEN_HANDLER,
     UPDATE_PROJECT_FAIL,
     GET_PROJECT_REQUEST,
     GET_PROJECT_SUCCESS,
-    GET_PROJECT_FAIL
+    GET_PROJECT_FAIL,
+    RESET_PROJECT
  } from "../Constants/ProjectPreview"
 
 function ProjectPreviewReducer(state = { isFormUploaded: false, projectId: '', previewOpenHandler: () => {} }, action) {
@@ -52,6 +53,8 @@ function ProjectPreviewReducer(state = { isFormUploaded: false, projectId: '', p
         return {...state, ...action.payload, projectId: action.payload._id}
     case GET_PROJECT_FAIL:
         return {...state, loading: false, error: action.payload}
+    case RESET_PROJECT:
+        return { isFormUploaded: false, projectId: '', previewOpenHandler: () => {}}
     default:
       return state
   }

@@ -12,7 +12,8 @@ import { ADD_PREVIEW_OPEN_HANDLER,
     UPDATE_INNOVATION_REQUEST,
     GET_INNOVATION_FAIL,
     GET_INNOVATION_SUCCESS,
-    GET_INNOVATION_REQUEST
+    GET_INNOVATION_REQUEST,
+    RESET_INNOVATION
  } from "../Constants/InnovationPreview"
 
 import axios from 'axios'
@@ -217,6 +218,10 @@ const GetInnovation = (innovationId) => async (dispatch) => {
     })
 }
 
+const ResetInnovation = () => (dispatch) => {
+    dispatch({type: RESET_INNOVATION})
+}
+
 export { 
     AddPreviewOpenHandler,
     FormUploadedHandler,
@@ -228,5 +233,6 @@ export {
     UpdatePreviewSteps,
     UpdatePreviewConclusion,
     UploadInnovation,
-    GetInnovation
+    GetInnovation,
+    ResetInnovation
 }
