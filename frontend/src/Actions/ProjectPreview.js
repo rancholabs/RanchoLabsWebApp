@@ -12,7 +12,8 @@ import { ADD_PREVIEW_OPEN_HANDLER,
     UPDATE_PROJECT_REQUEST,
     GET_PROJECT_FAIL,
     GET_PROJECT_SUCCESS,
-    GET_PROJECT_REQUEST
+    GET_PROJECT_REQUEST,
+    RESET_PROJECT
  } from "../Constants/ProjectPreview"
 
 import axios from 'axios'
@@ -217,6 +218,10 @@ const GetProject = (projectId) => async (dispatch) => {
     })
 }
 
+const ResetProject = () => (dispatch) => {
+    dispatch({type: RESET_PROJECT})
+}
+
 export { 
     AddPreviewOpenHandler,
     UpdatePreviewSaveHandler,
@@ -228,5 +233,6 @@ export {
     UpdatePreviewSteps,
     UpdatePreviewConclusion,
     UploadProject,
-    GetProject
+    GetProject,
+    ResetProject
 }

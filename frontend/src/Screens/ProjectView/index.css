@@ -1,23 +1,23 @@
-.innovation-view {
+.project-view {
     background: #FFFFFF 0% 0% no-repeat padding-box;
 }
 
-.innovation-view > *:not(.innovation-image) {
+.project-view > *:not(.project-image) {
     margin: 0 calc(277.5 * var(--vp));
 }
 
-.innovation-view > .innovation-image {
+.project-view > .project-image {
     width: calc(100% - 161 * var(--vp));
     height: calc(634 * var(--vp));
     margin: 0 calc(80.5 * var(--vp));
 }
 
-.innovation-view > .close-preview, .innovation-view > .watermark {
+.project-view > .close-preview, .project-view .watermark {
     position: relative;
     margin: 0;
 }
 
-.innovation-view > .close-preview > .close-icon {
+.project-view > .close-preview > .close-icon {
     position: absolute;
     left: calc(81 * var(--vp));
     top: calc(30 * var(--vp));
@@ -28,13 +28,13 @@
     cursor: pointer;
 }
 
-.innovation-view > .watermark > .box {
-    position: absolute;
+.project-view .watermark > .box {
+    position: fixed;
     right: 0;
-    top: calc(-95.5 * var(--vp));
+    bottom: calc(78 * var(--vp));
 }
 
-.innovation-view > .watermark .box-container {
+.project-view .watermark .box-container {
     position: relative;
     width: calc(206 * var(--vp));
     height: calc(191 * var(--vp));
@@ -43,7 +43,7 @@
     box-shadow: calc(0 * var(--vp)) calc(8 * var(--vp)) calc(20 * var(--vp)) #00000042;
 }
 
-.innovation-view > .watermark .box-container > div {
+.project-view .watermark .box-container > div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,19 +51,19 @@
     width: calc(120 * var(--vp));
 }
 
-.innovation-view > .watermark .image {
+.project-view .watermark .image {
     width: calc(78 * var(--vp));
     height: calc(65 * var(--vp));
     background-color: transparent;
 }
 
-.innovation-view > .watermark .name {
+.project-view .watermark .name {
     font: normal normal 500 calc(17 * var(--vp))/calc(23 * var(--vp)) Roboto;
     letter-spacing: calc(0 * var(--vp));
     color: #171636;
 }
 
-.innovation-view > .watermark .before-top {
+.project-view .watermark .before-top {
     position: absolute;
     content: "";
     width:0;
@@ -74,7 +74,7 @@
     z-index: 2;
 }
 
-.innovation-view > .watermark .before-bottom {
+.project-view .watermark .before-bottom {
     position: absolute;
     content: "";
     width:0;
@@ -86,7 +86,7 @@
     z-index: 2;
 }
 
-.innovation-view > .innovation-heading {
+.project-view > .project-heading {
     margin-top: calc(33 * var(--vp));
     font: normal normal bold calc(67 * var(--vp))/calc(88 * var(--vp)) Roboto;
     letter-spacing: calc(0 * var(--vp));
@@ -95,42 +95,42 @@
     height: calc(88 * var(--vp));
 }
 
-.innovation-view > .innovation-category {
+.project-view > .project-category {
     margin-top: calc(11 * var(--vp));
     margin-bottom: calc(19 * var(--vp));
     height: calc(53 * var(--vp));
 }
 
-.innovation-view > .innovation-category > div {
+.project-view > .project-category > div {
     column-gap: calc(15 * var(--vp));
 }
 
-.innovation-view > .innovation-category .arrow-stick {
+.project-view > .project-category .arrow-stick {
     width: calc(96 * var(--vp));
     height: calc(22 * var(--vp));
     display: flex;
     align-items: center;
 }
 
-.innovation-view > .innovation-category .arrow-stick > .stick {
+.project-view > .project-category .arrow-stick > .stick {
     width: calc(74 * var(--vp));
     border: calc(3 * var(--vp)) solid #FE730C;
 }
 
-.innovation-view > .innovation-category .arrow-stick > .point {
+.project-view > .project-category .arrow-stick > .point {
     width: calc(22 * var(--vp));
     height: calc(22 * var(--vp));
     background: #32C1CD 0% 0% no-repeat padding-box;
     border-radius: 50%;
 }
 
-.innovation-view > .innovation-category .name {
+.project-view > .project-category .name {
     font: normal normal bold calc(40 * var(--vp))/calc(53 * var(--vp)) Roboto;
     letter-spacing: calc(0 * var(--vp));
     color: #3A3C4A;
 }
 
-.innovation-view > .innovation-by {
+.project-view > .project-by {
     margin-bottom: calc(98 * var(--vp));
     display: flex;
     align-items: center;
@@ -139,92 +139,92 @@
     height: calc(39 * var(--vp));
 }
 
-.innovation-view > .innovation-category > div,
-.innovation-view > .innovation-by > div {
+.project-view > .project-category > div,
+.project-view > .project-by > div {
     width: initial;
 }
 
-.innovation-view > .innovation-category > div,
-.innovation-view > .innovation-by > div,
-.innovation-view > .innovation-by > div > div {
+.project-view > .project-category > div,
+.project-view > .project-by > div,
+.project-view > .project-by > div > div {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.innovation-view > .innovation-by > div {
+.project-view > .project-by > div {
     column-gap: calc(22 * var(--vp));
 }
 
-.innovation-view > .innovation-by .text {
+.project-view > .project-by .text {
     font: normal normal normal calc(25 * var(--vp))/calc(33 * var(--vp)) Roboto;
     letter-spacing: calc(0 * var(--vp));
     color: #3A3C4A;
 }
 
-.innovation-view > .innovation-by .name {
+.project-view > .project-by .name {
     box-shadow: calc(0 * var(--vp)) calc(5 * var(--vp)) calc(15 * var(--vp)) #00000029;
     border: calc(1 * var(--vp)) dashed #FE730C;
     border-radius: calc(3 * var(--vp));
-    font: normal normal medium calc(28 * var(--vp))/calc(37 * var(--vp)) Roboto;
+    font: normal normal 500 calc(28 * var(--vp))/calc(37 * var(--vp)) Roboto;
     letter-spacing: calc(0 * var(--vp));
     color: #FE730C;
     padding: 0 calc(26 * var(--vp));
 }
 
-.innovation-view > .innovation-brief-heading,
-.innovation-view > .components-heading,
-.innovation-view > .innovation-steps-heading,
-.innovation-view > .innovation-conclusion-heading {
+.project-view > .project-brief-heading,
+.project-view > .components-heading,
+.project-view > .project-steps-heading,
+.project-view > .project-conclusion-heading {
     font: normal normal bold calc(50 * var(--vp))/calc(66 * var(--vp)) Roboto;
     letter-spacing: calc(0 * var(--vp));
     color: #3A3C4A;
     text-align: left;
 }
 
-.innovation-view > .innovation-brief,
-.innovation-view > .components .text,
-.innovation-view > .innovation-steps .step-heading,
-.innovation-view > .innovation-steps .sdesc,
-.innovation-view > .innovation-conclusion .conclusion-heading,
-.innovation-view > .innovation-conclusion .conclusion-sub-heading,
-.innovation-view > .innovation-conclusion .desc {
+.project-view > .project-brief,
+.project-view > .components .text,
+.project-view > .project-steps .step-heading,
+.project-view > .project-steps .sdesc,
+.project-view > .project-conclusion .conclusion-heading,
+.project-view > .project-conclusion .conclusion-sub-heading,
+.project-view > .project-conclusion .desc {
     font: normal normal normal calc(33 * var(--vp))/calc(44 * var(--vp)) Roboto;
     letter-spacing: calc(0.49 * var(--vp));
     color: #707070;
     text-align: justify;
 }
 
-.innovation-view > .innovation-brief {
+.project-view > .project-brief {
     margin-top: calc(42 * var(--vp));
     margin-bottom: calc(60 * var(--vp));
 }
 
-.innovation-view > .components,
-.innovation-view > .innovation-steps {
+.project-view > .components,
+.project-view > .project-steps {
     margin-top: calc(38 * var(--vp));
     margin-bottom: calc(78 * var(--vp));
 }
 
-.innovation-view > .innovation-video {
+.project-view > .project-video {
     width: calc(100% - 852 * var(--vp));
     height: calc(557 * var(--vp));
     margin: 0 calc(426 * var(--vp));
     margin-bottom: calc(90 * var(--vp));
 }
 
-.innovation-view > .components > div {
+.project-view > .components > div {
     height: 45px;
     position: relative;
     margin-top: calc(4 * var(--vp));
     margin-bottom: calc(4 * var(--vp));
 }
 
-.innovation-view > .components .text {
+.project-view > .components .text {
     padding-left: calc(49 * var(--vp));
 }
 
-.innovation-view > .components .bullet {
+.project-view > .components .bullet {
     position: absolute;
     left: 0;
     top: calc(22.5 * var(--vp));
@@ -234,62 +234,62 @@
     background: #707070 0% 0% no-repeat padding-box;
 }
 
-.innovation-view > .innovation-steps > div:first-child {
+.project-view > .project-steps > div:first-child {
     margin-top: calc(4 * var(--vp));
 }
 
-.innovation-view > .innovation-steps > div:last-child {
+.project-view > .project-steps > div:last-child {
     margin-bottom: calc(4 * var(--vp));
 }
 
-.innovation-view > .innovation-steps > div:not(:first-child) {
+.project-view > .project-steps > div:not(:first-child) {
     margin-top: calc(30 * var(--vp));
 }
 
-.innovation-view > .innovation-steps > div:not(:last-child) {
+.project-view > .project-steps > div:not(:last-child) {
     margin-bottom: calc(30 * var(--vp));
 }
 
-.innovation-view > .innovation-steps .step-heading > .step-no {
+.project-view > .project-steps .step-heading > .step-no {
     font: normal normal bold calc(35 * var(--vp))/calc(46 * var(--vp)) Roboto;
     letter-spacing: calc(0.53 * var(--vp));
     padding-right: calc(62 * var(--vp));
 }
 
-.innovation-view > .innovation-steps .step-heading,
-.innovation-view > .innovation-conclusion .conclusion-heading,
-.innovation-view > .innovation-conclusion .conclusion-sub-heading {
+.project-view > .project-steps .step-heading,
+.project-view > .project-conclusion .conclusion-heading,
+.project-view > .project-conclusion .conclusion-sub-heading {
     font-weight: 500;
     text-align: unset;
 }
 
-.innovation-view > .innovation-conclusion .conclusion-heading,
-.innovation-view > .innovation-conclusion .conclusion-sub-heading {
+.project-view > .project-conclusion .conclusion-heading,
+.project-view > .project-conclusion .conclusion-sub-heading {
     margin-bottom: calc(9 * var(--vp));
 }
 
-.innovation-view > .innovation-conclusion .conclusion-sub-heading {
+.project-view > .project-conclusion .conclusion-sub-heading {
     font: normal normal 500 calc(22 * var(--vp))/calc(33 * var(--vp)) Roboto;
 }
 
-.innovation-view > .innovation-steps .image, .innovation-view > .innovation-conclusion .image {
+.project-view > .project-steps .image, .project-view > .project-conclusion .image {
     width: 100%;
     height: calc(557 * var(--vp));
     margin: calc(42 * var(--vp)) 0;
 }
 
-.innovation-view > .innovation-conclusion > div {
+.project-view > .project-conclusion > div {
     margin-top: calc(42 * var(--vp));
 }
 
-.innovation-view > .social-btns {
+.project-view > .social-btns {
     margin: calc(178.5 * var(--vp)) calc(463 * var(--vp));
     display: flex;
     column-gap: calc(33 * var(--vp));
     height: calc(74 * var(--vp));
 }
 
-.innovation-view .social-btn {
+.project-view .social-btn {
     width: calc(224 * var(--vp));
     height: 100%;
     display: flex;
@@ -301,51 +301,51 @@
     cursor: pointer;
 }
 
-.innovation-view .social-btn > .icon {
+.project-view .social-btn > .icon {
     width: calc(46 * var(--vp));
     height: calc(46 * var(--vp));
     font-size: calc(46 * var(--vp));
     color: #FFFFFF;
 }
 
-.innovation-view .social-btn > .text {
+.project-view .social-btn > .text {
     font: normal normal normal calc(25 * var(--vp))/calc(40 * var(--vp)) Roboto;
     letter-spacing: calc(0.38 * var(--vp));
     color: #FFFFFF;
 }
 
-.innovation-view .social-btn.twitter {
+.project-view .social-btn.twitter {
     background: #55ACEE 0% 0% no-repeat padding-box;
 }
 
-.innovation-view .social-btn.fb {
+.project-view .social-btn.fb {
     background: #1B2FC5 0% 0% no-repeat padding-box;
 }
 
-.innovation-view .social-btn.gmail {
+.project-view .social-btn.gmail {
     background: #F0F0F2 0% 0% no-repeat padding-box;
 }
 
-.innovation-view .social-btn.gmail > .text {
+.project-view .social-btn.gmail > .text {
     color: #707070;
 }
 
-.innovation-view .social-btn.gmail > .icon {
+.project-view .social-btn.gmail > .icon {
     color: #707070;;
 }
 
-.innovation-view .social-btn.wa {
+.project-view .social-btn.wa {
     background: #4CAF50 0% 0% no-repeat padding-box;
 }
 
-.innovation-view > .profile {
+.project-view > .profile {
     padding-bottom: calc(127 * var(--vp));
     margin-left: calc(422 * var(--vp));
     margin-right: calc(315 * var(--vp));
     width: calc(100% - 737 * var(--vp));
 }
 
-.innovation-view > .profile > div {
+.project-view > .profile > div {
     height: calc(311 * var(--vp));
     padding: calc(51 * var(--vp)) 0;
     padding-left: calc(103 * var(--vp));
@@ -357,25 +357,25 @@
     border: calc(1 * var(--vp)) solid #DEDEE2;
 }
 
-.innovation-view > .profile .pic {
+.project-view > .profile .pic {
     width: calc(209 * var(--vp));
     height: calc(209 * var(--vp));
     border-radius: 50%;
 }
 
-.innovation-view > .profile .name-about {
+.project-view > .profile .name-about {
     width: calc(704 * var(--vp));
     text-align: left;
     color: #020122;
 }
 
-.innovation-view > .profile .name {
+.project-view > .profile .name {
     font: normal normal 500 calc(25 * var(--vp))/calc(33 * var(--vp)) Roboto;
     letter-spacing: calc(0.38 * var(--vp));
     margin-bottom: calc(9 * var(--vp));
 }
 
-.innovation-view > .profile .about {
+.project-view > .profile .about {
     font: normal normal normal calc(23 * var(--vp))/calc(30 * var(--vp)) Roboto;
     letter-spacing: calc(0.34 * var(--vp));
 }

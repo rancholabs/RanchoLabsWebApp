@@ -12,7 +12,8 @@ import { ADD_PREVIEW_OPEN_HANDLER,
     UPDATE_INNOVATION_FAIL,
     GET_INNOVATION_REQUEST,
     GET_INNOVATION_SUCCESS,
-    GET_INNOVATION_FAIL
+    GET_INNOVATION_FAIL,
+    RESET_INNOVATION
  } from "../Constants/InnovationPreview"
 
 function InnovationPreviewReducer(state = { isFormUploaded: false, innovationId: '', previewOpenHandler: () => {} }, action) {
@@ -52,6 +53,8 @@ function InnovationPreviewReducer(state = { isFormUploaded: false, innovationId:
         return {...state, ...action.payload, innovationId: action.payload._id}
     case GET_INNOVATION_FAIL:
         return {...state, loading: false, error: action.payload}
+    case RESET_INNOVATION:
+        return { isFormUploaded: false, innovationId: '', previewOpenHandler: () => {}}
     default:
       return state
   }
