@@ -31,19 +31,19 @@
 }
 
 .dashboardcertificate .certificate-couponCode input {
-  margin: 0 20px;
+  margin-right: 20px;
   padding: 4px;
   border: 1px solid black;
   outline: none;
   color: #333333;
 }
 
-.dashboardcertificate .certificate-couponCode label {
+.dashboardcertificate .certificate-couponCode-label {
   font: normal normal normal calc(28 * var(--vp)) Roboto;
   font-size: calc(28 * var(--vp));
   color: #020122;
-  margin: 0;
   padding: 0;
+  margin-top: 20px;
 }
 
 .certificate-couponCode-btn {
@@ -351,12 +351,12 @@
     margin: auto;
     border-radius: calc(10 * var(--vm));
     padding: calc(34 * var(--vm)) calc(25 * var(--vm));
-    position: fixed;
+    /* position: fixed;
     top: 50%;
     right: 50%;
     transform: translateY(-50%) translateX(50%);
     box-shadow: 0 0 0 100vh #00000091;
-    z-index: 5;
+    z-index: 5; */
   }
 
   .dashboard-certificate-modal .cmodal-content {

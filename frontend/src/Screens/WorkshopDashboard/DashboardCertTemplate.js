@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./css/DashboardCertTemplate.css";
 import * as htmlToImage from "html-to-image";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 
 // IMAGES
 import CertificateDesign from "./img/certificate-design-2.png";
@@ -48,6 +50,16 @@ function DashboardCertTemplate({
         // alert(error);
         console.error("oops, something went wrong!", error);
       });
+
+    // html2canvas(node).then((canvas) => {
+    //   const imgData = canvas.toDataURL("image/png");
+    //   const pdf = new jsPDF();
+    //   pdf.addImage(imgData, "JPEG", 0, 0);
+    //   console.log(imgData);
+    //   console.log(pdf);
+    //   // pdf.output('dataurlnewwindow');
+    //   pdf.save("download.pdf");
+    // });
 
     var today = new Date();
     today =

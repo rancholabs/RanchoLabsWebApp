@@ -19,7 +19,7 @@ const testimonialList = [
   },
   {
     desc:
-      "I liked this very useful, educational and innovative program a lot because it brings the creativity out of the students. The wonderful guidance of the zealous instructors made my learning experience the best.",
+      "I found this very useful, educational and innovative program a lot because it brings the creativity out of the students. The wonderful guidance of the zealous instructors made my learning experience the best.",
     name: "Karandeep Singh (Class 11)",
     img: Karandeep,
   },

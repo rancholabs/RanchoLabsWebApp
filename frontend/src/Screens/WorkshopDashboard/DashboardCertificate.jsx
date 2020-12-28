@@ -17,7 +17,7 @@ import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ShareIcon from "./ShareIcon";
 import keys from "../../paykey";
-
+import Pdf from "react-to-pdf";
 function loadScript(src) {
   return new Promise((resolve) => {
     const script = document.createElement("script");
@@ -58,6 +58,8 @@ const shareIcons = [
     name: "Twitter",
   },
 ];
+
+const ref = React.createRef();
 
 const Certificate = ({
   userInfo,
@@ -370,53 +372,56 @@ const Certificate = ({
         window.
       </Backdrop>
       {iscertificate ? (
-        <div className="dashboard-certificate-modal">
-          {/* <span className="close">
+        <>
+          <div className="dashboard-certificate-modal">
+            {/* <span className="close">
             <button onClick={showCertificate}>&times;</button>
           </span> */}
-          <div className="row mx-0 cmodal-content">
-            <div className="certificate-details">
-              <div className="certificate-title">CONGRATULATIONS</div>
-              <div className="certificate-modal-content">
-                Dear{" "}
-                {userInfo?.first
-                  ? userInfo?.first
-                  : "" + " " + userInfo?.last
-                  ? userInfo?.last
-                  : ""}
-                , Congratulations on completing the{" "}
-                {freeClassCert ? "free class" : "free workshop"} offered by
-                RanchoLabs. Not all students get this opportunity and we really
-                applaud your efforts in taking time to learn new things. We hope
-                this is the first achievement amongst many to follow.
+            <div className="row mx-0 cmodal-content">
+              <div className="certificate-details">
+                <div className="certificate-title">CONGRATULATIONS</div>
+                <div className="certificate-modal-content">
+                  Dear{" "}
+                  {userInfo?.first
+                    ? userInfo?.first
+                    : "" + " " + userInfo?.last
+                    ? userInfo?.last
+                    : ""}
+                  , Congratulations on completing the{" "}
+                  {freeClassCert ? "free class" : "free workshop"} offered by
+                  RanchoLabs. Not all students get this opportunity and we
+                  really applaud your efforts in taking time to learn new
+                  things. We hope this is the first achievement amongst many to
+                  follow.
+                </div>
+                <div className="certificate-share align-items-center">
+                  <button
+                    onClick={() => {
+                      copyShareLink();
+                    }}
+                  >
+                    Get Certificate
+                  </button>
+                </div>
               </div>
-              <div className="certificate-share align-items-center">
-                <button
-                  onClick={() => {
-                    copyShareLink();
-                  }}
-                >
-                  Get Certificate
-                </button>
+              <div className="certificate-image">
+                <img src={certificate} alt="" />
+                <img className="lock" src={lock} />
               </div>
             </div>
-            <div className="certificate-image">
-              <img src={certificate} alt="" />
-              <img className="lock" src={lock} />
+            <div id="dashboard__certTemp">
+              <DashboardCertTemplate
+                updateCertFile={updateCertFile}
+                userInfo={userInfo}
+                from={from}
+                to={to}
+                month={month}
+                year={year}
+                allCerts={allCerts}
+              />
             </div>
           </div>
-          <div id="dashboard__certTemp">
-            <DashboardCertTemplate
-              updateCertFile={updateCertFile}
-              userInfo={userInfo}
-              from={from}
-              to={to}
-              month={month}
-              year={year}
-              allCerts={allCerts}
-            />
-          </div>
-        </div>
+        </>
       ) : isCouponScreen ? (
         <div className="dashboardcertificate row mx-auto">
           <div className="certificate-content">
@@ -429,8 +434,12 @@ const Certificate = ({
               , we are so pleased to see you complete our{" "}
               {freeClassCert ? "free class" : "workshop"}. You need to pay our
               certificate fees in order to get access to your certificate.
+              <div>
+                <label className="certificate-couponCode-label">
+                  Do you have a coupon code?
+                </label>
+              </div>
               <div className="certificate-couponCode">
-                <label>Coupon Code</label>
                 <input
                   type="text"
                   value={couponCode}
@@ -462,7 +471,7 @@ const Certificate = ({
                     }
                   }}
                 >
-                  PAY NOW &nbsp; <Fontawesome name="arrow-right" />
+                  PAY 199/- &nbsp; <Fontawesome name="arrow-right" />
                 </button>
               </a>
             </div>

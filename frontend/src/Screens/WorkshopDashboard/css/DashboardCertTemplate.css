@@ -4,15 +4,17 @@
   height: 595px;
   background-color: rgba(255, 255, 255, 1);
   overflow: hidden;
+  /* position: relative; */
   top: 0%;
 }
 #certificate-design-2 {
+  position: relative;
   position: absolute;
   width: 842px;
   height: 595.5px;
   left: 0px;
   top: 0px;
-  overflow: visible;
+  /* overflow: visible; */
 }
 #CERTIFICATE_OF_COMPLETION {
   left: 196px;
@@ -37,11 +39,11 @@
   overflow: visible;
 }
 #This_certificate_is_awarded_to {
-  left: 532px;
+  right: 54px;
   top: 164px;
   position: absolute;
   overflow: visible;
-  width: 214px;
+  /* width: 214px; */
   white-space: nowrap;
   text-align: left;
   font-family: Gotham;
@@ -51,11 +53,11 @@
   color: rgba(0, 0, 0, 1);
 }
 #ID09122020 {
-  left: 670px;
+  right: 54px;
   top: 117px;
   position: absolute;
   overflow: visible;
-  width: 93px;
+  /* width: 93px; */
   white-space: nowrap;
   text-align: left;
   font-family: Gotham;
@@ -79,7 +81,7 @@
   color: rgba(0, 0, 0, 1);
 }
 #Ananya {
-  right: 30px;
+  right: 54px;
   top: 166px;
   position: absolute;
   overflow: visible;
@@ -219,3 +221,10 @@
   top: 379px;
   overflow: visible;
 }
+
+/* @media (max-width: 600px) {
+  #certificate_design__2 {
+    width: 200px;
+    height: 282px;
+  }
+} */

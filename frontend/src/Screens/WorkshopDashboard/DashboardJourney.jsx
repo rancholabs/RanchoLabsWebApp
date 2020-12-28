@@ -62,17 +62,17 @@ const courseGroups = [
       {
         title: `Internet of Things`,
         image: iot,
-        classes: 12,
+        classes: 36,
       },
       {
         title: "Drone Building and Computer Vision",
         image: drone,
-        classes: 12,
+        classes: 132,
       },
       {
         title: "Innovation Project",
         image: innovation,
-        classes: 12,
+        classes: 144,
       },
     ],
   },
@@ -92,17 +92,17 @@ const courseGroups = [
       {
         title: `Machine Learning`,
         image: ai,
-        classes: 12,
+        classes: 36,
       },
       {
         title: "ML and Neural Networks",
         image: brain,
-        classes: 12,
+        classes: 132,
       },
       {
         title: "Innovation Project",
         image: innovation,
-        classes: 12,
+        classes: 144,
       },
     ],
   },
