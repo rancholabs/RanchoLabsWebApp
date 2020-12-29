@@ -163,7 +163,9 @@ const DashboardHeaderLower = (props) => {
         <div className="col-lg-4" style={{ padding: 0 }}>
           <div
             className="project-title"
-            onClick={() => history.push("/profile/student")}
+            onClick={() =>
+              history.push("/profile/student?scroll=student-profile-projects")
+            }
           >
             PROJECT
           </div>

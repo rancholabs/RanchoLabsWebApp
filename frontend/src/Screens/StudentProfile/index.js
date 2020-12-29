@@ -12,6 +12,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { enableEditing, getProfile } from "../../Actions/StudentProfile";
 import { useDispatch, useSelector } from "react-redux";
 import StudentProfileShareBtns from "./StudentProfileShareBtns";
+import queryString from "query-string";
 
 const ProfileLabel = ({ label, className }) => {
   return (
@@ -22,7 +23,7 @@ const ProfileLabel = ({ label, className }) => {
   );
 };
 
-const StudentProfile = () => {
+const StudentProfile = ({ location }) => {
   const { isEditView, isShareOpen } = useSelector(
     (state) => state.studentProfile
   );
@@ -31,6 +32,8 @@ const StudentProfile = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const params = queryString.parse(location.search);
+
   useEffect(() => {
     if (!profileId) {
       if (userInfo) dispatch(enableEditing(true));
@@ -38,6 +41,15 @@ const StudentProfile = () => {
     }
     dispatch(getProfile(profileId));
   }, [profileId, userInfo]);
+
+  useEffect(() => {
+    if (params.scroll) {
+      const element = document.getElementById(params.scroll);
+      if (element) {
+        element.scrollIntoView();
+      }
+    }
+  }, []);
 
   const profileLabels = [
     {
