@@ -96,6 +96,22 @@
   letter-spacing: 1.4px;
   padding: 1vw 0 0 0;
   margin-bottom: 0.8vw;
+  text-align: center;
+}
+
+.dashboard-header-lower .project-title {
+  color: #f74b42;
+  font-size: 1.45vw;
+  font-weight: 600;
+  margin-left: 3.23vw;
+  letter-spacing: 1.4px;
+  padding: 1vw 0 0 0;
+  margin-bottom: 0.8vw;
+  text-align: center;
+  background-color: rgb(240, 240, 242);
+  border-radius: 0.78vw 0.78vw 0 0;
+  height: 3.69vw;
+  cursor: pointer;
 }
 
 .list ul li a {

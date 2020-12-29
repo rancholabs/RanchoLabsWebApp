@@ -193,7 +193,7 @@
 }
 
 .dashboard-share-exp {
-  height: calc(673 * var(--vp));
+  /* height: calc(673 * var(--vp)); */
   width: calc(921 * var(--vp));
   background-color: #ffffff;
   box-shadow: 0px calc(6 * var(--vp)) calc(6 * var(--vp)) #00000045;
@@ -461,7 +461,7 @@
   }
 
   .dashboard-share-exp {
-    height: calc(342 * var(--vm));
+    /* height: calc(342 * var(--vm)); */
     width: calc(295 * var(--vm));
     background-color: #ffffff;
     box-shadow: 0px calc(6 * var(--vp)) calc(6 * var(--vp)) #00000045;

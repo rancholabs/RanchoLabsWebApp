@@ -102,6 +102,62 @@
   margin-right: 1vw;
 }
 
+.dashboard-certificate-complete .social-btns {
+  margin: calc(50 * var(--vp)) 0;
+  display: flex;
+  column-gap: calc(33 * var(--vp));
+  height: calc(74 * var(--vp));
+}
+
+.dashboard-certificate-complete .social-btn {
+  width: calc(224 * var(--vp));
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding-left: calc(29 * var(--vp));
+  padding-right: calc(53 * var(--vp)); */
+  border-radius: calc(8 * var(--vp));
+  cursor: pointer;
+}
+
+.dashboard-certificate-complete .social-btn > .icon {
+  width: 100%;
+  height: calc(46 * var(--vp));
+  font-size: calc(46 * var(--vp));
+  color: #ffffff;
+}
+
+.dashboard-certificate-complete .social-btn > .text {
+  font: normal normal normal calc(25 * var(--vp)) / calc(40 * var(--vp)) Roboto;
+  letter-spacing: calc(0.38 * var(--vp));
+  color: #ffffff;
+}
+
+.dashboard-certificate-complete .social-btn.twitter {
+  background: #55acee 0% 0% no-repeat padding-box;
+}
+
+.dashboard-certificate-complete .social-btn.fb {
+  background: #1b2fc5 0% 0% no-repeat padding-box;
+}
+
+.dashboard-certificate-complete .social-btn.gmail {
+  background: #f0f0f2 0% 0% no-repeat padding-box;
+}
+
+.dashboard-certificate-complete .social-btn.gmail > .text {
+  color: #707070;
+}
+
+.dashboard-certificate-complete .social-btn.gmail > .icon {
+  color: #707070;
+}
+
+.dashboard-certificate-complete .social-btn.wa {
+  background: #4caf50 0% 0% no-repeat padding-box;
+}
+
 @media (max-width: 600px) {
   .dashboard-certificate-complete {
     width: calc(326 * var(--vm));

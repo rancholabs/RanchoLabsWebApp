@@ -471,7 +471,7 @@ const Certificate = ({
                     }
                   }}
                 >
-                  PAY 199/- &nbsp; <Fontawesome name="arrow-right" />
+                  PAY {finalAmount}/- &nbsp; <Fontawesome name="arrow-right" />
                 </button>
               </a>
             </div>

@@ -15,6 +15,7 @@ import DashboardCongratsCard from "./DashboardCongratsCard";
 import DashboardCertificateComplete from "./DashboardCertificateComplete";
 import axios from "axios";
 import { setDefaultFooter, updateFooter } from "../../Actions/Footer";
+import { useHistory, useParams } from "react-router-dom";
 
 const DashboardCourseChoice = (props) => {
   // const [course, setCourse] = useState(0);
@@ -149,14 +150,23 @@ const DashboardHeaderLowerMob = (props) => {
 };
 
 const DashboardHeaderLower = (props) => {
+  const history = useHistory();
   return (
     <div style={{ backgroundColor: "#020122", paddingTop: "2vw" }}>
       <div className="row dashboard-header-lower mr-0">
-        <div className="col-lg-5">
+        <div className="col-lg-4">
           <DashboardCourseChoice courses={props.courses} />
         </div>
-        <div className="col-lg-7" style={{ alignSelf: "flex-end" }}>
+        <div className="col-lg-4">
           <div className="profile-title">PROFILE</div>
+        </div>
+        <div className="col-lg-4" style={{ padding: 0 }}>
+          <div
+            className="project-title"
+            onClick={() => history.push("/profile/student")}
+          >
+            PROJECT
+          </div>
         </div>
       </div>
     </div>
