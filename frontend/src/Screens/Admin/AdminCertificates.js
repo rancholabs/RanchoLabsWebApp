@@ -36,7 +36,8 @@ function Certificates({ allCertificateData }) {
             </TableHead>
             <TableBody>
               {allCertificateData?.map((singleCert) => {
-                let date = new Date(singleCert.date).toString().split("GMT")[0];
+                let timestamp = singleCert._id?.toString().substring(0, 8);
+                let payDate = new Date(parseInt(timestamp, 16) * 1000);
                 if (certId !== "") {
                   if (
                     singleCert.id
@@ -58,7 +59,9 @@ function Certificates({ allCertificateData }) {
                               ? singleCert.name?.last
                               : "")}
                         </TableCell>
-                        <TableCell>{date}</TableCell>
+                        <TableCell>
+                          {payDate.toString().split("GMT")[0]}
+                        </TableCell>
                         <TableCell>
                           {singleCert.payment?.paymentId ? "Paid" : "Unpaid"}
                         </TableCell>
@@ -91,7 +94,9 @@ function Certificates({ allCertificateData }) {
                           " " +
                           (singleCert.name?.last ? singleCert.name?.last : "")}
                       </TableCell>
-                      <TableCell>{date}</TableCell>
+                      <TableCell>
+                        {payDate.toString().split("GMT")[0]}
+                      </TableCell>
                       <TableCell>
                         {singleCert.payment?.paymentId ? "Paid" : "Unpaid"}
                       </TableCell>

@@ -57,7 +57,8 @@ function Certificates() {
                 <TableRow>
                   <TableCell>ID</TableCell>
                   <TableCell>Name</TableCell>
-                  <TableCell>Date</TableCell>
+                  <TableCell>Date Issued</TableCell>
+                  <TableCell>Issued For</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -73,6 +74,7 @@ function Certificates() {
                   <TableCell>
                     {new Date(singleCert.date).toString().split("GMT")[0]}
                   </TableCell>
+                  <TableCell>Coding, AI and Robotics Workshop</TableCell>
                 </TableRow>
               </TableBody>
             </Table>

@@ -129,6 +129,18 @@ const Certificate = ({
     }
   }, [validCouponDetails]);
 
+  function dataURLtoFile(dataurl, filename) {
+    var arr = dataurl.split(","),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mime });
+  }
+
   const copyShareLink = async () => {
     setOpen(true);
     // certificate shared => generate new cert for student
@@ -144,10 +156,29 @@ const Certificate = ({
     let count = 0;
     let allCerts;
 
-    // GENERATE CERT FILE AND UPLOAD TO S3
+    // GENERATE CERT FILE
+    const certFileBody = {
+      userInfo: userInfo,
+      from: from,
+      to: to,
+      month: month,
+      year: year,
+    };
+    const certFileRes = await axios
+      .post("/api/certificate/certfile", certFileBody, config)
+      .then((res) => res.data)
+      .catch((error) => console.log(error));
 
+    console.log(certFileRes);
+
+    const certFileConverted = dataURLtoFile(
+      certFileRes,
+      "coursecertificate.png"
+    );
+
+    // UPLOAD TO S3
     const formData = new FormData();
-    formData.append("files", certFile);
+    formData.append("files", certFileConverted);
     const fileID = await axios
       .post("/api/file", formData, config)
       .then((res) => res.data.fileId)
@@ -191,6 +222,8 @@ const Certificate = ({
             name: userInfo,
             file: fileID,
             userId: userId,
+            from: from,
+            to: to,
             courseId: activeCourse,
             payment: {
               paymentId: userpaymentId,
@@ -409,21 +442,10 @@ const Certificate = ({
                 <img className="lock" src={lock} />
               </div>
             </div>
-            <div id="dashboard__certTemp">
-              <DashboardCertTemplate
-                updateCertFile={updateCertFile}
-                userInfo={userInfo}
-                from={from}
-                to={to}
-                month={month}
-                year={year}
-                allCerts={allCerts}
-              />
-            </div>
           </div>
         </>
       ) : isCouponScreen ? (
-        <div className="dashboardcertificate row mx-auto">
+        <div className="dashboardcertificate dashboardCouponSection row mx-auto">
           <div className="certificate-content">
             <div className="certificate-title">ALMOST THERE</div>
             <div className="certificate-desc">

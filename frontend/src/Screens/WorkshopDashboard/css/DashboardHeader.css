@@ -108,9 +108,10 @@
   padding: 1vw 0 0 0;
   margin-bottom: 0.8vw;
   text-align: center;
-  background-color: rgb(240, 240, 242);
-  border-radius: 0.78vw 0.78vw 0 0;
+  /* background-color: rgb(240, 240, 242);
+  border-radius: 0.78vw 0.78vw 0 0; */
   height: 3.69vw;
+  border-left: 1px solid rgba(240, 240, 242, 0.5);
   cursor: pointer;
 }
 

@@ -27,6 +27,14 @@ const CertificateSchema = new mongoose.Schema({
       default: null,
     },
   },
+  from: {
+    type: String,
+    default: null,
+  },
+  to: {
+    type: String,
+    default: null,
+  },
   date: {
     type: Date,
     default: Date.now(),

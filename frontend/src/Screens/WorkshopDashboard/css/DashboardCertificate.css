@@ -301,6 +301,11 @@
     padding-top: 6vw;
   }
 
+  .dashboardCouponSection {
+    flex-direction: row;
+    height: auto;
+  }
+
   .dashboardcertificate .certificate-content {
     margin: 0 auto auto;
   }
@@ -310,6 +315,10 @@
     font-size: calc(20 * var(--vm));
     font-weight: 500;
     margin: auto;
+  }
+
+  .dashboardcertificate .certificate-couponCode-label {
+    font-size: calc(12 * var(--vm));
   }
 
   .dashboardcertificate .certificate-desc {
