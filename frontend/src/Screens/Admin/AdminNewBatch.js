@@ -15,7 +15,7 @@ function AdminNewBatch({
   allSchoolsData,
 }) {
   const [batchName, setBatchName] = useState("");
-  const [batchType, setbatchType] = useState("normal");
+  const [batchType, setbatchType] = useState("");
   const [batchStartingDate, setbatchStartingDate] = useState("");
   const [batchEndingDate, setbatchEndingDate] = useState("");
   const [batchSingleDate, setbatchSingleDate] = useState("");
@@ -43,7 +43,6 @@ function AdminNewBatch({
   const [_allStudentData, set_allStudentData] = useState([]);
 
   useEffect(() => {
-    console.log(toBeEditedBatch);
     if (toBeEditedBatch?._id) {
       const userInfo = localStorage.getItem("userInfo");
       const token = userInfo ? JSON.parse(userInfo).token : "";
@@ -66,6 +65,7 @@ function AdminNewBatch({
       setday_time(toBeEditedBatch.date_time);
       setbatch_link(toBeEditedBatch.batch_link);
       setschool(toBeEditedBatch.school);
+      setnumberOfDays(toBeEditedBatch.date_time.length);
 
       let assignedInstruct = [];
       let _instruct = instructors.filter(
@@ -163,6 +163,59 @@ function AdminNewBatch({
       },
     };
 
+    let weekDays = [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ];
+
+    let allDates = [{ date: batchStartingDate }];
+
+    function weeksBetween(d1, d2) {
+      return Math.round((d2 - d1) / (7 * 24 * 60 * 60 * 1000));
+    }
+
+    let totalBatchWeeks = weeksBetween(
+      new Date(batchStartingDate),
+      new Date(batchEndingDate)
+    );
+
+    console.log(totalBatchWeeks);
+
+    if (day_time.length > 0) {
+      for (let i = 0; i < totalBatchWeeks; i++) {
+        day_time.forEach((dt) => {
+          let currentday = weekDays.indexOf(dt.day.toString());
+          if (currentday >= 0) {
+            currentday = parseInt(currentday) + 1;
+          }
+          let today = new Date(allDates[allDates.length - 1].date);
+          let nextBatchDate = new Date(
+            today.setDate(
+              today.getDate() + ((currentday + 7 - today.getDay()) % 7)
+            )
+          );
+          nextBatchDate.setHours(
+            dt.time.toString().split(":")[0],
+            dt.time.toString().split(":")[1],
+            0,
+            0
+          );
+          allDates.push({
+            date: nextBatchDate.toString(),
+          });
+        });
+      }
+    }
+
+    allDates.splice(0, 1);
+
+    console.log(allDates);
+
     if (toBeEditedBatch?._id) {
       // UPDATE BATCH DATA
       const body = {
@@ -179,11 +232,14 @@ function AdminNewBatch({
           maxG: maxGrade,
         },
         date_time: day_time,
+        allDates: allDates,
         batch_link: batch_link,
         instructor: assignedInstructors[0]?.toString().split(" - ")[1],
         school,
         // courseId: selectedCourse._id,
       };
+
+      console.log(body);
 
       axios
         .put(`/api/course/batch/${toBeEditedBatch._id}`, body, config)
@@ -246,6 +302,7 @@ function AdminNewBatch({
             maxG: maxGrade,
           },
           date_time: day_time,
+          allDates: allDates,
           batch_link: batch_link,
           instructor: assignedInstructors[0]?.toString().split(" - ")[1],
         },
@@ -438,6 +495,7 @@ function AdminNewBatch({
               value={batchType}
               onChange={(e) => setbatchType(e.target.value)}
             >
+              <option>-Select-</option>
               <option value="normal">Normal</option>
               <option value="freeclass">Free Class</option>
               <option value="workshop">Workshop</option>
@@ -595,6 +653,7 @@ function AdminNewBatch({
                         value={day_time[index].day}
                         onChange={(e) => handleDayChange(e, index)}
                       >
+                        <option>Select Day</option>
                         <option value="Monday">Monday</option>
                         <option value="Tuesday">Tuesday</option>
                         <option value="Wednesday">Wednesday</option>

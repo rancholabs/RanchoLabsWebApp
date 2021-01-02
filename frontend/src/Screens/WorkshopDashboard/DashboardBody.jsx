@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { courseGroups } from "../../Actions/courseActions";
 import { activeCourseGroup } from "../../Actions/dashboardActions";
+import { getStudentCourses } from "../../Actions/Student";
 import DashboardCards from "./DashboardCards";
 import DashboardBanner from "./DashboardBanner";
 import DashboardCertificate from "./DashboardCertificate";
@@ -134,16 +135,35 @@ const DashboardCourseChoice = (props) => {
 };
 
 const DashboardHeaderLowerMob = (props) => {
+  const history = useHistory();
   return (
     <div
       className="row dashboard-header-lower-mob mx-0"
       style={{ height: "9vw" }}
     >
-      <div className="col-7 p-0">
+      <div className="col-6 p-0">
         <DashboardCourseChoice courses={props.courses} />
       </div>
-      <div className="col-5 pl-15">
-        <div className="profile-title">PROFILE</div>
+      <div className="col-3 pl-15">
+        <div
+          className="profile-title"
+          onClick={() => history.push("/profile/student")}
+        >
+          PROFILE
+        </div>
+      </div>
+      <div
+        className="col-3"
+        style={{ padding: 0, borderLeft: "1px solid rgba(240, 240, 242, 0.5)" }}
+      >
+        <div
+          className="project-title"
+          onClick={() =>
+            history.push("/profile/student?scroll=student-profile-projects")
+          }
+        >
+          PROJECT
+        </div>
       </div>
     </div>
   );
@@ -154,13 +174,18 @@ const DashboardHeaderLower = (props) => {
   return (
     <div style={{ backgroundColor: "#020122", paddingTop: "2vw" }}>
       <div className="row dashboard-header-lower mr-0">
-        <div className="col-lg-4">
+        <div className="col-4">
           <DashboardCourseChoice courses={props.courses} />
         </div>
-        <div className="col-lg-4">
-          <div className="profile-title">PROFILE</div>
+        <div className="col-4">
+          <div
+            className="profile-title"
+            onClick={() => history.push("/profile/student")}
+          >
+            PROFILE
+          </div>
         </div>
-        <div className="col-lg-4" style={{ padding: 0 }}>
+        <div className="col-4" style={{ padding: 0 }}>
           <div
             className="project-title"
             onClick={() =>
@@ -194,10 +219,24 @@ function DashboardBody(props) {
   const [minAttendance, setminAttendance] = useState(false);
   const [allCerts, setallCerts] = useState([]);
   const [certPaid, setcertPaid] = useState(false);
+  const { courses } = useSelector((state) => state.studentCourses);
 
   useEffect(() => {
     dispatch(courseGroups());
   }, []);
+
+  useEffect(() => {
+    // check for payed courses
+    dispatch(getStudentCourses());
+  }, []);
+
+  // useEffect(() => {
+  //   if(courses){
+  //     courses.filter()
+  //   }
+  // },[courses])
+
+  // console.log(courses);
 
   useEffect(() => {
     if (coursegroups) {
@@ -209,21 +248,21 @@ function DashboardBody(props) {
       );
       if (workshopGroup.length > 0) {
         workshopGroup = workshopGroup[0];
-        if (workshopGroup._id === activeCourse) {
+        if (workshopGroup._id?.toString() === activeCourse?.toString()) {
           setactiveWorkshop(true);
         } else {
           setactiveWorkshop(false);
         }
       } else if (freeclassGroup.length > 0) {
         freeclassGroup = freeclassGroup[0];
-        if (freeclassGroup._id === activeCourse) {
+        if (freeclassGroup._id?.toString() === activeCourse?.toString()) {
           setactiveFreeclass(true);
         } else {
           setactiveFreeclass(false);
         }
       }
     }
-  }, [activeCourse]);
+  }, [activeCourse, coursegroups]);
 
   var _activeCourse = props.courses.filter((course) => {
     if (course.courseDetails.groupId === activeCourse) return course;
@@ -236,7 +275,7 @@ function DashboardBody(props) {
   var coursedata = _activeCourse.length ? _activeCourse[0] : null;
 
   useEffect(() => {
-    if (coursedata) {
+    if (coursedata && coursedata.batch) {
       if (coursedata.batch.batchType === "workshop") {
         var batchEndDate = new Date(coursedata.batch.doubleDate).setHours(
           coursedata.batch.doubleTime.toString().split(":")[0],
@@ -392,47 +431,52 @@ function DashboardBody(props) {
               coursedata={coursedata}
               activeCourse={_activeCourse}
             />
-            {applyForCertificate && (
-              <DashboardCertificate
-                minAttendance={minAttendance}
-                userInfo={userInfo?.userName}
-                activeCourse={activeCourse}
-                studentCerts={studentProfile?.certificates}
-                showAppliedCertLoadingBanner={showAppliedCertLoadingBanner}
-                freeClassCert={activeFreeclass}
-                allCerts={allCerts}
-                certPaid={certPaid}
-                updateCertPaidStatus={updateCertPaidStatus}
-                userId={userInfo?.userId}
-                from={
-                  coursedata.batch.batchType === "workshop"
-                    ? new Date(coursedata.batch.singleDate).getDate()
-                    : ""
-                }
-                to={
-                  coursedata.batch.batchType === "workshop"
-                    ? new Date(coursedata.batch.doubleDate).getDate()
-                    : ""
-                }
-                month={
-                  coursedata.batch.batchType === "workshop"
-                    ? new Date(coursedata.batch.singleDate).getMonth()
-                    : ""
-                }
-                year={
-                  coursedata.batch.batchType === "workshop"
-                    ? new Date(coursedata.batch.singleDate).getFullYear()
-                    : ""
-                }
-              />
-            )}
-            {showLoadingCertificate && <DashboardCongratsCard />}
-            {showEnabledCertificate && (
-              <DashboardCertificateComplete
-                userInfo={userInfo?.userName}
-                activeCourse={activeCourse}
-                studentCerts={studentProfile?.certificates}
-              />
+
+            {(activeWorkshop || activeFreeclass) && (
+              <>
+                {applyForCertificate && (
+                  <DashboardCertificate
+                    minAttendance={minAttendance}
+                    userInfo={userInfo?.userName}
+                    activeCourse={activeCourse}
+                    studentCerts={studentProfile?.certificates}
+                    showAppliedCertLoadingBanner={showAppliedCertLoadingBanner}
+                    freeClassCert={activeFreeclass}
+                    allCerts={allCerts}
+                    certPaid={certPaid}
+                    updateCertPaidStatus={updateCertPaidStatus}
+                    userId={userInfo?.userId}
+                    from={
+                      coursedata.batch.batchType === "workshop"
+                        ? new Date(coursedata.batch.singleDate).getDate()
+                        : ""
+                    }
+                    to={
+                      coursedata.batch.batchType === "workshop"
+                        ? new Date(coursedata.batch.doubleDate).getDate()
+                        : ""
+                    }
+                    month={
+                      coursedata.batch.batchType === "workshop"
+                        ? new Date(coursedata.batch.singleDate).getMonth()
+                        : ""
+                    }
+                    year={
+                      coursedata.batch.batchType === "workshop"
+                        ? new Date(coursedata.batch.singleDate).getFullYear()
+                        : ""
+                    }
+                  />
+                )}
+                {showLoadingCertificate && <DashboardCongratsCard />}
+                {showEnabledCertificate && (
+                  <DashboardCertificateComplete
+                    userInfo={userInfo?.userName}
+                    activeCourse={activeCourse}
+                    studentCerts={studentProfile?.certificates}
+                  />
+                )}
+              </>
             )}
             {(applyForCertificate ||
               showLoadingCertificate ||

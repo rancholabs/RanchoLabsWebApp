@@ -95,9 +95,9 @@ const Certificate = ({
   function showCertificate() {
     setCertficate(!iscertificate);
   }
-  console.log(certPaid);
+  // console.log(certPaid);
   React.useEffect(() => {
-    console.log(certPaid);
+    // console.log(certPaid);
     if (certPaid) {
       setCertficate(true);
     }
@@ -164,12 +164,11 @@ const Certificate = ({
       month: month,
       year: year,
     };
+
     const certFileRes = await axios
       .post("/api/certificate/certfile", certFileBody, config)
       .then((res) => res.data)
       .catch((error) => console.log(error));
-
-    console.log(certFileRes);
 
     const certFileConverted = dataURLtoFile(
       certFileRes,
@@ -211,7 +210,7 @@ const Certificate = ({
         certificates: allCerts,
       };
 
-      console.log(body);
+      // console.log(body);
 
       axios
         .post("/api/profile/student/certificates", body, config)
@@ -342,7 +341,7 @@ const Certificate = ({
 
   const updateCertFile = (file, dataUrl) => {
     setcertFile(file);
-    console.log(file);
+    // console.log(file);
   };
 
   const handleClose = () => {

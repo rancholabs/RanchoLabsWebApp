@@ -246,8 +246,6 @@ const DashboardJourney = () => {
     if (course.name === JourneyCourse.journeycourse) return course;
   });
 
-  console.log(selected[0]);
-
   function selectGroup(group) {
     dispatch(journeycourse(group));
   }

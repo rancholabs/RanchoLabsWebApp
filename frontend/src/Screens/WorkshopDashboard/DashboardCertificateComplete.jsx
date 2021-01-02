@@ -54,7 +54,7 @@ const CertificateComplete = ({
       );
       if (singleCert.length > 0) {
         singleCert = singleCert[0];
-        console.log(singleCert);
+        // console.log(singleCert);
         setCertURL(singleCert?.file?.filePath);
       }
     }

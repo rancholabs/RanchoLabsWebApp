@@ -172,7 +172,7 @@ const FreeClass = ({ location }) => {
         backgroundColor: "#171636",
         color: "#FFFFFF",
         iconColor: "#3CFAFF",
-        iconDisplay: params?.loginfor === "workshop" ? "none" : "block",
+        iconDisplay: "none",
         headerDisplay: "block",
       })
     );
@@ -266,7 +266,7 @@ const FreeClass = ({ location }) => {
                     <input
                       type="password"
                       name="password"
-                      placeholder="Student password"
+                      placeholder="Set Student password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                     />

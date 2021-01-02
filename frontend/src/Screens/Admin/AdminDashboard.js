@@ -850,6 +850,8 @@ function AdminDashboardPayment({
                   payment.payload.payment.entity.order_id
             );
 
+            console.log(singleStudentbatchObj);
+
             if (singleStudentbatchObj.length > 0) {
               singleStudentbatchObj = singleStudentbatchObj[0];
               // var singleStudentPaymentObj = allPayments.filter(

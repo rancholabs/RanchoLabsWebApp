@@ -461,6 +461,64 @@ const Materials = (props) => {
   );
 };
 
+const AssignProject = (props) => {
+  console.log(props);
+  const dispatch = useDispatch();
+  const [selectedProj, setSelectedProj] = useState("");
+
+  const handleProjectEnable = () => {
+    dispatch(
+      instructorUpdateBatchProject(
+        { isActive: true },
+        props.batchId,
+        selectedProj
+      )
+    );
+    dispatch(
+      instructorUpdateBatchClass(
+        { assignedProject: selectedProj },
+        props.batchId,
+        props.classId
+      )
+    );
+    alert("Project Enabled!");
+  };
+  return (
+    <div className="isntructor__enableProjects">
+      <label>Enabled Project for this class</label>
+      {props.projectDetails?.name ? (
+        <ul>
+          <li>{props.projectDetails?.name}</li>
+        </ul>
+      ) : (
+        <>
+          <select
+            value={selectedProj}
+            onChange={(e) => setSelectedProj(e.target.value)}
+          >
+            <option>Select Project to enable</option>
+            {props.allProjectsDetails?.map((proj) => {
+              let projData = props.allProjectsBatch.filter(
+                (pb) => pb.projectId === proj._id
+              );
+              projData = projData[0];
+              return (
+                <option
+                  value={proj._id}
+                  style={{ backgroundColor: projData?.isActive ? "green" : "" }}
+                >
+                  {proj.name}
+                </option>
+              );
+            })}
+          </select>
+          <button onClick={handleProjectEnable}>Enable</button>
+        </>
+      )}
+    </div>
+  );
+};
+
 const Results = (props) => {
   // const disable = props.status === "active" ? false : true;
   const disable = false;
@@ -630,6 +688,7 @@ const Note = (props) => {
 };
 
 const ClassListCard = (props) => {
+  console.log(props);
   const [ischedule, setSchedule] = useState(false);
   const status = getStatus(props.startTime, props.endTime);
   var timing =
@@ -700,6 +759,17 @@ const ClassListCard = (props) => {
                         classDetails={props.classDetails}
                       />
                       <div>
+                        <AssignProject
+                          status={status}
+                          classId={props.classId}
+                          allProjectsDetails={props.allProjectsDetails}
+                          allProjectsBatch={props.allProjectsBatch}
+                          batchId={props.batchId}
+                          projectDetails={props.projectDetails}
+                          singleProjectDetails={props.singleProjectDetails}
+                        />
+                      </div>
+                      <div>
                         <Results
                           status={status}
                           projectDetails={props.projectDetails}
@@ -768,6 +838,8 @@ const Schedule = () => {
     axios.get(``);
   }, []);
 
+  console.log(schedule);
+
   const classList =
     schedule && date
       ? schedule.classes.filter((clas) => {
@@ -789,18 +861,19 @@ const Schedule = () => {
                 new Date(clas.doubleDate).getFullYear() === date.getFullYear())
             )
               return clas;
+          } else if (clas.batchType === "normal") {
+            let todayclass = clas.allDates?.filter(
+              (ad) =>
+                new Date(ad.date).getDate() === date.getDate() &&
+                new Date(ad.date).getMonth() === date.getMonth() &&
+                new Date(ad.date).getFullYear() === date.getFullYear()
+            );
+            if (todayclass && todayclass.length > 0) return clas;
           }
-          // else if(clas.batchType === "normal") {
-          //   if (
-          //     new Date() >= new Date(clas.startDate) && new Date() <= new Date(clas.endDate) &&
-          //     new Date(clas.startTime).getDate() === date.getDate() &&
-          //     new Date(clas.startTime).getMonth() === date.getMonth() &&
-          //     new Date(clas.startTime).getFullYear() === date.getFullYear()
-          //   )
-          //     return clas;
-          // }
         })
       : null;
+
+  console.log(classList);
 
   return (
     <>
@@ -928,51 +1001,60 @@ const Schedule = () => {
                     )[0]
                       ? _projectArray.filter((proj) => proj.no === 2)[0]
                       : {};
+                  } else {
+                    let classTimeIndex = C.allDates.findIndex(
+                      (obj) =>
+                        new Date(obj.date).getDate() === date.getDate() &&
+                        new Date(obj.date).getMonth() === date.getMonth() &&
+                        new Date(obj.date).getFullYear() === date.getFullYear()
+                    );
+                    C.activeClassDetails = _classArray.filter(
+                      (cobj) => cobj.classNo === parseInt(classTimeIndex + 1)
+                    )[0]
+                      ? _classArray.filter(
+                          (cobj) =>
+                            cobj.classNo === parseInt(classTimeIndex + 1)
+                        )[0]
+                      : {};
+
+                    let assignedProjectId = C.classes.filter(
+                      (clas) => clas.classId === C.activeClassDetails?._id
+                    )[0].assignedProject;
+
+                    C.activeProjectDetails = _projectArray.filter(
+                      (proj) =>
+                        proj._id.toString() === assignedProjectId?.toString()
+                    )[0]
+                      ? _projectArray.filter(
+                          (proj) =>
+                            proj._id.toString() ===
+                            assignedProjectId?.toString()
+                        )[0]
+                      : {};
+
+                    C.currentTime =
+                      new Date(C.allDates[classTimeIndex].date).getHours() +
+                      ":" +
+                      new Date(C.allDates[classTimeIndex].date).getMinutes();
                   }
+
                   return (
                     <ClassListCard
                       key={C._id}
                       batch={C.batch}
-                      startTime={
-                        C.batchType === "freeclass"
-                          ? new Date(date).setHours(
-                              C.singleTime.toString().split(":")[0],
-                              C.singleTime.toString().split(":")[1],
-                              0,
-                              0
-                            )
-                          : C.batchType === "workshop"
-                          ? new Date(date).setHours(
-                              C.currentTime.toString().split(":")[0],
-                              C.currentTime.toString().split(":")[1],
-                              0,
-                              0
-                            )
-                          : C.startTime
-                      }
-                      endTime={
-                        C.batchType === "freeclass"
-                          ? new Date(date).setHours(
-                              C.singleTime.toString().split(":")[0],
-                              C.singleTime.toString().split(":")[1],
-                              0,
-                              0
-                            )
-                          : C.batchType === "workshop"
-                          ? new Date(date).setHours(
-                              C.currentTime.toString().split(":")[0],
-                              C.currentTime.toString().split(":")[1],
-                              0,
-                              0
-                            )
-                          : C.endTime
-                      }
-                      classId={
-                        C.batchType === "workshop" ||
-                        C.batchType === "freeclass"
-                          ? C.activeClassDetails?._id
-                          : ""
-                      }
+                      startTime={new Date(date).setHours(
+                        C.currentTime.toString().split(":")[0],
+                        C.currentTime.toString().split(":")[1],
+                        0,
+                        0
+                      )}
+                      endTime={new Date(date).setHours(
+                        C.currentTime.toString().split(":")[0],
+                        C.currentTime.toString().split(":")[1],
+                        0,
+                        0
+                      )}
+                      classId={C.activeClassDetails?._id}
                       batchId={C._id}
                       materials={
                         C.classes.filter(
@@ -981,6 +1063,8 @@ const Schedule = () => {
                       }
                       students={_studentsArr}
                       classDetails={C.activeClassDetails}
+                      allProjectsBatch={C.projects}
+                      allProjectsDetails={_projectArray}
                       attendance={
                         C.classes.filter(
                           (clas) => clas.classId === C.activeClassDetails?._id
@@ -990,11 +1074,11 @@ const Schedule = () => {
                       singleProjectDetails={
                         C.projects.filter(
                           (proj) =>
-                            proj.projectId === C.activeProjectDetails._id
+                            proj.projectId === C.activeProjectDetails?._id
                         )[0]
                           ? C.projects.filter(
                               (proj) =>
-                                proj.projectId === C.activeProjectDetails._id
+                                proj.projectId === C.activeProjectDetails?._id
                             )[0]
                           : {}
                       }

@@ -28,7 +28,7 @@ const getDate = (d) => {
   var day = date.getDate();
   var options = { month: "long" };
   const month = new Intl.DateTimeFormat("en-US", options).format(date);
-  console.log(month);
+  // console.log(month);
   var year = date.getFullYear();
 
   var rdate = {
@@ -37,7 +37,7 @@ const getDate = (d) => {
     year: year,
   };
 
-  console.log(rdate);
+  // console.log(rdate);
   return rdate;
 };
 
@@ -51,8 +51,8 @@ const MaterialItem = (matitem) => {
   );
 };
 
-const Daywise = ({ singleClass, batch }) => {
-  console.log(singleClass, batch);
+const Daywise = ({ singleClass, batch, classDate }) => {
+  // console.log(singleClass, batch);
   const isOver = true;
 
   //   var sdate = getDate(singleClass.classTime.startTime);
@@ -80,6 +80,26 @@ const Daywise = ({ singleClass, batch }) => {
       ? new Date(currentDate)
       : new Date(batch.endDate)
   );
+
+  let batchClassDate;
+  let batchClassTime;
+
+  if (batch.batchType === "normal") {
+    batchClassDate = getDate(classDate.date);
+    var classTimeSuffix =
+      parseInt(new Date(classDate?.date).getHours()) >= 12 ? "PM" : "AM";
+    var classTimehours =
+      ((parseInt(new Date(classDate?.date).getHours()) + 11) % 12) + 1;
+    batchClassTime =
+      classTimehours +
+      ":" +
+      (new Date(classDate?.date).getMinutes() < 10
+        ? "0" + new Date(classDate?.date).getMinutes()
+        : new Date(classDate?.date).getMinutes()) +
+      " " +
+      classTimeSuffix;
+  }
+
   var suffix =
     parseInt(currentTime.toString().split(":")[0]) >= 12 ? "PM" : "AM";
   var hours = ((parseInt(currentTime.toString().split(":")[0]) + 11) % 12) + 1;
@@ -233,14 +253,28 @@ const Daywise = ({ singleClass, batch }) => {
                       </button>
                     </div>
                     <div className="align-self-center join-date">
-                      {sdate.date} {sdate.month} {sdate.year} -{" "}
                       {batch.batchType === "freeclass" ||
                       batch.batchType === "workshop" ? (
-                        "From " + freeclasstime + " IST"
+                        sdate.date +
+                        " " +
+                        sdate.month +
+                        " " +
+                        sdate.year +
+                        " - " +
+                        "From " +
+                        freeclasstime +
+                        " IST"
                       ) : (
                         <>
-                          {edate.date}
-                          {edate.month} {edate.year}
+                          {batchClassDate.date +
+                            " " +
+                            batchClassDate.month +
+                            " " +
+                            batchClassDate.year +
+                            " - " +
+                            "From " +
+                            batchClassTime +
+                            " IST"}
                         </>
                       )}
                     </div>
@@ -261,25 +295,34 @@ const Daywise = ({ singleClass, batch }) => {
   );
 };
 
-const NotEnrolled = () => {
+const NotEnrolled = ({ message }) => {
   return (
     <div
       className="text-center not-enrolled"
       style={{ margin: "auto", marginTop: "16%" }}
     >
-      <div> Start learning today!</div>
-      <div>
-        <a href="/courses">
-          <button>Enroll now</button>
-        </a>
-      </div>
+      {message && message === "batch" ? (
+        <>
+          <div>Batch not assigned yet!</div>
+          <div></div>
+        </>
+      ) : (
+        <>
+          <div> Start learning today!</div>
+          <div>
+            <a href="/courses">
+              <button>Enroll now</button>
+            </a>
+          </div>
+        </>
+      )}
     </div>
   );
 };
 
 const DashboardLearnCard = (props) => {
   var Dlearn = props.learn;
-  console.log(Dlearn);
+  // console.log(Dlearn);
 
   function getProgress() {
     if (Dlearn) {
@@ -305,36 +348,46 @@ const DashboardLearnCard = (props) => {
           </div>
           {Dlearn ? (
             <>
-              <div className="section-intro">
-                {Dlearn.classes.map((singleClass, index) => {
-                  if (Dlearn.batch.batchType === "freeclass") {
-                    if (singleClass.classNo === 1) {
-                      return (
-                        <Daywise
-                          singleClass={singleClass}
-                          batch={Dlearn.batch}
-                        />
-                      );
-                    }
-                  } else if (Dlearn.batch.batchType === "workshop") {
-                    if (
-                      singleClass.classNo === 1 ||
-                      singleClass.classNo === 2
-                    ) {
-                      return (
-                        <Daywise
-                          singleClass={singleClass}
-                          batch={Dlearn.batch}
-                        />
-                      );
-                    }
-                  } else {
-                    return (
-                      <Daywise singleClass={singleClass} batch={Dlearn.batch} />
-                    );
-                  }
-                })}
-              </div>
+              {Dlearn.batch ? (
+                <>
+                  <div className="section-intro">
+                    {Dlearn.classes.map((singleClass, index) => {
+                      if (Dlearn.batch?.batchType === "freeclass") {
+                        if (singleClass.classNo === 1) {
+                          return (
+                            <Daywise
+                              singleClass={singleClass}
+                              batch={Dlearn.batch}
+                            />
+                          );
+                        }
+                      } else if (Dlearn.batch?.batchType === "workshop") {
+                        if (
+                          singleClass.classNo === 1 ||
+                          singleClass.classNo === 2
+                        ) {
+                          return (
+                            <Daywise
+                              singleClass={singleClass}
+                              batch={Dlearn.batch}
+                            />
+                          );
+                        }
+                      } else {
+                        return (
+                          <Daywise
+                            singleClass={singleClass}
+                            batch={Dlearn.batch}
+                            classDate={Dlearn.batch.allDates[index]}
+                          />
+                        );
+                      }
+                    })}
+                  </div>
+                </>
+              ) : (
+                <NotEnrolled message="batch" />
+              )}
             </>
           ) : (
             <NotEnrolled />

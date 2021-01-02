@@ -45,14 +45,17 @@ const certQR = fs.readFileSync(
 const certQRbase64Image = new Buffer.from(certQR).toString("base64");
 const certQRdataURI = "data:image/jpeg;base64," + certQRbase64Image;
 
-// const certificateDesignTo = require("../Utils/certHTML/certificate-design-2.png")
-// var fs = require("fs");
-// var pdf = require("html-pdf");
-// var html = fs.readFileSync(
-//   "../Utils/certHTML/certificate_design__2.html",
-//   "utf8"
-// );
-// var options = { format: "Letter" };
+function dataURLtoFile(dataurl, filename) {
+  var arr = dataurl.split(","),
+    mime = arr[0].match(/:(.*?);/)[1],
+    bstr = atob(arr[1]),
+    n = bstr.length,
+    u8arr = new Uint8Array(n);
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+  return new File([u8arr], filename, { type: mime });
+}
 
 router.post("/", async (req, res) => {
   if (req.body.file) {
@@ -256,11 +259,6 @@ router.put("/", (req, res) => {
 });
 
 router.post(`/certfile`, async function (req, res) {
-  // pdf.create(html, options).toFile("./businesscard.pdf", function (err, res) {
-  //   if (err) return console.log(err);
-  //   console.log(res); // { filename: '/app/businesscard.pdf' }
-  // });
-
   const { userInfo, from, to, month, year } = req.body;
 
   var today = new Date();
@@ -644,67 +642,21 @@ router.post(`/certfile`, async function (req, res) {
   </body>
   </html>`;
 
-  // <html>
-  //   <head>
-  //     <style>
-  //       body {
-  //         width: 2480px;
-  //         height: 3508px;
-  //       }
-  //     </style>
-  //   </head>
-  //   <body>Hello world!</body>
-  // </html>
-
-  // console.log(strHTML);
-
   const image = await nodeHtmlToImage({
-    // html: CertTemp.generate(data).toString(),
     html: strHTML.toString(),
-    // encoding: "base64",
   });
-  // var encryptedBytes = Buffer.from(aesCbc.encrypt(image));
   const base64Image = new Buffer.from(image).toString("base64");
   const dataURI = "data:image/jpeg;base64," + base64Image;
-  // res.writeHead(200, { "Content-Type": "image/png" });
-  // res.send(image);
+
+  // Convert base 64 to file object
+  // const certFileConverted = dataURLtoFile(
+  //   dataURI,
+  //   "coursecertificate.png"
+  // );
+
+  // upload to s3
+
   res.send(dataURI);
 });
-
-// router.get("/:bid", async (req, res) => {
-//   const bid = req.params.bid;
-//   const blog = await Blog.findOne({ _id: bid });
-//   try {
-//     if (blog) {
-//       res.status(201).send({ blog });
-//     } else {
-//       res.status(404).send({ error: "blog not found" });
-//     }
-//   } catch (e) {
-//     res.status(404).send({ message: "error", error: e });
-//   }
-// });
-
-// router.put("/:bid", async (req, res) => {
-//   try {
-//     Blog.findByIdAndUpdate({ _id: req.params.bid }, req.body).then((doc) =>
-//       res.status(200).send("Blog updated")
-//     );
-//   } catch (e) {
-//     console.log(e);
-//     res.status(400).send("Error");
-//   }
-// });
-
-// router.delete("/:bid", async (req, res) => {
-//   try {
-//     Blog.findByIdAndDelete({ _id: req.params.bid }).then((doc) =>
-//       res.status(200).send("Blog deleted")
-//     );
-//   } catch (e) {
-//     console.log(e);
-//     res.status(400).send("Error");
-//   }
-// });
 
 module.exports = router;

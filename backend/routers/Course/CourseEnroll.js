@@ -151,11 +151,15 @@ router.get("/", (req, res) => {
 });
 
 router.delete("/deleteuser/:bid/:uid", (req, res) => {
-  console.log("deleting student from course enroll");
-  StudentCourse.findOneAndDelete({
-    batchId: req.params.bid,
-    userId: req.params.uid,
-  })
+  console.log("removing student batch from course enroll");
+  StudentCourse.findOneAndUpdate(
+    {
+      userId: req.params.uid,
+    },
+    {
+      batchId: null,
+    }
+  )
     .then((courses) => {
       res.status(200).send("User Course deleted");
     })

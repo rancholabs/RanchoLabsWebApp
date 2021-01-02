@@ -34,12 +34,10 @@ function AdminBatch({
           authorization: token,
         },
       };
-      console.log(selectedCourse);
 
       axios
         .get(`/api/course/batch/${selectedCourse._id}`, config)
         .then((res) => {
-          console.log(res.data);
           setbatches(res.data);
         });
     }
@@ -89,13 +87,13 @@ function AdminBatch({
     };
 
     // check for payment
-    if(paymentObj.orderId){
+    if (paymentObj.orderId) {
       // update against payment order id
       const _body = {
         batchId: singleBatch._id,
         paymentObj: paymentObj,
       };
-  
+
       axios.post(`/api/course/enroll/admin`, _body, config).then((res) => {
         backtoDashboard();
         console.log(res.data);
@@ -112,13 +110,12 @@ function AdminBatch({
           signature: "freeclass",
         },
       };
-  
+
       axios.post(`/api/course/enroll/admin`, _body, config).then((res) => {
         backtoDashboard();
         console.log(res.data);
       });
     }
-
   };
 
   const editBatchFunction = (editBatch) => {
@@ -281,7 +278,7 @@ function AdminBatch({
                         {singleBatch.batchType === "normal" ? (
                           singleBatch.date_time.map((dateTime) => {
                             return (
-                              <h3>{dateTime.date + " - " + dateTime.time}</h3>
+                              <h3>{dateTime.day + " - " + dateTime.time}</h3>
                             );
                           })
                         ) : (
@@ -372,7 +369,7 @@ function AdminBatch({
                       {singleBatch.batchType === "normal" ? (
                         singleBatch.date_time.map((dateTime) => {
                           return (
-                            <h3>{dateTime.date + " - " + dateTime.time}</h3>
+                            <h3>{dateTime.day + " - " + dateTime.time}</h3>
                           );
                         })
                       ) : (

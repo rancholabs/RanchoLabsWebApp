@@ -137,6 +137,8 @@ router.get("/", async (req, res) => {
               doubleDate: 1,
               doubleTime: 1,
               batch_link: 1,
+              allDates: 1,
+              batch_link: 1,
             },
           },
         ],

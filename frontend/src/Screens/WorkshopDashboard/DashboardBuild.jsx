@@ -19,7 +19,7 @@ function getDeadline(deadline) {
 function ProjectItemDesk(projectItem) {
   var DeadlineOver = false;
   var SubmissionOver = false;
-  console.log(projectItem.singleProject);
+  // console.log(projectItem.singleProject);
 
   const goToProjectBuild = () => {
     window.location.href = `/buildproject?project=${projectItem.singleProject._id}&batch=${projectItem.batchId}`;
@@ -159,12 +159,13 @@ const ProjectItemMob = (projectItem) => {
   );
 };
 
-function Lockhover() {
+function Lockhover({ title }) {
   return (
     <div className="hoverlock">
       <div className="lock-msg">
-        Unlock this feature by enrolling in our courses and build your projects
-        step by step
+        {title
+          ? title
+          : "Unlock this feature by enrolling in our courses and build your projects step by step"}
       </div>
     </div>
   );
@@ -175,7 +176,7 @@ const DashboardBuildMobile = (props) => {
   return (
     <div className="card buildcardmobile">
       <div className="dproject">
-        {Dbuild ? (
+        {Dbuild && Dbuild.batch ? (
           Dbuild.batch.batchType === "normal" ? (
             Dbuild.projects.map((proj) => {
               return (
@@ -207,32 +208,55 @@ const DashboardBuildMobile = (props) => {
 
 function DashboardBuildCard(props) {
   var Dbuild = props.data;
-  console.log(props);
+  // console.log(Dbuild);
+  const [showEnabledProjects, setShowEnabledProjects] = React.useState(false);
+  const [allEnabledProjects, setallEnabledProjects] = React.useState([]);
+  React.useEffect(() => {
+    if (Dbuild?.projects) {
+      let enabledProjects = Dbuild?.projects?.filter(
+        (proj) => proj.isActive === true
+      );
+      if (enabledProjects.length > 0) {
+        setallEnabledProjects(enabledProjects);
+        setShowEnabledProjects(true);
+      } else {
+        setallEnabledProjects([]);
+        setShowEnabledProjects(false);
+      }
+    }
+  }, [props.data]);
 
   return (
     <div
       className="card buildcard"
       style={{ padding: "1.8vw", float: "right" }}
     >
-      {Dbuild ? (
+      {Dbuild && Dbuild.batch ? (
         <div className="dproject align-self-center">
           <>
             {Dbuild.batch.batchType === "normal" ? (
-              Dbuild.projects.map((proj) => {
-                return (
-                  <Carousel
-                    emulateTouch
-                    swipeable
-                    useKeyboardArrows
-                    infiniteLoop
-                  >
-                    <ProjectItemDesk
-                      singleProject={proj}
-                      batchId={Dbuild.batchId}
-                    />
-                  </Carousel>
-                );
-              })
+              showEnabledProjects ? (
+                <Carousel emulateTouch swipeable useKeyboardArrows infiniteLoop>
+                  {allEnabledProjects.map((proj) => {
+                    return (
+                      <ProjectItemDesk
+                        singleProject={proj}
+                        batchId={Dbuild.batchId}
+                      />
+                    );
+                  })}
+                </Carousel>
+              ) : (
+                <div className="text-center lock" style={{ margin: "auto" }}>
+                  <img
+                    src={lock}
+                    alt="locked"
+                    className="img-fluid"
+                    style={{ margin: "auto", width: "6.56vw" }}
+                  ></img>
+                  <Lockhover title="Projects not enabled yet!" />
+                </div>
+              )
             ) : Dbuild.batch.batchType === "freeclass" ? (
               <ProjectItemDesk
                 singleProject={Dbuild.projects[0]}
@@ -273,7 +297,7 @@ function DashboardBuildCard(props) {
 
 const DashboardBuild = (props) => {
   var Dbuild = props.build;
-  console.log(Dbuild);
+  // console.log(Dbuild);
 
   return (
     <div>

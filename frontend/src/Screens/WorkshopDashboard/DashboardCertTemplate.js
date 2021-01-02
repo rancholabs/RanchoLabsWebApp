@@ -35,7 +35,6 @@ function DashboardCertTemplate({
     }
     return new File([u8arr], filename, { type: mime });
   }
-  console.log(from, to, month, year);
 
   useEffect(() => {
     var node = document.getElementById("certificate_design__2");

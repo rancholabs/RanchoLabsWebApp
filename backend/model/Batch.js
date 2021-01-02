@@ -37,6 +37,10 @@ const ClassSchema = new mongoose.Schema({
     },
   },
   attendance: [attendanceSchema],
+  assignedProject: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Project",
+  },
 });
 
 const ProjectSchema = new mongoose.Schema({
@@ -86,7 +90,7 @@ const EmailSchema = new mongoose.Schema({
 });
 
 const dateTimeSchema = new mongoose.Schema({
-  date: {
+  day: {
     type: String,
   },
   time: {
@@ -132,6 +136,9 @@ const BatchSchema = new mongoose.Schema({
     },
   },
   date_time: [dateTimeSchema],
+  allDates: {
+    type: Array,
+  },
   instructor: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Instructor",

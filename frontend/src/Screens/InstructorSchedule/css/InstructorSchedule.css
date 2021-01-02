@@ -552,3 +552,37 @@ input:checked + .slider {
   padding: calc(13 * var(--vp)) calc(26 * var(--vp));
   background: #f60;
 }
+
+.isntructor__enableProjects {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.isntructor__enableProjects label {
+  font-size: calc(24 * var(--vp));
+  margin: 0;
+}
+
+.isntructor__enableProjects ul {
+  margin: 12px 0;
+}
+
+.isntructor__enableProjects ul li {
+  font-size: calc(20 * var(--vp));
+  margin: 0;
+  color: #03071e;
+  font-weight: normal;
+}
+
+.isntructor__enableProjects select {
+  margin: 12px 0;
+}
+
+.isntructor__enableProjects button {
+  background-color: #4320bf;
+  color: white;
+  outline: none;
+  border: none;
+  width: fit-content;
+}
