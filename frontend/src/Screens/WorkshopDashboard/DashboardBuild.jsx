@@ -236,7 +236,13 @@ function DashboardBuildCard(props) {
           <>
             {Dbuild.batch.batchType === "normal" ? (
               showEnabledProjects ? (
-                <Carousel emulateTouch swipeable useKeyboardArrows infiniteLoop>
+                <Carousel
+                  emulateTouch
+                  swipeable
+                  useKeyboardArrows
+                  infiniteLoop
+                  showArrows={true}
+                >
                   {allEnabledProjects.map((proj) => {
                     return (
                       <ProjectItemDesk
@@ -264,7 +270,13 @@ function DashboardBuildCard(props) {
               />
             ) : (
               <>
-                <Carousel emulateTouch swipeable useKeyboardArrows infiniteLoop>
+                <Carousel
+                  emulateTouch
+                  swipeable
+                  useKeyboardArrows
+                  infiniteLoop
+                  showArrows={true}
+                >
                   <ProjectItemDesk
                     singleProject={Dbuild.projects[0]}
                     batchId={Dbuild.batchId}

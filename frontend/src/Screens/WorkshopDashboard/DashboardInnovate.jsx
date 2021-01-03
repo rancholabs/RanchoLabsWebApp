@@ -1,7 +1,9 @@
 import React from "react";
 import "./css/DashboardInnovate.css";
+import { useHistory, useParams } from "react-router-dom";
 
 function DashboardInnovateCard() {
+  const history = useHistory();
   return (
     <div
       className="card text-center"
@@ -18,7 +20,9 @@ function DashboardInnovateCard() {
       </div>
       <div
         className="comewithus"
-        onClick={() => (window.location.href = "/project")}
+        onClick={() =>
+          history.push("/profile/student?scroll=student-profile-innovations")
+        }
       >
         <button>
           COME WITH US&nbsp;<span style={{ color: "#020122" }}>&#9658;</span>

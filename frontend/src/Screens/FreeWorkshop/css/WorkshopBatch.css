@@ -36,8 +36,8 @@
 }
 
 .workshop-batch-item .name {
-  text-align: center;
-  height: calc(85 * var(--vp));
+  /* text-align: center; */
+  /* height: calc(85 * var(--vp)); */
   border: calc(2.5 * var(--vp)) solid #3cfaff;
   border-radius: 5px;
   opacity: 1;
@@ -48,6 +48,10 @@
   letter-spacing: calc(0.61 * var(--vp));
   color: #ffffff;
   opacity: 1;
+}
+
+.workshop-batch-item .name p {
+  margin: 0;
 }
 
 .workshop-batch-item .duration {
@@ -108,7 +112,7 @@
     border-radius: 0;
     margin-left: 1.3rem;
     font-size: 0.75rem;
-    padding: 0.3rem 0;
+    padding: 0.3rem;
     line-height: unset;
   }
 

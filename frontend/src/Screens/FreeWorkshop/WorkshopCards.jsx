@@ -31,7 +31,7 @@ const WorkshopCardData = [
     content: [
       "Learn the basics of Coding, Robotics & AI",
       "Develop projects like Traffic Light Controller & Face Recognition",
-      "Certificate by Rancho Labs and eDC, IIT Delhi",
+      "Certificate",
     ],
   },
 ];

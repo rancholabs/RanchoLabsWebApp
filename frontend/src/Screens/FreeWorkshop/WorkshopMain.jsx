@@ -74,7 +74,7 @@ function Main() {
         <div className="col-md-7">
           <div className="Workshop-title">Coding, Robotics & AI Workshop</div>
           <div className="Workshop-subtitle">
-            A free workshop in Robotics for school students,{" "}
+            A workshop in Robotics, AI and Coding for school students,{" "}
             <span id="IITians">by IITians</span>
           </div>
           <div className="Workshop-details">
@@ -117,7 +117,7 @@ function Main() {
             <div className="info-title">Workshop Overview</div>
             <div className="info-content">
               Two days program specially designed for school students of class
-              8th to 10th to create a strong foundation in Robotics & AI
+              6th to 10th to create a strong foundation in Robotics & AI
             </div>
           </div>
         </div>

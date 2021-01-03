@@ -142,6 +142,14 @@ const Daywise = ({ singleClass, batch, classDate }) => {
               <>
                 {showsessionMaterial ? (
                   <div className="access-session-material-content">
+                    <p
+                      onClick={() =>
+                        setshowsessionMaterial(!showsessionMaterial)
+                      }
+                      className="access-session-material-close"
+                    >
+                      x
+                    </p>
                     {batch.classes.filter(
                       (bclass) => bclass.classId === singleClass.classId
                     )[0] ? (
@@ -283,12 +291,14 @@ const Daywise = ({ singleClass, batch, classDate }) => {
               </>
             )}
           </div>
-          <div
-            className="access-session-material"
-            onClick={() => setshowsessionMaterial(!showsessionMaterial)}
-          >
-            <h3>Access Session Material</h3>
-          </div>
+          {!showsessionMaterial && (
+            <div
+              className="access-session-material"
+              onClick={() => setshowsessionMaterial(!showsessionMaterial)}
+            >
+              <h3>Access Session Material</h3>
+            </div>
+          )}
         </div>
       )}
     </>

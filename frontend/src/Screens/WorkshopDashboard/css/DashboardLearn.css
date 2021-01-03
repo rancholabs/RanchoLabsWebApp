@@ -49,6 +49,7 @@
   color: #0a0e2a;
   font-size: 1.2vw;
   margin-bottom: 2vw;
+  position: relative;
 }
 
 .section-intro button {
@@ -105,6 +106,12 @@
   border-radius: 1rem;
   font-size: 1.1vw;
   margin: 0 0 0 1vw;
+  transition: all 0.1s linear;
+}
+
+.dashboard-body .joining-details button:hover {
+  background-color: #f74b42;
+  color: #fff;
 }
 
 .dashboard-body .joining-details .join-date {
@@ -149,8 +156,15 @@
 
 .access-session-material-content {
   display: flex;
-  /* flex-direction: column; */
   justify-content: space-between;
+}
+
+.access-session-material-close {
+  cursor: pointer;
+  position: absolute;
+  right: 6px;
+  top: 4px;
+  margin: 0;
 }
 
 .access-session-material-content a {

@@ -10,6 +10,7 @@ const WorkshopBatchItem = ({
   isSelected,
   clickHandler,
   batchDateTimeString,
+  batchGradeRange,
 }) => {
   return (
     <div className="col-md-6">
@@ -38,7 +39,10 @@ const WorkshopBatchItem = ({
             </div>
           )}
 
-          <div className="name">{batchDateTimeString}</div>
+          <div className="name">
+            <p>{batchDateTimeString}</p>
+            <p>{batchGradeRange}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -61,6 +65,7 @@ const WorkshopBatches = ({ batch, schoolBatches }) => {
       alert("Select a batch first!");
     }
   };
+  console.log(schoolBatches);
   return (
     <>
       {schoolBatches.length > 0 && (
@@ -68,6 +73,13 @@ const WorkshopBatches = ({ batch, schoolBatches }) => {
           <div className="name">PICK A BATCH</div>
           <div className="row">
             {schoolBatches.map((batch, bi) => {
+              let batchGradeRange = "For Class ";
+              if (batch.gradeRange.minG === batch.gradeRange.maxG) {
+                batchGradeRange += batch.gradeRange.minG;
+              } else {
+                batchGradeRange +=
+                  batch.gradeRange.minG + " to " + batch.gradeRange.maxG;
+              }
               let batchDateTimeString = "";
 
               let from = new Date(batch.singleDate);
@@ -114,6 +126,7 @@ const WorkshopBatches = ({ batch, schoolBatches }) => {
                   key={bi}
                   batch={batch}
                   batchDateTimeString={batchDateTimeString}
+                  batchGradeRange={batchGradeRange}
                   durationPerWeek={durationPerWeek}
                   noOfWeeks={noOfWeeks}
                   isSelected={batch === WorkshopBatch}

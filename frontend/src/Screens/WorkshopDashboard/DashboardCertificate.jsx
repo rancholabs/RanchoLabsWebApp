@@ -455,7 +455,7 @@ const Certificate = ({
               , we are so pleased to see you complete our{" "}
               {freeClassCert ? "free class" : "workshop"}. You need to pay our
               certificate fees in order to get access to your certificate.
-              <div>
+              {/* <div>
                 <label className="certificate-couponCode-label">
                   Do you have a coupon code?
                 </label>
@@ -472,14 +472,14 @@ const Certificate = ({
                 >
                   Apply
                 </button>
-              </div>
-              {couponCodeError ? (
+              </div> */}
+              {/* {couponCodeError ? (
                 couponCodeValid ? (
                   <p className="certificate-valid-msg">Code Applied!</p>
                 ) : (
                   <p className="certificate-error-msg">Invalid Code!</p>
                 )
-              ) : null}
+              ) : null} */}
             </div>
             <div className="get-certificate">
               <a>
