@@ -13,32 +13,32 @@ function YoungInnovatorWhy() {
     {
       id: 1,
       img: liveClass,
-      title: "Improves Logical Thinking",
+      title: "Lays strong foundation in technological trends",
     },
     {
       id: 2,
       img: problemsolving,
-      title: "Sharpens Problem Solving",
+      title: "Ubiquitous knowledge facilitators to ease all your doubts",
     },
     {
       id: 3,
       img: focus,
-      title: "Increases Focus And Concentration",
+      title: "Project-based learning to get real time understanding",
     },
     {
       id: 4,
       img: imagination,
-      title: "Fosters Imagination And Creativity",
+      title: "Innovation-oriented approach to attain critical skills",
     },
     {
       id: 5,
       img: enhance,
-      title: "Enhances Their Ability To Build",
+      title: "Enriches students to address real-life solutions",
     },
     {
       id: 6,
       img: inventor,
-      title: "Turn Them Into Real Inventors",
+      title: "Provides future-proof skill sets for students",
     },
   ];
   return (

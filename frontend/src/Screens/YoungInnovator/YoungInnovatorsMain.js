@@ -13,8 +13,7 @@ const YoungInnovatorsMain = () => {
           </h3>
           <hr />
           <p className="course-main-desc">
-            A foundation program in technology for young minds of Class 6th to
-            9th.
+            An early start for your child’s better future. A one-of-a-kind novel program  to awaken 100 young innovators from all around India.
           </p>
         </div>
         <div className="youngInnovators-main-illustrations">
