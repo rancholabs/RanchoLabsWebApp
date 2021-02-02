@@ -181,8 +181,6 @@ const CoursesCourses = ({
     </button>
   );
 
-  console.log(newOrderCourseGroups);
-  console.log(courseGroups);
 
   const handleCarouselChange = () => {
     console.log(activeGrade);
@@ -204,6 +202,11 @@ const CoursesCourses = ({
       }
     }
   };
+
+  useEffect(()=>{
+    console.log('NEW ORDER COURSE GROUPS',newOrderCourseGroups[0]?._id);
+    console.log('COURSE GROUP',courseGroups);
+  })
 
   return (
     <>
@@ -229,6 +232,7 @@ const CoursesCourses = ({
       >
         {newOrderCourseGroups.map((course, index) => {
           return (
+            
             <div
               className={`courses-course-card col p-0 ${
                 course?._id === activeCourseG?._id ? "active" : ""
