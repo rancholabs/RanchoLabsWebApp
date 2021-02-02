@@ -245,12 +245,12 @@ const CoursesCourses = ({
                   <img
                     src={imageArray[index] ? imageArray[index] : imageArray[0]}
                     className="img-fluid"
-                    alt={course.name}
+                    alt={course?.name}
                   />
                 </div>
               </button>
               <div className="course-name-line">
-                <div className="course-name text-center">{course.name}</div>
+                <div className="course-name text-center">{course?.name}</div>
                 <div className="active-line"></div>
               </div>
             </div>
