@@ -10,5 +10,5 @@ module.exports.connect = () => {
     useCreateIndex: true,
   })
   .then(()=> console.log('MongoDB connected Successfully'))
-  .catch((error) => console.log('Error:',error.reason));
+  .catch((error) => console.log('Error:',error));
 }
