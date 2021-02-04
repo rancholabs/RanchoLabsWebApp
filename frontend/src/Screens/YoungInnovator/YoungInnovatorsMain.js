@@ -13,7 +13,7 @@ const YoungInnovatorsMain = () => {
           </h3>
           <hr />
           <p className="course-main-desc">
-            An early start for your child’s better future. A one-of-a-kind novel program  to awaken 100 young innovators from all around India.
+          A 5-week experiential program for grades 6th to 10th focused on technology and innovation with a unique methodology of Learn, Build, and Innovate conducted by IITians.
           </p>
         </div>
         <div className="youngInnovators-main-illustrations">

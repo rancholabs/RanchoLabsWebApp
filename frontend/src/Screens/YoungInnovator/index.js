@@ -7,7 +7,9 @@ import YoungInnovatorsWhy from "./YoungInnovatorWhy";
 import YoungInnovatorVideo from "./YoungInnovatorVideo";
 import YoungInnovatorMethodology from "./YoungInnovatorMethodology";
 import YoungInnovatorCards from "./YoungInnovatorCards";
+import YoungInnovatorEnroll from "./YoungInnovatorEnroll";
 import YoungInnovatorSpeciallyDesigned from "./YoungInnovatorSpeciallyDesigned";
+import AbouUsGallery from "../AboutUs/AboutUsGallery";
 import YoungInnovatorBanner from "./YoungInnovatorBanner";
 import CoursesBanner from "../Courses/CoursesBanner";
 import CoursesLearn from "../Courses/CoursesLearn";
@@ -53,7 +55,7 @@ const YoungInnovator = () => {
           minG: 8,
           maxG: 10,
         },
-        durationInhours: 15,
+        durationInhours: 10,
         outcomesByTopics: [
           {
             topic: "LEARN",
@@ -76,7 +78,7 @@ const YoungInnovator = () => {
           minG: 8,
           maxG: 10,
         },
-        durationInhours: 15,
+        durationInhours: 10,
         outcomesByTopics: [
           {
             topic: "LEARN",
@@ -99,13 +101,16 @@ const YoungInnovator = () => {
           minG: 8,
           maxG: 10,
         },
-        durationInhours: 15,
+        durationInhours: 4,
         outcomesByTopics: [
           {
             topic: "Innovation Project",
             subtopics: [
-              "Think of a real life problem",
-              "Develop a solution with your team to solve the problem",
+              "Think of a real-life problem.",
+              "Address the concerns.",
+              "Expanding critical thinking skills.",
+              "Develop a solution with your team to solve the problem"
+
             ],
           },
         ],
@@ -115,7 +120,149 @@ const YoungInnovator = () => {
         },
         totalClasses: 6,
       },
+      [
+        {
+          name: "Week 1-2",
+          gradeRange: {
+            minG: 8,
+            maxG: 10,
+          },
+          durationInhours: 10,
+          outcomesByTopics: [
+            {
+              topic: "LEARN",
+              subtopics: ["Logic and coding", "Sensors and Motors"],
+            },
+            {
+              topic: "BUILD",
+              subtopics: ["Social Distancing Project", "Automated Door"],
+            },
+          ],
+          price: {
+            currency: "₹",
+            amount: "4999",
+          },
+          totalClasses: 12,
+        },
+        {
+          name: "Week 3-4",
+          grade: {
+            minG: 8,
+            maxG: 10,
+          },
+          durationInhours: 10,
+          outcomesByTopics: [
+            {
+              topic: "LEARN",
+              subtopics: ["Loops and Function", "LCD and Keypad"],
+            },
+            {
+              topic: "BUILD",
+              subtopics: ["Obstacle Avoiding Robot", "Calculator"],
+            },
+          ],
+          price: {
+            currency: "₹",
+            amount: "4999",
+          },
+          totalClasses: 12,
+        },
+        {
+          name: "Week 5",
+          grade: {
+            minG: 8,
+            maxG: 10,
+          },
+          durationInhours: 4,
+          outcomesByTopics: [
+            {
+              topic: "Innovation Project",
+              subtopics: [
+                "Think of a real life problem",
+                "Address the concerns.",
+                "Expanding critical thinking skills.",
+                "Develop a solution with your team to solve the problem",
+              ],
+            },
+          ],
+          price: {
+            currency: "₹",
+            amount: "4999",
+          },
+          totalClasses: 6,
+        }
+      ]
     ],
+    //   courses: [
+    //     {
+    //       name: "Week 1-2",
+    //       gradeRange: {
+    //         minG: 8,
+    //         maxG: 10,
+    //       },
+    //       durationInhours: 15,
+    //       outcomesByTopics: [
+    //         {
+    //           topic: "LEARN",
+    //           subtopics: ["Logic and coding", "Game development"],
+    //         },
+    //         {
+    //           topic: "BUILD",
+    //           subtopics: ["Pacman", "Angry birds", "Zoombies"],
+    //         },
+    //       ],
+    //       price: {
+    //         currency: "₹",
+    //         amount: "4999",
+    //       },
+    //       totalClasses: 12,
+    //     },
+    //     {
+    //       name: "Week 3-4",
+    //       grade: {
+    //         minG: 8,
+    //         maxG: 10,
+    //       },
+    //       durationInhours: 15,
+    //       outcomesByTopics: [
+    //         {
+    //           topic: "LEARN",
+    //           subtopics: ["App development", "Designing", "Firebase integration"],
+    //         },
+    //         {
+    //           topic: "BUILD",
+    //           subtopics: ["Text Translator", "Chat Bot", "Lost and found app"],
+    //         },
+    //       ],
+    //       price: {
+    //         currency: "₹",
+    //         amount: "4999",
+    //       },
+    //       totalClasses: 12,
+    //     },
+    //     {
+    //       name: "Week 5",
+    //       grade: {
+    //         minG: 8,
+    //         maxG: 10,
+    //       },
+    //       durationInhours: 15,
+    //       outcomesByTopics: [
+    //         {
+    //           topic: "Innovation Project",
+    //           subtopics: [
+    //             "Think of a real life problem",
+    //             "Develop a solution with your team to solve the problem",
+    //           ],
+    //         },
+    //       ],
+    //       price: {
+    //         currency: "₹",
+    //         amount: "4999",
+    //       },
+    //       totalClasses: 6,
+    //     },
+    //   ],
   };
 
   const instructors = [
@@ -196,6 +343,7 @@ const YoungInnovator = () => {
       </div>
 
       <YoungInnovatorCards coursesDetails={coursess.courses} />
+      <YoungInnovatorEnroll />
       <YoungInnovatorSpeciallyDesigned />
 
       <CoursesInstructors
@@ -208,6 +356,7 @@ const YoungInnovator = () => {
         paddingBot="40px"
         title="Students with determination and enthusiasm with a pinch of learning and guidance come up with some great innovations at Rancho Labs."
       />
+      <AbouUsGallery />
       <YoungInnovatorBanner />
       <CoursesFaq />
     </div>

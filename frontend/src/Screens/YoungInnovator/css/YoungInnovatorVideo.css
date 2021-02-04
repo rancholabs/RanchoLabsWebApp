@@ -23,6 +23,11 @@
   text-align: left;
 }
 
+.youngInnovatorVideo__video iframe{
+  height: 400;
+  width: 630; 
+}
+
 .youngInnovatorVideo__body hr {
   border-color: #f74b42;
   width: calc(111 * var(--vp));

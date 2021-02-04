@@ -6,7 +6,7 @@ function YoungInnovatorBanner() {
     <div className="youngInnovatorBanner">
       <h3>Take A Step Towards Your Dream</h3>
       <button onClick={() => (window.location.href = "/enroll/younginnovator")}>
-        Enroll Now
+        Apply Now
       </button>
     </div>
   );

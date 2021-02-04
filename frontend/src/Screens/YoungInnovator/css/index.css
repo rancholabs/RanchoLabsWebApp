@@ -24,6 +24,14 @@
   z-index: 1;
 }
 
+.nav-menu button{
+  display: hidden;
+}
+
+.faq-ans p{
+  color: white;
+}
+
 @media (max-width: 600px) {
   .youngInnovator-purple-bg-top-left {
     display: none;
@@ -45,4 +53,5 @@
     width: 100%;
     z-index: 0;
   }
+
 }

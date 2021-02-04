@@ -4,6 +4,7 @@ import thinking from "./img/thinking.png";
 import coding from "./img/coding.png";
 import gamedev from "./img/gamedev.png";
 import appdev from "./img/appdev.png";
+import robotics from "./img/Robotics.jpg";
 
 function YoungInnovatorSpeciallyDesigned() {
   const cards = [
@@ -27,6 +28,11 @@ function YoungInnovatorSpeciallyDesigned() {
       img: appdev,
       title: "App Development",
     },
+    {
+      id: 5,
+      img: robotics,
+      title: "Robotics",
+    }
   ];
   return (
     <div className="youngInnovatorSpeciallyDesigned">
@@ -40,7 +46,7 @@ function YoungInnovatorSpeciallyDesigned() {
               key={"cardspecial" + card.id}
               className="youngInnovatorSpeciallyDesigned__card"
             >
-              <img src={card.img} />
+              <img class={"img"+card.id} src={card.img} />
               <p>{card.title}</p>
             </div>
           );

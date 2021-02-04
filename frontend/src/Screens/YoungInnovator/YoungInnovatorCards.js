@@ -1,6 +1,7 @@
 import React from "react";
 import "../Courses/css/CoursesDetailedListCards.css";
 // import { Carousel } from "react-responsive-carousel";
+import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Fontawesome from "react-fontawesome";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
@@ -29,7 +30,7 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
   const {
     id: id,
     name,
-    durationInHours: duration,
+    durationInhours,
     outcomesByTopics,
     totalClasses,
   } = courseDetails;
@@ -62,7 +63,7 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
         <h3>{name}</h3>
         <span>
           <img src={courseClass}></img>
-          <p>{totalClasses + " Classes"}</p>
+          <p>{durationInhours + " Hours"}</p>
         </span>
       </div>
       {/* <div className="grade-duration">
@@ -85,21 +86,21 @@ const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
                               subtop === "Pacman"
                                 ? pacman
                                 : subtop === "Angry birds"
-                                ? angrybird
-                                : subtop === "Zoombies"
-                                ? zombie
-                                : subtop === "Text Translator"
-                                ? translator
-                                : subtop === "Chat Bot"
-                                ? chatbot
-                                : subtop === "Lost and found app"
-                                ? lostandfound
-                                : subtop === "Think of a real life problem"
-                                ? innovate1
-                                : subtop ===
-                                  "Develop a solution with your team to solve the problem"
-                                ? innovate2
-                                : courseCardTicks
+                                  ? angrybird
+                                  : subtop === "Zoombies"
+                                    ? zombie
+                                    : subtop === "Text Translator"
+                                      ? translator
+                                      : subtop === "Chat Bot"
+                                        ? chatbot
+                                        : subtop === "Lost and found app"
+                                          ? lostandfound
+                                          : subtop === "Think of a real life problem"
+                                            ? innovate1
+                                            : subtop ===
+                                              "Develop a solution with your team to solve the problem"
+                                              ? innovate2
+                                              : courseCardTicks
                             }
                             className={
                               section.topic === "LEARN"
@@ -143,7 +144,7 @@ const YoungInnovatorCards = ({ coursesDetails }) => {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
-      items: 4,
+      items: 3,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -176,12 +177,38 @@ const YoungInnovatorCards = ({ coursesDetails }) => {
       <img src={ArrowBack} className="course-carousel-icon" />
     </button>
   );
+
+  const [change, setChange] = React.useState("Coding, App, and Game Dev");
+  function Change(name) {
+    setChange(name)
+  }
+
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
   return (
     <div className="youngInnovatorCards__container">
       <div className="youngInnovatorCards__header">
-        <h3>Program Structure</h3>
-        <hr />
+        <h3>Program Structure for <span>{change}</span></h3>
+        <div>
+          <Dropdown>
+            <Dropdown.Toggle split id="dropdown-split-basic">
+              {change}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+                <Dropdown.Item onClick={() => Change("Coding, App, and Game Dev")}>
+                  Coding, App, and Game Dev
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => Change("Coding and Robotics")}>
+                  Coding and Robotics
+                </Dropdown.Item>
+            </Dropdown.Menu> 
+          </Dropdown>
+        </div>
+
       </div>
+      <hr />
       <div className="courses-detailed-list-cards">
         {window.screen.width <= 600 ? (
           <Carousel
@@ -189,7 +216,7 @@ const YoungInnovatorCards = ({ coursesDetails }) => {
             draggable
             showDots={true}
             responsive={responsive}
-            infinite={true}
+            // infinite={true}
             // autoPlay={true}
             // autoPlaySpeed={2500}
             customLeftArrow={<CustomLeft />}
@@ -197,49 +224,67 @@ const YoungInnovatorCards = ({ coursesDetails }) => {
             // keyBoardControl={true}
             className="courses-courses-carousel"
           >
-            {coursesDetails.map((courseDetails, ci) => {
+            {change === "Coding, App, and Game Dev" ? coursesDetails.map((courseDetails, ci) => {
               return (
                 <CoursesDetailedListCardItem
                   key={courseDetails.id}
                   index={ci}
                   courseDetails={courseDetails}
                 />
-              );
-            })}
+              )
+            }) :
+              coursesDetails[3].map((courseDetails, ci) => {
+                return (
+                  <CoursesDetailedListCardItem
+                    key={courseDetails.id}
+                    index={ci}
+                    courseDetails={courseDetails}
+                  />
+                )
+              })
+            }
           </Carousel>
         ) : (
-          <Carousel
-            swipeable={false}
-            draggable={false}
-            showDots={false}
-            responsive={responsive}
-            infinite={false}
-            arrows={false}
-            // autoPlay={true}
-            // autoPlaySpeed={2500}
-            // customLeftArrow={<CustomLeft />}
-            // customRightArrow={<CustomRight />}
-            // keyBoardControl={true}
-            className="courses-courses-carousel"
-          >
-            {coursesDetails.map((courseDetails, ci) => {
-              return (
-                <CoursesDetailedListCardItem
-                  key={courseDetails.id}
-                  index={ci}
-                  courseDetails={courseDetails}
-                />
-              );
-            })}
-          </Carousel>
-        )}
+            <Carousel
+              swipeable={false}
+              draggable={false}
+              showDots={false}
+              responsive={responsive}
+              infinite={false}
+              arrows={false}
+              // autoPlay={true}
+              // autoPlaySpeed={2500}
+              // customLeftArrow={<CustomLeft />}
+              // customRightArrow={<CustomRight />}
+              // keyBoardControl={true}
+              className="courses-courses-carousel"
+            >
+              {change === "Coding, App, and Game Dev" ? coursesDetails.map((courseDetails, ci) => {
+                return (
+                  <CoursesDetailedListCardItem
+                    key={courseDetails.id}
+                    index={ci}
+                    courseDetails={courseDetails}
+                  />
+                )
+              }) :
+                coursesDetails[3].map((courseDetails, ci) => {
+                  return (
+                    <CoursesDetailedListCardItem
+                      key={courseDetails.id}
+                      index={ci}
+                      courseDetails={courseDetails}
+                    />
+                  )
+                })
+              }
+            </Carousel>
+          )}
       </div>
-      <button
-        className="youngInnovatorCards__enrollBtn"
-        onClick={() => (window.location.href = "/enroll/younginnovator")}
-      >
-        Enroll Now
-      </button>
+      <div className="youngInnovator_btn">
+        <button className="nav-menu-button nav-menu-button-transparent" onClick={() => { window.location.href = "https://rancho-labs-app.s3.us-east-2.amazonaws.com/applications/Young+Innovators+Program+-+GA+(1)-1612170018029.pdf" }}>DETAILED PROGRAM PDF</button>
+      </div>
+
     </div>
   );
 };
