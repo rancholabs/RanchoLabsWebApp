@@ -35,6 +35,7 @@
   width: calc(613 * var(--vp));
   border-radius: calc(9 * var(--vp));
   border: calc(2 * var(--vp)) solid #f74b42;
+  padding-right: 60px;
 }
 
 .banner-button button img {
