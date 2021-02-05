@@ -19,6 +19,8 @@ import CoursesFaq from "../Courses/CoursesFaq";
 import CoursesTestimonials from "../Courses/CoursesTestimonials";
 import CoursesProjects from "../Courses/CoursesProjects";
 import "../Courses/css/index.css";
+import "../Courses/css/CoursesInstructors.css";
+import "../Courses/css/CoursesProjects.css";
 import iitd from "../Courses/img/iitd.png";
 import iitb from "../Courses/img/iitb.png";
 import DroneStark_white from "../Courses/img/DroneStark_white.png";
@@ -193,76 +195,6 @@ const YoungInnovator = () => {
         }
       ]
     ],
-    //   courses: [
-    //     {
-    //       name: "Week 1-2",
-    //       gradeRange: {
-    //         minG: 8,
-    //         maxG: 10,
-    //       },
-    //       durationInhours: 15,
-    //       outcomesByTopics: [
-    //         {
-    //           topic: "LEARN",
-    //           subtopics: ["Logic and coding", "Game development"],
-    //         },
-    //         {
-    //           topic: "BUILD",
-    //           subtopics: ["Pacman", "Angry birds", "Zoombies"],
-    //         },
-    //       ],
-    //       price: {
-    //         currency: "₹",
-    //         amount: "4999",
-    //       },
-    //       totalClasses: 12,
-    //     },
-    //     {
-    //       name: "Week 3-4",
-    //       grade: {
-    //         minG: 8,
-    //         maxG: 10,
-    //       },
-    //       durationInhours: 15,
-    //       outcomesByTopics: [
-    //         {
-    //           topic: "LEARN",
-    //           subtopics: ["App development", "Designing", "Firebase integration"],
-    //         },
-    //         {
-    //           topic: "BUILD",
-    //           subtopics: ["Text Translator", "Chat Bot", "Lost and found app"],
-    //         },
-    //       ],
-    //       price: {
-    //         currency: "₹",
-    //         amount: "4999",
-    //       },
-    //       totalClasses: 12,
-    //     },
-    //     {
-    //       name: "Week 5",
-    //       grade: {
-    //         minG: 8,
-    //         maxG: 10,
-    //       },
-    //       durationInhours: 15,
-    //       outcomesByTopics: [
-    //         {
-    //           topic: "Innovation Project",
-    //           subtopics: [
-    //             "Think of a real life problem",
-    //             "Develop a solution with your team to solve the problem",
-    //           ],
-    //         },
-    //       ],
-    //       price: {
-    //         currency: "₹",
-    //         amount: "4999",
-    //       },
-    //       totalClasses: 6,
-    //     },
-    //   ],
   };
 
   const instructors = [

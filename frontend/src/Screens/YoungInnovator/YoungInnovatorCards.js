@@ -1,5 +1,4 @@
 import React from "react";
-import "../Courses/css/CoursesDetailedListCards.css";
 // import { Carousel } from "react-responsive-carousel";
 import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -23,6 +22,7 @@ import innovate1 from "./img/innovate1.png";
 import innovate2 from "./img/innovate2.png";
 
 import "./css/YoungInnovatorCards.css";
+import "../Courses/css/CoursesDetailedListCards.css";
 
 const CoursesDetailedListCardItem = ({ index, courseDetails }) => {
   const hHistory = useHistory();
