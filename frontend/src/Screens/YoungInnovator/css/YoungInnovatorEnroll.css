@@ -129,7 +129,7 @@ p{
     color: white;
 }
 
-@media (min-width: 700px){
+@media (min-width: 1000px){
     .register:after{
         border-left: 50px solid;
         border-top: 127px solid transparent;

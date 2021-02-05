@@ -63,6 +63,7 @@
 .course-name-line {
   display: flex;
   flex-direction: column;
+  margin-right: 85px;
 }
 
 .course-carousel-icon-button {
