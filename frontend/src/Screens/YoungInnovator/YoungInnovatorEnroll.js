@@ -10,7 +10,6 @@ const YoungInnovatorEnroll = () => {
     return (
         <div>
             <div className="youngInnovator_header">
-                {/* <i class="fab fa-google"></i> */}
                 <h2>Enrollment Process For YIP</h2>
                 <p>We are selecting 100 students from all over India based on their logical, algorithmic thinking capability and zeal towards innovation. </p>
             </div>
@@ -35,14 +34,15 @@ const YoungInnovatorEnroll = () => {
                     <h4>Become a Young Innovator</h4>
                     {/* <p>Real-life problem solving to innovation</p> */}
                 </div>
-            </div>
+            </div> 
             <button
                 className="youngInnovatorCards__enrollBtn"
                 onClick={() => (window.location.href = "https://forms.gle/qWxhqvRL4w9yGaNg8 ")}
             >
                 Apply Now
             </button>
-            <div className="youngInnovator_para"><h3>Final selection and Scholarship will be decided based on the interview.</h3></div>
+            <h3 className="youngInnovator_para">Final selection and Scholarship will be decided based on the interview.</h3>
+            
         </div>
     )
 }

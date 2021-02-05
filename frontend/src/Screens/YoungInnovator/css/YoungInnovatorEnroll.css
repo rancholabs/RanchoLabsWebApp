@@ -100,15 +100,14 @@
     margin: auto; 
 }
 
-.youngInnovator_para h3{
+.youngInnovator_para{
     font-size: calc(28 * var(--vp)) !important;
     color: #fff;
     letter-spacing: calc(1.58 * var(--vp));
+    margin-top: 25px;
+    text-align: center;
 }
 
-.youngInnovator_para{
-    margin-top: 25px;
-}
 
 .youngInnovator_header h2{
     font-size: 2.5rem;
@@ -240,9 +239,9 @@ p{
     margin-left: 89px;
 }
 
-.youngInnovator_para h3{
+.youngInnovator_para{
     height: 10px;
     text-align: center;
-    margin-left: -262px;
+    margin-left: -15px;
 }
 }
