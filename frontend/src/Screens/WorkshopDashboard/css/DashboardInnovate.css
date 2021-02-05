@@ -24,6 +24,7 @@
 }
 
 .dboard-innovate .card button {
+  text-align: center;
   color: #f74b42;
   font-size: 1.56vw;
   font-weight: 600;
@@ -33,6 +34,7 @@
   padding: 0.52vw 0.572vw;
   font-weight: bold;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  width: 250px;
 }
 
 .dboard-innovate .card .idea {

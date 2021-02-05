@@ -30,7 +30,7 @@ function DashboardInnovateCard() {
       </div>
       <div className="idea">Bring your idea, we will help you to shape it</div>
     </div>
-  );
+  ); 
 }
 
 export default DashboardInnovateCard;
