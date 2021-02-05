@@ -1,10 +1,11 @@
 var mongoose = require('mongoose')
 var config = require('./config');
 const {MONGODB_URL: dbUrl} = config;
+const url = "mongodb+srv://service_client:$client%40rancho@$cluster0.ahwpv.mongodb.net/rancholabs?retryWrites=true&w=majority` || 'mongodb://localhost/EKart"
 
 module.exports.connect = () => {
     mongoose
-  .connect(dbUrl, {
+  .connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
