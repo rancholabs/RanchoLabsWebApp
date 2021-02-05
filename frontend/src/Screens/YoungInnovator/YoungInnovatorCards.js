@@ -282,7 +282,7 @@ const YoungInnovatorCards = ({ coursesDetails }) => {
           )}
       </div>
       <div className="youngInnovator_btn">
-        <button className="nav-menu-button nav-menu-button-transparent" onClick={() => { window.location.href = "https://rancho-labs-app.s3.us-east-2.amazonaws.com/applications/Young+Innovators+Program+-+GA+(1)-1612170018029.pdf" }}>DETAILED PROGRAM PDF</button>
+        <button className="button button-transparent" onClick={() => { window.open("https://rancho-labs-app.s3.us-east-2.amazonaws.com/applications/Young+Innovators+Program+-+GA+(1)-1612170018029.pdf","_blank") }}>DETAILED PROGRAM PDF</button>
       </div>
 
     </div>

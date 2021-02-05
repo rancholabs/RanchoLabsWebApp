@@ -23,9 +23,9 @@
   text-align: left;
 }
 
-.youngInnovatorVideo__video iframe{
-  height: 400;
-  width: 630; 
+.youngInnovatorVideo__video .iframe{
+  height: 400px;
+  width: 630px; 
 }
 
 .youngInnovatorVideo__body hr {
@@ -72,5 +72,10 @@
     margin: calc(60.5 * var(--vp)) auto calc(60.5 * var(--vp)) auto;
     border-width: calc(15 * var(--vp));
     margin-top: 20px;
+  }
+
+  .youngInnovatorVideo__video .iframe{
+    height: 200px;
+    width: 303px; 
   }
 }

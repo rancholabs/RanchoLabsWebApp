@@ -3,15 +3,21 @@
   padding: 40px 0;
 }
 
-.header .nav-menu {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-right: 50px;
+.youngInnovator_color{
+  background-color: #f74b42;
+  color: white;
 }
 
-.nav-menu button{
-  margin: 10px;
+.btn2{
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: center;
+}
+
+button{
+  text-align: right;
+  margin-right: 100px;
+  margin-top: -10px;
 }
 
 .youngInnovatorCards__header{
@@ -82,21 +88,6 @@ hr {
   font-weight: normal;
 }
 
-/* .dropdown button:hover{
-  padding: 15px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: center;
-  font: normal normal normal calc(29 * var(--vp)) / calc(38 * var(--vp)) Roboto;
-  letter-spacing: calc(0.87 * var(--vp));
-  opacity: 1;
-  margin: calc(18 * var(--vp)) calc(0 * var(--vp));
-  background-color: #f74b42 ;
-  color: white;
-  border: 2px solid #f74b42;
-  font-weight: normal;
-} */
-
 div.show.dropdown{
   text-decoration: none;
   display: block;
@@ -114,18 +105,8 @@ div.show.dropdown{
   color: #f74b42;
 }
 
-/* .youngInnovatorCards__singleCard {
-  min-height: 500px;
-} */
-
 span{
   color: #f74b42;
-}
-
-select{
-  padding: 10px;
-  color: blue;
-  font-weight: 800;
 }
 
 .youngInnovatorCards__outcome {
@@ -280,46 +261,3 @@ select{
 }
 
 
-.nav-menu-button {
-  margin-right: 5px;
-  outline: none;
-  padding: 8px 12px;
-  border-radius: 5px;
-}
-
-.nav-menu-button-transparent {
-  background-color: transparent;
-  border: 2px solid #f74b42;
-  color: #f74b42;
-  font-weight: normal;
-  padding: 15px;
-}
-
-.nav-menu-button{
-  color:#f74b42;
-  padding: 15px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: center;
-  font: normal normal normal calc(29 * var(--vp)) / calc(38 * var(--vp)) Roboto;
-  letter-spacing: calc(0.87 * var(--vp));
-  opacity: 1;
-  margin: calc(18 * var(--vp)) calc(0 * var(--vp));
-}
-
-.youngInnovator_color{
-  background-color: #f74b42;
-  color: white;
-}
-
-.btn2{
-  padding-left: 50px;
-  padding-right: 50px;
-  text-align: center;
-}
-
-button{
-  text-align: right;
-  margin-right: 100px;
-  margin-top: -10px;
-}

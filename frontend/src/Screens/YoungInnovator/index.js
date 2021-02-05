@@ -347,7 +347,7 @@ const YoungInnovator = () => {
       <YoungInnovatorSpeciallyDesigned />
 
       <CoursesInstructors
-        title="Learn From The Best In The World"
+        title="Learn From The Best In The Country"
         buttonDisplay="none"
         bgColor="#0E0234"
         allInstructors={instructors}
