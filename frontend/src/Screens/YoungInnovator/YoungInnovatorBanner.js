@@ -10,6 +10,6 @@ function YoungInnovatorBanner() {
       </button>
     </div>
   );
-}
+} 
 
 export default YoungInnovatorBanner;

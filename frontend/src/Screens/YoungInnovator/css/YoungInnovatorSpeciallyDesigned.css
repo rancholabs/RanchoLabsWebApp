@@ -37,9 +37,10 @@
   color: #3cfaff;
   letter-spacing: calc(1.58 * var(--vp));
   text-align: center;
+  margin-top: 0px;
 }
 
-.img5{
+.youngInnovatorSpeciallyDesigned__card .img5{
   border-radius: 50%;
   width: 100px;
   height: 150px;
@@ -55,12 +56,17 @@
     text-align: center;
   }
   .youngInnovatorSpeciallyDesigned__cards {
-    grid-template-columns: repeat(auto-fill, minmax(rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
   }
 
-  .img5{
+  .youngInnovatorSpeciallyDesigned__card .img5{
     border-radius: 50%;
-    width: 100px;
-    height: 150px;
+    height: 100px;
+    margin-left: 160px;
 }
+
+.youngInnovatorSpeciallyDesigned__card .para5{
+  margin-left: 160px;
+}
+
 }

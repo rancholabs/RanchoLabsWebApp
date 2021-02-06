@@ -8,17 +8,11 @@
   color: white;
 }
 
-.btn2{
+/* .btn2{
   padding-left: 50px;
   padding-right: 50px;
   text-align: center;
-}
-
-button{
-  text-align: right;
-  margin-right: 100px;
-  margin-top: -10px;
-}
+} */
 
 .youngInnovatorCards__header{
   display: flex;
@@ -39,7 +33,7 @@ button{
   margin-left: 0px;
 }
 
-hr {
+.youngInnovatorCards__container hr{
   border-color: #f74b42;
   width: calc(111 * var(--vp));
   text-align: center;
@@ -47,7 +41,7 @@ hr {
   border-width: calc(3 * var(--vp));
 }
 
-.dropdown button{
+.youngInnovatorCards_dropdown .dropdown button{
   padding: 15px 16px;
   text-decoration: none;
   display: block;
@@ -62,7 +56,7 @@ hr {
   font-weight: normal;
 }
 
-.dropdown-toggle::after {
+.youngInnovatorCards_dropdown .dropdown-toggle::after {
   border-top: 8px solid;
   border-right: 8px solid transparent;
   border-bottom: 7px solid transparent;
@@ -73,7 +67,7 @@ hr {
   margin-bottom: -10px;
 }
 
-.dropdown-toggle{
+.youngInnovatorCards_dropdown .dropdown-toggle{
   padding: 15px 16px;
   text-decoration: none;
   display: block;
@@ -88,7 +82,7 @@ hr {
   font-weight: normal;
 }
 
-div.show.dropdown{
+.youngInnovatorCards_dropdown.show.dropdown{
   text-decoration: none;
   display: block;
   text-align: center;
@@ -101,11 +95,11 @@ div.show.dropdown{
   font-weight: normal;
 }
 
-.dropdown-item:hover{
+.youngInnovatorCards_dropdown .dropdown-menu .dropdown-item:hover{
   color: #f74b42;
 }
 
-span{
+.youngInnovatorCards__header h3 span{
   color: #f74b42;
 }
 
@@ -179,23 +173,10 @@ span{
   position: relative;
 }
 
-.youngInnovator_select:hover{
-  background-color: #f74b42;
-}
-
-.youngInnovator_select div{
-  position: absolute;
-  background-color: #f74b42;
-  top:100%;
-  left: 0;
-  right: 0;
-  z-index: 99;  
-}
-
 
 @media (max-width: 600px) {
 
-.dropdown{
+.youngInnovator_dropDown .dropdown{
     font-size: 11px;
   }
 .youngInnovator_btn {
@@ -220,20 +201,27 @@ span{
     margin-top: 45px;
   }
   
-.youngInnovatorCards__header div {
-    margin-left: 41px;
+.youngInnovatorCards__header .youngInnovatorCards_dropdown {
+    margin-top: 10px;
+    margin-left: 170px;
+}
+
+.youngInnovatorCards_dropdown .dropdown button {
+  font-size: 13px;
 }
 
   .youngInnovatorCards__header h3 {
     font-size: calc(24 * var(--vm));
     text-align: center;
   }
-  .youngInnovatorCards__header hr {
+  .youngInnovatorCards__container hr {
     border-color: #f74b42;
-    width: 40%;
-    margin: calc(80.5 * var(--vp)) auto 40px auto;
-    border-width: calc(15 * var(--vp));
-  }
+    width: calc(111 * var(--vp));
+    text-align: center;
+    margin: calc(40.5 * var(--vp)) auto calc(40.5 * var(--vp)) auto;
+    border-width: calc(3 * var(--vp));
+    padding-bottom: 20px;
+}
   .youngInnovatorCards__enrollBtn {
     background-color: #f74b42;
     font-size: calc(20 * var(--vm));

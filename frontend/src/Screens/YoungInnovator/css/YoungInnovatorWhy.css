@@ -86,33 +86,40 @@
     text-align: center;
     margin-bottom: 50px;
   }
-  /* .youngInnovatorWhy__grid {
+  .youngInnovatorWhy__grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
     gap: 2rem;
     place-items: center;
-  } */
+  }
   .youngInnovatorWhy__card img {
-    width: 200px;
-    margin-bottom: 10px;
+    width: 80px;
   }
 
-  .youngInnovatorWhy__card{
-    margin-bottom: 15px;
-  }
-  /* .img1{
-    width: 100%;
-  } */
-
-  .img-2, .img-4, .img-6{
-    margin-top: -10px;
-  }
-
-  .img-5{
-    margin-top: -40px;
-  }
-
-  .youngInnovatorWhy__card p {
+ .youngInnovatorWhy__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.youngInnovatorWhy__card p {
     font-size: calc(14 * var(--vm)) !important;
-  }
+    width: 115px;
+}
+
+.youngInnovatorWhy__card .img-2 {
+  margin-top: 21px;
+}
+
+.youngInnovatorWhy__card .img-4 {
+  margin-top: 42px;
+}
+
+.youngInnovatorWhy__card .para4 {
+  margin-top: 0px;
+}
+
+.youngInnovatorWhy__card .img-6 {
+  margin-top: 39px;
+}
+
 }

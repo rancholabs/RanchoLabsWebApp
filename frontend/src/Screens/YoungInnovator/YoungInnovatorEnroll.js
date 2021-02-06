@@ -15,36 +15,42 @@ const YoungInnovatorEnroll = () => {
             </div>
             <div className="youngInnovator_process">
                 <div className="register">
-                    <img src={register} />
-                    <h4>Register</h4>
-                    {/* <p>Fill the form by clicking on apply now.</p> */}
+                    <div className="register-below">
+                        <img src={register} />
+                        <h4>Register</h4>
+                    </div>
                 </div>
                 <div className="interview">
-                    <img src={interview}/>
-                    <h4>Interview</h4>
-                    {/* <p>based on logical thinking and to check passion of student in technology</p> */}
+                    <div className="interview-above"></div>
+                    <div className="interview-below">
+                        <img src={interview} />
+                        <h4>Interview</h4>
+                    </div>
                 </div>
                 <div className="result">
-                    <img src={innovator} />
-                    <h4>Result and scholarship</h4>
-                    {/* <p>Selection and scholarship is announced</p> */}
-                </div> 
-                <div className="innovator">
-                    <img src={scholar} />
-                    <h4>Become a Young Innovator</h4>
-                    {/* <p>Real-life problem solving to innovation</p> */}
+                    <div className="result-above"></div>
+                    <div className="result-below">
+                        <img src={innovator} />
+                        <h4>Result and scholarship</h4>
+                    </div>
                 </div>
-            </div> 
+                <div className="innovator">
+                    <div className="innovator-above"></div>
+                    <div className="innovator-below">
+                        <img src={scholar} />
+                        <h4>Become a Young Innovator</h4>
+                    </div>
+                </div>
+            </div>
             <button
                 className="youngInnovatorCards__enrollBtn"
                 onClick={() => (window.location.href = "https://forms.gle/qWxhqvRL4w9yGaNg8 ")}
             >
                 Apply Now
             </button>
-            <h3 className="youngInnovator_para">Final selection and Scholarship will be decided based on the interview.</h3>
-            
+
         </div>
     )
 }
- 
+
 export default YoungInnovatorEnroll;

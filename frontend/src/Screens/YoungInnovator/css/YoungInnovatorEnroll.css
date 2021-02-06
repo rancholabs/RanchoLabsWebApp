@@ -7,89 +7,6 @@
     margin-bottom: 30px;
 }
 
-.youngInnovator_process{
-    display: flex;
-    justify-content: space-around;
-}
-
-.register, .interview, .result, .innovator{
-    box-sizing: border-box;
-    /* text-align: center; */
-    padding-left: 30px;
-    padding-top: 30px;
-    padding-bottom: 50px;
-    float: left;
-} 
-
-.interview, .result, .innovator{
-    width: 400px;
-}
-
-.interview, .result, .innovator{
-    padding-left: 60px;
-}
-
-.register img, .innovator img, .result img, .interview img{
-    width: 21%;
-    height: 56%;
-    margin-right: 12px;
-    margin-top: 30px;
-}
-
-.register {
-    display: flex;
-    background-color:#161d6f;;
-    display: inline-block;
-    position: relative;
-    height: 225px;
-    width: 315px;
-}
-
-.interview{
-    background-color: #1d2d50;
-    display: inline-block;
-    height: 225px;
-}
-
-.result{
-    background-color: #161d6f;
-    display: inline-block;
-    height: 225px;
-}
-
-.interview img{
-    margin-left: 17px;
-}
-
-.result img{
-    margin-left: 17px;
-}
-
-/* .result h4{
-    margin-top: -80px;
-    margin-left: 48px;
-    color: #3cfaff;
-    font-size: calc(48 * var(--vp));
-    text-align: center;
-} */
-
-.innovator{
-    background-color: #1d2d50;
-    height: 225px;
-}
-
-.innovator img{
-    margin-left: 40px;
-}
-
-.innovator h4{
-    width: 174px;
-    margin-left: 124px;
-    margin-top: -84px;
-    color: #3cfaff;
-    font-size: calc(48 * var(--vp));
-    text-align: center;
-}
 
 .youngInnovator_header p, .youngInnovator_para h3{
     font-size: calc(28 * var(--vp)) !important;
@@ -100,73 +17,107 @@
     margin: auto; 
 }
 
-.youngInnovator_para{
-    font-size: calc(28 * var(--vp)) !important;
-    color: #fff;
-    letter-spacing: calc(1.58 * var(--vp));
-    margin-top: 25px;
-    text-align: center;
-}
-
-
 .youngInnovator_header h2{
     font-size: 2.5rem;
     margin-bottom: 20px;
 }
 
-.result h4{
-    margin-left: 30px;
-}
 
-.result h4, .interview h4, .register h4{
-    color: #3cfaff;
-    font-size: calc(48 * var(--vp));
-    text-align: center;
-    margin-top: -68px;
-}
 
-p{
-    color: white;
-}
-
-@media (min-width: 1000px){
-    .register:after{
-        border-left: 50px solid;
-        border-top: 127px solid transparent;
-        border-bottom: 95px solid transparent;
-        display: inline-block;
-        content: '';
-        position: absolute;
-        right: -50px;
-        top: 3px;
-        color: #161d6f;
+@media (min-width: 700px){
+    .youngInnovator_process{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
     }
     
-    .interview:after{
-        height: 225px;
-        border-left: 50px solid;
-        border-top: 126px solid transparent;
-        border-bottom: 95px solid transparent;
-        display: inline-block;
-        content: '';
-        position: absolute;
-        right: 753px;
-        top: 5003px; 
-        color: #1d2d50;
+    .register, .interview, .result, .innovator{
+        position: relative;
     }
     
-    .result:after{
-        height: 225px;
-        border-left: 50px solid;
-        border-top: 126px solid transparent;
-        border-bottom: 95px solid transparent;
-        display: inline-block;
-        content: '';
-        position: absolute;
-        right: 352px;
-        top: 5003px;
-        color: #161d6f;
+    
+    .register .register-below{
+        border-top: 200px solid #161d6f;
+        width: 350px;
+        padding-left: 100px;
     }
+    
+    .interview .interview-above{
+        width: 0px;
+        height: 0px;
+        border-top: 100px solid transparent;
+        border-left: 80px solid #161d6f;
+        border-bottom: 100px solid transparent;
+        position: absolute;
+    }
+    
+    .interview .interview-below{
+        border-top: 200px solid #1d2d50;
+        width: 400px;
+        padding-left: 100px;
+    }
+    
+    .result .result-above{
+        width: 0px;
+        height: 0px;
+        border-top: 100px solid transparent;
+        border-left: 80px solid #1d2d50;
+        border-bottom: 100px solid transparent;
+        position: absolute;
+    }
+    
+    .result .result-below{
+        border-top: 200px solid #161d6f;
+        width: 400px;
+        padding-left: 100px;
+    }
+    
+    .innovator .innovator-above{
+        width: 0px;
+        height: 0px;
+        border-top: 100px solid transparent;
+        border-left: 80px solid #161d6f;
+        border-bottom: 100px solid transparent;
+        position: absolute;
+    }
+    
+    .innovator .innovator-below{
+        border-top: 200px solid #1d2d50;
+        width: 400px;
+        padding-left: 100px;
+    }
+    
+    .register img, .innovator img, .result img, .interview img{
+        width: 25%;
+        height: 56%;
+        margin-right: 100px;
+        margin-top: -250px;
+    }
+    
+    .register h4, .innovator h4, .result h4, .interview h4{
+        font-size: 1.5rem;
+        width: 250px;
+        text-align: center;
+        margin-top: -173px;
+        margin-left: 30px;
+        color: #3cfaff;
+        font-size: calc(48 * var(--vp));
+    }
+    
+    .interview h4{
+        margin-left: 40px;
+    }
+    
+    .result h4, .innovator h4{
+        margin-left: 55px;
+        margin-top: -180px;
+    }
+    
+    .innovator h4{
+        margin-top: -185px; 
+    }
+    
+     
 }
 
 @media (max-width: 600px){
@@ -177,6 +128,12 @@ p{
     justify-content: center;
     text-align: center;
 }
+
+.youngInnovator_header h2{
+    font-size: calc(24 * var(--vm));
+    text-align: center;
+}
+
 
 .youngInnovator_header p{
     font-size: calc(14 * var(--vm)) !important;
@@ -203,45 +160,50 @@ p{
     width: 100%;
 }
 
+.youngInnovator_process img{
+    height: 100%;
+}
+
 .register img{
-    width: 13%;
+    width: 18%;
     margin-left: 86px;
-    margin-bottom: 24px;
+    margin-bottom: 42px;
 }
 
 .interview img{
-    width: 13%;
-    margin-left: 57px;
-    margin-bottom: 26px;
+    width: 24%;
+    margin-left: 68px;
+    margin-bottom: 37px;
 }
 
-.interview h4{
-    margin-right: 25px;
-}
-
-.result img {
-    width: 13%;
+.innovator img, .result img{
+    width: 20%;
     margin-left: 56px;
     margin-bottom: 42px;
 }
 
-.result h4{
-    margin-right: 25px ;
+
+.register-below h4, .innovator-below h4, .interview-below h4, .result-below h4{
+    font-size: calc(14 * var(--vm)) !important;
+    width: 200px;
+    margin-left: 95px;
+    margin-top: -80px;
+    color: #3cfaff;
+    margin-bottom: 20px;
 }
 
-.innovator img{
-    width: 13%;
-    margin-left: 56px;
-    margin-bottom: 42px;
+.interview-below h4{
+    margin-left: 96px;
 }
 
-.innovator h4{
-    margin-left: 89px;
+.result-below h4{
+    margin-top: -87px;
+    margin-left: 110px;
 }
 
-.youngInnovator_para{
-    height: 10px;
-    text-align: center;
-    margin-left: -15px;
+.innovator-below h4 {
+    margin-left: 121px;
+    width: 153px;
 }
+
 }

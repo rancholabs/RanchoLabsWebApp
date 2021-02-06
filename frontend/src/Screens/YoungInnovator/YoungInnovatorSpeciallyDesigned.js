@@ -47,7 +47,7 @@ function YoungInnovatorSpeciallyDesigned() {
               className="youngInnovatorSpeciallyDesigned__card"
             >
               <img class={"img"+card.id} src={card.img} />
-              <p>{card.title}</p>
+              <p class={"para"+card.id}>{card.title}</p>
             </div>
           );
         })}

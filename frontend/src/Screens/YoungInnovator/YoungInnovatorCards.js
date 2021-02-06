@@ -191,7 +191,7 @@ const YoungInnovatorCards = ({ coursesDetails }) => {
     <div className="youngInnovatorCards__container">
       <div className="youngInnovatorCards__header">
         <h3>Program Structure for <span>{change}</span></h3>
-        <div>
+        <div className="youngInnovatorCards_dropdown">
           <Dropdown>
             <Dropdown.Toggle split id="dropdown-split-basic">
               {change}
@@ -208,7 +208,7 @@ const YoungInnovatorCards = ({ coursesDetails }) => {
         </div>
 
       </div>
-      <hr />
+      {/* <hr /> */}
       <div className="courses-detailed-list-cards">
         {window.screen.width <= 600 ? (
           <Carousel

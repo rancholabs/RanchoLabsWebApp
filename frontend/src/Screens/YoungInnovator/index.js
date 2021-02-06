@@ -10,6 +10,7 @@ import YoungInnovatorCards from "./YoungInnovatorCards";
 import YoungInnovatorEnroll from "./YoungInnovatorEnroll";
 import YoungInnovatorSpeciallyDesigned from "./YoungInnovatorSpeciallyDesigned";
 import AbouUsGallery from "../AboutUs/AboutUsGallery";
+// import "../AboutUs/css/AboutUsGallery";
 import YoungInnovatorBanner from "./YoungInnovatorBanner";
 import CoursesBanner from "../Courses/CoursesBanner";
 import CoursesLearn from "../Courses/CoursesLearn";
@@ -257,7 +258,6 @@ const YoungInnovator = () => {
           courseGroups={coursess.courses}
         /> */}
       </div>
-
       <YoungInnovatorVideo />
       <div className="course-purple-bg-container">
         <img
@@ -273,11 +273,9 @@ const YoungInnovator = () => {
           courseGroups={coursess.courses}
         /> */}
       </div>
-
       <YoungInnovatorCards coursesDetails={coursess.courses} />
       <YoungInnovatorEnroll />
       <YoungInnovatorSpeciallyDesigned />
-
       <CoursesInstructors
         title="Learn From The Best In The Country"
         buttonDisplay="none"
