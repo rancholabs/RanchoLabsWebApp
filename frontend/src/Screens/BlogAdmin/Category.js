@@ -15,6 +15,7 @@ function Category({ allBlogCategory, getUpdatedCategory }) {
   const [updateBlogCategory, setupdateBlogCategory] = useState(false);
   const [tobeEditedBlogCategory, settobeEditedBlogCategory] = useState(false);
   const [showEditForm, setshowEditForm] = useState(false);
+  const [showAddForm, setshowAddForm] = useState(false);
 
   const [name, setname] = useState("");
 
@@ -29,6 +30,7 @@ function Category({ allBlogCategory, getUpdatedCategory }) {
     settobeEditedBlogCategory({});
     setupdateBlogCategory(false);
     setshowEditForm(true);
+    setshowAddForm(true);
     setname("");
   };
 
@@ -36,6 +38,7 @@ function Category({ allBlogCategory, getUpdatedCategory }) {
     setupdateBlogCategory(false);
     settobeEditedBlogCategory({});
     setshowEditForm(false);
+    setshowAddForm(false);
     setname("");
   };
 
@@ -99,9 +102,14 @@ function Category({ allBlogCategory, getUpdatedCategory }) {
               </div>
             </div>
           </div>
-          <button className="blogAdmin__submitBtn" onClick={submitData}>
-            Add
-          </button>
+          <div className="blogAdmin_Btn">
+            <button className="blogAdmin__submitBtn" onClick={submitData}>
+              {showAddForm ? "Add" : "Save"}
+            </button>
+            {showAddForm ? "" : <button className="blogAdmin_cancelBtn" onClick={goBack}>
+              Cancel
+          </button>}
+          </div>
         </div>
       ) : (
         <div className="blog__table">

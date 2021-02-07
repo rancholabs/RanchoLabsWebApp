@@ -11,6 +11,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import "./Blog.css";
+import "./index.css";
 
 function Blog({ allBlogAuthors, allBlogCategory }) {
   let { blogs } = useSelector((state) => state.blogs);
@@ -18,6 +19,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
   const [updateBlog, setupdateBlog] = useState(false);
   const [tobeEditedBlog, settobeEditedBlog] = useState({});
   const [showEditForm, setshowEditForm] = useState(false);
+  const [showAddForm, setshowAddForm] = useState(false);
 
   const [blogBody, setBlogBody] = useState("");
   const [blogTitle, setblogTitle] = useState("");
@@ -52,6 +54,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
     settobeEditedBlog(blog);
     setupdateBlog(true);
     setshowEditForm(true);
+    setshowAddForm(false);
     setBlogBody(blog.blogBody);
     setblogTitle(blog.blogTitle);
     setBlogCategory(blog.blogCategory);
@@ -64,6 +67,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
     settobeEditedBlog({});
     setupdateBlog(false);
     setshowEditForm(true);
+    setshowAddForm(true);
     setBlogBody("");
     setblogTitle("");
     setBlogCategory([]);
@@ -76,6 +80,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
     setupdateBlog(false);
     settobeEditedBlog({});
     setshowEditForm(false);
+    setshowAddForm(false);
     setBlogBody("");
     setblogTitle("");
     setBlogCategory([]);
@@ -435,7 +440,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
             />
           </div>
           <div className="blog__quil__file">
-            {allBlogImages.map((blogimg) => {
+            {showAddForm ? "" : allBlogImages.map((blogimg) => {
               return <img src={blogimg.image.filePath} alt=""></img>;
             })}
             <input
@@ -450,67 +455,72 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
               Upload
             </button>
           </div>
-          <button className="blogAdmin__submitBtn" onClick={submitData}>
-            Add
-          </button>
+          <div className="blogAdmin_Btn">
+            <button className="blogAdmin__submitBtn" onClick={submitData}>
+              {showAddForm ? "Add" : "Save"}
+            </button>
+            {showAddForm ? "" : <button className="blogAdmin_cancelBtn" onClick={goBack}>
+              Cancel
+          </button>}
+          </div>
         </div>
       ) : (
-        <div className="blog__table">
-          <button className="blog__table__addBtn" onClick={addNewBlog}>
-            Add New
+          <div className="blog__table">
+            <button className="blog__table__addBtn" onClick={addNewBlog}>
+              Add New
           </button>
-          <TableContainer component={Paper}>
-            <Table size="small" aria-label="a dense table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>Date</TableCell>
-                  <TableCell>Title</TableCell>
-                  <TableCell>Category</TableCell>
-                  <TableCell>Short Description</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {allBlogs?.map((singleBlog) => (
-                  <TableRow key={singleBlog._id}>
-                    <TableCell component="th" scope="row">
-                      {singleBlog.blogDate}
-                    </TableCell>
-                    <TableCell>{singleBlog.blogTitle}</TableCell>
-                    <TableCell>
-                      {singleBlog.blogCategory?.map((bcat) => {
-                        return (
-                          allBlogCategory?.filter(
-                            (allbCat) => allbCat._id === bcat.categoryName
-                          )[0]?.name + ","
-                        );
-                      })}
-                    </TableCell>
-                    <TableCell width="50%">
-                      {singleBlog.blogShortDescription}
-                    </TableCell>
-                    <TableCell>
-                      <button
-                        className="blog__table__editBtn"
-                        onClick={() => editBlog(singleBlog)}
-                      >
-                        Edit
-                      </button>
-                    </TableCell>
-                    <TableCell>
-                      <button
-                        className="blog__table__editBtn"
-                        onClick={() => deleteBlog(singleBlog)}
-                      >
-                        Delete
-                      </button>
-                    </TableCell>
+            <TableContainer component={Paper}>
+              <Table size="small" aria-label="a dense table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Date</TableCell>
+                    <TableCell>Title</TableCell>
+                    <TableCell>Category</TableCell>
+                    <TableCell>Short Description</TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </div>
-      )}
+                </TableHead>
+                <TableBody>
+                  {allBlogs?.map((singleBlog) => (
+                    <TableRow key={singleBlog._id}>
+                      <TableCell component="th" scope="row">
+                        {singleBlog.blogDate}
+                      </TableCell>
+                      <TableCell>{singleBlog.blogTitle}</TableCell>
+                      <TableCell>
+                        {singleBlog.blogCategory?.map((bcat) => {
+                          return (
+                            allBlogCategory?.filter(
+                              (allbCat) => allbCat._id === bcat.categoryName
+                            )[0]?.name + ","
+                          );
+                        })}
+                      </TableCell>
+                      <TableCell width="50%">
+                        {singleBlog.blogShortDescription}
+                      </TableCell>
+                      <TableCell>
+                        <button
+                          className="blog__table__editBtn"
+                          onClick={() => editBlog(singleBlog)}
+                        >
+                          Edit
+                      </button>
+                      </TableCell>
+                      <TableCell>
+                        <button
+                          className="blog__table__editBtn"
+                          onClick={() => deleteBlog(singleBlog)}
+                        >
+                          Delete
+                      </button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
+        )}
     </div>
   );
 }

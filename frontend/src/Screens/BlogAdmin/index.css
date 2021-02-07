@@ -60,7 +60,21 @@
   height: 400px;
 }
 
-.blogAdmin__submitBtn {
+.blogAdmin_Btn .blogAdmin__submitBtn {
+  margin: 40px auto 0 auto;
+  border: none;
+  background-color: #3cfaff;
+  color: #333333;
+  padding: 6px 12px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.blogAdmin_Btn{
+  display: flex;
+}
+
+.blogAdmin_Btn .blogAdmin_cancelBtn{
   margin: 40px auto 0 auto;
   border: none;
   background-color: #3cfaff;

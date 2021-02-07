@@ -15,6 +15,7 @@ function Author({ allBlogAuthors, getUpdatedAuthors }) {
   const [updateBlogAuthor, setupdateBlogAuthor] = useState(false);
   const [tobeEditedBlogAuthor, settobeEditedBlogAuthor] = useState(false);
   const [showEditForm, setshowEditForm] = useState(false);
+  const [showAddForm, setshowAddForm] = useState(false);
 
   const [name, setname] = useState("");
   const [description, setdescription] = useState("");
@@ -36,6 +37,7 @@ function Author({ allBlogAuthors, getUpdatedAuthors }) {
     settobeEditedBlogAuthor({});
     setupdateBlogAuthor(false);
     setshowEditForm(true);
+    setshowAddForm(true);
     setname("");
     setdescription("");
   };
@@ -44,6 +46,7 @@ function Author({ allBlogAuthors, getUpdatedAuthors }) {
     setupdateBlogAuthor(false);
     settobeEditedBlogAuthor({});
     setshowEditForm(false);
+    setshowAddForm(false);
     setname("");
     setdescription("");
   };
@@ -140,9 +143,14 @@ function Author({ allBlogAuthors, getUpdatedAuthors }) {
               </div>
             </div>
           </div>
-          <button className="blogAdmin__submitBtn" onClick={submitData}>
-            Add
-          </button>
+          <div className="blogAdmin_Btn">
+            <button className="blogAdmin__submitBtn" onClick={submitData}>
+              {showAddForm ? "Add" : "Save"}
+            </button>
+            {showAddForm ? "" : <button className="blogAdmin_cancelBtn" onClick={goBack}>
+              Cancel
+          </button>}
+          </div>
         </div>
       ) : (
         <div className="blog__table">
