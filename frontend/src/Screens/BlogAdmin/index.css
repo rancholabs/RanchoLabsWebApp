@@ -71,11 +71,12 @@
 }
 
 .blogAdmin_Btn{
-  display: flex;
+  text-align: center;
 }
 
 .blogAdmin_Btn .blogAdmin_cancelBtn{
   margin: 40px auto 0 auto;
+  margin-left: 15px ;
   border: none;
   background-color: #3cfaff;
   color: #333333;
