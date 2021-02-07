@@ -81,6 +81,7 @@ function Author({ allBlogAuthors, getUpdatedAuthors }) {
           .then((res) => {
             console.log(res);
             getUpdatedAuthors();
+            alert("Updated successfully !!");
             goBack();
           });
       } else {
@@ -104,6 +105,7 @@ function Author({ allBlogAuthors, getUpdatedAuthors }) {
       axios.post("/api/blogauthor", body, config).then((res) => {
         console.log(res);
         getUpdatedAuthors();
+        alert("Updated !!")
         goBack();
       });
     }

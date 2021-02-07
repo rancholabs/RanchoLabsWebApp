@@ -278,6 +278,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
             }
             setAllBlogs(newAllBlogs);
             goBack();
+            alert("Updated !!")
           });
       }
     } else {
@@ -309,6 +310,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
 
       axios.post("/api/blog", body, config).then((res) => {
         console.log(res);
+        goBack();
         alert("Blog added");
       });
     }

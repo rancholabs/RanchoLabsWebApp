@@ -43,7 +43,10 @@ function BlogAdmin() {
     };
     axios
       .get("/api/blogauthor", config)
-      .then((res) => setallBlogAuthors(res.data));
+      .then((res) => {
+        setallBlogAuthors(res.data);
+        alert("Author Added Successfully !!")
+      });
   };
 
   const getUpdatedCategory = () => {

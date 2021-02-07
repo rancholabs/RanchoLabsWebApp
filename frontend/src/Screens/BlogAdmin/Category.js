@@ -63,6 +63,7 @@ function Category({ allBlogCategory, getUpdatedCategory }) {
         .then((res) => {
           console.log(res);
           getUpdatedCategory();
+          alert("Added !!");
           goBack();
         });
     } else {
@@ -76,6 +77,7 @@ function Category({ allBlogCategory, getUpdatedCategory }) {
       axios.post("/api/blogcategory", body, config).then((res) => {
         console.log(res);
         getUpdatedCategory();
+        alert("Added !!");
         goBack();
       });
     }
