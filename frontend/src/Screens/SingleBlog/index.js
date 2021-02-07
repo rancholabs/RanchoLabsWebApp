@@ -65,7 +65,7 @@ function SingleBlog() {
         <span>{singleB.blogDate}</span>
         <button>{singleB.category?.name}</button>
       </div>
-      <img className="singleBlog__banner" src={singleB.image?.filePath}></img>
+      <img className="singleBlog__banner" src={singleB.blogBanner?.filePath}></img>
       <div className="singleBlog__body">
         {ReactHTMLparser(singleB.blogBody)}
       </div>
