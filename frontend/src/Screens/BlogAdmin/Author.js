@@ -105,7 +105,7 @@ function Author({ allBlogAuthors, getUpdatedAuthors }) {
       axios.post("/api/blogauthor", body, config).then((res) => {
         console.log(res);
         getUpdatedAuthors();
-        alert("Updated !!")
+        alert("Added Successfully !!")
         goBack();
       });
     }
