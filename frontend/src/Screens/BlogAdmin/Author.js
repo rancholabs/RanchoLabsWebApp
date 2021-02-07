@@ -111,6 +111,26 @@ function Author({ allBlogAuthors, getUpdatedAuthors }) {
     }
   };
 
+  const deleteBlogAuthor = async (blogAuthor) => {
+    const userInfo = localStorage.getItem("userInfo");
+    const token = userInfo ? JSON.parse(userInfo).token : "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    };
+
+    await axios
+      .delete(`/api/blogauthor/${blogAuthor._id}`, config)
+      .then((res) => {
+        console.log(res.data);
+        alert("Deleted Successfully !!");
+        return res.data;
+      })
+      .catch((err) => console.log(err));
+  };
+
   console.log(allBlogAuthors);
 
   return (
@@ -180,6 +200,14 @@ function Author({ allBlogAuthors, getUpdatedAuthors }) {
                         onClick={() => editBlogAuthor(singleBlogAuthor)}
                       >
                         Edit
+                      </button>
+                    </TableCell>
+                    <TableCell>
+                        <button
+                          className="blog__table__editBtn"
+                          onClick={() => deleteBlogAuthor(singleBlogAuthor)}
+                        >
+                          Delete
                       </button>
                     </TableCell>
                   </TableRow>

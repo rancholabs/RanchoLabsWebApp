@@ -83,6 +83,26 @@ function Category({ allBlogCategory, getUpdatedCategory }) {
     }
   };
 
+  const deleteBlogCategory = async (blogCategory) => {
+    const userInfo = localStorage.getItem("userInfo");
+    const token = userInfo ? JSON.parse(userInfo).token : "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    };
+
+    await axios
+      .delete(`/api/blogcategory/${blogCategory._id}`, config)
+      .then((res) => {
+        console.log(res.data);
+        alert("Deleted Successfully !!");
+        return res.data;
+      })
+      .catch((err) => console.log(err));
+  };
+
   console.log(allBlogCategory);
 
   return (
@@ -137,6 +157,14 @@ function Category({ allBlogCategory, getUpdatedCategory }) {
                         onClick={() => editBlogCategory(singleBlogCategory)}
                       >
                         Edit
+                      </button>
+                    </TableCell>
+                    <TableCell>
+                        <button
+                          className="blog__table__editBtn"
+                          onClick={() => deleteBlogCategory(singleBlogCategory)}
+                        >
+                          Delete
                       </button>
                     </TableCell>
                   </TableRow>

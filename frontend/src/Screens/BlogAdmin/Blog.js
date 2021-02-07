@@ -135,7 +135,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
       .delete(`/api/blog/${blog._id}`, config)
       .then((res) => {
         console.log(res.data);
-        alert("Blog deleted!");
+        alert("Deleted Successfully !!");
         return res.data;
       })
       .catch((err) => console.log(err));
