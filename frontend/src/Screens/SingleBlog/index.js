@@ -67,7 +67,6 @@ function SingleBlog() {
       </div>
       <img className="singleBlog__banner" src={singleB.image?.filePath}></img>
       <div className="singleBlog__body">
-        <p>{singleB.image}</p>
         {ReactHTMLparser(singleB.blogBody)}
       </div>
 
