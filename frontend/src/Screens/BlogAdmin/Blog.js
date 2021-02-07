@@ -280,7 +280,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
             alert("Updated Successfully!!");
             goBack();
           });
-      }
+      }alert("Updated Successfully!!");
     } else {
       //   new
       const formData = new FormData();
@@ -314,6 +314,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
         goBack();
 
       });
+      alert("Added Successfully !!");
     }
   };
 
