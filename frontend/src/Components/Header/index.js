@@ -82,7 +82,7 @@ const Header = () => {
                   onClick={() => history.push("/freeclass?loginfor=freeclass")}
                   style={{ display: iconDisplay }}
                 >
-                  Book a free class
+                  Young Innovator Program
                 </button>
               </>
             )}

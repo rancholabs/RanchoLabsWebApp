@@ -31,12 +31,15 @@
 .aboutus-gallery .gallery-title{
     font-size: 2.5vw;
     color: #3CFAFF;
+    padding-top: 65px;
+    padding-left: 30px;
 }
 
 .aboutus-gallery .gallery-desc{
     color: #FFFFFF;
     margin: calc(80 * var(--vp)) calc(167 * var(--vp)) calc(100 * var(--vp));
     font-size: calc(28 * var(--vp));
+    padding-left: 30px;
 }
 
 .aboutus-gallery .gallery-images .small{
@@ -71,12 +74,14 @@
     .aboutus-gallery .gallery-title{
         font-size:  calc(20 * var(--vm));
         color: #3CFAFF;
+        padding-right: 20px;
     }
     
     .aboutus-gallery .gallery-desc{
         color: #FFFFFF;
         margin: calc(10 * var(--vm)) calc(40 * var(--vm)) calc(69 * var(--vm));
         font-size: calc(13 * var(--vm));
+        padding-right: 20px;
     }   
 
     .aboutus-gallery .gallery-images{

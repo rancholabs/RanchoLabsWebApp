@@ -24,7 +24,7 @@
 
 
 
-@media (min-width: 700px){
+@media (min-width: 650px){
     .youngInnovator_process{
         display: flex;
         flex-direction: row;
@@ -38,7 +38,7 @@
     
     .register .register-below{
         border-top: 200px solid #161d6f;
-        width: 350px;
+        width: 350px; 
         padding-left: 100px;
     }
     
@@ -149,19 +149,54 @@
 .register, .result{
     background-color: #161d6f;
     position: relative;
-    height: 150px;
+    height: 130px;
     width: 100%;
 }
 
 .interview, .innovator{
     background-color: #1d2d50;
     position: relative;
-    height: 150px;
+    height: 143px;
     width: 100%;
 }
 
 .youngInnovator_process img{
     height: 100%;
+}
+
+.innovator-extension{
+    position: relative;
+}
+
+.interview .interview-above, .innovator .innovator-above{
+    width: 0;
+    height: 0;
+    margin-top: -19px;
+    border-left: 185px solid transparent;
+    border-right: 190px solid transparent;
+    border-top: 35px solid #161d6f;
+}
+
+.innovator .innovator-above{
+    margin-top: -15px;
+}
+
+.innovator-extension .innovator-extension-above{
+    width: 0;
+    height: 0;
+    margin-top: -2px;
+    border-left: 185px solid transparent;
+    border-right: 190px solid transparent;
+    border-top: 35px solid #1d2d50;
+}
+
+.result .result-above{
+    width: 0;
+    height: 0;
+    margin-top: -12px;
+    border-left: 185px solid transparent;
+    border-right: 190px solid transparent;
+    border-top: 35px solid #1d2d50; 
 }
 
 .register img{

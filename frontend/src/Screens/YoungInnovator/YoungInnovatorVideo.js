@@ -5,9 +5,9 @@ function YoungInnovatorVideo() {
   return (
     <div className="youngInnovatorVideo">
       <div className="youngInnovatorVideo__video">
-        {window.screen.width <= 600 ? <iframe height="200" width="303.9" className="iframe"
+        {window.screen.width <= 600 ? <iframe height="200" width={window.screen.width} className="iframe"
         src='https://www.youtube.com/embed/7wcJ5K-uPZo'>
-      </iframe> : <iframe className="iframe" height="400" width="630"
+      </iframe> : <iframe className="iframe" height="400" width={window.screen.width} 
         src='https://www.youtube.com/embed/7wcJ5K-uPZo'>
       </iframe> }</div>
       <div className="youngInnovatorVideo__body">

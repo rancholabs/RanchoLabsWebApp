@@ -7,9 +7,15 @@ module.exports.connect = () => {
     mongoose
   .connect(url, {
     useNewUrlParser: true,
+    useFindAndModify: false,
     useUnifiedTopology: true,
     useCreateIndex: true,
   })
   .then(()=> console.log('MongoDB connected Successfully'))
   .catch((error) => console.log('Error:',error));
 }
+
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);

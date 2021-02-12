@@ -41,6 +41,7 @@ const YoungInnovatorEnroll = () => {
                         <h4>Become a Young Innovator</h4>
                     </div>
                 </div>
+                {window.screen.width <= 600 ? <div className="innovator-extension"><div className="innovator-extension-above"></div></div> : ""}
             </div>
             <button
                 className="youngInnovatorCards__enrollBtn"

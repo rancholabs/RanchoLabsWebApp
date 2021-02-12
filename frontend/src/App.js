@@ -216,7 +216,7 @@ function App() {
                     component={InstructorProfile}
                   />
                   <Route
-                    exact
+                    exact 
                     path="/instructor/schedule"
                     exact={true}
                     component={InstructorSchedule}

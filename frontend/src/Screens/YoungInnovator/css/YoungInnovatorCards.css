@@ -14,6 +14,7 @@
   text-align: center;
 } */
 
+
 .youngInnovatorCards__header{
   display: flex;
   justify-content: space-around;
@@ -23,6 +24,7 @@
 
 .youngInnovatorCards__header div{
   margin-left: -89px;
+  height: 100px;
 }
 
 .youngInnovatorCards__header h3 {
@@ -41,62 +43,66 @@
   border-width: calc(3 * var(--vp));
 }
 
-.youngInnovatorCards_dropdown .dropdown button{
-  padding: 15px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: center;
-  font: normal normal normal calc(29 * var(--vp)) / calc(38 * var(--vp)) Roboto;
-  letter-spacing: calc(0.87 * var(--vp));
-  opacity: 1;
-  margin: calc(18 * var(--vp)) calc(0 * var(--vp));
-  background-color: #f74b42 ;
-  color: white;
-  border: 2px solid #f74b42;
-  font-weight: normal;
+.youngInnovatorCards_dropdown .dropdown {
+  min-width: calc(395 * var(--vp));
+  border: 1px solid #f74b42;
+  margin-left: auto;
+  margin-right: calc(16 * var(--vp));
+  margin-top: auto;
+  height: calc(71 * var(--vp));
+  border-radius: calc(5 * var(--vp));
 }
 
-.youngInnovatorCards_dropdown .dropdown-toggle::after {
-  border-top: 8px solid;
-  border-right: 8px solid transparent;
-  border-bottom: 7px solid transparent;
-  border-left: 8px solid transparent;
-  /* text-align: center; */
-  /* padding-left: 10px; */
-  margin-left: 10px;
-  margin-bottom: -10px;
-}
+.youngInnovatorCards_dropdown .dropdown .btn {
+  background-color: transparent;
+  width: 100%;
+  border-radius: unset;
+  border: none;
+  color: #f74b42 !important;
+  font-size: calc(28 * var(--vp));
+  text-transform: uppercase;
+  height: 100%;
+  padding-right: calc(48 * var(--vp));
+  margin-top: 0px;
+} 
 
-.youngInnovatorCards_dropdown .dropdown-toggle{
-  padding: 15px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: center;
-  font: normal normal normal calc(29 * var(--vp)) / calc(38 * var(--vp)) Roboto;
-  letter-spacing: calc(0.87 * var(--vp));
-  opacity: 1;
-  margin: calc(18 * var(--vp)) calc(0 * var(--vp));
-  background-color: #f74b42 ;
-  color: white;
-  border: 2px solid #f74b42;
-  font-weight: normal;
-}
-
-.youngInnovatorCards_dropdown.show.dropdown{
-  text-decoration: none;
-  display: block;
-  text-align: center;
-  font: normal normal normal calc(29 * var(--vp)) / calc(38 * var(--vp)) Roboto;
-  letter-spacing: calc(0.87 * var(--vp));
-  opacity: 1;
-  background-color:#0e0234 ;
+.youngInnovatorCards_dropdown .dropdown .btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+  background-color: transparent;
   color: #f74b42;
-  border: 2px solid #f74b42;
-  font-weight: normal;
+  border: none;
 }
 
-.youngInnovatorCards_dropdown .dropdown-menu .dropdown-item:hover{
+.youngInnovatorCards_dropdown .dropdown .dropdown-toggle-split::after,
+.dropright .dropdown-toggle-split::after,
+.dropup .dropdown-toggle-split::after {
+  position: absolute;
+  right: 1vw;
+  top: 1.5vw;
+}
+
+.youngInnovatorCards_dropdown .dropdown .dropdown-toggle::after {
+  border-bottom: 0px solid transparent !important;
+  border-top: calc(12 * var(--vp)) solid;
+  border-right: calc(12 * var(--vp)) solid transparent;
+  border-bottom: calc(11 * var(--vp)) solid transparent;
+  border-left: calc(12 * var(--vp)) solid transparent;
+}
+
+.youngInnovatorCards_dropdown .dropdown .dropdown-menu.show {
+  width: 100%;
+  font-size: calc(28 * var(--vp));
+  text-transform: uppercase;
+}
+
+.youngInnovatorCards_dropdown .dropdown .dropdown-menu.show a {
   color: #f74b42;
+}
+
+.youngInnovatorCards_dropdown .dropdown .btn-primary.focus,
+.btn-primary:focus {
+  box-shadow: none !important;
 }
 
 .youngInnovatorCards__header h3 span{
@@ -151,6 +157,7 @@
   margin: calc(18 * var(--vp)) calc(0 * var(--vp));
   border: 2px solid #f74b42;
   font-weight: normal;
+  border-radius: 10px;
 }
 
 .youngInnovator_btn button:hover{
@@ -174,19 +181,17 @@
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
-.youngInnovator_dropDown .dropdown{
-    font-size: 11px;
-  }
 .youngInnovator_btn {
     margin-top: 40px;
     margin-left: 150px;
 }
 
 .youngInnovator_btn button{
-    font-size: 10px;
-    margin-left: -44px;
+  font-size: 12px;
+  margin-left: -50px;
+  border-radius: 10px;
 }
   .youngInnovatorCards__singleCard__bottomRightImg {
     display: flex;
@@ -197,18 +202,22 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-bottom: 45px;
-    margin-top: 45px;
+    margin-bottom: 30px;
   }
   
-.youngInnovatorCards__header .youngInnovatorCards_dropdown {
+.youngInnovatorCards__header{
     margin-top: 10px;
-    margin-left: 170px;
 }
 
-.youngInnovatorCards_dropdown .dropdown button {
-  font-size: 13px;
+.youngInnovatorCards__header div{
+  margin-left: 0px;
+  margin-top: 10px;
+  margin-bottom: -23px;
 }
+
+/* .youngInnovatorCards_dropdown .dropdown button {
+  font-size: 13px;
+} */
 
   .youngInnovatorCards__header h3 {
     font-size: calc(24 * var(--vm));
@@ -245,6 +254,68 @@
     margin-left: 10px;
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  .youngInnovatorCards_dropdown .dropdown {
+    width: max-content;
+    border: 1px solid #f74b42;
+    margin-left: auto;
+    margin: auto;
+    height: calc(31 * var(--vm));
+    border-radius: calc(5 * var(--vm));
+  }
+
+  .youngInnovatorCards_dropdown .dropdown .btn {
+    background-color: transparent;
+    width: max-content;
+    border-radius: unset;
+    border: none;
+    color: #f74b42;
+    font-size: calc(15 * var(--vm));
+    text-transform: uppercase;
+    align-items: center;
+    height: 100%;
+    margin: auto;
+    padding: 0 calc(30 * var(--vm));
+  }
+
+  .youngInnovatorCards_dropdown .dropdown .btn-primary:not(:disabled):not(.disabled).active,
+  .btn-primary:not(:disabled):not(.disabled):active,
+  .show > .btn-primary.dropdown-toggle {
+    background-color: transparent;
+    color: #f74b42;
+    border: none;
+  }
+
+  .youngInnovatorCards_dropdown .dropdown .dropdown-toggle-split::after,
+  .dropright .dropdown-toggle-split::after,
+  .dropup .dropdown-toggle-split::after {
+    position: absolute;
+    right: 2.3vw;
+    top: calc(11.4 * var(--vm));
+    margin-left: calc(3 * var(--vm));
+  }
+
+  .youngInnovatorCards_dropdown .dropdown .dropdown-toggle::after {
+    border-top: calc(6 * var(--vm)) solid;
+    border-right: calc(6 * var(--vm)) solid transparent;
+    border-bottom: calc(7 * var(--vm)) solid transparent;
+    border-left: calc(6 * var(--vm)) solid transparent;
+  }
+
+  .youngInnovatorCards_dropdown .dropdown .dropdown-menu.show {
+    width: max-content;
+    font-size: calc(15 * var(--vm));
+    text-transform: uppercase;
+  }
+
+  .youngInnovatorCards_dropdown .dropdown .dropdown-menu.show a {
+    color: #f74b42;
+  }
+
+  .youngInnovatorCards_dropdown .dropdown .btn-primary.focus,
+  .btn-primary:focus {
+    box-shadow: none !important;
   }
 }
 
