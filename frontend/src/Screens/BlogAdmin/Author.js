@@ -105,7 +105,7 @@ function Author({ allBlogAuthors, getUpdatedAuthors }) {
       axios.post("/api/blogauthor", body, config).then((res) => {
         console.log(res);
         getUpdatedAuthors();
-        alert("Added Successfully !!")
+        alert("Added Successfully !!");
         goBack();
       });
     }
@@ -126,6 +126,7 @@ function Author({ allBlogAuthors, getUpdatedAuthors }) {
       .then((res) => {
         console.log(res.data);
         alert("Deleted Successfully !!");
+        goBack();
         return res.data;
       })
       .catch((err) => console.log(err));
@@ -169,9 +170,13 @@ function Author({ allBlogAuthors, getUpdatedAuthors }) {
             <button className="blogAdmin__submitBtn" onClick={submitData}>
               {showAddForm ? "Add" : "Save"}
             </button>
-            {showAddForm ? "" : <button className="blogAdmin_cancelBtn" onClick={goBack}>
-              Cancel
-          </button>}
+            {showAddForm ? (
+              ""
+            ) : (
+              <button className="blogAdmin_cancelBtn" onClick={goBack}>
+                Cancel
+              </button>
+            )}
           </div>
         </div>
       ) : (
@@ -203,11 +208,11 @@ function Author({ allBlogAuthors, getUpdatedAuthors }) {
                       </button>
                     </TableCell>
                     <TableCell>
-                        <button
-                          className="blog__table__editBtn"
-                          onClick={() => deleteBlogAuthor(singleBlogAuthor)}
-                        >
-                          Delete
+                      <button
+                        className="blog__table__editBtn"
+                        onClick={() => deleteBlogAuthor(singleBlogAuthor)}
+                      >
+                        Delete
                       </button>
                     </TableCell>
                   </TableRow>

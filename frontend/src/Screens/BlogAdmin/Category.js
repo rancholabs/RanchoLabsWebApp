@@ -98,6 +98,7 @@ function Category({ allBlogCategory, getUpdatedCategory }) {
       .then((res) => {
         console.log(res.data);
         alert("Deleted Successfully !!");
+        goBack();
         return res.data;
       })
       .catch((err) => console.log(err));
@@ -128,9 +129,13 @@ function Category({ allBlogCategory, getUpdatedCategory }) {
             <button className="blogAdmin__submitBtn" onClick={submitData}>
               {showAddForm ? "Add" : "Save"}
             </button>
-            {showAddForm ? "" : <button className="blogAdmin_cancelBtn" onClick={goBack}>
-              Cancel
-          </button>}
+            {showAddForm ? (
+              ""
+            ) : (
+              <button className="blogAdmin_cancelBtn" onClick={goBack}>
+                Cancel
+              </button>
+            )}
           </div>
         </div>
       ) : (
@@ -160,11 +165,11 @@ function Category({ allBlogCategory, getUpdatedCategory }) {
                       </button>
                     </TableCell>
                     <TableCell>
-                        <button
-                          className="blog__table__editBtn"
-                          onClick={() => deleteBlogCategory(singleBlogCategory)}
-                        >
-                          Delete
+                      <button
+                        className="blog__table__editBtn"
+                        onClick={() => deleteBlogCategory(singleBlogCategory)}
+                      >
+                        Delete
                       </button>
                     </TableCell>
                   </TableRow>

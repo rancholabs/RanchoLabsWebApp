@@ -9,9 +9,11 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { Skeleton } from "@material-ui/lab";
 import axios from "axios";
 import "./Blog.css";
 import "./index.css";
+import { CircularProgress } from "@material-ui/core";
 
 function Blog({ allBlogAuthors, allBlogCategory }) {
   let { blogs } = useSelector((state) => state.blogs);
@@ -31,6 +33,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
   const [blogCardBanner, setblogCardBanner] = useState(null);
 
   const [allBlogImages, setallBlogImages] = useState([]);
+  const [processing, setProcessing] = useState(false);
 
   useEffect(() => {
     setAllBlogs(blogs);
@@ -115,6 +118,17 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
       },
     };
     // delete file
+
+    // delete blog
+    await axios
+      .delete(`/api/blog/${blog._id}`, config)
+      .then((res) => {
+        console.log(res.data);
+        alert("Deleted Successfully !!");
+        return res.data;
+      })
+      .catch((err) => console.log(err));
+
     await axios
       .delete(`/api/file/${blog.image?._id}`, config)
       .then((res) => {
@@ -126,16 +140,6 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
       .delete(`/api/file/${blog.cardImage?._id}`, config)
       .then((res) => {
         console.log(res.data);
-        return res.data;
-      })
-      .catch((err) => console.log(err));
-
-    // delete blog
-    await axios
-      .delete(`/api/blog/${blog._id}`, config)
-      .then((res) => {
-        console.log(res.data);
-        alert("Deleted Successfully !!");
         return res.data;
       })
       .catch((err) => console.log(err));
@@ -175,6 +179,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
   };
 
   const submitData = async () => {
+    setProcessing(true);
     const userInfo = localStorage.getItem("userInfo");
     const token = userInfo ? JSON.parse(userInfo).token : "";
     const config = {
@@ -209,6 +214,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
               }
             }
             setAllBlogs(newAllBlogs);
+            setProcessing(false);
             goBack();
           });
       } else {
@@ -277,10 +283,12 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
               }
             }
             setAllBlogs(newAllBlogs);
+            setProcessing(false);
             alert("Updated Successfully!!");
             goBack();
           });
-      }alert("Updated Successfully!!");
+      }
+      alert("Updated Successfully!!");
     } else {
       //   new
       const formData = new FormData();
@@ -310,9 +318,9 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
 
       axios.post("/api/blog", body, config).then((res) => {
         console.log(res);
+        setProcessing(false);
         alert("Added Successfully !!");
         goBack();
-
       });
       alert("Added Successfully !!");
     }
@@ -422,10 +430,12 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
                 <label>Blog Banner</label>
                 <input type="file" onChange={handleBannerUpload}></input>
               </div>
+              {processing && <Skeleton animation="wave" />}
               <div className="blogAdmin__inputSection">
                 <label>Blog Card Banner</label>
                 <input type="file" onChange={handleCardBannerUpload}></input>
               </div>
+              {processing && <Skeleton animation="wave" />}
               <div className="blogAdmin__inputSection">
                 <label>Short Description</label>
                 <textarea
@@ -444,87 +454,102 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
             />
           </div>
           <div className="blog__quil__file">
-            {showAddForm ? "" : allBlogImages.map((blogimg) => {
-              return <img src={blogimg.image.filePath} alt=""></img>;
+            <button
+              onClick={() => document.getElementById("blog__file").click()}
+            >
+              Upload
+            </button>
+            {allBlogImages.map((blogimg) => {
+              return <img src={blogimg.image?.filePath} alt=""></img>;
             })}
+            {/* {showAddForm
+              ? "" 
+              : allBlogImages.map((blogimg) => {
+                  return <img src={blogimg.image?.filePath} alt=""></img>;
+                })} */}
+
             <input
               type="file"
               style={{ display: "none" }}
               id="blog__file"
               onChange={handleQuilFileUpload}
             />
-            <button
-              onClick={() => document.getElementById("blog__file").click()}
-            >
-              Upload
-            </button>
           </div>
           <div className="blogAdmin_Btn">
+            {processing && <CircularProgress color="secondary" />}
             <button className="blogAdmin__submitBtn" onClick={submitData}>
               {showAddForm ? "Add" : "Save"}
             </button>
-            {showAddForm ? "" : <button className="blogAdmin_cancelBtn" onClick={goBack}>
-              Cancel
-          </button>}
+            {/* <button
+              className="blogAdmin__submitBtn"
+              onClick={() => setProcessing(true)}
+            ></button> */}
+            {showAddForm ? (
+              ""
+            ) : (
+              <button className="blogAdmin_cancelBtn" onClick={goBack}>
+                Cancel
+              </button>
+            )}
           </div>
         </div>
       ) : (
-          <div className="blog__table">
-            <button className="blog__table__addBtn" onClick={addNewBlog}>
-              Add New
+        <div className="blog__table">
+          <button className="blog__table__addBtn" onClick={addNewBlog}>
+            Add New
           </button>
-            <TableContainer component={Paper}>
-              <Table size="small" aria-label="a dense table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Title</TableCell>
-                    <TableCell>Category</TableCell>
-                    <TableCell>Short Description</TableCell>
+          <TableContainer component={Paper}>
+            <Table size="small" aria-label="a dense table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Date</TableCell>
+                  <TableCell>Title</TableCell>
+                  <TableCell>Category</TableCell>
+                  <TableCell>Short Description</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {allBlogs?.map((singleBlog) => (
+                  <TableRow key={singleBlog._id}>
+                    <TableCell component="th" scope="row">
+                      {singleBlog.blogDate}
+                    </TableCell>
+                    <TableCell>{singleBlog.blogTitle}</TableCell>
+                    <TableCell>
+                      {singleBlog.blogCategory?.map((bcat) => {
+                        return (
+                          allBlogCategory?.filter(
+                            (allbCat) => allbCat._id === bcat.categoryName
+                          )[0]?.name + ","
+                        );
+                      })}
+                    </TableCell>
+                    <TableCell width="50%">
+                      {singleBlog.blogShortDescription}
+                    </TableCell>
+                    <TableCell>
+                      <button
+                        className="blog__table__editBtn"
+                        onClick={() => editBlog(singleBlog)}
+                      >
+                        Edit
+                      </button>
+                    </TableCell>
+                    <TableCell>
+                      <button
+                        className="blog__table__editBtn"
+                        onClick={() => deleteBlog(singleBlog)}
+                      >
+                        Delete
+                      </button>
+                    </TableCell>
                   </TableRow>
-                </TableHead>
-                <TableBody>
-                  {allBlogs?.map((singleBlog) => (
-                    <TableRow key={singleBlog._id}>
-                      <TableCell component="th" scope="row">
-                        {singleBlog.blogDate}
-                      </TableCell>
-                      <TableCell>{singleBlog.blogTitle}</TableCell>
-                      <TableCell>
-                        {singleBlog.blogCategory?.map((bcat) => {
-                          return (
-                            allBlogCategory?.filter(
-                              (allbCat) => allbCat._id === bcat.categoryName
-                            )[0]?.name + ","
-                          );
-                        })}
-                      </TableCell>
-                      <TableCell width="50%">
-                        {singleBlog.blogShortDescription}
-                      </TableCell>
-                      <TableCell>
-                        <button
-                          className="blog__table__editBtn"
-                          onClick={() => editBlog(singleBlog)}
-                        >
-                          Edit
-                      </button>
-                      </TableCell>
-                      <TableCell>
-                        <button
-                          className="blog__table__editBtn"
-                          onClick={() => deleteBlog(singleBlog)}
-                        >
-                          Delete
-                      </button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </div>
-        )}
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+      )}
     </div>
   );
 }

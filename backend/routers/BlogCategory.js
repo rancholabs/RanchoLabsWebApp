@@ -61,4 +61,14 @@ router.put("/:cid", async (req, res) => {
   }
 });
 
+router.delete("/:cid", async (req, res) => {
+  try {
+    BlogCategory.findByIdAndDelete({ _id: req.params.cid }).then((doc) =>
+      res.status(200).send({ message: "Category Deleted" })
+    );
+  } catch (e) {
+    console.log(e);
+    res.status(400).send("Error");
+  }
+});
 module.exports = router;

@@ -142,8 +142,9 @@ router.put("/:id", isAuthenticated, (req, res) => {
 });
 
 router.delete("/:id", isAuthenticated, (req, res) => {
+  // let fId = JSON.parse(req.params.id);
   const id = mongoose.Types.ObjectId(req.params.id);
-  const query = { _id: id };
+  let query = { _id: id };
   const error = { message: "Error in deleting the file", error: "Bad Request" };
   const deleteFileFromDb = () => {
     File.deleteOne(query, (err) => {

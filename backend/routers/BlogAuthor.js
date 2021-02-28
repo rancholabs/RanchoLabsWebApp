@@ -95,12 +95,12 @@ router.get("/", async (req, res) => {
 
 router.get("/:bid", async (req, res) => {
   const bid = req.params.bid;
-  const blog = await Blog.findOne({ _id: bid });
+  const blog = await BlogAuthor.findOne({ _id: bid });
   try {
     if (blog) {
       res.status(201).send({ blog });
     } else {
-      res.status(404).send({ error: "blog not found" });
+      res.status(404).send({ error: "blogAuther not found" });
     }
   } catch (e) {
     res.status(404).send({ message: "error", error: e });
@@ -113,6 +113,18 @@ router.put("/:bid", async (req, res) => {
       { _id: req.params.bid },
       req.body
     ).then((doc) => res.status(200).send("Blog Author updated"));
+  } catch (e) {
+    console.log(e);
+    res.status(400).send("Error");
+  }
+});
+
+router.delete("/:bid", async (req, res) => {
+  let bAuthor;
+  try {
+    bAuthor = await BlogAuthor.findById({ _id: req.params.bid })
+      .deleteOne()
+      .then((doc) => res.status(200).send("Author Deleted Successfully"));
   } catch (e) {
     console.log(e);
     res.status(400).send("Error");

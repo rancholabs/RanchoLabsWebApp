@@ -32,26 +32,34 @@
 }
 
 .blog__quil__file {
-  width: 100%;
-  border: 1px solid;
-  margin-top: 20px;
+  border: 1px solid black;
   position: relative;
+  margin-top: 20px;
   height: 100px;
+  width: 100%;
+  overflow-x: scroll;
+  scrollbar-width: none;
 }
 
-.blog__quil__file button {
+.blog__quil__file::-webkit-scrollbar {
+  display: none;
+}
+
+.blog__quil__file > button {
+  /* position: absolute; */
   position: absolute;
   left: 0;
+  z-index: 1;
   height: 100%;
-  width: fit-content;
   border: none;
   background-color: #171636;
   color: white;
 }
 
-.blog__quil__file img {
-  height: 100%;
+.blog__quil__file > img {
   object-fit: contain;
+  height: 100%;
+  padding: 10px;
 }
 
 .blog__table__addBtn {
