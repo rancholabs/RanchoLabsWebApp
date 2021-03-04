@@ -10,6 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import axios from "axios";
 import "./Author.css";
 import "./Blog.css";
+import { CircularProgress } from "@material-ui/core";
 
 function Author({ allBlogAuthors, getUpdatedAuthors }) {
   const [updateBlogAuthor, setupdateBlogAuthor] = useState(false);
@@ -20,6 +21,8 @@ function Author({ allBlogAuthors, getUpdatedAuthors }) {
   const [name, setname] = useState("");
   const [description, setdescription] = useState("");
   const [authorImage, setauthorImage] = useState(null);
+
+  const [loading, setLoading] = useState(false);
 
   // useEffect(() => {
   //   setAllblogauthor(allBlogAuthors);
@@ -58,6 +61,8 @@ function Author({ allBlogAuthors, getUpdatedAuthors }) {
   };
 
   const submitData = async () => {
+    setLoading(true);
+
     const userInfo = localStorage.getItem("userInfo");
     const token = userInfo ? JSON.parse(userInfo).token : "";
     const config = {
@@ -75,17 +80,53 @@ function Author({ allBlogAuthors, getUpdatedAuthors }) {
           name,
           description,
         };
+        await axios
+          .put(`/api/blogauthor/${tobeEditedBlogAuthor._id}`, body, config)
+          .then((res) => {
+            console.log(res);
+            getUpdatedAuthors();
+            setLoading(false);
+            alert("Updated successfully !!");
+            goBack();
+          });
+      } else {
+        // update image
+
+        const body = {
+          name,
+          description,
+        };
+
+        if (authorImage !== null) {
+          console.log("update author image");
+
+          await axios
+            .delete(`/api/file/${tobeEditedBlogAuthor.image?._id}`, config)
+            .then((res) => {
+              console.log(res.data);
+              return res.data;
+            })
+            .catch((err) => console.log(err));
+        }
+
+        const formData = new FormData();
+        formData.append("files", authorImage);
+        const fileID = await axios
+          .post("/api/file", formData, config)
+          .then((res) => res.data.fileId)
+          .catch((error) => console.log(error));
+
+        body.authorImage = fileID;
 
         axios
           .put(`/api/blogauthor/${tobeEditedBlogAuthor._id}`, body, config)
           .then((res) => {
             console.log(res);
             getUpdatedAuthors();
+            setLoading(false);
             alert("Updated successfully !!");
             goBack();
           });
-      } else {
-        // update image
       }
     } else {
       //   new
@@ -105,6 +146,7 @@ function Author({ allBlogAuthors, getUpdatedAuthors }) {
       axios.post("/api/blogauthor", body, config).then((res) => {
         console.log(res);
         getUpdatedAuthors();
+        setLoading(false);
         alert("Added Successfully !!");
         goBack();
       });
@@ -125,6 +167,7 @@ function Author({ allBlogAuthors, getUpdatedAuthors }) {
       .delete(`/api/blogauthor/${blogAuthor._id}`, config)
       .then((res) => {
         console.log(res.data);
+        setLoading(false);
         alert("Deleted Successfully !!");
         goBack();
         return res.data;
@@ -166,7 +209,9 @@ function Author({ allBlogAuthors, getUpdatedAuthors }) {
               </div>
             </div>
           </div>
+
           <div className="blogAdmin_Btn">
+            {loading && <CircularProgress color="secondary" />}
             <button className="blogAdmin__submitBtn" onClick={submitData}>
               {showAddForm ? "Add" : "Save"}
             </button>

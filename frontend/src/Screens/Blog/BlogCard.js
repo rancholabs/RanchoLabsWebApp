@@ -1,12 +1,16 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import "./BlogCard.css";
+import { Helmet } from "react-helmet";
 
 function BlogCard({ isVertical, blog }) {
   const _history = useHistory();
   console.log(blog);
   return (
     <>
+      <Helmet>
+        <meta name="description" content={blog?.metaDescription} />
+      </Helmet>
       {isVertical ? (
         <div
           className="blogCard blogCard__vertical"

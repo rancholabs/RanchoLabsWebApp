@@ -43,7 +43,7 @@
 }
 .projects-description {
   margin: 0 auto;
-  font-size: 1.5rem;
+  font-size: calc(7 * var(--vm));
   color: #f0f0f2;
   margin-top: 2.5rem;
   font-weight: 300;

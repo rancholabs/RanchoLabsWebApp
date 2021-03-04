@@ -93,7 +93,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:bid", async (req, res) => {
   const bid = req.params.bid;
-  const blog = await Blog.findOne({ _id: bid });
+  const blog = await BlogFiles.findOne({ _id: bid });
   try {
     if (blog) {
       res.status(201).send({ blog });
@@ -102,6 +102,21 @@ router.get("/:bid", async (req, res) => {
     }
   } catch (e) {
     res.status(404).send({ message: "error", error: e });
+  }
+});
+
+router.delete("/:bid", async (req, res) => {
+  // const id = mongoose.Types.ObjectId(req.params.bid);
+
+  // let query = { _id: id };
+  const error = { message: "Error in deleting the file", error: "Bad Request" };
+  try {
+    await BlogFiles.findById({ _id: req.params.bid })
+      .deleteOne()
+      .then((doc) => res.status(200).send("Deleted!!"));
+  } catch (e) {
+    console.log(e);
+    res.status(400).send("Not Deleted");
   }
 });
 

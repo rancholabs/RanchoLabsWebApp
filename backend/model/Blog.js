@@ -11,6 +11,7 @@ const BlogSchema = new mongoose.Schema({
   blogTitle: String,
   blogCategory: [categorySchema],
   blogShortDescription: String,
+  metaDescription: String,
   blogDate: String,
   blogBody: String,
   blogBanner: {

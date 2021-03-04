@@ -13,7 +13,8 @@ import { Skeleton } from "@material-ui/lab";
 import axios from "axios";
 import "./Blog.css";
 import "./index.css";
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress, IconButton } from "@material-ui/core";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 function Blog({ allBlogAuthors, allBlogCategory }) {
   let { blogs } = useSelector((state) => state.blogs);
@@ -27,6 +28,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
   const [blogTitle, setblogTitle] = useState("");
   const [blogCategory, setBlogCategory] = useState([{ categoryName: "" }]);
   const [blogShortDescription, setblogShortDescription] = useState("");
+  const [metaDescription, setMetaDescription] = useState("");
   const [blogDate, setblogDate] = useState("");
   const [blogAuthor, setblogAuthor] = useState("");
   const [blogBanner, setblogBanner] = useState(null);
@@ -62,6 +64,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
     setblogTitle(blog.blogTitle);
     setBlogCategory(blog.blogCategory);
     setblogShortDescription(blog.blogShortDescription);
+    setMetaDescription(blog.metaDescription);
     setblogDate(blog.blogDate);
     setblogAuthor(blog.blogAuthor);
   };
@@ -75,6 +78,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
     setblogTitle("");
     setBlogCategory([]);
     setblogShortDescription("");
+    setMetaDescription("");
     setblogDate("");
     setblogAuthor("");
   };
@@ -88,6 +92,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
     setblogTitle("");
     setBlogCategory([]);
     setblogShortDescription("");
+    setMetaDescription("");
     setblogDate("");
     setblogAuthor("");
   };
@@ -145,10 +150,37 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
       .catch((err) => console.log(err));
   };
 
+  const deleteQuilImage = async (quilImage) => {
+    setProcessing(true);
+    if (window.confirm("Deleted Image?")) {
+      const userInfo = localStorage.getItem("userInfo");
+      const token = userInfo ? JSON.parse(userInfo).token : "";
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: token,
+        },
+      };
+      console.log("deletion in Progress");
+      console.log(quilImage?._id);
+      await axios
+        .delete(`/api/blogfile/${quilImage?._id}`, config)
+        .then((res) => {
+          axios
+            .get(`/api/blogfile`, config)
+            .then((res) => setallBlogImages(res.data));
+          alert("Image Deleted Successfully !!");
+          setProcessing(false);
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
   const handleQuilFileUpload = async (e) => {
     if (e.target.files[0]) {
       setblogBanner(e.target.files[0]);
       if (window.confirm("Upload file?")) {
+        setProcessing(true);
         const userInfo = localStorage.getItem("userInfo");
         const token = userInfo ? JSON.parse(userInfo).token : "";
         const config = {
@@ -170,6 +202,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
         };
 
         axios.post("/api/blogfile", body, config).then((res) => {
+          setProcessing(false);
           axios.get("/api/blogfile", config).then((res) => {
             setallBlogImages(res.data);
           });
@@ -197,6 +230,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
           blogTitle,
           blogCategory,
           blogShortDescription,
+          metaDescription,
           blogDate,
           blogBody,
           blogAuthor,
@@ -224,6 +258,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
           blogTitle,
           blogCategory,
           blogShortDescription,
+          metaDescription,
           blogDate,
           blogBody,
           blogAuthor,
@@ -309,6 +344,7 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
         blogTitle,
         blogCategory,
         blogShortDescription,
+        metaDescription,
         blogDate,
         blogBody,
         blogAuthor,
@@ -445,6 +481,15 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
                   value={blogShortDescription}
                 ></textarea>
               </div>
+              <div className="blogAdmin__inputSection">
+                <label>Meta Description</label>
+                <textarea
+                  type="text"
+                  onChange={(e) => setMetaDescription(e.target.value)}
+                  rows={5}
+                  value={metaDescription}
+                ></textarea>
+              </div>
             </div>
             <ReactQuill
               value={blogBody}
@@ -455,13 +500,22 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
           </div>
           <div className="blog__quil__file">
             <button
+              className="button2"
               onClick={() => document.getElementById("blog__file").click()}
             >
               Upload
             </button>
             {allBlogImages.map((blogimg) => {
-              return <img src={blogimg.image?.filePath} alt=""></img>;
+              return (
+                <img
+                  className="img"
+                  onClick={() => deleteQuilImage(blogimg)}
+                  src={blogimg.image?.filePath}
+                  alt=""
+                ></img>
+              );
             })}
+
             {/* {showAddForm
               ? "" 
               : allBlogImages.map((blogimg) => {

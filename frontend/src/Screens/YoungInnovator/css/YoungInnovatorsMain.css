@@ -4,9 +4,9 @@
 
 .youngInnovators-main-illustrations {
   width: 50%;
-} 
+}
 
-.youngInnovators-main-illustrations img { 
+.youngInnovators-main-illustrations img {
   width: 100%;
 }
 
@@ -19,13 +19,19 @@
 
 @media (max-width: 600px) {
   .youngInnovators-main-text {
-    width: 90%;
+    width: 100%;
     margin-top: 40px;
   }
   .youngInnovators-main-illustrations {
-    width: 90%;
+    width: 100%;
   }
   .youngInnovators-main-text p {
     font-size: calc(14 * var(--vm)) !important;
   }
 }
+
+/* @media (min-width: 768px) {
+  .coursepage-main {
+    width: 100vw;
+  }
+} */

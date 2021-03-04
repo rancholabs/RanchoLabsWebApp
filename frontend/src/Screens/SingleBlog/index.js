@@ -4,6 +4,7 @@ import ReactHTMLparser from "react-html-parser";
 import { blogList } from "../../Actions/Blog";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 import "./index.css";
 
@@ -55,6 +56,9 @@ function SingleBlog() {
 
   return (
     <div className="singleBlog">
+      <Helmet>
+        <meta name="description" content={singleB.metaDescription} />
+      </Helmet>
       <h1
         className="singleBlog__title"
         // style={{ fontFamily: " Lato, sans-serif" }}
@@ -63,7 +67,6 @@ function SingleBlog() {
       </h1>
       <div className="singleBlog__info">
         <span>{singleB.blogDate}</span>
-        <button>{singleB.category?.name}</button>
       </div>
       <img className="singleBlog__banner" src={singleB.image?.filePath}></img>
       <div className="singleBlog__body">

@@ -28,11 +28,6 @@ function YoungInnovatorSpeciallyDesigned() {
       img: appdev,
       title: "App Development",
     },
-    {
-      id: 5,
-      img: robotics,
-      title: "Robotics",
-    }
   ];
   return (
     <div className="youngInnovatorSpeciallyDesigned">
@@ -46,8 +41,8 @@ function YoungInnovatorSpeciallyDesigned() {
               key={"cardspecial" + card.id}
               className="youngInnovatorSpeciallyDesigned__card"
             >
-              <img class={"img"+card.id} src={card.img} />
-              <p class={"para"+card.id}>{card.title}</p>
+              <img class={"img" + card.id} src={card.img} />
+              <p class={"para" + card.id}>{card.title}</p>
             </div>
           );
         })}

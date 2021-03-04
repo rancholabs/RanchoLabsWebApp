@@ -1,3 +1,8 @@
+/* .courses-main {
+  width: 100vw;
+  overflow-x: hidden;
+} */
+
 .youngInnovator-purple-bg-top-left {
   top: -60px;
   left: -100px;
@@ -24,9 +29,7 @@
   z-index: 1;
 }
 
-
-
-.faq-ans p{
+.faq-ans p {
   color: white;
 }
 
@@ -51,5 +54,4 @@
     width: 100%;
     z-index: 0;
   }
-
 }

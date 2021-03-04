@@ -209,7 +209,7 @@
   }
 
   .courses-instructors-title {
-    font-size: calc(20 * var(--vm));
+    font-size: calc(18 * var(--vm));
     color: #3cfaff;
     letter-spacing: 0;
     text-align: center;
