@@ -5,7 +5,7 @@
   border: calc(0 * var(--vp)) solid #707070;
   opacity: 1;
   padding: 32px calc(120 * var(--vp)) 32px calc(77 * var(--vp));
-  width: 100vw;
+  width: 100%;
 }
 
 .header .app-icon {

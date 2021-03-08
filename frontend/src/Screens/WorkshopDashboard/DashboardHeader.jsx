@@ -11,6 +11,7 @@ const DashboardHeaderUpper = (quote) => {
         const year = day.getFullYear()
         var options = {month : 'long'}
         const month = new Intl.DateTimeFormat('en-US', options).format(day).toUpperCase()
+        console.log(quote);
 
         const userLogin = useSelector((state) => state.userLogin)
         const { userInfo } = userLogin

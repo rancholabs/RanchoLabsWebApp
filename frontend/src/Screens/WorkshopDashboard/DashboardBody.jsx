@@ -17,8 +17,11 @@ import DashboardCertificateComplete from "./DashboardCertificateComplete";
 import axios from "axios";
 import { setDefaultFooter, updateFooter } from "../../Actions/Footer";
 import { useHistory, useParams } from "react-router-dom";
+import DashboardVideo from "./DashboardVideo";
+
 
 const DashboardCourseChoice = (props) => {
+const [choosen, setChoosen] = useState('')
   // const [course, setCourse] = useState(0);
   const dispatch = useDispatch();
 
@@ -95,7 +98,9 @@ const DashboardCourseChoice = (props) => {
                 background: "transparent",
                 border: "none",
               }}
-            >
+            >{
+              () => setChoosen(selected[0]?.name)
+              }
               {selected[0]?.name}
             </Dropdown.Toggle>
             <Dropdown.Menu>
@@ -202,6 +207,8 @@ const DashboardHeaderLower = (props) => {
 
 function DashboardBody(props) {
   const dispatch = useDispatch();
+  // const [choosen, setChoosen] = useState('robotics')
+  console.log(props)
 
   const { activeCourse } = useSelector((state) => state.activeCourse);
   const groups = useSelector((state) => state.courseGroups);
@@ -240,6 +247,7 @@ function DashboardBody(props) {
 
   useEffect(() => {
     if (coursegroups) {
+      console.log(coursegroups)
       let workshopGroup = coursegroups?.filter(
         (g) => g.name.toString().toLowerCase() === "workshop"
       );
@@ -250,6 +258,74 @@ function DashboardBody(props) {
         workshopGroup = workshopGroup[0];
         if (workshopGroup._id?.toString() === activeCourse?.toString()) {
           setactiveWorkshop(true);
+          console.log(workshopGroup)
+          if(props){
+            let __activeCourse = props.courses.filter((course) => {
+              if (course.courseDetails.groupId === activeCourse){  
+                //console.log(course)
+                if(course.batch.batchType === 'workshop'){
+                  console.log(course)
+                  if(course.batch.singleDate && course.batch.singleTime){
+                    let dayOneEnd = new Date(course.batch.singleDate).setHours(
+                      course.batch.singleTime.toString().split(":")[0],
+                      course.batch.singleTime.toString().split(":")[1],
+                      0,
+                      0)
+
+                      let courseTime = new Date(dayOneEnd).getHours() + 2;
+
+                      let courseEndTime = new Date(dayOneEnd).setHours(courseTime)
+                      console.log(courseEndTime)
+                      let x = new Date(courseEndTime).getTime();
+                      console.log(x)
+
+                      let currentTime = new Date().getTime()
+                      console.log(currentTime)
+
+                      console.log(courseTime)
+                      
+                      console.log(dayOneEnd)
+                      if(currentTime >= courseEndTime){
+                        setShowVideo(true)
+                        setShowJourney(true)
+                      }
+
+                      
+                      // if(course.batch.batchType === 'workshop'){
+                      //   console.log(course)
+                      //   if(course.batch.doubleDate && course.batch.doubleTime){
+                      //     let dayOneEnd = new Date(course.batch.doubleDate).setHours(
+                      //       course.batch.singleTime.toString().split(":")[0],
+                      //       course.batch.singleTime.toString().split(":")[1],
+                      //       0,
+                      //       0)
+                      //       const dayTwoEnd = new Date(dayOneEnd).getHours() + 1;
+
+                      //       const dayTwoEndCurrent = new Date(dayOneEnd).setHours(dayTwoEnd)
+                      //       console.log(new Date(dayTwoEndCurrent).getHours())
+                      //       console.log(dayTwoEndCurrent)
+                      //       console.log(dayTwoEnd)
+
+
+                      //       const currentTime = new Date().getTime()
+                      //       console.log(currentTime)
+
+
+                      //       console.log(dayOneEnd)
+                      //       if(currentTime >= dayTwoEndCurrent){
+                      //         showCertific
+                      //       }
+                      //     }
+                      //    }
+                      //setShowVideo(true)
+                  }
+                }
+                return course;    
+              } 
+              
+            });
+            // console.log(props)
+          }
         } else {
           setactiveWorkshop(false);
         }
@@ -417,6 +493,16 @@ function DashboardBody(props) {
   const updateCertPaidStatus = (status) => {
     setcertPaid(status);
   };
+  const [showVideo, setShowVideo] = useState(false)
+  const [showJourney, setShowJourney] = useState(false)
+
+  useEffect(() => {
+    if(coursegroups){
+      console.log(coursegroups)
+
+
+    }
+  }, [coursegroups])
 
   return (
     <>
@@ -431,6 +517,10 @@ function DashboardBody(props) {
               coursedata={coursedata}
               activeCourse={_activeCourse}
             />
+            {
+              (showVideo || !activeWorkshop) && <DashboardVideo courses = {props.courses}/>  
+            }
+            
 
             {(activeWorkshop || activeFreeclass) && (
               <>
@@ -485,11 +575,11 @@ function DashboardBody(props) {
             {(applyForCertificate ||
               showLoadingCertificate ||
               showEnabledCertificate ||
-              !activeWorkshop) && <DashboardTestimonials />}
+              activeWorkshop) && <DashboardTestimonials />}
             {(applyForCertificate ||
               showLoadingCertificate ||
               showEnabledCertificate ||
-              !activeWorkshop) && <div className="workshop__emptyDiv"></div>}
+              activeWorkshop) && <div className="workshop__emptyDiv"></div>}
           </div>
         </>
       )}

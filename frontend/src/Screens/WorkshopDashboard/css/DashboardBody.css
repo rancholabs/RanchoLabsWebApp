@@ -116,6 +116,71 @@ a:hover {
   height: 300px;
 }
 
+.youngInnovatorDashboardVideo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  /* margin-top: 40px; */
+}
+
+.youngInnovatorVideoMain {
+  background-color: transparent;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  width: calc(1702 * var(--vp));
+  /* height: calc(442 * var(--vp)); */
+  margin: calc(80 * var(--vp)) auto calc(126 * var(--vp));
+  box-shadow: 0px calc(6 * var(--vp)) calc(6 * var(--vp)) #707070;
+  border-radius: calc(10 * var(--vp));
+  height: 100%;
+  /* border: 1px solid #707070; */
+}
+
+.youngInnovatorVideoMain > button {
+  color: #f74b42;
+  background-color: transparent;
+  font-weight: bold;
+  font: normal normal normal calc(33 * var(--vp)) Roboto;
+  font-size: calc(8 * var(--vm));
+  border: 2px solid #f74b42;
+  width: calc(50 * var(--vm));
+  height: calc(15 * var(--vm));
+  margin-top: calc(5 * var(--vm));
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 500;
+}
+.youngInnovatorVideoMain > h3 {
+  font-weight: 500;
+  font-size: calc(40 * var(--vp));
+  color: #f74b42;
+  margin-top: 12px;
+  margin-bottom: 15px;
+}
+
+.youngInnovatorVideoMain > .iframe {
+  border-radius: 12px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 80%;
+  height: 250px;
+}
+
+.youngInnovatorVideoMain > iframe {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0 !important;
+  font-size: 100%;
+  background: 0 0;
+}
+
 @media (max-width: 600px) {
   .dashboard-body {
     padding: 0vw 0 23.61vw;
@@ -158,6 +223,127 @@ a:hover {
 
   .dchoice .dropdown-menu a {
     font-size: 2.77vw;
+  }
+
+  .youngInnovatorDashboardVideo {
+    margin-top: -40px;
+  }
+
+  .youngInnovatorVideoMain {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1180px;
+    overflow: hidden;
+    width: calc(326 * var(--vm));
+  }
+
+  .youngInnovatorVideoMain > h3 {
+    font-weight: 500;
+    font-size: calc(20 * var(--vm));
+    color: #f74b42;
+    margin-top: 12px;
+  }
+  .youngInnovatorVideoMain > .iframe {
+    border-radius: 12px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 250px;
+  }
+
+  .youngInnovatorVideoMain > iframe {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0 !important;
+    font-size: 100%;
+    background: 0 0;
+  }
+  .youngInnovatorVideoMain > button {
+    bottom: 0;
+    color: #f74b42;
+    background-color: transparent;
+    font-weight: bold;
+    font: normal normal normal calc(33 * var(--vp)) Roboto;
+    font-size: calc(8 * var(--vm));
+    border: 2px solid #f74b42;
+    width: calc(65 * var(--vm));
+    height: calc(18 * var(--vm));
+    margin-top: calc(5 * var(--vm));
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 500;
+  }
+}
+
+@media (min-width: 1400px) {
+  .youngInnovatorDashboardVideo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    /* margin-top: 40px; */
+  }
+
+  .youngInnovatorVideoMain {
+    background-color: transparent;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    width: calc(1702 * var(--vp));
+    /* height: calc(442 * var(--vp)); */
+    margin: calc(80 * var(--vp)) auto calc(126 * var(--vp));
+    box-shadow: 0px calc(6 * var(--vp)) calc(6 * var(--vp)) #707070;
+    border-radius: calc(10 * var(--vp));
+    height: 100%;
+    /* border: 1px solid #707070; */
+  }
+
+  .youngInnovatorVideoMain > button {
+    color: #f74b42;
+    background-color: transparent;
+    font-weight: bold;
+    font: normal normal normal calc(33 * var(--vp)) Roboto;
+    font-size: calc(33 * var(--vp));
+    border: 2px solid #f74b42;
+    width: calc(300 * var(--vp));
+    height: calc(71 * var(--vp));
+    margin-top: calc(5 * var(--vm));
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 500;
+  }
+  .youngInnovatorVideoMain > h3 {
+    font-weight: 500;
+    font-size: calc(40 * var(--vp));
+    /* font-size: 1.71vw; */
+    color: #f74b42;
+    margin-top: 12px;
+    margin-bottom: 15px;
+  }
+
+  .youngInnovatorVideoMain > .iframe {
+    border-radius: 12px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 80%;
+    height: 450px;
+  }
+  .youngInnovatorVideoMain > iframe {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0 !important;
+    font-size: 100%;
+    background: 0 0;
   }
 }
 /* 

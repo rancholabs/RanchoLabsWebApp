@@ -151,8 +151,8 @@ function Blog({ allBlogAuthors, allBlogCategory }) {
   };
 
   const deleteQuilImage = async (quilImage) => {
-    setProcessing(true);
     if (window.confirm("Deleted Image?")) {
+      setProcessing(true);
       const userInfo = localStorage.getItem("userInfo");
       const token = userInfo ? JSON.parse(userInfo).token : "";
       const config = {
