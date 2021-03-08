@@ -146,10 +146,10 @@ a:hover {
   font-weight: bold;
   font: normal normal normal calc(33 * var(--vp)) Roboto;
   font-size: calc(8 * var(--vm));
-  border: 2px solid #f74b42;
+  border: 1px solid #f74b42;
   width: calc(50 * var(--vm));
   height: calc(15 * var(--vm));
-  margin-top: calc(5 * var(--vm));
+  margin-top: calc(3 * var(--vm));
   cursor: pointer;
   border-radius: 5px;
   font-weight: 500;
@@ -270,7 +270,7 @@ a:hover {
     font-weight: bold;
     font: normal normal normal calc(33 * var(--vp)) Roboto;
     font-size: calc(8 * var(--vm));
-    border: 2px solid #f74b42;
+    border: 1px solid #f74b42;
     width: calc(65 * var(--vm));
     height: calc(18 * var(--vm));
     margin-top: calc(5 * var(--vm));
@@ -311,10 +311,10 @@ a:hover {
     font-weight: bold;
     font: normal normal normal calc(33 * var(--vp)) Roboto;
     font-size: calc(33 * var(--vp));
-    border: 2px solid #f74b42;
+    border: 1px solid #f74b42;
     width: calc(300 * var(--vp));
     height: calc(71 * var(--vp));
-    margin-top: calc(5 * var(--vm));
+    margin-top: calc(3 * var(--vm));
     cursor: pointer;
     border-radius: 5px;
     font-weight: 500;

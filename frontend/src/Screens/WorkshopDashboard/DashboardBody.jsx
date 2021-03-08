@@ -518,7 +518,7 @@ function DashboardBody(props) {
               activeCourse={_activeCourse}
             />
             {
-              (showVideo || !activeWorkshop) && <DashboardVideo courses = {props.courses}/>  
+              (activeWorkshop && showVideo)  && <DashboardVideo courses = {props.courses}/>  
             }
             
 
@@ -568,18 +568,23 @@ function DashboardBody(props) {
                 )}
               </>
             )}
-            {(applyForCertificate ||
+            {/* {(applyForCertificate ||
               showLoadingCertificate ||
               showEnabledCertificate ||
-              !activeWorkshop) && <DashboardJourney />}
-            {(applyForCertificate ||
+              activeWorkshop) && <DashboardJourney />} */}
+              {
+                (activeWorkshop && showVideo) && <DashboardJourney />
+              }
+            {/* {(applyForCertificate ||
               showLoadingCertificate ||
               showEnabledCertificate ||
-              activeWorkshop) && <DashboardTestimonials />}
-            {(applyForCertificate ||
+              !activeWorkshop) && <DashboardTestimonials />} */}
+              <DashboardTestimonials />
+            {/* {(applyForCertificate ||
               showLoadingCertificate ||
               showEnabledCertificate ||
-              activeWorkshop) && <div className="workshop__emptyDiv"></div>}
+              !activeWorkshop) && <div className="workshop__emptyDiv"></div>} */}
+              <div className = "workshop__emptyDiv"></div>
           </div>
         </>
       )}
