@@ -81,7 +81,7 @@ function AdminNewBatch({
         let _eCourse = [];
         let _eCourseGroup = [];
 
-        console.log(res.data);
+        // console.log(res.data);
         res.data.forEach((estud) => {
           if (estud.batchId === toBeEditedBatch._id) {
             let _stud = _allStudentData.filter(
@@ -132,7 +132,7 @@ function AdminNewBatch({
         if (stud.studentDetails?.role === "student")
           __allStudentData.push(stud);
       });
-      console.log(__allStudentData);
+      // console.log(__allStudentData);
       set_allStudentData(__allStudentData);
     };
     fetchStudents();
@@ -184,7 +184,7 @@ function AdminNewBatch({
       new Date(batchEndingDate)
     );
 
-    console.log(totalBatchWeeks);
+    // console.log(totalBatchWeeks);
 
     if (day_time.length > 0) {
       for (let i = 0; i < totalBatchWeeks; i++) {
@@ -212,9 +212,9 @@ function AdminNewBatch({
       }
     }
 
-    allDates.splice(0, 1);
+    // allDates.slice(0, 1);
 
-    console.log(allDates);
+    // console.log(allDates);
 
     if (toBeEditedBatch?._id) {
       // UPDATE BATCH DATA
@@ -239,12 +239,12 @@ function AdminNewBatch({
         // courseId: selectedCourse._id,
       };
 
-      console.log(body);
+      // console.log(body);
 
       axios
         .put(`/api/course/batch/${toBeEditedBatch._id}`, body, config)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
         });
 
       // CHECK FOR CHANGED/NEW STUDENTS
@@ -263,7 +263,7 @@ function AdminNewBatch({
                 signature: batchType === "workshop" ? "workshop" : "normal",
               },
             };
-            console.log(_body);
+            // console.log(_body);
             axios
               .post(`/api/course/enroll/admin`, _body, config)
               .then((res) => console.log(res.data));
@@ -279,7 +279,7 @@ function AdminNewBatch({
               signature: "freeclass",
             },
           };
-          console.log(_body);
+          // console.log(_body);
           axios
             .post(`/api/course/enroll/admin`, _body, config)
             .then((res) => console.log(res.data));
@@ -334,7 +334,7 @@ function AdminNewBatch({
                 signature: batchType === "workshop" ? "workshop" : "normal",
               },
             };
-            console.log(_body);
+            // console.log(_body);
             axios
               .post(`/api/course/enroll/admin`, _body, config)
               .then((res) => {
@@ -355,7 +355,7 @@ function AdminNewBatch({
           };
           console.log(_body);
           axios.post(`/api/course/enroll/admin`, _body, config).then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             alert("Batch Created!");
           });
         }
@@ -392,7 +392,7 @@ function AdminNewBatch({
     if (value !== null) {
       var allAssignedInstructors = [...assignedInstructors];
       const index = allAssignedInstructors.indexOf(value);
-      console.log(index);
+      // console.log(index);
       if (index < 0) {
         allAssignedInstructors.push(value);
         setAssignedInstructors(allAssignedInstructors);
@@ -436,8 +436,8 @@ function AdminNewBatch({
       };
       const bid = toBeEditedBatch?._id;
       const uid = ai.toString().split("-")[1].toString().trim();
-      console.log(bid);
-      console.log(uid);
+      // console.log(bid);
+      // console.log(uid);
       axios
         .delete(`/api/course/enroll/deleteuser/${bid}/${uid}`, config)
         .then((res) => {
@@ -470,7 +470,7 @@ function AdminNewBatch({
     }
   };
 
-  console.log(instructors);
+  // console.log(instructors);
 
   return (
     <div className="adminNewBatch">
@@ -553,7 +553,7 @@ function AdminNewBatch({
                 type="date"
                 value={batchSingleDate}
                 onChange={(e) => {
-                  console.log(e.target.value);
+                  // console.log(e.target.value);
                   setbatchSingleDate(e.target.value);
                 }}
                 //   disabled={tobeEditedCourse._id && allowEdits ? false : true}

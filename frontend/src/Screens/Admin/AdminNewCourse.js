@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import "./AdminNewCourse.css";
 import Accordion from "@material-ui/core/Accordion";
@@ -455,7 +457,6 @@ function AdminNewCourse({
   const updateProject = async (e, index) => {
     e.preventDefault();
     console.log(projects[index]);
-
     const userInfo = localStorage.getItem("userInfo");
     const token = userInfo ? JSON.parse(userInfo).token : "";
     const config = {
@@ -493,7 +494,10 @@ function AdminNewCourse({
       formData.append("files", projects[index].dashboardimage_student);
       const fileID = await axios
         .post("/api/file", formData, config)
-        .then((res) => res.data.fileId)
+        .then((res) => {
+          alert("Image 1 added Successfully");
+          return res.data.fileId;
+        })
         .catch((error) => console.log(error));
 
       body.image = fileID;
@@ -516,13 +520,17 @@ function AdminNewCourse({
       _formData.append("files", projects[index].dashboardimage);
       const fileIDStudent = await axios
         .post("/api/file", _formData, config)
-        .then((res) => res.data.fileId)
+        .then((res) => {
+          alert("Image 2 added successfully");
+          return res.data.fileId;
+        })
         .catch((error) => console.log(error));
 
       body.image_Student = fileIDStudent;
     }
 
     console.log(body);
+    setLoading(true);
 
     axios
       .put(`/api/course/project/${projects[index]._id}`, body, config)
@@ -532,6 +540,7 @@ function AdminNewCourse({
         //   .classList.remove("show");
         console.log(res.data);
         alert("Project Updated!");
+        setLoading(false);
       });
   };
 
@@ -547,6 +556,8 @@ function AdminNewCourse({
     }
   };
 
+  const [loading, setLoading] = useState(false);
+
   const addProject = async (e) => {
     e.preventDefault();
 
@@ -559,18 +570,25 @@ function AdminNewCourse({
       },
     };
 
+    setLoading(true);
     const formData = new FormData();
     formData.append("files", projectMainImage);
     const fileID = await axios
       .post("/api/file", formData, config)
-      .then((res) => res.data.fileId)
+      .then((res) => {
+        alert("Project Image Added Successfully");
+        return res.data.fileId;
+      })
       .catch((error) => console.log(error));
 
     const _formData = new FormData();
     _formData.append("files", projectStudentImage);
     const fileIDStudent = await axios
       .post("/api/file", _formData, config)
-      .then((res) => res.data.fileId)
+      .then((res) => {
+        alert("Project Student Image added Successfully..Please Wait....");
+        return res.data.fileIDStudent;
+      })
       .catch((error) => console.log(error));
 
     const body = [
@@ -597,6 +615,9 @@ function AdminNewCourse({
       setProjectTitle("");
       getUpdatedProjects();
     });
+
+    setLoading(false);
+    alert("All Images added Successfully");
   };
 
   const toggleEditFields = () => {
@@ -683,6 +704,10 @@ function AdminNewCourse({
       }
     }
     setClasses(_classes);
+  };
+
+  const handleProjectChangeQuestion = (value) => {
+    setprojectQuestion(value);
   };
 
   const handleProjectChange = (e, index) => {
@@ -1295,11 +1320,15 @@ function AdminNewCourse({
                     </div>
                     <div className="adminNewCourse__newProjectInputSection">
                       <label>Question</label>
-                      <textarea
+                      {/* <textarea
                         type="text"
                         value={projectQuestion}
                         onChange={(e) => setprojectQuestion(e.target.value)}
                         rows={4}
+                      /> */}
+                      <ReactQuill
+                        value={projectQuestion}
+                        onChange={handleProjectChangeQuestion}
                       />
                     </div>
                     <div className="adminNewCourse__newProjectInputSection">
@@ -1386,6 +1415,7 @@ function AdminNewCourse({
                       </div>
                     </div>
                   </div>
+                  {loading && <CircularProgress color="secondary" />}
                   <div className="adminNewCourse__newClassFormButtons">
                     <button
                       className="adminNewCourse__newClassFormButtons__cancel"
@@ -1477,6 +1507,13 @@ function AdminNewCourse({
                                 onChange={(e) => handleProjectChange(e, index)}
                                 rows={4}
                               />
+                              {/* <ReactQuill
+                                // id={"question-" + index}
+                                // onChange={(e) => handleProjectChange(e, index)}
+                                onChange={handleProjectChangeQuestion}
+                                value={singleProject?.question}
+                                // disabled={singleProject.edit ? false : true}
+                              /> */}
                             </div>
                             <div className="adminNewCourse__newProjectInputSection">
                               <label
@@ -1612,6 +1649,7 @@ function AdminNewCourse({
                               </div>
                             </div>
                           </div>
+                          {loading && <CircularProgress color="secondary" />}
                           {singleProject.edit && (
                             <div className="adminNewCourse__newClassFormButtons">
                               <button className="adminNewCourse__newClassFormButtons__cancel">

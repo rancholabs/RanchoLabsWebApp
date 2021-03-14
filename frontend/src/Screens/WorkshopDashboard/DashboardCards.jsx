@@ -7,7 +7,7 @@ function DashboardCards(props) {
   const coursedata = props.coursedata;
   const activeCourse = props.activeCourse;
 
-  console.log(coursedata);
+  // console.log(coursedata);
   // console.log(activeCourse);
 
   return (

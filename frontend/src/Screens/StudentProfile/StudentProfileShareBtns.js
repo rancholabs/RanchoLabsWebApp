@@ -13,6 +13,8 @@ import { setIsShareOpen } from "../../Actions/StudentProfile";
 const StudentProfileShareBtns = ({ type, id }) => {
   const { url, title, hashtag } = (() => {
     const domain = window.location.origin;
+    // const domain = "http://localhost:80";
+    //console.log(domain);
     switch (type.toUpperCase()) {
       case "PROJECT":
         return {
@@ -36,7 +38,7 @@ const StudentProfileShareBtns = ({ type, id }) => {
     }
   })();
 
-  console.log(url);
+  // console.log(url);
 
   const shareRef = useRef();
 

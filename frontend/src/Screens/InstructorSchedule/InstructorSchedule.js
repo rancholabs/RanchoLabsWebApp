@@ -462,7 +462,7 @@ const Materials = (props) => {
 };
 
 const AssignProject = (props) => {
-  console.log(props);
+  // console.log(props);
   const dispatch = useDispatch();
   const [selectedProj, setSelectedProj] = useState("");
 
@@ -688,7 +688,7 @@ const Note = (props) => {
 };
 
 const ClassListCard = (props) => {
-  console.log(props);
+  // console.log(props);
   const [ischedule, setSchedule] = useState(false);
   const status = getStatus(props.startTime, props.endTime);
   var timing =
@@ -838,7 +838,7 @@ const Schedule = () => {
     axios.get(``);
   }, []);
 
-  console.log(schedule);
+  // console.log(schedule);
 
   const classList =
     schedule && date
@@ -873,7 +873,7 @@ const Schedule = () => {
         })
       : null;
 
-  console.log(classList);
+  // console.log(classList);
 
   return (
     <>

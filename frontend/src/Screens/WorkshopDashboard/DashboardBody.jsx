@@ -208,7 +208,7 @@ const DashboardHeaderLower = (props) => {
 function DashboardBody(props) {
   const dispatch = useDispatch();
   // const [choosen, setChoosen] = useState('robotics')
-  console.log(props)
+  // console.log(props)
 
   const { activeCourse } = useSelector((state) => state.activeCourse);
   const groups = useSelector((state) => state.courseGroups);
@@ -247,7 +247,7 @@ function DashboardBody(props) {
 
   useEffect(() => {
     if (coursegroups) {
-      console.log(coursegroups)
+      // console.log(coursegroups)
       let workshopGroup = coursegroups?.filter(
         (g) => g.name.toString().toLowerCase() === "workshop"
       );
@@ -258,13 +258,13 @@ function DashboardBody(props) {
         workshopGroup = workshopGroup[0];
         if (workshopGroup._id?.toString() === activeCourse?.toString()) {
           setactiveWorkshop(true);
-          console.log(workshopGroup)
+          // console.log(workshopGroup)
           if(props){
             let __activeCourse = props.courses.filter((course) => {
               if (course.courseDetails.groupId === activeCourse){  
-                //console.log(course)
+                // console.log(course)
                 if(course.batch.batchType === 'workshop'){
-                  console.log(course)
+                  // console.log(course)
                   if(course.batch.singleDate && course.batch.singleTime){
                     let dayOneEnd = new Date(course.batch.singleDate).setHours(
                       course.batch.singleTime.toString().split(":")[0],
@@ -275,16 +275,16 @@ function DashboardBody(props) {
                       let courseTime = new Date(dayOneEnd).getHours() + 2;
 
                       let courseEndTime = new Date(dayOneEnd).setHours(courseTime)
-                      console.log(courseEndTime)
+                      // console.log(courseEndTime)
                       let x = new Date(courseEndTime).getTime();
-                      console.log(x)
+                      // console.log(x)
 
                       let currentTime = new Date().getTime()
-                      console.log(currentTime)
+                      // console.log(currentTime)
 
-                      console.log(courseTime)
+                      // console.log(courseTime)
                       
-                      console.log(dayOneEnd)
+                      // console.log(dayOneEnd)
                       if(currentTime >= courseEndTime){
                         setShowVideo(true)
                         setShowJourney(true)
@@ -498,7 +498,7 @@ function DashboardBody(props) {
 
   useEffect(() => {
     if(coursegroups){
-      console.log(coursegroups)
+      // console.log(coursegroups)
 
 
     }

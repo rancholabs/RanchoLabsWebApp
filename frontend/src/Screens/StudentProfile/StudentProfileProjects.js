@@ -112,7 +112,7 @@ const StudentProfileProjects = () => {
 
   const history = useHistory();
 
-  console.log(projects);
+  // console.log(projects);
 
   return (
     <div id="student-profile-projects" className="student-profile-projects">

@@ -7,6 +7,7 @@ import { setDefaultFooter, updateFooter } from "../../Actions/Footer";
 import LogoImg from "./img/logo 4@2x.png";
 import "./index.css";
 import { instructorUpdateBatchProject } from "../../Actions/Instructor";
+import ReactHTMLparser from "react-html-parser";
 
 function ProjectBuild({ location }) {
   const dispatch = useDispatch();
@@ -97,6 +98,7 @@ function ProjectBuild({ location }) {
       });
     }
   }, [singleProject]);
+  console.log(singleProject);
 
   useEffect(() => {
     dispatch(updateHeader({ headerDisplay: "none" }));
@@ -159,11 +161,11 @@ function ProjectBuild({ location }) {
           <div className="buildProject__body__content">
             <div className="buildProject__body__contentSection">
               <h3>Project Description</h3>
-              <h3>{singleProject.question}</h3>
+              <h3>{ReactHTMLparser(singleProject.question)}</h3>
             </div>
             <div className="buildProject__body__contentSection__image">
               <h3>{"Deadline : " + singleProject.deadline}</h3>
-              <img src={singleProject?.studentimage?.filePath}></img>
+              <img src={singleProject.mainimage?.filePath}></img>
             </div>
           </div>
           <input

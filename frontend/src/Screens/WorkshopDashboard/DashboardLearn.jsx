@@ -25,10 +25,11 @@ const DLlistItem = (dlitem) => {
 
 const getDate = (d) => {
   var date = new Date(d);
+  // console.log(date)
   var day = date.getDate();
   var options = { month: "long" };
   const month = new Intl.DateTimeFormat("en-US", options).format(date);
-  // console.log(month);
+  //  console.log(month);
   var year = date.getFullYear();
 
   var rdate = {
@@ -37,7 +38,7 @@ const getDate = (d) => {
     year: year,
   };
 
-  // console.log(rdate);
+  //  console.log(rdate);
   return rdate;
 };
 
@@ -52,7 +53,7 @@ const MaterialItem = (matitem) => {
 };
 
 const Daywise = ({ singleClass, batch, classDate }) => {
-  // console.log(singleClass, batch);
+  //  console.log(singleClass, batch, classDate);
   const isOver = true;
 
   //   var sdate = getDate(singleClass.classTime.startTime);
@@ -85,7 +86,7 @@ const Daywise = ({ singleClass, batch, classDate }) => {
   let batchClassTime;
 
   if (batch.batchType === "normal") {
-    batchClassDate = getDate(classDate.date);
+    batchClassDate = getDate(classDate?.date);
     var classTimeSuffix =
       parseInt(new Date(classDate?.date).getHours()) >= 12 ? "PM" : "AM";
     var classTimehours =
@@ -98,6 +99,9 @@ const Daywise = ({ singleClass, batch, classDate }) => {
         : new Date(classDate?.date).getMinutes()) +
       " " +
       classTimeSuffix;
+
+      // console.log(batchClassDate, classTimeSuffix, classTimehours)
+
   }
 
   var suffix =
@@ -332,7 +336,7 @@ const NotEnrolled = ({ message }) => {
 
 const DashboardLearnCard = (props) => {
   var Dlearn = props.learn;
-  // console.log(Dlearn);
+  //  console.log(Dlearn);
 
   function getProgress() {
     if (Dlearn) {
@@ -389,6 +393,7 @@ const DashboardLearnCard = (props) => {
                             singleClass={singleClass}
                             batch={Dlearn.batch}
                             classDate={Dlearn.batch.allDates[index]}
+                            // classDate = {Dlearn.batch.startDate}
                           />
                         );
                       }

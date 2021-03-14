@@ -13,7 +13,9 @@ function DeadlineOver(deadline) {
 function getDeadline(deadline) {
   var d = new Date().toISOString;
   var dline = deadline < d ? "Over" : deadline;
+  // console.log(dline)
   return dline;
+  
 }
 
 function ProjectItemDesk(projectItem) {
@@ -173,18 +175,65 @@ function Lockhover({ title }) {
 
 const DashboardBuildMobile = (props) => {
   var Dbuild = props.data;
+
+  const [showEnabledProjects, setShowEnabledProjects] = React.useState(false);
+  const [allEnabledProjects, setallEnabledProjects] = React.useState([]);
+  React.useEffect(() => {
+    if (Dbuild?.projects) {
+      let enabledProjects = Dbuild?.projects?.filter(
+        (proj) => proj.isActive === true
+      );
+      if (enabledProjects.length > 0) {
+        setallEnabledProjects(enabledProjects);
+        setShowEnabledProjects(true);
+      } else {
+        setallEnabledProjects([]);
+        setShowEnabledProjects(false);
+      }
+    }
+  }, [props.data]);
   return (
     <div className="card buildcardmobile">
       <div className="dproject">
+        {     
+              Dbuild && Dbuild.batch ? (Dbuild.batch.batchType === "normal" ? (
+              showEnabledProjects ? (
+                    <Carousel>
+                      <ProjectItemMob singleProject = {Dbuild.projects[0]}/>
+                    </Carousel>
+              ) : null
+            ) : null) : null
+              
+        }
         {Dbuild && Dbuild.batch ? (
           Dbuild.batch.batchType === "normal" ? (
-            Dbuild.projects.map((proj) => {
+            showEnabledProjects ? (Dbuild.projects?.map((proj) => {
               return (
-                <Carousel emulateTouch swipeable useKeyboardArrows infiniteLoop>
+                <Carousel emulateTouch swipeable useKeyboardArrows infiniteLoop showArrows>
                   <ProjectItemMob singleProject={proj} />
                 </Carousel>
+            
               );
-            })
+            }) 
+            ) : (<>
+              <div className="text-center lock" style={{ margin: "auto" }}>
+                <img
+                  src={lock}
+                  alt="locked"
+                  className="img-fluid"
+                  style={{ margin: "auto", width: "20%" }}
+                ></img>
+                <Lockhover />
+              </div>
+            </>
+            )
+            // Dbuild.projects.map((proj) => {
+            //   return (
+            //     <Carousel emulateTouch swipeable useKeyboardArrows infiniteLoop>
+            //       <ProjectItemMob singleProject={proj} />
+            //     </Carousel>
+            //   );
+            // })
           ) : (
             <ProjectItemMob singleProject={Dbuild.projects[0]} />
           )
@@ -309,7 +358,7 @@ function DashboardBuildCard(props) {
 
 const DashboardBuild = (props) => {
   var Dbuild = props.build;
-  // console.log(Dbuild);
+  //  console.log(Dbuild);
 
   return (
     <div>
