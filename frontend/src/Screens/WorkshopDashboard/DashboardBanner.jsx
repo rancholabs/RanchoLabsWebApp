@@ -6,10 +6,12 @@ import { useEffect } from "react";
 import { getStudent, updateStudent } from "../../Actions/Student";
 import { useHistory } from "react-router-dom";
 
-const Banner = () => {
+const Banner = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { student } = useSelector((state) => state.studentInfo);
+  //console.log(props.props)
+  //console.log(props.props.courses[0]?.batchId)
 
   useEffect(() => {
     dispatch(getStudent());
@@ -28,14 +30,16 @@ const Banner = () => {
 
   return (
     <>
-      {student?.loginfor === "workshop" ? (
+      {student?.loginfor === "workshop"  ? (
         <>
           <br />
           <br />
           <br />{" "}
         </>
       ) : (
-        <div className="dashboardbanner">
+        <>
+        {
+          !props.props.courses[0]?.batchId ? (<div className="dashboardbanner">
           <div className="bannerimage">
             <div className="row mx-0">
               <div>
@@ -98,10 +102,21 @@ const Banner = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div>) : (
+          <>
+            <br />
+            <br />
+            <br />
+          </>
+        )
+           
+          
+        }
+       </> 
       )}
     </>
   );
+  
 };
 
 export default Banner;

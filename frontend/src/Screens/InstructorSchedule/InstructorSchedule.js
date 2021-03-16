@@ -873,7 +873,7 @@ const Schedule = () => {
         })
       : null;
 
-  // console.log(classList);
+  console.log(classList);
 
   return (
     <>

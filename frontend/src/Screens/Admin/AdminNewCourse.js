@@ -414,6 +414,13 @@ function AdminNewCourse({
       setslidesLink("");
       setrefLink("");
       getUpdatedClasses();
+      alert("Class added successfully");
+      if (window.confirm("Would You like to add more Classes ??")) {
+        showNewClassForm();
+      } else {
+        getUpdatedClasses();
+        showNewClassForm();
+      }
     });
   };
 

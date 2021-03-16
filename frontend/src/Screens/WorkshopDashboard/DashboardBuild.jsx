@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./css/DashboardBuild.css";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -13,7 +13,7 @@ function DeadlineOver(deadline) {
 function getDeadline(deadline) {
   var d = new Date().toISOString;
   var dline = deadline < d ? "Over" : deadline;
-  // console.log(dline)
+  //console.log(dline)
   return dline;
   
 }
@@ -21,7 +21,7 @@ function getDeadline(deadline) {
 function ProjectItemDesk(projectItem) {
   var DeadlineOver = false;
   var SubmissionOver = false;
-  // console.log(projectItem.singleProject);
+  //console.log(projectItem.singleProject);
 
   const goToProjectBuild = () => {
     window.location.href = `/buildproject?project=${projectItem.singleProject._id}&batch=${projectItem.batchId}`;
@@ -127,13 +127,13 @@ const ProjectItemMob = (projectItem) => {
               width: "100%",
             }}
           >
-            {!DeadlineOver ? (
+            {DeadlineOver ? (
               <div className="startbuilding">
                 <button>View Submission</button>
               </div>
             ) : (
               <>
-                {!SubmissionOver ? (
+                {SubmissionOver ? (
                   <>
                     <div className="startbuilding">
                       <button>Start Building</button>
@@ -175,6 +175,20 @@ function Lockhover({ title }) {
 
 const DashboardBuildMobile = (props) => {
   var Dbuild = props.data;
+  //console.log(Dbuild)
+
+  const [showSingleProject, setShowSingleProject] = useState(false)
+  const [enableSingleProject, setEnableSingleProject] = useState(null)
+  
+  React.useEffect(() => {
+    if(Dbuild?.batch.batchType === "normal"){
+      if(Dbuild.projects.length > 0){
+        setEnableSingleProject(Dbuild.projects[0])
+        //console.log(enableSingleProject)
+        setShowSingleProject(true)
+      }
+    }
+  }, [props.data])
 
   const [showEnabledProjects, setShowEnabledProjects] = React.useState(false);
   const [allEnabledProjects, setallEnabledProjects] = React.useState([]);
@@ -192,22 +206,13 @@ const DashboardBuildMobile = (props) => {
       }
     }
   }, [props.data]);
+//  console.log(allEnabledProjects)
   return (
     <div className="card buildcardmobile">
       <div className="dproject">
-        {     
-              Dbuild && Dbuild.batch ? (Dbuild.batch.batchType === "normal" ? (
-              showEnabledProjects ? (
-                    <Carousel>
-                      <ProjectItemMob singleProject = {Dbuild.projects[0]}/>
-                    </Carousel>
-              ) : null
-            ) : null) : null
-              
-        }
         {Dbuild && Dbuild.batch ? (
           Dbuild.batch.batchType === "normal" ? (
-            showEnabledProjects ? (Dbuild.projects?.map((proj) => {
+            showEnabledProjects ? (allEnabledProjects.map((proj) => {
               return (
                 <Carousel emulateTouch swipeable useKeyboardArrows infiniteLoop showArrows>
                   <ProjectItemMob singleProject={proj} />
@@ -216,7 +221,7 @@ const DashboardBuildMobile = (props) => {
               );
             }) 
             ) : (<>
-              <div className="text-center lock" style={{ margin: "auto" }}>
+              {/* <div className="text-center lock" style={{ margin: "auto" }}>
                 <img
                   src={lock}
                   alt="locked"
@@ -224,7 +229,32 @@ const DashboardBuildMobile = (props) => {
                   style={{ margin: "auto", width: "20%" }}
                 ></img>
                 <Lockhover />
-              </div>
+              </div> */}
+              {
+                Dbuild.batch && Dbuild.batch.batchType === "normal" ? (
+                  showSingleProject ? (
+                    <Carousel emulateTouch swipeable useKeyboardArrows infiniteLoop showArrows>
+                      <ProjectItemMob singleProject={enableSingleProject} />
+                    </Carousel>
+                  ) : (<div className="text-center lock" style={{ margin: "auto" }}>
+                  <img
+                    src={lock}
+                    alt="locked"
+                    className="img-fluid"
+                    style={{ margin: "auto", width: "20%" }}
+                  ></img>
+                  <Lockhover />
+                </div>)
+                ) : (<div className="text-center lock" style={{ margin: "auto" }}>
+                <img
+                  src={lock}
+                  alt="locked"
+                  className="img-fluid"
+                  style={{ margin: "auto", width: "20%" }}
+                ></img>
+                <Lockhover />
+              </div>)
+              }
             </>
             )
             // Dbuild.projects.map((proj) => {
@@ -257,7 +287,21 @@ const DashboardBuildMobile = (props) => {
 
 function DashboardBuildCard(props) {
   var Dbuild = props.data;
-  // console.log(Dbuild);
+   //console.log(Dbuild);
+
+   const [showSingleProject, setShowSingleProject] = useState(false)
+   const [enableSingleProject, setEnableSingleProject] = useState(null)
+   
+   React.useEffect(() => {
+     if(Dbuild?.batch.batchType === "normal"){
+       if(Dbuild.projects.length > 0){
+         setEnableSingleProject(Dbuild.projects[0])
+        // console.log(enableSingleProject)
+         setShowSingleProject(true)
+       }
+     }
+   }, [props.data])
+
   const [showEnabledProjects, setShowEnabledProjects] = React.useState(false);
   const [allEnabledProjects, setallEnabledProjects] = React.useState([]);
   React.useEffect(() => {
@@ -302,15 +346,43 @@ function DashboardBuildCard(props) {
                   })}
                 </Carousel>
               ) : (
-                <div className="text-center lock" style={{ margin: "auto" }}>
+                // <div className="text-center lock" style={{ margin: "auto" }}>
+                //   <img
+                //     src={lock}
+                //     alt="locked"
+                //     className="img-fluid"
+                //     style={{ margin: "auto", width: "6.56vw" }}
+                //   ></img>
+                //   <Lockhover title="Projects not enabled yet!" />
+                // </div>
+                <>
+                {
+                  Dbuild.batch && Dbuild.batch.batchType === "normal" ? (
+                    showSingleProject ? (
+                      <Carousel>
+                        <ProjectItemDesk singleProject={enableSingleProject} 
+                        batchId = {Dbuild.batchId}
+                        />
+                      </Carousel>
+                    ) : (<div className="text-center lock" style={{ margin: "auto" }}>
+                    <img
+                      src={lock}
+                      alt="locked"
+                      className="img-fluid"
+                      style={{ margin: "auto", width: "20%" }}
+                    ></img>
+                    <Lockhover />
+                  </div>)
+                  ) : (<div className="text-center lock" style={{ margin: "auto" }}>
                   <img
                     src={lock}
                     alt="locked"
                     className="img-fluid"
-                    style={{ margin: "auto", width: "6.56vw" }}
+                    style={{ margin: "auto", width: "20%" }}
                   ></img>
-                  <Lockhover title="Projects not enabled yet!" />
-                </div>
+                  <Lockhover />
+                </div>)
+                }</>
               )
             ) : Dbuild.batch.batchType === "freeclass" ? (
               <ProjectItemDesk

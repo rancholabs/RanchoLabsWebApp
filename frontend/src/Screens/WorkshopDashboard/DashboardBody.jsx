@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Dropdown, Button, ButtonGroup, DropdownButton } from "react-bootstrap";
 import "./css/DashboardBody.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, batch } from "react-redux";
 import { useEffect } from "react";
 import { courseGroups } from "../../Actions/courseActions";
 import { activeCourseGroup } from "../../Actions/dashboardActions";
@@ -35,6 +35,14 @@ const [choosen, setChoosen] = useState('')
     dispatch(courseGroups());
   }, []);
 
+  if (coursegroups) {
+    var selected = coursegroups.filter((course) => {
+      if (course._id === activeCourse)      
+      return course;
+      
+    });
+  }
+
   useEffect(() => {
     if (student?.loginfor === "workshop") {
       let workshopID = coursegroups?.filter(
@@ -46,14 +54,25 @@ const [choosen, setChoosen] = useState('')
         (cg) => cg.name.toString().toLowerCase() === "free class"
       )[0]?._id;
       dispatch(activeCourseGroup(freeclassID));
-    }
+    } 
   }, [coursegroups, student]);
 
-  if (coursegroups) {
-    var selected = coursegroups.filter((course) => {
-      if (course._id === activeCourse) return course;
-    });
-  }
+  useEffect(() => {
+    if(student?.loginfor === null){
+      // let classId = coursegroups?.filter((cg) => cg.name.toString().toLowerCase() === "programming" || "robotics" || "artificial intelligence" || "recommended")[0]?._id;
+      const classId = props.courses[0].courseDetails.groupId
+      //console.log(classId)
+      let classXId = coursegroups?.filter((cg) => cg._id.toString() === classId)
+      // console.log(classXId)
+      const finalId = classXId[0]._id
+      // console.log(finalId)
+      dispatch(activeCourseGroup(finalId))
+    }
+  }, [coursegroups])
+
+//  console.log(student)
+
+//console.log(coursegroups)
 
   const { userInfo } = useSelector((state) => state.userLogin);
 
@@ -127,8 +146,14 @@ const [choosen, setChoosen] = useState('')
                       </Dropdown.Item>
                     </>
                   );
-                } else {
-                  return null;
+                } else  {
+                  return (<>
+                    <Dropdown.Item onClick = {() => 
+                      handleClick(group._id)
+                    }>
+                      {group.name}
+                    </Dropdown.Item>
+                  </>);
                 }
               })}
             </Dropdown.Menu>
@@ -141,6 +166,7 @@ const [choosen, setChoosen] = useState('')
 
 const DashboardHeaderLowerMob = (props) => {
   const history = useHistory();
+  //console.log(props)
   return (
     <div
       className="row dashboard-header-lower-mob mx-0"
@@ -512,7 +538,8 @@ function DashboardBody(props) {
           <DashboardHeaderLower courses={props.courses} />
 
           <div style={{ backgroundColor: "#F0F0F2" }}>
-            <DashboardBanner />
+
+            <DashboardBanner props = {props}/>
             <DashboardCards
               coursedata={coursedata}
               activeCourse={_activeCourse}

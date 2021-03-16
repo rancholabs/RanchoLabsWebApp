@@ -53,7 +53,7 @@ const MaterialItem = (matitem) => {
 };
 
 const Daywise = ({ singleClass, batch, classDate }) => {
-  //  console.log(singleClass, batch, classDate);
+    //console.log(singleClass, batch, classDate);
   const isOver = true;
 
   //   var sdate = getDate(singleClass.classTime.startTime);
@@ -392,7 +392,7 @@ const DashboardLearnCard = (props) => {
                           <Daywise
                             singleClass={singleClass}
                             batch={Dlearn.batch}
-                            classDate={Dlearn.batch.allDates[index]}
+                            classDate={Dlearn.batch.allDates[index+1]}
                             // classDate = {Dlearn.batch.startDate}
                           />
                         );
