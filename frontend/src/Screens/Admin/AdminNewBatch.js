@@ -212,7 +212,7 @@ function AdminNewBatch({
       }
     }
 
-    // allDates.slice(0, 1);
+    allDates.slice(0, 1);
 
     // console.log(allDates);
 

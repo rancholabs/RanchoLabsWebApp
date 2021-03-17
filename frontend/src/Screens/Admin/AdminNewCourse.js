@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
+// import ReactHtmlParser from "react-html-parser";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import "./AdminNewCourse.css";
@@ -671,6 +672,21 @@ function AdminNewCourse({
     });
   };
 
+  const deleteSingleProjectOBJ = (projectId) => {
+    const userInfo = localStorage.getItem("userInfo");
+    const token = userInfo ? JSON.parse(userInfo).token : "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    };
+    axios.delete(`/api/course/project/${projectId}`, config).then((res) => {
+      alert("Project Deleted");
+      getUpdatedProjects();
+    });
+  };
+
   const editSingleProjectOBJ = (index) => {
     var newProjects = [...projects];
     newProjects[index].edit = !newProjects[index].edit;
@@ -713,7 +729,11 @@ function AdminNewCourse({
     setClasses(_classes);
   };
 
-  const handleProjectChangeQuestion = (value) => {
+  const handleProjectChangeQuestion = (value, index) => {
+    setprojectQuestion(value);
+  };
+
+  const handleProjectChangeQuestionUpdate = (value, index) => {
     setprojectQuestion(value);
   };
 
@@ -1459,6 +1479,12 @@ function AdminNewCourse({
                             className="adminNewCourse__existingClassFormEdit"
                             onClick={() => editSingleProjectOBJ(index)}
                           ></img>
+                          <DeleteIcon
+                            className="adminNewCourse__existingClassFormEdit"
+                            onClick={() =>
+                              deleteSingleProjectOBJ(singleProject._id)
+                            }
+                          />
                           <div className="adminNewCourse__newProjectForm__Content">
                             <div className="adminNewCourse__newProjectInputSection">
                               <label
@@ -1514,13 +1540,13 @@ function AdminNewCourse({
                                 onChange={(e) => handleProjectChange(e, index)}
                                 rows={4}
                               />
-                              {/* <ReactQuill
-                                // id={"question-" + index}
-                                // onChange={(e) => handleProjectChange(e, index)}
-                                onChange={handleProjectChangeQuestion}
-                                value={singleProject?.question}
-                                // disabled={singleProject.edit ? false : true}
-                              /> */}
+                              {/* {
+                                <ReactQuill
+                                  value={singleProject.question}
+                                  readOnly={false}
+                                  onChange={handleProjectChangeQuestionUpdate}
+                                />
+                              } */}
                             </div>
                             <div className="adminNewCourse__newProjectInputSection">
                               <label

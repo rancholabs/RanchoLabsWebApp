@@ -74,6 +74,8 @@ function WorkshopDashboard({ history, location }) {
     }
   }
 
+  console.log(data);
+
   return (
     <>
       {message && <Modal message={message}></Modal>}

@@ -53,8 +53,9 @@ const MaterialItem = (matitem) => {
 };
 
 const Daywise = ({ singleClass, batch, classDate }) => {
-    //console.log(singleClass, batch, classDate);
+    // console.log(singleClass, batch, classDate);
   const isOver = true;
+  console.log(batch)
 
   //   var sdate = getDate(singleClass.classTime.startTime);
   //   var edate = getDate(singleClass.classTime.endTime);
@@ -114,7 +115,7 @@ const Daywise = ({ singleClass, batch, classDate }) => {
 
   return (
     <>
-      {singleClass && (
+      {(singleClass && singleClass.topic && singleClass.classNo) &&  (
         <div>
           <div
             className="row session-titles"
