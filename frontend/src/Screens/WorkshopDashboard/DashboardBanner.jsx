@@ -6,8 +6,9 @@ import { useEffect } from "react";
 import { getStudent, updateStudent } from "../../Actions/Student";
 import { useHistory } from "react-router-dom";
 
-const Banner = () => {
+const Banner = (props) => {
   const dispatch = useDispatch();
+  //console.log(props.courses.courses.length)
   const history = useHistory();
   const { student } = useSelector((state) => state.studentInfo);
 
@@ -28,7 +29,7 @@ const Banner = () => {
 
   return (
     <>
-      {student?.loginfor === "workshop" ? (
+      {student?.loginfor === "workshop" ||  props.courses.courses.length !== 0 ? (
         <>
           <br />
           <br />

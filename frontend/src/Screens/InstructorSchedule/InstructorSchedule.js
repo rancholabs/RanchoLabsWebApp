@@ -483,13 +483,54 @@ const AssignProject = (props) => {
     );
     alert("Project Enabled!");
   };
+
+  const [edit, setEdit] = useState(false);
   return (
     <div className="isntructor__enableProjects">
       <label>Enabled Project for this class</label>
       {props.projectDetails?.name ? (
-        <ul>
-          <li>{props.projectDetails?.name}</li>
-        </ul>
+        <>
+          <ul>
+            <li>{props.projectDetails?.name}</li>
+          </ul>
+          {!edit && (
+            <button onClick={() => setEdit(true)}>
+              Edit Project
+              {/* {!edit ? "Edit Project" : "Cancel"} */}
+            </button>
+          )}
+
+          {edit && <button onClick={() => setEdit(false)}>Cancle</button>}
+
+          {edit && (
+            <>
+              {" "}
+              <select
+                value={selectedProj}
+                onChange={(e) => setSelectedProj(e.target.value)}
+              >
+                <option>Select Project to enable</option>
+                {props.allProjectsDetails?.map((proj) => {
+                  let projData = props.allProjectsBatch.filter(
+                    (pb) => pb.projectId === proj._id
+                  );
+                  projData = projData[0];
+                  return (
+                    <option
+                      value={proj._id}
+                      style={{
+                        backgroundColor: projData?.isActive ? "green" : "",
+                      }}
+                    >
+                      {proj.name}
+                    </option>
+                  );
+                })}
+              </select>
+              <button onClick={handleProjectEnable}>Enable</button>
+            </>
+          )}
+        </>
       ) : (
         <>
           <select
@@ -1019,7 +1060,7 @@ const Schedule = () => {
 
                     let assignedProjectId = C.classes.filter(
                       (clas) => clas.classId === C.activeClassDetails?._id
-                    )[0].assignedProject;
+                    )[0]?.assignedProject;
 
                     C.activeProjectDetails = _projectArray.filter(
                       (proj) =>

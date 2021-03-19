@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactQuill from "react-quill";
 // import ReactHtmlParser from "react-html-parser";
 import "react-quill/dist/quill.snow.css";
@@ -464,6 +464,7 @@ function AdminNewCourse({
 
   const updateProject = async (e, index) => {
     e.preventDefault();
+    setLoading(true);
     console.log(projects[index]);
     const userInfo = localStorage.getItem("userInfo");
     const token = userInfo ? JSON.parse(userInfo).token : "";
@@ -529,7 +530,7 @@ function AdminNewCourse({
       const fileIDStudent = await axios
         .post("/api/file", _formData, config)
         .then((res) => {
-          alert("Image 2 added successfully");
+          alert("Dashboard Image added successfully.. Please Wait...");
           return res.data.fileId;
         })
         .catch((error) => console.log(error));
@@ -538,7 +539,6 @@ function AdminNewCourse({
     }
 
     console.log(body);
-    setLoading(true);
 
     axios
       .put(`/api/course/project/${projects[index]._id}`, body, config)
@@ -549,20 +549,74 @@ function AdminNewCourse({
         console.log(res.data);
         alert("Project Updated!");
         setLoading(false);
+        setImage(false);
+        setImage1(false);
       });
   };
 
-  const handleProjectStudentImageUpload = (e) => {
-    if (e.target.files[0]) {
-      setprojectStudentImage(e.target.files[0]);
-    }
-  };
+  const imageRef = useRef(null);
+  const { result, uploader } = useDisplayImage();
+  const [image, setImage] = useState(false);
 
   const handleProjectMainImageUpload = (e) => {
+    let maxSize = 1024; //in kb
     if (e.target.files[0]) {
-      setprojectMainImage(e.target.files[0]);
+      let fileSize = e.target.files[0].size / 1024;
+      if (fileSize > maxSize) {
+        alert("Maximum File Size Exceed");
+        return false;
+      } else {
+        setprojectMainImage(e.target.files[0]);
+        uploader(e);
+        setImage(true);
+        return true;
+      }
     }
   };
+  function useDisplayImage() {
+    const [result, setResult] = useState("");
+    function uploader(e) {
+      const imageFile = e.target.files[0];
+      const reader = new FileReader();
+      reader.addEventListener("load", (e) => {
+        setResult(e.target.result);
+      });
+      reader.readAsDataURL(imageFile);
+    }
+    return { result, uploader };
+  }
+
+  const imageRef1 = useRef(null);
+  const { result1, upload } = useDisplayImage1();
+  const [image1, setImage1] = useState(false);
+
+  const handleProjectStudentImageUpload = (e) => {
+    let maxSize = 1024; //in kb
+    if (e.target.files[0]) {
+      let fileSize = e.target.files[0].size / 1024;
+      if (fileSize > maxSize) {
+        alert("Maximum File Size Exceed");
+        return false;
+      } else {
+        setprojectStudentImage(e.target.files[0]);
+        upload(e);
+        setImage1(true);
+        return true;
+      }
+    }
+  };
+  function useDisplayImage1() {
+    const [result1, setResult1] = useState("");
+    function upload(e) {
+      const imageFile = e.target.files[0];
+      const reader = new FileReader();
+      reader.addEventListener("load", (e) => {
+        setResult1(e.target.result);
+      });
+      reader.readAsDataURL(imageFile);
+    }
+    return { result1, upload };
+  }
 
   const [loading, setLoading] = useState(false);
 
@@ -672,7 +726,7 @@ function AdminNewCourse({
     });
   };
 
-  const deleteSingleProjectOBJ = (projectId) => {
+  const deleteSingleProjectOBJ = async (projectId, index) => {
     const userInfo = localStorage.getItem("userInfo");
     const token = userInfo ? JSON.parse(userInfo).token : "";
     const config = {
@@ -681,6 +735,34 @@ function AdminNewCourse({
         authorization: token,
       },
     };
+    if (
+      projects[index].dashboardimage &&
+      projects[index].dashboardimage !== null
+    ) {
+      await axios
+        .delete(`/api/file/${projects[index].image}`, config)
+        .then((res) => {
+          console.log(res.data);
+          alert("Image1 deleted");
+          return res.data;
+        })
+        .catch((err) => console.log(err));
+    }
+
+    if (
+      projects[index].dashboardimage_student &&
+      projects[index].dashboardimage_student !== null
+    ) {
+      await axios
+        .delete(`/api/file/${projects[index].image_Student}`, config)
+        .then((res) => {
+          console.log(res.data);
+          alert("image2 deleted");
+          return res.data;
+        })
+        .catch((err) => console.log(err));
+    }
+
     axios.delete(`/api/course/project/${projectId}`, config).then((res) => {
       alert("Project Deleted");
       getUpdatedProjects();
@@ -747,14 +829,51 @@ function AdminNewCourse({
   const handleProjectStudentDashboardImageChange = (e, index) => {
     let _projects = [...projects];
     _projects[index].dashboardimage = e.target.files[0];
-    setProjects(_projects);
+    let maxSize = 1024; //in kb
+    if (e.target.files[0]) {
+      let fileSize = e.target.files[0].size / 1024;
+      if (fileSize > maxSize) {
+        alert("Maximum File Size Exceed");
+        return false;
+      } else {
+        upload(e);
+        setImage1(true);
+        setProjects(_projects);
+        return true;
+      }
+    }
   };
 
   const handleProjectDashboardImageChange = (e, index) => {
     let _projects = [...projects];
     _projects[index].dashboardimage_student = e.target.files[0];
-    setProjects(_projects);
+    let maxSize = 1024; //in kb
+    if (e.target.files[0]) {
+      let fileSize = e.target.files[0].size / 1024;
+      if (fileSize > maxSize) {
+        alert("Maximum File Size Exceed");
+        return false;
+      } else {
+        setprojectStudentImage(e.target.files[0]);
+        uploader(e);
+        setImage(true);
+        setProjects(_projects);
+        return true;
+      }
+    }
   };
+  // function useDisplayImage() {
+  //   const [result, setResult] = useState("");
+  //   function uploader(e) {
+  //     const imageFile = e.target.files[0];
+  //     const reader = new FileReader();
+  //     reader.addEventListener("load", (e) => {
+  //       setResult(e.target.result);
+  //     });
+  //     reader.readAsDataURL(imageFile);
+  //   }
+  //   return { result, uploader };
+  // }
 
   // const uploadPDF = (e) => {
   //   console.log("uploading file pdf");
@@ -1172,6 +1291,11 @@ function AdminNewCourse({
                           ></img>
                           <DeleteIcon
                             className="adminNewCourse__existingClassFormEdit"
+                            style={{
+                              color: "#4320bf",
+                              marginLeft: "auto",
+                              marginRight: "10px",
+                            }}
                             onClick={() =>
                               deleteSingleClassOBJ(singleClass._id)
                             }
@@ -1299,7 +1423,10 @@ function AdminNewCourse({
                           </div>
                           {singleClass.edit && (
                             <div className="adminNewCourse__newClassFormButtons">
-                              <button className="adminNewCourse__newClassFormButtons__cancel">
+                              <button
+                                className="adminNewCourse__newClassFormButtons__cancel"
+                                onClick={getUpdatedClasses}
+                              >
                                 Cancel
                               </button>
                               <button onClick={(e) => updateClasses(e, index)}>
@@ -1374,8 +1501,29 @@ function AdminNewCourse({
                           style={{ display: "none" }}
                           onChange={handleProjectMainImageUpload}
                         />
-                        <h3>+</h3>
-                        <p>Attach file</p>
+                        {!image ? (
+                          <>
+                            <h3>+</h3>
+                            <p>Attach file</p>
+                            <small style={{ color: "red" }}>
+                              Must be less than 1MB and square in size
+                            </small>
+                          </>
+                        ) : (
+                          <>
+                            {result && (
+                              <img
+                                style={{
+                                  width: "100%",
+                                  objectFit: "contain",
+                                }}
+                                ref={imageRef}
+                                src={result}
+                                alt=""
+                              />
+                            )}
+                          </>
+                        )}
                       </div>
                     </div>
                     <div className="adminNewCourse__newProjectInputSection">
@@ -1394,8 +1542,31 @@ function AdminNewCourse({
                           id="project_student_image_input"
                           onChange={handleProjectStudentImageUpload}
                         />
-                        <h3>+</h3>
-                        <p>Attach file</p>
+                        {/* <h3>+</h3>
+                        <p>Attach file</p> */}
+                        {!image1 ? (
+                          <>
+                            <h3>+</h3>
+                            <p>Attach file</p>
+                            <small style={{ color: "red" }}>
+                              Must be less than 1MB and square in size
+                            </small>
+                          </>
+                        ) : (
+                          <>
+                            {result1 && (
+                              <img
+                                style={{
+                                  width: "100%",
+                                  objectFit: "contain",
+                                }}
+                                ref={imageRef1}
+                                src={result1}
+                                alt=""
+                              />
+                            )}
+                          </>
+                        )}
                       </div>
                     </div>
                     <div className="adminNewCourse__newProjectInputSection">
@@ -1481,8 +1652,13 @@ function AdminNewCourse({
                           ></img>
                           <DeleteIcon
                             className="adminNewCourse__existingClassFormEdit"
+                            style={{
+                              color: "#4320bf",
+                              marginLeft: "auto",
+                              marginRight: "10px",
+                            }}
                             onClick={() =>
-                              deleteSingleProjectOBJ(singleProject._id)
+                              deleteSingleProjectOBJ(singleProject._id, index)
                             }
                           />
                           <div className="adminNewCourse__newProjectForm__Content">
@@ -1576,8 +1752,31 @@ function AdminNewCourse({
                                   }
                                   id={"project_dashboard_image_input" + index}
                                 />
-                                <h3>+</h3>
-                                <p>Attach file</p>
+                                {/* <h3>+</h3>
+                                <p>Attach file</p> */}
+                                {!image ? (
+                                  <>
+                                    <h3>+</h3>
+                                    <p>Attach file</p>
+                                    <small style={{ color: "red" }}>
+                                      Must be less than 1Mb and square in size
+                                    </small>
+                                  </>
+                                ) : (
+                                  <>
+                                    {result && (
+                                      <img
+                                        style={{
+                                          width: "100%",
+                                          objectFit: "contain",
+                                        }}
+                                        ref={imageRef}
+                                        src={result}
+                                        alt=""
+                                      />
+                                    )}
+                                  </>
+                                )}
                               </div>
                             </div>
                             <div className="adminNewCourse__newProjectInputSection">
@@ -1615,8 +1814,31 @@ function AdminNewCourse({
                                     index
                                   }
                                 />
-                                <h3>+</h3>
-                                <p>Attach file</p>
+                                {/* <h3>+</h3>
+                                <p>Attach file</p> */}
+                                {!image1 ? (
+                                  <>
+                                    <h3>+</h3>
+                                    <p>Attach file</p>
+                                    <small style={{ color: "red" }}>
+                                      Must be less than 1Mb and square in size
+                                    </small>
+                                  </>
+                                ) : (
+                                  <>
+                                    {result1 && (
+                                      <img
+                                        style={{
+                                          width: "100%",
+                                          objectFit: "contain",
+                                        }}
+                                        ref={imageRef1}
+                                        src={result1}
+                                        alt=""
+                                      />
+                                    )}
+                                  </>
+                                )}
                               </div>
                             </div>
                             <div className="adminNewCourse__newProjectInputSection">
@@ -1685,7 +1907,10 @@ function AdminNewCourse({
                           {loading && <CircularProgress color="secondary" />}
                           {singleProject.edit && (
                             <div className="adminNewCourse__newClassFormButtons">
-                              <button className="adminNewCourse__newClassFormButtons__cancel">
+                              <button
+                                className="adminNewCourse__newClassFormButtons__cancel"
+                                onClick={getUpdatedProjects}
+                              >
                                 Cancel
                               </button>
                               <button onClick={(e) => updateProject(e, index)}>

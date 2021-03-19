@@ -27,7 +27,7 @@ function ProjectItemDesk(projectItem) {
     window.location.href = `/buildproject?project=${projectItem.singleProject._id}&batch=${projectItem.batchId}`;
   };
 
-  if (projectItem.singleProject) {
+  if (projectItem.singleProject && projectItem.singleProject.no) {
     return (
       <div className="project-item">
         <div className="row">
@@ -212,12 +212,15 @@ const [showSingleProject, setShowSingleProject] = useState(false)
         {Dbuild && Dbuild.batch ? (
           Dbuild.batch.batchType === "normal" ? (
             showEnabledProjects ? (allEnabledProjects.map((proj) => {
-              return (
+              if(proj.name && proj.deadline && proj.no){
+                return (
                 <Carousel emulateTouch swipeable useKeyboardArrows infiniteLoop showArrows>
                   <ProjectItemMob singleProject={proj} />
                 </Carousel>
             
               );
+              }
+  
             }) 
             ) : (<>
               {/* <div className="text-center lock" style={{ margin: "auto" }}>
@@ -336,12 +339,14 @@ function DashboardBuildCard(props) {
                   showArrows={true}
                 >
                   {allEnabledProjects.map((proj) => {
-                    return (
+
+                      return (
                       <ProjectItemDesk
                         singleProject={proj}
                         batchId={Dbuild.batchId}
                       />
                     );
+                      
                   })}
                 </Carousel>
               ) : (

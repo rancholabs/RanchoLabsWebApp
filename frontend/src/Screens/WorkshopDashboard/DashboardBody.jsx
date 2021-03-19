@@ -33,8 +33,11 @@ const [choosen, setChoosen] = useState('')
 
   useEffect(() => {
     dispatch(courseGroups());
+    
   }, []);
+  console.log(coursegroups)
 
+  console.log(props.courses)
   useEffect(() => {
     if (student?.loginfor === "workshop") {
       let workshopID = coursegroups?.filter(
@@ -46,8 +49,8 @@ const [choosen, setChoosen] = useState('')
         (cg) => cg.name.toString().toLowerCase() === "free class"
       )[0]?._id;
       dispatch(activeCourseGroup(freeclassID));
-    }
-  }, [coursegroups, student]);
+    } 
+    }, [coursegroups, student]);
 
   if (coursegroups) {
     var selected = coursegroups.filter((course) => {
@@ -60,6 +63,17 @@ const [choosen, setChoosen] = useState('')
   function handleClick(id) {
     dispatch(activeCourseGroup(id));
   }
+  useEffect(() => {
+    if(props.courses.length !== 0){
+      if(props.courses[0].courseDetails._id){
+        dispatch(activeCourseGroup(props.courses[0].courseDetails.groupId))
+        console.log(props.courses[0].courseDetails.groupId)
+    console.log(props.courses.length)
+      }
+    }
+    
+  },[props.courses.length])
+
 
   return (
     <>
@@ -127,7 +141,7 @@ const [choosen, setChoosen] = useState('')
                       </Dropdown.Item>
                     </>
                   );
-                } else {
+                }  else {
                   return <>
                     <Dropdown.Item onClick={() => handleClick(group._id)}>
                         {group.name}
@@ -524,7 +538,7 @@ function DashboardBody(props) {
           <DashboardHeaderLower courses={props.courses} />
 
           <div style={{ backgroundColor: "#F0F0F2" }}>
-            <DashboardBanner />
+            <DashboardBanner courses = {props}/>
             <DashboardCards
               coursedata={coursedata}
               activeCourse={_activeCourse}
