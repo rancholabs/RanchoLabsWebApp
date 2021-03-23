@@ -38,19 +38,19 @@ const [choosen, setChoosen] = useState('')
   console.log(coursegroups)
 
   console.log(props.courses)
-  useEffect(() => {
-    if (student?.loginfor === "workshop") {
-      let workshopID = coursegroups?.filter(
-        (cg) => cg.name.toString().toLowerCase() === "workshop"
-      )[0]?._id;
-      dispatch(activeCourseGroup(workshopID));
-    } else if (student?.loginfor === "freeclass") {
-      let freeclassID = coursegroups?.filter(
-        (cg) => cg.name.toString().toLowerCase() === "free class"
-      )[0]?._id;
-      dispatch(activeCourseGroup(freeclassID));
-    } 
-    }, [coursegroups, student]);
+  // useEffect(() => {
+  //   if (student?.loginfor === "workshop") {
+  //     let workshopID = coursegroups?.filter(
+  //       (cg) => cg.name.toString().toLowerCase() === "workshop"
+  //     )[0]?._id;
+  //     dispatch(activeCourseGroup(workshopID));
+  //   } else if (student?.loginfor === "freeclass") {
+  //     let freeclassID = coursegroups?.filter(
+  //       (cg) => cg.name.toString().toLowerCase() === "free class"
+  //     )[0]?._id;
+  //     dispatch(activeCourseGroup(freeclassID));
+  //   } 
+  //   }, [coursegroups, student]);
 
   if (coursegroups) {
     var selected = coursegroups.filter((course) => {
@@ -563,22 +563,22 @@ function DashboardBody(props) {
                     updateCertPaidStatus={updateCertPaidStatus}
                     userId={userInfo?.userId}
                     from={
-                      coursedata.batch.batchType === "workshop"
+                      coursedata?.batch.batchType === "workshop"
                         ? new Date(coursedata.batch.singleDate).getDate()
                         : ""
                     }
                     to={
-                      coursedata.batch.batchType === "workshop"
+                      coursedata?.batch.batchType === "workshop"
                         ? new Date(coursedata.batch.doubleDate).getDate()
                         : ""
                     }
                     month={
-                      coursedata.batch.batchType === "workshop"
+                      coursedata?.batch.batchType === "workshop"
                         ? new Date(coursedata.batch.singleDate).getMonth()
                         : ""
                     }
                     year={
-                      coursedata.batch.batchType === "workshop"
+                      coursedata?.batch.batchType === "workshop"
                         ? new Date(coursedata.batch.singleDate).getFullYear()
                         : ""
                     }

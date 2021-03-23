@@ -76,6 +76,39 @@ router.post("/", async (req, res) => {
     });
 });
 
+router.put("/admin", async (req, res) => {
+  if (req.body.paymentObj) {
+    StudentCourse.findOneAndUpdate(
+      {
+        payment: req.body.paymentObj,
+      },
+      {
+        batchId: req.body.batchId,
+      }
+    )
+      .then((sc) => {
+        res.status(201).send({ message: "Course Batch Assigned Successfully" });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(400).send({
+          message: "Error in registering the course",
+          error: "Bad request",
+        });
+      });
+  } else {
+    StudentCourse.find({
+      // courseId: req.body.courseId,
+      userId: req.body.userId ? req.body.userId : req.userId,
+      batchId: req.body.batchId,
+    }).then((doc) => {
+      if (doc && doc.length > 0) {
+        // UPDATE
+        console.log("update");
+      }
+    });
+  }
+});
 router.post("/admin", async (req, res) => {
   if (req.body.paymentObj) {
     StudentCourse.findOneAndUpdate(

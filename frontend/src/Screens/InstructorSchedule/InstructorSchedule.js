@@ -462,18 +462,11 @@ const Materials = (props) => {
 };
 
 const AssignProject = (props) => {
-  // console.log(props);
+  console.log(props);
   const dispatch = useDispatch();
   const [selectedProj, setSelectedProj] = useState("");
 
   const handleProjectEnable = () => {
-    dispatch(
-      instructorUpdateBatchProject(
-        { isActive: true },
-        props.batchId,
-        selectedProj
-      )
-    );
     dispatch(
       instructorUpdateBatchClass(
         { assignedProject: selectedProj },
@@ -481,10 +474,25 @@ const AssignProject = (props) => {
         props.classId
       )
     );
-    alert("Project Enabled!");
+    dispatch(
+      instructorUpdateBatchProject(
+        { isActive: true },
+        props.batchId,
+        selectedProj
+      )
+    );
+    // alert("Project Enabled!");
+    // console.log(selectedProj);
   };
 
+  const [activeClass, setActiveClass] = useState(true);
   const [edit, setEdit] = useState(false);
+  useEffect(() => {
+    if (props.classId && props.classId !== null) {
+      setActiveClass(false);
+    }
+  }, props.classId);
+
   return (
     <div className="isntructor__enableProjects">
       <label>Enabled Project for this class</label>
@@ -507,6 +515,7 @@ const AssignProject = (props) => {
               {" "}
               <select
                 value={selectedProj}
+                disable={activeClass}
                 onChange={(e) => setSelectedProj(e.target.value)}
               >
                 <option>Select Project to enable</option>
@@ -527,7 +536,9 @@ const AssignProject = (props) => {
                   );
                 })}
               </select>
-              <button onClick={handleProjectEnable}>Enable</button>
+              <button disabled={activeClass} onClick={handleProjectEnable}>
+                Enable
+              </button>
             </>
           )}
         </>
@@ -535,6 +546,7 @@ const AssignProject = (props) => {
         <>
           <select
             value={selectedProj}
+            disabled={activeClass}
             onChange={(e) => setSelectedProj(e.target.value)}
           >
             <option>Select Project to enable</option>
@@ -553,7 +565,9 @@ const AssignProject = (props) => {
               );
             })}
           </select>
-          <button onClick={handleProjectEnable}>Enable</button>
+          <button disabled={activeClass} onClick={handleProjectEnable}>
+            Enable
+          </button>
         </>
       )}
     </div>
@@ -729,7 +743,7 @@ const Note = (props) => {
 };
 
 const ClassListCard = (props) => {
-  // console.log(props);
+  console.log(props);
   const [ischedule, setSchedule] = useState(false);
   const status = getStatus(props.startTime, props.endTime);
   var timing =
@@ -879,7 +893,7 @@ const Schedule = () => {
     axios.get(``);
   }, []);
 
-  // console.log(schedule);
+  console.log(schedule);
 
   const classList =
     schedule && date

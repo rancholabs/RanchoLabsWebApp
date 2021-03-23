@@ -144,6 +144,7 @@ function AdminBatch({
       .then((res) => {
         console.log(res.data);
       });
+    alert("Batch Deleted Successfully");
   };
 
   return (

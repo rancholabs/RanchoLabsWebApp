@@ -188,12 +188,20 @@ export const instructorUpdateBatchProject = (
       },
     };
 
-    const { data } = await axios.put(
-      `/api/batch/project/${batchId}/${projectId}`,
-      update,
-      config
-    );
-  } catch (error) {}
+    const { data } = await axios
+      .put(`/api/batch/project/${batchId}/${projectId}`, update, config)
+      .then((res) => {
+        console.log(res.data);
+        alert("Project enabled for this batch");
+        window.location.reload(true);
+      })
+      .catch((e) => {
+        alert(
+          "You can't enable this project for this batch. It will be enabled when you create a new batch"
+        );
+        alert("Enable another Project from the Dropdown");
+      });
+  } catch (e) {}
 };
 
 export const updateClassLink = (updates, classId) => async (

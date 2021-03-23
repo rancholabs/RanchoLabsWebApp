@@ -92,12 +92,37 @@ router.put("/:bid/:cid", async (req, res) => {
   }
 });
 
+// router.post("/project/:bid/pid", async (req, res) => {
+//   console.log("Adding project....");
+//   try {
+//     const batch = await Batch.findOne({ _id: req.params.bid });
+//     const proj = await Project.findOne({ _id: req.params.pid });
+//     const updates = Object.keys(req.body);
+//     updates.forEach((update) => {
+//       if (update === "instructorNote") {
+//         proj[0].instructorNote.push(req.body[update]);
+//       } else {
+//         batch.projects.push(proj[0]);
+//         proj[0][update] = req.body[update];
+//       }
+//     });
+//     await batch.save();
+//     res.status(201).send(proj);
+//   } catch (e) {
+//     console.log(e);
+//     res.status(400).send("Error");
+//   }
+// });
+
 router.put("/project/:bid/:pid", async (req, res) => {
   console.log("updating projects...");
   try {
     const batch = await Batch.findOne({ _id: req.params.bid });
     const proj = batch.projects.filter((p) => {
-      if (p.projectId == req.params.pid) return p;
+      if (p.projectId == req.params.pid) {
+        console.log(p);
+        return p;
+      }
     });
     const updates = Object.keys(req.body);
     updates.forEach((update) => {
