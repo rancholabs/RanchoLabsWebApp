@@ -5,7 +5,7 @@
   "_comment": "homepage: http://hackcorona.rancholabs.com",
   "version": "1.0.0",
   "private": true,
-  "author": "Gokulnath B, Rucha Despande",
+  "author": "Gokulnath B, Rucha Despande, Akash Verma",
   "license": "ISC",
   "description": "Frontend code for Rancho Labs website",
   "dependencies": {

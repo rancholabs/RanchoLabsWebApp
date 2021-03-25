@@ -44,6 +44,7 @@ function Index() {
         .get("/api/course/group/courseListAdmin", config)
         .then((res) => {
           setCourseGroups(res.data);
+          console.log(res.data);
         })
         .catch((err) => console.log(err));
       axios

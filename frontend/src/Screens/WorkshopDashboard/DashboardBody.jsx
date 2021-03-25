@@ -65,10 +65,10 @@ const [choosen, setChoosen] = useState('')
   }
   useEffect(() => {
     if(props.courses.length !== 0){
-      if(props.courses[0].courseDetails._id){
+      if (props.courses[0].courseDetails._id && props.courses[0].batchId !== null) {
         dispatch(activeCourseGroup(props.courses[0].courseDetails.groupId))
         console.log(props.courses[0].courseDetails.groupId)
-    console.log(props.courses.length)
+        console.log(props.courses.length)
       }
     }
     

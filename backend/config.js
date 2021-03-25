@@ -1,6 +1,8 @@
 module.exports = {
   PORT: process.env.PORT || 5000,
-  MONGODB_URL: `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTER}?retryWrites=true&w=majority` || 'mongodb://localhost/EKart',
+  MONGODB_URL:
+    `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTER}?retryWrites=true&w=majority` ||
+    "mongodb://localhost/EKart",
   //MONGODB_URL: "mongodb://localhost/rancholabs",
   JWT_SECRET: process.env.JWT_SECRET || "somethingsecret",
   GCLIENT_ID: process.env.GCLIENT_ID || "GoogleClientId",
@@ -20,7 +22,9 @@ module.exports = {
       }
     }*/
   MAIL: {
-    host: "smtp.gmail.com",
+    host: "email-smtp.ap-south-1.amazonaws.com",
+    accessKey: "AKIATOISASJ3VWICIE63",
+    accessSecretKey: "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",
     auth: {
       user: "rancho.webd@gmail.com",
       pass: "rancho@@9137",

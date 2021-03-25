@@ -15,9 +15,9 @@ import mainbg from "./img/main.png";
 import mainbgmob from "./img/mainbgmob.png";
 
 const mainContent = {
-  MainHeading: "Live coding classes for grades 6th to 12th",
+  MainHeading: "Empowering young minds to lead the world",
   Subheading:
-    "Bringing 21st-century skills to help you become the next world tech leader",
+    "Live Coding, Robotics and Artificial Intelligence Classes for grades 6th to 12th by IITians",
 };
 
 function Content() {

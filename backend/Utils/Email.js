@@ -2,12 +2,21 @@ const nodemailer = require("nodemailer");
 const { MAIL: mailConfig } = require("./../config");
 const template = require("./img/Sign Up - Welcome to RL/template");
 const workshoptemplate = require("./WorkshopReminderTemplate");
+const aws = require("aws-sdk");
+
+const ses = new aws.SES({
+  apiVersion: "2010-12-01",
+  region: "ap-south-1",
+  accesKey: mailConfig.accessKey,
+  secretKey: mailConfig.accessSecretKey,
+});
 
 const transporter = nodemailer.createTransport({
+  SES: { ses, aws },
   host: mailConfig.host,
   port: 465,
   secure: true,
-  auth: mailConfig.auth,
+  //auth: mailConfig.auth,
 });
 
 const getTemplate = (type) => {

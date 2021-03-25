@@ -30,7 +30,7 @@ function Learning()
     let pcontent = 'Learning at home with Rancho Labs'
     return(
             <div className="learning">
-                <div className="title">Learn from the comfort of home <br />with the best minds</div>
+                <div className="title">Why Choose Us ?</div>
                     <div className="row">
                         {
                                 LearningData.map((data)=>

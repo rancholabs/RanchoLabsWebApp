@@ -141,8 +141,8 @@ function MobileCard(props) {
 function MobileCourses() {
   return (
     <div className="mobilecourses">
-      <div className="course-title">Our Top Courses</div>
-      <p>Choose among our best courses</p>
+      <div className="course-title">Top Categories</div>
+      <p>Specially curated courses for you</p>
       {CardData.map(MobileCard)}
     </div>
   );

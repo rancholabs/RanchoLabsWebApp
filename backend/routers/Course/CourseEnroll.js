@@ -185,12 +185,12 @@ router.get("/", (req, res) => {
 
 router.delete("/deleteuser/:bid/:uid", (req, res) => {
   console.log("removing student batch from course enroll");
-  StudentCourse.findOneAndUpdate(
+  StudentCourse.findOneAndDelete(
     {
       userId: req.params.uid,
     },
     {
-      batchId: null,
+      batchId: req.params.bid,
     }
   )
     .then((courses) => {

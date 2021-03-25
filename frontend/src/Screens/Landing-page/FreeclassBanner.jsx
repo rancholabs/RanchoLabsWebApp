@@ -47,8 +47,8 @@ const Banner = () => {
     return(
         <>
         <div className="freeclass-banner">
-            <div className="banner-title">Coding Maybe A Step Towards Your Dream</div>
-            <div className="banner-content">Explore The Tech Sector With Us And Take A Step Towards Your Passion And Future.</div>
+            <div className="banner-title">It's time to launch your career</div>
+            <div className="banner-content">Take a step towards your dream and passion with Rancho Labs.</div>
             <div className="freeclass-button"><button onClick={freeClasshandler}>Book A Free Class Now</button></div>
         </div>
         </>

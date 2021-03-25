@@ -39,6 +39,7 @@ function AdminBatch({
         .get(`/api/course/batch/${selectedCourse._id}`, config)
         .then((res) => {
           setbatches(res.data);
+          console.log(res.data);
         });
     }
   }, [selectedCourse]);

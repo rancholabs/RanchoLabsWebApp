@@ -12,16 +12,16 @@ function Journey()
             <div className="container">
             <div className="row">
                 <div className="col-md-4">
-                    <div className="innercontent-title">Why Choose us?</div>
-                    <div className="innercontent">Cross your boundaries with your imagination and innovation</div>
+                    <div className="innercontent-title">Our Vision</div>
+                    <div className="innercontent">Inspire India's creative minds to reflect on their dreams and turn them into reality</div>
                 </div>
                 <div className="col-md-4">
                     <div className="innercontent-title">Our Mission</div>
-                    <div className="innercontent">To ensure that the next global tech leaders are from India</div>
+                    <div className="innercontent">To foster young minds pursue their passion and dreams in technology</div>
                 </div>
                 <div className="col-md-4">
                     <div className="innercontent-title">What do we do?</div>
-                    <div className="innercontent">Help you kickstart your journey and make you future-ready</div>
+                    <div className="innercontent">Enable children to kick-start their journey in technology and make them future-ready</div>
                 </div>
             </div>
             <img src={robot} alt="robot"></img>

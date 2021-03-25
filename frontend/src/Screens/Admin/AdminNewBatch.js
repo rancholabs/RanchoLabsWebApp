@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import ClearIcon from "@material-ui/icons/Clear";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 function AdminNewBatch({
   backToAllBatches,
@@ -14,6 +15,7 @@ function AdminNewBatch({
   toBeEditedBatch,
   allSchoolsData,
 }) {
+  console.log(toBeEditedBatch);
   const [batchName, setBatchName] = useState("");
   const [batchType, setbatchType] = useState("");
   const [batchStartingDate, setbatchStartingDate] = useState("");
@@ -67,7 +69,6 @@ function AdminNewBatch({
       setschool(toBeEditedBatch.school);
       setnumberOfDays(toBeEditedBatch.date_time.length);
 
-      console.log(toBeEditedBatch);
       let assignedInstruct = [];
       let _instruct = instructors.filter(
         (ins) => ins._id === toBeEditedBatch.instructor
@@ -85,7 +86,7 @@ function AdminNewBatch({
 
         console.log(res.data);
         res.data.forEach((estud) => {
-          if (estud.batchData) {
+          if (estud.batchData && estud.batchId !== null) {
             if (estud.batchData._id === toBeEditedBatch._id) {
               let _stud = _allStudentData.filter(
                 (std) => std.userId === estud.userId
@@ -251,6 +252,7 @@ function AdminNewBatch({
         .put(`/api/course/batch/${toBeEditedBatch._id}`, body, config)
         .then((res) => {
           console.log(res.data);
+          alert("Batch Updated!!! Please Wait...");
           return res.data;
         });
       // CHECK FOR CHANGED/NEW STUDENTS
@@ -272,7 +274,10 @@ function AdminNewBatch({
             console.log(_body);
             axios
               .post(`/api/course/enroll/admin`, _body, config)
-              .then((res) => console.log(res.data));
+              .then((res) => {
+                console.log(res.data);
+                alert("!!!SUCCESS!!!");
+              });
           });
         } else {
           const _body = {
@@ -286,9 +291,10 @@ function AdminNewBatch({
             },
           };
           // console.log(_body);
-          axios
-            .post(`/api/course/enroll/admin`, _body, config)
-            .then((res) => console.log(res.data));
+          axios.post(`/api/course/enroll/admin`, _body, config).then((res) => {
+            console.log(res.data);
+            alert("!!!SUCCESS!!!");
+          });
         }
       }
     } else {
@@ -322,7 +328,7 @@ function AdminNewBatch({
         .post(`/api/course/batch/${selectedCourse?._id}`, body, config)
         .then((res) => {
           console.log(res.data);
-
+          alert("Batch Created!!! Please Wait...");
           return res.data.id;
         });
 
@@ -345,9 +351,9 @@ function AdminNewBatch({
               .post(`/api/course/enroll/admin`, _body, config)
               .then((res) => {
                 console.log(res.data);
+                alert("SUCCESS!!!");
               });
           });
-          alert("Batch Created!");
         } else {
           const _body = {
             userId: assignedStudents[0].toString().split(" - ")[1],
@@ -362,7 +368,7 @@ function AdminNewBatch({
           console.log(_body);
           axios.post(`/api/course/enroll/admin`, _body, config).then((res) => {
             console.log(res.data);
-            alert("Batch Created!");
+            alert("!!!SUCCESS!!!");
             return res.data;
           });
         }
@@ -430,8 +436,7 @@ function AdminNewBatch({
   const handleStudentSearchChangeRemove = (ai) => {
     var allAssignedStudents = [...assignedStudents];
     const index = allAssignedStudents.indexOf(ai);
-    allAssignedStudents.splice(index, 1);
-    setAssignedStudents(allAssignedStudents);
+    console.log(ai);
     console.log(index, allAssignedStudents);
 
     if (toBeEditedBatch?._id) {
@@ -448,13 +453,21 @@ function AdminNewBatch({
       const uid = ai.toString().split("-")[1].toString().trim();
       console.log(bid);
       console.log(uid);
-      axios
-        .delete(`/api/course/enroll/deleteuser/${bid}/${uid}`, config)
-        .then((res) => {
-          console.log(res.data);
-          console.log(allAssignedStudents);
-          setAssignedStudents(allAssignedStudents);
-        });
+      let name = ai.toString().split(" - ")[0];
+      console.log(name);
+
+      if (window.confirm(`Are you sure to assign ${name} from this batch`)) {
+        allAssignedStudents.splice(index, 1);
+        setAssignedStudents(allAssignedStudents);
+        axios
+          .delete(`/api/course/enroll/deleteuser/${bid}/${uid}`, config)
+          .then((res) => {
+            console.log(res.data);
+            //console.log(allAssignedStudents);
+            setAssignedStudents(allAssignedStudents);
+            alert(`Successfully unassign ${name} from this batch...`);
+          });
+      }
     }
   };
 
@@ -783,6 +796,7 @@ function AdminNewBatch({
                   <>
                     <div className="adminNewBatch__assignedInstructor">
                       <h3>{ai.toString().split(" - ")[0]}</h3>
+
                       <ClearIcon
                         className="adminNewBatch__assignedInstructor__removeBtn"
                         onClick={() => handleStudentSearchChangeRemove(ai)}
