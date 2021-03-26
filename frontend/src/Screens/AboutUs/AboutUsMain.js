@@ -30,15 +30,15 @@ const AboutUsMainContent = () => {
       <div className="row mx-0">
         <div>
           <div className="main-content-title">
-            Nurturing Passion
-            <br /> and Dreams
+            Nurturing passion
+            <br /> and dreams
           </div>
           <div className="sub-content">
-            We are RanchoLabs, a unique startup that loves to learn, build and
+            We are Rancho Labs, a unique startup that loves to learn, build and
             innovate. Initiated in 2019 by IIT Delhi Alumni and Professors with
-            an aim to transform students' dreams into reality, Rancho Labs is a
-            trusted community of 10,000+ students and parents that empowers
-            young minds to discover their passion in Coding, Robotics and AI.
+            an aim to transform students’ dreams into reality. Rancho Labs is a
+            trusted community of 10000+ students and parents that empowers young
+            minds to discover their passion in Coding, Robotics and AI.
           </div>
           <hr />
         </div>

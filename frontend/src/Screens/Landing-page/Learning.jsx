@@ -49,7 +49,7 @@ function Learning()
 function MobileLearning(){
     return(
         <div className="mobilelearning">
-                <div className="title">Learning at home with<br />  Rancho Labs</div>
+                <div className="title">Why choose us?</div>
                 <div className="row">
                     {
                                 LearningData.map((data)=>

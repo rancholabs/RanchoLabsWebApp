@@ -46,7 +46,7 @@
 
 .aboutUs .main-content-title {
   font-size: 2.86vw;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   opacity: 1;
   color: #3cfaff;
   height: 9.79vw;
@@ -169,14 +169,12 @@
     overflow: auto;
   }
 
-  .aboutUs .main-content {
+  /* .aboutUs .main-content {
     /* margin-top: 18.88vw; */
-    /* margin-left: 10.27vw; */
-  }
+  /* margin-left: 10.27vw; */
 
   .aboutUs .main-content-title {
     font-size: 6.66vw;
-    text-transform: capitalize;
     opacity: 1;
     color: #3cfaff;
     height: max-content;

@@ -269,7 +269,11 @@ function AdminNewBatch({
         if (batchType === "normal" || batchType === "workshop") {
           assignedStudents.forEach((stud) => {
             const _body = {
-              userId: stud.toString().split(" - ")[1],
+              userId: stud
+                .toString()
+                .split(" - ")[1]
+                .toString()
+                .split(" ? ")[0],
               courseId: selectedCourse._id,
               batchId: toBeEditedBatch._id,
               payment: {
@@ -288,7 +292,11 @@ function AdminNewBatch({
           });
         } else {
           const _body = {
-            userId: assignedStudents[0].toString().split(" - ")[1],
+            userId: assignedStudents[0]
+              .toString()
+              .split(" - ")[1]
+              .toString()
+              .split(" ? ")[0],
             courseId: selectedCourse._id,
             batchId: toBeEditedBatch._id,
             payment: {
@@ -344,7 +352,11 @@ function AdminNewBatch({
         if (batchType === "normal" || batchType === "workshop") {
           assignedStudents.forEach((stud) => {
             const _body = {
-              userId: stud.toString().split(" - ")[1],
+              userId: stud
+                .toString()
+                .split(" - ")[1]
+                .toString()
+                .split(" ? ")[0],
               courseId: selectedCourse?._id,
               batchId: batchID,
               payment: {
@@ -363,7 +375,11 @@ function AdminNewBatch({
           });
         } else {
           const _body = {
-            userId: assignedStudents[0].toString().split(" - ")[1],
+            userId: assignedStudents[0]
+              .toString()
+              .split(" - ")[1]
+              .toString()
+              .split(" ? ")[0],
             courseId: selectedCourse?._id,
             batchId: batchID,
             payment: {
@@ -456,8 +472,8 @@ function AdminNewBatch({
           authorization: token,
         },
       };
-      const bid = toBeEditedBatch?._id;
-      const uid = ai.toString().split("-")[1].toString().trim();
+      // const bid = toBeEditedBatch?._id;
+      // const uid = ai.toString().split("-")[1].toString().trim();
       const _sid = ai.toString().split("?")[1].toString().trim();
       //  console.log(_sid);
       //console.log(bid);

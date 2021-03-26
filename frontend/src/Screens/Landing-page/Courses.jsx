@@ -96,8 +96,8 @@ function Course() {
   return (
     <div className="courses">
       <div className="container">
-        <div className="course-title">OUR TOP COURSES</div>
-        <p>Choose from our Best Courses</p>
+        <div className="course-title">Top categories</div>
+        <p>Specially curated courses for you</p>
         <div className="btn grade">GRADE 8-10</div>
         <div className="btn grade">GRADE 11-12</div>
         {CardData.map(OuterCard)}
@@ -141,7 +141,7 @@ function MobileCard(props) {
 function MobileCourses() {
   return (
     <div className="mobilecourses">
-      <div className="course-title">Top Categories</div>
+      <div className="course-title">Top categories</div>
       <p>Specially curated courses for you</p>
       {CardData.map(MobileCard)}
     </div>
