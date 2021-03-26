@@ -15,7 +15,7 @@ function AdminNewBatch({
   toBeEditedBatch,
   allSchoolsData,
 }) {
-  console.log(toBeEditedBatch);
+  //console.log(toBeEditedBatch);
   const [batchName, setBatchName] = useState("");
   const [batchType, setbatchType] = useState("");
   const [batchStartingDate, setbatchStartingDate] = useState("");
@@ -43,6 +43,7 @@ function AdminNewBatch({
   const [selectedCourse, setSelectedCourse] = useState({});
 
   const [_allStudentData, set_allStudentData] = useState([]);
+  const [assignedStudId, setAssignedStudId] = useState([]);
 
   useEffect(() => {
     if (toBeEditedBatch?._id) {
@@ -77,14 +78,15 @@ function AdminNewBatch({
         _instruct?.fname + " " + _instruct?.lname + " - " + _instruct?._id;
       assignedInstruct.push(_instructName);
       setAssignedInstructors(assignedInstruct);
-      console.log(assignedInstruct);
+      //console.log(assignedInstruct);
 
       axios.get(`/api/course/enroll/all`, config).then((res) => {
         let assignedStud = [];
         let _eCourse = [];
         let _eCourseGroup = [];
+        let _assignedStudId = [];
 
-        console.log(res.data);
+        //console.log(res.data);
         res.data.forEach((estud) => {
           if (estud.batchData && estud.batchId !== null) {
             if (estud.batchData._id === toBeEditedBatch._id) {
@@ -96,8 +98,11 @@ function AdminNewBatch({
                 " " +
                 _stud?.studentDetails?.name?.last +
                 " - " +
-                _stud?.userId;
+                _stud?.userId +
+                " ? " +
+                estud._id;
               assignedStud.push(_studName);
+              _assignedStudId.push(estud._id);
 
               // courseGroups.forEach((cg) => {
               //   const _cgcourse = cg.courses.filter(
@@ -125,9 +130,11 @@ function AdminNewBatch({
         setSelectedCourseGroup(_eCourseGroup[0]);
         setAssignedStudents(assignedStud);
         setAssignedInstructors(assignedInstruct);
-        console.log(assignedStud);
-        console.log(_eCourse[0]);
-        console.log(assignedInstruct);
+        setAssignedStudId(_assignedStudId);
+        //console.log(assignedStud);
+        //console.log(_eCourse[0]);
+        //console.log(assignedInstruct);
+        //console.log(_assignedStudId);
       });
     }
   }, [toBeEditedBatch, instructors, courseGroups]);
@@ -140,7 +147,7 @@ function AdminNewBatch({
         if (stud.studentDetails?.role === "student")
           __allStudentData.push(stud);
       });
-      console.log(__allStudentData);
+      //console.log(__allStudentData);
       set_allStudentData(__allStudentData);
     };
     fetchStudents();
@@ -247,11 +254,11 @@ function AdminNewBatch({
         // courseId: selectedCourse._id,
       };
 
-      console.log(body);
+      //console.log(body);
       axios
         .put(`/api/course/batch/${toBeEditedBatch._id}`, body, config)
         .then((res) => {
-          console.log(res.data);
+          //console.log(res.data);
           alert("Batch Updated!!! Please Wait...");
           return res.data;
         });
@@ -271,11 +278,11 @@ function AdminNewBatch({
                 signature: batchType === "workshop" ? "workshop" : "normal",
               },
             };
-            console.log(_body);
+            //console.log(_body);
             axios
               .post(`/api/course/enroll/admin`, _body, config)
               .then((res) => {
-                console.log(res.data);
+                //console.log(res.data);
                 alert("!!!SUCCESS!!!");
               });
           });
@@ -292,7 +299,7 @@ function AdminNewBatch({
           };
           // console.log(_body);
           axios.post(`/api/course/enroll/admin`, _body, config).then((res) => {
-            console.log(res.data);
+            //console.log(res.data);
             alert("!!!SUCCESS!!!");
           });
         }
@@ -327,7 +334,7 @@ function AdminNewBatch({
       const batchID = await axios
         .post(`/api/course/batch/${selectedCourse?._id}`, body, config)
         .then((res) => {
-          console.log(res.data);
+          //console.log(res.data);
           alert("Batch Created!!! Please Wait...");
           return res.data.id;
         });
@@ -350,7 +357,7 @@ function AdminNewBatch({
             axios
               .post(`/api/course/enroll/admin`, _body, config)
               .then((res) => {
-                console.log(res.data);
+                //console.log(res.data);
                 alert("SUCCESS!!!");
               });
           });
@@ -367,7 +374,7 @@ function AdminNewBatch({
           };
           console.log(_body);
           axios.post(`/api/course/enroll/admin`, _body, config).then((res) => {
-            console.log(res.data);
+            //console.log(res.data);
             alert("!!!SUCCESS!!!");
             return res.data;
           });
@@ -424,11 +431,11 @@ function AdminNewBatch({
     if (value !== null) {
       var allAssignedStudents = [...assignedStudents];
       const index = allAssignedStudents.indexOf(value);
-      console.log(index);
+      //console.log(index);
       if (index < 0) {
         allAssignedStudents.push(value);
         setAssignedStudents(allAssignedStudents);
-        console.log(allAssignedStudents);
+        // console.log(allAssignedStudents);
       }
     }
   };
@@ -436,8 +443,8 @@ function AdminNewBatch({
   const handleStudentSearchChangeRemove = (ai) => {
     var allAssignedStudents = [...assignedStudents];
     const index = allAssignedStudents.indexOf(ai);
-    console.log(ai);
-    console.log(index, allAssignedStudents);
+    //console.log(ai);
+    // console.log(index, allAssignedStudents);
 
     if (toBeEditedBatch?._id) {
       // REMOVE STUDENT FROM COURSE ENROLLED
@@ -451,18 +458,20 @@ function AdminNewBatch({
       };
       const bid = toBeEditedBatch?._id;
       const uid = ai.toString().split("-")[1].toString().trim();
-      console.log(bid);
-      console.log(uid);
+      const _sid = ai.toString().split("?")[1].toString().trim();
+      //  console.log(_sid);
+      //console.log(bid);
+      //    console.log(uid);
       let name = ai.toString().split(" - ")[0];
-      console.log(name);
+      //      console.log(name);
 
       if (window.confirm(`Are you sure to assign ${name} from this batch`)) {
         allAssignedStudents.splice(index, 1);
         setAssignedStudents(allAssignedStudents);
         axios
-          .delete(`/api/course/enroll/deleteuser/${bid}/${uid}`, config)
+          .delete(`/api/course/enroll/deleteuser/${_sid}`, config)
           .then((res) => {
-            console.log(res.data);
+            //console.log(res.data);
             //console.log(allAssignedStudents);
             setAssignedStudents(allAssignedStudents);
             alert(`Successfully unassign ${name} from this batch...`);
@@ -796,7 +805,6 @@ function AdminNewBatch({
                   <>
                     <div className="adminNewBatch__assignedInstructor">
                       <h3>{ai.toString().split(" - ")[0]}</h3>
-
                       <ClearIcon
                         className="adminNewBatch__assignedInstructor__removeBtn"
                         onClick={() => handleStudentSearchChangeRemove(ai)}

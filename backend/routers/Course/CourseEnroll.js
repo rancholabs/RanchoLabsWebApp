@@ -183,17 +183,13 @@ router.get("/", (req, res) => {
     });
 });
 
-router.delete("/deleteuser/:bid/:uid", (req, res) => {
+router.delete("/deleteuser/:_sid", (req, res) => {
   console.log("removing student batch from course enroll");
-  StudentCourse.findOneAndDelete(
-    {
-      userId: req.params.uid,
-    },
-    {
-      batchId: req.params.bid,
-    }
-  )
+  StudentCourse.findByIdAndDelete({
+    _id: req.params._sid,
+  })
     .then((courses) => {
+      console.log(courses);
       res.status(200).send("User Course deleted");
     })
     .catch((err) => {

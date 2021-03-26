@@ -39,7 +39,7 @@ function AdminBatch({
         .get(`/api/course/batch/${selectedCourse._id}`, config)
         .then((res) => {
           setbatches(res.data);
-          console.log(res.data);
+          //console.log(res.data);
         });
     }
   }, [selectedCourse]);
@@ -97,7 +97,7 @@ function AdminBatch({
 
       axios.post(`/api/course/enroll/admin`, _body, config).then((res) => {
         backtoDashboard();
-        console.log(res.data);
+        //console.log(res.data);
       });
     } else {
       // assign for free class
@@ -114,7 +114,7 @@ function AdminBatch({
 
       axios.post(`/api/course/enroll/admin`, _body, config).then((res) => {
         backtoDashboard();
-        console.log(res.data);
+        //console.log(res.data);
       });
     }
   };
@@ -134,10 +134,10 @@ function AdminBatch({
       },
     };
 
-    console.log(deleteBatch);
+    //console.log(deleteBatch);
 
     axios.delete(`/api/batch/${deleteBatch._id}`, config).then((res) => {
-      console.log(res.data);
+      //console.log(res.data);
     });
 
     axios

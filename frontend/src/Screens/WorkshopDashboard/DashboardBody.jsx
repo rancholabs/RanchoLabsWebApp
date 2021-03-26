@@ -35,9 +35,9 @@ const [choosen, setChoosen] = useState('')
     dispatch(courseGroups());
     
   }, []);
-  console.log(coursegroups)
+  //console.log(coursegroups)
 
-  console.log(props.courses)
+  //console.log(props.courses)
   // useEffect(() => {
   //   if (student?.loginfor === "workshop") {
   //     let workshopID = coursegroups?.filter(
@@ -67,8 +67,8 @@ const [choosen, setChoosen] = useState('')
     if(props.courses.length !== 0){
       if (props.courses[0].courseDetails._id && props.courses[0].batchId !== null) {
         dispatch(activeCourseGroup(props.courses[0].courseDetails.groupId))
-        console.log(props.courses[0].courseDetails.groupId)
-        console.log(props.courses.length)
+        //console.log(props.courses[0].courseDetails.groupId)
+        //console.log(props.courses.length)
       }
     }
     
@@ -226,7 +226,7 @@ const DashboardHeaderLower = (props) => {
 function DashboardBody(props) {
   const dispatch = useDispatch();
   // const [choosen, setChoosen] = useState('robotics')
-   console.log(props)
+   //console.log(props)
 
   const { activeCourse } = useSelector((state) => state.activeCourse);
   const groups = useSelector((state) => state.courseGroups);
@@ -261,7 +261,7 @@ function DashboardBody(props) {
   //   }
   // },[courses])
 
-   console.log(courses);
+   //console.log(courses);
 
   useEffect(() => {
     if (coursegroups) {
@@ -280,9 +280,9 @@ function DashboardBody(props) {
           if(props){
             let __activeCourse = props.courses.filter((course) => {
               if (course.courseDetails.groupId === activeCourse){  
-                console.log(course)
+                //console.log(course)
                 if(course.batch?.batchType === 'workshop'){
-                   console.log(course)
+                   //console.log(course)
                   if(course.batch.singleDate && course.batch.singleTime){
                     let dayOneEnd = new Date(course.batch.singleDate).setHours(
                       course.batch.singleTime.toString().split(":")[0],
@@ -366,7 +366,7 @@ function DashboardBody(props) {
   //   if (course.courseDetails.groupId === "") return course;
   // });
 
-  console.log(_activeCourse)
+  //console.log(_activeCourse)
 
   
     var coursedata = _activeCourse.length ? _activeCourse[0] : null;
@@ -435,7 +435,7 @@ function DashboardBody(props) {
         .get("/api/profile/student", config)
         .then((res) => {
           setstudentProfile(res.data);
-          console.log(res.data)
+          //console.log(res.data)
           if (
             coursedata.batch.batchType === "workshop" ||
             coursedata.batch.batchType === "freeclass"
