@@ -10,18 +10,21 @@ function DeadlineOver(deadline) {
   return deadline < d ? true : false;
 }
 
-function getDeadline(deadline) {
-  var d = new Date().toISOString;
-  var dline = deadline < d ? "Over" : deadline;
-  // console.log(dline)
-  return dline;
+function getDeadline(lastDate, deadline) {
   
+  var d = new Date(lastDate);
+  var day = 60*60*24*1000
+  var lastdate = new Date(d.getTime() + deadline*day).toLocaleDateString()
+  var dline = lastdate < new Date().toLocaleDateString() ? "Over" : lastdate;
+   console.log(dline)
+  console.log(lastDate, deadline)
+  return dline.toString();
 }
 
 function ProjectItemDesk(projectItem) {
   var DeadlineOver = false;
   var SubmissionOver = false;
-  // console.log(projectItem.singleProject);
+  console.log(projectItem.singleProject);
 
   const goToProjectBuild = () => {
     window.location.href = `/buildproject?project=${projectItem.singleProject._id}&batch=${projectItem.batchId}`;
@@ -38,7 +41,7 @@ function ProjectItemDesk(projectItem) {
           </div>
           <div className="col-7 pl-0 align-self-center">
             <div className="deadline text-right p-0">
-              Deadline: {getDeadline(projectItem.singleProject.deadline)}
+              Deadline: { (getDeadline(projectItem.singleProject.lastDate, projectItem.singleProject.deadline))}
             </div>
           </div>
         </div>

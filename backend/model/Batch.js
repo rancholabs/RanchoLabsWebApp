@@ -53,6 +53,10 @@ const ProjectSchema = new mongoose.Schema({
     default: false,
   },
   deadline: Date,
+  lastDate: {
+    type: Date,
+    default: Date.now(),
+  },
   submission: [
     {
       userId: {

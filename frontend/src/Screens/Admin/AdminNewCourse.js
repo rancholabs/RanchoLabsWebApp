@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactQuill from "react-quill";
-// import ReactHtmlParser from "react-html-parser";
+import {Editor, EditorState} from 'draft-js';
+import ReactHtmlParser from "react-html-parser";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import "./AdminNewCourse.css";
@@ -465,7 +466,7 @@ function AdminNewCourse({
   const updateProject = async (e, index) => {
     e.preventDefault();
     setLoading(true);
-    console.log(projects[index]);
+    //console.log(projects[index]);
     const userInfo = localStorage.getItem("userInfo");
     const token = userInfo ? JSON.parse(userInfo).token : "";
     const config = {
@@ -815,14 +816,10 @@ function AdminNewCourse({
     setprojectQuestion(value);
   };
 
-  const handleProjectChangeQuestionUpdate = (value, index) => {
-    setprojectQuestion(value);
-  };
-
   const handleProjectChange = (e, index) => {
     let _projects = [...projects];
     let _state = e.target.id.toString().split("-")[0];
-    _projects[index][_state] = e.target.value;
+    _projects[index][_state] = e.target.value;  
     setProjects(_projects);
   };
 
@@ -901,6 +898,7 @@ function AdminNewCourse({
   //   }
   // };
 
+  
   return (
     <div className="adminNewCourse">
       <Backdrop open={open} onClick={handleClose}>
@@ -1698,7 +1696,9 @@ function AdminNewCourse({
                                 onChange={(e) => handleProjectChange(e, index)}
                               />
                             </div>
-                            <div className="adminNewCourse__newProjectInputSection">
+                            <div 
+                            className="adminNewCourse__newProjectInputSection"
+                            >
                               <label
                                 style={{
                                   color: singleProject.edit
@@ -1708,21 +1708,25 @@ function AdminNewCourse({
                               >
                                 Question
                               </label>
-                              <textarea
+                              <div
+                              id = {"question-" + index}
+                              defaultValue = {singleProject.question}
+                              onChange = {(e) => handleProjectChange(e, index)} contentEditable = "true">
+                                {ReactHtmlParser(singleProject.question)}
+                              </div>
+                              {/* <textarea
                                 type="text"
-                                value={singleProject.question}
+                                value={ReactHtmlParser(singleProject.question)}
                                 disabled={singleProject.edit ? false : true}
                                 id={"question-" + index}
                                 onChange={(e) => handleProjectChange(e, index)}
                                 rows={4}
-                              />
-                              {/* {
-                                <ReactQuill
-                                  value={singleProject.question}
-                                  readOnly={false}
-                                  onChange={handleProjectChangeQuestionUpdate}
-                                />
-                              } */}
+                              /> */}
+                              {/* <ReactQuill 
+                                ref = {editor}
+                                value = {singleProject.question}
+                                onChange = {() => handleProjectChangeQuestionUpdate(index)}
+                              /> */}
                             </div>
                             <div className="adminNewCourse__newProjectInputSection">
                               <label

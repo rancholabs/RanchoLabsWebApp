@@ -315,13 +315,15 @@ const Certificate = ({
     const data = await axios
       .post("/api/payment/order", paymentBody, config)
       .then((res) => {
+        console.log(res.data)
         return res.data;
+        
       });
 
     const options = {
       key: keys.RAZOR_PAY_KEY_ID, //test mode key
       currency: data.currency,
-      amount: data.amount.toString(),
+      amount: 19900,
       order_id: data.id,
       name: "Rancho Labs",
       description: "Thank you for choosing Rancho Labs.",

@@ -476,7 +476,7 @@ const AssignProject = (props) => {
     );
     dispatch(
       instructorUpdateBatchProject(
-        { isActive: true },
+        { isActive: true, lastDate: Date.now() },
         props.batchId,
         selectedProj
       )
@@ -917,6 +917,8 @@ const Schedule = () => {
             )
               return clas;
           } else if (clas.batchType === "normal") {
+            // let _allDates = clas.allDates.slice(1);
+            // console.log(_allDates);
             let todayclass = clas.allDates?.filter(
               (ad) =>
                 new Date(ad.date).getDate() === date.getDate() &&
