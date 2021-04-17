@@ -82,7 +82,7 @@ const Header = () => {
                   onClick={() => history.push("/freeclass?loginfor=freeclass")}
                   style={{ display: iconDisplay }}
                 >
-                  Young Innovator Program
+                  Summer Camp 2021
                 </button>
               </>
             )}

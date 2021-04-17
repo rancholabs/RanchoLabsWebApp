@@ -289,9 +289,15 @@ const YoungInnovatorCards = ({ coursesDetails }) => {
         <button
           className="button button-transparent"
           onClick={() => {
+            change === "Coding, App, and Game Dev" ?
+            // alert ('Coding App & Game')
             window.open(
-              "https://rancho-labs-app.s3.us-east-2.amazonaws.com/applications/Young+Innovators+Program+-+GA+(1)-1612170018029.pdf",
-              "_blank"
+              "https://rancho-labs-app.s3.us-east-2.amazonaws.com/Summer+Camp+2021/Summer+Camp+2021+Program+Structure+-+GA.pdf",
+              "_blank" , "noopener noreferrer"
+            ) 
+            : window.open(
+              "https://rancho-labs-app.s3.us-east-2.amazonaws.com/Summer+Camp+2021/Summer+Camp+2021+Program+Structure+-+R.pdf",
+              "_blank" , "noopener noreferrer"
             );
           }}
         >

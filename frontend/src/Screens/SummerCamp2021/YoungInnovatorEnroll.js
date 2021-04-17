@@ -51,7 +51,10 @@ const YoungInnovatorEnroll = () => {
       <button
         className="youngInnovatorCards__enrollBtn"
         onClick={() =>
-          (window.location.href = "https://forms.gle/ZiuWG4BVTDWJ554f9")
+          window.open('https://forms.gle/ZiuWG4BVTDWJ554f9',{
+            target: "_blank",
+            rel : "noopener noreferrer"
+          } )
         }
       >
         Apply Now
