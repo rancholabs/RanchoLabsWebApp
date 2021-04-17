@@ -1,0 +1,98 @@
+.youngInnovatorWhy {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 80px auto 50px auto;
+}
+
+.youngInnovatorWhy > h3 {
+  font-size: calc(60 * var(--vp)) !important;
+  color: #3cfaff;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 400;
+}
+
+.youngInnovatorWhy__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: 2rem;
+  place-items: center;
+}
+
+.youngInnovatorWhy__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.youngInnovatorWhy__card > img {
+  display: flex;
+  align-items: center;
+  height: 90px;
+  object-fit: contain;
+}
+
+.youngInnovatorWhy__card > p {
+  color: #3cfaff;
+  margin-top: 20px;
+  text-align: center;
+  font-size: calc(28 * var(--vp));
+}
+
+@media (max-width: 600px) {
+  .youngInnovatorWhy > h3 {
+    font-size: calc(24 * var(--vm)) !important;
+    color: #3cfaff;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 400;
+  }
+
+  .youngInnovatorWhy__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+    gap: 2rem;
+    place-items: center;
+  }
+
+  .youngInnovatorWhy__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .youngInnovatorWhy__card > img {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    object-fit: contain;
+  }
+
+  .youngInnovatorWhy__card > p {
+    color: #3cfaff;
+    margin-top: 20px;
+    text-align: center;
+    font-size: calc(12 * var(--vm));
+  }
+}
+
+@media (min-width: 1200px) {
+  .youngInnovatorWhy__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(23rem, 1fr));
+    gap: 2rem;
+    place-items: center;
+  }
+  .youngInnovatorWhy__card > img {
+    display: flex;
+    align-items: center;
+    height: 100px;
+    object-fit: contain;
+  }
+  .youngInnovatorWhy > h3 {
+    font-size: 2.5vw;
+  }
+}

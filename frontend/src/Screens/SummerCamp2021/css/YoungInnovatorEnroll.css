@@ -1,0 +1,345 @@
+.youngInnovator_header {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+  flex-direction: column;
+}
+
+.youngInnovator_header > h2 {
+  font-size: 2.5vw;
+  color: #3cfaff;
+}
+
+.youngInnovator_header > p {
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  font-size: calc(30 * var(--vp)) !important;
+}
+
+.youngInnovator_process {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+/* .youngInnovator_process > .register {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+} */
+
+.register,
+.interview,
+.result,
+.innovator {
+  display: flex;
+  align-items: center !important;
+  width: 25%;
+  height: 150px;
+}
+
+.interview-above,
+.result-above,
+.innovator-above {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.register-below,
+.interview-below,
+.innovator-below,
+.result-below {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+
+.register-below > img,
+.interview-below > img,
+.result-below > img,
+.innovator-below > img {
+  width: 40px;
+  object-fit: contain;
+}
+
+.register-below > h4,
+.interview-below > h4,
+.result-below > h4,
+.innovator-below > h4 {
+  color: #fff;
+  text-align: center;
+  margin-left: 10px;
+  font-size: 1.2rem;
+}
+
+.register,
+.result {
+  background-color: #161d6f;
+}
+
+.interview,
+.innovator {
+  background-color: #1d2d50;
+}
+
+@media (max-width: 600px) {
+  .youngInnovator_header {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+    flex-direction: column;
+  }
+
+  .youngInnovator_header > h2 {
+    color: #3cfaff;
+    font-size: calc(24 * var(--vm));
+    font-weight: 400;
+  }
+
+  .youngInnovator_header > p {
+    padding: 10px;
+    color: #fff;
+    font-size: 3.61vw !important;
+    text-align: center;
+  }
+
+  .youngInnovator_process {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* .youngInnovator_process > .register {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  } */
+
+  .register,
+  .interview,
+  .result,
+  .innovator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center !important;
+    width: 100%;
+    height: 120px;
+  }
+
+  .interview-above,
+  .result-above,
+  .innovator-above {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  /* .triangle {
+    width: 0;
+    height: 0;
+    border-left: 12rem solid #1d2d50;
+    border-right: 11.4rem solid #1d2d50;
+    border-top: 3.1rem solid #161d6f;
+  } */
+
+  /* .triangle2 {
+    width: 0;
+    height: 0;
+    border-left: 12rem solid #161d6f;
+    border-right: 11.4rem solid #161d6f;
+    border-top: 50px solid #1d2d50;
+  } */
+
+  .register-below,
+  .interview-below,
+  .innovator-below,
+  .result-below {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .register-below > img,
+  .interview-below > img,
+  .result-below > img,
+  .innovator-below > img {
+    width: 40px;
+    object-fit: contain;
+  }
+
+  .register-below > h4,
+  .interview-below > h4,
+  .result-below > h4,
+  .innovator-below > h4 {
+    color: #fff;
+    text-align: center;
+    font-size: calc(14 * var(--vm));
+    font-weight: 400;
+    margin-top: 10px;
+  }
+
+  .register,
+  .result {
+    background-color: #161d6f;
+  }
+
+  .interview,
+  .innovator {
+    background-color: #1d2d50;
+  }
+}
+@media (min-width: 700px) {
+  .youngInnovator_header {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+    flex-direction: column;
+  }
+
+  .youngInnovator_header > h2 {
+    color: #3cfaff;
+    font-size: 1.5rem;
+  }
+
+  .youngInnovator_header > p {
+    padding: 10px;
+    color: #fff;
+    font-size: calc(7 * var(--vm));
+    text-align: center;
+    font-weight: 300 !important;
+  }
+
+  .youngInnovator_process {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  /* .youngInnovator_process > .register {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  } */
+
+  .register,
+  .interview,
+  .result,
+  .innovator {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center !important;
+    width: 25%;
+    height: 150px;
+  }
+
+  .interview-above,
+  .result-above,
+  .innovator-above {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .triangle {
+    width: 0;
+    height: 0;
+    border-top: 75px solid #1d2d50;
+    border-bottom: 75px solid #1d2d50;
+    border-left: 51px solid #161d6f;
+    margin-left: -2px;
+  }
+
+  .triangle2 {
+    width: 0;
+    height: 0;
+    border-bottom: 75px solid #161d6f;
+    border-top: 75px solid #161d6f;
+    border-left: 51px solid #1d2d50;
+    margin-left: -2px;
+  }
+
+  .register-below,
+  .interview-below,
+  .innovator-below,
+  .result-below {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .register-below > img,
+  .interview-below > img,
+  .result-below > img,
+  .innovator-below > img {
+    width: 30px;
+    object-fit: contain;
+  }
+
+  .register-below > h4,
+  .interview-below > h4,
+  .result-below > h4,
+  .innovator-below > h4 {
+    color: #fff;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    font-weight: 400;
+  }
+
+  .register,
+  .result {
+    background-color: #161d6f;
+    margin-left: -1px;
+  }
+
+  .interview,
+  .innovator {
+    margin-left: -1px;
+    background-color: #1d2d50;
+  }
+
+  .youngInnovatorCards__enrollBtn {
+    margin-top: 50px;
+    width: 10rem;
+    padding: 25px;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .youngInnovator_header > h2 {
+    font-size: calc(48 * var(--vp));
+    color: #3cfaff;
+    font-weight: 400;
+  }
+  .youngInnovator_header > p {
+    font-size: 1.5rem;
+  }
+  .register-below > img,
+  .interview-below > img,
+  .result-below > img,
+  .innovator-below > img {
+    width: 80px;
+    object-fit: contain;
+  }
+
+  .register-below > h4,
+  .interview-below > h4,
+  .result-below > h4,
+  .innovator-below > h4 {
+    color: #fff;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+}

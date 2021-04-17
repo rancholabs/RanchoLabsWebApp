@@ -1,0 +1,37 @@
+.youngInnovators-main-text {
+  width: 50%;
+}
+
+.youngInnovators-main-illustrations {
+  width: 50%;
+}
+
+.youngInnovators-main-illustrations img {
+  width: 100%;
+}
+
+.youngInnovators-main-text p {
+  font-size: calc(28 * var(--vp)) !important;
+  color: #fff;
+  letter-spacing: calc(1.58 * var(--vp));
+  text-align: left;
+}
+
+@media (max-width: 600px) {
+  .youngInnovators-main-text {
+    width: 100%;
+    margin-top: 40px;
+  }
+  .youngInnovators-main-illustrations {
+    width: 100%;
+  }
+  .youngInnovators-main-text p {
+    font-size: calc(14 * var(--vm)) !important;
+  }
+}
+
+/* @media (min-width: 768px) {
+  .coursepage-main {
+    width: 100vw;
+  }
+} */

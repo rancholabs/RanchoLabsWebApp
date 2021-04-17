@@ -1,0 +1,48 @@
+.youngInnovatorBanner {
+  background-color: #136ee3;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 80px;
+  align-items: center;
+}
+
+.youngInnovatorBanner h3 {
+  font-size: calc(48 * var(--vp));
+  letter-spacing: calc(1.58 * var(--vp));
+  text-align: center;
+  color: white;
+  margin: 0;
+}
+
+.youngInnovatorBanner button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3cfaff;
+  font-size: calc(33 * var(--vp));
+  letter-spacing: calc(1.1 * var(--vp));
+  height: calc(80 * var(--vp));
+  color: #030224;
+  text-transform: uppercase;
+  border: calc(2 * var(--vp)) solid #3cfaff;
+  border-radius: 10px;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0 20px;
+}
+
+@media (max-width: 600px) {
+  .youngInnovatorBanner {
+    justify-content: center;
+  }
+  .youngInnovatorBanner h3 {
+    display: none;
+  }
+  .youngInnovatorBanner button {
+    font-size: calc(15 * var(--vm));
+    height: unset;
+    padding: 10px 30px;
+    margin-top: 1px;
+    margin-right: 0px;
+  }
+}

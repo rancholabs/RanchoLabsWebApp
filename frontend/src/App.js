@@ -42,6 +42,7 @@ import Payment from "./Screens/Payment";
 import BuildProject from "./Screens/BuildProject";
 import SearchCertificate from "./Screens/AllCertificates";
 import YoungInnovator from "./Screens/YoungInnovator";
+import SummerCamp2021 from './Screens/SummerCamp2021'
 
 // ADMIN
 import Admin from "./Screens/Admin";
@@ -251,6 +252,11 @@ function App() {
                     path="/younginnovator"
                     exact={true}
                     component={YoungInnovator}
+                  />
+                  <Route
+                    path="/summercamp2021"
+                    exact={true}
+                    component={SummerCamp2021}
                   />
                   <Route component={PageNotFound} />
                 </Switch>

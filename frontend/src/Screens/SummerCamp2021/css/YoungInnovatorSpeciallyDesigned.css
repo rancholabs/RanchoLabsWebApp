@@ -1,0 +1,112 @@
+.youngInnovatorSpeciallyDesigned {
+  width: 100%;
+  margin: 80px auto;
+  background-color: #020122;
+}
+
+.youngInnovatorSpeciallyDesigned h3 {
+  font-size: calc(48 * var(--vp));
+  color: #3cfaff;
+  letter-spacing: calc(1.58 * var(--vp));
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.youngInnovatorSpeciallyDesigned__cards {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 2rem;
+  place-items: center;
+}
+
+.youngInnovatorSpeciallyDesigned__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.youngInnovatorSpeciallyDesigned__card img {
+  width: 50%;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.youngInnovatorSpeciallyDesigned__card p {
+  font-size: calc(39 * var(--vp));
+  color: #3cfaff;
+  letter-spacing: calc(1.58 * var(--vp));
+  text-align: center;
+  margin-top: 0px;
+}
+
+.youngInnovatorSpeciallyDesigned__card .img5 {
+  border-radius: 50%;
+  width: 115px;
+  height: 120px;
+}
+
+@media (max-width: 600px) {
+  .youngInnovatorSpeciallyDesigned h3 {
+    font-size: calc(18 * var(--vm));
+    text-align: center;
+    font-weight: 400;
+  }
+  .youngInnovatorSpeciallyDesigned__card p {
+    font-size: calc(14 * var(--vm));
+    text-align: center;
+  }
+  .youngInnovatorSpeciallyDesigned__cards {
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  }
+
+  .youngInnovatorSpeciallyDesigned__card > img {
+    width: 80px;
+    object-fit: contain;
+  }
+
+  /* .youngInnovatorSpeciallyDesigned__card .img5 {
+    border-radius: 50%;
+    height: 76.38px;
+    width: 76.38px;
+    margin-left: 166px;
+  }
+
+  .youngInnovatorSpeciallyDesigned__card .para5 {
+    margin-left: 160px;
+  } */
+}
+
+@media (min-width: 700px) {
+  .youngInnovatorSpeciallyDesigned__cards {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .youngInnovatorSpeciallyDesigned h3 {
+    font-size: calc(48 * var(--vp));
+    text-align: center;
+    font-weight: 400;
+  }
+
+  .youngInnovatorSpeciallyDesigned__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .youngInnovatorSpeciallyDesigned__card > p {
+    text-align: center;
+    font-weight: 300;
+  }
+
+  /* .youngInnovatorSpeciallyDesigned__cards {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+    gap: 2rem;
+    place-items: center;
+  } */
+}
