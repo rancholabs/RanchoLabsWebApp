@@ -18,6 +18,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import ShareIcon from "./ShareIcon";
 import keys from "../../paykey";
 import Pdf from "react-to-pdf";
+
 function loadScript(src) {
   return new Promise((resolve) => {
     const script = document.createElement("script");
@@ -316,14 +317,13 @@ const Certificate = ({
       .post("/api/payment/order", paymentBody, config)
       .then((res) => {
         console.log(res.data)
-        return res.data;
-        
+        return res.data; 
       });
 
     const options = {
-      key: keys.RAZOR_PAY_KEY_ID, //test mode key
+      key: keys.RAZOR_PAY_KEY_ID, //live mode key
       currency: data.currency,
-      amount: 19900,
+      amount: finalAmount * 100,
       order_id: data.id,
       name: "Rancho Labs",
       description: "Thank you for choosing Rancho Labs.",
@@ -331,6 +331,8 @@ const Certificate = ({
         "https://rancho-labs-app.s3.amazonaws.com/images/logo-1607930535803.png",
       handler: function (response) {
         //  after payment
+        // alert(response.razorpay_payment_id)
+        // alert(response.razorpay_order_id)
         checkPayment(response.razorpay_payment_id, response.razorpay_order_id);
       },
       prefill: {

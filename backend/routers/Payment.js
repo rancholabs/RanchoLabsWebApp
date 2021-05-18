@@ -6,7 +6,7 @@ const isAuthenticated = require("../controller/requestAuthenticator");
 const mongoose = require("mongoose");
 const shortid = require("shortid");
 const Razorpay = require("razorpay");
-const { RAZOR_PAY_KEY_ID, RAZOR_PAY_KEY_SECRET } = require("./../config");
+const razorpay = require("../nodemon.json");
 
 const StudentCourse = require("../model/StudentCourse");
 const Course = require("../model/Course");
@@ -16,8 +16,8 @@ const Certificate = require("../model/Certificate");
 const { sendMail } = require("../Utils/Email");
 
 const instance = new Razorpay({
-  key_id: RAZOR_PAY_KEY_ID,
-  key_secret: RAZOR_PAY_KEY_SECRET,
+  key_id: razorpay.env.RAZOR_PAY_KEY_ID,
+  key_secret: razorpay.env.RAZOR_PAY_KEY_SECRET,
 });
 
 let orderData = [];
@@ -169,7 +169,7 @@ const addUserCert = async (usercertdata) => {
     });
 };
 
-router.post("/order", isAuthenticated, async (req, res) => {
+router.post("/order", async (req, res) => {
   const payment_capture = 1;
   const price = req.body.price;
   if (price) {
@@ -237,7 +237,7 @@ router.post("/verification", (req, res) => {
   res.json({ status: "ok" });
 
   // do a validation
-  const secret = "12345678";
+  const secret = "gAvJybPlzX04v3ol84XnnnMA";
 
   console.log(req.body);
 

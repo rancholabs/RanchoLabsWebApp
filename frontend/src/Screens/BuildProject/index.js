@@ -164,7 +164,7 @@ function ProjectBuild({ location }) {
               <h3>{ReactHTMLparser(singleProject.question)}</h3>
             </div>
             <div className="buildProject__body__contentSection__image">
-              <h3>{"Deadline : " + singleProject.deadline}</h3>
+              <h3>{"Deadline : " + params.deadline}</h3>
               <img src={singleProject.mainimage?.filePath}></img>
             </div>
           </div>

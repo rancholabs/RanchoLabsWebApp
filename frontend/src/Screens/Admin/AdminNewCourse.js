@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactQuill from "react-quill";
-import {Editor, EditorState} from 'draft-js';
+import { Editor, EditorState } from "draft-js";
 import ReactHtmlParser from "react-html-parser";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
@@ -548,10 +548,10 @@ function AdminNewCourse({
         //   .querySelector(".adminNewCourse__newClassForm")
         //   .classList.remove("show");
         console.log(res.data);
-        alert("Project Updated!");
-        setLoading(false);
         setImage(false);
         setImage1(false);
+        alert("Project Updated!");
+        setLoading(false);
       });
   };
 
@@ -677,10 +677,19 @@ function AdminNewCourse({
       setProjectFormat("");
       setProjectTitle("");
       getUpdatedProjects();
+      setprojectMainImage(null);
+      setprojectStudentImage(null);
+      if (window.confirm("Would You like to add more Projects ??")) {
+        showNewProjectForm();
+      } else {
+        window.location.reload();
+        // showNewProjectForm();
+        // getUpdatedProjects();
+      }
     });
 
     setLoading(false);
-    alert("All Images added Successfully");
+    alert("Project added successfully...");
   };
 
   const toggleEditFields = () => {
@@ -819,7 +828,7 @@ function AdminNewCourse({
   const handleProjectChange = (e, index) => {
     let _projects = [...projects];
     let _state = e.target.id.toString().split("-")[0];
-    _projects[index][_state] = e.target.value;  
+    _projects[index][_state] = e.target.value;
     setProjects(_projects);
   };
 
@@ -898,7 +907,6 @@ function AdminNewCourse({
   //   }
   // };
 
-  
   return (
     <div className="adminNewCourse">
       <Backdrop open={open} onClick={handleClose}>
@@ -1696,9 +1704,7 @@ function AdminNewCourse({
                                 onChange={(e) => handleProjectChange(e, index)}
                               />
                             </div>
-                            <div 
-                            className="adminNewCourse__newProjectInputSection"
-                            >
+                            <div className="adminNewCourse__newProjectInputSection">
                               <label
                                 style={{
                                   color: singleProject.edit
@@ -1709,9 +1715,11 @@ function AdminNewCourse({
                                 Question
                               </label>
                               <div
-                              id = {"question-" + index}
-                              defaultValue = {singleProject.question}
-                              onChange = {(e) => handleProjectChange(e, index)} contentEditable = "true">
+                                id={"question-" + index}
+                                defaultValue={singleProject.question}
+                                onChange={(e) => handleProjectChange(e, index)}
+                                contentEditable="true"
+                              >
                                 {ReactHtmlParser(singleProject.question)}
                               </div>
                               {/* <textarea

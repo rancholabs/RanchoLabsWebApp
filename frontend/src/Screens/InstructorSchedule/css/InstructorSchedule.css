@@ -170,7 +170,7 @@
 }
 
 .instructor-main-center .class-card .class-details {
-  padding: calc(61 * var(--vp)) calc(24 * var(--vp)) calc(61 * var(--vp)) 0;
+  padding: calc(61 * var(--vp)) calc(24 * var(--vp)) calc(61 * var(--vp)) 7px;
 }
 
 .instructor-main-center .class-card .class-material-details {

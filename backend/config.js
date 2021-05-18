@@ -7,8 +7,8 @@ module.exports = {
   JWT_SECRET: process.env.JWT_SECRET || "somethingsecret",
   GCLIENT_ID: process.env.GCLIENT_ID || "GoogleClientId",
   FB_TOKEN: process.env.FB_TOKEN || "FacebookToken",
-  RAZOR_PAY_KEY_ID: process.env.RAZOR_PAY_KEY_ID || "accessKeyId",
-  RAZOR_PAY_KEY_SECRET: process.env.RAZOR_PAY_KEY_SECRET || "secretAccessKey",
+  RAZOR_PAY_KEY_ID : "rzp_live_znXR59jA5ZSTCP",
+  RAZOR_PAY_KEY_SECRET : "gAvJybPlzX04v3ol84XnnnMA",
   AWS_S3_BUCKET: process.env.AWS_S3_BUCKET || "AwsS3Bucket",
   AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID || "AwsAccessKeyId",
   AWS_SECRET_ACCESS_KEY:

@@ -10,14 +10,15 @@ function DeadlineOver(deadline) {
   return deadline < d ? true : false;
 }
 
-function getDeadline(lastDate, deadline) {
+
+const getDeadline = (lastDate, deadline) =>  {
   
   var d = new Date(lastDate);
   var day = 60*60*24*1000
   var lastdate = new Date(d.getTime() + deadline*day).toLocaleDateString()
   var dline = lastdate < new Date().toLocaleDateString() ? "Over" : lastdate;
-   console.log(dline)
-  console.log(lastDate, deadline)
+   //console.log(dline)
+  //console.log(lastDate, deadline)
   return dline.toString();
 }
 
@@ -25,9 +26,10 @@ function ProjectItemDesk(projectItem) {
   var DeadlineOver = false;
   var SubmissionOver = false;
   console.log(projectItem.singleProject);
+  // const [dline, setDline] = useState("")
 
   const goToProjectBuild = () => {
-    window.location.href = `/buildproject?project=${projectItem.singleProject._id}&batch=${projectItem.batchId}`;
+    window.location.href = `/buildproject?project=${projectItem.singleProject._id}&batch=${projectItem.batchId}&deadline=${getDeadline(projectItem.singleProject.lastDate, projectItem.singleProject.deadline)}`;
   };
 
   if (projectItem.singleProject && projectItem.singleProject.no) {
@@ -100,6 +102,11 @@ const ProjectItemMob = (projectItem) => {
   var DeadlineOver = false;
   var SubmissionOver = false;
 
+   const goToProjectBuild = () => {
+    window.location.href = `/buildproject?project=${projectItem.singleProject._id}&batch=${projectItem.batchId}&deadline=${getDeadline(projectItem.singleProject.lastDate, projectItem.singleProject.deadline)}`;
+  };
+
+
   return (
     <div className="row">
       <div className="col-5 align-self-center">
@@ -115,7 +122,7 @@ const ProjectItemMob = (projectItem) => {
           Project {projectItem.singleProject?.no}
         </div>
         <div className="deadline">
-          Deadline: {getDeadline(projectItem.singleProject?.deadline)}
+          Deadline: {getDeadline(projectItem.singleProject.lastDate, projectItem.singleProject.deadline)}
         </div>
         <div className="projectname">{projectItem.singleProject?.name}</div>
         <div
@@ -132,7 +139,7 @@ const ProjectItemMob = (projectItem) => {
           >
             {!DeadlineOver ? (
               <div className="startbuilding">
-                <button>View Submission</button>
+                <button onClick = {goToProjectBuild}>View Submission</button>
               </div>
             ) : (
               <>

@@ -29,7 +29,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 
-const batches = ["A", "B", "C", "All"];
+let batches = ["All"];
 
 function formatAMPM(date) {
   var hours = date.getHours();
@@ -323,7 +323,12 @@ const Materials = (props) => {
 
   const saveClassLink = (e) => {
     e.preventDefault();
-    dispatch(updateClassLink(classLink, props.classId));
+    if (classLink !== "") {
+      dispatch(updateClassLink(classLink, props.classId));
+      alert("Class link added...");
+    } else {
+      alert("Add the link");
+    }
   };
 
   useEffect(() => {
@@ -462,7 +467,7 @@ const Materials = (props) => {
 };
 
 const AssignProject = (props) => {
-  console.log(props);
+  //console.log(props);
   const dispatch = useDispatch();
   const [selectedProj, setSelectedProj] = useState("");
 
@@ -743,9 +748,12 @@ const Note = (props) => {
 };
 
 const ClassListCard = (props) => {
-  console.log(props);
+  //console.log(props);
   const [ischedule, setSchedule] = useState(false);
   const status = getStatus(props.startTime, props.endTime);
+  const [batch, setBatch] = useState([]);
+
+  console.log(batches);
   var timing =
     props.startTime && props.endTime
       ? formatAMPM(new Date(props.startTime)) +
@@ -757,103 +765,106 @@ const ClassListCard = (props) => {
   return (
     <>
       <div className={className}>
-        <div className="row mx-0">
+        <div
+          style={{
+            display: "flex",
+          }}
+        >
           <div className="strip"></div>
-          <div>
+          <div
+            className=""
+            style={{
+              display: "flex",
+              alignItems: "center",
+              padding: "calc(30*var(--vp)) 7px calc(24*var(--vp))",
+            }}
+          >
             <div>
+              <div className="class-course-name">
+                {props?.classDetails?.topic}
+              </div>
+              <div className="class-status">{status}</div>
+            </div>
+            <div>
+              <div className="class-timing">
+                <Fontawesome name="clock-o" />
+                &nbsp; {timing}
+              </div>
+              <div className="class-batch">Batch {props.batch}</div>
+            </div>
+            <div
+              style={{
+                marginLeft: "30px",
+                cursor: "pointer",
+              }}
+              className="details-button"
+            >
+              <Fontawesome
+                onClick={() => setSchedule(!ischedule)}
+                name="caret-down"
+              />
+            </div>
+          </div>
+        </div>
+        {ischedule && (
+          <>
+            <hr id="hr" className="" />
+            <div
+              className="class-details"
+              id="class-details"
+              style={{ alignItems: "center" }}
+            >
               <div
                 className="row mx-0"
-                style={{
-                  alignItems: "center",
-                  padding: "calc(30*var(--vp)) 0 calc(24*var(--vp))",
-                }}
+                style={{ justifyContent: "space-between" }}
               >
                 <div>
-                  <div className="class-course-name">
-                    {props?.classDetails?.topic}
+                  <Materials
+                    status={status}
+                    batchId={props.batchId}
+                    classId={props.classId}
+                    materials={props.materials}
+                    classDetails={props.classDetails}
+                  />
+                  <div>
+                    <AssignProject
+                      status={status}
+                      classId={props.classId}
+                      allProjectsDetails={props.allProjectsDetails}
+                      allProjectsBatch={props.allProjectsBatch}
+                      batchId={props.batchId}
+                      projectDetails={props.projectDetails}
+                      singleProjectDetails={props.singleProjectDetails}
+                    />
                   </div>
-                  <div className="class-status">{status}</div>
+                  <div>
+                    <Results
+                      status={status}
+                      projectDetails={props.projectDetails}
+                      singleProjectDetails={props.singleProjectDetails}
+                      batchId={props.batchId}
+                      students={props.students}
+                    />
+                  </div>
                 </div>
                 <div>
-                  <div className="class-timing">
-                    <Fontawesome name="clock-o" />
-                    &nbsp; {timing}
-                  </div>
-                  <div className="class-batch">Batch {props.batch}</div>
-                </div>
-                <div className="details-button">
-                  <button
-                    className="detail"
-                    onClick={() => {
-                      setSchedule(!ischedule);
-                    }}
-                  >
-                    <Fontawesome name="caret-down" />
-                  </button>
+                  <Note
+                    status={status}
+                    batchId={props.batchId}
+                    classId={props.classId}
+                  />
+                  <Attendance
+                    students={props.students}
+                    status={status}
+                    batchId={props.batchId}
+                    classId={props.classId}
+                    attendance={props.attendance}
+                  />
                 </div>
               </div>
             </div>
-            {ischedule && (
-              <>
-                <hr id="hr" className="" />
-                <div
-                  className="class-details"
-                  id="class-details"
-                  style={{ alignItems: "center" }}
-                >
-                  <div
-                    className="row mx-0"
-                    style={{ justifyContent: "space-between" }}
-                  >
-                    <div>
-                      <Materials
-                        status={status}
-                        batchId={props.batchId}
-                        classId={props.classId}
-                        materials={props.materials}
-                        classDetails={props.classDetails}
-                      />
-                      <div>
-                        <AssignProject
-                          status={status}
-                          classId={props.classId}
-                          allProjectsDetails={props.allProjectsDetails}
-                          allProjectsBatch={props.allProjectsBatch}
-                          batchId={props.batchId}
-                          projectDetails={props.projectDetails}
-                          singleProjectDetails={props.singleProjectDetails}
-                        />
-                      </div>
-                      <div>
-                        <Results
-                          status={status}
-                          projectDetails={props.projectDetails}
-                          singleProjectDetails={props.singleProjectDetails}
-                          batchId={props.batchId}
-                          students={props.students}
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <Note
-                        status={status}
-                        batchId={props.batchId}
-                        classId={props.classId}
-                      />
-                      <Attendance
-                        students={props.students}
-                        status={status}
-                        batchId={props.batchId}
-                        classId={props.classId}
-                        attendance={props.attendance}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
+          </>
+        )}
       </div>
     </>
   );
@@ -862,7 +873,11 @@ const ClassListCard = (props) => {
 const Schedule = () => {
   const dispatch = useDispatch();
 
-  const [batch, setBatch] = useState(["FCB1", "FCB2", "FCB3"]);
+  // useEffect(() => {
+  //   console.log(batches);
+  // }, [batches]);
+
+  const [batch, setBatch] = useState([]);
   const [date, setDate] = useState(new Date());
   const { userInfo } = useSelector((state) => state.userLogin);
   const { instructorSchedule: schedule } = useSelector(
@@ -877,6 +892,7 @@ const Schedule = () => {
     "Friday",
     "Saturday",
   ];
+  const [loading, setLoading] = useState(false);
   var today = `${
     week[new Date().getDay()]
   }, ${new Date().getDate()} ${new Date().toLocaleString("default", {
@@ -885,7 +901,9 @@ const Schedule = () => {
 
   useEffect(() => {
     if (userInfo && batch) {
+      setLoading(true);
       dispatch(instructorSchedule(date, batch));
+      setLoading(false);
     }
   }, [userInfo, batch]);
 
@@ -893,7 +911,7 @@ const Schedule = () => {
     axios.get(``);
   }, []);
 
-  console.log(schedule);
+  //console.log(schedule);
 
   const classList =
     schedule && date
@@ -917,9 +935,9 @@ const Schedule = () => {
             )
               return clas;
           } else if (clas.batchType === "normal") {
-            // let _allDates = clas.allDates.slice(1);
-            // console.log(_allDates);
-            let todayclass = clas.allDates?.filter(
+            let _allDates = clas.allDates.slice(1);
+            //console.log(_allDates);
+            let todayclass = _allDates?.filter(
               (ad) =>
                 new Date(ad.date).getDate() === date.getDate() &&
                 new Date(ad.date).getMonth() === date.getMonth() &&
@@ -931,6 +949,12 @@ const Schedule = () => {
       : null;
 
   console.log(classList);
+
+  // useEffect(() => {
+  //   classList?.map((clb) => {
+  //     console.log(clb.batch);
+  //   });
+  // }, []);
 
   return (
     <>
@@ -953,195 +977,220 @@ const Schedule = () => {
                 <input
                   type="date"
                   onChange={(e) => setDate(new Date(e.target.value))}
+                  // onChange = {(e) => handleDate(new Date(e.target.value))}
                 />
               </div>
               <select
                 className="batches"
-                onChange={(e) => {
-                  if (e.target.value === "All") setBatch(["A", "B", "C"]);
-                  else setBatch([e.target.value]);
-                }}
+                // onChange={(e) => {
+                //   if (e.target.value === "All") setBatch(["A", "B", "C"]);
+                //   else setBatch([e.target.value]);
+                // }}
               >
-                {batches.map((b) => {
-                  return (
-                    <>
-                      {b === "All" ? (
+                {classList?.length !== 0 ? (
+                  <>
+                    {classList?.map((b) => {
+                      return (
+                        <>
+                          <option selected value={b.batch}>
+                            {b.batch}
+                          </option>
+                          {/* {b === "All" ? (
                         <option value={b} selected>
                           All batches
                         </option>
                       ) : (
                         <option value={b}>Batch {b}</option>
-                      )}
-                    </>
-                  );
-                })}
+                      )} */}
+                        </>
+                      );
+                    })}
+                  </>
+                ) : (
+                  <option>No batch assigned</option>
+                )}
               </select>
             </div>
           </div>
           <div className="row mx-0" style={{ justifyContent: "space-between" }}>
             <div className="class-list">
-              {classList &&
-                classList.map((C) => {
-                  // REMOVE DUPLICATED FROM STUDENTS
-                  let _studentsArr = [];
-                  let _studentsObj = {};
-                  for (let i in C.students) {
-                    // Extract the title
-                    let objTitle = C.students[i]["userId"];
+              {classList?.length !== 0
+                ? classList?.map((C) => {
+                    // REMOVE DUPLICATED FROM STUDENTS
+                    let _studentsArr = [];
+                    let _studentsObj = {};
+                    for (let i in C.students) {
+                      // Extract the title
+                      let objTitle = C.students[i]["userId"];
 
-                    // Use the title as the index
-                    _studentsObj[objTitle] = C.students[i];
-                  }
-                  for (let j in _studentsObj) {
-                    _studentsArr.push(_studentsObj[j]);
-                  }
+                      // Use the title as the index
+                      _studentsObj[objTitle] = C.students[i];
+                    }
+                    for (let j in _studentsObj) {
+                      _studentsArr.push(_studentsObj[j]);
+                    }
 
-                  // REMOVE DUPLICATES FROM CLASSES
-                  let _classArray = [];
-                  let _classObj = {};
-                  for (let i in C.classesDetails) {
-                    // Extract the title
-                    let objTitle = C.classesDetails[i]["_id"];
+                    // REMOVE DUPLICATES FROM CLASSES
+                    let _classArray = [];
+                    let _classObj = {};
+                    for (let i in C.classesDetails) {
+                      // Extract the title
+                      let objTitle = C.classesDetails[i]["_id"];
 
-                    // Use the title as the index
-                    _classObj[objTitle] = C.classesDetails[i];
-                  }
-                  for (let j in _classObj) {
-                    _classArray.push(_classObj[j]);
-                  }
+                      // Use the title as the index
+                      _classObj[objTitle] = C.classesDetails[i];
+                    }
+                    for (let j in _classObj) {
+                      _classArray.push(_classObj[j]);
+                    }
 
-                  // REMOVE DUPLICATES FROM PROJECTS
-                  let _projectArray = [];
-                  let _projOBJ = {};
-                  for (let i in C.projectsDetails) {
-                    // Extract the title
-                    let objTitle = C.projectsDetails[i]["_id"];
+                    // REMOVE DUPLICATES FROM PROJECTS
+                    let _projectArray = [];
+                    let _projOBJ = {};
+                    for (let i in C.projectsDetails) {
+                      // Extract the title
+                      let objTitle = C.projectsDetails[i]["_id"];
 
-                    // Use the title as the index
-                    _projOBJ[objTitle] = C.projectsDetails[i];
-                  }
-                  for (let j in _projOBJ) {
-                    _projectArray.push(_projOBJ[j]);
-                  }
+                      // Use the title as the index
+                      _projOBJ[objTitle] = C.projectsDetails[i];
+                    }
+                    for (let j in _projOBJ) {
+                      _projectArray.push(_projOBJ[j]);
+                    }
 
-                  if (
-                    new Date(C.singleDate).getDate() === date.getDate() &&
-                    new Date(C.singleDate).getMonth() === date.getMonth() &&
-                    new Date(C.singleDate).getFullYear() === date.getFullYear()
-                  ) {
-                    C.currentDate = C.singleDate;
-                    C.currentTime = C.singleTime;
-                    C.activeClassDetails = _classArray.filter(
-                      (cobj) => cobj.classNo === 1
-                    )[0]
-                      ? _classArray.filter((cobj) => cobj.classNo === 1)[0]
-                      : {};
-                    C.activeProjectDetails = _projectArray.filter(
-                      (proj) => proj.no === 1
-                    )[0]
-                      ? _projectArray.filter((proj) => proj.no === 1)[0]
-                      : {};
-                  } else if (
-                    new Date(C.doubleDate).getDate() === date.getDate() &&
-                    new Date(C.doubleDate).getMonth() === date.getMonth() &&
-                    new Date(C.doubleDate).getFullYear() === date.getFullYear()
-                  ) {
-                    C.currentDate = C.doubleDate;
-                    C.currentTime = C.doubleTime;
-                    C.activeClassDetails = _classArray.filter(
-                      (cobj) => cobj.classNo === 2
-                    )[0]
-                      ? _classArray.filter((cobj) => cobj.classNo === 2)[0]
-                      : {};
-                    C.activeProjectDetails = _projectArray.filter(
-                      (proj) => proj.no === 2
-                    )[0]
-                      ? _projectArray.filter((proj) => proj.no === 2)[0]
-                      : {};
-                  } else {
-                    let classTimeIndex = C.allDates.findIndex(
-                      (obj) =>
-                        new Date(obj.date).getDate() === date.getDate() &&
-                        new Date(obj.date).getMonth() === date.getMonth() &&
-                        new Date(obj.date).getFullYear() === date.getFullYear()
-                    );
-                    C.activeClassDetails = _classArray.filter(
-                      (cobj) => cobj.classNo === parseInt(classTimeIndex + 1)
-                    )[0]
-                      ? _classArray.filter(
-                          (cobj) =>
-                            cobj.classNo === parseInt(classTimeIndex + 1)
-                        )[0]
-                      : {};
+                    if (
+                      new Date(C.singleDate).getDate() === date.getDate() &&
+                      new Date(C.singleDate).getMonth() === date.getMonth() &&
+                      new Date(C.singleDate).getFullYear() ===
+                        date.getFullYear()
+                    ) {
+                      C.currentDate = C.singleDate;
+                      C.currentTime = C.singleTime;
+                      C.activeClassDetails = _classArray.filter(
+                        (cobj) => cobj.classNo === 1
+                      )[0]
+                        ? _classArray.filter((cobj) => cobj.classNo === 1)[0]
+                        : {};
+                      C.activeProjectDetails = _projectArray.filter(
+                        (proj) => proj.no === 1
+                      )[0]
+                        ? _projectArray.filter((proj) => proj.no === 1)[0]
+                        : {};
+                    } else if (
+                      new Date(C.doubleDate).getDate() === date.getDate() &&
+                      new Date(C.doubleDate).getMonth() === date.getMonth() &&
+                      new Date(C.doubleDate).getFullYear() ===
+                        date.getFullYear()
+                    ) {
+                      C.currentDate = C.doubleDate;
+                      C.currentTime = C.doubleTime;
+                      C.activeClassDetails = _classArray.filter(
+                        (cobj) => cobj.classNo === 2
+                      )[0]
+                        ? _classArray.filter((cobj) => cobj.classNo === 2)[0]
+                        : {};
+                      C.activeProjectDetails = _projectArray.filter(
+                        (proj) => proj.no === 2
+                      )[0]
+                        ? _projectArray.filter((proj) => proj.no === 2)[0]
+                        : {};
+                    } else {
+                      let classTimeIndex = C.allDates.findIndex(
+                        (obj) =>
+                          new Date(obj.date).getDate() === date.getDate() &&
+                          new Date(obj.date).getMonth() === date.getMonth() &&
+                          new Date(obj.date).getFullYear() ===
+                            date.getFullYear()
+                      );
+                      C.activeClassDetails = _classArray.filter(
+                        (cobj) => cobj.classNo === parseInt(classTimeIndex + 1)
+                      )[0]
+                        ? _classArray.filter(
+                            (cobj) =>
+                              cobj.classNo === parseInt(classTimeIndex + 1)
+                          )[0]
+                        : {};
 
-                    let assignedProjectId = C.classes.filter(
-                      (clas) => clas.classId === C.activeClassDetails?._id
-                    )[0]?.assignedProject;
+                      let assignedProjectId = C.classes.filter(
+                        (clas) => clas.classId === C.activeClassDetails?._id
+                      )[0]?.assignedProject;
 
-                    C.activeProjectDetails = _projectArray.filter(
-                      (proj) =>
-                        proj._id.toString() === assignedProjectId?.toString()
-                    )[0]
-                      ? _projectArray.filter(
-                          (proj) =>
-                            proj._id.toString() ===
-                            assignedProjectId?.toString()
-                        )[0]
-                      : {};
+                      C.activeProjectDetails = _projectArray.filter(
+                        (proj) =>
+                          proj._id.toString() === assignedProjectId?.toString()
+                      )[0]
+                        ? _projectArray.filter(
+                            (proj) =>
+                              proj._id.toString() ===
+                              assignedProjectId?.toString()
+                          )[0]
+                        : {};
 
-                    C.currentTime =
-                      new Date(C.allDates[classTimeIndex].date).getHours() +
-                      ":" +
-                      new Date(C.allDates[classTimeIndex].date).getMinutes();
-                  }
+                      C.currentTime =
+                        new Date(
+                          C.allDates[classTimeIndex + 1].date
+                        ).getHours() +
+                        ":" +
+                        new Date(
+                          C.allDates[classTimeIndex + 1].date
+                        ).getMinutes();
+                    }
 
-                  return (
-                    <ClassListCard
-                      key={C._id}
-                      batch={C.batch}
-                      startTime={new Date(date).setHours(
-                        C.currentTime.toString().split(":")[0],
-                        C.currentTime.toString().split(":")[1],
-                        0,
-                        0
-                      )}
-                      endTime={new Date(date).setHours(
-                        C.currentTime.toString().split(":")[0],
-                        C.currentTime.toString().split(":")[1],
-                        0,
-                        0
-                      )}
-                      classId={C.activeClassDetails?._id}
-                      batchId={C._id}
-                      materials={
-                        C.classes.filter(
-                          (clas) => clas.classId === C.activeClassDetails?._id
-                        )[0]?.materials
-                      }
-                      students={_studentsArr}
-                      classDetails={C.activeClassDetails}
-                      allProjectsBatch={C.projects}
-                      allProjectsDetails={_projectArray}
-                      attendance={
-                        C.classes.filter(
-                          (clas) => clas.classId === C.activeClassDetails?._id
-                        )[0]?.attendance
-                      }
-                      projectDetails={C.activeProjectDetails}
-                      singleProjectDetails={
-                        C.projects.filter(
-                          (proj) =>
-                            proj.projectId === C.activeProjectDetails?._id
-                        )[0]
-                          ? C.projects.filter(
+                    return loading ? (
+                      "Loading Data Please wait..."
+                    ) : (
+                      <>
+                        <ClassListCard
+                          key={C._id}
+                          batch={C.batch}
+                          startTime={new Date(date).setHours(
+                            C.currentTime.toString().split(":")[0],
+                            C.currentTime.toString().split(":")[1],
+                            0,
+                            0
+                          )}
+                          endTime={new Date(date).setHours(
+                            C.currentTime.toString().split(":")[0],
+                            C.currentTime.toString().split(":")[1],
+                            0,
+                            0
+                          )}
+                          classId={C.activeClassDetails?._id}
+                          batchId={C._id}
+                          materials={
+                            C.classes.filter(
+                              (clas) =>
+                                clas.classId === C.activeClassDetails?._id
+                            )[0]?.materials
+                          }
+                          students={_studentsArr}
+                          classDetails={C.activeClassDetails}
+                          allProjectsBatch={C.projects}
+                          allProjectsDetails={_projectArray}
+                          attendance={
+                            C.classes.filter(
+                              (clas) =>
+                                clas.classId === C.activeClassDetails?._id
+                            )[0]?.attendance
+                          }
+                          projectDetails={C.activeProjectDetails}
+                          singleProjectDetails={
+                            C.projects.filter(
                               (proj) =>
                                 proj.projectId === C.activeProjectDetails?._id
                             )[0]
-                          : {}
-                      }
-                    />
-                  );
-                })}
+                              ? C.projects.filter(
+                                  (proj) =>
+                                    proj.projectId ===
+                                    C.activeProjectDetails?._id
+                                )[0]
+                              : {}
+                          }
+                        />
+                      </>
+                    );
+                  })
+                : `No Classes are assigned to you for${date.toLocaleDateString()}`}
             </div>
           </div>
         </>
