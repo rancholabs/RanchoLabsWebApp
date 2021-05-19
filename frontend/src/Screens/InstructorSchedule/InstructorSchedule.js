@@ -911,7 +911,8 @@ const Schedule = () => {
     axios.get(``);
   }, []);
 
-  //console.log(schedule);
+  console.log(schedule);
+  let _allDates;
 
   const classList =
     schedule && date
@@ -935,9 +936,9 @@ const Schedule = () => {
             )
               return clas;
           } else if (clas.batchType === "normal") {
-            let _allDates = clas.allDates.slice(1);
+            _allDates = clas.allDates.slice(1);
             //console.log(_allDates);
-            let todayclass = _allDates?.filter(
+            let todayclass = _allDates.filter(
               (ad) =>
                 new Date(ad.date).getDate() === date.getDate() &&
                 new Date(ad.date).getMonth() === date.getMonth() &&
@@ -1044,6 +1045,7 @@ const Schedule = () => {
                       _classArray.push(_classObj[j]);
                     }
 
+                    console.log(_classArray);
                     // REMOVE DUPLICATES FROM PROJECTS
                     let _projectArray = [];
                     let _projOBJ = {};
@@ -1095,7 +1097,7 @@ const Schedule = () => {
                         ? _projectArray.filter((proj) => proj.no === 2)[0]
                         : {};
                     } else {
-                      let classTimeIndex = C.allDates.findIndex(
+                      let classTimeIndex = _allDates.findIndex(
                         (obj) =>
                           new Date(obj.date).getDate() === date.getDate() &&
                           new Date(obj.date).getMonth() === date.getMonth() &&
@@ -1127,13 +1129,9 @@ const Schedule = () => {
                         : {};
 
                       C.currentTime =
-                        new Date(
-                          C.allDates[classTimeIndex + 1].date
-                        ).getHours() +
+                        new Date(_allDates[classTimeIndex]?.date).getHours() +
                         ":" +
-                        new Date(
-                          C.allDates[classTimeIndex + 1].date
-                        ).getMinutes();
+                        new Date(_allDates[classTimeIndex]?.date).getMinutes();
                     }
 
                     return loading ? (
