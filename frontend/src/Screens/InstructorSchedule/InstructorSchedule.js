@@ -29,8 +29,6 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 
-let batches = ["All"];
-
 function formatAMPM(date) {
   var hours = date.getHours();
   var minutes = date.getMinutes();
@@ -753,7 +751,7 @@ const ClassListCard = (props) => {
   const status = getStatus(props.startTime, props.endTime);
   const [batch, setBatch] = useState([]);
 
-  console.log(batches);
+  // console.log(batches);
   var timing =
     props.startTime && props.endTime
       ? formatAMPM(new Date(props.startTime)) +
@@ -777,6 +775,8 @@ const ClassListCard = (props) => {
               display: "flex",
               alignItems: "center",
               padding: "calc(30*var(--vp)) 7px calc(24*var(--vp))",
+              width: "100%",
+              justifyContent: "space-between",
             }}
           >
             <div>
@@ -794,7 +794,6 @@ const ClassListCard = (props) => {
             </div>
             <div
               style={{
-                marginLeft: "30px",
                 cursor: "pointer",
               }}
               className="details-button"
@@ -877,7 +876,9 @@ const Schedule = () => {
   //   console.log(batches);
   // }, [batches]);
 
+  const batches = ["All"];
   const [batch, setBatch] = useState([]);
+  const [batchName, setBatchName] = useState("");
   const [date, setDate] = useState(new Date());
   const { userInfo } = useSelector((state) => state.userLogin);
   const { instructorSchedule: schedule } = useSelector(
@@ -906,6 +907,20 @@ const Schedule = () => {
       setLoading(false);
     }
   }, [userInfo, batch]);
+
+  // let bat = schedule?.classes?.filter((clas) => {
+  //   batches.filter((c) => {
+  //     if (c !== clas.batch) batches.push(clas.batch);
+  //   });
+
+  //   // batches = batch;
+  // });
+
+  let bat = schedule?.classes?.filter((clas) => {
+    batches.push(clas.batch);
+  });
+
+  console.log(batches);
 
   useEffect(() => {
     axios.get(``);
@@ -983,33 +998,32 @@ const Schedule = () => {
               </div>
               <select
                 className="batches"
-                // onChange={(e) => {
-                //   if (e.target.value === "All") setBatch(["A", "B", "C"]);
-                //   else setBatch([e.target.value]);
-                // }}
+                onChange={(e) => {
+                  if (e.target.value === "All") {
+                    setBatch(batches);
+                  } else {
+                    setBatch([e.target.value]);
+                  }
+                }}
               >
-                {classList?.length !== 0 ? (
+                {
                   <>
-                    {classList?.map((b) => {
+                    {batches.map((b) => {
+                      // batch.push;
                       return (
                         <>
-                          <option selected value={b.batch}>
-                            {b.batch}
-                          </option>
-                          {/* {b === "All" ? (
-                        <option value={b} selected>
-                          All batches
-                        </option>
-                      ) : (
-                        <option value={b}>Batch {b}</option>
-                      )} */}
+                          {b === "All" ? (
+                            <option value={b} selected>
+                              All batches
+                            </option>
+                          ) : (
+                            <option value={b}>Batch {b}</option>
+                          )}
                         </>
                       );
                     })}
                   </>
-                ) : (
-                  <option>No batch assigned</option>
-                )}
+                }
               </select>
             </div>
           </div>
