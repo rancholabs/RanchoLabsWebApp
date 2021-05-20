@@ -920,13 +920,13 @@ const Schedule = () => {
     batches.push(clas.batch);
   });
 
-  console.log(batches);
+  // console.log(batches);
 
   useEffect(() => {
     axios.get(``);
   }, []);
 
-  console.log(schedule);
+  //console.log(schedule);
   let _allDates;
 
   const classList =
@@ -964,7 +964,7 @@ const Schedule = () => {
         })
       : null;
 
-  console.log(classList);
+  //console.log(classList);
 
   // useEffect(() => {
   //   classList?.map((clb) => {
@@ -1059,7 +1059,7 @@ const Schedule = () => {
                       _classArray.push(_classObj[j]);
                     }
 
-                    console.log(_classArray);
+                    //console.log(_classArray);
                     // REMOVE DUPLICATES FROM PROJECTS
                     let _projectArray = [];
                     let _projOBJ = {};
